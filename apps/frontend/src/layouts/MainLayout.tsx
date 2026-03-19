@@ -6,6 +6,12 @@ import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
   StockOutlined,
+  ReadOutlined,
+  BellOutlined,
+  LineChartOutlined,
+  SettingOutlined,
+  NotificationOutlined,
+  ClockCircleOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -25,6 +31,38 @@ const MainLayout: React.FC = () => {
       key: '/dashboard',
       icon: <DashboardOutlined />,
       label: '仪表盘',
+    },
+    {
+      key: '/news',
+      icon: <ReadOutlined />,
+      label: '新闻',
+    },
+    {
+      key: '/signals',
+      icon: <BellOutlined />,
+      label: '信号',
+    },
+    {
+      key: '/backtest',
+      icon: <LineChartOutlined />,
+      label: '回测',
+    },
+    {
+      key: '/settings',
+      icon: <SettingOutlined />,
+      label: '设置',
+      children: [
+        {
+          key: '/settings/notifications',
+          icon: <NotificationOutlined />,
+          label: '通知设置',
+        },
+        {
+          key: '/settings/scheduler',
+          icon: <ClockCircleOutlined />,
+          label: '定时任务',
+        },
+      ],
     },
     {
       key: '/profile',
@@ -106,6 +144,7 @@ const MainLayout: React.FC = () => {
         style={{
           marginLeft: collapsed ? 80 : 200,
           transition: 'all 0.2s',
+          overflow: 'hidden',
         }}
       >
         <Header collapsed={collapsed} />
@@ -116,6 +155,7 @@ const MainLayout: React.FC = () => {
             minHeight: 280,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
+            overflow: 'auto',
           }}
         >
           <Outlet />

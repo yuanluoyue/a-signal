@@ -4,8 +4,8 @@ import { drizzle } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
 import * as schema from './schema.js';
-
-export const DRIZZLE_PROVIDER = 'DRIZZLE_PROVIDER';
+import { DatabaseService } from './database.service.js';
+import { DRIZZLE_PROVIDER } from './database.constants.js';
 
 @Global()
 @Module({
@@ -43,7 +43,8 @@ export const DRIZZLE_PROVIDER = 'DRIZZLE_PROVIDER';
         return db;
       },
     },
+    DatabaseService,
   ],
-  exports: [DRIZZLE_PROVIDER],
+  exports: [DRIZZLE_PROVIDER, DatabaseService],
 })
 export class DatabaseModule {}
