@@ -13,6 +13,10 @@ import { SchedulerModule } from './scheduler/scheduler.module.js';
 import { NotificationsModule } from './notifications/notifications.module.js';
 import { DashboardModule } from './dashboard/dashboard.module.js';
 import { BacktestModule } from './backtest/backtest.module.js';
+import { BlacklistModule } from './blacklist/blacklist.module.js';
+import { StocksModule } from './stocks/stocks.module.js';
+import { SimulationModule } from './simulation/simulation.module.js';
+import { StockTrackingModule } from './stock-tracking/stock-tracking.module.js';
 import { HealthController } from './health.controller.js';
 import { JwtAuthGuard } from './auth/jwt-auth.guard.js';
 
@@ -39,6 +43,10 @@ const jwtAuthGuardProvider: Provider = {
     NotificationsModule,
     DashboardModule,
     BacktestModule,
+    BlacklistModule,
+    StocksModule,
+    SimulationModule,
+    StockTrackingModule,
   ],
   controllers: [HealthController],
   providers: [jwtAuthGuardProvider],

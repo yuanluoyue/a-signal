@@ -15,7 +15,7 @@ export interface NewsItem {
 
 export type AnalysisStatus = 'pending' | 'analyzing' | 'analyzed' | 'failed';
 
-export type VectorizedStatus = 'pending' | 'vectorized' | 'failed';
+export type VectorizedStatus = 'pending' | 'vectorizing' | 'vectorized' | 'failed';
 
 export interface NewsFilter {
   source?: string;

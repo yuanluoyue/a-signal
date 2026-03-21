@@ -3,6 +3,7 @@ import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { WebhooksService, Webhook } from './webhooks.service.js';
 import { Signal } from '../database/schema.js';
+import { BlacklistService } from '../blacklist/blacklist.service.js';
 
 export interface WechatMessage {
   msgtype: 'markdown';
@@ -26,6 +27,7 @@ export class NotificationsService {
   constructor(
     private readonly httpService: HttpService,
     private readonly webhooksService: WebhooksService,
+    private readonly blacklistService: BlacklistService,
   ) {}
 
   async sendWechatNotification(
@@ -108,6 +110,15 @@ export class NotificationsService {
 
   async notifySignalAnalyzed(context: SignalNotificationContext): Promise<void> {
     try {
+      // 检查股票是否在黑名单中
+      const isBlacklisted = await this.blacklistService.isBlacklisted(context.stockCode);
+      if (isBlacklisted) {
+        this.logger.debug(
+          `Skipping notification for signal ${context.signal.id} - stock ${context.stockCode} is blacklisted`,
+        );
+        return;
+      }
+
       if (!this.isNewsWithinTwoDays(context.newsPublishTime)) {
         this.logger.debug(
           `Skipping notification for signal ${context.signal.id} - news is older than 2 days`,
@@ -146,10 +157,11 @@ export class NotificationsService {
     context: SignalNotificationContext,
   ): Promise<void> {
     try {
-      if (context.signal.confidence < webhook.confidenceThreshold) {
+      // 检查置信度是否在范围内
+      if (context.signal.confidence < webhook.minConfidence || context.signal.confidence > webhook.maxConfidence) {
         this.logger.debug(
           `Skipping webhook ${webhook.name} - signal confidence (${context.signal.confidence}%) ` +
-            `is below threshold (${webhook.confidenceThreshold}%)`,
+            `is not in range [${webhook.minConfidence}%, ${webhook.maxConfidence}%]`,
         );
         return;
       }

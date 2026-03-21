@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   Table,
   Card,
@@ -10,16 +10,18 @@ import {
   Input,
   Typography,
   message,
-  Popconfirm,
+  Progress,
+  Row,
+  Col,
 } from 'antd';
 import {
   EyeOutlined,
   PlayCircleOutlined,
   ReloadOutlined,
   SearchOutlined,
-  DeleteOutlined,
+  DatabaseOutlined,
 } from '@ant-design/icons';
-import { useNavigate } from 'umi';
+import { useNavigate, useSearchParams } from 'umi';
 import api from '@/services/api';
 import type { NewsItem, NewsFilter, AnalysisStatus, VectorizedStatus } from '@/types/news';
 
@@ -46,18 +48,20 @@ const getAnalysisStatusText = (status: AnalysisStatus): string => {
   return textMap[status];
 };
 
-const getVectorizedStatusColor = (status: VectorizedStatus): string => {
-  const colorMap: Record<VectorizedStatus, string> = {
+const getVectorizedStatusColor = (status: VectorizedStatus | 'vectorizing'): string => {
+  const colorMap: Record<VectorizedStatus | 'vectorizing', string> = {
     pending: 'default',
+    vectorizing: 'processing',
     vectorized: 'success',
     failed: 'error',
   };
   return colorMap[status];
 };
 
-const getVectorizedStatusText = (status: VectorizedStatus): string => {
-  const textMap: Record<VectorizedStatus, string> = {
+const getVectorizedStatusText = (status: VectorizedStatus | 'vectorizing'): string => {
+  const textMap: Record<VectorizedStatus | 'vectorizing', string> = {
     pending: '待处理',
+    vectorizing: '向量化中',
     vectorized: '已向量化',
     failed: '失败',
   };
@@ -82,41 +86,69 @@ const formatDate = (dateString: string): string => {
 
 const NewsListPage: React.FC = () => {
   const navigate = useNavigate();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  // 从 URL 读取初始参数
+  const getInitialPage = () => parseInt(searchParams.get('page') || '1', 10);
+  const getInitialPageSize = () => parseInt(searchParams.get('pageSize') || '10', 10);
+  const getInitialFilters = (): NewsFilter => ({
+    keyword: searchParams.get('keyword') || undefined,
+    source: searchParams.get('source') || undefined,
+    analysisStatus: (searchParams.get('analysisStatus') as AnalysisStatus) || undefined,
+  });
+
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<NewsItem[]>([]);
   const [pagination, setPagination] = useState({
-    current: 1,
-    pageSize: 20,
+    current: getInitialPage(),
+    pageSize: getInitialPageSize(),
     total: 0,
   });
-  const [filters, setFilters] = useState<NewsFilter>({});
+  const [filters, setFilters] = useState<NewsFilter>(getInitialFilters());
+  const [vectorizeProgress, setVectorizeProgress] = useState({
+    pending: 0,
+    vectorizing: 0,
+    vectorized: 0,
+    failed: 0,
+    total: 0,
+  });
 
-  const fetchData = async (page?: number, pageSize?: number) => {
+  // 更新 URL 参数
+  const updateUrlParams = useCallback((page: number, pageSize: number, currentFilters: NewsFilter) => {
+    const params: Record<string, string> = {
+      page: page.toString(),
+      pageSize: pageSize.toString(),
+    };
+    if (currentFilters.keyword) params.keyword = currentFilters.keyword;
+    if (currentFilters.source) params.source = currentFilters.source;
+    if (currentFilters.analysisStatus) params.analysisStatus = currentFilters.analysisStatus;
+    setSearchParams(params);
+  }, [setSearchParams]);
+
+  const fetchData = useCallback(async (page?: number, pageSize?: number, currentFilters?: NewsFilter) => {
+    const targetPage = page ?? pagination.current;
+    const targetPageSize = pageSize ?? pagination.pageSize;
+    const targetFilters = currentFilters ?? filters;
+
     setLoading(true);
     try {
       const params: Record<string, unknown> = {
-        page: page ?? pagination.current,
-        pageSize: pageSize ?? pagination.pageSize,
+        page: targetPage,
+        pageSize: targetPageSize,
       };
 
-      if (filters.source) {
-        params.source = filters.source;
+      if (targetFilters.source) {
+        params.source = targetFilters.source;
       }
-      if (filters.analysisStatus) {
-        params.analyzeStatus = filters.analysisStatus;
+      if (targetFilters.analysisStatus) {
+        params.analyzeStatus = targetFilters.analysisStatus;
       }
-      if (filters.keyword) {
-        params.keyword = filters.keyword;
+      if (targetFilters.keyword) {
+        params.keyword = targetFilters.keyword;
       }
 
       const response = await api.get('/news', { params });
-      console.log('[NewsList] Raw response:', response);
-      
-      // API 拦截器已经处理了响应，response 直接是 {data, total, page, pageSize}
       const responseData = response;
-      console.log('[NewsList] Response data:', responseData);
-      console.log('[NewsList] Total:', responseData?.total, 'Data length:', responseData?.data?.length);
-      console.log('[NewsList] Response keys:', Object.keys(responseData || {}));
 
       // 转换后端数据格式到前端格式
       const newsList: NewsItem[] = (responseData.data || []).map((item: Record<string, unknown>) => ({
@@ -135,34 +167,53 @@ const NewsListPage: React.FC = () => {
 
       setData(newsList);
       const newTotal = responseData.total ?? newsList.length;
-      console.log('[NewsList] Setting pagination total:', newTotal);
-      setPagination((prev) => ({
-        ...prev,
-        current: page ?? prev.current,
-        pageSize: pageSize ?? prev.pageSize,
+      setPagination({
+        current: targetPage,
+        pageSize: targetPageSize,
         total: newTotal,
-      }));
+      });
+
+      // 更新 URL 参数
+      updateUrlParams(targetPage, targetPageSize, targetFilters);
     } catch (error) {
       message.error('获取新闻列表失败');
       console.error('Fetch news error:', error);
     } finally {
       setLoading(false);
     }
+  }, [pagination.current, pagination.pageSize, filters, updateUrlParams]);
+
+  const fetchVectorizeProgress = async () => {
+    try {
+      const response = await api.get('/news/vectorize-progress');
+      const { pending, vectorizing, vectorized, failed } = response.data;
+      setVectorizeProgress({
+        pending,
+        vectorizing,
+        vectorized,
+        failed,
+        total: pending + vectorizing + vectorized + failed,
+      });
+    } catch (error) {
+      console.error('Fetch vectorize progress error:', error);
+    }
   };
 
+  // 初始加载
   useEffect(() => {
     fetchData();
+    fetchVectorizeProgress();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
+  }, []);
 
-  // 5秒轮询刷新
+  // 5秒轮询刷新 - 使用当前的 pagination 和 filters
   useEffect(() => {
     const interval = setInterval(() => {
-      fetchData();
+      fetchData(pagination.current, pagination.pageSize, filters);
+      fetchVectorizeProgress();
     }, 5000);
     return () => clearInterval(interval);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters]);
+  }, [fetchData, pagination.current, pagination.pageSize, filters]);
 
   const handleView = (id: string) => {
     navigate(`/news/${id}`);
@@ -178,19 +229,45 @@ const NewsListPage: React.FC = () => {
     }
   };
 
-  const handleRefresh = () => {
-    fetchData();
+  const handleVectorize = async (newsId: string) => {
+    try {
+      await api.post(`/news/${newsId}/vectorize`);
+      message.success(`新闻 ${newsId} 向量化任务已提交`);
+      fetchData();
+      fetchVectorizeProgress();
+    } catch {
+      message.error('向量化失败');
+    }
   };
 
-  const handleDelete = async (id: string) => {
+  const handleBatchVectorize = async () => {
     try {
-      await api.delete(`/news/${id}`);
-      message.success('新闻已删除');
+      const response = await api.post('/news/batch-vectorize');
+      message.success(`批量向量化任务已启动，共 ${response.count} 条新闻`);
       fetchData();
-    } catch (error) {
-      message.error('删除新闻失败');
-      console.error('Delete news error:', error);
+      fetchVectorizeProgress();
+    } catch {
+      message.error('批量向量化失败');
     }
+  };
+
+  const handleRefresh = () => {
+    fetchData();
+    fetchVectorizeProgress();
+  };
+
+  // 处理筛选变化
+  const handleFilterChange = (key: keyof NewsFilter, value: string | undefined) => {
+    const newFilters = { ...filters, [key]: value };
+    setFilters(newFilters);
+    // 重置到第一页
+    fetchData(1, pagination.pageSize, newFilters);
+  };
+
+  // 处理分页变化
+  const handlePageChange = (page: number, pageSize?: number) => {
+    const newPageSize = pageSize || pagination.pageSize;
+    fetchData(page, newPageSize);
   };
 
   const columns = [
@@ -198,10 +275,10 @@ const NewsListPage: React.FC = () => {
       title: '标题',
       dataIndex: 'title',
       key: 'title',
-      width: 250,
+      width: 180,
       render: (title: string) => (
         <Tooltip title={title} placement="topLeft">
-          <span style={{ cursor: 'pointer' }}>{truncateTitle(title, 10)}</span>
+          <span style={{ cursor: 'pointer' }}>{truncateTitle(title, 8)}</span>
         </Tooltip>
       ),
     },
@@ -225,7 +302,7 @@ const NewsListPage: React.FC = () => {
       dataIndex: 'vectorizedStatus',
       key: 'vectorizedStatus',
       width: 100,
-      render: (status: VectorizedStatus) => (
+      render: (status: VectorizedStatus | 'vectorizing') => (
         <Tag color={getVectorizedStatusColor(status)}>{getVectorizedStatusText(status)}</Tag>
       ),
     },
@@ -254,7 +331,7 @@ const NewsListPage: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      width: 150,
+      width: 200,
       fixed: 'right' as const,
       render: (_: unknown, record: NewsItem) => (
         <Space size="small">
@@ -278,22 +355,16 @@ const NewsListPage: React.FC = () => {
               分析
             </Button>
           </Tooltip>
-          <Popconfirm
-            title="确认删除"
-            description="确定要删除这条新闻吗？此操作不可恢复。"
-            onConfirm={() => handleDelete(record.id)}
-            okText="删除"
-            cancelText="取消"
-            okButtonProps={{ danger: true }}
-          >
+          <Tooltip title="向量化">
             <Button
-              danger
-              icon={<DeleteOutlined />}
+              icon={<DatabaseOutlined />}
               size="small"
+              disabled={record.vectorizedStatus === 'vectorizing' || record.vectorizedStatus === 'vectorized'}
+              onClick={() => handleVectorize(record.id)}
             >
-              删除
+              向量化
             </Button>
-          </Popconfirm>
+          </Tooltip>
         </Space>
       ),
     },
@@ -301,9 +372,37 @@ const NewsListPage: React.FC = () => {
 
   const uniqueSources = Array.from(new Set(data.map((item) => item.source)));
 
+  const vectorizePercent = vectorizeProgress.total > 0
+    ? Math.round((vectorizeProgress.vectorized / vectorizeProgress.total) * 100)
+    : 0;
+
   return (
     <div>
       <Title level={2}>新闻管理</Title>
+
+      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
+        <Col span={24}>
+          <Card title="向量化进度" size="small">
+            <Row gutter={[16, 16]} align="middle">
+              <Col xs={24} lg={12} xl={14}>
+                <Progress
+                  percent={vectorizePercent}
+                  status={vectorizeProgress.vectorizing > 0 ? 'active' : 'normal'}
+                  format={() => `${vectorizeProgress.vectorized}/${vectorizeProgress.total}`}
+                />
+              </Col>
+              <Col xs={24} lg={12} xl={10}>
+                <Space size="small" wrap style={{ width: '100%' }}>
+                  <Tag>待处理: {vectorizeProgress.pending}</Tag>
+                  <Tag color="processing">向量化中: {vectorizeProgress.vectorizing}</Tag>
+                  <Tag color="success">已完成: {vectorizeProgress.vectorized}</Tag>
+                  <Tag color="error">失败: {vectorizeProgress.failed}</Tag>
+                </Space>
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+      </Row>
 
       <Card style={{ marginBottom: 24 }}>
         <Space size="middle" wrap>
@@ -311,14 +410,16 @@ const NewsListPage: React.FC = () => {
             placeholder="搜索标题"
             prefix={<SearchOutlined />}
             style={{ width: 200 }}
-            onChange={(e) => setFilters((prev) => ({ ...prev, keyword: e.target.value }))}
+            value={filters.keyword || ''}
+            onChange={(e) => handleFilterChange('keyword', e.target.value || undefined)}
             allowClear
           />
           <Select
             placeholder="选择来源"
             style={{ width: 150 }}
             allowClear
-            onChange={(value) => setFilters((prev) => ({ ...prev, source: value }))}
+            value={filters.source}
+            onChange={(value) => handleFilterChange('source', value)}
           >
             {uniqueSources.map((source) => (
               <Option key={source} value={source}>
@@ -330,7 +431,8 @@ const NewsListPage: React.FC = () => {
             placeholder="分析状态"
             style={{ width: 150 }}
             allowClear
-            onChange={(value) => setFilters((prev) => ({ ...prev, analysisStatus: value }))}
+            value={filters.analysisStatus}
+            onChange={(value) => handleFilterChange('analysisStatus', value)}
           >
             <Option value="pending">待分析</Option>
             <Option value="analyzing">分析中</Option>
@@ -339,6 +441,14 @@ const NewsListPage: React.FC = () => {
           </Select>
           <Button icon={<ReloadOutlined />} onClick={handleRefresh}>
             刷新
+          </Button>
+          <Button
+            type="primary"
+            icon={<DatabaseOutlined />}
+            onClick={handleBatchVectorize}
+            disabled={vectorizeProgress.pending === 0}
+          >
+            一键向量化 ({vectorizeProgress.pending})
           </Button>
         </Space>
       </Card>
@@ -356,9 +466,7 @@ const NewsListPage: React.FC = () => {
             showSizeChanger: true,
             showQuickJumper: true,
             showTotal: (total) => `共 ${total} 条`,
-            onChange: (page, pageSize) => {
-              fetchData(page, pageSize);
-            },
+            onChange: handlePageChange,
           }}
           scroll={{ x: 1200 }}
           style={{ zIndex: 1 }}

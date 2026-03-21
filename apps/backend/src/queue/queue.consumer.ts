@@ -117,9 +117,25 @@ export abstract class QueueConsumer implements OnModuleInit, OnModuleDestroy {
 
           if (!this.options.autoAck) {
             const retryCount = this.getRetryCount(msg);
-            if (retryCount < 3) {
-              this.channel!.nack(msg, false, true);
+            const maxRetries = this.options.maxRetries ?? 3;
+            
+            if (retryCount < maxRetries) {
+              // 增加重试计数并重新入队
+              const newHeaders = { ...msg.properties.headers };
+              newHeaders['x-retry-count'] = retryCount + 1;
+              
+              // 重新发布消息到队列末尾，带上更新后的重试计数
+              this.channel!.publish('', queueName, msg.content, {
+                ...msg.properties,
+                headers: newHeaders,
+              });
+              
+              // 确认原消息
+              this.channel!.ack(msg);
+              
+              this.logger.warn(`Message requeued with retry count ${retryCount + 1}/${maxRetries}`);
             } else {
+              // 超过最大重试次数，发送到死信队列
               this.channel!.nack(msg, false, false);
               this.logger.warn(`Message moved to DLQ after ${retryCount} retries`);
             }

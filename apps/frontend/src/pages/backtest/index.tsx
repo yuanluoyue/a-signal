@@ -1,500 +1,385 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  Card,
-  Row,
-  Col,
-  DatePicker,
-  Slider,
-  Checkbox,
-  InputNumber,
-  Button,
-  Statistic,
   Table,
+  Card,
+  Button,
+  Tag,
   Typography,
   Space,
-  Tag,
-  Empty,
-  Spin,
   message,
-  Divider,
+  Spin,
+  Empty,
+  Modal,
+  Descriptions,
+  Table as DetailTable,
 } from 'antd';
-import {
-  PlayCircleOutlined,
-  ReloadOutlined,
-  RiseOutlined,
-  FallOutlined,
-  PercentageOutlined,
-  BarChartOutlined,
-  LineChartOutlined,
-} from '@ant-design/icons';
-import dayjs from 'dayjs';
-import type { BacktestFilter, BacktestResult, BacktestTrade } from '@/types/backtest';
-import type { SignalType } from '@/types/signal';
+import { ReloadOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons';
+import { Popconfirm } from 'antd';
+import api from '@/services/api';
 
 const { Title, Text } = Typography;
-const { RangePicker } = DatePicker;
+
+interface BacktestRecord {
+  id: string;
+  startTime: string;
+  endTime: string;
+  minConfidence: number;
+  maxConfidence: number;
+  directions: string[];
+  stopLoss: string;
+  takeProfit: string;
+  period: string;
+  totalTrades: number;
+  winningTrades: number;
+  losingTrades: number;
+  winRate: string;
+  totalReturn: string;
+  maxDrawdown: string;
+  avgReturn: string;
+  trades: Array<{
+    signalId: string;
+    stockCode: string;
+    stockName: string;
+    direction: string;
+    entryPrice: number;
+    exitPrice: number;
+    return: number;
+    exitReason: string;
+    entryTime: string;
+    exitTime: string;
+  }>;
+  createdAt: string;
+}
 
 const BacktestPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
-  const [resultLoading, setResultLoading] = useState(false);
-  const [hasResult, setHasResult] = useState(false);
+  const [data, setData] = useState<BacktestRecord[]>([]);
+  const [detailModalVisible, setDetailModalVisible] = useState(false);
+  const [selectedRecord, setSelectedRecord] = useState<BacktestRecord | null>(null);
 
-  const [filter, setFilter] = useState<BacktestFilter>({
-    dateRange: [dayjs().subtract(30, 'days').format('YYYY-MM-DD'), dayjs().format('YYYY-MM-DD')],
-    confidenceRange: [60, 100],
-    signalTypes: ['buy', 'sell'],
-    takeProfitPercent: 10,
-    stopLossPercent: 5,
-  });
-
-  const [result, setResult] = useState<BacktestResult | null>(null);
-
-  const signalTypeOptions = [
-    { label: '买入', value: 'buy' },
-    { label: '卖出', value: 'sell' },
-  ];
-
-  const handleDateRangeChange = (dates: any) => {
-    if (dates && dates.length === 2) {
-      setFilter({
-        ...filter,
-        dateRange: [dates[0].format('YYYY-MM-DD'), dates[1].format('YYYY-MM-DD')],
-      });
-    }
-  };
-
-  const handleConfidenceChange = (value: number[]) => {
-    setFilter({
-      ...filter,
-      confidenceRange: [value[0], value[1]],
-    });
-  };
-
-  const handleSignalTypeChange = (checkedValues: SignalType[]) => {
-    setFilter({
-      ...filter,
-      signalTypes: checkedValues,
-    });
-  };
-
-  const handleRunBacktest = async () => {
-    if (filter.signalTypes.length === 0) {
-      message.warning('请至少选择一种信号类型');
-      return;
-    }
-
+  const fetchData = async () => {
     setLoading(true);
-    setResultLoading(true);
-
     try {
-      // TODO: 替换为实际的 API 调用
-      // const response = await backtestApi.runBacktest({
-      //   startDate: filter.dateRange[0],
-      //   endDate: filter.dateRange[1],
-      //   minConfidence: filter.confidenceRange[0],
-      //   maxConfidence: filter.confidenceRange[1],
-      //   signalTypes: filter.signalTypes,
-      //   takeProfitPercent: filter.takeProfitPercent,
-      //   stopLossPercent: filter.stopLossPercent,
-      // });
-
-      // 模拟 API 调用
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-
-      // 模拟数据
-      const mockResult: BacktestResult = {
-        totalTrades: 45,
-        winCount: 28,
-        lossCount: 17,
-        winRate: 62.22,
-        totalReturn: 12580.5,
-        totalReturnPercent: 12.58,
-        maxDrawdown: -3200.0,
-        maxDrawdownPercent: -3.2,
-        avgWin: 580.25,
-        avgLoss: -320.18,
-        profitFactor: 2.15,
-        trades: [
-          {
-            id: '1',
-            symbol: 'AAPL',
-            type: 'buy',
-            entryPrice: 178.35,
-            exitPrice: 196.19,
-            entryTime: '2024-01-15 09:30:00',
-            exitTime: '2024-01-20 14:30:00',
-            quantity: 100,
-            pnl: 1784.0,
-            pnlPercent: 10.0,
-            exitReason: 'take_profit',
-          },
-          {
-            id: '2',
-            symbol: 'TSLA',
-            type: 'sell',
-            entryPrice: 215.3,
-            exitPrice: 204.54,
-            entryTime: '2024-01-16 10:00:00',
-            exitTime: '2024-01-18 11:20:00',
-            quantity: 50,
-            pnl: 538.0,
-            pnlPercent: 5.0,
-            exitReason: 'take_profit',
-          },
-          {
-            id: '3',
-            symbol: 'NVDA',
-            type: 'buy',
-            entryPrice: 550.8,
-            exitPrice: 523.26,
-            entryTime: '2024-01-17 09:45:00',
-            exitTime: '2024-01-19 15:00:00',
-            quantity: 20,
-            pnl: -550.8,
-            pnlPercent: -5.0,
-            exitReason: 'stop_loss',
-          },
-        ],
-      };
-
-      setResult(mockResult);
-      setHasResult(true);
-      message.success('回测完成');
+      const response = await api.get('/backtest/records');
+      setData(response.data || []);
     } catch (error) {
-      message.error('回测执行失败');
+      message.error('获取回测记录失败');
+      console.error('Fetch backtest records error:', error);
     } finally {
       setLoading(false);
-      setResultLoading(false);
     }
   };
 
-  const handleReset = () => {
-    setFilter({
-      dateRange: [dayjs().subtract(30, 'days').format('YYYY-MM-DD'), dayjs().format('YYYY-MM-DD')],
-      confidenceRange: [60, 100],
-      signalTypes: ['buy', 'sell'],
-      takeProfitPercent: 10,
-      stopLossPercent: 5,
-    });
-    setResult(null);
-    setHasResult(false);
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const handleViewDetail = (record: BacktestRecord) => {
+    setSelectedRecord(record);
+    setDetailModalVisible(true);
   };
 
+  const handleDelete = async (id: string) => {
+    try {
+      await api.delete(`/backtest/records/${id}`);
+      message.success('删除成功');
+      fetchData();
+    } catch (error) {
+      message.error('删除失败');
+      console.error('Delete backtest record error:', error);
+    }
+  };
+
+  const formatDate = (dateString: string) => {
+    if (!dateString) return '-';
+    const date = new Date(dateString);
+    return date.toLocaleString('zh-CN');
+  };
+
+  const formatPercent = (value: string | number) => {
+    const num = typeof value === 'string' ? parseFloat(value) : value;
+    return `${(num * 100).toFixed(2)}%`;
+  };
+
+  const getDirectionTag = (directions: string[]) => {
+    return directions.map((dir) => {
+      const color = dir === 'buy' || dir === 'bullish' ? 'red' : 'green';
+      const text = dir === 'buy' || dir === 'bullish' ? '买入' : '卖出';
+      return <Tag key={dir} color={color}>{text}</Tag>;
+    });
+  };
+
+  const columns = [
+    {
+      title: '回测时间',
+      dataIndex: 'createdAt',
+      key: 'createdAt',
+      width: 180,
+      render: (time: string) => formatDate(time),
+    },
+    {
+      title: '回测区间',
+      key: 'timeRange',
+      width: 220,
+      render: (_: unknown, record: BacktestRecord) => (
+        <Space direction="vertical" size="small">
+          <Text type="secondary">开始: {formatDate(record.startTime)}</Text>
+          <Text type="secondary">结束: {formatDate(record.endTime)}</Text>
+        </Space>
+      ),
+    },
+    {
+      title: '交易次数',
+      dataIndex: 'totalTrades',
+      key: 'totalTrades',
+      width: 100,
+      render: (count: number) => <Tag color="blue">{count} 笔</Tag>,
+    },
+    {
+      title: '胜率',
+      dataIndex: 'winRate',
+      key: 'winRate',
+      width: 100,
+      render: (rate: string) => {
+        const num = parseFloat(rate);
+        const color = num >= 0.5 ? 'success' : num >= 0.3 ? 'warning' : 'error';
+        return <Tag color={color}>{formatPercent(rate)}</Tag>;
+      },
+    },
+    {
+      title: '总收益率',
+      dataIndex: 'totalReturn',
+      key: 'totalReturn',
+      width: 120,
+      render: (ret: string) => {
+        const num = parseFloat(ret);
+        const color = num > 0 ? 'red' : num < 0 ? 'green' : 'default';
+        return <Tag color={color}>{formatPercent(ret)}</Tag>;
+      },
+    },
+    {
+      title: '最大回撤',
+      dataIndex: 'maxDrawdown',
+      key: 'maxDrawdown',
+      width: 120,
+      render: (dd: string) => <Text type="danger">{formatPercent(dd)}</Text>,
+    },
+    {
+      title: '信号类型',
+      dataIndex: 'directions',
+      key: 'directions',
+      width: 120,
+      render: (directions: string[]) => getDirectionTag(directions),
+    },
+    {
+      title: '操作',
+      key: 'action',
+      width: 180,
+      render: (_: unknown, record: BacktestRecord) => (
+        <Space size="small">
+          <Button
+            type="primary"
+            icon={<EyeOutlined />}
+            size="small"
+            onClick={() => handleViewDetail(record)}
+          >
+            查看详情
+          </Button>
+          <Popconfirm
+            title="确认删除"
+            description="确定要删除这条回测记录吗？"
+            onConfirm={() => handleDelete(record.id)}
+            okText="确认"
+            cancelText="取消"
+          >
+            <Button
+              danger
+              icon={<DeleteOutlined />}
+              size="small"
+            >
+              删除
+            </Button>
+          </Popconfirm>
+        </Space>
+      ),
+    },
+  ];
+
+  // 交易明细表格列
   const tradeColumns = [
     {
       title: '股票代码',
-      dataIndex: 'symbol',
-      key: 'symbol',
-      render: (symbol: string) => <Text strong>{symbol}</Text>,
+      dataIndex: 'stockCode',
+      key: 'stockCode',
+      width: 100,
     },
     {
-      title: '类型',
-      dataIndex: 'type',
-      key: 'type',
-      render: (type: SignalType) => (
-        <Tag color={type === 'buy' ? 'success' : 'error'}>
-          {type === 'buy' ? '买入' : '卖出'}
-        </Tag>
-      ),
+      title: '股票名称',
+      dataIndex: 'stockName',
+      key: 'stockName',
+      width: 120,
+    },
+    {
+      title: '方向',
+      dataIndex: 'direction',
+      key: 'direction',
+      width: 80,
+      render: (direction: string) => {
+        const color = direction === 'buy' || direction === 'bullish' ? 'red' : 'green';
+        const text = direction === 'buy' || direction === 'bullish' ? '买入' : '卖出';
+        return <Tag color={color}>{text}</Tag>;
+      },
     },
     {
       title: '入场价',
       dataIndex: 'entryPrice',
       key: 'entryPrice',
-      render: (price: number) => `$${price.toFixed(2)}`,
+      width: 100,
+      render: (price: number) => price?.toFixed(2) || '-',
     },
     {
       title: '出场价',
       dataIndex: 'exitPrice',
       key: 'exitPrice',
-      render: (price: number) => `$${price.toFixed(2)}`,
+      width: 100,
+      render: (price: number) => price?.toFixed(2) || '-',
     },
     {
-      title: '数量',
-      dataIndex: 'quantity',
-      key: 'quantity',
-    },
-    {
-      title: '盈亏',
-      dataIndex: 'pnl',
-      key: 'pnl',
-      render: (pnl: number) => (
-        <Text style={{ color: pnl >= 0 ? '#3f8600' : '#cf1322' }}>
-          {pnl >= 0 ? '+' : ''}${pnl.toFixed(2)}
-        </Text>
-      ),
-    },
-    {
-      title: '盈亏%',
-      dataIndex: 'pnlPercent',
-      key: 'pnlPercent',
-      render: (percent: number) => (
-        <Text style={{ color: percent >= 0 ? '#3f8600' : '#cf1322' }}>
-          {percent >= 0 ? '+' : ''}{percent.toFixed(2)}%
-        </Text>
-      ),
+      title: '收益率',
+      dataIndex: 'return',
+      key: 'return',
+      width: 100,
+      render: (ret: number) => {
+        const color = ret > 0 ? 'red' : ret < 0 ? 'green' : 'default';
+        const text = ret > 0 ? `+${(ret * 100).toFixed(2)}%` : `${(ret * 100).toFixed(2)}%`;
+        return <Tag color={color}>{text}</Tag>;
+      },
     },
     {
       title: '出场原因',
       dataIndex: 'exitReason',
       key: 'exitReason',
+      width: 100,
       render: (reason: string) => {
-        const reasonMap: Record<string, { text: string; color: string }> = {
-          take_profit: { text: '止盈', color: 'success' },
-          stop_loss: { text: '止损', color: 'error' },
-          signal: { text: '信号', color: 'processing' },
+        const reasonMap: Record<string, string> = {
+          takeProfit: '止盈',
+          stopLoss: '止损',
+          timeExpired: '到期',
         };
-        const { text, color } = reasonMap[reason] || { text: reason, color: 'default' };
-        return <Tag color={color}>{text}</Tag>;
+        return reasonMap[reason] || reason;
       },
     },
     {
       title: '入场时间',
       dataIndex: 'entryTime',
       key: 'entryTime',
+      width: 180,
+      render: (time: string) => formatDate(time),
+    },
+    {
+      title: '出场时间',
+      dataIndex: 'exitTime',
+      key: 'exitTime',
+      width: 180,
+      render: (time: string) => formatDate(time),
     },
   ];
 
   return (
     <div>
-      <Title level={2}>回测分析</Title>
-      <Text type="secondary">基于历史信号数据验证交易策略的有效性</Text>
+      <Title level={2}>回测记录</Title>
 
-      <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
-        <Col xs={24} lg={8}>
-          <Card title="筛选条件" loading={loading}>
-            <Space direction="vertical" style={{ width: '100%' }} size="large">
-              <div>
-                <Text strong>时间范围</Text>
-                <div style={{ marginTop: 8 }}>
-                  <RangePicker
-                    style={{ width: '100%' }}
-                    value={[
-                      dayjs(filter.dateRange[0]),
-                      dayjs(filter.dateRange[1]),
-                    ]}
-                    onChange={handleDateRangeChange}
-                  />
-                </div>
-              </div>
+      <Card style={{ marginBottom: 24 }}>
+        <Space>
+          <Button icon={<ReloadOutlined />} onClick={fetchData}>
+            刷新
+          </Button>
+        </Space>
+      </Card>
 
-              <div>
-                <Text strong>置信度范围</Text>
-                <div style={{ marginTop: 8, padding: '0 8px' }}>
-                  <Slider
-                    range
-                    min={0}
-                    max={100}
-                    value={[filter.confidenceRange[0], filter.confidenceRange[1]]}
-                    onChange={handleConfidenceChange}
-                    marks={{
-                      0: '0%',
-                      50: '50%',
-                      100: '100%',
-                    }}
-                  />
-                  <div style={{ textAlign: 'center', marginTop: 4 }}>
-                    <Text type="secondary">
-                      {filter.confidenceRange[0]}% - {filter.confidenceRange[1]}%
-                    </Text>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <Text strong>信号类型</Text>
-                <div style={{ marginTop: 8 }}>
-                  <Checkbox.Group
-                    options={signalTypeOptions}
-                    value={filter.signalTypes}
-                    onChange={handleSignalTypeChange}
-                  />
-                </div>
-              </div>
-
-              <div>
-                <Text strong>止盈比例 (%)</Text>
-                <div style={{ marginTop: 8 }}>
-                  <Space.Compact style={{ width: '100%' }}>
-                    <InputNumber
-                      style={{ width: '100%' }}
-                      min={1}
-                      max={100}
-                      value={filter.takeProfitPercent}
-                      onChange={(value) =>
-                        setFilter({ ...filter, takeProfitPercent: value || 10 })
-                      }
-                    />
-                    <Button disabled>%</Button>
-                  </Space.Compact>
-                </div>
-              </div>
-
-              <div>
-                <Text strong>止损比例 (%)</Text>
-                <div style={{ marginTop: 8 }}>
-                  <Space.Compact style={{ width: '100%' }}>
-                    <InputNumber
-                      style={{ width: '100%' }}
-                      min={1}
-                      max={100}
-                      value={filter.stopLossPercent}
-                      onChange={(value) =>
-                        setFilter({ ...filter, stopLossPercent: value || 5 })
-                      }
-                    />
-                    <Button disabled>%</Button>
-                  </Space.Compact>
-                </div>
-              </div>
-
-              <Divider />
-
-              <Space style={{ width: '100%', justifyContent: 'space-between' }}>
-                <Button
-                  icon={<ReloadOutlined />}
-                  onClick={handleReset}
-                  disabled={loading}
-                >
-                  重置
-                </Button>
-                <Button
-                  type="primary"
-                  icon={<PlayCircleOutlined />}
-                  onClick={handleRunBacktest}
-                  loading={loading}
-                >
-                  一键回测
-                </Button>
-              </Space>
-            </Space>
-          </Card>
-        </Col>
-
-        <Col xs={24} lg={16}>
-          {!hasResult ? (
-            <Card style={{ height: '100%', minHeight: 500 }}>
-              <Empty
-                image={<BarChartOutlined style={{ fontSize: 80, color: '#d9d9d9' }} />}
-                description="暂无回测结果，请先设置筛选条件并点击一键回测"
-              />
-            </Card>
+      <Card>
+        <Spin spinning={loading}>
+          {data.length === 0 ? (
+            <Empty description="暂无回测记录" />
           ) : (
-            <Spin spinning={resultLoading}>
-              <Space direction="vertical" style={{ width: '100%' }} size="middle">
-                <Row gutter={[16, 16]}>
-                  <Col xs={24} sm={12} lg={6}>
-                    <Card>
-                      <Statistic
-                        title="总交易次数"
-                        value={result?.totalTrades || 0}
-                        valueStyle={{ color: '#1890ff' }}
-                        prefix={<LineChartOutlined />}
-                      />
-                    </Card>
-                  </Col>
-                  <Col xs={24} sm={12} lg={6}>
-                    <Card>
-                      <Statistic
-                        title="胜率"
-                        value={result?.winRate || 0}
-                        precision={2}
-                        valueStyle={{ color: '#3f8600' }}
-                        suffix="%"
-                        prefix={<RiseOutlined />}
-                      />
-                      <Text type="secondary" style={{ fontSize: 12 }}>
-                        {result?.winCount || 0} 胜 / {result?.lossCount || 0} 负
-                      </Text>
-                    </Card>
-                  </Col>
-                  <Col xs={24} sm={12} lg={6}>
-                    <Card>
-                      <Statistic
-                        title="总收益率"
-                        value={result?.totalReturnPercent || 0}
-                        precision={2}
-                        valueStyle={{
-                          color: (result?.totalReturnPercent || 0) >= 0 ? '#3f8600' : '#cf1322',
-                        }}
-                        suffix="%"
-                        prefix={(result?.totalReturnPercent || 0) >= 0 ? <RiseOutlined /> : <FallOutlined />}
-                      />
-                      <Text type="secondary" style={{ fontSize: 12 }}>
-                        ${result?.totalReturn?.toFixed(2) || '0.00'}
-                      </Text>
-                    </Card>
-                  </Col>
-                  <Col xs={24} sm={12} lg={6}>
-                    <Card>
-                      <Statistic
-                        title="最大回撤"
-                        value={result?.maxDrawdownPercent || 0}
-                        precision={2}
-                        valueStyle={{ color: '#cf1322' }}
-                        suffix="%"
-                        prefix={<PercentageOutlined />}
-                      />
-                      <Text type="secondary" style={{ fontSize: 12 }}>
-                        ${result?.maxDrawdown?.toFixed(2) || '0.00'}
-                      </Text>
-                    </Card>
-                  </Col>
-                </Row>
-
-                <Row gutter={[16, 16]}>
-                  <Col xs={24} sm={12} lg={8}>
-                    <Card>
-                      <Statistic
-                        title="平均盈利"
-                        value={result?.avgWin || 0}
-                        precision={2}
-                        valueStyle={{ color: '#3f8600' }}
-                        prefix="$"
-                      />
-                    </Card>
-                  </Col>
-                  <Col xs={24} sm={12} lg={8}>
-                    <Card>
-                      <Statistic
-                        title="平均亏损"
-                        value={result?.avgLoss || 0}
-                        precision={2}
-                        valueStyle={{ color: '#cf1322' }}
-                        prefix="$"
-                      />
-                    </Card>
-                  </Col>
-                  <Col xs={24} sm={12} lg={8}>
-                    <Card>
-                      <Statistic
-                        title="盈亏比"
-                        value={result?.profitFactor || 0}
-                        precision={2}
-                        valueStyle={{ color: '#1890ff' }}
-                      />
-                    </Card>
-                  </Col>
-                </Row>
-
-                <Card title="交易详情">
-                  <Table
-                    dataSource={result?.trades || []}
-                    columns={tradeColumns}
-                    rowKey="id"
-                    pagination={{
-                      pageSize: 10,
-                      showSizeChanger: true,
-                      showTotal: (total) => `共 ${total} 条记录`,
-                    }}
-                    scroll={{ x: 800 }}
-                  />
-                </Card>
-              </Space>
-            </Spin>
+            <Table
+              columns={columns}
+              dataSource={data}
+              rowKey="id"
+              pagination={{
+                pageSize: 10,
+                showSizeChanger: true,
+                showQuickJumper: true,
+                showTotal: (total) => `共 ${total} 条`,
+              }}
+              scroll={{ x: 1200 }}
+            />
           )}
-        </Col>
-      </Row>
+        </Spin>
+      </Card>
+
+      {/* 回测详情弹窗 */}
+      <Modal
+        title="回测详情"
+        open={detailModalVisible}
+        onCancel={() => setDetailModalVisible(false)}
+        width={1400}
+        footer={[
+          <Button key="close" onClick={() => setDetailModalVisible(false)}>
+            关闭
+          </Button>,
+        ]}
+      >
+        {selectedRecord ? (
+          <>
+            <Descriptions bordered column={3} style={{ marginBottom: 24 }}>
+              <Descriptions.Item label="回测时间">{formatDate(selectedRecord.createdAt)}</Descriptions.Item>
+              <Descriptions.Item label="回测区间">
+                {formatDate(selectedRecord.startTime)} ~ {formatDate(selectedRecord.endTime)}
+              </Descriptions.Item>
+              <Descriptions.Item label="K线周期">{selectedRecord.period}</Descriptions.Item>
+              <Descriptions.Item label="置信度范围">
+                {selectedRecord.minConfidence}% ~ {selectedRecord.maxConfidence}%
+              </Descriptions.Item>
+              <Descriptions.Item label="止损/止盈">
+                {formatPercent(selectedRecord.stopLoss)} / {formatPercent(selectedRecord.takeProfit)}
+              </Descriptions.Item>
+              <Descriptions.Item label="信号类型">{getDirectionTag(selectedRecord.directions)}</Descriptions.Item>
+              <Descriptions.Item label="总交易次数">{selectedRecord.totalTrades} 笔</Descriptions.Item>
+              <Descriptions.Item label="盈利次数" style={{ color: '#52c41a' }}>
+                {selectedRecord.winningTrades} 笔
+              </Descriptions.Item>
+              <Descriptions.Item label="亏损次数" style={{ color: '#ff4d4f' }}>
+                {selectedRecord.losingTrades} 笔
+              </Descriptions.Item>
+              <Descriptions.Item label="胜率">{formatPercent(selectedRecord.winRate)}</Descriptions.Item>
+              <Descriptions.Item label="总收益率">
+                <Tag color={parseFloat(selectedRecord.totalReturn) > 0 ? 'red' : 'green'}>
+                  {formatPercent(selectedRecord.totalReturn)}
+                </Tag>
+              </Descriptions.Item>
+              <Descriptions.Item label="平均收益率">
+                {formatPercent(selectedRecord.avgReturn)}
+              </Descriptions.Item>
+              <Descriptions.Item label="最大回撤" span={3}>
+                <Text type="danger">{formatPercent(selectedRecord.maxDrawdown)}</Text>
+              </Descriptions.Item>
+            </Descriptions>
+
+            <Title level={5}>交易明细</Title>
+            <DetailTable
+              dataSource={selectedRecord.trades}
+              columns={tradeColumns}
+              rowKey="signalId"
+              pagination={{ pageSize: 10 }}
+              size="small"
+              scroll={{ x: 1200 }}
+            />
+          </>
+        ) : (
+          <Empty description="暂无数据" />
+        )}
+      </Modal>
     </div>
   );
 };

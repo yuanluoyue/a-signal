@@ -41,64 +41,14 @@ export class NewsController {
     return result;
   }
 
-  @Get(':id')
+  @Get('vectorize-progress')
   @Public()
-  @ApiOperation({ summary: '根据 ID 获取新闻详情' })
-  @ApiParam({ name: 'id', description: '新闻 ID', type: String })
-  @ApiResponse({ status: 200, description: '成功获取新闻详情' })
-  @ApiResponse({ status: 404, description: '新闻不存在' })
-  async getNewsById(@Param('id') id: string) {
-    const news = await this.newsService.getNewsById(id);
-    if (!news) {
-      throw new NotFoundException('新闻不存在');
-    }
+  @ApiOperation({ summary: '获取向量化进度统计' })
+  @ApiResponse({ status: 200, description: '成功获取进度统计' })
+  async getVectorizeProgress() {
+    const progress = await this.newsService.getVectorizeProgress();
     return {
-      data: news,
-    };
-  }
-
-  @Post(':id/analyze')
-  @HttpCode(HttpStatus.ACCEPTED)
-  @ApiOperation({ summary: '手动触发新闻分析任务' })
-  @ApiParam({ name: 'id', description: '新闻 ID', type: String })
-  @ApiResponse({ status: 202, description: '分析任务已提交到队列' })
-  @ApiResponse({ status: 404, description: '新闻不存在' })
-  async analyzeNews(@Param('id') id: string) {
-    const news = await this.newsService.getNewsById(id);
-    if (!news) {
-      throw new NotFoundException('新闻不存在');
-    }
-
-    // 先更新状态为分析中
-    await this.newsService.updateAnalyzeStatus(id, 'analyzing');
-
-    // 发送消息到队列
-    console.log(`[NewsController] Sending news ${id} to queue ${QUEUE_NAMES.NEWS_ANALYZE}`);
-    await this.queueService.sendMessage(QUEUE_NAMES.NEWS_ANALYZE, { newsId: id });
-    console.log(`[NewsController] Successfully sent news ${id} to queue`);
-
-    return {
-      message: '新闻分析任务已提交到队列',
-      newsId: id,
-    };
-  }
-
-  @Get(':id/signals')
-  @Public()
-  @ApiOperation({ summary: '获取新闻关联的信号列表' })
-  @ApiParam({ name: 'id', description: '新闻 ID', type: String })
-  @ApiResponse({ status: 200, description: '成功获取信号列表' })
-  @ApiResponse({ status: 404, description: '新闻不存在' })
-  async getNewsSignals(@Param('id') id: string) {
-    const news = await this.newsService.getNewsById(id);
-    if (!news) {
-      throw new NotFoundException('新闻不存在');
-    }
-
-    const signals = await this.signalsService.findByNewsId(id);
-    return {
-      data: signals,
-      total: signals.length,
+      data: progress,
     };
   }
 
@@ -145,6 +95,106 @@ export class NewsController {
     };
   }
 
+  @Post('batch-vectorize')
+  @HttpCode(HttpStatus.ACCEPTED)
+  @ApiOperation({ summary: '批量向量化所有待处理新闻' })
+  @ApiResponse({ status: 202, description: '批量向量化任务已启动' })
+  async batchVectorizeNews() {
+    // 获取所有待向量化的新闻
+    const pendingNews = await this.newsService.getPendingVectorizeNews(100);
+
+    // 将每条新闻发送到队列
+    for (const item of pendingNews) {
+      await this.newsService.updateVectorizeStatus(item.id, 'vectorizing');
+      await this.queueService.sendMessage(QUEUE_NAMES.NEWS_VECTORIZE, { newsId: item.id });
+    }
+
+    return {
+      message: '批量向量化任务已启动',
+      count: pendingNews.length,
+    };
+  }
+
+  @Get(':id')
+  @Public()
+  @ApiOperation({ summary: '根据 ID 获取新闻详情' })
+  @ApiParam({ name: 'id', description: '新闻 ID', type: String })
+  @ApiResponse({ status: 200, description: '成功获取新闻详情' })
+  @ApiResponse({ status: 404, description: '新闻不存在' })
+  async getNewsById(@Param('id') id: string) {
+    const news = await this.newsService.getNewsById(id);
+    if (!news) {
+      throw new NotFoundException('新闻不存在');
+    }
+    return {
+      data: news,
+    };
+  }
+
+  @Post(':id/analyze')
+  @HttpCode(HttpStatus.ACCEPTED)
+  @ApiOperation({ summary: '手动触发新闻分析任务' })
+  @ApiParam({ name: 'id', description: '新闻 ID', type: String })
+  @ApiResponse({ status: 202, description: '分析任务已提交到队列' })
+  @ApiResponse({ status: 404, description: '新闻不存在' })
+  @ApiResponse({ status: 400, description: '新闻已分析过' })
+  async analyzeNews(@Param('id') id: string) {
+    const news = await this.newsService.getNewsById(id);
+    if (!news) {
+      throw new NotFoundException('新闻不存在');
+    }
+
+    // 检查是否已分析过
+    if (news.analyzeStatus === 'analyzed') {
+      return {
+        message: '新闻已分析过，无需重复分析',
+        newsId: id,
+        status: news.analyzeStatus,
+      };
+    }
+
+    // 检查是否正在分析中
+    if (news.analyzeStatus === 'analyzing') {
+      return {
+        message: '新闻正在分析中，请稍后再试',
+        newsId: id,
+        status: news.analyzeStatus,
+      };
+    }
+
+    // 先更新状态为分析中
+    await this.newsService.updateAnalyzeStatus(id, 'analyzing');
+
+    // 发送消息到队列
+    console.log(`[NewsController] Sending news ${id} to queue ${QUEUE_NAMES.NEWS_ANALYZE}`);
+    await this.queueService.sendMessage(QUEUE_NAMES.NEWS_ANALYZE, { newsId: id });
+    console.log(`[NewsController] Successfully sent news ${id} to queue`);
+
+    return {
+      message: '新闻分析任务已提交到队列',
+      newsId: id,
+    };
+  }
+
+  @Get(':id/signals')
+  @Public()
+  @ApiOperation({ summary: '获取新闻关联的信号列表' })
+  @ApiParam({ name: 'id', description: '新闻 ID', type: String })
+  @ApiResponse({ status: 200, description: '成功获取信号列表' })
+  @ApiResponse({ status: 404, description: '新闻不存在' })
+  async getNewsSignals(@Param('id') id: string) {
+    const news = await this.newsService.getNewsById(id);
+    if (!news) {
+      throw new NotFoundException('新闻不存在');
+    }
+
+    const signals = await this.signalsService.findByNewsId(id);
+    return {
+      data: signals,
+      total: signals.length,
+    };
+  }
+
   @Delete(':id')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: '删除新闻' })
@@ -162,6 +212,30 @@ export class NewsController {
     return {
       message: '新闻已删除',
       id,
+    };
+  }
+
+  @Post(':id/vectorize')
+  @HttpCode(HttpStatus.ACCEPTED)
+  @ApiOperation({ summary: '单条新闻向量化' })
+  @ApiParam({ name: 'id', description: '新闻 ID', type: String })
+  @ApiResponse({ status: 202, description: '向量化任务已提交' })
+  @ApiResponse({ status: 404, description: '新闻不存在' })
+  async vectorizeNews(@Param('id') id: string) {
+    const news = await this.newsService.getNewsById(id);
+    if (!news) {
+      throw new NotFoundException('新闻不存在');
+    }
+
+    // 更新状态为向量化中
+    await this.newsService.updateVectorizeStatus(id, 'vectorizing');
+
+    // 发送消息到队列
+    await this.queueService.sendMessage(QUEUE_NAMES.NEWS_VECTORIZE, { newsId: id });
+
+    return {
+      message: '新闻向量化任务已提交',
+      newsId: id,
     };
   }
 }

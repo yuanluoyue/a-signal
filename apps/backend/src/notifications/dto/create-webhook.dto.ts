@@ -18,11 +18,17 @@ export class CreateWebhookDto {
   @IsEnum(WebhookType)
   type: WebhookType;
 
-  @ApiProperty({ description: '置信度阈值 (0-100)' })
+  @ApiProperty({ description: '最小置信度 (0-100)', default: 0 })
   @IsInt()
   @Min(0)
   @Max(100)
-  confidenceThreshold: number;
+  minConfidence: number = 0;
+
+  @ApiProperty({ description: '最大置信度 (0-100)', default: 100 })
+  @IsInt()
+  @Min(0)
+  @Max(100)
+  maxConfidence: number = 100;
 
   @ApiPropertyOptional({ description: '是否启用', default: true })
   @IsOptional()

@@ -51,6 +51,18 @@ export class BacktestRequestDto {
   @IsEnum(BacktestPeriod)
   @IsOptional()
   period?: BacktestPeriod;
+
+  @ApiProperty({ description: '股票代码（可选，用于限制特定股票的回测）', example: '000001', required: false })
+  @IsString()
+  @IsOptional()
+  stockCode?: string;
+}
+
+export class QueryBacktestRecordsDto {
+  @ApiProperty({ description: '股票代码（可选，用于过滤特定股票的回测记录）', example: '000001', required: false })
+  @IsString()
+  @IsOptional()
+  stockCode?: string;
 }
 
 export interface TradeResult {

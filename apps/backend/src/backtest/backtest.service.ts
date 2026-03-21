@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { and, gte, lte, between, inArray } from 'drizzle-orm';
+import { and, gte, lte, inArray, desc, eq } from 'drizzle-orm';
 import { DatabaseService } from '../database/database.service.js';
 import { KlinesService, KlinePeriod } from '../klines/klines.service.js';
-import { signals, klines, Signal, Kline } from '../database/schema.js';
+import { signals, klines, backtestRecords, Signal, Kline, type NewBacktestRecord, type BacktestRecord } from '../database/schema.js';
 import { BacktestRequestDto, BacktestResponse, TradeResult, BacktestPeriod } from './backtest.dto.js';
 
 @Injectable()
@@ -53,22 +53,32 @@ export class BacktestService {
       }
     }
 
-    return this.calculateStatistics(trades);
+    const result = this.calculateStatistics(trades);
+    
+    // 保存回测记录
+    await this.saveBacktestRecord(dto, result, period);
+    
+    return result;
   }
 
   private async querySignals(dto: BacktestRequestDto): Promise<Signal[]> {
+    const conditions = [
+      gte(signals.signalTime, dto.startTime),
+      lte(signals.signalTime, dto.endTime),
+      gte(signals.confidence, dto.minConfidence),
+      lte(signals.confidence, dto.maxConfidence),
+      inArray(signals.direction, dto.directions),
+    ];
+
+    // 如果指定了股票代码，添加过滤条件
+    if (dto.stockCode) {
+      conditions.push(eq(signals.stockCode, dto.stockCode));
+    }
+
     const results = await this.databaseService.db
       .select()
       .from(signals)
-      .where(
-        and(
-          gte(signals.signalTime, dto.startTime),
-          lte(signals.signalTime, dto.endTime),
-          gte(signals.confidence, dto.minConfidence),
-          lte(signals.confidence, dto.maxConfidence),
-          inArray(signals.direction, dto.directions),
-        ),
-      )
+      .where(and(...conditions))
       .orderBy(signals.signalTime);
 
     return results;
@@ -219,5 +229,79 @@ export class BacktestService {
       avgReturn,
       trades,
     };
+  }
+
+  /**
+   * 保存回测记录
+   */
+  private async saveBacktestRecord(
+    dto: BacktestRequestDto,
+    result: BacktestResponse,
+    period: string,
+  ): Promise<void> {
+    const record: NewBacktestRecord = {
+      stockCode: dto.stockCode || null,
+      startTime: dto.startTime,
+      endTime: dto.endTime,
+      minConfidence: dto.minConfidence,
+      maxConfidence: dto.maxConfidence,
+      directions: dto.directions,
+      stopLoss: dto.stopLoss.toString(),
+      takeProfit: dto.takeProfit.toString(),
+      period,
+      totalTrades: result.totalTrades,
+      winningTrades: result.winningTrades,
+      losingTrades: result.losingTrades,
+      winRate: result.winRate.toString(),
+      totalReturn: result.totalReturn.toString(),
+      maxDrawdown: result.maxDrawdown.toString(),
+      avgReturn: result.avgReturn.toString(),
+      trades: result.trades,
+    };
+
+    await this.databaseService.db.insert(backtestRecords).values(record);
+    this.logger.log(`Saved backtest record with ${result.totalTrades} trades`);
+  }
+
+  /**
+   * 获取回测记录列表
+   */
+  async findAllRecords(stockCode?: string, limit: number = 50): Promise<BacktestRecord[]> {
+    if (stockCode) {
+      return this.databaseService.db
+        .select()
+        .from(backtestRecords)
+        .where(eq(backtestRecords.stockCode, stockCode))
+        .orderBy(desc(backtestRecords.createdAt))
+        .limit(limit);
+    }
+
+    return this.databaseService.db
+      .select()
+      .from(backtestRecords)
+      .orderBy(desc(backtestRecords.createdAt))
+      .limit(limit);
+  }
+
+  /**
+   * 根据 ID 获取回测记录
+   */
+  async findRecordById(id: string): Promise<BacktestRecord | null> {
+    const [record] = await this.databaseService.db
+      .select()
+      .from(backtestRecords)
+      .where(eq(backtestRecords.id, id))
+      .limit(1);
+    return record || null;
+  }
+
+  /**
+   * 删除回测记录
+   */
+  async deleteRecord(id: string): Promise<void> {
+    await this.databaseService.db
+      .delete(backtestRecords)
+      .where(eq(backtestRecords.id, id));
+    this.logger.log(`Deleted backtest record: ${id}`);
   }
 }

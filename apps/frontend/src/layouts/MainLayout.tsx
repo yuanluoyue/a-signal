@@ -12,6 +12,10 @@ import {
   SettingOutlined,
   NotificationOutlined,
   ClockCircleOutlined,
+  SearchOutlined,
+  WalletOutlined,
+  BlockOutlined,
+  EyeOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -43,9 +47,29 @@ const MainLayout: React.FC = () => {
       label: '信号',
     },
     {
+      key: '/stocks',
+      icon: <SearchOutlined />,
+      label: '股票查询',
+    },
+    {
+      key: '/stock-trackings',
+      icon: <EyeOutlined />,
+      label: '股票追踪',
+    },
+    {
+      key: '/simulation',
+      icon: <WalletOutlined />,
+      label: '账户模拟',
+    },
+    {
       key: '/backtest',
       icon: <LineChartOutlined />,
       label: '回测',
+    },
+    {
+      key: '/blacklist',
+      icon: <BlockOutlined />,
+      label: '黑名单',
     },
     {
       key: '/settings',
@@ -89,6 +113,7 @@ const MainLayout: React.FC = () => {
           left: 0,
           top: 0,
           bottom: 0,
+          zIndex: 100,
         }}
       >
         <div
@@ -144,13 +169,12 @@ const MainLayout: React.FC = () => {
         style={{
           marginLeft: collapsed ? 80 : 200,
           transition: 'all 0.2s',
-          overflow: 'hidden',
         }}
       >
         <Header collapsed={collapsed} />
         <Content
           style={{
-            margin: '24px 16px',
+            margin: '88px 16px 24px',
             padding: 24,
             minHeight: 280,
             background: colorBgContainer,

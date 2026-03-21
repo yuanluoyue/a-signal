@@ -4,7 +4,7 @@
 import React from 'react';
 
 export async function getRoutes() {
-  const routes = {"1":{"path":"/login","layout":false,"id":"1"},"2":{"path":"/register","layout":false,"id":"2"},"3":{"path":"/","id":"3"},"4":{"path":"/dashboard","title":"仪表盘","parentId":"3","id":"4"},"5":{"path":"/news","title":"新闻列表","parentId":"3","id":"5"},"6":{"path":"/news/:id","title":"新闻详情","parentId":"3","id":"6"},"7":{"path":"/signals","title":"信号列表","parentId":"3","id":"7"},"8":{"path":"/signals/:id","title":"信号详情","parentId":"3","id":"8"},"9":{"path":"/backtest","title":"回测分析","parentId":"3","id":"9"},"10":{"path":"/settings/notifications","title":"通知设置","parentId":"3","id":"10"},"11":{"path":"/settings/scheduler","title":"定时任务","parentId":"3","id":"11"},"12":{"path":"/profile","title":"个人资料","parentId":"3","id":"12"},"13":{"path":"/","redirect":"/dashboard","parentId":"3","id":"13"}} as const;
+  const routes = {"1":{"path":"/login","layout":false,"id":"1"},"2":{"path":"/register","layout":false,"id":"2"},"3":{"path":"/","id":"3"},"4":{"path":"/dashboard","title":"仪表盘","parentId":"3","id":"4"},"5":{"path":"/news","title":"新闻列表","parentId":"3","id":"5"},"6":{"path":"/news/:id","title":"新闻详情","parentId":"3","id":"6"},"7":{"path":"/signals","title":"信号列表","parentId":"3","id":"7"},"8":{"path":"/signals/:id","title":"信号详情","parentId":"3","id":"8"},"9":{"path":"/stocks","title":"股票查询","parentId":"3","id":"9"},"10":{"path":"/stocks/:code","title":"股票详情","parentId":"3","id":"10"},"11":{"path":"/stock-trackings","title":"股票追踪","parentId":"3","id":"11"},"12":{"path":"/stock-trackings/:id","title":"追踪详情","parentId":"3","id":"12"},"13":{"path":"/simulation","title":"账户模拟","parentId":"3","id":"13"},"14":{"path":"/blacklist","title":"黑名单","parentId":"3","id":"14"},"15":{"path":"/backtest","title":"回测分析","parentId":"3","id":"15"},"16":{"path":"/settings/notifications","title":"通知设置","parentId":"3","id":"16"},"17":{"path":"/settings/scheduler","title":"定时任务","parentId":"3","id":"17"},"18":{"path":"/profile","title":"个人资料","parentId":"3","id":"18"},"19":{"path":"/","redirect":"/dashboard","parentId":"3","id":"19"}} as const;
   return {
     routes,
     routeComponents: {
@@ -16,11 +16,17 @@ export async function getRoutes() {
 '6': React.lazy(() => import(/* webpackChunkName: "p__news__id" */'@/pages/news/[id].tsx')),
 '7': React.lazy(() => import(/* webpackChunkName: "p__signals__index" */'@/pages/signals/index.tsx')),
 '8': React.lazy(() => import(/* webpackChunkName: "p__signals__id" */'@/pages/signals/[id].tsx')),
-'9': React.lazy(() => import(/* webpackChunkName: "p__backtest__index" */'@/pages/backtest/index.tsx')),
-'10': React.lazy(() => import(/* webpackChunkName: "p__settings__notifications" */'@/pages/settings/notifications.tsx')),
-'11': React.lazy(() => import(/* webpackChunkName: "p__settings__scheduler" */'@/pages/settings/scheduler.tsx')),
-'12': React.lazy(() => import(/* webpackChunkName: "p__profile" */'@/pages/profile.tsx')),
-'13': React.lazy(() => import('./EmptyRoute')),
+'9': React.lazy(() => import(/* webpackChunkName: "p__stocks__index" */'@/pages/stocks/index.tsx')),
+'10': React.lazy(() => import(/* webpackChunkName: "p__stocks__code" */'@/pages/stocks/[code].tsx')),
+'11': React.lazy(() => import(/* webpackChunkName: "p__stock-trackings__index" */'@/pages/stock-trackings/index.tsx')),
+'12': React.lazy(() => import(/* webpackChunkName: "p__stock-trackings__id" */'@/pages/stock-trackings/[id].tsx')),
+'13': React.lazy(() => import(/* webpackChunkName: "p__simulation__index" */'@/pages/simulation/index.tsx')),
+'14': React.lazy(() => import(/* webpackChunkName: "p__blacklist__index" */'@/pages/blacklist/index.tsx')),
+'15': React.lazy(() => import(/* webpackChunkName: "p__backtest__index" */'@/pages/backtest/index.tsx')),
+'16': React.lazy(() => import(/* webpackChunkName: "p__settings__notifications" */'@/pages/settings/notifications.tsx')),
+'17': React.lazy(() => import(/* webpackChunkName: "p__settings__scheduler" */'@/pages/settings/scheduler.tsx')),
+'18': React.lazy(() => import(/* webpackChunkName: "p__profile" */'@/pages/profile.tsx')),
+'19': React.lazy(() => import('./EmptyRoute')),
 },
   };
 }

@@ -4,6 +4,7 @@ export default defineConfig({
   npmClient: 'pnpm',
   title: 'A Signal',
   favicons: ['/favicon.ico'],
+  esbuildMinifyIIFE: true,
   routes: [
     {
       path: '/login',
@@ -43,6 +44,36 @@ export default defineConfig({
           path: '/signals/:id',
           component: '@/pages/signals/[id]',
           title: '信号详情',
+        },
+        {
+          path: '/stocks',
+          component: '@/pages/stocks/index',
+          title: '股票查询',
+        },
+        {
+          path: '/stocks/:code',
+          component: '@/pages/stocks/[code]',
+          title: '股票详情',
+        },
+        {
+          path: '/stock-trackings',
+          component: '@/pages/stock-trackings/index',
+          title: '股票追踪',
+        },
+        {
+          path: '/stock-trackings/:id',
+          component: '@/pages/stock-trackings/[id]',
+          title: '追踪详情',
+        },
+        {
+          path: '/simulation',
+          component: '@/pages/simulation/index',
+          title: '账户模拟',
+        },
+        {
+          path: '/blacklist',
+          component: '@/pages/blacklist/index',
+          title: '黑名单',
         },
         {
           path: '/backtest',

@@ -29,7 +29,7 @@ import {
 } from '@ant-design/icons';
 import api from '@/services/api';
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 const { Option } = Select;
 
 interface Webhook {
@@ -37,7 +37,8 @@ interface Webhook {
   name: string;
   url: string;
   type: 'wechat' | 'dingtalk' | 'slack' | 'custom';
-  confidenceThreshold: number;
+  minConfidence: number;
+  maxConfidence: number;
   enabled: boolean;
   createdAt: string;
   updatedAt: string;
@@ -47,7 +48,7 @@ interface WebhookFormData {
   name: string;
   url: string;
   type: 'wechat' | 'dingtalk' | 'slack' | 'custom';
-  confidenceThreshold: number;
+  confidenceRange: [number, number];
   enabled?: boolean;
 }
 
@@ -87,7 +88,7 @@ const NotificationsPage: React.FC = () => {
     form.resetFields();
     form.setFieldsValue({
       type: 'wechat',
-      confidenceThreshold: 70,
+      confidenceRange: [0, 100],
       enabled: true,
     });
     setModalVisible(true);
@@ -100,7 +101,7 @@ const NotificationsPage: React.FC = () => {
       name: record.name,
       url: record.url,
       type: record.type,
-      confidenceThreshold: record.confidenceThreshold,
+      confidenceRange: [record.minConfidence, record.maxConfidence],
       enabled: record.enabled,
     });
     setModalVisible(true);
@@ -109,11 +110,20 @@ const NotificationsPage: React.FC = () => {
   // 提交表单
   const handleSubmit = async (values: WebhookFormData) => {
     try {
+      const payload = {
+        name: values.name,
+        url: values.url,
+        type: values.type,
+        minConfidence: values.confidenceRange[0],
+        maxConfidence: values.confidenceRange[1],
+        enabled: values.enabled,
+      };
+
       if (editingWebhook) {
-        await api.put(`/webhooks/${editingWebhook.id}`, values);
+        await api.put(`/webhooks/${editingWebhook.id}`, payload);
         message.success('Webhook 更新成功');
       } else {
-        await api.post('/webhooks', values);
+        await api.post('/webhooks', payload);
         message.success('Webhook 创建成功');
       }
       setModalVisible(false);
@@ -174,6 +184,16 @@ const NotificationsPage: React.FC = () => {
     return <Tag color={config.color}>{config.label}</Tag>;
   };
 
+  // 格式化置信度范围显示
+  const formatConfidenceRange = (min: number, max: number) => {
+    return (
+      <Space style={{ whiteSpace: 'nowrap' }}>
+        <PercentageOutlined style={{ color: min >= 70 ? '#52c41a' : '#faad14' }} />
+        <span>{min}% - {max}%</span>
+      </Space>
+    );
+  };
+
   const columns = [
     {
       title: '名称',
@@ -210,17 +230,11 @@ const NotificationsPage: React.FC = () => {
       render: (type: string) => getTypeTag(type),
     },
     {
-      title: '置信度阈值',
-      dataIndex: 'confidenceThreshold',
-      key: 'confidenceThreshold',
-      width: 120,
+      title: '置信度范围',
+      key: 'confidenceRange',
+      width: 140,
       align: 'center' as const,
-      render: (threshold: number) => (
-        <Space style={{ whiteSpace: 'nowrap' }}>
-          <PercentageOutlined style={{ color: threshold >= 70 ? '#52c41a' : '#faad14' }} />
-          <span>{threshold}%</span>
-        </Space>
-      ),
+      render: (_: any, record: Webhook) => formatConfidenceRange(record.minConfidence, record.maxConfidence),
     },
     {
       title: '状态',
@@ -361,20 +375,33 @@ const NotificationsPage: React.FC = () => {
           </Form.Item>
 
           <Form.Item
-            name="confidenceThreshold"
-            label="置信度阈值"
-            rules={[{ required: true, message: '请设置置信度阈值' }]}
+            name="confidenceRange"
+            label="置信度范围"
+            rules={[{ required: true, message: '请设置置信度范围' }]}
+            tooltip="只有置信度在此范围内的信号才会触发通知"
           >
             <Slider
+              range
               min={0}
               max={100}
               marks={{
                 0: '0%',
+                25: '25%',
                 50: '50%',
-                70: '70%',
+                75: '75%',
                 100: '100%',
               }}
             />
+          </Form.Item>
+          <Form.Item shouldUpdate={(prev, curr) => prev.confidenceRange !== curr.confidenceRange}>
+            {({ getFieldValue }) => {
+              const range = getFieldValue('confidenceRange') || [0, 100];
+              return (
+                <Text type="secondary" style={{ display: 'block', marginTop: -8, marginBottom: 16 }}>
+                  当前范围: {range[0]}% - {range[1]}%
+                </Text>
+              );
+            }}
           </Form.Item>
 
           <Form.Item

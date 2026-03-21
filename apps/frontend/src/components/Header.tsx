@@ -8,7 +8,7 @@ interface HeaderProps {
   collapsed: boolean;
 }
 
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC<HeaderProps> = ({ collapsed }) => {
   return (
     <AntHeader
       style={{
@@ -16,11 +16,15 @@ const Header: React.FC<HeaderProps> = () => {
         alignItems: 'center',
         justifyContent: 'flex-end',
         padding: '0 24px',
-        background: '#001529',
-        position: 'sticky',
+        background: '#1f1f1f',
+        borderBottom: '1px solid #333',
+        position: 'fixed',
         top: 0,
-        zIndex: 1,
-        width: '100%',
+        right: 0,
+        left: collapsed ? 80 : 200,
+        zIndex: 99,
+        width: 'auto',
+        transition: 'all 0.2s',
       }}
     >
       <UserMenu />

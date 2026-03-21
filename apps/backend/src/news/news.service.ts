@@ -79,7 +79,8 @@ export class NewsService {
    * 保存新闻到数据库
    */
   async saveNews(newsData: NewsDetail): Promise<void> {
-    const uniqueKey = this.generateUniqueKey(newsData.originalUrl);
+    // 优先使用传入的 uniqueKey，如果没有则生成
+    const uniqueKey = newsData.uniqueKey || this.generateUniqueKey(newsData.originalUrl);
 
     const exists = await this.isNewsExists(uniqueKey);
     if (exists) {
@@ -448,5 +449,50 @@ export class NewsService {
       .where(eq(news.id, id));
     
     this.logger.log(`Deleted news ${id}`);
+  }
+
+  /**
+   * 更新新闻向量化状态
+   */
+  async updateVectorizeStatus(id: string, status: 'pending' | 'vectorizing' | 'vectorized' | 'failed'): Promise<void> {
+    await this.databaseService.db
+      .update(news)
+      .set({ vectorizeStatus: status })
+      .where(eq(news.id, id));
+    
+    this.logger.log(`Updated news ${id} vectorizeStatus to ${status}`);
+  }
+
+  /**
+   * 获取向量化进度统计
+   */
+  async getVectorizeProgress(): Promise<{ pending: number; vectorizing: number; vectorized: number; failed: number }> {
+    const [result] = await this.databaseService.db
+      .select({
+        pending: sql<number>`COUNT(*) FILTER (WHERE ${news.vectorizeStatus} = 'pending')`,
+        vectorizing: sql<number>`COUNT(*) FILTER (WHERE ${news.vectorizeStatus} = 'vectorizing')`,
+        vectorized: sql<number>`COUNT(*) FILTER (WHERE ${news.vectorizeStatus} = 'vectorized')`,
+        failed: sql<number>`COUNT(*) FILTER (WHERE ${news.vectorizeStatus} = 'failed')`,
+      })
+      .from(news);
+
+    return {
+      pending: Number(result.pending || 0),
+      vectorizing: Number(result.vectorizing || 0),
+      vectorized: Number(result.vectorized || 0),
+      failed: Number(result.failed || 0),
+    };
+  }
+
+  /**
+   * 获取待向量化的新闻列表
+   */
+  async getPendingVectorizeNews(limit: number = 100): Promise<typeof news.$inferSelect[]> {
+    return this.databaseService.db
+      .select()
+      .from(news)
+      .where(eq(news.vectorizeStatus, 'pending'))
+      .orderBy(news.publishTime)
+      .limit(limit);
   }
 }

@@ -13,6 +13,7 @@ import { WebhooksService } from '../notifications/webhooks.service.js';
 
 export interface NewsAnalyzeMessage {
   newsId: string;
+  skipWebhook?: boolean; // 历史信号不发送 webhook
 }
 
 @Injectable()
@@ -36,9 +37,9 @@ export class SignalAnalyzeConsumer extends QueueConsumer {
 
   protected async processMessage<T>(message: QueueMessage<T>): Promise<void> {
     const data = message.data as NewsAnalyzeMessage;
-    const { newsId } = data;
+    const { newsId, skipWebhook } = data;
 
-    this.logger.log(`[SignalAnalyzeConsumer] Processing news analysis for newsId: ${newsId}`);
+    this.logger.log(`[SignalAnalyzeConsumer] Processing news analysis for newsId: ${newsId}, skipWebhook: ${skipWebhook}`);
 
     try {
       const newsItem = await this.fetchNewsById(newsId);
@@ -67,8 +68,12 @@ export class SignalAnalyzeConsumer extends QueueConsumer {
       // 自动触发 K 线获取任务
       await this.triggerKlineFetchTasks(createdSignals);
 
-      // 发送 webhook 通知
-      await this.sendWebhookNotifications(newsItem, analysisResult.signals);
+      // 发送 webhook 通知（历史信号不发送）
+      if (!skipWebhook) {
+        await this.sendWebhookNotifications(newsItem, analysisResult.signals);
+      } else {
+        this.logger.log(`[SignalAnalyzeConsumer] Skipping webhook notifications for historical signals`);
+      }
 
       await this.updateNewsAnalyzeStatus(newsId, 'analyzed');
 

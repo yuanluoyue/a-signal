@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { eq, gte, sql } from 'drizzle-orm';
 import { DatabaseService } from '../database/database.service.js';
-import { news, signals, webhooks } from '../database/schema.js';
+import { news, signals, backtestRecords } from '../database/schema.js';
 import { DashboardStatsResponse, RecentSignalItem } from './dashboard.dto.js';
 
 @Injectable()
@@ -19,15 +19,17 @@ export class DashboardService {
       todayNewsResult,
       totalSignalsResult,
       todaySignalsResult,
+      stockCountResult,
       pendingAnalysisResult,
-      activeWebhooksResult,
+      backtestBestResult,
     ] = await Promise.all([
       this.getTotalNews(),
       this.getTodayNews(today),
       this.getTotalSignals(),
       this.getTodaySignals(today),
+      this.getStockCount(),
       this.getPendingAnalysis(),
-      this.getActiveWebhooks(),
+      this.getBestBacktestRecord().catch(() => null),
     ]);
 
     return {
@@ -35,8 +37,10 @@ export class DashboardService {
       todayNews: todayNewsResult,
       totalSignals: totalSignalsResult,
       todaySignals: todaySignalsResult,
+      stockCount: stockCountResult,
       pendingAnalysis: pendingAnalysisResult,
-      activeWebhooks: activeWebhooksResult,
+      backtestBestReturn: backtestBestResult?.totalReturn || 0,
+      backtestBestWinRate: backtestBestResult?.winRate || 0,
     };
   }
 
@@ -98,6 +102,16 @@ export class DashboardService {
     return result[0]?.count || 0;
   }
 
+  /**
+   * 获取有信号的股票数量
+   */
+  private async getStockCount(): Promise<number> {
+    const result = await this.databaseService.db
+      .select({ count: sql<number>`COUNT(DISTINCT ${signals.stockCode})` })
+      .from(signals);
+    return result[0]?.count || 0;
+  }
+
   private async getPendingAnalysis(): Promise<number> {
     const result = await this.databaseService.db
       .select({ count: sql<number>`COUNT(*)` })
@@ -106,11 +120,30 @@ export class DashboardService {
     return result[0]?.count || 0;
   }
 
-  private async getActiveWebhooks(): Promise<number> {
-    const result = await this.databaseService.db
-      .select({ count: sql<number>`COUNT(*)` })
-      .from(webhooks)
-      .where(eq(webhooks.enabled, true));
-    return result[0]?.count || 0;
+  /**
+   * 获取最佳回测记录
+   */
+  private async getBestBacktestRecord(): Promise<{ totalReturn: number; winRate: number } | null> {
+    try {
+      const result = await this.databaseService.db
+        .select({
+          totalReturn: sql<number>`MAX(${backtestRecords.totalReturn})`,
+          winRate: sql<number>`MAX(${backtestRecords.winRate})`,
+        })
+        .from(backtestRecords)
+        .limit(1);
+      
+      if (!result[0]?.totalReturn) {
+        return null;
+      }
+      
+      return {
+        totalReturn: parseFloat(result[0].totalReturn.toString()),
+        winRate: parseFloat(result[0].winRate.toString()),
+      };
+    } catch (error) {
+      this.logger.warn('Failed to get backtest records, table may not exist yet');
+      return null;
+    }
   }
 }

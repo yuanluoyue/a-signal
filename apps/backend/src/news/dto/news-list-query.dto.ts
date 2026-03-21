@@ -4,15 +4,15 @@ import { Type } from 'class-transformer';
 
 export enum AnalyzeStatus {
   PENDING = 'pending',
-  PROCESSING = 'processing',
-  COMPLETED = 'completed',
+  ANALYZING = 'analyzing',
+  ANALYZED = 'analyzed',
   FAILED = 'failed',
 }
 
 export enum VectorizeStatus {
   PENDING = 'pending',
-  PROCESSING = 'processing',
-  COMPLETED = 'completed',
+  VECTORIZING = 'vectorizing',
+  VECTORIZED = 'vectorized',
   FAILED = 'failed',
 }
 
@@ -24,12 +24,12 @@ export class NewsListQueryDto {
   @Min(1)
   page?: number = 1;
 
-  @ApiPropertyOptional({ description: '每页数量', default: 20 })
+  @ApiPropertyOptional({ description: '每页数量', default: 10 })
   @IsOptional()
   @Type(() => Number)
   @IsInt()
   @Min(1)
-  pageSize?: number = 20;
+  pageSize?: number = 10;
 
   @ApiPropertyOptional({ description: '新闻来源' })
   @IsOptional()

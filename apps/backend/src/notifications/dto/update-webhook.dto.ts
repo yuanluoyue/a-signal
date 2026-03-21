@@ -21,12 +21,19 @@ export class UpdateWebhookDto {
   @IsEnum(WebhookType)
   type?: WebhookType;
 
-  @ApiPropertyOptional({ description: '置信度阈值 (0-100)' })
+  @ApiPropertyOptional({ description: '最小置信度 (0-100)' })
   @IsOptional()
   @IsInt()
   @Min(0)
   @Max(100)
-  confidenceThreshold?: number;
+  minConfidence?: number;
+
+  @ApiPropertyOptional({ description: '最大置信度 (0-100)' })
+  @IsOptional()
+  @IsInt()
+  @Min(0)
+  @Max(100)
+  maxConfidence?: number;
 
   @ApiPropertyOptional({ description: '是否启用' })
   @IsOptional()

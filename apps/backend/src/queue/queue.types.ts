@@ -9,6 +9,7 @@ export interface QueueConsumerOptions {
   queueName: string;
   prefetch?: number;
   autoAck?: boolean;
+  maxRetries?: number;
 }
 
 export interface SendMessageOptions {
@@ -17,4 +18,4 @@ export interface SendMessageOptions {
   persistent?: boolean;
 }
 
-export type QueueName = 'news-crawl' | 'news-analyze' | 'kline-fetch';
+export type QueueName = 'news-crawl' | 'news-analyze' | 'kline-fetch' | 'news-vectorize' | 'stock-track-fetch';

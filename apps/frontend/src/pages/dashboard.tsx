@@ -15,17 +15,13 @@ import {
   message,
 } from 'antd';
 import {
-  RiseOutlined,
-  FallOutlined,
   FileTextOutlined,
   BellOutlined,
   AlertOutlined,
-  ClockCircleOutlined,
   BarChartOutlined,
 } from '@ant-design/icons';
 import api from '@/services/api';
 import type { SignalStats, RecentSignal } from '@/types/signal';
-import type { SignalType } from '@/types/signal';
 
 const { Title, Text } = Typography;
 
@@ -130,7 +126,7 @@ const DashboardPage: React.FC = () => {
 
       <Spin spinning={loading}>
         <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={24} sm={12} lg={8}>
             <Card>
               <Statistic
                 title="新闻总数"
@@ -143,7 +139,7 @@ const DashboardPage: React.FC = () => {
               </Text>
             </Card>
           </Col>
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={24} sm={12} lg={8}>
             <Card>
               <Statistic
                 title="信号总数"
@@ -156,36 +152,23 @@ const DashboardPage: React.FC = () => {
               </Text>
             </Card>
           </Col>
-          <Col xs={24} sm={12} lg={6}>
+          <Col xs={24} sm={12} lg={8}>
             <Card>
               <Statistic
                 title="待分析信号"
                 value={stats?.signals.pending || 0}
                 valueStyle={{ color: '#fa8c16' }}
-                prefix={<ClockCircleOutlined />}
+                prefix={<BellOutlined />}
               />
               <Text type="secondary" style={{ fontSize: 12 }}>
                 等待 AI 分析处理
               </Text>
             </Card>
           </Col>
-          <Col xs={24} sm={12} lg={6}>
-            <Card>
-              <Statistic
-                title="活跃信号"
-                value={(stats?.signals.total || 0) - (stats?.signals.pending || 0)}
-                valueStyle={{ color: '#52c41a' }}
-                prefix={<BellOutlined />}
-              />
-              <Text type="secondary" style={{ fontSize: 12 }}>
-                已分析完成的信号
-              </Text>
-            </Card>
-          </Col>
         </Row>
 
         <Row gutter={[16, 16]} style={{ marginTop: 24 }}>
-          <Col xs={24} lg={16}>
+          <Col xs={24} lg={24}>
             <Card
               title={
                 <Space>
@@ -240,58 +223,6 @@ const DashboardPage: React.FC = () => {
                   )}
                 />
               )}
-            </Card>
-          </Col>
-          <Col xs={24} lg={8}>
-            <Card
-              title={
-                <Space>
-                  <BarChartOutlined />
-                  <span>数据概览</span>
-                </Space>
-              }
-            >
-              <List
-                size="small"
-                dataSource={[
-                  {
-                    label: '新闻采集率',
-                    value: '98.5%',
-                    trend: 'up',
-                  },
-                  {
-                    label: '信号分析准确率',
-                    value: '85.2%',
-                    trend: 'up',
-                  },
-                  {
-                    label: '系统运行时间',
-                    value: '99.9%',
-                    trend: 'stable',
-                  },
-                  {
-                    label: '平均响应时间',
-                    value: '120ms',
-                    trend: 'down',
-                  },
-                ]}
-                renderItem={(item) => (
-                  <List.Item
-                    style={{ display: 'flex', justifyContent: 'space-between' }}
-                  >
-                    <Text>{item.label}</Text>
-                    <Space>
-                      <Text strong>{item.value}</Text>
-                      {item.trend === 'up' && (
-                        <RiseOutlined style={{ color: '#52c41a' }} />
-                      )}
-                      {item.trend === 'down' && (
-                        <FallOutlined style={{ color: '#f5222d' }} />
-                      )}
-                    </Space>
-                  </List.Item>
-                )}
-              />
             </Card>
           </Col>
         </Row>

@@ -13,7 +13,8 @@ export interface CreateWebhookInput {
   name: string;
   url: string;
   type: 'wechat';
-  confidenceThreshold: number;
+  minConfidence: number;
+  maxConfidence: number;
   enabled?: boolean;
 }
 
@@ -21,7 +22,8 @@ export interface UpdateWebhookInput {
   name?: string;
   url?: string;
   type?: 'wechat';
-  confidenceThreshold?: number;
+  minConfidence?: number;
+  maxConfidence?: number;
   enabled?: boolean;
 }
 
@@ -85,7 +87,8 @@ export class WebhooksService {
         name: input.name,
         url: input.url,
         type: input.type,
-        confidenceThreshold: input.confidenceThreshold,
+        minConfidence: input.minConfidence,
+        maxConfidence: input.maxConfidence,
         enabled: input.enabled ?? true,
       })
       .returning();
@@ -106,7 +109,8 @@ export class WebhooksService {
         name: input.name,
         url: input.url,
         type: input.type,
-        confidenceThreshold: input.confidenceThreshold,
+        minConfidence: input.minConfidence,
+        maxConfidence: input.maxConfidence,
         enabled: input.enabled,
       })
       .where(eq(schema.webhooks.id, id))
@@ -150,15 +154,15 @@ export class WebhooksService {
    * 发送信号通知到所有启用的 webhooks
    */
   async sendSignalNotifications(signal: SignalNotification): Promise<void> {
-    // 查找所有启用且置信度阈值符合条件的 webhooks
-    // 信号的置信度 >= webhook的阈值 时才发送通知
+    // 查找所有启用且置信度在范围内的 webhooks
     const webhooks = await this.db
       .select()
       .from(schema.webhooks)
       .where(
         and(
           eq(schema.webhooks.enabled, true),
-          sql`${signal.confidence} >= ${schema.webhooks.confidenceThreshold}`,
+          sql`${signal.confidence} >= ${schema.webhooks.minConfidence}`,
+          sql`${signal.confidence} <= ${schema.webhooks.maxConfidence}`,
         ),
       );
 

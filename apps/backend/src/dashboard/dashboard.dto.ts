@@ -13,11 +13,17 @@ export class DashboardStatsResponse {
   @ApiProperty({ description: '今日新增信号数', example: 5 })
   todaySignals: number;
 
+  @ApiProperty({ description: '股票数量', example: 50 })
+  stockCount: number;
+
   @ApiProperty({ description: '待分析新闻数', example: 12 })
   pendingAnalysis: number;
 
-  @ApiProperty({ description: '启用的Webhook数', example: 3 })
-  activeWebhooks: number;
+  @ApiProperty({ description: '回测最高收益率', example: 0.25 })
+  backtestBestReturn: number;
+
+  @ApiProperty({ description: '回测最高胜率', example: 0.75 })
+  backtestBestWinRate: number;
 }
 
 export class RecentSignalItem {
