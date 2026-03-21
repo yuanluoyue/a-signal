@@ -19,10 +19,22 @@
   "devDependencies": {
     "dotenv": "^16.4.0"
   },
-  "packageManager": "pnpm@9.0.0",
+  "packageManager": "pnpm@10.32.1",
   "pnpm": {
     "overrides": {
       "esbuild": "^0.21.0"
-    }
+    },
+    "ignoredBuiltDependencies": [
+      "core-js-pure",
+      "es5-ext"
+    ],
+    "onlyBuiltDependencies": [
+      "@nestjs/core",
+      "@scarf/scarf",
+      "bcrypt",
+      "core-js",
+      "esbuild",
+      "unrs-resolver"
+    ]
   }
 }

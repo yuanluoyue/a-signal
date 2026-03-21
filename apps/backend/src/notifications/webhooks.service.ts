@@ -1,5 +1,5 @@
 import { Injectable, Inject, Logger, NotFoundException } from '@nestjs/common';
-import { eq, and, gte } from 'drizzle-orm';
+import { eq, and, sql } from 'drizzle-orm';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
@@ -158,7 +158,7 @@ export class WebhooksService {
       .where(
         and(
           eq(schema.webhooks.enabled, true),
-          gte(signal.confidence, schema.webhooks.confidenceThreshold),
+          sql`${signal.confidence} >= ${schema.webhooks.confidenceThreshold}`,
         ),
       );
 
