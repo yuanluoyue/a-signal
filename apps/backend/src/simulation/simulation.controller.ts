@@ -21,14 +21,17 @@ export class SimulationController {
   constructor(private readonly simulationService: SimulationService) {}
 
   @Get('account')
-  @Public()
   @ApiOperation({ summary: '获取模拟账户信息（不存在则自动创建）' })
   @ApiResponse({ status: 200, description: '成功获取账户信息' })
-  async getAccount(@Request() req: { user?: { userId: string } }) {
-    // 暂时使用固定用户ID，实际应该从token中获取
-    const userId = req.user?.userId || '00000000-0000-0000-0000-000000000001';
+  async getAccount(@Request() req: { user?: { userId: string; sub?: string } }) {
+    // 从 JWT token 中获取用户ID
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+
     let account = await this.simulationService.getAccountByUserId(userId);
-    
+
     // 没有账户时自动创建
     if (!account) {
       account = await this.simulationService.createAccount({
@@ -36,20 +39,22 @@ export class SimulationController {
         initialCapital: 100000,
       });
     }
-    
+
     return { data: account };
   }
 
   @Post('account')
-  @Public()
   @ApiOperation({ summary: '创建模拟账户' })
   @ApiResponse({ status: 201, description: '成功创建账户' })
   async createAccount(
-    @Request() req: { user?: { userId: string } },
+    @Request() req: { user?: { userId: string; sub?: string } },
     @Body() body: { initialCapital: number },
   ) {
-    const userId = req.user?.userId || '00000000-0000-0000-0000-000000000001';
-    
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+
     // 检查是否已存在账户
     const existing = await this.simulationService.getAccountByUserId(userId);
     if (existing) {
@@ -65,16 +70,19 @@ export class SimulationController {
   }
 
   @Put('account')
-  @Public()
   @ApiOperation({ summary: '更新账户资金' })
   @ApiResponse({ status: 200, description: '成功更新账户' })
   async updateAccount(
-    @Request() req: { user?: { userId: string } },
+    @Request() req: { user?: { userId: string; sub?: string } },
     @Body() body: { currentCapital?: number; availableCash?: number },
   ) {
-    const userId = req.user?.userId || '00000000-0000-0000-0000-000000000001';
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+
     const account = await this.simulationService.getAccountByUserId(userId);
-    
+
     if (!account) {
       throw new NotFoundException('账户不存在');
     }
@@ -84,13 +92,16 @@ export class SimulationController {
   }
 
   @Get('positions')
-  @Public()
   @ApiOperation({ summary: '获取持仓列表' })
   @ApiResponse({ status: 200, description: '成功获取持仓列表' })
-  async getPositions(@Request() req: { user?: { userId: string } }) {
-    const userId = req.user?.userId || '00000000-0000-0000-0000-000000000001';
+  async getPositions(@Request() req: { user?: { userId: string; sub?: string } }) {
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+
     const account = await this.simulationService.getAccountByUserId(userId);
-    
+
     // 没有账户时返回空数组
     if (!account) {
       return { data: [] };
@@ -101,11 +112,10 @@ export class SimulationController {
   }
 
   @Post('trade')
-  @Public()
   @ApiOperation({ summary: '执行模拟交易' })
   @ApiResponse({ status: 201, description: '交易成功' })
   async executeTrade(
-    @Request() req: { user?: { userId: string } },
+    @Request() req: { user?: { userId: string; sub?: string } },
     @Body() body: {
       stockCode: string;
       stockName: string;
@@ -114,9 +124,13 @@ export class SimulationController {
       price: number;
     },
   ) {
-    const userId = req.user?.userId || '00000000-0000-0000-0000-000000000001';
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+
     const account = await this.simulationService.getAccountByUserId(userId);
-    
+
     if (!account) {
       throw new NotFoundException('账户不存在');
     }
@@ -130,13 +144,16 @@ export class SimulationController {
   }
 
   @Get('trades')
-  @Public()
   @ApiOperation({ summary: '获取交易记录' })
   @ApiResponse({ status: 200, description: '成功获取交易记录' })
-  async getTrades(@Request() req: { user?: { userId: string } }) {
-    const userId = req.user?.userId || '00000000-0000-0000-0000-000000000001';
+  async getTrades(@Request() req: { user?: { userId: string; sub?: string } }) {
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+
     const account = await this.simulationService.getAccountByUserId(userId);
-    
+
     // 没有账户时返回空数组
     if (!account) {
       return { data: [] };
@@ -147,11 +164,10 @@ export class SimulationController {
   }
 
   @Post('position')
-  @Public()
   @ApiOperation({ summary: '添加持仓' })
   @ApiResponse({ status: 201, description: '成功添加持仓' })
   async addPosition(
-    @Request() req: { user?: { userId: string } },
+    @Request() req: { user?: { userId: string; sub?: string } },
     @Body() body: {
       stockCode: string;
       stockName: string;
@@ -159,9 +175,13 @@ export class SimulationController {
       avgCost: number;
     },
   ) {
-    const userId = req.user?.userId || '00000000-0000-0000-0000-000000000001';
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+
     const account = await this.simulationService.getAccountByUserId(userId);
-    
+
     if (!account) {
       throw new NotFoundException('账户不存在');
     }
@@ -175,16 +195,19 @@ export class SimulationController {
   }
 
   @Delete('position/:id')
-  @Public()
   @ApiOperation({ summary: '删除持仓' })
   @ApiResponse({ status: 200, description: '成功删除持仓' })
   async deletePosition(
-    @Request() req: { user?: { userId: string } },
+    @Request() req: { user?: { userId: string; sub?: string } },
     @Param('id') positionId: string,
   ) {
-    const userId = req.user?.userId || '00000000-0000-0000-0000-000000000001';
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+
     const account = await this.simulationService.getAccountByUserId(userId);
-    
+
     if (!account) {
       throw new NotFoundException('账户不存在');
     }

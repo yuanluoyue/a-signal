@@ -13,6 +13,8 @@
     },
     "dependencies": {
       "@ant-design/icons": "^5.3.0",
+      "@ant-design/pro-components": "^2.8.10",
+      "@ant-design/x": "^2.4.0",
       "@dicebear/core": "^9.2.2",
       "@dicebear/thumbs": "^9.2.2",
       "@umijs/plugins": "^4.1.1",
@@ -22,6 +24,8 @@
       "lightweight-charts": "^5.1.0",
       "react": "^18.2.0",
       "react-dom": "^18.2.0",
+      "react-markdown": "^10.1.0",
+      "remark-gfm": "^4.0.1",
       "umi": "^4.1.1"
     },
     "devDependencies": {
@@ -55,7 +59,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 24
+        "register": 38
       },
       "enableBy": "register"
     },
@@ -86,10 +90,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            3
+            5
           ]
         },
-        "register": 3
+        "register": 12
       },
       "enableBy": "register"
     },
@@ -103,16 +107,6 @@
       "time": {
         "hooks": {
           "modifyRoutes": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -150,124 +144,30 @@
       "time": {
         "hooks": {
           "onDevCompileDone": [
-            52,
+            95,
+            6,
             7,
-            4,
+            7,
             5,
             9,
-            8,
-            6,
-            4,
-            4,
-            5,
-            5,
-            5,
-            5,
-            4,
-            4,
-            2,
-            3,
             7,
-            5,
-            3,
-            3,
-            5,
-            8,
-            2,
-            2,
-            3,
-            2,
-            3,
-            2,
-            3,
-            2,
             7,
             4,
-            4,
-            4,
-            1,
-            2,
-            2,
-            4,
-            4,
-            3,
-            3,
-            3,
-            3,
-            2,
-            3,
-            3,
-            3,
-            3,
-            2,
-            3,
-            2,
             5,
-            2,
-            3,
-            3,
-            3,
-            3,
-            3,
-            3,
-            2,
-            8,
-            3,
-            2,
-            3,
-            3,
-            3,
-            6,
-            3,
-            9,
-            8,
+            5,
+            4,
+            5,
+            5,
             4,
             7,
-            4,
             7,
-            3,
-            3,
-            4,
-            2,
-            3,
-            2,
-            3,
-            3,
-            2,
-            9,
-            2,
-            2,
-            4,
-            2,
             6,
             3,
-            5,
-            4,
-            3,
-            3,
-            4,
-            5,
-            4,
-            4,
-            5,
-            13,
-            6,
-            3,
-            6,
-            2,
-            7,
-            2,
-            4,
-            3,
-            3,
-            3,
-            4,
-            6,
-            2,
-            3
+            11,
+            5
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -281,43 +181,33 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            46
+            79
           ],
           "onGenerateFiles": [
-            7,
+            4,
+            32,
+            20,
+            38,
+            37,
+            18,
+            18,
+            24,
+            29,
+            15,
+            16,
+            17,
+            16,
+            18,
+            56,
             30,
-            16,
-            24,
-            15,
-            17,
-            17,
-            16,
-            13,
-            24,
-            18,
-            13,
-            24,
-            17,
-            12,
-            19,
-            20,
-            16,
-            20,
+            29,
             14,
-            18,
-            24,
-            34,
-            17,
-            15,
-            18,
-            22,
-            27,
-            19,
-            19,
-            12
+            89,
+            20,
+            20
           ]
         },
-        "register": 31
+        "register": 38
       },
       "enableBy": "register"
     },
@@ -331,29 +221,19 @@
       "time": {
         "hooks": {
           "addEntryCode": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -378,15 +258,17 @@
       "time": {
         "hooks": {
           "onCheckConfig": [
+            0,
+            1,
+            0,
+            0,
+            0,
             0
           ],
           "onCheck": [
             1
           ],
           "onPrepareBuildSuccess": [
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -435,6 +317,17 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             1,
             0,
             0,
@@ -446,19 +339,10 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
             1,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0,
             0,
@@ -473,7 +357,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -503,7 +387,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -517,10 +401,15 @@
       "time": {
         "hooks": {
           "modifyConfig": [
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 13
+        "register": 28
       },
       "enableBy": "register"
     },
@@ -532,7 +421,7 @@
       "enableBy": "register",
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       }
     },
     "virtual: config-styles": {
@@ -1386,10 +1275,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            0
+            1
           ]
         },
-        "register": 1
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -1403,10 +1292,10 @@
       "time": {
         "hooks": {
           "addBeforeMiddlewares": [
-            13
+            16
           ]
         },
-        "register": 2
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -1419,7 +1308,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 110
+        "register": 144
       },
       "enableBy": "register"
     },
@@ -1432,7 +1321,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 57
+        "register": 99
       },
       "enableBy": "config"
     },
@@ -1445,7 +1334,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 28
+        "register": 39
       },
       "enableBy": "config"
     },
@@ -1484,6 +1373,33 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1501,37 +1417,27 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            3,
-            1,
-            1,
-            1,
-            2,
-            2,
-            1,
+            5,
+            5,
             1,
             2,
-            2,
-            2,
-            1,
-            1,
-            2,
-            1,
-            2,
-            2,
-            1,
-            3,
-            2,
-            2,
+            6,
+            4,
             3,
             2,
             3,
             2,
-            1,
-            2,
+            3,
+            3,
             3,
             2,
+            4,
             2,
-            8
+            2,
+            2,
+            2,
+            2,
+            6
           ],
           "addRuntimePlugin": [
             0,
@@ -1548,16 +1454,6 @@
             0,
             0,
             0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            1,
             0,
             0,
             0,
@@ -1567,7 +1463,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -1580,7 +1476,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 4
       },
       "enableBy": "config"
     },
@@ -1600,7 +1496,7 @@
             1
           ]
         },
-        "register": 44
+        "register": 60
       }
     },
     "@umijs/preset-umi/dist/features/mpa/mpa": {
@@ -1658,16 +1554,6 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addEntryImports": [
@@ -1689,39 +1575,19 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -1762,40 +1628,35 @@
       "time": {
         "hooks": {
           "modifyConfig": [
+            2,
+            1,
+            0,
+            4,
+            1,
             1
           ],
           "onGenerateFiles": [
-            119,
-            41,
-            45,
-            35,
-            40,
-            41,
-            39,
-            35,
-            38,
-            56,
-            47,
-            32,
-            57,
-            34,
-            36,
-            39,
-            43,
-            49,
-            36,
-            31,
-            47,
-            72,
+            136,
+            91,
+            44,
+            95,
+            102,
+            68,
             58,
-            40,
             47,
-            42,
-            50,
-            58,
-            54,
             61,
-            33
+            49,
+            62,
+            58,
+            38,
+            65,
+            120,
+            64,
+            70,
+            39,
+            79,
+            57,
+            56
           ],
           "addPolyfillImports": [
             0,
@@ -1803,27 +1664,7 @@
             0,
             0,
             0,
-            1,
             0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
             0,
             0,
             0,
@@ -1862,7 +1703,7 @@
             0
           ]
         },
-        "register": 5
+        "register": 6
       }
     },
     "@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill": {
@@ -1916,30 +1757,10 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -1953,17 +1774,7 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            165,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            207,
             0,
             0,
             0,
@@ -1986,7 +1797,7 @@
             0
           ]
         },
-        "register": 3
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -1999,7 +1810,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -2026,16 +1837,14 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            0,
-            0,
+            2,
             1,
             1,
             0,
             1,
-            0,
             1,
-            0,
-            0,
+            1,
+            1,
             1,
             0,
             0,
@@ -2043,26 +1852,18 @@
             0,
             0,
             1,
-            1,
-            0,
-            0,
-            1,
-            1,
+            2,
             1,
             0,
             1,
-            1,
-            0,
-            0,
-            0,
-            1,
+            2,
             0
           ],
           "addBeforeMiddlewares": [
             0
           ]
         },
-        "register": 34
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2076,71 +1877,51 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            43,
-            30,
-            28,
-            9,
-            23,
-            7,
+            45,
             25,
-            6,
-            24,
-            6,
-            30,
-            7,
-            22,
-            6,
-            24,
-            5,
-            21,
+            93,
+            58,
+            48,
+            9,
+            51,
+            13,
+            38,
+            10,
+            63,
             10,
             37,
-            9,
-            22,
-            6,
-            18,
-            5,
-            32,
-            9,
-            18,
-            4,
-            24,
-            4,
-            29,
-            9,
-            18,
-            4,
-            23,
-            11,
-            30,
-            5,
-            19,
-            5,
-            31,
             7,
-            31,
-            10,
             38,
+            9,
+            42,
             7,
-            25,
+            33,
+            6,
+            39,
             8,
-            27,
-            6,
-            20,
-            4,
-            27,
-            11,
+            36,
+            5,
+            28,
+            8,
+            28,
+            21,
+            65,
+            14,
+            63,
+            17,
+            47,
+            7,
             38,
             7,
-            30,
-            5,
-            30,
-            7,
-            18,
-            6
+            55,
+            8,
+            43,
+            8,
+            37,
+            5
           ]
         },
-        "register": 11
+        "register": 12
       },
       "enableBy": "register"
     },
@@ -2153,7 +1934,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -2178,7 +1959,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 10
       },
       "enableBy": "config"
     },
@@ -2192,40 +1973,30 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            681,
-            31,
-            24,
-            13,
-            22,
-            14,
-            18,
-            13,
-            16,
-            25,
-            13,
-            9,
-            19,
-            8,
-            14,
-            29,
-            13,
-            28,
-            14,
-            14,
-            17,
-            31,
-            26,
-            20,
-            9,
+            874,
             15,
-            23,
-            18,
-            20,
             11,
-            15
+            37,
+            13,
+            13,
+            15,
+            18,
+            21,
+            14,
+            14,
+            15,
+            9,
+            9,
+            28,
+            19,
+            14,
+            19,
+            20,
+            13,
+            17
           ]
         },
-        "register": 6
+        "register": 7
       },
       "enableBy": "register"
     },
@@ -2242,7 +2013,7 @@
             0
           ]
         },
-        "register": 5
+        "register": 10
       },
       "enableBy": "register"
     },
@@ -2255,7 +2026,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 9
       },
       "enableBy": "config"
     },
@@ -2281,7 +2052,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 14
+        "register": 15
       }
     },
     "@umijs/preset-umi/dist/features/monorepo/redirect": {
@@ -2293,7 +2064,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 27
+        "register": 33
       },
       "enableBy": "config"
     },
@@ -2307,37 +2078,27 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            9,
+            16,
+            2,
+            3,
+            3,
+            1,
+            3,
+            3,
+            2,
+            3,
             2,
             1,
             2,
             2,
             1,
-            2,
-            1,
-            1,
-            1,
-            2,
-            1,
-            2,
-            1,
+            3,
             5,
-            3,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1,
-            3,
-            1,
-            1,
-            1,
-            2,
-            1,
             2,
             3,
-            1
+            3,
+            1,
+            4
           ]
         },
         "register": 3
@@ -2352,7 +2113,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -2365,7 +2126,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -2391,7 +2152,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       }
     },
     "@umijs/preset-umi/dist/features/swc/swc": {
@@ -2420,7 +2181,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 9
       }
     },
     "@umijs/preset-umi/dist/features/mako/mako": {
@@ -2432,7 +2193,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -2457,7 +2218,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 5
       }
     },
     "@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
@@ -2470,14 +2231,41 @@
       "time": {
         "hooks": {
           "addHTMLHeadScripts": [
+            88,
+            87,
+            4,
+            6,
+            0,
             1,
             0,
-            2,
-            3,
             0,
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
             0,
             0,
             0,
@@ -2492,7 +2280,7 @@
             0
           ]
         },
-        "register": 37
+        "register": 49
       }
     },
     "@umijs/preset-umi/dist/features/forget/forget": {
@@ -2504,7 +2292,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 7
       },
       "enableBy": "config"
     },
@@ -2518,10 +2306,10 @@
       "time": {
         "hooks": {
           "modifyUniBundler": [
-            1030
+            1510
           ]
         },
-        "register": 3
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -2534,7 +2322,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 6
+        "register": 9
       },
       "enableBy": "register"
     },
@@ -2547,7 +2335,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 49
+        "register": 67
       },
       "enableBy": "register"
     },
@@ -2561,10 +2349,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            29
+            34
           ]
         },
-        "register": 72
+        "register": 95
       }
     },
     "@umijs/preset-umi/dist/commands/help": {
@@ -2589,7 +2377,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2615,7 +2403,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2628,7 +2416,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -2667,7 +2455,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2680,7 +2468,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2706,7 +2494,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2719,7 +2507,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2732,7 +2520,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2758,7 +2546,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2784,7 +2572,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2810,7 +2598,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 28
+        "register": 33
       },
       "enableBy": "register"
     },
@@ -2823,7 +2611,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -2836,7 +2624,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 6
+        "register": 11
       },
       "enableBy": "register"
     },
@@ -2849,7 +2637,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2863,7 +2651,12 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            2
+            4,
+            0,
+            1,
+            1,
+            0,
+            0
           ],
           "modifyAppData": [
             0
@@ -2874,31 +2667,11 @@
           "addEntryImportsAhead": [
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             1,
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0,
             0,
@@ -2945,16 +2718,6 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
             0,
             0,
             0,
@@ -2989,59 +2752,39 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "onGenerateFiles": [
+            10,
+            35,
+            5,
+            5,
+            2,
+            3,
+            5,
+            3,
+            7,
+            3,
+            4,
+            4,
+            3,
+            5,
+            4,
+            3,
+            6,
+            4,
             7,
             2,
-            1,
-            1,
-            2,
-            2,
-            2,
-            1,
-            2,
-            1,
-            1,
-            3,
-            2,
-            1,
-            2,
-            2,
-            1,
-            1,
-            2,
-            1,
-            2,
-            4,
-            3,
-            2,
-            1,
-            1,
-            4,
-            2,
-            1,
-            2,
-            1
+            6
           ],
           "addExtraBabelPlugins": [
             0
           ],
           "chainWebpack": [
-            1
+            0
           ]
         },
-        "register": 11
+        "register": 16
       }
     },
     "./node_modules/@umijs/plugins/dist/model": {
@@ -3055,16 +2798,6 @@
         "hooks": {
           "addRuntimePlugin": [
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
             1,
             0,
             0,
@@ -3072,13 +2805,13 @@
             0,
             0,
             0,
+            1,
             0,
             0,
             0,
             0,
             0,
-            0,
-            0,
+            1,
             0,
             0,
             0,
@@ -3087,43 +2820,33 @@
             0
           ],
           "onGenerateFiles": [
-            32,
-            19,
-            18,
-            22,
-            20,
-            19,
-            16,
-            32,
-            20,
-            21,
-            24,
-            16,
-            32,
-            16,
-            19,
-            25,
-            15,
-            22,
-            17,
-            16,
-            37,
-            33,
-            25,
-            20,
-            17,
-            16,
             43,
-            19,
-            18,
-            26,
-            21
+            24,
+            33,
+            40,
+            28,
+            24,
+            43,
+            29,
+            40,
+            28,
+            38,
+            30,
+            22,
+            36,
+            69,
+            53,
+            38,
+            41,
+            63,
+            36,
+            34
           ],
           "addTmpGenerateWatcherPaths": [
             0
           ]
         },
-        "register": 8
+        "register": 10
       },
       "enableBy": "config"
     },
@@ -3146,13 +2869,7 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0,
             0,
@@ -3184,33 +2901,9 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            1
           ],
           "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -3254,56 +2947,36 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "onGenerateFiles": [
+            46,
+            47,
+            20,
+            23,
+            21,
+            22,
+            20,
+            22,
+            23,
+            16,
             26,
-            15,
-            12,
-            19,
-            12,
-            12,
-            14,
-            14,
-            9,
-            13,
-            14,
-            8,
+            20,
+            22,
+            18,
+            33,
+            33,
+            16,
+            16,
+            23,
             17,
-            8,
-            10,
-            15,
-            8,
-            12,
-            10,
-            9,
-            14,
-            20,
-            15,
-            10,
-            12,
-            9,
-            20,
-            10,
-            10,
-            12,
-            10
+            19
           ],
           "addTmpGenerateWatcherPaths": [
-            9
+            13
           ]
         },
-        "register": 3
+        "register": 7
       },
       "enableBy": "config"
     }
@@ -3396,6 +3069,11 @@
             "title": "回测分析"
           },
           {
+            "path": "/agent-chat",
+            "component": "@/pages/agent-chat/index",
+            "title": "AI 投研助手"
+          },
+          {
             "path": "/settings/notifications",
             "component": "@/pages/settings/notifications",
             "title": "通知设置"
@@ -3439,6 +3117,14 @@
           "^/api": "/api/v1"
         }
       }
+    },
+    "mfsu": {
+      "strategy": "eager",
+      "include": [
+        "react-markdown",
+        "remark-gfm",
+        "@ant-design/x"
+      ]
     }
   },
   "mainConfigFile": "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\.umirc.ts",
@@ -3454,7 +3140,12 @@
     "svgr": {},
     "publicPath": "/",
     "mfsu": {
-      "strategy": "eager"
+      "strategy": "eager",
+      "include": [
+        "react-markdown",
+        "remark-gfm",
+        "@ant-design/x"
+      ]
     },
     "ignoreMomentLocale": true,
     "externals": {},
@@ -3550,6 +3241,11 @@
             "path": "/backtest",
             "component": "@/pages/backtest/index",
             "title": "回测分析"
+          },
+          {
+            "path": "/agent-chat",
+            "component": "@/pages/agent-chat/index",
+            "title": "AI 投研助手"
           },
           {
             "path": "/settings/notifications",
@@ -4536,7 +4232,7 @@
       "file": "@/layouts/MainLayout.tsx",
       "id": "3",
       "absPath": "/",
-      "__content": "import React, { useState } from 'react';\nimport { Layout, Menu, theme } from 'antd';\nimport {\n  DashboardOutlined,\n  UserOutlined,\n  MenuFoldOutlined,\n  MenuUnfoldOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n} from '@ant-design/icons';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\n\nconst { Sider, Content } = Layout;\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  const menuItems = [\n    {\n      key: '/dashboard',\n      icon: <DashboardOutlined />,\n      label: '仪表盘',\n    },\n    {\n      key: '/news',\n      icon: <ReadOutlined />,\n      label: '新闻',\n    },\n    {\n      key: '/signals',\n      icon: <BellOutlined />,\n      label: '信号',\n    },\n    {\n      key: '/stocks',\n      icon: <SearchOutlined />,\n      label: '股票查询',\n    },\n    {\n      key: '/stock-trackings',\n      icon: <EyeOutlined />,\n      label: '股票追踪',\n    },\n    {\n      key: '/simulation',\n      icon: <WalletOutlined />,\n      label: '账户模拟',\n    },\n    {\n      key: '/backtest',\n      icon: <LineChartOutlined />,\n      label: '回测',\n    },\n    {\n      key: '/blacklist',\n      icon: <BlockOutlined />,\n      label: '黑名单',\n    },\n    {\n      key: '/settings',\n      icon: <SettingOutlined />,\n      label: '设置',\n      children: [\n        {\n          key: '/settings/notifications',\n          icon: <NotificationOutlined />,\n          label: '通知设置',\n        },\n        {\n          key: '/settings/scheduler',\n          icon: <ClockCircleOutlined />,\n          label: '定时任务',\n        },\n      ],\n    },\n    {\n      key: '/profile',\n      icon: <UserOutlined />,\n      label: '个人资料',\n    },\n  ];\n\n  const handleMenuClick = ({ key }: { key: string }) => {\n    navigate(key);\n  };\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={{\n          overflow: 'auto',\n          height: '100vh',\n          position: 'fixed',\n          left: 0,\n          top: 0,\n          bottom: 0,\n          zIndex: 100,\n        }}\n      >\n        <div\n          onClick={() => navigate('/dashboard')}\n          style={{\n            height: 64,\n            display: 'flex',\n            alignItems: 'center',\n            justifyContent: 'center',\n            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n            cursor: 'pointer',\n          }}\n        >\n          {collapsed ? (\n            <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          ) : (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <Menu\n          theme=\"dark\"\n          mode=\"inline\"\n          selectedKeys={[location.pathname]}\n          items={menuItems}\n          onClick={handleMenuClick}\n          style={{ borderRight: 0 }}\n        />\n        <div\n          style={{\n            position: 'absolute',\n            bottom: 0,\n            width: '100%',\n            padding: '16px',\n            textAlign: 'center',\n            borderTop: '1px solid rgba(255, 255, 255, 0.1)',\n          }}\n        >\n          <div\n            onClick={() => setCollapsed(!collapsed)}\n            style={{\n              color: '#fff',\n              cursor: 'pointer',\n              fontSize: 16,\n            }}\n          >\n            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}\n          </div>\n        </div>\n      </Sider>\n      <Layout\n        style={{\n          marginLeft: collapsed ? 80 : 200,\n          transition: 'all 0.2s',\n        }}\n      >\n        <Header collapsed={collapsed} />\n        <Content\n          style={{\n            margin: '88px 16px 24px',\n            padding: 24,\n            minHeight: 280,\n            background: colorBgContainer,\n            borderRadius: borderRadiusLG,\n            overflow: 'auto',\n          }}\n        >\n          <Outlet />\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
+      "__content": "import React, { useState } from 'react';\nimport { Layout, Menu, theme } from 'antd';\nimport {\n  DashboardOutlined,\n  UserOutlined,\n  MenuFoldOutlined,\n  MenuUnfoldOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n} from '@ant-design/icons';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\n\nconst { Sider, Content } = Layout;\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  const menuItems = [\n    {\n      key: '/dashboard',\n      icon: <DashboardOutlined />,\n      label: '仪表盘',\n    },\n    {\n      key: '/news',\n      icon: <ReadOutlined />,\n      label: '新闻',\n    },\n    {\n      key: '/signals',\n      icon: <BellOutlined />,\n      label: '信号',\n    },\n    {\n      key: '/stocks',\n      icon: <SearchOutlined />,\n      label: '股票查询',\n    },\n    {\n      key: '/stock-trackings',\n      icon: <EyeOutlined />,\n      label: '股票追踪',\n    },\n    {\n      key: '/simulation',\n      icon: <WalletOutlined />,\n      label: '账户模拟',\n    },\n    {\n      key: '/backtest',\n      icon: <LineChartOutlined />,\n      label: '回测',\n    },\n    {\n      key: '/agent-chat',\n      icon: <RobotOutlined />,\n      label: 'AI 助手',\n    },\n    {\n      key: '/blacklist',\n      icon: <BlockOutlined />,\n      label: '黑名单',\n    },\n    {\n      key: '/settings',\n      icon: <SettingOutlined />,\n      label: '设置',\n      children: [\n        {\n          key: '/settings/notifications',\n          icon: <NotificationOutlined />,\n          label: '通知设置',\n        },\n        {\n          key: '/settings/scheduler',\n          icon: <ClockCircleOutlined />,\n          label: '定时任务',\n        },\n      ],\n    },\n    {\n      key: '/profile',\n      icon: <UserOutlined />,\n      label: '个人资料',\n    },\n  ];\n\n  const handleMenuClick = ({ key }: { key: string }) => {\n    navigate(key);\n  };\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={{\n          overflow: 'auto',\n          height: '100vh',\n          position: 'fixed',\n          left: 0,\n          top: 0,\n          bottom: 0,\n          zIndex: 100,\n        }}\n      >\n        <div\n          onClick={() => navigate('/dashboard')}\n          style={{\n            height: 64,\n            display: 'flex',\n            alignItems: 'center',\n            justifyContent: 'center',\n            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n            cursor: 'pointer',\n          }}\n        >\n          {collapsed ? (\n            <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          ) : (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <Menu\n          theme=\"dark\"\n          mode=\"inline\"\n          selectedKeys={[location.pathname]}\n          items={menuItems}\n          onClick={handleMenuClick}\n          style={{ borderRight: 0 }}\n        />\n        <div\n          style={{\n            position: 'absolute',\n            bottom: 0,\n            width: '100%',\n            padding: '16px',\n            textAlign: 'center',\n            borderTop: '1px solid rgba(255, 255, 255, 0.1)',\n          }}\n        >\n          <div\n            onClick={() => setCollapsed(!collapsed)}\n            style={{\n              color: '#fff',\n              cursor: 'pointer',\n              fontSize: 16,\n            }}\n          >\n            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}\n          </div>\n        </div>\n      </Sider>\n      <Layout\n        style={{\n          marginLeft: collapsed ? 80 : 200,\n          transition: 'all 0.2s',\n        }}\n      >\n        <Header collapsed={collapsed} />\n        <Content\n          style={{\n            margin: '88px 16px 24px',\n            padding: 24,\n            minHeight: 280,\n            background: colorBgContainer,\n            borderRadius: borderRadiusLG,\n            overflow: location.pathname === '/agent-chat' ? 'hidden' : 'auto',\n          }}\n        >\n          <Outlet />\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/layouts/MainLayout.tsx"
     },
@@ -4646,7 +4342,7 @@
       "parentId": "3",
       "id": "13",
       "absPath": "/simulation",
-      "__content": "import React, { useState, useEffect } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  Table,\n  Form,\n  InputNumber,\n  Input,\n  Select,\n  message,\n  Modal,\n  Statistic,\n  Row,\n  Col,\n  Divider,\n  Empty,\n  Popconfirm,\n} from 'antd';\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  WalletOutlined,\n  ShoppingCartOutlined,\n  HistoryOutlined,\n  EditOutlined,\n  DeleteOutlined,\n} from '@ant-design/icons';\nimport api from '@/services/api';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface SimulationAccount {\n  id: string;\n  initialCapital: number;\n  currentCapital: number;\n  availableCash: number;\n  totalProfit: number;\n  totalReturn: number;\n}\n\ninterface SimulationPosition {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  quantity: number;\n  avgCost: number;\n  currentPrice?: number;\n  marketValue?: number;\n  profit: number;\n  return: number;\n}\n\ninterface SimulationTrade {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  type: 'buy' | 'sell';\n  quantity: number;\n  price: number;\n  totalAmount: number;\n  profit?: number;\n  tradeTime: string;\n}\n\nconst SimulationPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [account, setAccount] = useState<SimulationAccount | null>(null);\n  const [positions, setPositions] = useState<SimulationPosition[]>([]);\n  const [trades, setTrades] = useState<SimulationTrade[]>([]);\n  const [isTradeModalVisible, setIsTradeModalVisible] = useState(false);\n  const [isBalanceModalVisible, setIsBalanceModalVisible] = useState(false);\n  const [isPositionModalVisible, setIsPositionModalVisible] = useState(false);\n  const [tradeForm] = Form.useForm();\n  const [balanceForm] = Form.useForm();\n  const [positionForm] = Form.useForm();\n  const [activeTab, setActiveTab] = useState<'positions' | 'trades'>('positions');\n\n  const fetchAccount = async () => {\n    try {\n      const response = await api.get('/simulation/account');\n      setAccount(response.data);\n    } catch (error) {\n      console.error('Fetch account error:', error);\n      setAccount(null);\n    }\n  };\n\n  const fetchPositions = async () => {\n    try {\n      const response = await api.get('/simulation/positions');\n      setPositions(response.data || []);\n    } catch (error) {\n      console.error('Fetch positions error:', error);\n      setPositions([]);\n    }\n  };\n\n  const fetchTrades = async () => {\n    try {\n      const response = await api.get('/simulation/trades');\n      setTrades(response.data || []);\n    } catch (error) {\n      console.error('Fetch trades error:', error);\n      setTrades([]);\n    }\n  };\n\n  const fetchAllData = async () => {\n    setLoading(true);\n    await Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]);\n    setLoading(false);\n  };\n\n  useEffect(() => {\n    fetchAllData();\n  }, []);\n\n  const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {\n    try {\n      await api.put('/simulation/account', values);\n      message.success('余额更新成功');\n      setIsBalanceModalVisible(false);\n      balanceForm.resetFields();\n      fetchAccount();\n    } catch (error) {\n      message.error('余额更新失败');\n      console.error('Update balance error:', error);\n    }\n  };\n\n  const handleAddPosition = async (values: {\n    stockCode: string;\n    stockName: string;\n    quantity: number;\n    avgCost: number;\n  }) => {\n    try {\n      await api.post('/simulation/position', values);\n      message.success('持仓添加成功');\n      setIsPositionModalVisible(false);\n      positionForm.resetFields();\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓添加失败');\n      console.error('Add position error:', error);\n    }\n  };\n\n  const handleDeletePosition = async (positionId: string) => {\n    try {\n      await api.delete(`/simulation/position/${positionId}`);\n      message.success('持仓删除成功');\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓删除失败');\n      console.error('Delete position error:', error);\n    }\n  };\n\n  const handleTrade = async (values: {\n    stockCode: string;\n    stockName: string;\n    type: 'buy' | 'sell';\n    quantity: number;\n    price: number;\n  }) => {\n    try {\n      await api.post('/simulation/trade', values);\n      message.success('交易成功');\n      setIsTradeModalVisible(false);\n      tradeForm.resetFields();\n      fetchAllData();\n    } catch (error) {\n      message.error('交易失败');\n      console.error('Trade error:', error);\n    }\n  };\n\n  const formatMoney = (amount: number | string | null | undefined) => {\n    if (amount === null || amount === undefined) return '¥0.00';\n    const num = typeof amount === 'string' ? parseFloat(amount) : amount;\n    if (isNaN(num)) return '¥0.00';\n    return `¥${num.toFixed(2)}`;\n  };\n\n  const formatPercent = (value: number | string) => {\n    const num = typeof value === 'string' ? parseFloat(value) : value;\n    if (isNaN(num)) return '0.00%';\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const positionColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '持仓数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '平均成本',\n      dataIndex: 'avgCost',\n      key: 'avgCost',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '当前市值',\n      dataIndex: 'marketValue',\n      key: 'marketValue',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value: number) => (\n        <Tag color={value >= 0 ? 'success' : 'error'}>\n          {value >= 0 ? '+' : ''}{formatMoney(value)}\n        </Tag>\n      ),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      render: (_: unknown, record: SimulationPosition) => (\n        <Popconfirm\n          title=\"确认删除\"\n          description=\"确定要删除这条持仓吗？\"\n          onConfirm={() => handleDeletePosition(record.id)}\n          okText=\"确认\"\n          cancelText=\"取消\"\n        >\n          <Button danger icon={<DeleteOutlined />} size=\"small\">\n            删除\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      render: (type: string) => (\n        <Tag color={type === 'buy' ? 'success' : 'error'}>\n          {type === 'buy' ? '买入' : '卖出'}\n        </Tag>\n      ),\n    },\n    {\n      title: '数量',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '价格',\n      dataIndex: 'price',\n      key: 'price',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '总金额',\n      dataIndex: 'totalAmount',\n      key: 'totalAmount',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value?: number) =>\n        value !== undefined ? (\n          <Tag color={value >= 0 ? 'success' : 'error'}>\n            {value >= 0 ? '+' : ''}{formatMoney(value)}\n          </Tag>\n        ) : '-',\n    },\n    {\n      title: '时间',\n      dataIndex: 'tradeTime',\n      key: 'tradeTime',\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n  ];\n\n  if (!account) {\n    return (\n      <div>\n        <Title level={2}>账户模拟</Title>\n        <Card>\n          <Empty description=\"加载中...\" />\n        </Card>\n      </div>\n    );\n  }\n\n  return (\n    <div>\n      <Title level={2}>账户模拟</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"初始资金\"\n              value={account.initialCapital}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"当前资金\"\n              value={account.currentCapital}\n              precision={2}\n              prefix=\"¥\"\n              valueStyle={{ color: account.currentCapital >= account.initialCapital ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"可用现金\"\n              value={account.availableCash}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"总收益率\"\n              value={account.totalReturn * 100}\n              precision={2}\n              suffix=\"%\"\n              valueStyle={{ color: account.totalReturn >= 0 ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n            刷新\n          </Button>\n          <Button\n            icon={<EditOutlined />}\n            onClick={() => {\n              balanceForm.setFieldsValue({\n                currentCapital: account.currentCapital,\n                availableCash: account.availableCash,\n              });\n              setIsBalanceModalVisible(true);\n            }}\n          >\n            修改余额\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={() => setIsPositionModalVisible(true)}\n          >\n            添加持仓\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<ShoppingCartOutlined />}\n            onClick={() => setIsTradeModalVisible(true)}\n          >\n            模拟交易\n          </Button>\n        </Space>\n      </Card>\n\n      <Card\n        tabList={[\n          { key: 'positions', tab: <><WalletOutlined /> 持仓</> },\n          { key: 'trades', tab: <><HistoryOutlined /> 交易记录</> },\n        ]}\n        activeTabKey={activeTab}\n        onTabChange={(key) => setActiveTab(key as 'positions' | 'trades')}\n      >\n        {activeTab === 'positions' ? (\n          <Table\n            columns={positionColumns}\n            dataSource={positions}\n            rowKey=\"id\"\n            pagination={false}\n            locale={{ emptyText: '暂无持仓' }}\n          />\n        ) : (\n          <Table\n            columns={tradeColumns}\n            dataSource={trades}\n            rowKey=\"id\"\n            pagination={{ pageSize: 10 }}\n          />\n        )}\n      </Card>\n\n      {/* 修改余额弹窗 */}\n      <Modal\n        title=\"修改余额\"\n        open={isBalanceModalVisible}\n        onCancel={() => setIsBalanceModalVisible(false)}\n        onOk={() => balanceForm.submit()}\n        width={400}\n      >\n        <Form form={balanceForm} onFinish={handleUpdateBalance} layout=\"vertical\">\n          <Form.Item\n            name=\"currentCapital\"\n            label=\"当前资金\"\n            rules={[{ required: true, message: '请输入当前资金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"availableCash\"\n            label=\"可用现金\"\n            rules={[{ required: true, message: '请输入可用现金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      {/* 添加持仓弹窗 */}\n      <Modal\n        title=\"添加持仓\"\n        open={isPositionModalVisible}\n        onCancel={() => setIsPositionModalVisible(false)}\n        onOk={() => positionForm.submit()}\n        width={400}\n      >\n        <Form form={positionForm} onFinish={handleAddPosition} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请输入股票代码' }]}\n          >\n            <Input placeholder=\"例如: 00700\" />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请输入股票名称' }]}\n          >\n            <Input placeholder=\"例如: 腾讯控股\" />\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"持仓数量\"\n            rules={[{ required: true, message: '请输入持仓数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入数量\" />\n          </Form.Item>\n          <Form.Item\n            name=\"avgCost\"\n            label=\"平均成本\"\n            rules={[{ required: true, message: '请输入平均成本' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入平均成本\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      {/* 模拟交易弹窗 */}\n      <Modal\n        title=\"模拟交易\"\n        open={isTradeModalVisible}\n        onCancel={() => setIsTradeModalVisible(false)}\n        onOk={() => tradeForm.submit()}\n        width={500}\n      >\n        <Form form={tradeForm} onFinish={handleTrade} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请输入股票代码' }]}\n          >\n            <Input placeholder=\"例如: 00700\" />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请输入股票名称' }]}\n          >\n            <Input placeholder=\"例如: 腾讯控股\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"交易类型\"\n            rules={[{ required: true, message: '请选择交易类型' }]}\n            initialValue=\"buy\"\n          >\n            <Select>\n              <Option value=\"buy\">买入</Option>\n              <Option value=\"sell\">卖出</Option>\n            </Select>\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"数量\"\n            rules={[{ required: true, message: '请输入数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入数量\" />\n          </Form.Item>\n          <Form.Item\n            name=\"price\"\n            label=\"价格\"\n            rules={[{ required: true, message: '请输入价格' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入价格\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default SimulationPage;\n",
+      "__content": "import React, { useState, useEffect } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  Table,\n  Form,\n  InputNumber,\n  Input,\n  Select,\n  message,\n  Modal,\n  Statistic,\n  Row,\n  Col,\n  Divider,\n  Empty,\n  Popconfirm,\n} from 'antd';\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  WalletOutlined,\n  ShoppingCartOutlined,\n  HistoryOutlined,\n  EditOutlined,\n  DeleteOutlined,\n} from '@ant-design/icons';\nimport api from '@/services/api';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface SimulationAccount {\n  id: string;\n  initialCapital: number;\n  currentCapital: number;\n  availableCash: number;\n  totalProfit: number;\n  totalReturn: number;\n}\n\ninterface SimulationPosition {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  quantity: number;\n  avgCost: number;\n  currentPrice?: number;\n  marketValue?: number;\n  profit: number;\n  return: number;\n}\n\ninterface SimulationTrade {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  type: 'buy' | 'sell';\n  quantity: number;\n  price: number;\n  totalAmount: number;\n  profit?: number;\n  tradeTime: string;\n}\n\nconst SimulationPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [account, setAccount] = useState<SimulationAccount | null>(null);\n  const [positions, setPositions] = useState<SimulationPosition[]>([]);\n  const [trades, setTrades] = useState<SimulationTrade[]>([]);\n  const [isTradeModalVisible, setIsTradeModalVisible] = useState(false);\n  const [isBalanceModalVisible, setIsBalanceModalVisible] = useState(false);\n  const [isPositionModalVisible, setIsPositionModalVisible] = useState(false);\n  const [tradeForm] = Form.useForm();\n  const [balanceForm] = Form.useForm();\n  const [positionForm] = Form.useForm();\n  const [activeTab, setActiveTab] = useState<'positions' | 'trades'>('positions');\n\n  const fetchAccount = async () => {\n    try {\n      const response = await api.get('/simulation/account');\n      setAccount(response.data);\n    } catch (error) {\n      console.error('Fetch account error:', error);\n      setAccount(null);\n    }\n  };\n\n  const fetchPositions = async () => {\n    try {\n      const response = await api.get('/simulation/positions');\n      setPositions(response.data || []);\n    } catch (error) {\n      console.error('Fetch positions error:', error);\n      setPositions([]);\n    }\n  };\n\n  const fetchTrades = async () => {\n    try {\n      const response = await api.get('/simulation/trades');\n      setTrades(response.data || []);\n    } catch (error) {\n      console.error('Fetch trades error:', error);\n      setTrades([]);\n    }\n  };\n\n  const fetchAllData = async () => {\n    setLoading(true);\n    await Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]);\n    setLoading(false);\n  };\n\n  useEffect(() => {\n    fetchAllData();\n  }, []);\n\n  const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {\n    try {\n      await api.put('/simulation/account', values);\n      message.success('余额更新成功');\n      setIsBalanceModalVisible(false);\n      balanceForm.resetFields();\n      fetchAccount();\n    } catch (error) {\n      message.error('余额更新失败');\n      console.error('Update balance error:', error);\n    }\n  };\n\n  const handleAddPosition = async (values: {\n    stockCode: string;\n    stockName: string;\n    quantity: number;\n    avgCost: number;\n  }) => {\n    try {\n      await api.post('/simulation/position', values);\n      message.success('持仓添加成功');\n      setIsPositionModalVisible(false);\n      positionForm.resetFields();\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓添加失败');\n      console.error('Add position error:', error);\n    }\n  };\n\n  const handleDeletePosition = async (positionId: string) => {\n    try {\n      await api.delete(`/simulation/position/${positionId}`);\n      message.success('持仓删除成功');\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓删除失败');\n      console.error('Delete position error:', error);\n    }\n  };\n\n  const handleTrade = async (values: {\n    stockCode: string;\n    stockName: string;\n    type: 'buy' | 'sell';\n    quantity: number;\n    price: number;\n  }) => {\n    try {\n      await api.post('/simulation/trade', values);\n      message.success('交易成功');\n      setIsTradeModalVisible(false);\n      tradeForm.resetFields();\n      fetchAllData();\n    } catch (error) {\n      message.error('交易失败');\n      console.error('Trade error:', error);\n    }\n  };\n\n  const formatMoney = (amount: number | string | null | undefined) => {\n    if (amount === null || amount === undefined) return '¥0.00';\n    const num = typeof amount === 'string' ? parseFloat(amount) : amount;\n    if (isNaN(num)) return '¥0.00';\n    return `¥${num.toFixed(2)}`;\n  };\n\n  const formatPercent = (value: number | string | null | undefined) => {\n    if (value === null || value === undefined) return '0.00%';\n    const num = typeof value === 'string' ? parseFloat(value) : value;\n    if (isNaN(num)) return '0.00%';\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const positionColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '持仓数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '平均成本',\n      dataIndex: 'avgCost',\n      key: 'avgCost',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '当前市值',\n      dataIndex: 'marketValue',\n      key: 'marketValue',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value: number) => (\n        <Tag color={value >= 0 ? 'success' : 'error'}>\n          {value >= 0 ? '+' : ''}{formatMoney(value)}\n        </Tag>\n      ),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      render: (_: unknown, record: SimulationPosition) => (\n        <Popconfirm\n          title=\"确认删除\"\n          description=\"确定要删除这条持仓吗？\"\n          onConfirm={() => handleDeletePosition(record.id)}\n          okText=\"确认\"\n          cancelText=\"取消\"\n        >\n          <Button danger icon={<DeleteOutlined />} size=\"small\">\n            删除\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      render: (type: string) => (\n        <Tag color={type === 'buy' ? 'success' : 'error'}>\n          {type === 'buy' ? '买入' : '卖出'}\n        </Tag>\n      ),\n    },\n    {\n      title: '数量',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '价格',\n      dataIndex: 'price',\n      key: 'price',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '总金额',\n      dataIndex: 'totalAmount',\n      key: 'totalAmount',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value?: number) =>\n        value !== undefined ? (\n          <Tag color={value >= 0 ? 'success' : 'error'}>\n            {value >= 0 ? '+' : ''}{formatMoney(value)}\n          </Tag>\n        ) : '-',\n    },\n    {\n      title: '时间',\n      dataIndex: 'tradeTime',\n      key: 'tradeTime',\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n  ];\n\n  if (!account) {\n    return (\n      <div>\n        <Title level={2}>账户模拟</Title>\n        <Card>\n          <Empty description=\"加载中...\" />\n        </Card>\n      </div>\n    );\n  }\n\n  return (\n    <div>\n      <Title level={2}>账户模拟</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"初始资金\"\n              value={account.initialCapital}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"当前资金\"\n              value={account.currentCapital}\n              precision={2}\n              prefix=\"¥\"\n              valueStyle={{ color: account.currentCapital >= account.initialCapital ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"可用现金\"\n              value={account.availableCash}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"总收益率\"\n              value={account.totalReturn * 100}\n              precision={2}\n              suffix=\"%\"\n              valueStyle={{ color: account.totalReturn >= 0 ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n            刷新\n          </Button>\n          <Button\n            icon={<EditOutlined />}\n            onClick={() => {\n              balanceForm.setFieldsValue({\n                currentCapital: account.currentCapital,\n                availableCash: account.availableCash,\n              });\n              setIsBalanceModalVisible(true);\n            }}\n          >\n            修改余额\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={() => setIsPositionModalVisible(true)}\n          >\n            添加持仓\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<ShoppingCartOutlined />}\n            onClick={() => setIsTradeModalVisible(true)}\n          >\n            模拟交易\n          </Button>\n        </Space>\n      </Card>\n\n      <Card\n        tabList={[\n          { key: 'positions', tab: <><WalletOutlined /> 持仓</> },\n          { key: 'trades', tab: <><HistoryOutlined /> 交易记录</> },\n        ]}\n        activeTabKey={activeTab}\n        onTabChange={(key) => setActiveTab(key as 'positions' | 'trades')}\n      >\n        {activeTab === 'positions' ? (\n          <Table\n            columns={positionColumns}\n            dataSource={positions}\n            rowKey=\"id\"\n            pagination={false}\n            locale={{ emptyText: '暂无持仓' }}\n          />\n        ) : (\n          <Table\n            columns={tradeColumns}\n            dataSource={trades}\n            rowKey=\"id\"\n            pagination={{ pageSize: 10 }}\n          />\n        )}\n      </Card>\n\n      {/* 修改余额弹窗 */}\n      <Modal\n        title=\"修改余额\"\n        open={isBalanceModalVisible}\n        onCancel={() => setIsBalanceModalVisible(false)}\n        onOk={() => balanceForm.submit()}\n        width={400}\n      >\n        <Form form={balanceForm} onFinish={handleUpdateBalance} layout=\"vertical\">\n          <Form.Item\n            name=\"currentCapital\"\n            label=\"当前资金\"\n            rules={[{ required: true, message: '请输入当前资金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"availableCash\"\n            label=\"可用现金\"\n            rules={[{ required: true, message: '请输入可用现金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      {/* 添加持仓弹窗 */}\n      <Modal\n        title=\"添加持仓\"\n        open={isPositionModalVisible}\n        onCancel={() => setIsPositionModalVisible(false)}\n        onOk={() => positionForm.submit()}\n        width={400}\n      >\n        <Form form={positionForm} onFinish={handleAddPosition} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请输入股票代码' }]}\n          >\n            <Input placeholder=\"例如: 00700\" />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请输入股票名称' }]}\n          >\n            <Input placeholder=\"例如: 腾讯控股\" />\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"持仓数量\"\n            rules={[{ required: true, message: '请输入持仓数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入数量\" />\n          </Form.Item>\n          <Form.Item\n            name=\"avgCost\"\n            label=\"平均成本\"\n            rules={[{ required: true, message: '请输入平均成本' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入平均成本\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      {/* 模拟交易弹窗 */}\n      <Modal\n        title=\"模拟交易\"\n        open={isTradeModalVisible}\n        onCancel={() => setIsTradeModalVisible(false)}\n        onOk={() => tradeForm.submit()}\n        width={500}\n      >\n        <Form form={tradeForm} onFinish={handleTrade} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请输入股票代码' }]}\n          >\n            <Input placeholder=\"例如: 00700\" />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请输入股票名称' }]}\n          >\n            <Input placeholder=\"例如: 腾讯控股\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"交易类型\"\n            rules={[{ required: true, message: '请选择交易类型' }]}\n            initialValue=\"buy\"\n          >\n            <Select>\n              <Option value=\"buy\">买入</Option>\n              <Option value=\"sell\">卖出</Option>\n            </Select>\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"数量\"\n            rules={[{ required: true, message: '请输入数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入数量\" />\n          </Form.Item>\n          <Form.Item\n            name=\"price\"\n            label=\"价格\"\n            rules={[{ required: true, message: '请输入价格' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入价格\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default SimulationPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/simulation/index.tsx"
     },
@@ -4673,43 +4369,54 @@
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/backtest/index.tsx"
     },
     "16": {
+      "path": "/agent-chat",
+      "title": "AI 投研助手",
+      "file": "@/pages/agent-chat/index.tsx",
+      "parentId": "3",
+      "id": "16",
+      "absPath": "/agent-chat",
+      "__content": "import React, { useState, useRef, useEffect, useCallback } from 'react';\nimport {\n  Layout,\n  List,\n  Input,\n  Button,\n  Avatar,\n  Typography,\n  Spin,\n  Empty,\n  Tag,\n  Tooltip,\n  Popconfirm,\n  Modal,\n} from 'antd';\nimport {\n  SendOutlined,\n  RobotOutlined,\n  UserOutlined,\n  PlusOutlined,\n  DeleteOutlined,\n  MessageOutlined,\n  LoadingOutlined,\n  EditOutlined,\n} from '@ant-design/icons';\nimport { useUser } from '@/contexts/UserContext';\nimport { Bubble } from '@ant-design/x';\nimport ReactMarkdown from 'react-markdown';\nimport type { PluggableList } from 'unified';\nimport styles from './index.less';\n\n// 内联样式 - 超紧凑模式\nconst inlineStyles = `\n  @keyframes blink {\n    0%, 50% { opacity: 1; }\n    51%, 100% { opacity: 0; }\n  }\n  .typing-cursor {\n    animation: blink 1s infinite;\n    font-weight: bold;\n  }\n  .markdown-content {\n    line-height: 1.2;\n  }\n  .markdown-content * {\n    margin: 0;\n    padding: 0;\n  }\n  .markdown-content p {\n    margin: 0;\n    line-height: 1.2;\n    min-height: 1.2em;\n  }\n  .markdown-content p:not(:last-child) {\n    margin-bottom: 1px;\n  }\n  .markdown-content ul, .markdown-content ol {\n    margin: 0;\n    padding-left: 16px;\n    line-height: 1;\n  }\n  .markdown-content li {\n    margin: 0;\n    padding: 0;\n    line-height: 1;\n    display: block;\n  }\n  .markdown-content li + li {\n    margin-top: 0;\n  }\n  .markdown-content li > p {\n    margin: 0;\n  }\n  .markdown-content code {\n    background: rgba(0,0,0,0.06);\n    padding: 0 2px;\n    border-radius: 2px;\n    font-size: 0.9em;\n    line-height: 1;\n  }\n  .markdown-content pre {\n    background: rgba(0,0,0,0.06);\n    padding: 4px;\n    border-radius: 4px;\n    overflow-x: auto;\n    margin: 1px 0;\n    line-height: 1.2;\n  }\n  .markdown-content pre code {\n    background: none;\n    padding: 0;\n  }\n  .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4, .markdown-content h5, .markdown-content h6 {\n    margin: 0;\n    font-weight: 600;\n    line-height: 1.2;\n  }\n  .markdown-content h1:not(:last-child), .markdown-content h2:not(:last-child), .markdown-content h3:not(:last-child) {\n    margin-bottom: 1px;\n  }\n  .markdown-content blockquote {\n    border-left: 3px solid #1890ff;\n    margin: 1px 0;\n    padding-left: 8px;\n    color: #666;\n    line-height: 1.2;\n  }\n  .markdown-content table {\n    border-collapse: collapse;\n    width: 100%;\n    margin: 1px 0;\n    line-height: 1.2;\n  }\n  .markdown-content th, .markdown-content td {\n    border: 1px solid #d9d9d9;\n    padding: 1px 4px;\n    text-align: left;\n    line-height: 1.2;\n  }\n  .markdown-content th {\n    background: #fafafa;\n  }\n  .markdown-content br {\n    display: block;\n    height: 1px;\n    line-height: 1px;\n    margin: 0;\n    padding: 0;\n  }\n  .chat-message-list {\n    overscroll-behavior: contain;\n  }\n`;\n\nconst { Sider, Content } = Layout;\nconst { TextArea } = Input;\nconst { Text } = Typography;\n\ninterface Message {\n  id: string;\n  role: 'user' | 'assistant';\n  content: string;\n  timestamp?: number;\n}\n\ninterface Conversation {\n  id: string;\n  title: string;\n  lastMessage: string;\n  timestamp: number;\n  messages: Message[];\n}\n\ninterface SseEvent {\n  event: 'thinking' | 'tool' | 'answer' | 'done' | 'error';\n  data: unknown;\n}\n\n// 样式注入组件\nconst StyleInjector: React.FC = () => {\n  useEffect(() => {\n    const styleId = 'agent-chat-inline-styles';\n    if (!document.getElementById(styleId)) {\n      const styleElement = document.createElement('style');\n      styleElement.id = styleId;\n      styleElement.textContent = inlineStyles;\n      document.head.appendChild(styleElement);\n    }\n    return () => {\n      // 清理可选，这里保留样式\n    };\n  }, []);\n  return null;\n};\n\n// 预处理 Markdown 内容：合并连续换行\nconst preprocessMarkdown = (content: string): string => {\n  return content\n    .replace(/\\n{2,}/g, '\\n')  // 2个及以上换行 -> 1个换行\n    .trim();\n};\n\n// Markdown 渲染组件 - 使用 remark-gfm\nconst MarkdownContent: React.FC<{ content: string }> = ({ content }) => {\n  const [plugins, setPlugins] = useState<PluggableList>([]);\n\n  useEffect(() => {\n    // 动态导入 remark-gfm 避免 Module Federation 问题\n    import('remark-gfm').then((mod) => {\n      setPlugins([mod.default]);\n    });\n  }, []);\n\n  const processedContent = preprocessMarkdown(content);\n\n  return (\n    <div className=\"markdown-content\">\n      <ReactMarkdown remarkPlugins={plugins}>\n        {processedContent}\n      </ReactMarkdown>\n    </div>\n  );\n};\n\n// 打字机效果组件\nconst TypewriterContent: React.FC<{ content: string; isStreaming: boolean }> = ({ content, isStreaming }) => {\n  const [displayContent, setDisplayContent] = useState('');\n  const contentRef = useRef(content);\n  const indexRef = useRef(0);\n\n  useEffect(() => {\n    if (!isStreaming) {\n      setDisplayContent(content);\n      return;\n    }\n\n    // 只在内容增加时继续打字效果\n    if (content.length > contentRef.current.length) {\n      contentRef.current = content;\n    }\n\n    const typeNextChar = () => {\n      if (indexRef.current < contentRef.current.length) {\n        setDisplayContent(contentRef.current.slice(0, indexRef.current + 1));\n        indexRef.current++;\n      }\n    };\n\n    const timer = setInterval(typeNextChar, 15); // 每15ms打一个字符\n\n    return () => clearInterval(timer);\n  }, [content, isStreaming]);\n\n  // 初始化时重置索引\n  useEffect(() => {\n    if (content && indexRef.current === 0) {\n      contentRef.current = content;\n    }\n  }, []);\n\n  return <MarkdownContent content={displayContent} />;\n};\n\nconst AgentChatPage: React.FC = () => {\n  // 注入内联样式\n  <StyleInjector />;\n\n  const { user, loading } = useUser();\n  const userId = user?.id;\n\n  const [conversations, setConversations] = useState<Conversation[]>([]);\n  const [currentConversationId, setCurrentConversationId] = useState<string>('');\n  const [inputValue, setInputValue] = useState('');\n  const [isLoading, setIsLoading] = useState(false);\n  const [streamingContent, setStreamingContent] = useState('');\n  const [isLoadingHistory, setIsLoadingHistory] = useState(false);\n  const [editingConversation, setEditingConversation] = useState<Conversation | null>(null);\n  const [newTitle, setNewTitle] = useState('');\n  const [thinkingStatus, setThinkingStatus] = useState<string>('');\n  const messagesEndRef = useRef<HTMLDivElement>(null);\n\n  // 获取当前对话\n  const currentConversation = conversations.find((c) => c.id === currentConversationId);\n\n  // 自动滚动到底部\n  const scrollToBottom = () => {\n    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });\n  };\n\n  useEffect(() => {\n    scrollToBottom();\n  }, [currentConversation?.messages, streamingContent, thinkingStatus]);\n\n  // 加载历史对话\n  useEffect(() => {\n    console.log('[AgentChat] loading:', loading, 'userId:', userId);\n    if (!loading && userId) {\n      loadConversations();\n    }\n  }, [loading, userId]);\n\n  const loadConversations = async () => {\n    console.log('[AgentChat] Loading conversations for userId:', userId);\n    if (!userId) {\n      console.log('[AgentChat] Skip loading - no userId');\n      return;\n    }\n\n    setIsLoadingHistory(true);\n    try {\n      const response = await fetch(`/api/agent/sessions?userId=${userId}`);\n      const result = await response.json();\n      console.log('[AgentChat] Sessions response:', result);\n\n      const sessions = result.sessions || result.data?.sessions || [];\n      console.log('[AgentChat] Sessions to load:', sessions);\n      if (sessions.length > 0) {\n        // 加载每个会话的历史消息\n        const loadedConversations: Conversation[] = [];\n        for (const sessionId of sessions) {\n          console.log('[AgentChat] Loading history for session:', sessionId);\n          const historyResponse = await fetch(`/api/agent/history?userId=${userId}&sessionId=${sessionId}`);\n          const historyData = await historyResponse.json();\n          console.log('[AgentChat] History data for session', sessionId, ':', historyData);\n\n          const messages = historyData.data || historyData || [];\n          if (messages.length > 0) {\n            const mappedMessages: Message[] = messages.map((msg: any, index: number) => ({\n              id: `${sessionId}_${index}`,\n              role: msg.role,\n              content: msg.content,\n              timestamp: Date.now() - (messages.length - index) * 1000,\n            }));\n\n            const firstUserMessage = mappedMessages.find((m) => m.role === 'user');\n            loadedConversations.push({\n              id: sessionId,\n              title: firstUserMessage ? firstUserMessage.content.slice(0, 20) + (firstUserMessage.content.length > 20 ? '...' : '') : '历史对话',\n              lastMessage: mappedMessages[mappedMessages.length - 1]?.content || '',\n              timestamp: Date.now(),\n              messages: mappedMessages,\n            });\n          }\n        }\n        console.log('[AgentChat] Loaded conversations:', loadedConversations);\n        setConversations(loadedConversations);\n      }\n    } catch (error) {\n      console.error('Failed to load conversations:', error);\n    } finally {\n      setIsLoadingHistory(false);\n    }\n  };\n\n  // 创建新对话\n  const createNewConversation = () => {\n    const newConversation: Conversation = {\n      id: `conv_${Date.now()}`,\n      title: '新对话',\n      lastMessage: '',\n      timestamp: Date.now(),\n      messages: [],\n    };\n    setConversations((prev) => [newConversation, ...prev]);\n    setCurrentConversationId(newConversation.id);\n    setInputValue('');\n    setStreamingContent('');\n  };\n\n  // 删除对话\n  const deleteConversation = (id: string) => {\n    setConversations((prev) => prev.filter((c) => c.id !== id));\n    if (currentConversationId === id) {\n      setCurrentConversationId('');\n    }\n  };\n\n  // 开始编辑对话名称\n  const startEditTitle = (conversation: Conversation) => {\n    setEditingConversation(conversation);\n    setNewTitle(conversation.title);\n  };\n\n  // 保存对话名称\n  const saveTitle = async () => {\n    if (editingConversation && newTitle.trim()) {\n      try {\n        // 调用 API 更新对话标题\n        const response = await fetch('/api/agent/session/title', {\n          method: 'PUT',\n          headers: {\n            'Content-Type': 'application/json',\n          },\n          body: JSON.stringify({\n            userId,\n            sessionId: editingConversation.id,\n            title: newTitle.trim(),\n          }),\n        });\n\n        if (response.ok) {\n          setConversations((prev) =>\n            prev.map((conv) =>\n              conv.id === editingConversation.id ? { ...conv, title: newTitle.trim() } : conv\n            )\n          );\n        } else {\n          console.error('Failed to update session title');\n        }\n      } catch (error) {\n        console.error('Error updating session title:', error);\n      }\n    }\n    setEditingConversation(null);\n    setNewTitle('');\n  };\n\n  // 取消编辑\n  const cancelEdit = () => {\n    setEditingConversation(null);\n    setNewTitle('');\n  };\n\n  // 发送消息\n  const handleSend = useCallback(async () => {\n    if (!inputValue.trim() || isLoading) return;\n\n    const message = inputValue.trim();\n    setInputValue('');\n\n    // 如果没有当前对话，创建一个新对话\n    let conversationId = currentConversationId;\n    if (!conversationId) {\n      const newConversation: Conversation = {\n        id: `conv_${Date.now()}`,\n        title: message.slice(0, 20) + (message.length > 20 ? '...' : ''),\n        lastMessage: message,\n        timestamp: Date.now(),\n        messages: [],\n      };\n      setConversations((prev) => [newConversation, ...prev]);\n      setCurrentConversationId(newConversation.id);\n      conversationId = newConversation.id;\n    }\n\n    // 添加用户消息\n    const userMessage: Message = {\n      id: Date.now().toString(),\n      role: 'user',\n      content: message,\n      timestamp: Date.now(),\n    };\n\n    setConversations((prev) =>\n      prev.map((conv) =>\n        conv.id === conversationId\n          ? {\n              ...conv,\n              messages: [...conv.messages, userMessage],\n              lastMessage: message,\n              timestamp: Date.now(),\n            }\n          : conv\n      )\n    );\n\n    setIsLoading(true);\n    setStreamingContent('');\n    setThinkingStatus('思考中...');\n\n    try {\n      console.log('[AgentChat] Sending message with userId:', userId, 'sessionId:', conversationId);\n      const response = await fetch('/api/agent/chat/stream', {\n        method: 'POST',\n        headers: {\n          'Content-Type': 'application/json',\n        },\n        body: JSON.stringify({\n          userId,\n          sessionId: conversationId,\n          message,\n        }),\n      });\n\n      if (!response.body) {\n        throw new Error('No response body');\n      }\n\n      const reader = response.body.getReader();\n      const decoder = new TextDecoder();\n      let buffer = '';\n      let fullContent = '';\n\n      while (true) {\n        const { done, value } = await reader.read();\n        if (done) break;\n\n        buffer += decoder.decode(value, { stream: true });\n        const lines = buffer.split('\\n\\n');\n        buffer = lines.pop() || '';\n\n        for (const line of lines) {\n          const trimmed = line.trim();\n          if (!trimmed) continue;\n\n          const eventMatch = trimmed.match(/event: (\\w+)/);\n          const dataMatch = trimmed.match(/data: (.+)/s);\n\n          if (eventMatch && dataMatch) {\n            const event = eventMatch[1] as SseEvent['event'];\n            const data = JSON.parse(dataMatch[1]);\n\n            if (event === 'thinking') {\n              const nodeName = data.node || data.message || '';\n              setThinkingStatus(nodeName);\n            } else if (event === 'tool') {\n              setThinkingStatus(`正在使用工具: ${data.tool || ''}...`);\n            } else if (event === 'answer' && data.chunk) {\n              setThinkingStatus('');\n              fullContent += data.chunk;\n              setStreamingContent(fullContent);\n            }\n          }\n        }\n      }\n\n      // 添加助手消息\n      const assistantMessage: Message = {\n        id: (Date.now() + 1).toString(),\n        role: 'assistant',\n        content: fullContent,\n        timestamp: Date.now(),\n      };\n\n      setConversations((prev) =>\n        prev.map((conv) =>\n          conv.id === conversationId\n            ? {\n                ...conv,\n                messages: [...conv.messages, assistantMessage],\n                lastMessage: fullContent.slice(0, 50) + (fullContent.length > 50 ? '...' : ''),\n                timestamp: Date.now(),\n              }\n            : conv\n        )\n      );\n      setStreamingContent('');\n    } catch (error) {\n      console.error('Chat error:', error);\n      // 添加错误消息\n      const errorMessage: Message = {\n        id: (Date.now() + 1).toString(),\n        role: 'assistant',\n        content: '抱歉，发生错误，请稍后重试。',\n        timestamp: Date.now(),\n      };\n      setConversations((prev) =>\n        prev.map((conv) =>\n          conv.id === conversationId\n            ? { ...conv, messages: [...conv.messages, errorMessage] }\n            : conv\n        )\n      );\n    } finally {\n      setIsLoading(false);\n      setThinkingStatus('');\n    }\n  }, [inputValue, isLoading, currentConversationId, userId]);\n\n  const handleKeyDown = (e: React.KeyboardEvent) => {\n    if (e.key === 'Enter' && !e.shiftKey) {\n      e.preventDefault();\n      handleSend();\n    }\n  };\n\n  // 格式化时间\n  const formatTime = (timestamp?: number) => {\n    if (!timestamp) return '';\n    const date = new Date(timestamp);\n    return date.toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit' });\n  };\n\n  return (\n    <div className={styles.chatPage}>\n      <Layout className={styles.chatLayout}>\n        {/* 左侧对话列表 */}\n        <Sider width={200} className={styles.sider} theme=\"light\">\n          <div className={styles.siderHeader}>\n            <Button\n              type=\"primary\"\n              icon={<PlusOutlined />}\n              block\n              size=\"small\"\n              onClick={createNewConversation}\n            >\n              新建对话\n            </Button>\n          </div>\n          {isLoadingHistory ? (\n            <div className={styles.loadingHistory}>\n              <Spin size=\"small\" />\n              <Text type=\"secondary\" style={{ fontSize: 12, marginTop: 8 }}>加载中...</Text>\n            </div>\n          ) : (\n            <List\n              className={styles.conversationList}\n              dataSource={conversations}\n              renderItem={(item) => (\n                <List.Item\n                  className={`${styles.conversationItem} ${\n                    item.id === currentConversationId ? styles.active : ''\n                  }`}\n                  onClick={() => setCurrentConversationId(item.id)}\n                >\n                  <List.Item.Meta\n                    avatar={<Avatar icon={<MessageOutlined />} size=\"small\" />}\n                    title={\n                      <div className={styles.conversationTitle}>\n                        {item.title}\n                      </div>\n                    }\n                    description={\n                      <div className={styles.conversationDesc}>\n                        {item.lastMessage || '暂无消息'}\n                      </div>\n                    }\n                  />\n                  <div className={styles.conversationActions}>\n                    <Tooltip key=\"edit\" title=\"修改名称\">\n                      <Button\n                        type=\"text\"\n                        size=\"small\"\n                        icon={<EditOutlined />}\n                        style={{ padding: '0 4px', minWidth: 'auto' }}\n                        onClick={(e) => {\n                          e.stopPropagation();\n                          startEditTitle(item);\n                        }}\n                      />\n                    </Tooltip>\n                    <Popconfirm\n                      key=\"delete\"\n                      title=\"删除对话\"\n                      description=\"确定要删除这个对话吗？\"\n                      onConfirm={(e) => {\n                        e?.stopPropagation();\n                        deleteConversation(item.id);\n                      }}\n                      okText=\"确定\"\n                      cancelText=\"取消\"\n                    >\n                      <Button\n                        type=\"text\"\n                        size=\"small\"\n                        danger\n                        icon={<DeleteOutlined />}\n                        style={{ padding: '0 4px', minWidth: 'auto' }}\n                        onClick={(e) => e.stopPropagation()}\n                      />\n                    </Popconfirm>\n                  </div>\n                </List.Item>\n              )}\n              locale={{ emptyText: '暂无对话，点击上方按钮创建' }}\n            />\n          )}\n        </Sider>\n\n        {/* 右侧对话内容 */}\n        <Content className={styles.chatContent}>\n          {!currentConversation ? (\n            <div className={styles.emptyState}>\n              <Empty\n                image={<RobotOutlined style={{ fontSize: 64, color: '#1890ff' }} />}\n                description={\n                  <div className={styles.welcomeText}>\n                    <h2>AI 投研助手</h2>\n                    <p>基于 LangGraph 的智能投资分析 Agent</p>\n                    <div className={styles.featureTags}>\n                      <Tag color=\"blue\">持仓分析</Tag>\n                      <Tag color=\"green\">新闻查询</Tag>\n                      <Tag color=\"orange\">信号分析</Tag>\n                      <Tag color=\"purple\">回测数据</Tag>\n                      <Tag color=\"cyan\">研投报告</Tag>\n                    </div>\n                    <Button\n                      type=\"primary\"\n                      icon={<PlusOutlined />}\n                      size=\"large\"\n                      onClick={createNewConversation}\n                      style={{ marginTop: 24 }}\n                    >\n                      开始新对话\n                    </Button>\n                  </div>\n                }\n              />\n            </div>\n          ) : (\n            <>\n              {/* 消息列表 */}\n              <div className={`${styles.messageList} chat-message-list`}>\n                {currentConversation.messages.length === 0 ? (\n                  <div className={styles.emptyMessages}>\n                    <Text type=\"secondary\">发送消息开始对话...</Text>\n                  </div>\n                ) : (\n                  currentConversation.messages.map((msg) => (\n                    <div\n                      key={msg.id}\n                      className={`${styles.messageItem} ${\n                        msg.role === 'user' ? styles.userMessage : styles.assistantMessage\n                      }`}\n                    >\n                      <div className={styles.messageWrapper}>\n                        <Avatar\n                          icon={msg.role === 'user' ? <UserOutlined /> : <RobotOutlined />}\n                          className={msg.role === 'user' ? styles.userAvatar : styles.assistantAvatar}\n                        />\n                        <div className={styles.messageBubble}>\n                          <div className={styles.messageContent}>\n                            <MarkdownContent content={msg.content} />\n                          </div>\n                          <div className={styles.messageTime}>{formatTime(msg.timestamp)}</div>\n                        </div>\n                      </div>\n                    </div>\n                  ))\n                )}\n                {streamingContent && (\n                  <div className={`${styles.messageItem} ${styles.assistantMessage}`}>\n                    <div className={styles.messageWrapper}>\n                      <Avatar\n                        icon={<RobotOutlined />}\n                        className={styles.assistantAvatar}\n                      />\n                      <div className={styles.messageBubble}>\n                        <div className={styles.messageContent}>\n                          <TypewriterContent content={streamingContent} isStreaming={true} />\n                        </div>\n                        <div className={styles.typingIndicator}>\n                          <Spin indicator={<LoadingOutlined style={{ fontSize: 14 }} spin />} />\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                )}\n                {/* 思考中状态 */}\n                {thinkingStatus && !streamingContent && (\n                  <div className={`${styles.messageItem} ${styles.assistantMessage}`}>\n                    <div className={styles.messageWrapper}>\n                      <Avatar\n                        icon={<RobotOutlined />}\n                        className={styles.assistantAvatar}\n                      />\n                      <div className={styles.messageBubble}>\n                        <div className={styles.thinkingStatus}>\n                          <Spin size=\"small\" style={{ marginRight: 8 }} />\n                          <span>{thinkingStatus}</span>\n                        </div>\n                      </div>\n                    </div>\n                  </div>\n                )}\n                <div ref={messagesEndRef} />\n              </div>\n\n              {/* 输入框 */}\n              <div className={styles.inputArea}>\n                <div className={styles.inputWrapper}>\n                  <TextArea\n                    value={inputValue}\n                    onChange={(e) => setInputValue(e.target.value)}\n                    onKeyDown={handleKeyDown}\n                    placeholder=\"请输入您的问题，例如：分析我的持仓、查询最近的新闻...\"\n                    autoSize={{ minRows: 1, maxRows: 4 }}\n                    disabled={isLoading}\n                    className={styles.textArea}\n                  />\n                  <Tooltip title=\"发送\">\n                    <Button\n                      type=\"primary\"\n                      icon={<SendOutlined />}\n                      onClick={handleSend}\n                      loading={isLoading}\n                      disabled={!inputValue.trim()}\n                      className={styles.sendButton}\n                    />\n                  </Tooltip>\n                </div>\n                <div className={styles.inputHint}>\n                  <Text type=\"secondary\" style={{ fontSize: 12 }}>\n                    按 Enter 发送，Shift + Enter 换行\n                  </Text>\n                </div>\n              </div>\n            </>\n          )}\n        </Content>\n      </Layout>\n\n      {/* 编辑对话名称弹窗 */}\n      <Modal\n        title=\"修改对话名称\"\n        open={!!editingConversation}\n        onOk={saveTitle}\n        onCancel={cancelEdit}\n        okText=\"保存\"\n        cancelText=\"取消\"\n      >\n        <Input\n          value={newTitle}\n          onChange={(e) => setNewTitle(e.target.value)}\n          placeholder=\"请输入对话名称\"\n          onPressEnter={saveTitle}\n        />\n      </Modal>\n    </div>\n  );\n};\n\nexport default AgentChatPage;\n",
+      "__isJSFile": true,
+      "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/agent-chat/index.tsx"
+    },
+    "17": {
       "path": "/settings/notifications",
       "title": "通知设置",
       "file": "@/pages/settings/notifications.tsx",
       "parentId": "3",
-      "id": "16",
+      "id": "17",
       "absPath": "/settings/notifications",
       "__content": "import { useEffect, useState } from 'react';\nimport {\n  Card,\n  Table,\n  Button,\n  Space,\n  Tag,\n  Switch,\n  Modal,\n  Form,\n  Input,\n  Select,\n  Slider,\n  Typography,\n  message,\n  Popconfirm,\n  Tooltip,\n} from 'antd';\nimport {\n  PlusOutlined,\n  EditOutlined,\n  DeleteOutlined,\n  SendOutlined,\n  BellOutlined,\n  LinkOutlined,\n  PercentageOutlined,\n  CheckCircleOutlined,\n  CloseCircleOutlined,\n} from '@ant-design/icons';\nimport api from '@/services/api';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface Webhook {\n  id: string;\n  name: string;\n  url: string;\n  type: 'wechat' | 'dingtalk' | 'slack' | 'custom';\n  minConfidence: number;\n  maxConfidence: number;\n  enabled: boolean;\n  createdAt: string;\n  updatedAt: string;\n}\n\ninterface WebhookFormData {\n  name: string;\n  url: string;\n  type: 'wechat' | 'dingtalk' | 'slack' | 'custom';\n  confidenceRange: [number, number];\n  enabled?: boolean;\n}\n\nconst NotificationsPage: React.FC = () => {\n  const [webhooks, setWebhooks] = useState<Webhook[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [modalVisible, setModalVisible] = useState(false);\n  const [editingWebhook, setEditingWebhook] = useState<Webhook | null>(null);\n  const [form] = Form.useForm();\n  const [testingWebhookId, setTestingWebhookId] = useState<string | null>(null);\n\n  // 获取 Webhook 列表\n  const fetchWebhooks = async () => {\n    setLoading(true);\n    try {\n      const response = await api.get<{ data: Webhook[]; total: number }>('/webhooks');\n      console.log('[Notifications] Webhooks response:', response);\n      // 处理响应数据\n      const webhooksData = response.data?.data || response.data || [];\n      console.log('[Notifications] Webhooks data:', webhooksData);\n      setWebhooks(webhooksData);\n    } catch (error) {\n      console.error('获取 Webhook 列表失败:', error);\n      message.error('获取 Webhook 列表失败');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  useEffect(() => {\n    fetchWebhooks();\n  }, []);\n\n  // 打开添加 Modal\n  const handleAdd = () => {\n    setEditingWebhook(null);\n    form.resetFields();\n    form.setFieldsValue({\n      type: 'wechat',\n      confidenceRange: [0, 100],\n      enabled: true,\n    });\n    setModalVisible(true);\n  };\n\n  // 打开编辑 Modal\n  const handleEdit = (record: Webhook) => {\n    setEditingWebhook(record);\n    form.setFieldsValue({\n      name: record.name,\n      url: record.url,\n      type: record.type,\n      confidenceRange: [record.minConfidence, record.maxConfidence],\n      enabled: record.enabled,\n    });\n    setModalVisible(true);\n  };\n\n  // 提交表单\n  const handleSubmit = async (values: WebhookFormData) => {\n    try {\n      const payload = {\n        name: values.name,\n        url: values.url,\n        type: values.type,\n        minConfidence: values.confidenceRange[0],\n        maxConfidence: values.confidenceRange[1],\n        enabled: values.enabled,\n      };\n\n      if (editingWebhook) {\n        await api.put(`/webhooks/${editingWebhook.id}`, payload);\n        message.success('Webhook 更新成功');\n      } else {\n        await api.post('/webhooks', payload);\n        message.success('Webhook 创建成功');\n      }\n      setModalVisible(false);\n      fetchWebhooks();\n    } catch (error) {\n      console.error('保存 Webhook 失败:', error);\n      message.error('保存 Webhook 失败');\n    }\n  };\n\n  // 删除 Webhook\n  const handleDelete = async (id: string) => {\n    try {\n      await api.delete(`/webhooks/${id}`);\n      message.success('Webhook 删除成功');\n      fetchWebhooks();\n    } catch (error) {\n      console.error('删除 Webhook 失败:', error);\n      message.error('删除 Webhook 失败');\n    }\n  };\n\n  // 测试 Webhook\n  const handleTest = async (id: string) => {\n    try {\n      setTestingWebhookId(id);\n      await api.post(`/webhooks/${id}/test`);\n      message.success('测试消息已发送');\n    } catch (error) {\n      console.error('测试 Webhook 失败:', error);\n      message.error('测试 Webhook 失败');\n    } finally {\n      setTestingWebhookId(null);\n    }\n  };\n\n  // 切换启用状态\n  const handleToggleEnabled = async (id: string) => {\n    try {\n      const response = await api.put(`/webhooks/${id}/toggle`);\n      message.success(response.data.message);\n      fetchWebhooks();\n    } catch (error) {\n      console.error('切换 Webhook 状态失败:', error);\n      message.error('切换 Webhook 状态失败');\n    }\n  };\n\n  // 获取 Webhook 类型标签\n  const getTypeTag = (type: string) => {\n    const typeMap: Record<string, { color: string; label: string }> = {\n      wechat: { color: 'green', label: '企业微信' },\n      dingtalk: { color: 'blue', label: '钉钉' },\n      slack: { color: 'purple', label: 'Slack' },\n      custom: { color: 'default', label: '自定义' },\n    };\n    const config = typeMap[type] || { color: 'default', label: type };\n    return <Tag color={config.color}>{config.label}</Tag>;\n  };\n\n  // 格式化置信度范围显示\n  const formatConfidenceRange = (min: number, max: number) => {\n    return (\n      <Space style={{ whiteSpace: 'nowrap' }}>\n        <PercentageOutlined style={{ color: min >= 70 ? '#52c41a' : '#faad14' }} />\n        <span>{min}% - {max}%</span>\n      </Space>\n    );\n  };\n\n  const columns = [\n    {\n      title: '名称',\n      dataIndex: 'name',\n      key: 'name',\n      width: 180,\n      render: (name: string) => (\n        <Space>\n          <BellOutlined />\n          <span style={{ fontWeight: 500, whiteSpace: 'nowrap' }}>{name}</span>\n        </Space>\n      ),\n    },\n    {\n      title: 'URL',\n      dataIndex: 'url',\n      key: 'url',\n      width: 300,\n      ellipsis: true,\n      render: (url: string) => (\n        <Tooltip title={url}>\n          <Space>\n            <LinkOutlined />\n            <span style={{ whiteSpace: 'nowrap' }}>{url}</span>\n          </Space>\n        </Tooltip>\n      ),\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      width: 120,\n      render: (type: string) => getTypeTag(type),\n    },\n    {\n      title: '置信度范围',\n      key: 'confidenceRange',\n      width: 140,\n      align: 'center' as const,\n      render: (_: any, record: Webhook) => formatConfidenceRange(record.minConfidence, record.maxConfidence),\n    },\n    {\n      title: '状态',\n      dataIndex: 'enabled',\n      key: 'enabled',\n      width: 100,\n      align: 'center' as const,\n      render: (enabled: boolean, record: Webhook) => (\n        <Switch\n          checked={enabled}\n          onChange={() => handleToggleEnabled(record.id)}\n          checkedChildren={<CheckCircleOutlined />}\n          unCheckedChildren={<CloseCircleOutlined />}\n        />\n      ),\n    },\n    {\n      title: '更新时间',\n      dataIndex: 'updatedAt',\n      key: 'updatedAt',\n      width: 180,\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 200,\n      align: 'center' as const,\n      fixed: 'right' as const,\n      render: (_: any, record: Webhook) => (\n        <Space>\n          <Button\n            type=\"primary\"\n            size=\"small\"\n            icon={<SendOutlined />}\n            loading={testingWebhookId === record.id}\n            onClick={() => handleTest(record.id)}\n          >\n            测试\n          </Button>\n          <Button\n            size=\"small\"\n            icon={<EditOutlined />}\n            onClick={() => handleEdit(record)}\n          >\n            编辑\n          </Button>\n          <Popconfirm\n            title=\"确认删除\"\n            description=\"确定要删除这个 Webhook 吗？\"\n            onConfirm={() => handleDelete(record.id)}\n            okText=\"删除\"\n            cancelText=\"取消\"\n            okButtonProps={{ danger: true }}\n          >\n            <Button size=\"small\" danger icon={<DeleteOutlined />}>\n              删除\n            </Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>通知设置</Title>\n\n      <Card\n        title=\"Webhook 管理\"\n        extra={\n          <Button type=\"primary\" icon={<PlusOutlined />} onClick={handleAdd}>\n            添加 Webhook\n          </Button>\n        }\n      >\n        <Table\n          columns={columns}\n          dataSource={webhooks}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={false}\n          scroll={{ x: 1100 }}\n          style={{ zIndex: 1 }}\n        />\n      </Card>\n\n      <Modal\n        title={editingWebhook ? '编辑 Webhook' : '添加 Webhook'}\n        open={modalVisible}\n        onCancel={() => setModalVisible(false)}\n        onOk={() => form.submit()}\n        width={600}\n        destroyOnHidden\n      >\n        <Form\n          form={form}\n          layout=\"vertical\"\n          onFinish={handleSubmit}\n          style={{ marginTop: 16 }}\n        >\n          <Form.Item\n            name=\"name\"\n            label=\"名称\"\n            rules={[\n              { required: true, message: '请输入 Webhook 名称' },\n              { max: 100, message: '名称最多 100 个字符' },\n            ]}\n          >\n            <Input placeholder=\"例如：企业微信通知\" prefix={<BellOutlined />} />\n          </Form.Item>\n\n          <Form.Item\n            name=\"url\"\n            label=\"Webhook URL\"\n            rules={[\n              { required: true, message: '请输入 Webhook URL' },\n              { type: 'url', message: '请输入有效的 URL' },\n            ]}\n          >\n            <Input.TextArea\n              placeholder=\"https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx\"\n              rows={2}\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"type\"\n            label=\"类型\"\n            rules={[{ required: true, message: '请选择 Webhook 类型' }]}\n          >\n            <Select placeholder=\"选择 Webhook 类型\">\n              <Option value=\"wechat\">企业微信</Option>\n              <Option value=\"dingtalk\">钉钉</Option>\n              <Option value=\"slack\">Slack</Option>\n              <Option value=\"custom\">自定义</Option>\n            </Select>\n          </Form.Item>\n\n          <Form.Item\n            name=\"confidenceRange\"\n            label=\"置信度范围\"\n            rules={[{ required: true, message: '请设置置信度范围' }]}\n            tooltip=\"只有置信度在此范围内的信号才会触发通知\"\n          >\n            <Slider\n              range\n              min={0}\n              max={100}\n              marks={{\n                0: '0%',\n                25: '25%',\n                50: '50%',\n                75: '75%',\n                100: '100%',\n              }}\n            />\n          </Form.Item>\n          <Form.Item shouldUpdate={(prev, curr) => prev.confidenceRange !== curr.confidenceRange}>\n            {({ getFieldValue }) => {\n              const range = getFieldValue('confidenceRange') || [0, 100];\n              return (\n                <Text type=\"secondary\" style={{ display: 'block', marginTop: -8, marginBottom: 16 }}>\n                  当前范围: {range[0]}% - {range[1]}%\n                </Text>\n              );\n            }}\n          </Form.Item>\n\n          <Form.Item\n            name=\"enabled\"\n            label=\"启用状态\"\n            valuePropName=\"checked\"\n          >\n            <Switch\n              checkedChildren=\"启用\"\n              unCheckedChildren=\"禁用\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default NotificationsPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/settings/notifications.tsx"
     },
-    "17": {
+    "18": {
       "path": "/settings/scheduler",
       "title": "定时任务",
       "file": "@/pages/settings/scheduler.tsx",
       "parentId": "3",
-      "id": "17",
+      "id": "18",
       "absPath": "/settings/scheduler",
       "__content": "import { useEffect, useState } from 'react';\nimport {\n  Card,\n  Table,\n  Button,\n  Space,\n  Tag,\n  Switch,\n  Typography,\n  message,\n  Tooltip,\n  Badge,\n  Popconfirm,\n} from 'antd';\nimport {\n  PlayCircleOutlined,\n  ClockCircleOutlined,\n  CheckCircleOutlined,\n  CloseCircleOutlined,\n  ReloadOutlined,\n  ScheduleOutlined,\n  InfoCircleOutlined,\n} from '@ant-design/icons';\nimport api from '@/services/api';\n\nconst { Title, Text } = Typography;\n\ninterface SchedulerTask {\n  id: string;\n  name: string;\n  cronExpression: string;\n  enabled: boolean;\n  lastExecutedAt: string | null;\n  createdAt: string;\n  updatedAt: string;\n}\n\nconst SchedulerPage: React.FC = () => {\n  const [tasks, setTasks] = useState<SchedulerTask[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [triggeringTaskId, setTriggeringTaskId] = useState<string | null>(null);\n\n  // 获取定时任务列表\n  const fetchTasks = async () => {\n    setLoading(true);\n    try {\n      const response = await api.get('/scheduler-tasks');\n      console.log('[SchedulerPage.fetchTasks] API Response:', response);\n      console.log('[SchedulerPage.fetchTasks] Response data:', response.data);\n      \n      // 处理后端返回的数据结构\n      // 后端返回: { data: { data: [...], total: 3 } }\n      // 经过 axios 拦截器处理后，response.data 可能是 { data: [...], total: 3 } 或者直接是数组\n      let taskData: SchedulerTask[] = [];\n      \n      if (Array.isArray(response.data)) {\n        // 直接返回数组\n        taskData = response.data;\n      } else if (response.data?.data && Array.isArray(response.data.data)) {\n        // 返回 { data: [...], total: 3 }\n        taskData = response.data.data;\n      } else if (response.data?.data?.data && Array.isArray(response.data.data.data)) {\n        // 返回 { data: { data: [...], total: 3 } }\n        taskData = response.data.data.data;\n      }\n      \n      console.log('[SchedulerPage.fetchTasks] Extracted taskData:', taskData);\n      setTasks(taskData);\n    } catch (error) {\n      console.error('[SchedulerPage.fetchTasks] 获取定时任务列表失败:', error);\n      message.error('获取定时任务列表失败');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  useEffect(() => {\n    fetchTasks();\n  }, []);\n\n  // 切换启用状态\n  const handleToggleEnabled = async (id: string) => {\n    try {\n      const response = await api.put(`/scheduler-tasks/${id}/toggle`);\n      message.success(response.data.message);\n      fetchTasks();\n    } catch (error) {\n      console.error('切换任务状态失败:', error);\n      message.error('切换任务状态失败');\n    }\n  };\n\n  // 手动触发任务\n  const handleTrigger = async (id: string) => {\n    try {\n      setTriggeringTaskId(id);\n      const response = await api.post(`/scheduler-tasks/${id}/trigger`);\n      message.success(response.data.message);\n      fetchTasks();\n    } catch (error) {\n      console.error('触发任务失败:', error);\n      message.error('触发任务失败');\n    } finally {\n      setTriggeringTaskId(null);\n    }\n  };\n\n  // 解析 Cron 表达式为人类可读格式\n  const parseCronExpression = (cron: string): string => {\n    const parts = cron.split(' ');\n    if (parts.length !== 5 && parts.length !== 6) {\n      return cron;\n    }\n\n    // 简化解析，实际项目中可以使用 cron-parser 库\n    const [minute, hour, dayOfMonth, month, dayOfWeek] = parts;\n\n    if (minute === '0' && hour === '0' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {\n      return '每天 00:00';\n    }\n    if (minute === '0' && hour === '*/4' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {\n      return '每4小时';\n    }\n    if (minute === '0' && hour === '*' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {\n      return '每小时';\n    }\n    if (minute === '*/30' && hour === '*' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {\n      return '每30分钟';\n    }\n    if (minute === '0' && hour === '9' && dayOfMonth === '*' && month === '*' && dayOfWeek === '1-5') {\n      return '工作日 09:00';\n    }\n\n    return cron;\n  };\n\n  // 获取任务状态标签\n  const getStatusTag = (enabled: boolean) => {\n    if (enabled) {\n      return (\n        <Tag color=\"success\" icon={<CheckCircleOutlined />}>\n          运行中\n        </Tag>\n      );\n    }\n    return (\n      <Tag color=\"default\" icon={<CloseCircleOutlined />}>\n        已停止\n      </Tag>\n    );\n  };\n\n  // 获取任务名称显示\n  const getTaskNameDisplay = (name: string) => {\n    const nameMap: Record<string, { icon: React.ReactNode; label: string; desc: string }> = {\n      'news-crawl': {\n        icon: <ReloadOutlined />,\n        label: '新闻采集',\n        desc: '每天晚上7点抓取东方财富新闻',\n      },\n      'news-analyze': {\n        icon: <ScheduleOutlined />,\n        label: '新闻分析',\n        desc: '每天晚上8点分析未分析的新闻',\n      },\n      'kline-update': {\n        icon: <ClockCircleOutlined />,\n        label: 'K线数据更新',\n        desc: '每天早上8点更新K线数据',\n      },\n      'cleanup-old-data': {\n        icon: <InfoCircleOutlined />,\n        label: '数据清理',\n        desc: '清理过期历史数据',\n      },\n    };\n\n    const config = nameMap[name] || { icon: <ScheduleOutlined />, label: name, desc: '' };\n\n    return (\n      <Space align=\"center\" style={{ whiteSpace: 'nowrap' }}>\n        {config.icon}\n        <Text strong>{config.label}</Text>\n      </Space>\n    );\n  };\n\n  const columns = [\n    {\n      title: '任务名称',\n      dataIndex: 'name',\n      key: 'name',\n      width: 140,\n      render: (name: string) => getTaskNameDisplay(name),\n    },\n    {\n      title: '执行时间',\n      dataIndex: 'cronExpression',\n      key: 'cronExpression',\n      width: 120,\n      render: (cron: string) => (\n        <Tooltip title={cron}>\n          <Tag color=\"blue\" style={{ whiteSpace: 'nowrap' }}>{parseCronExpression(cron)}</Tag>\n        </Tooltip>\n      ),\n    },\n    {\n      title: '状态',\n      dataIndex: 'enabled',\n      key: 'enabled',\n      width: 90,\n      align: 'center' as const,\n      render: (enabled: boolean) => getStatusTag(enabled),\n    },\n    {\n      title: '开关',\n      dataIndex: 'enabled',\n      key: 'toggle',\n      width: 80,\n      align: 'center' as const,\n      render: (enabled: boolean, record: SchedulerTask) => (\n        <Switch\n          checked={enabled}\n          onChange={() => handleToggleEnabled(record.id)}\n          size=\"small\"\n        />\n      ),\n    },\n    {\n      title: '最后执行',\n      dataIndex: 'lastExecutedAt',\n      key: 'lastExecutedAt',\n      width: 140,\n      render: (time: string | null) => {\n        if (!time) {\n          return <Text type=\"secondary\" style={{ fontSize: 12 }}>从未执行</Text>;\n        }\n        const executedTime = new Date(time);\n        return (\n          <Tooltip title={executedTime.toLocaleString('zh-CN')}>\n            <Text style={{ fontSize: 12, whiteSpace: 'nowrap' }}>\n              {executedTime.toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}\n            </Text>\n          </Tooltip>\n        );\n      },\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 100,\n      align: 'center' as const,\n      render: (_: any, record: SchedulerTask) => (\n        <Popconfirm\n          title=\"确认执行\"\n          description={`确定要立即执行 \"${record.name}\" 任务吗？`}\n          onConfirm={() => handleTrigger(record.id)}\n          okText=\"执行\"\n          cancelText=\"取消\"\n        >\n          <Button\n            type=\"primary\"\n            size=\"small\"\n            icon={<PlayCircleOutlined />}\n            loading={triggeringTaskId === record.id}\n            disabled={!record.enabled}\n          >\n            执行\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>定时任务管理</Title>\n\n      <Card\n        title=\"任务列表\"\n        extra={\n          <Button icon={<ReloadOutlined />} onClick={fetchTasks}>\n            刷新\n          </Button>\n        }\n      >\n        <Table\n          columns={columns}\n          dataSource={tasks}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={false}\n          size=\"small\"\n        />\n      </Card>\n\n      <Card title=\"说明\" style={{ marginTop: 16 }}>\n        <Space direction=\"vertical\">\n          <Text>\n            <ClockCircleOutlined style={{ marginRight: 8, color: '#1890ff' }} />\n            <strong>Cron 表达式：</strong>用于定义任务的执行时间规则\n          </Text>\n          <Text>\n            <CheckCircleOutlined style={{ marginRight: 8, color: '#52c41a' }} />\n            <strong>运行中：</strong>任务已启用，将按照 Cron 规则自动执行\n          </Text>\n          <Text>\n            <CloseCircleOutlined style={{ marginRight: 8, color: '#999' }} />\n            <strong>已停止：</strong>任务已禁用，不会自动执行\n          </Text>\n          <Text>\n            <PlayCircleOutlined style={{ marginRight: 8, color: '#faad14' }} />\n            <strong>立即执行：</strong>手动触发任务执行（仅对启用状态的任务有效）\n          </Text>\n        </Space>\n      </Card>\n    </div>\n  );\n};\n\nexport default SchedulerPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/settings/scheduler.tsx"
     },
-    "18": {
+    "19": {
       "path": "/profile",
       "title": "个人资料",
       "file": "@/pages/profile.tsx",
       "parentId": "3",
-      "id": "18",
+      "id": "19",
       "absPath": "/profile",
       "__content": "import React, { useEffect, useState } from 'react';\nimport { \n  Card, \n  Form, \n  Input, \n  Button, \n  Avatar, \n  Row, \n  Col, \n  Divider, \n  Typography, \n  message,\n  Space,\n  Tooltip,\n  Popover\n} from 'antd';\nimport { \n  UserOutlined, \n  MailOutlined, \n  LockOutlined,\n  SyncOutlined,\n  SaveOutlined,\n  KeyOutlined,\n  EditOutlined,\n  CopyOutlined,\n  CheckOutlined\n} from '@ant-design/icons';\nimport { useUser } from '@/contexts/UserContext';\nimport { authApi } from '@/services/auth';\nimport { generateAvatarDataUrl, generateRandomSeed } from '@/utils/avatar';\n\nconst { Title, Text } = Typography;\n\nconst ProfilePage: React.FC = () => {\n  const { user, setUser, refreshUser } = useUser();\n  const [profileForm] = Form.useForm();\n  const [passwordForm] = Form.useForm();\n  const [profileLoading, setProfileLoading] = useState(false);\n  const [passwordLoading, setPasswordLoading] = useState(false);\n  const [avatarSeed, setAvatarSeed] = useState<string>('');\n\n  useEffect(() => {\n    if (user) {\n      profileForm.setFieldsValue({\n        nickname: user.nickname,\n        email: user.email,\n      });\n      // 使用用户的 avatarSeed，如果没有则使用昵称作为种子（保持一致性）\n      const seed = user.avatarSeed || user.nickname || 'default';\n      setAvatarSeed(seed);\n    }\n  }, [user, profileForm]);\n\n  const handleUpdateProfile = async (values: { nickname: string }) => {\n    setProfileLoading(true);\n    try {\n      const updatedUser = await authApi.updateProfile({\n        nickname: values.nickname,\n        avatarSeed,\n      });\n      setUser(updatedUser);\n      message.success('个人资料更新成功');\n    } catch (error) {\n      console.error('Update profile error:', error);\n    } finally {\n      setProfileLoading(false);\n    }\n  };\n\n  const handleChangePassword = async (values: { \n    currentPassword: string; \n    newPassword: string;\n    confirmPassword: string;\n  }) => {\n    if (values.newPassword !== values.confirmPassword) {\n      message.error('两次输入的新密码不一致');\n      return;\n    }\n\n    setPasswordLoading(true);\n    try {\n      await authApi.changePassword({\n        currentPassword: values.currentPassword,\n        newPassword: values.newPassword,\n      });\n      message.success('密码修改成功');\n      passwordForm.resetFields();\n    } catch (error) {\n      console.error('Change password error:', error);\n    } finally {\n      setPasswordLoading(false);\n    }\n  };\n\n  const handleRegenerateAvatar = () => {\n    const newSeed = generateRandomSeed();\n    setAvatarSeed(newSeed);\n  };\n\n  const handleCopySeed = () => {\n    navigator.clipboard.writeText(avatarSeed);\n    message.success('头像种子已复制到剪贴板');\n  };\n\n  const avatarSrc = generateAvatarDataUrl(avatarSeed);\n\n  return (\n    <div>\n      <Title level={2}>个人资料</Title>\n      <Text type=\"secondary\">管理您的账户信息和安全设置</Text>\n\n      <Row gutter={[24, 24]} style={{ marginTop: 24 }}>\n        <Col xs={24} md={8}>\n          <Card>\n            <div style={{ textAlign: 'center' }}>\n              <Avatar \n                src={avatarSrc} \n                size={120}\n                icon={<UserOutlined />}\n                style={{ marginBottom: 16 }}\n              />\n              <Title level={4} style={{ margin: 0 }}>\n                {user?.nickname || '用户'}\n              </Title>\n              <Text type=\"secondary\">{user?.email}</Text>\n            </div>\n            <Divider />\n            <div style={{ textAlign: 'center' }}>\n              <Text type=\"secondary\" style={{ display: 'block', marginBottom: 8 }}>\n                头像预览\n              </Text>\n              <Text type=\"secondary\" style={{ fontSize: 12 }}>\n                在右侧表单中修改种子\n              </Text>\n            </div>\n          </Card>\n        </Col>\n\n        <Col xs={24} md={16}>\n          <Card title=\"基本信息\">\n            <Form\n              form={profileForm}\n              layout=\"vertical\"\n              onFinish={handleUpdateProfile}\n            >\n              <Form.Item\n                name=\"nickname\"\n                label=\"昵称\"\n                rules={[\n                  { required: true, message: '请输入昵称' },\n                  { min: 2, message: '昵称至少2个字符' },\n                  { max: 20, message: '昵称最多20个字符' },\n                ]}\n              >\n                <Input \n                  prefix={<UserOutlined />} \n                  placeholder=\"请输入昵称\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"email\"\n                label=\"邮箱\"\n              >\n                <Input \n                  prefix={<MailOutlined />} \n                  disabled \n                />\n              </Form.Item>\n\n              <Form.Item\n                label=\"头像种子\"\n                extra=\"修改种子可以生成不同的头像，或使用随机生成\"\n              >\n                <Space.Compact style={{ width: '100%' }}>\n                  <Input\n                    value={avatarSeed}\n                    onChange={(e) => setAvatarSeed(e.target.value)}\n                    placeholder=\"输入头像种子\"\n                    prefix={<EditOutlined />}\n                  />\n                  <Tooltip title=\"复制种子\">\n                    <Button \n                      icon={<CopyOutlined />} \n                      onClick={handleCopySeed}\n                    />\n                  </Tooltip>\n                  <Tooltip title=\"随机生成\">\n                    <Button \n                      icon={<SyncOutlined />} \n                      onClick={handleRegenerateAvatar}\n                    />\n                  </Tooltip>\n                </Space.Compact>\n              </Form.Item>\n\n              <Form.Item>\n                <Button \n                  type=\"primary\" \n                  htmlType=\"submit\" \n                  loading={profileLoading}\n                  icon={<SaveOutlined />}\n                >\n                  保存修改\n                </Button>\n              </Form.Item>\n            </Form>\n          </Card>\n\n          <Card title=\"修改密码\" style={{ marginTop: 24 }}>\n            <Form\n              form={passwordForm}\n              layout=\"vertical\"\n              onFinish={handleChangePassword}\n            >\n              <Form.Item\n                name=\"currentPassword\"\n                label=\"当前密码\"\n                rules={[\n                  { required: true, message: '请输入当前密码' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<LockOutlined />} \n                  placeholder=\"请输入当前密码\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"newPassword\"\n                label=\"新密码\"\n                rules={[\n                  { required: true, message: '请输入新密码' },\n                  { min: 6, message: '密码至少6位' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<KeyOutlined />} \n                  placeholder=\"请输入新密码\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"confirmPassword\"\n                label=\"确认新密码\"\n                rules={[\n                  { required: true, message: '请确认新密码' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<KeyOutlined />} \n                  placeholder=\"请再次输入新密码\" \n                />\n              </Form.Item>\n\n              <Form.Item>\n                <Button \n                  type=\"primary\" \n                  htmlType=\"submit\" \n                  loading={passwordLoading}\n                  icon={<SaveOutlined />}\n                >\n                  修改密码\n                </Button>\n              </Form.Item>\n            </Form>\n          </Card>\n        </Col>\n      </Row>\n    </div>\n  );\n};\n\nexport default ProfilePage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/profile.tsx"
     },
-    "19": {
+    "20": {
       "path": "/",
       "redirect": "/dashboard",
       "parentId": "3",
-      "id": "19",
+      "id": "20",
       "absPath": "/"
     }
   },
@@ -4776,11 +4483,9 @@
     "done": true,
     "progresses": [
       {
-        "percent": 0.10897626112759645,
-        "status": "building",
-        "details": [
-          "0/2 entries 11/13 dependencies 12/10 modules"
-        ]
+        "percent": 1,
+        "status": "",
+        "details": []
       }
     ]
   },
@@ -4814,7 +4519,7 @@
   "typescript": {
     "tsVersion": "5.9.3"
   },
-  "port": 8002,
+  "port": 8001,
   "host": "0.0.0.0",
   "ip": "192.168.31.7",
   "antd": {
@@ -6555,7 +6260,7 @@
             "format": "esm"
           },
           "src/layouts/MainLayout.tsx": {
-            "bytes": 4436,
+            "bytes": 4598,
             "imports": [
               {
                 "path": "react",
@@ -6925,7 +6630,7 @@
             "format": "esm"
           },
           "src/pages/simulation/index.tsx": {
-            "bytes": 15608,
+            "bytes": 15775,
             "imports": [
               {
                 "path": "react",
@@ -7013,6 +6718,57 @@
                 "path": "src/services/api.ts",
                 "kind": "import-statement",
                 "original": "@/services/api"
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm"
+          },
+          "src/pages/agent-chat/index.tsx": {
+            "bytes": 25761,
+            "imports": [
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "src/contexts/UserContext.tsx",
+                "kind": "import-statement",
+                "original": "@/contexts/UserContext"
+              },
+              {
+                "path": "@ant-design/x",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react-markdown",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "./index.less",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "remark-gfm",
+                "kind": "dynamic-import",
+                "external": true
               },
               {
                 "path": "react/jsx-runtime",
@@ -7147,7 +6903,7 @@
             "format": "esm"
           },
           "src/.umi/core/route.tsx": {
-            "bytes": 3472,
+            "bytes": 3661,
             "imports": [
               {
                 "path": "react",
@@ -7228,6 +6984,11 @@
                 "path": "src/pages/backtest/index.tsx",
                 "kind": "dynamic-import",
                 "original": "@/pages/backtest/index.tsx"
+              },
+              {
+                "path": "src/pages/agent-chat/index.tsx",
+                "kind": "dynamic-import",
+                "original": "@/pages/agent-chat/index.tsx"
               },
               {
                 "path": "src/pages/settings/notifications.tsx",
@@ -7815,6 +7576,41 @@
               {
                 "path": "react/jsx-runtime",
                 "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react-markdown",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "./index.less",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "remark-gfm",
+                "kind": "dynamic-import",
                 "external": true
               },
               {
@@ -9060,7 +8856,7 @@
                 "bytesInOutput": 927
               },
               "src/layouts/MainLayout.tsx": {
-                "bytesInOutput": 6471
+                "bytesInOutput": 6681
               },
               "src/pages/dashboard.tsx": {
                 "bytesInOutput": 8761
@@ -9090,7 +8886,7 @@
                 "bytesInOutput": 28261
               },
               "src/pages/simulation/index.tsx": {
-                "bytesInOutput": 20667
+                "bytesInOutput": 20800
               },
               "src/pages/blacklist/index.tsx": {
                 "bytesInOutput": 7837
@@ -9098,20 +8894,23 @@
               "src/pages/backtest/index.tsx": {
                 "bytesInOutput": 13971
               },
+              "src/pages/agent-chat/index.tsx": {
+                "bytesInOutput": 28518
+              },
               "src/pages/settings/notifications.tsx": {
-                "bytesInOutput": 15625
+                "bytesInOutput": 15646
               },
               "src/pages/settings/scheduler.tsx": {
                 "bytesInOutput": 11575
               },
               "src/pages/profile.tsx": {
-                "bytesInOutput": 11940
+                "bytesInOutput": 11947
               },
               "src/.umi/core/EmptyRoute.tsx": {
                 "bytesInOutput": 383
               },
               "src/.umi/core/route.tsx": {
-                "bytesInOutput": 3772
+                "bytesInOutput": 3977
               },
               "src/.umi/core/polyfill.ts": {
                 "bytesInOutput": 30238
@@ -9120,7 +8919,7 @@
                 "bytesInOutput": 2015
               }
             },
-            "bytes": 304324
+            "bytes": 333453
           }
         }
       }
@@ -12730,7 +12529,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 405,
+          "end": 422,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -12808,13 +12607,18 @@
               "imported": "EyeOutlined",
               "local": "EyeOutlined",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "RobotOutlined",
+              "local": "RobotOutlined",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 86,
           "type": "ImportDeclaration"
         },
         {
-          "end": 461,
+          "end": 478,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -12834,11 +12638,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 406,
+          "start": 423,
           "type": "ImportDeclaration"
         },
         {
-          "end": 503,
+          "end": 520,
           "importKind": "value",
           "source": "@/components/Header",
           "specifiers": [
@@ -12847,7 +12651,228 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 462,
+          "start": 479,
+          "type": "ImportDeclaration"
+        }
+      ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\agent-chat\\index.tsx": [
+        {
+          "end": 73,
+          "importKind": "value",
+          "source": "react",
+          "specifiers": [
+            {
+              "local": "React",
+              "type": "ImportDefaultSpecifier"
+            },
+            {
+              "imported": "useState",
+              "local": "useState",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useRef",
+              "local": "useRef",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useEffect",
+              "local": "useEffect",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useCallback",
+              "local": "useCallback",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 216,
+          "importKind": "value",
+          "source": "antd",
+          "specifiers": [
+            {
+              "imported": "Layout",
+              "local": "Layout",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "List",
+              "local": "List",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Input",
+              "local": "Input",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Button",
+              "local": "Button",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Avatar",
+              "local": "Avatar",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Typography",
+              "local": "Typography",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Spin",
+              "local": "Spin",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Empty",
+              "local": "Empty",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Tag",
+              "local": "Tag",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Tooltip",
+              "local": "Tooltip",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Popconfirm",
+              "local": "Popconfirm",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Modal",
+              "local": "Modal",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 74,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 390,
+          "importKind": "value",
+          "source": "@ant-design/icons",
+          "specifiers": [
+            {
+              "imported": "SendOutlined",
+              "local": "SendOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "RobotOutlined",
+              "local": "RobotOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "UserOutlined",
+              "local": "UserOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "PlusOutlined",
+              "local": "PlusOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "DeleteOutlined",
+              "local": "DeleteOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "MessageOutlined",
+              "local": "MessageOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "LoadingOutlined",
+              "local": "LoadingOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "EditOutlined",
+              "local": "EditOutlined",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 217,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 440,
+          "importKind": "value",
+          "source": "@/contexts/UserContext",
+          "specifiers": [
+            {
+              "imported": "useUser",
+              "local": "useUser",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 391,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 480,
+          "importKind": "value",
+          "source": "@ant-design/x",
+          "specifiers": [
+            {
+              "imported": "Bubble",
+              "local": "Bubble",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 441,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 524,
+          "importKind": "value",
+          "source": "react-markdown",
+          "specifiers": [
+            {
+              "local": "ReactMarkdown",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 481,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 570,
+          "importKind": "type",
+          "source": "unified",
+          "specifiers": [
+            {
+              "imported": "PluggableList",
+              "local": "PluggableList",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 525,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 605,
+          "importKind": "value",
+          "source": "./index.less",
+          "specifiers": [
+            {
+              "local": "styles",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 571,
           "type": "ImportDeclaration"
         }
       ],

@@ -16,6 +16,7 @@ import {
   WalletOutlined,
   BlockOutlined,
   EyeOutlined,
+  RobotOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -65,6 +66,11 @@ const MainLayout: React.FC = () => {
       key: '/backtest',
       icon: <LineChartOutlined />,
       label: '回测',
+    },
+    {
+      key: '/agent-chat',
+      icon: <RobotOutlined />,
+      label: 'AI 助手',
     },
     {
       key: '/blacklist',
@@ -179,7 +185,7 @@ const MainLayout: React.FC = () => {
             minHeight: 280,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
-            overflow: 'auto',
+            overflow: location.pathname === '/agent-chat' ? 'hidden' : 'auto',
           }}
         >
           <Outlet />

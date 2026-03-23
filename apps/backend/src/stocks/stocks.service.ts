@@ -149,4 +149,34 @@ export class StocksService {
     this.logger.log(`Requesting klines fetch for ${stockCode} (${period})`);
     await this.queueService.sendToKlineFetch({ stockCode, period });
   }
+
+  /**
+   * 删除股票的所有信号（清理脏数据）
+   */
+  async deleteSignalsByStockCode(stockCode: string): Promise<number> {
+    this.logger.log(`[StocksService] Deleting all signals for stock: ${stockCode}`);
+
+    const result = await this.databaseService.db
+      .delete(signals)
+      .where(eq(signals.stockCode, stockCode));
+
+    const deletedCount = result.rowCount || 0;
+    this.logger.log(`[StocksService] Deleted ${deletedCount} signals for ${stockCode}`);
+
+    return deletedCount;
+  }
+
+  /**
+   * 删除指定ID的信号
+   */
+  async deleteSignalById(signalId: string): Promise<boolean> {
+    this.logger.log(`[StocksService] Deleting signal: ${signalId}`);
+
+    const result = await this.databaseService.db
+      .delete(signals)
+      .where(eq(signals.id, signalId));
+
+    const deletedCount = result.rowCount || 0;
+    return deletedCount > 0;
+  }
 }

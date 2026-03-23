@@ -73,9 +73,6 @@ export class VolcengineEmbeddingService {
       }
 
       const rawData = await response.json();
-      
-      // 打印完整响应用于调试
-      this.logger.log(`[VolcengineEmbedding] Full API response: ${JSON.stringify(rawData, null, 2)}`);
 
       // 火山引擎 API 返回的数据结构 - data 是对象不是数组
       const data = rawData as {

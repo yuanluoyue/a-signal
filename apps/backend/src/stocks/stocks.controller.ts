@@ -2,10 +2,12 @@ import {
   Controller,
   Get,
   Post,
+  Delete,
   Param,
   Query,
   Body,
   NotFoundException,
+  BadRequestException,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { StocksService } from './stocks.service.js';
@@ -70,5 +72,31 @@ export class StocksController {
     // 发送任务到队列
     await this.stocksService.requestKlinesFetch(code, period);
     return { message: 'K线获取任务已提交', stockCode: code, period };
+  }
+
+  @Delete(':code/signals')
+  @ApiOperation({ summary: '删除股票的所有信号（清理脏数据）' })
+  @ApiParam({ name: 'code', description: '股票代码' })
+  @ApiResponse({ status: 200, description: '成功删除信号' })
+  async deleteStockSignals(@Param('code') code: string) {
+    const deletedCount = await this.stocksService.deleteSignalsByStockCode(code);
+    return {
+      message: `成功删除 ${deletedCount} 条信号`,
+      stockCode: code,
+      deletedCount,
+    };
+  }
+
+  @Delete('signals/:id')
+  @ApiOperation({ summary: '删除指定ID的信号' })
+  @ApiParam({ name: 'id', description: '信号ID' })
+  @ApiResponse({ status: 200, description: '成功删除信号' })
+  @ApiResponse({ status: 404, description: '信号不存在' })
+  async deleteSignalById(@Param('id') id: string) {
+    const success = await this.stocksService.deleteSignalById(id);
+    if (!success) {
+      throw new NotFoundException('信号不存在');
+    }
+    return { message: '信号删除成功', signalId: id };
   }
 }

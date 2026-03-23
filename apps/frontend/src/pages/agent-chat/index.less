@@ -1,0 +1,361 @@
+.chatPage {
+  height: calc(100vh - 88px - 24px - 48px);
+  overflow: hidden;
+  position: relative;
+}
+
+.chatLayout {
+  height: 100%;
+  background: #f5f5f5;
+}
+
+// 左侧边栏
+.sider {
+  border-right: 1px solid #e8e8e8;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.siderHeader {
+  padding: 10px;
+  border-bottom: 1px solid #e8e8e8;
+  flex-shrink: 0;
+}
+
+.loadingHistory {
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.conversationList {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  :global {
+    .ant-list-item {
+      padding: 8px 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      border-bottom: 1px solid #f0f0f0;
+      display: flex;
+      align-items: center;
+
+      &:hover {
+        background: #f5f5f5;
+      }
+    }
+
+    .ant-list-item-meta {
+      margin-bottom: 0;
+      overflow: hidden;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .ant-list-item-meta-avatar {
+      margin-right: 6px;
+      flex-shrink: 0;
+    }
+
+    .ant-list-item-meta-content {
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .ant-list-item-meta-title {
+      margin-bottom: 2px;
+      font-size: 12px;
+    }
+
+    .ant-list-item-meta-description {
+      font-size: 11px;
+    }
+  }
+}
+
+.conversationItem {
+  position: relative;
+
+  &.active {
+    background: #e6f7ff !important;
+    border-left: 2px solid #1890ff;
+    padding-left: 8px !important;
+  }
+}
+
+.conversationTitle {
+  font-weight: 500;
+  font-size: 12px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.conversationDesc {
+  font-size: 11px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #999;
+}
+
+.conversationActions {
+  opacity: 0;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+  display: flex;
+  gap: 2px;
+  margin-left: 4px;
+}
+
+.conversationItem:hover .conversationActions,
+.conversationItem.active .conversationActions {
+  opacity: 1;
+}
+
+// 右侧内容区
+.chatContent {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  min-height: 0;
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.welcomeText {
+  text-align: center;
+
+  h2 {
+    margin-bottom: 8px;
+    color: #1890ff;
+  }
+
+  p {
+    color: #666;
+    margin-bottom: 16px;
+  }
+}
+
+.featureTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+// 消息列表
+.messageList {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+  background: #f5f5f5;
+  min-height: 0;
+}
+
+.emptyMessages {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.messageItem {
+  margin-bottom: 12px;
+
+  &.userMessage {
+    .messageWrapper {
+      flex-direction: row-reverse;
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .messageBubble {
+      background: #1890ff;
+      color: #fff;
+      border-radius: 12px 12px 4px 12px;
+
+      .messageTime {
+        color: rgba(255, 255, 255, 0.7);
+      }
+    }
+  }
+
+  &.assistantMessage {
+    .messageWrapper {
+      margin-right: auto;
+      margin-left: 0;
+    }
+
+    .messageBubble {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 12px 12px 12px 4px;
+    }
+  }
+}
+
+.messageWrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  max-width: 90%;
+}
+
+.userAvatar {
+  background: #1890ff;
+  flex-shrink: 0;
+}
+
+.assistantAvatar {
+  background: #52c41a;
+  flex-shrink: 0;
+}
+
+.messageBubble {
+  padding: 8px 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  word-break: break-word;
+}
+
+.messageContent {
+  font-size: 14px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.messageTime {
+  font-size: 11px;
+  margin-top: 4px;
+  color: #999;
+  text-align: right;
+}
+
+.typingIndicator {
+  margin-top: 4px;
+}
+
+// Markdown 内容样式 - 使用 remark-gfm 默认样式
+.markdownContent {
+  font-size: 14px;
+  line-height: 1.6;
+
+  // 代码样式
+  code {
+    background: #f0f0f0;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    font-size: 0.85em;
+  }
+
+  pre {
+    background: #f5f5f5;
+    padding: 1em;
+    border-radius: 6px;
+    overflow: auto;
+
+    code {
+      background: transparent;
+      padding: 0;
+    }
+  }
+
+  // 引用样式
+  blockquote {
+    border-left: 3px solid #1890ff;
+    margin: 0;
+    padding: 0 0 0 1em;
+    color: #666;
+  }
+
+  // 表格样式
+  table {
+    border-collapse: collapse;
+    width: 100%;
+
+    th, td {
+      border: 1px solid #e8e8e8;
+      padding: 0.5em;
+      text-align: left;
+    }
+
+    th {
+      background: #f5f5f5;
+    }
+  }
+
+  // 链接样式
+  a {
+    color: #1890ff;
+  }
+}
+
+// 思考中状态
+.thinkingStatus {
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 14px;
+  padding: 4px 0;
+}
+
+// 输入区域
+.inputArea {
+  padding: 12px 16px;
+  background: #fff;
+  border-top: 1px solid #e8e8e8;
+  flex-shrink: 0;
+}
+
+.inputWrapper {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.textArea {
+  flex: 1;
+
+  :global {
+    textarea {
+      border-radius: 8px;
+      resize: none;
+    }
+  }
+}
+
+.sendButton {
+  height: 36px;
+  width: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.inputHint {
+  text-align: center;
+  margin-top: 4px;
+}

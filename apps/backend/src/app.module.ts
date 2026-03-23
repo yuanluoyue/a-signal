@@ -17,6 +17,7 @@ import { BlacklistModule } from './blacklist/blacklist.module.js';
 import { StocksModule } from './stocks/stocks.module.js';
 import { SimulationModule } from './simulation/simulation.module.js';
 import { StockTrackingModule } from './stock-tracking/stock-tracking.module.js';
+import { AgentModule } from './agent/agent.module.js';
 import { HealthController } from './health.controller.js';
 import { JwtAuthGuard } from './auth/jwt-auth.guard.js';
 
@@ -47,6 +48,7 @@ const jwtAuthGuardProvider: Provider = {
     StocksModule,
     SimulationModule,
     StockTrackingModule,
+    AgentModule,
   ],
   controllers: [HealthController],
   providers: [jwtAuthGuardProvider],

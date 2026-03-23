@@ -384,3 +384,28 @@ export const backtestRecords = pgTable(
 
 export type BacktestRecord = typeof backtestRecords.$inferSelect;
 export type NewBacktestRecord = typeof backtestRecords.$inferInsert;
+
+// ==================== Chat Messages ====================
+export const chatMessages = pgTable(
+  'chat_messages',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: varchar('user_id', { length: 255 }).notNull(),
+    sessionId: varchar('session_id', { length: 255 }).notNull(),
+    role: varchar('role', { length: 20 }).notNull(), // user, assistant, tool
+    content: text('content').notNull(),
+    toolName: varchar('tool_name', { length: 100 }),
+    toolInput: jsonb('tool_input'),
+    toolOutput: jsonb('tool_output'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index('chat_messages_user_session_idx').on(table.userId, table.sessionId),
+    index('chat_messages_created_at_idx').on(table.createdAt),
+  ],
+);
+
+export type ChatMessage = typeof chatMessages.$inferSelect;
+export type NewChatMessage = typeof chatMessages.$inferInsert;

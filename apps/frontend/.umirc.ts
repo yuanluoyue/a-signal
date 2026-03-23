@@ -81,6 +81,11 @@ export default defineConfig({
           title: '回测分析',
         },
         {
+          path: '/agent-chat',
+          component: '@/pages/agent-chat/index',
+          title: 'AI 投研助手',
+        },
+        {
           path: '/settings/notifications',
           component: '@/pages/settings/notifications',
           title: '通知设置',
@@ -122,5 +127,10 @@ export default defineConfig({
       changeOrigin: true,
       pathRewrite: { '^/api': '/api/v1' },
     },
+  },
+  // MFSU 配置 - 添加需要预构建的依赖
+  mfsu: {
+    strategy: 'eager',
+    include: ['react-markdown', 'remark-gfm', '@ant-design/x'],
   },
 });
