@@ -96,6 +96,11 @@ export default defineConfig({
           title: '定时任务',
         },
         {
+          path: '/settings/api-keys',
+          component: '@/pages/settings/api-keys',
+          title: 'API Key 管理',
+        },
+        {
           path: '/profile',
           component: '@/pages/profile',
           title: '个人资料',

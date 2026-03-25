@@ -409,3 +409,54 @@ export const chatMessages = pgTable(
 
 export type ChatMessage = typeof chatMessages.$inferSelect;
 export type NewChatMessage = typeof chatMessages.$inferInsert;
+
+// ==================== API Keys ====================
+export const apiKeys = pgTable(
+  'api_keys',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    key: varchar('key', { length: 255 }).notNull().unique(),
+    name: varchar('name', { length: 100 }).notNull(),
+    status: varchar('status', { length: 20 }).notNull().default('active'),
+    rateLimit: integer('rate_limit').notNull().default(60),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    index('api_keys_key_idx').on(table.key),
+    index('api_keys_status_idx').on(table.status),
+  ],
+);
+
+export type ApiKey = typeof apiKeys.$inferSelect;
+export type NewApiKey = typeof apiKeys.$inferInsert;
+
+// ==================== MCP Logs ====================
+export const mcpLogs = pgTable(
+  'mcp_logs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    apiKeyId: uuid('api_key_id').notNull(),
+    method: varchar('method', { length: 50 }).notNull(),
+    toolName: varchar('tool_name', { length: 100 }),
+    requestBody: jsonb('request_body'),
+    responseStatus: varchar('response_status', { length: 20 }),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.apiKeyId],
+      foreignColumns: [apiKeys.id],
+      name: 'mcp_logs_api_key_id_fk',
+    }).onDelete('cascade'),
+    index('mcp_logs_api_key_id_idx').on(table.apiKeyId),
+    index('mcp_logs_method_idx').on(table.method),
+    index('mcp_logs_created_at_idx').on(table.createdAt),
+  ],
+);
+
+export type McpLog = typeof mcpLogs.$inferSelect;
+export type NewMcpLog = typeof mcpLogs.$inferInsert;

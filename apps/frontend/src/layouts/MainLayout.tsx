@@ -17,6 +17,7 @@ import {
   BlockOutlined,
   EyeOutlined,
   RobotOutlined,
+  KeyOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -91,6 +92,11 @@ const MainLayout: React.FC = () => {
           key: '/settings/scheduler',
           icon: <ClockCircleOutlined />,
           label: '定时任务',
+        },
+        {
+          key: '/settings/api-keys',
+          icon: <KeyOutlined />,
+          label: 'API Key',
         },
       ],
     },

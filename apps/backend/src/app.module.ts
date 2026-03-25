@@ -18,6 +18,8 @@ import { StocksModule } from './stocks/stocks.module.js';
 import { SimulationModule } from './simulation/simulation.module.js';
 import { StockTrackingModule } from './stock-tracking/stock-tracking.module.js';
 import { AgentModule } from './agent/agent.module.js';
+import { ApiKeyModule } from './api-key/api-key.module.js';
+import { McpModule } from './mcp/mcp.module.js';
 import { HealthController } from './health.controller.js';
 import { JwtAuthGuard } from './auth/jwt-auth.guard.js';
 
@@ -49,6 +51,8 @@ const jwtAuthGuardProvider: Provider = {
     SimulationModule,
     StockTrackingModule,
     AgentModule,
+    ApiKeyModule,
+    McpModule,
   ],
   controllers: [HealthController],
   providers: [jwtAuthGuardProvider],

@@ -43,6 +43,13 @@
       "when": 1774264717299,
       "tag": "0005_demonic_robbie_robertson",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1774436505080,
+      "tag": "0006_faithful_living_tribunal",
+      "breakpoints": true
     }
   ]
 }
