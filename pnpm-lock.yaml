@@ -68,6 +68,9 @@ importers:
       class-validator:
         specifier: ^0.14.1
         version: 0.14.4
+      dotenv:
+        specifier: ^16.6.1
+        version: 16.6.1
       drizzle-orm:
         specifier: ^0.40.0
         version: 0.40.1(@types/pg@8.18.0)(gel@2.2.0)(pg@8.20.0)
@@ -132,6 +135,9 @@ importers:
       '@types/node':
         specifier: ^22.10.0
         version: 22.19.15
+      '@types/passport':
+        specifier: ^1.0.0
+        version: 1.0.17
       '@types/passport-jwt':
         specifier: ^4.0.1
         version: 4.0.1

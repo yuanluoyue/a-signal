@@ -1,0 +1,27 @@
+- [x] common/ 目录包含 decorators/、filters/、guards/、interceptors/、middleware/ 五个子目录
+- [x] common/guards/jwt-auth.guard.ts 已从 auth 模块移入
+- [x] common/middleware/trace-id.middleware.ts 已创建，为每个请求生成唯一 traceId
+- [x] core/auth/ 包含 jwt.strategy.ts 和 api-key.strategy.ts
+- [x] core/db/ 包含 db.module.ts、db.service.ts、db.constants.ts、schema.ts
+- [x] core/logger/ 包含 winston.logger.ts（从 common/logger/ 移入）
+- [x] core/queue/ 包含 queue.module.ts、queue.service.ts、queue.constants.ts、queue.types.ts
+- [x] core/vector/ 包含 vector.module.ts 和 vector.service.ts
+- [x] core/volcengine/ 包含 volcengine.module.ts、volcengine.service.ts、volcengine-embedding.service.ts
+- [x] interfaces/admin/ 下每个模块目录包含 controller.ts 和 dto/ 子目录
+- [x] interfaces/admin/ 下每个 dto/ 目录包含 index.ts barrel export
+- [x] interfaces/mcp/ 包含 mcp.controller.ts（MCP 对外接口）
+- [x] health.controller.ts 已移入 interfaces/admin/health/
+- [x] modules/ 下每个业务模块仅包含 module.ts 和 service.ts（不含控制器）
+- [x] modules/agent/ 保留 graph/、memory/、nodes/、tools/、types/ 子目录
+- [x] modules/mcp/ 保留 guard、types、logger、rate-limiter、tools 子结构
+- [x] jobs/ 包含所有消费者和定时任务文件（scheduler-tasks、news-crawl、news-vectorize、signal-analyze、kline-fetch、stock-track-fetch）
+- [x] blacklist、simulation、stock-tracking 的 DTO 已从 service 中提取到 interfaces 层的 dto/ 目录
+- [x] backtest.dto.ts、dashboard.dto.ts 已移入对应 dto/ 子目录
+- [x] 控制器中不再有冗余的 @UseGuards(JwtAuthGuard) 类级别装饰器
+- [x] 所有需要公开的路由使用 @Public() 装饰器
+- [x] users.service.ts 和 webhooks.service.ts 统一使用 DbService 访问数据库
+- [x] app.module.ts 导入路径已更新为新目录结构
+- [x] main.ts 导入路径已更新，TraceIdMiddleware 已注册
+- [x] 旧的扁平化模块目录已全部删除
+- [x] migrations 目录已移到与 src 同级
+- [x] `nest build` 编译通过，无错误
