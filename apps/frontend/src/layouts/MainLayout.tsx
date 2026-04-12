@@ -2,9 +2,6 @@ import React, { useState } from 'react';
 import { Layout, Menu, theme } from 'antd';
 import {
   DashboardOutlined,
-  UserOutlined,
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
   StockOutlined,
   ReadOutlined,
   BellOutlined,
@@ -18,6 +15,8 @@ import {
   EyeOutlined,
   RobotOutlined,
   KeyOutlined,
+  DatabaseOutlined,
+  FundOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -39,49 +38,58 @@ const MainLayout: React.FC = () => {
       label: '仪表盘',
     },
     {
-      key: '/news',
-      icon: <ReadOutlined />,
-      label: '新闻',
+      key: '/data',
+      icon: <DatabaseOutlined />,
+      label: '数据管理',
+      children: [
+        {
+          key: '/news',
+          icon: <ReadOutlined />,
+          label: '新闻管理',
+        },
+        {
+          key: '/stocks',
+          icon: <SearchOutlined />,
+          label: '股票查询',
+        },
+        {
+          key: '/stock-trackings',
+          icon: <EyeOutlined />,
+          label: '股票追踪',
+        },
+      ],
     },
     {
-      key: '/signals',
-      icon: <BellOutlined />,
-      label: '信号',
-    },
-    {
-      key: '/stocks',
-      icon: <SearchOutlined />,
-      label: '股票查询',
-    },
-    {
-      key: '/stock-trackings',
-      icon: <EyeOutlined />,
-      label: '股票追踪',
-    },
-    {
-      key: '/simulation',
-      icon: <WalletOutlined />,
-      label: '账户模拟',
-    },
-    {
-      key: '/backtest',
-      icon: <LineChartOutlined />,
-      label: '回测',
-    },
-    {
-      key: '/agent-chat',
-      icon: <RobotOutlined />,
-      label: 'AI 助手',
-    },
-    {
-      key: '/blacklist',
-      icon: <BlockOutlined />,
-      label: '黑名单',
+      key: '/analysis',
+      icon: <FundOutlined />,
+      label: '分析中心',
+      children: [
+        {
+          key: '/signals',
+          icon: <BellOutlined />,
+          label: '信号管理',
+        },
+        {
+          key: '/simulation',
+          icon: <WalletOutlined />,
+          label: '账户模拟',
+        },
+        {
+          key: '/backtest',
+          icon: <LineChartOutlined />,
+          label: '回测记录',
+        },
+        {
+          key: '/agent-chat',
+          icon: <RobotOutlined />,
+          label: 'AI 助手',
+        },
+      ],
     },
     {
       key: '/settings',
       icon: <SettingOutlined />,
-      label: '设置',
+      label: '系统设置',
       children: [
         {
           key: '/settings/notifications',
@@ -98,12 +106,12 @@ const MainLayout: React.FC = () => {
           icon: <KeyOutlined />,
           label: 'API Key',
         },
+        {
+          key: '/blacklist',
+          icon: <BlockOutlined />,
+          label: '黑名单',
+        },
       ],
-    },
-    {
-      key: '/profile',
-      icon: <UserOutlined />,
-      label: '个人资料',
     },
   ];
 
@@ -119,7 +127,6 @@ const MainLayout: React.FC = () => {
         collapsed={collapsed}
         theme="dark"
         style={{
-          overflow: 'auto',
           height: '100vh',
           position: 'fixed',
           left: 0,
@@ -134,56 +141,46 @@ const MainLayout: React.FC = () => {
             height: 64,
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
+            justifyContent: collapsed ? 'center' : 'flex-start',
+            padding: collapsed ? 0 : '0 20px',
             borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
             cursor: 'pointer',
+            gap: 10,
+            whiteSpace: 'nowrap',
           }}
         >
-          {collapsed ? (
-            <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />
-          ) : (
+          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />
+          {!collapsed && (
             <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>
               A Signal
             </span>
           )}
         </div>
-        <Menu
-          theme="dark"
-          mode="inline"
-          selectedKeys={[location.pathname]}
-          items={menuItems}
-          onClick={handleMenuClick}
-          style={{ borderRight: 0 }}
-        />
         <div
           style={{
-            position: 'absolute',
-            bottom: 0,
-            width: '100%',
-            padding: '16px',
-            textAlign: 'center',
-            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+            height: 'calc(100vh - 64px)',
+            overflow: 'auto',
+            overflowX: 'hidden',
           }}
+          className="custom-scrollbar"
         >
-          <div
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              color: '#fff',
-              cursor: 'pointer',
-              fontSize: 16,
-            }}
-          >
-            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-          </div>
+          <Menu
+            theme="dark"
+            mode="inline"
+            selectedKeys={[location.pathname]}
+            items={menuItems}
+            onClick={handleMenuClick}
+            style={{ borderRight: 0 }}
+          />
         </div>
       </Sider>
       <Layout
         style={{
           marginLeft: collapsed ? 80 : 200,
-          transition: 'all 0.2s',
+          transition: 'margin-left 0.2s',
         }}
       >
-        <Header collapsed={collapsed} />
+        <Header collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} />
         <Content
           style={{
             margin: '88px 16px 24px',
