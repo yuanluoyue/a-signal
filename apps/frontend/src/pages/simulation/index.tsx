@@ -28,7 +28,7 @@ import {
   EditOutlined,
   DeleteOutlined,
 } from '@ant-design/icons';
-import api from '@/services/api';
+import client from '@/services/client';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -81,7 +81,7 @@ const SimulationPage: React.FC = () => {
 
   const fetchAccount = async () => {
     try {
-      const response = await api.get('/simulation/account');
+      const response = await client.get('/simulation/account');
       setAccount(response.data);
     } catch (error) {
       console.error('Fetch account error:', error);
@@ -91,7 +91,7 @@ const SimulationPage: React.FC = () => {
 
   const fetchPositions = async () => {
     try {
-      const response = await api.get('/simulation/positions');
+      const response = await client.get('/simulation/positions');
       setPositions(response.data || []);
     } catch (error) {
       console.error('Fetch positions error:', error);
@@ -101,7 +101,7 @@ const SimulationPage: React.FC = () => {
 
   const fetchTrades = async () => {
     try {
-      const response = await api.get('/simulation/trades');
+      const response = await client.get('/simulation/trades');
       setTrades(response.data || []);
     } catch (error) {
       console.error('Fetch trades error:', error);
@@ -121,7 +121,7 @@ const SimulationPage: React.FC = () => {
 
   const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {
     try {
-      await api.put('/simulation/account', values);
+      await client.put('/simulation/account', values);
       message.success('余额更新成功');
       setIsBalanceModalVisible(false);
       balanceForm.resetFields();
@@ -139,7 +139,7 @@ const SimulationPage: React.FC = () => {
     avgCost: number;
   }) => {
     try {
-      await api.post('/simulation/position', values);
+      await client.post('/simulation/position', values);
       message.success('持仓添加成功');
       setIsPositionModalVisible(false);
       positionForm.resetFields();
@@ -152,7 +152,7 @@ const SimulationPage: React.FC = () => {
 
   const handleDeletePosition = async (positionId: string) => {
     try {
-      await api.delete(`/simulation/position/${positionId}`);
+      await client.delete(`/simulation/position/${positionId}`);
       message.success('持仓删除成功');
       fetchPositions();
     } catch (error) {
@@ -169,7 +169,7 @@ const SimulationPage: React.FC = () => {
     price: number;
   }) => {
     try {
-      await api.post('/simulation/trade', values);
+      await client.post('/simulation/trade', values);
       message.success('交易成功');
       setIsTradeModalVisible(false);
       tradeForm.resetFields();

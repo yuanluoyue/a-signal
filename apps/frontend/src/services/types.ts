@@ -13,10 +13,68 @@ export interface PaginationResponse<T> {
   totalPages: number;
 }
 
+// ==================== 认证相关类型 ====================
+
+export interface LoginRequest {
+  email: string;
+  password: string;
+}
+
+export interface RegisterRequest {
+  nickname: string;
+  email: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  accessToken: string;
+  user: User;
+}
+
+export interface UpdateProfileRequest {
+  nickname?: string;
+  avatarSeed?: string;
+}
+
+export interface ChangePasswordRequest {
+  currentPassword: string;
+  newPassword: string;
+}
+
+export interface User {
+  id: string;
+  email: string;
+  nickname: string;
+  avatarSeed?: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ==================== API Key 相关类型 ====================
+
+export interface ApiKeyResponse {
+  id: string;
+  name: string;
+  status: string;
+  rateLimit: number;
+  createdAt: string;
+}
+
+export interface ApiKeyWithKeyResponse extends ApiKeyResponse {
+  key: string;
+}
+
+export interface CreateApiKeyRequest {
+  name: string;
+  rateLimit?: number;
+}
+
 // ==================== 新闻相关类型 ====================
 
 export type AnalyzeStatus = 'pending' | 'processing' | 'completed' | 'failed';
 export type VectorizeStatus = 'pending' | 'processing' | 'completed' | 'failed';
+export type AnalysisStatus = 'pending' | 'analyzing' | 'analyzed' | 'failed';
+export type VectorizedStatus = 'pending' | 'vectorizing' | 'vectorized' | 'failed';
 
 export interface News {
   id: string;
@@ -32,17 +90,59 @@ export interface News {
   updatedAt: string;
 }
 
+export interface NewsItem {
+  id: string;
+  title: string;
+  content: string;
+  source: string;
+  url: string;
+  analysisStatus: AnalysisStatus;
+  vectorizedStatus: VectorizedStatus;
+  relatedStocks: string[];
+  publishedAt: string;
+  createdAt: string;
+  updatedAt: string;
+  metadata?: Record<string, unknown>;
+}
+
 export interface NewsListQueryParams extends PaginationParams {
   source?: string;
   analyzeStatus?: AnalyzeStatus;
   vectorizeStatus?: VectorizeStatus;
+  keyword?: string;
 }
 
 export interface NewsListResponse extends PaginationResponse<News> {}
 
+export interface NewsFilter {
+  source?: string;
+  analysisStatus?: AnalysisStatus;
+  vectorizedStatus?: VectorizedStatus;
+  startDate?: string;
+  endDate?: string;
+  keyword?: string;
+}
+
+export interface NewsAnalysisResult {
+  sentiment: 'positive' | 'negative' | 'neutral';
+  confidence: number;
+  summary: string;
+  keyPoints: string[];
+  relatedSignals?: NewsSignal[];
+}
+
+export interface NewsSignal {
+  id: string;
+  symbol: string;
+  type: 'buy' | 'sell' | 'hold';
+  confidence: number;
+  createdAt: string;
+}
+
 // ==================== 信号相关类型 ====================
 
 export type SignalDirection = 'bullish' | 'bearish' | 'neutral';
+export type SignalType = 'buy' | 'sell';
 
 export interface Signal {
   id: string;
@@ -70,6 +170,48 @@ export interface SignalsListQueryParams extends PaginationParams {
 }
 
 export interface SignalsListResponse extends PaginationResponse<Signal> {}
+
+export interface SignalStats {
+  total: number;
+  today: number;
+  pending: number;
+}
+
+export interface RecentSignal {
+  id: string;
+  symbol: string;
+  name?: string;
+  type: SignalType;
+  price: number;
+  confidence: number;
+  createdAt: string;
+}
+
+export interface SignalFilter {
+  type?: SignalType[];
+  startDate?: string;
+  endDate?: string;
+  minConfidence?: number;
+  maxConfidence?: number;
+  symbol?: string;
+}
+
+export interface SignalListParams {
+  page?: number;
+  pageSize?: number;
+  type?: SignalType;
+  startDate?: string;
+  endDate?: string;
+  minConfidence?: number;
+  maxConfidence?: number;
+}
+
+export interface SignalListResponse {
+  list: Signal[];
+  total: number;
+  page: number;
+  pageSize: number;
+}
 
 // ==================== K线相关类型 ====================
 
@@ -194,6 +336,34 @@ export interface BacktestResult {
   trades: TradeResult[];
 }
 
+export interface BacktestFilter {
+  dateRange: [string, string];
+  confidenceRange: [number, number];
+  signalTypes: SignalType[];
+  takeProfitPercent: number;
+  stopLossPercent: number;
+}
+
+export interface BacktestTrade {
+  id: string;
+  symbol: string;
+  type: SignalType;
+  entryPrice: number;
+  exitPrice: number;
+  entryTime: string;
+  exitTime: string;
+  quantity: number;
+  pnl: number;
+  pnlPercent: number;
+  exitReason: 'take_profit' | 'stop_loss' | 'signal';
+}
+
+export interface BacktestResponse {
+  success: boolean;
+  data: BacktestResult;
+  timestamp: string;
+}
+
 // ==================== 仪表盘相关类型 ====================
 
 export interface DashboardStats {
@@ -219,4 +389,46 @@ export interface RecentSignalItem {
 export interface RecentSignalsResponse {
   data: RecentSignalItem[];
   total: number;
+}
+
+// ==================== 设置相关类型 ====================
+
+export interface UserSettings {
+  id: string;
+  userId: string;
+  theme: 'light' | 'dark' | 'auto';
+  language: string;
+  notifications: NotificationSettings;
+  trading: TradingSettings;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface NotificationSettings {
+  email: boolean;
+  push: boolean;
+  signalAlert: boolean;
+  priceAlert: boolean;
+  newsAlert: boolean;
+}
+
+export interface TradingSettings {
+  defaultTakeProfit: number;
+  defaultStopLoss: number;
+  maxPositionSize: number;
+  riskPerTrade: number;
+}
+
+export interface SystemSettings {
+  maintenanceMode: boolean;
+  allowRegistration: boolean;
+  maxSignalsPerDay: number;
+  dataRetentionDays: number;
+}
+
+export interface SettingsUpdateRequest {
+  theme?: 'light' | 'dark' | 'auto';
+  language?: string;
+  notifications?: Partial<NotificationSettings>;
+  trading?: Partial<TradingSettings>;
 }

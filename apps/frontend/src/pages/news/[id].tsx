@@ -25,8 +25,8 @@ import {
   LoadingOutlined,
 } from '@ant-design/icons';
 import { useParams, useNavigate } from 'umi';
-import api from '@/services/api';
-import type { NewsItem, NewsSignal, AnalysisStatus, VectorizedStatus } from '@/types/news';
+import client from '@/services/client';
+import type { NewsItem, NewsSignal, AnalysisStatus, VectorizedStatus } from '@/services/types';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -140,7 +140,7 @@ const NewsDetailPage: React.FC = () => {
   const fetchNewsDetail = async (newsId: string) => {
     setLoading(true);
     try {
-      const response = await api.get(`/news/${newsId}`);
+      const response = await client.get(`/news/${newsId}`);
       const newsData = response?.data || response;
       
       if (newsData) {
@@ -174,7 +174,7 @@ const NewsDetailPage: React.FC = () => {
 
   const fetchNewsSignals = async (newsId: string) => {
     try {
-      const response = await api.get(`/news/${newsId}/signals`);
+      const response = await client.get(`/news/${newsId}/signals`);
       const signalsData = response?.data || response || [];
       
       // 转换后端信号数据格式
@@ -198,7 +198,7 @@ const NewsDetailPage: React.FC = () => {
 
     setAnalyzing(true);
     try {
-      await api.post(`/news/${id}/analyze`);
+      await client.post(`/news/${id}/analyze`);
       message.success('分析任务已提交，请稍后刷新查看结果');
       // 3秒后刷新数据
       setTimeout(() => {

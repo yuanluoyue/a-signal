@@ -20,8 +20,8 @@ import {
   AlertOutlined,
   BarChartOutlined,
 } from '@ant-design/icons';
-import api from '@/services/api';
-import type { SignalStats, RecentSignal } from '@/types/signal';
+import client from '@/services/client';
+import type { SignalStats, RecentSignal } from '@/services/types';
 
 const { Title, Text } = Typography;
 
@@ -47,8 +47,8 @@ const DashboardPage: React.FC = () => {
     try {
       // 并行获取统计数据和最近信号
       const [statsRes, signalsRes] = await Promise.all([
-        api.get('/dashboard/stats'),
-        api.get('/dashboard/recent-signals'),
+        client.get('/dashboard/stats'),
+        client.get('/dashboard/recent-signals'),
       ]);
 
       // 确保正确解析响应数据

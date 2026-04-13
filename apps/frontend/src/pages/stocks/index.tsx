@@ -10,7 +10,7 @@ import {
 } from 'antd';
 import { EyeOutlined, ReloadOutlined } from '@ant-design/icons';
 import { useNavigate } from 'umi';
-import api from '@/services/api';
+import client from '@/services/client';
 
 const { Title } = Typography;
 
@@ -34,7 +34,7 @@ const StocksPage: React.FC = () => {
   const fetchData = async (page?: number, pageSize?: number) => {
     setLoading(true);
     try {
-      const response = await api.get('/stocks');
+      const response = await client.get('/stocks');
       const stockList: StockWithSignals[] = response.data || [];
       setData(stockList);
       setPagination((prev) => ({

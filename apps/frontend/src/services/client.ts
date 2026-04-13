@@ -3,11 +3,9 @@ import { getToken, logout } from '@/utils/auth';
 import { history } from 'umi';
 import { message } from 'antd';
 
-const API_BASE_URL = process.env.NODE_ENV === 'production' 
-  ? '/api/v1' 
-  : '/api';
+const API_BASE_URL = '/api/v1';
 
-const api: AxiosInstance = axios.create({
+const client: AxiosInstance = axios.create({
   baseURL: API_BASE_URL,
   timeout: 10000,
   headers: {
@@ -15,7 +13,7 @@ const api: AxiosInstance = axios.create({
   },
 });
 
-api.interceptors.request.use(
+client.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
     const token = getToken();
     console.log('[API Interceptor] Token:', token ? 'exists' : 'undefined');
@@ -29,10 +27,9 @@ api.interceptors.request.use(
   }
 );
 
-api.interceptors.response.use(
+client.interceptors.response.use(
   (response) => {
     const data = response.data;
-    // 如果后端返回统一格式 { success: true, data: ..., timestamp: ... }，则提取 data
     if (data && typeof data === 'object' && 'success' in data && 'data' in data) {
       return data.data;
     }
@@ -79,4 +76,4 @@ api.interceptors.response.use(
   }
 );
 
-export default api;
+export default client;

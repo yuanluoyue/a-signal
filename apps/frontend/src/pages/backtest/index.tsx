@@ -15,7 +15,7 @@ import {
 } from 'antd';
 import { ReloadOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons';
 import { Popconfirm } from 'antd';
-import api from '@/services/api';
+import client from '@/services/client';
 
 const { Title, Text } = Typography;
 
@@ -60,7 +60,7 @@ const BacktestPage: React.FC = () => {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await api.get('/backtest/records');
+      const response = await client.get('/backtest/records');
       setData(response.data || []);
     } catch (error) {
       message.error('获取回测记录失败');
@@ -81,7 +81,7 @@ const BacktestPage: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await api.delete(`/backtest/records/${id}`);
+      await client.delete(`/backtest/records/${id}`);
       message.success('删除成功');
       fetchData();
     } catch (error) {

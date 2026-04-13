@@ -1,30 +1,18 @@
-import api from './api';
-
-export interface ApiKeyResponse {
-  id: string;
-  name: string;
-  status: string;
-  rateLimit: number;
-  createdAt: string;
-}
-
-export interface ApiKeyWithKeyResponse extends ApiKeyResponse {
-  key: string;
-}
-
-export interface CreateApiKeyRequest {
-  name: string;
-  rateLimit?: number;
-}
+import client from './client';
+import type {
+  ApiKeyResponse,
+  ApiKeyWithKeyResponse,
+  CreateApiKeyRequest,
+} from './types';
 
 export async function getApiKeys(): Promise<ApiKeyResponse[]> {
-  return api.get('/api-keys');
+  return client.get('/api-keys');
 }
 
 export async function createApiKey(data: CreateApiKeyRequest): Promise<ApiKeyWithKeyResponse> {
-  return api.post('/api-keys', data);
+  return client.post('/api-keys', data);
 }
 
 export async function deleteApiKey(id: string): Promise<{ success: boolean }> {
-  return api.delete(`/api-keys/${id}`);
+  return client.delete(`/api-keys/${id}`);
 }

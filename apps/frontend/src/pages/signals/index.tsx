@@ -27,7 +27,7 @@ import {
   DeleteOutlined,
 } from '@ant-design/icons';
 import { useNavigate } from 'umi';
-import api from '@/services/api';
+import client from '@/services/client';
 
 const { Title } = Typography;
 const { RangePicker } = DatePicker;
@@ -83,7 +83,7 @@ const SignalsPage: React.FC = () => {
       if (dateRange?.[0]) params.startTime = dateRange[0].toISOString ? dateRange[0].toISOString() : dateRange[0];
       if (dateRange?.[1]) params.endTime = dateRange[1].toISOString ? dateRange[1].toISOString() : dateRange[1];
 
-      const response = await api.get<SignalsResponse>('/signals', { params });
+      const response = await client.get<SignalsResponse>('/signals', { params });
       setData(response.data);
       setTotal(response.total);
       setCurrent(page);
@@ -125,7 +125,7 @@ const SignalsPage: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await api.delete(`/signals/${id}`);
+      await client.delete(`/signals/${id}`);
       message.success('信号已删除');
       fetchSignals(current, pageSize);
     } catch (error) {

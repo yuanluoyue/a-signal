@@ -14,7 +14,7 @@ import {
 } from 'antd';
 import { EyeOutlined, PlusOutlined, ReloadOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useNavigate } from 'umi';
-import api from '@/services/api';
+import client from '@/services/client';
 
 const { Title } = Typography;
 
@@ -42,7 +42,7 @@ const StockTrackingsPage: React.FC = () => {
   const fetchData = async (page?: number, pageSize?: number) => {
     setLoading(true);
     try {
-      const response = await api.get('/stock-trackings');
+      const response = await client.get('/stock-trackings');
       const trackingList: StockTracking[] = response.data || [];
       setData(trackingList);
       setPagination((prev) => ({
@@ -69,7 +69,7 @@ const StockTrackingsPage: React.FC = () => {
 
   const handleCreate = async (values: { stockCode: string; stockName: string }) => {
     try {
-      await api.post('/stock-trackings', values);
+      await client.post('/stock-trackings', values);
       message.success('创建成功');
       setIsModalVisible(false);
       form.resetFields();
@@ -82,7 +82,7 @@ const StockTrackingsPage: React.FC = () => {
 
   const handleDelete = async (id: string) => {
     try {
-      await api.delete(`/stock-trackings/${id}`);
+      await client.delete(`/stock-trackings/${id}`);
       message.success('删除成功');
       fetchData();
     } catch (error) {

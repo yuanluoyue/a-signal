@@ -27,7 +27,7 @@ import { useUser } from '@/contexts/UserContext';
 import { Bubble } from '@ant-design/x';
 import ReactMarkdown from 'react-markdown';
 import type { PluggableList } from 'unified';
-import styles from './index.less';
+import styles from './index.module.scss';
 
 // 内联样式 - 超紧凑模式
 const inlineStyles = `

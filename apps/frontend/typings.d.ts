@@ -1,5 +1,9 @@
 declare module '*.css';
 declare module '*.less';
+declare module '*.scss';
+declare module '*.sass';
+declare module '*.module.scss';
+declare module '*.module.sass';
 declare module '*.png';
 declare module '*.jpg';
 declare module '*.jpeg';

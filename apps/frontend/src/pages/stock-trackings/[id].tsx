@@ -33,7 +33,7 @@ import {
 import { useParams, useNavigate, Link } from 'umi';
 import * as LightweightCharts from 'lightweight-charts';
 import type { CandlestickData, Time, IChartApi, ISeriesApi, SeriesMarker } from 'lightweight-charts';
-import api from '@/services/api';
+import client from '@/services/client';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -132,7 +132,7 @@ const StockTrackingDetailPage: React.FC = () => {
     if (!id) return;
     setLoading(true);
     try {
-      const response = await api.get(`/stock-trackings/${id}`);
+      const response = await client.get(`/stock-trackings/${id}`);
       setTracking(response.data);
     } catch (error) {
       message.error('获取追踪详情失败');
@@ -145,7 +145,7 @@ const StockTrackingDetailPage: React.FC = () => {
   const fetchReport = async () => {
     if (!id) return;
     try {
-      const response = await api.get(`/stock-trackings/${id}/report`);
+      const response = await client.get(`/stock-trackings/${id}/report`);
       const reportData = response.data?.report;
       if (reportData) {
         setReport(reportData);
@@ -158,7 +158,7 @@ const StockTrackingDetailPage: React.FC = () => {
   const fetchNews = async (page = 1, pageSize = 10) => {
     if (!id) return;
     try {
-      const response = await api.get(`/stock-trackings/${id}/news`);
+      const response = await client.get(`/stock-trackings/${id}/news`);
       const newsList = response.data || [];
       setNews(newsList);
       setNewsPagination({
@@ -174,7 +174,7 @@ const StockTrackingDetailPage: React.FC = () => {
   const fetchBacktestRecords = async () => {
     if (!tracking?.stockCode) return;
     try {
-      const response = await api.get(`/backtest/records?stockCode=${tracking.stockCode}`);
+      const response = await client.get(`/backtest/records?stockCode=${tracking.stockCode}`);
       const records = response.data || [];
       setBacktestRecords(records);
     } catch (error) {
@@ -185,7 +185,7 @@ const StockTrackingDetailPage: React.FC = () => {
   const fetchSignals = async () => {
     if (!tracking?.stockCode) return;
     try {
-      const response = await api.get(`/signals?stockCode=${tracking.stockCode}`);
+      const response = await client.get(`/signals?stockCode=${tracking.stockCode}`);
       setSignals(response.data || []);
     } catch (error) {
       console.error('Fetch signals error:', error);
@@ -195,7 +195,7 @@ const StockTrackingDetailPage: React.FC = () => {
   const fetchKlines = async () => {
     if (!tracking?.stockCode) return;
     try {
-      const response = await api.get(`/klines/${tracking.stockCode}`, {
+      const response = await client.get(`/klines/${tracking.stockCode}`, {
         params: { period },
       });
       setKlines(response.data || []);
@@ -318,7 +318,7 @@ const StockTrackingDetailPage: React.FC = () => {
   const handleFetchNews = async () => {
     if (!id) return;
     try {
-      await api.post(`/stock-trackings/${id}/fetch-news`);
+      await client.post(`/stock-trackings/${id}/fetch-news`);
       message.success('历史新闻获取任务已启动');
       setTimeout(() => {
         fetchTrackingDetail();
@@ -333,7 +333,7 @@ const StockTrackingDetailPage: React.FC = () => {
   const handleGenerateSignals = async () => {
     if (!id) return;
     try {
-      const response = await api.post(`/stock-trackings/${id}/generate-signals`);
+      const response = await client.post(`/stock-trackings/${id}/generate-signals`);
       message.success(response.data?.message || '信号生成任务已启动');
     } catch (error) {
       message.error('生成信号失败');
@@ -345,7 +345,7 @@ const StockTrackingDetailPage: React.FC = () => {
     if (!id) return;
     setBacktestLoading(true);
     try {
-      await api.post(`/stock-trackings/${id}/backtest`);
+      await client.post(`/stock-trackings/${id}/backtest`);
       message.success('回测执行成功');
       await fetchBacktestRecords();
     } catch (error) {
@@ -363,7 +363,7 @@ const StockTrackingDetailPage: React.FC = () => {
 
   const handleDeleteBacktest = async (backtestId: string) => {
     try {
-      await api.delete(`/backtest/records/${backtestId}`);
+      await client.delete(`/backtest/records/${backtestId}`);
       message.success('删除成功');
       fetchBacktestRecords();
     } catch (error) {
@@ -375,7 +375,7 @@ const StockTrackingDetailPage: React.FC = () => {
   const handleGenerateReport = async () => {
     if (!id) return;
     try {
-      const response = await api.post(`/stock-trackings/${id}/generate-report`);
+      const response = await client.post(`/stock-trackings/${id}/generate-report`);
       setReport(response.data?.report || '');
       message.success('研投报告生成成功');
     } catch (error) {

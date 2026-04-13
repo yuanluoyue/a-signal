@@ -21,7 +21,7 @@ import {
   ScheduleOutlined,
   InfoCircleOutlined,
 } from '@ant-design/icons';
-import api from '@/services/api';
+import client from '@/services/client';
 
 const { Title, Text } = Typography;
 
@@ -44,7 +44,7 @@ const SchedulerPage: React.FC = () => {
   const fetchTasks = async () => {
     setLoading(true);
     try {
-      const response = await api.get('/scheduler-tasks');
+      const response = await client.get('/scheduler-tasks');
       console.log('[SchedulerPage.fetchTasks] API Response:', response);
       console.log('[SchedulerPage.fetchTasks] Response data:', response.data);
       
@@ -81,7 +81,7 @@ const SchedulerPage: React.FC = () => {
   // 切换启用状态
   const handleToggleEnabled = async (id: string) => {
     try {
-      const response = await api.put(`/scheduler-tasks/${id}/toggle`);
+      const response = await client.put(`/scheduler-tasks/${id}/toggle`);
       message.success(response.data.message);
       fetchTasks();
     } catch (error) {
@@ -94,7 +94,7 @@ const SchedulerPage: React.FC = () => {
   const handleTrigger = async (id: string) => {
     try {
       setTriggeringTaskId(id);
-      const response = await api.post(`/scheduler-tasks/${id}/trigger`);
+      const response = await client.post(`/scheduler-tasks/${id}/trigger`);
       message.success(response.data.message);
       fetchTasks();
     } catch (error) {

@@ -130,7 +130,6 @@ export default defineConfig({
     '/api': {
       target: 'http://localhost:3001',
       changeOrigin: true,
-      pathRewrite: { '^/api': '/api/v1' },
     },
   },
   // MFSU 配置 - 添加需要预构建的依赖

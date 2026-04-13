@@ -14,9 +14,8 @@ import { ArrowLeftOutlined, ReloadOutlined, BarChartOutlined } from '@ant-design
 import { useParams, useNavigate } from 'umi';
 import * as LightweightCharts from 'lightweight-charts';
 import type { CandlestickData, Time, IChartApi, ISeriesApi } from 'lightweight-charts';
-import api from '@/services/api';
-import type { Signal } from '@/types/signal';
-import type { KlineData } from '@/types/klines';
+import client from '@/services/client';
+import type { Signal, KlineData } from '@/services/types';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -47,7 +46,7 @@ const StockDetailPage: React.FC = () => {
     if (!code) return;
     setLoading(true);
     try {
-      const response = await api.get(`/stocks/${code}`);
+      const response = await client.get(`/stocks/${code}`);
       setStockDetail(response.data);
     } catch (error) {
       message.error('获取股票详情失败');
@@ -61,7 +60,7 @@ const StockDetailPage: React.FC = () => {
     if (!code) return;
     try {
       setFetchingKlines(true);
-      const response = await api.get(`/stocks/${code}/klines`, {
+      const response = await client.get(`/stocks/${code}/klines`, {
         params: { period: p, limit: 100 },
       });
       setKlines(response.data || []);
@@ -76,7 +75,7 @@ const StockDetailPage: React.FC = () => {
     if (!code) return;
     try {
       setFetchingKlines(true);
-      await api.post(`/stocks/${code}/fetch-klines`, { period });
+      await client.post(`/stocks/${code}/fetch-klines`, { period });
       message.success('K线获取任务已提交到队列');
       setTimeout(() => {
         fetchKlines(period);
