@@ -29,7 +29,7 @@ import { DRIZZLE_PROVIDER } from './db.constants.js';
 
         try {
           logger.log('Running database migrations...');
-          await migrate(db, { migrationsFolder: './src/migrations' });
+          await migrate(db, { migrationsFolder: './migrations' });
           logger.log('Database migrations completed successfully');
         } catch (error) {
           logger.error('Database migration failed:', error.message);

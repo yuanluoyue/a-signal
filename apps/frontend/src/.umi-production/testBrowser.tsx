@@ -10,6 +10,7 @@ import { getRoutes } from './core/route';
 import type { Location } from 'history';
 
 
+import 'C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/global.scss';
 import 'antd/dist/reset.css';
 const publicPath = '/';
 const runtimePublicPath = false;
