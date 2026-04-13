@@ -35,24 +35,29 @@ export class StocksService {
   async findAllWithSignals(): Promise<StockWithSignals[]> {
     const blacklistedCodes = await this.blacklistService.getAllBlacklistedStockCodes();
 
-    let query = this.dbService.db
-      .select({
-        stockCode: signals.stockCode,
-        stockName: signals.stockName,
-        signalCount: sql<number>`COUNT(*)`,
-        latestSignalTime: sql<Date>`MAX(${signals.signalTime})`,
-      })
-      .from(signals)
-      .groupBy(signals.stockCode, signals.stockName)
-      .orderBy(desc(sql`MAX(${signals.signalTime})`));
+    const results = await this.dbService.db.execute(sql`
+      SELECT 
+        s.stock_code as "stockCode",
+        latest.stock_name as "stockName",
+        COUNT(*) as "signalCount",
+        MAX(s.signal_time) as "latestSignalTime"
+      FROM signals s
+      INNER JOIN (
+        SELECT DISTINCT ON (stock_code) stock_code, stock_name
+        FROM signals
+        ORDER BY stock_code, signal_time DESC
+      ) latest ON s.stock_code = latest.stock_code
+      GROUP BY s.stock_code, latest.stock_name
+      ORDER BY MAX(s.signal_time) DESC
+    `);
 
+    let filteredResults = results.rows as unknown as StockWithSignals[];
+    
     if (blacklistedCodes.length > 0) {
-      query = query.where(notInArray(signals.stockCode, blacklistedCodes)) as typeof query;
+      filteredResults = filteredResults.filter(r => !blacklistedCodes.includes(r.stockCode));
     }
 
-    const results = await query;
-
-    return results.map(r => ({
+    return filteredResults.map(r => ({
       stockCode: r.stockCode,
       stockName: r.stockName,
       signalCount: Number(r.signalCount),
