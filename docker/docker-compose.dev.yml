@@ -13,7 +13,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
       POSTGRES_DB: ${DB_NAME:-a_signal}
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - ../data/postgres:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-admin} -d ${DB_NAME:-a_signal}"]
       interval: 10s
@@ -34,7 +34,7 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-admin}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS:-password}
     volumes:
-      - ./data/rabbitmq:/var/lib/rabbitmq
+      - ../data/rabbitmq:/var/lib/rabbitmq
     healthcheck:
       test: ["CMD", "rabbitmq-diagnostics", "ping"]
       interval: 10s
@@ -55,7 +55,7 @@ services:
       - PERSIST_DIRECTORY=/chroma/chroma
       - ANONYMIZED_TELEMETRY=FALSE
     volumes:
-      - ./data/chromadb:/chroma/chroma
+      - ../data/chromadb:/chroma/chroma
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/heartbeat"]
       interval: 10s
