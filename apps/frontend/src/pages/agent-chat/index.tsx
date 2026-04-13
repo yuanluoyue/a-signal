@@ -29,112 +29,74 @@ import ReactMarkdown from 'react-markdown';
 import type { PluggableList } from 'unified';
 import styles from './index.module.scss';
 
-// 内联样式 - 超紧凑模式
-const inlineStyles = `
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-  .typing-cursor {
-    animation: blink 1s infinite;
-    font-weight: bold;
-  }
-  .markdown-content {
-    line-height: 1.2;
-  }
-  .markdown-content * {
-    margin: 0;
-    padding: 0;
-  }
-  .markdown-content p {
-    margin: 0;
-    line-height: 1.2;
-    min-height: 1.2em;
-  }
-  .markdown-content p:not(:last-child) {
-    margin-bottom: 1px;
-  }
-  .markdown-content ul, .markdown-content ol {
-    margin: 0;
-    padding-left: 16px;
-    line-height: 1;
-  }
-  .markdown-content li {
-    margin: 0;
-    padding: 0;
-    line-height: 1;
-    display: block;
-  }
-  .markdown-content li + li {
-    margin-top: 0;
-  }
-  .markdown-content li > p {
-    margin: 0;
-  }
-  .markdown-content code {
-    background: rgba(0,0,0,0.06);
-    padding: 0 2px;
-    border-radius: 2px;
-    font-size: 0.9em;
-    line-height: 1;
-  }
-  .markdown-content pre {
-    background: rgba(0,0,0,0.06);
-    padding: 4px;
-    border-radius: 4px;
-    overflow-x: auto;
-    margin: 1px 0;
-    line-height: 1.2;
-  }
-  .markdown-content pre code {
-    background: none;
-    padding: 0;
-  }
-  .markdown-content h1, .markdown-content h2, .markdown-content h3, .markdown-content h4, .markdown-content h5, .markdown-content h6 {
-    margin: 0;
-    font-weight: 600;
-    line-height: 1.2;
-  }
-  .markdown-content h1:not(:last-child), .markdown-content h2:not(:last-child), .markdown-content h3:not(:last-child) {
-    margin-bottom: 1px;
-  }
-  .markdown-content blockquote {
-    border-left: 3px solid #1890ff;
-    margin: 1px 0;
-    padding-left: 8px;
-    color: #666;
-    line-height: 1.2;
-  }
-  .markdown-content table {
-    border-collapse: collapse;
-    width: 100%;
-    margin: 1px 0;
-    line-height: 1.2;
-  }
-  .markdown-content th, .markdown-content td {
-    border: 1px solid #d9d9d9;
-    padding: 1px 4px;
-    text-align: left;
-    line-height: 1.2;
-  }
-  .markdown-content th {
-    background: #fafafa;
-  }
-  .markdown-content br {
-    display: block;
-    height: 1px;
-    line-height: 1px;
-    margin: 0;
-    padding: 0;
-  }
-  .chat-message-list {
-    overscroll-behavior: contain;
-  }
-`;
-
 const { Sider, Content } = Layout;
 const { TextArea } = Input;
 const { Text } = Typography;
+
+// 预处理 Markdown 内容：合并连续换行
+const preprocessMarkdown = (content: string): string => {
+  return content
+    .replace(/\n{2,}/g, '\n')
+    .trim();
+};
+
+// Markdown 渲染组件 - 使用 remark-gfm
+const MarkdownContent: React.FC<{ content: string }> = ({ content }) => {
+  const [plugins, setPlugins] = useState<PluggableList>([]);
+
+  useEffect(() => {
+    import('remark-gfm').then((mod) => {
+      setPlugins([mod.default]);
+    });
+  }, []);
+
+  const processedContent = preprocessMarkdown(content);
+
+  return (
+    <div className={styles.markdownContent}>
+      <ReactMarkdown remarkPlugins={plugins}>
+        {processedContent}
+      </ReactMarkdown>
+    </div>
+  );
+};
+
+// 打字机效果组件
+const TypewriterContent: React.FC<{ content: string; isStreaming: boolean }> = ({ content, isStreaming }) => {
+  const [displayContent, setDisplayContent] = useState('');
+  const contentRef = useRef(content);
+  const indexRef = useRef(0);
+
+  useEffect(() => {
+    if (!isStreaming) {
+      setDisplayContent(content);
+      return;
+    }
+
+    if (content.length > contentRef.current.length) {
+      contentRef.current = content;
+    }
+
+    const typeNextChar = () => {
+      if (indexRef.current < contentRef.current.length) {
+        setDisplayContent(contentRef.current.slice(0, indexRef.current + 1));
+        indexRef.current++;
+      }
+    };
+
+    const timer = setInterval(typeNextChar, 15);
+
+    return () => clearInterval(timer);
+  }, [content, isStreaming]);
+
+  useEffect(() => {
+    if (content && indexRef.current === 0) {
+      contentRef.current = content;
+    }
+  }, []);
+
+  return <MarkdownContent content={displayContent} />;
+};
 
 interface Message {
   id: string;
@@ -156,95 +118,7 @@ interface SseEvent {
   data: unknown;
 }
 
-// 样式注入组件
-const StyleInjector: React.FC = () => {
-  useEffect(() => {
-    const styleId = 'agent-chat-inline-styles';
-    if (!document.getElementById(styleId)) {
-      const styleElement = document.createElement('style');
-      styleElement.id = styleId;
-      styleElement.textContent = inlineStyles;
-      document.head.appendChild(styleElement);
-    }
-    return () => {
-      // 清理可选，这里保留样式
-    };
-  }, []);
-  return null;
-};
-
-// 预处理 Markdown 内容：合并连续换行
-const preprocessMarkdown = (content: string): string => {
-  return content
-    .replace(/\n{2,}/g, '\n')  // 2个及以上换行 -> 1个换行
-    .trim();
-};
-
-// Markdown 渲染组件 - 使用 remark-gfm
-const MarkdownContent: React.FC<{ content: string }> = ({ content }) => {
-  const [plugins, setPlugins] = useState<PluggableList>([]);
-
-  useEffect(() => {
-    // 动态导入 remark-gfm 避免 Module Federation 问题
-    import('remark-gfm').then((mod) => {
-      setPlugins([mod.default]);
-    });
-  }, []);
-
-  const processedContent = preprocessMarkdown(content);
-
-  return (
-    <div className="markdown-content">
-      <ReactMarkdown remarkPlugins={plugins}>
-        {processedContent}
-      </ReactMarkdown>
-    </div>
-  );
-};
-
-// 打字机效果组件
-const TypewriterContent: React.FC<{ content: string; isStreaming: boolean }> = ({ content, isStreaming }) => {
-  const [displayContent, setDisplayContent] = useState('');
-  const contentRef = useRef(content);
-  const indexRef = useRef(0);
-
-  useEffect(() => {
-    if (!isStreaming) {
-      setDisplayContent(content);
-      return;
-    }
-
-    // 只在内容增加时继续打字效果
-    if (content.length > contentRef.current.length) {
-      contentRef.current = content;
-    }
-
-    const typeNextChar = () => {
-      if (indexRef.current < contentRef.current.length) {
-        setDisplayContent(contentRef.current.slice(0, indexRef.current + 1));
-        indexRef.current++;
-      }
-    };
-
-    const timer = setInterval(typeNextChar, 15); // 每15ms打一个字符
-
-    return () => clearInterval(timer);
-  }, [content, isStreaming]);
-
-  // 初始化时重置索引
-  useEffect(() => {
-    if (content && indexRef.current === 0) {
-      contentRef.current = content;
-    }
-  }, []);
-
-  return <MarkdownContent content={displayContent} />;
-};
-
 const AgentChatPage: React.FC = () => {
-  // 注入内联样式
-  <StyleInjector />;
-
   const { user, loading } = useUser();
   const userId = user?.id;
 
@@ -288,7 +162,7 @@ const AgentChatPage: React.FC = () => {
 
     setIsLoadingHistory(true);
     try {
-      const response = await fetch(`/api/agent/sessions?userId=${userId}`);
+      const response = await fetch(`/api/v1/agent/sessions?userId=${userId}`);
       const result = await response.json();
       console.log('[AgentChat] Sessions response:', result);
 
@@ -299,7 +173,7 @@ const AgentChatPage: React.FC = () => {
         const loadedConversations: Conversation[] = [];
         for (const sessionId of sessions) {
           console.log('[AgentChat] Loading history for session:', sessionId);
-          const historyResponse = await fetch(`/api/agent/history?userId=${userId}&sessionId=${sessionId}`);
+          const historyResponse = await fetch(`/api/v1/agent/history?userId=${userId}&sessionId=${sessionId}`);
           const historyData = await historyResponse.json();
           console.log('[AgentChat] History data for session', sessionId, ':', historyData);
 
@@ -351,7 +225,7 @@ const AgentChatPage: React.FC = () => {
   const deleteConversation = async (id: string) => {
     try {
       // 调用 API 删除对话
-      const response = await fetch(`/api/agent/session?userId=${userId}&sessionId=${id}`, {
+      const response = await fetch(`/api/v1/agent/session?userId=${userId}&sessionId=${id}`, {
         method: 'DELETE',
       });
 
@@ -379,7 +253,7 @@ const AgentChatPage: React.FC = () => {
     if (editingConversation && newTitle.trim()) {
       try {
         // 调用 API 更新对话标题
-        const response = await fetch('/api/agent/session/title', {
+        const response = await fetch('/api/v1/agent/session/title', {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -463,7 +337,7 @@ const AgentChatPage: React.FC = () => {
 
     try {
       console.log('[AgentChat] Sending message with userId:', userId, 'sessionId:', conversationId);
-      const response = await fetch('/api/agent/chat/stream', {
+      const response = await fetch('/api/v1/agent/chat/stream', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

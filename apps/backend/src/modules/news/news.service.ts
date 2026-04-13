@@ -5,7 +5,7 @@ import * as cheerio from 'cheerio';
 import { createHash } from 'crypto';
 import { DbService } from '../../core/db/db.service.js';
 import { QueueService } from '../../core/queue/queue.service.js';
-import { news, type NewNews } from '../../core/db/schema.js';
+import { news, signals, type NewNews } from '../../core/db/schema.js';
 import { QUEUE_NAMES } from '../../core/queue/queue.constants.js';
 import { NewsListQueryDto } from '../../interfaces/admin/news/dto/news-list-query.dto.js';
 
@@ -334,7 +334,7 @@ export class NewsService {
     return result[0] || null;
   }
 
-  async getNewsList(query: NewsListQueryDto): Promise<{ data: typeof news.$inferSelect[]; total: number; page: number; pageSize: number }> {
+  async getNewsList(query: NewsListQueryDto): Promise<{ data: Array<typeof news.$inferSelect & { relatedStocks: string[] }>; total: number; page: number; pageSize: number }> {
     const { page = 1, pageSize = 20, source, analyzeStatus, vectorizeStatus } = query;
     const offset = (page - 1) * pageSize;
 
@@ -357,13 +357,41 @@ export class NewsService {
       .where(whereClause || sql`1=1`);
     const total = Number(countResult[0]?.count || 0);
 
-    const data = await this.dbService.db
+    const newsData = await this.dbService.db
       .select()
       .from(news)
       .where(whereClause || sql`1=1`)
       .orderBy(desc(news.publishTime))
       .limit(pageSize)
       .offset(offset);
+
+    // 获取每条新闻的关联股票
+    const newsIds = newsData.map(n => n.id);
+    let relatedStocksMap: Record<string, string[]> = {};
+    
+    if (newsIds.length > 0) {
+      const signalsData = await this.dbService.db
+        .select({
+          newsId: signals.newsId,
+          stockCode: signals.stockCode,
+        })
+        .from(signals)
+        .where(sql`${signals.newsId} IN ${newsIds}`);
+
+      signalsData.forEach(s => {
+        if (!relatedStocksMap[s.newsId]) {
+          relatedStocksMap[s.newsId] = [];
+        }
+        if (!relatedStocksMap[s.newsId].includes(s.stockCode)) {
+          relatedStocksMap[s.newsId].push(s.stockCode);
+        }
+      });
+    }
+
+    const data = newsData.map(n => ({
+      ...n,
+      relatedStocks: relatedStocksMap[n.id] || [],
+    }));
 
     return {
       data,

@@ -138,7 +138,7 @@ const BlacklistPage: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      width: 120,
+      width: 100,
       render: (_: unknown, record: BlacklistItem) => (
         <Popconfirm
           title="确认移除"

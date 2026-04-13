@@ -152,7 +152,7 @@ const ApiKeysPage: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      width: 120,
+      width: 100,
       align: 'center' as const,
       render: (_: any, record: ApiKeyResponse) => (
         <Popconfirm

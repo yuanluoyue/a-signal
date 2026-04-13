@@ -165,16 +165,10 @@ const BacktestPage: React.FC = () => {
       render: (dd: string) => <Text type="danger">{formatPercent(dd)}</Text>,
     },
     {
-      title: '信号类型',
-      dataIndex: 'directions',
-      key: 'directions',
-      width: 120,
-      render: (directions: string[]) => getDirectionTag(directions),
-    },
-    {
       title: '操作',
       key: 'action',
-      width: 180,
+      width: 200,
+      fixed: 'right' as const,
       render: (_: unknown, record: BacktestRecord) => (
         <Space size="small">
           <Button

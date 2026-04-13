@@ -9,3 +9,8 @@ declare module '*.jpg';
 declare module '*.jpeg';
 declare module '*.gif';
 declare module '*.svg';
+
+// 修复 antd 组件类型兼容性问题
+declare module 'antd' {
+  export * from 'antd/es';
+}

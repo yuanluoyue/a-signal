@@ -1,21 +1,52 @@
-.custom-scrollbar {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+/* 修复表格固定列层级问题 - 固定列在表头之下 */
+.ant-table-cell-fix-left,
+.ant-table-cell-fix-right {
+  z-index: 1 !important;
+}
 
-  &::-webkit-scrollbar {
-    width: 6px;
-  }
+/* 表头层级 */
+.ant-table-thead > tr > th {
+  z-index: 2 !important;
+  position: relative;
+}
 
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
+/* 表格操作按钮层级 */
+.ant-table-tbody > tr > td .ant-btn {
+  z-index: 1;
+  position: relative;
+}
 
-  &::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
+/* 确保 layout header 层级最高 */
+.ant-layout-header {
+  z-index: 100 !important;
+  position: relative;
+}
 
-    &:hover {
-      background-color: rgba(255, 255, 255, 0.3);
-    }
+/* 侧边栏层级 */
+.ant-layout-sider {
+  z-index: 101 !important;
+}
+
+/* 表格容器 */
+.ant-table-wrapper {
+  z-index: 1;
+}
+
+/* 自定义滚动条样式 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
   }
 }

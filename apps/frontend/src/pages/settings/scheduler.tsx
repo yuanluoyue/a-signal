@@ -82,7 +82,9 @@ const SchedulerPage: React.FC = () => {
   const handleToggleEnabled = async (id: string) => {
     try {
       const response = await client.put(`/scheduler-tasks/${id}/toggle`);
-      message.success(response.data.message);
+      const task = tasks.find(t => t.id === id);
+      const newStatus = !task?.enabled;
+      message.success(newStatus ? '任务已启用' : '任务已停止');
       fetchTasks();
     } catch (error) {
       console.error('切换任务状态失败:', error);
@@ -95,7 +97,7 @@ const SchedulerPage: React.FC = () => {
     try {
       setTriggeringTaskId(id);
       const response = await client.post(`/scheduler-tasks/${id}/trigger`);
-      message.success(response.data.message);
+      message.success('任务已触发执行');
       fetchTasks();
     } catch (error) {
       console.error('触发任务失败:', error);

@@ -267,7 +267,7 @@ const SignalsPage: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      width: 150,
+      width: 180,
       align: 'center' as const,
       fixed: 'right' as const,
       render: (_: any, record: Signal) => (
