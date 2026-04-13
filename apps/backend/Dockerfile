@@ -1,75 +1,49 @@
-# ==========================================
-# Stage 1: Dependencies
-# ==========================================
-FROM node:20-alpine AS deps
-RUN apk add --no-cache libc6-compat
+FROM node:22.22.2-bookworm-slim AS deps
+
 WORKDIR /app
 
-# Copy package files
-COPY package.json pnpm-lock.yaml* pnpm-workspace.yaml* ./
-COPY apps/backend/package.json ./apps/backend/
-COPY packages/*/package.json ./packages/*/
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    python3 \
+    make \
+    g++ \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install pnpm
-RUN npm install -g pnpm
+RUN corepack enable && corepack prepare pnpm@10.11.0 --activate
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+COPY apps/backend/package.json ./
+COPY pnpm-lock.yaml ./
 
-# ==========================================
-# Stage 2: Builder
-# ==========================================
-FROM node:20-alpine AS builder
+RUN pnpm config set auto-install-peers true && \
+    pnpm install --prod && \
+    npm rebuild bcrypt
+
+FROM node:22.22.2-bookworm-slim
+
 WORKDIR /app
 
-# Install pnpm
-RUN npm install -g pnpm
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    postgresql-client \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy dependencies from deps stage
+RUN groupadd --system --gid 1001 nodejs
+RUN useradd --system --uid 1001 --gid nodejs --create-home nestjs
+
+COPY apps/backend/dist ./dist
+COPY apps/backend/migrations ./migrations
 COPY --from=deps /app/node_modules ./node_modules
-COPY --from=deps /app/apps/backend/node_modules ./apps/backend/node_modules
+COPY apps/backend/package.json ./
+COPY apps/backend/docker-entrypoint.sh ./
 
-# Copy source code
-COPY package.json pnpm-workspace.yaml* ./
-COPY apps/backend ./apps/backend
-COPY packages ./packages
-COPY tsconfig.json* ./
+RUN chmod +x ./docker-entrypoint.sh && \
+    chown -R nestjs:nodejs /app
 
-# Build the application
-WORKDIR /app/apps/backend
-RUN pnpm run build
-
-# ==========================================
-# Stage 3: Runner (Production)
-# ==========================================
-FROM node:20-alpine AS runner
-WORKDIR /app
-
-ENV NODE_ENV=production
-
-# Install pnpm
-RUN npm install -g pnpm
-
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nestjs
-
-# Copy built application
-COPY --from=builder --chown=nestjs:nodejs /app/apps/backend/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/apps/backend/node_modules ./apps/backend/node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/apps/backend/package.json ./apps/backend/package.json
-
-# Switch to non-root user
 USER nestjs
 
-# Expose port
+ENV NODE_ENV=production
+ENV PORT=3001
+
 EXPOSE 3001
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node -e "require('http').get('http://localhost:3001/health', (r) => r.statusCode === 200 ? process.exit(0) : process.exit(1))"
-
-# Start the application
-CMD ["node", "dist/main.js"]
+ENTRYPOINT ["./docker-entrypoint.sh"]

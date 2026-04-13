@@ -1,0 +1,112 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: a-signal-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-admin}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-password}
+      POSTGRES_DB: ${DB_NAME:-a_signal}
+    volumes:
+      - ../data/postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-admin} -d ${DB_NAME:-a_signal}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - a-signal-network
+
+  rabbitmq:
+    image: rabbitmq:4.2.5-management
+    container_name: a-signal-rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-admin}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS:-password}
+    volumes:
+      - ../data/rabbitmq:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - a-signal-network
+
+  chromadb:
+    image: chromadb/chroma
+    container_name: a-signal-chromadb
+    restart: unless-stopped
+    environment:
+      IS_PERSISTENT: "true"
+      PERSIST_DIRECTORY: /chroma/chroma
+      ANONYMIZED_TELEMETRY: "false"
+    volumes:
+      - ../data/chromadb:/chroma/chroma
+    networks:
+      - a-signal-network
+
+  backend:
+    image: a-signal/backend:latest
+    build:
+      context: ..
+      dockerfile: apps/backend/Dockerfile
+    container_name: a-signal-backend
+    restart: unless-stopped
+    ports:
+      - "${BACKEND_PORT:-3001}:3001"
+    environment:
+      NODE_ENV: production
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-admin}
+      DB_PASSWORD: ${DB_PASSWORD:-password}
+      DB_NAME: ${DB_NAME:-a_signal}
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: ${RABBITMQ_USER:-admin}
+      RABBITMQ_PASS: ${RABBITMQ_PASS:-password}
+      CHROMA_HOST: chromadb
+      CHROMA_PORT: 8000
+      JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key}
+      JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-7d}
+      VOLCENGINE_API_KEY: ${VOLCENGINE_API_KEY}
+      VOLCENGINE_EMBEDDING_MODEL: ${VOLCENGINE_EMBEDDING_MODEL:-doubao-embedding-vision-251215}
+      CORS_ORIGIN: ${CORS_ORIGIN:-*}
+      PORT: 3001
+    depends_on:
+      postgres:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      chromadb:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 120s
+    networks:
+      - a-signal-network
+
+  frontend:
+    image: a-signal/frontend:latest
+    build:
+      context: ..
+      dockerfile: apps/frontend/Dockerfile
+    container_name: a-signal-frontend
+    restart: unless-stopped
+    ports:
+      - "${FRONTEND_PORT:-8001}:8001"
+    depends_on:
+      - backend
+    networks:
+      - a-signal-network
+
+networks:
+  a-signal-network:
+    driver: bridge

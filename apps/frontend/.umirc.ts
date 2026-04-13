@@ -137,23 +137,4 @@ export default defineConfig({
     strategy: 'eager',
     include: ['react-markdown', 'remark-gfm', '@ant-design/x'],
   },
-  // 生产环境优化
-  chainWebpack: (config: any) => {
-    if (process.env.NODE_ENV === 'production') {
-      config.optimization.minimizer('terser').tap((args: any[]) => {
-        args[0] = {
-          ...args[0],
-          terserOptions: {
-            ...args[0]?.terserOptions,
-            compress: {
-              ...args[0]?.terserOptions?.compress,
-              drop_console: true,
-              drop_debugger: true,
-            },
-          },
-        };
-        return args;
-      });
-    }
-  },
 });

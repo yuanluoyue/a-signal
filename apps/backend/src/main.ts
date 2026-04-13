@@ -1,11 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
-import { AppModule } from './app.module.js';
-import { AllExceptionsFilter } from './common/filters/all-exceptions.filter.js';
-import { ResponseInterceptor } from './common/interceptors/response.interceptor.js';
-import { createWinstonLogger } from './core/logger/winston.logger.js';
-import { TraceIdMiddleware } from './common/middleware/trace-id.middleware.js';
+import { AppModule } from './app.module';
+import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
+import { ResponseInterceptor } from './common/interceptors/response.interceptor';
+import { createWinstonLogger } from './core/logger/winston.logger';
+import { TraceIdMiddleware } from './common/middleware/trace-id.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
