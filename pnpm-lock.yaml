@@ -68,6 +68,9 @@ importers:
       class-validator:
         specifier: ^0.14.1
         version: 0.14.4
+      dotenv:
+        specifier: ^16.6.1
+        version: 16.6.1
       drizzle-orm:
         specifier: ^0.40.0
         version: 0.40.1(@types/pg@8.18.0)(gel@2.2.0)(pg@8.20.0)
@@ -132,6 +135,9 @@ importers:
       '@types/node':
         specifier: ^22.10.0
         version: 22.19.15
+      '@types/passport':
+        specifier: ^1.0.0
+        version: 1.0.17
       '@types/passport-jwt':
         specifier: ^4.0.1
         version: 4.0.1
@@ -236,10 +242,10 @@ importers:
         version: 4.6.33(@babel/core@7.29.0)(@types/node@22.19.15)(@types/react@18.3.28)(eslint@9.39.4(jiti@2.6.1))(jest@30.3.0(@types/node@22.19.15)(esbuild-register@3.6.0(esbuild@0.21.5)))(lightningcss@1.22.1)(prettier@3.8.1)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(resolve-url-loader@5.0.0)(rollup@3.30.0)(sass@1.54.0)(stylelint@14.16.1)(terser@5.46.1)(type-fest@4.41.0)(typescript@5.9.3)(webpack@5.104.1(esbuild@0.21.5))
     devDependencies:
       '@types/react':
-        specifier: ^18.2.0
+        specifier: ^18.3.28
         version: 18.3.28
       '@types/react-dom':
-        specifier: ^18.2.0
+        specifier: ^18.3.7
         version: 18.3.7(@types/react@18.3.28)
       '@umijs/bundler-utils':
         specifier: ^4.6.33
@@ -2434,6 +2440,9 @@ packages:
 
   '@types/react@18.3.28':
     resolution: {integrity: sha512-z9VXpC7MWrhfWipitjNdgCauoMLRdIILQsAEV+ZesIzBq/oUlxk0m3ApZuMFCXdnS4U7KrI+l3WRUEGQ8K1QKw==}
+
+  '@types/react@19.2.14':
+    resolution: {integrity: sha512-ilcTH/UniCkMdtexkoCN0bI7pMcJDvmQFPvuPvmEaYA/NSfFTAgdUSLAoVjaRJm7+6PvcM+q1zYOwS4wTYMF9w==}
 
   '@types/resolve@1.20.6':
     resolution: {integrity: sha512-A4STmOXPhMUtHH+S6ymgE2GiBSMqf4oTvcQZMcHzokuTLVYzXTB8ttjcgxOVaAp2lGwEdzZ0J+cRbbeevQj1UQ==}
@@ -11830,24 +11839,28 @@ snapshots:
   '@types/react-router-dom@4.3.5':
     dependencies:
       '@types/history': 5.0.0
-      '@types/react': 18.3.28
+      '@types/react': 19.2.14
       '@types/react-router': 5.1.20
 
   '@types/react-router-redux@5.0.27':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 18.3.28
+      '@types/react': 19.2.14
       '@types/react-router': 5.1.20
       redux: 4.2.1
 
   '@types/react-router@5.1.20':
     dependencies:
       '@types/history': 4.7.11
-      '@types/react': 18.3.28
+      '@types/react': 19.2.14
 
   '@types/react@18.3.28':
     dependencies:
       '@types/prop-types': 15.7.15
+      csstype: 3.2.3
+
+  '@types/react@19.2.14':
+    dependencies:
       csstype: 3.2.3
 
   '@types/resolve@1.20.6': {}

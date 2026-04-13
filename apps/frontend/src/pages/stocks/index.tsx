@@ -7,10 +7,11 @@ import {
   Typography,
   Space,
   message,
+  Popconfirm,
 } from 'antd';
-import { EyeOutlined, ReloadOutlined } from '@ant-design/icons';
+import { EyeOutlined, ReloadOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useNavigate } from 'umi';
-import api from '@/services/api';
+import client from '@/services/client';
 
 const { Title } = Typography;
 
@@ -34,7 +35,7 @@ const StocksPage: React.FC = () => {
   const fetchData = async (page?: number, pageSize?: number) => {
     setLoading(true);
     try {
-      const response = await api.get('/stocks');
+      const response = await client.get('/stocks');
       const stockList: StockWithSignals[] = response.data || [];
       setData(stockList);
       setPagination((prev) => ({
@@ -57,6 +58,17 @@ const StocksPage: React.FC = () => {
 
   const handleView = (stockCode: string) => {
     navigate(`/stocks/${stockCode}`);
+  };
+
+  const handleDeleteSignals = async (stockCode: string, stockName: string) => {
+    try {
+      const response = await client.delete(`/stocks/${stockCode}/signals`);
+      message.success(`已删除 ${stockName}(${stockCode}) 的 ${response.deletedCount} 条信号`);
+      fetchData();
+    } catch (error) {
+      message.error('删除信号失败');
+      console.error('Delete signals error:', error);
+    }
   };
 
   const formatDate = (dateString: string | null) => {
@@ -102,7 +114,7 @@ const StocksPage: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      width: 120,
+      width: 180,
       render: (_: unknown, record: StockWithSignals) => (
         <Space size="small">
           <Button
@@ -113,6 +125,22 @@ const StocksPage: React.FC = () => {
           >
             查看
           </Button>
+          <Popconfirm
+            title="确认删除"
+            description={`确定要删除 ${record.stockName}(${record.stockCode}) 的所有信号吗？此操作不可恢复。`}
+            onConfirm={() => handleDeleteSignals(record.stockCode, record.stockName)}
+            okText="删除"
+            cancelText="取消"
+            okButtonProps={{ danger: true }}
+          >
+            <Button
+              danger
+              icon={<DeleteOutlined />}
+              size="small"
+            >
+              清理
+            </Button>
+          </Popconfirm>
         </Space>
       ),
     },

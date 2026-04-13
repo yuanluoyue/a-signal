@@ -158,17 +158,23 @@ pnpm run dev:frontend
 a-signal/
 ├── apps/
 │   ├── backend/              # NestJS 后端
+│   │   ├── migrations/       # 数据库迁移文件
 │   │   ├── src/
-│   │   │   ├── agent/        # 投研 Agent (LangGraph)
-│   │   │   ├── mcp/          # MCP Server
-│   │   │   ├── api-key/      # API Key 管理
-│   │   │   ├── signals/      # 信号管理
-│   │   │   ├── backtest/     # 回测引擎
-│   │   │   ├── news/         # 新闻管理
-│   │   │   ├── queue/        # RabbitMQ 队列
-│   │   │   ├── scheduler/    # 定时任务
-│   │   │   ├── simulation/   # 模拟交易
-│   │   │   └── ...
+│   │   │   ├── common/       # 通用基础设施（装饰器、守卫、拦截器、中间件）
+│   │   │   ├── core/         # 核心基础设施（数据库、队列、向量、日志、认证）
+│   │   │   ├── interfaces/   # API 接口层
+│   │   │   │   ├── admin/    # 管理端 API（/api/v1/）
+│   │   │   │   └── mcp/      # MCP 对外接口（/mcp/）
+│   │   │   ├── modules/      # 业务模块（Service 层）
+│   │   │   │   ├── agent/    # 投研 Agent (LangGraph)
+│   │   │   │   ├── mcp/      # MCP Server
+│   │   │   │   ├── signals/  # 信号管理
+│   │   │   │   ├── backtest/ # 回测引擎
+│   │   │   │   ├── news/     # 新闻管理
+│   │   │   │   └── ...
+│   │   │   ├── jobs/         # 定时任务和消费者
+│   │   │   ├── app.module.ts # 根模块
+│   │   │   └── main.ts       # 入口文件
 │   │   └── test/             # E2E 测试
 │   ├── frontend/             # UMI 前端
 │   │   └── src/
@@ -182,6 +188,51 @@ a-signal/
 └── .trae/
     ├── skills/               # AI 开发技能
     └── specs/                # 功能规格文档
+```
+
+### 后端架构分层
+
+```
+src/
+├── common/                    # 通用基础设施
+│   ├── decorators/            # @CurrentUser, @Public
+│   ├── filters/               # 异常过滤器
+│   ├── guards/                # JwtAuthGuard
+│   ├── interceptors/          # 响应拦截器
+│   └── middleware/            # TraceIdMiddleware
+│
+├── core/                      # 核心基础设施
+│   ├── auth/                  # JWT/API Key 认证策略
+│   ├── db/                    # 数据库（Drizzle ORM）
+│   ├── logger/                # Winston 日志
+│   ├── queue/                 # RabbitMQ 队列
+│   ├── vector/                # ChromaDB 向量数据库
+│   └── volcengine/            # 火山引擎 AI 服务
+│
+├── interfaces/                # API 接口层（控制器 + DTO）
+│   ├── admin/                 # 管理端 API（/api/v1/）
+│   │   ├── auth/              # 认证接口
+│   │   ├── news/              # 新闻接口
+│   │   ├── signals/           # 信号接口
+│   │   ├── backtest/          # 回测接口
+│   │   ├── agent/             # Agent 对话接口
+│   │   └── ...
+│   └── mcp/                   # MCP 对外接口（/mcp/）
+│
+├── modules/                   # 业务模块（Service 层）
+│   ├── auth/                  # 认证服务
+│   ├── news/                  # 新闻服务
+│   ├── signals/               # 信号服务
+│   ├── backtest/              # 回测服务
+│   ├── agent/                 # Agent 服务（含 graph/memory/nodes/tools）
+│   ├── mcp/                   # MCP 服务
+│   └── ...
+│
+└── jobs/                      # 定时任务和消费者
+    ├── scheduler-tasks.service.ts
+    ├── news-crawl.consumer.ts
+    ├── signal-analyze.consumer.ts
+    └── ...
 ```
 
 ## 🛠️ 开发指南

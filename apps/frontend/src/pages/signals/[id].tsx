@@ -29,9 +29,8 @@ import {
 import { useNavigate, useParams, Link } from 'umi';
 import * as LightweightCharts from 'lightweight-charts';
 import type { CandlestickData, Time, IChartApi, ISeriesApi, SeriesMarker, ISeriesMarkersPluginApi } from 'lightweight-charts';
-import api from '@/services/api';
-import type { Signal, KlineData } from '@/types/signal';
-import type { NewsItem } from '@/types/news';
+import client from '@/services/client';
+import type { Signal, KlineData, NewsItem } from '@/services/types';
 
 const { Title, Text, Paragraph } = Typography;
 const { Option } = Select;
@@ -88,7 +87,7 @@ const SignalDetailPage: React.FC = () => {
     if (!id) return;
     try {
       setLoading(true);
-      const response = await api.get<{ data: Signal }>(`/signals/${id}`);
+      const response = await client.get<{ data: Signal }>(`/signals/${id}`);
       setSignal(response.data);
     } catch (error) {
       console.error('获取信号详情失败:', error);
@@ -103,7 +102,7 @@ const SignalDetailPage: React.FC = () => {
     if (!id) return;
     try {
       console.log('[SignalDetail] Fetching klines for period:', period);
-      const response = await api.get<{
+      const response = await client.get<{
         data: KlineData[];
         stockCode: string;
         stockName: string;
@@ -126,7 +125,7 @@ const SignalDetailPage: React.FC = () => {
     if (!id) return;
     try {
       setFetchingKlines(true);
-      await api.post(`/signals/${id}/fetch-klines`, { period });
+      await client.post(`/signals/${id}/fetch-klines`, { period });
       message.success('K线获取任务已提交到队列');
       // 延迟刷新
       setTimeout(() => {
@@ -143,7 +142,7 @@ const SignalDetailPage: React.FC = () => {
   // 获取关联新闻
   const fetchRelatedNews = async (newsId: string) => {
     try {
-      const response = await api.get<{ data: NewsItem }>(`/news/${newsId}`);
+      const response = await client.get<{ data: NewsItem }>(`/news/${newsId}`);
       setNews(response.data);
     } catch (error) {
       console.error('获取关联新闻失败:', error);

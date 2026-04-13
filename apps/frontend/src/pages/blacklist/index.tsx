@@ -18,7 +18,7 @@ import {
   DeleteOutlined,
   BlockOutlined,
 } from '@ant-design/icons';
-import api from '@/services/api';
+import client from '@/services/client';
 
 const { Title, Text } = Typography;
 
@@ -44,8 +44,8 @@ const BlacklistPage: React.FC = () => {
   const fetchData = async (page?: number, pageSize?: number) => {
     setLoading(true);
     try {
-      const response = await api.get('/blacklist');
-      const blacklist: BlacklistItem[] = response.data || [];
+      const response = await client.get('/blacklist');
+        const blacklist: BlacklistItem[] = response.data || [];
       setData(blacklist);
       setPagination((prev) => ({
         ...prev,
@@ -71,7 +71,7 @@ const BlacklistPage: React.FC = () => {
     reason?: string;
   }) => {
     try {
-      await api.post('/blacklist', values);
+      await client.post('/blacklist', values);
       message.success('添加成功');
       setIsModalVisible(false);
       form.resetFields();
@@ -84,7 +84,7 @@ const BlacklistPage: React.FC = () => {
 
   const handleRemove = async (id: string) => {
     try {
-      await api.delete(`/blacklist/${id}`);
+      await client.delete(`/blacklist/${id}`);
       message.success('移除成功');
       fetchData();
     } catch (error) {
@@ -138,7 +138,7 @@ const BlacklistPage: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      width: 120,
+      width: 100,
       render: (_: unknown, record: BlacklistItem) => (
         <Popconfirm
           title="确认移除"

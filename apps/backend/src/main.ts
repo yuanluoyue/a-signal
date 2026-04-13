@@ -4,26 +4,26 @@ import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module.js';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter.js';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor.js';
-import { createWinstonLogger } from './common/logger/winston.logger.js';
+import { createWinstonLogger } from './core/logger/winston.logger.js';
+import { TraceIdMiddleware } from './common/middleware/trace-id.middleware.js';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: createWinstonLogger(),
   });
 
-  // CORS configuration
   app.enableCors({
     origin: process.env.CORS_ORIGIN || '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
 
-  // Global prefix
   app.setGlobalPrefix('api/v1', {
     exclude: ['health', 'mcp/v1/(.*)'],
   });
 
-  // Global validation pipe
+  app.use(new TraceIdMiddleware().use.bind(new TraceIdMiddleware()));
+
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,
@@ -35,13 +35,10 @@ async function bootstrap() {
     }),
   );
 
-  // Global exception filter
   app.useGlobalFilters(new AllExceptionsFilter());
 
-  // Global response interceptor
   app.useGlobalInterceptors(new ResponseInterceptor());
 
-  // Swagger documentation
   const config = new DocumentBuilder()
     .setTitle('A Signal API')
     .setDescription('股票分析系统 API 文档')

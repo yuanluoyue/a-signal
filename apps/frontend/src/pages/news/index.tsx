@@ -22,8 +22,8 @@ import {
   DatabaseOutlined,
 } from '@ant-design/icons';
 import { useNavigate, useSearchParams } from 'umi';
-import api from '@/services/api';
-import type { NewsItem, NewsFilter, AnalysisStatus, VectorizedStatus } from '@/types/news';
+import client from '@/services/client';
+import type { NewsItem, NewsFilter, AnalysisStatus, VectorizedStatus } from '@/services/types';
 
 const { Title } = Typography;
 const { Option } = Select;
@@ -147,7 +147,7 @@ const NewsListPage: React.FC = () => {
         params.keyword = targetFilters.keyword;
       }
 
-      const response = await api.get('/news', { params });
+      const response = await client.get('/news', { params });
       const responseData = response;
 
       // 转换后端数据格式到前端格式
@@ -185,7 +185,7 @@ const NewsListPage: React.FC = () => {
 
   const fetchVectorizeProgress = async () => {
     try {
-      const response = await api.get('/news/vectorize-progress');
+      const response = await client.get('/news/vectorize-progress');
       const { pending, vectorizing, vectorized, failed } = response.data;
       setVectorizeProgress({
         pending,
@@ -221,7 +221,7 @@ const NewsListPage: React.FC = () => {
 
   const handleAnalyze = async (newsId: string) => {
     try {
-      await api.post(`/news/${newsId}/analyze`);
+      await client.post(`/news/${newsId}/analyze`);
       message.success(`新闻 ${newsId} 分析任务已提交`);
       fetchData();
     } catch {
@@ -231,7 +231,7 @@ const NewsListPage: React.FC = () => {
 
   const handleVectorize = async (newsId: string) => {
     try {
-      await api.post(`/news/${newsId}/vectorize`);
+      await client.post(`/news/${newsId}/vectorize`);
       message.success(`新闻 ${newsId} 向量化任务已提交`);
       fetchData();
       fetchVectorizeProgress();
@@ -242,7 +242,7 @@ const NewsListPage: React.FC = () => {
 
   const handleBatchVectorize = async () => {
     try {
-      const response = await api.post('/news/batch-vectorize');
+      const response = await client.post('/news/batch-vectorize');
       message.success(`批量向量化任务已启动，共 ${response.count} 条新闻`);
       fetchData();
       fetchVectorizeProgress();

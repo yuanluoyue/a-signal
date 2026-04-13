@@ -27,7 +27,7 @@ import {
   CheckCircleOutlined,
   CloseCircleOutlined,
 } from '@ant-design/icons';
-import api from '@/services/api';
+import client from '@/services/client';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -64,7 +64,7 @@ const NotificationsPage: React.FC = () => {
   const fetchWebhooks = async () => {
     setLoading(true);
     try {
-      const response = await api.get<{ data: Webhook[]; total: number }>('/webhooks');
+      const response = await client.get<{ data: Webhook[]; total: number }>('/webhooks');
       console.log('[Notifications] Webhooks response:', response);
       // 处理响应数据
       const webhooksData = response.data?.data || response.data || [];
@@ -120,10 +120,10 @@ const NotificationsPage: React.FC = () => {
       };
 
       if (editingWebhook) {
-        await api.put(`/webhooks/${editingWebhook.id}`, payload);
+        await client.put(`/webhooks/${editingWebhook.id}`, payload);
         message.success('Webhook 更新成功');
       } else {
-        await api.post('/webhooks', payload);
+        await client.post('/webhooks', payload);
         message.success('Webhook 创建成功');
       }
       setModalVisible(false);
@@ -137,7 +137,7 @@ const NotificationsPage: React.FC = () => {
   // 删除 Webhook
   const handleDelete = async (id: string) => {
     try {
-      await api.delete(`/webhooks/${id}`);
+      await client.delete(`/webhooks/${id}`);
       message.success('Webhook 删除成功');
       fetchWebhooks();
     } catch (error) {
@@ -150,7 +150,7 @@ const NotificationsPage: React.FC = () => {
   const handleTest = async (id: string) => {
     try {
       setTestingWebhookId(id);
-      await api.post(`/webhooks/${id}/test`);
+      await client.post(`/webhooks/${id}/test`);
       message.success('测试消息已发送');
     } catch (error) {
       console.error('测试 Webhook 失败:', error);
@@ -163,7 +163,7 @@ const NotificationsPage: React.FC = () => {
   // 切换启用状态
   const handleToggleEnabled = async (id: string) => {
     try {
-      const response = await api.put(`/webhooks/${id}/toggle`);
+      const response = await client.put(`/webhooks/${id}/toggle`);
       message.success(response.data.message);
       fetchWebhooks();
     } catch (error) {
@@ -261,11 +261,11 @@ const NotificationsPage: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      width: 200,
+      width: 250,
       align: 'center' as const,
       fixed: 'right' as const,
       render: (_: any, record: Webhook) => (
-        <Space>
+        <Space size="small">
           <Button
             type="primary"
             size="small"
