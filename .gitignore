@@ -12,6 +12,10 @@ build/
 .env
 .env.local
 .env.*.local
+.env.production
+
+# Deploy config
+scripts/deploy.config
 
 # Docker data volumes
 data/

@@ -18,7 +18,12 @@
     "format": "pnpm --filter backend run format",
     "lint": "pnpm --filter backend run lint",
     "test:backend": "pnpm --filter backend run test",
-    "test:e2e:backend": "pnpm --filter backend run test:e2e"
+    "test:e2e:backend": "pnpm --filter backend run test:e2e",
+    "deploy:infra": "bash scripts/deploy-infra.sh",
+    "deploy:frontend": "bash scripts/deploy-frontend.sh",
+    "deploy:backend": "bash scripts/deploy-backend.sh",
+    "deploy:env": "bash scripts/deploy-env.sh",
+    "deploy:all": "bash scripts/deploy-all.sh"
   },
   "devDependencies": {
     "dotenv": "^16.4.0"
