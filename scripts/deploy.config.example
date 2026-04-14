@@ -1,0 +1,3 @@
+SERVER_USER="your_username"
+SERVER_HOST="your_server_host"
+DEPLOY_PATH="/home/your_user/a-signal"
