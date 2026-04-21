@@ -31,6 +31,11 @@ export class NewsListQueryDto {
   @Min(1)
   pageSize?: number = 10;
 
+  @ApiPropertyOptional({ description: '搜索关键词' })
+  @IsOptional()
+  @IsString()
+  keyword?: string;
+
   @ApiPropertyOptional({ description: '新闻来源' })
   @IsOptional()
   @IsString()

@@ -103,6 +103,7 @@ export interface NewsItem {
   createdAt: string;
   updatedAt: string;
   metadata?: Record<string, unknown>;
+  embeddingModel?: string;
 }
 
 export interface NewsListQueryParams extends PaginationParams {

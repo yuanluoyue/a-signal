@@ -23,6 +23,7 @@ import {
   CheckCircleOutlined,
   ClockCircleOutlined,
   LoadingOutlined,
+  ReloadOutlined,
 } from '@ant-design/icons';
 import { useParams, useNavigate } from 'umi';
 import client from '@/services/client';
@@ -127,6 +128,7 @@ const NewsDetailPage: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
+  const [revectorizing, setRevectorizing] = useState(false);
   const [news, setNews] = useState<NewsItem | null>(null);
   const [signals, setSignals] = useState<NewsSignal[]>([]);
 
@@ -144,7 +146,6 @@ const NewsDetailPage: React.FC = () => {
       const newsData = response?.data || response;
       
       if (newsData) {
-        // 转换后端数据格式到前端格式
         const formattedNews: NewsItem = {
           id: newsData.id,
           title: newsData.title,
@@ -157,6 +158,7 @@ const NewsDetailPage: React.FC = () => {
           publishedAt: newsData.publishTime,
           createdAt: newsData.createdAt,
           updatedAt: newsData.updatedAt,
+          embeddingModel: newsData.embeddingModel,
         };
         setNews(formattedNews);
       } else {
@@ -200,7 +202,6 @@ const NewsDetailPage: React.FC = () => {
     try {
       await client.post(`/news/${id}/analyze`);
       message.success('分析任务已提交，请稍后刷新查看结果');
-      // 3秒后刷新数据
       setTimeout(() => {
         fetchNewsDetail(id);
         fetchNewsSignals(id);
@@ -210,6 +211,24 @@ const NewsDetailPage: React.FC = () => {
       console.error('Analyze error:', error);
     } finally {
       setAnalyzing(false);
+    }
+  };
+
+  const handleRevectorize = async () => {
+    if (!id || !news) return;
+
+    setRevectorizing(true);
+    try {
+      await client.post(`/news/${id}/re-vectorize`);
+      message.success('重新向量化任务已提交，请稍后刷新查看结果');
+      setTimeout(() => {
+        fetchNewsDetail(id);
+      }, 3000);
+    } catch (error) {
+      message.error('提交重新向量化任务失败');
+      console.error('Revectorize error:', error);
+    } finally {
+      setRevectorizing(false);
     }
   };
 
@@ -294,6 +313,15 @@ const NewsDetailPage: React.FC = () => {
                   {analyzing ? '分析中...' : '手动分析'}
                 </Button>
               )}
+              {news.vectorizedStatus === 'vectorized' && (
+                <Button
+                  icon={revectorizing ? <LoadingOutlined /> : <ReloadOutlined />}
+                  onClick={handleRevectorize}
+                  loading={revectorizing}
+                >
+                  {revectorizing ? '向量化中...' : '重新向量化'}
+                </Button>
+              )}
             </Space>
           </Card>
 
@@ -348,6 +376,9 @@ const NewsDetailPage: React.FC = () => {
                 <Tag color={getVectorizedStatusColor(news.vectorizedStatus)}>
                   {getVectorizedStatusText(news.vectorizedStatus)}
                 </Tag>
+              </Descriptions.Item>
+              <Descriptions.Item label="向量化模型">
+                {news.embeddingModel || '未记录'}
               </Descriptions.Item>
             </Descriptions>
           </Card>

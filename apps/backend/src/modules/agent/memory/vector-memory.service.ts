@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ChromaClient, Collection } from 'chromadb';
-import { VolcengineEmbeddingService } from '../../../core/volcengine/volcengine-embedding.service.js';
+import { VectorService } from '../../../core/vector/vector.service.js';
 
 export interface VectorMemoryMetadata {
   userId: string;
@@ -27,7 +27,7 @@ export class VectorMemoryService {
 
   constructor(
     private readonly configService: ConfigService,
-    private readonly embeddingService: VolcengineEmbeddingService,
+    private readonly vectorService: VectorService,
   ) {
     const host = this.configService.get<string>('CHROMA_HOST') || 'localhost';
     const port = this.configService.get<string>('CHROMA_PORT') || '8000';
@@ -52,7 +52,7 @@ export class VectorMemoryService {
   ): Promise<void> {
     try {
       const collection = await this.getCollection();
-      const embedding = await this.embeddingService.getTextEmbedding(content);
+      const embedding = await this.vectorService.generateEmbedding(content);
       const id = `${metadata.userId}_${metadata.sessionId}_${Date.now()}`;
 
       await collection.add({
@@ -78,7 +78,7 @@ export class VectorMemoryService {
   ): Promise<string[]> {
     try {
       const collection = await this.getCollection();
-      const queryEmbedding = await this.embeddingService.getTextEmbedding(query);
+      const queryEmbedding = await this.vectorService.generateEmbedding(query);
 
       const results = await collection.query({
         queryEmbeddings: [queryEmbedding],

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   Table,
   Card,
@@ -112,6 +112,8 @@ const NewsListPage: React.FC = () => {
     failed: 0,
     total: 0,
   });
+
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   // 更新 URL 参数
   const updateUrlParams = useCallback((page: number, pageSize: number, currentFilters: NewsFilter) => {
@@ -256,13 +258,30 @@ const NewsListPage: React.FC = () => {
     fetchVectorizeProgress();
   };
 
-  // 处理筛选变化
   const handleFilterChange = (key: keyof NewsFilter, value: string | undefined) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
-    // 重置到第一页
-    fetchData(1, pagination.pageSize, newFilters);
+
+    if (key === 'keyword') {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+
+      debounceTimerRef.current = setTimeout(() => {
+        fetchData(1, pagination.pageSize, newFilters);
+      }, 500);
+    } else {
+      fetchData(1, pagination.pageSize, newFilters);
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
 
   // 处理分页变化
   const handlePageChange = (page: number, pageSize?: number) => {

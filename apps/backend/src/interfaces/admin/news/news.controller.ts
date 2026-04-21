@@ -110,6 +110,25 @@ export class NewsController {
     };
   }
 
+  @Post('batch-re-vectorize')
+  @HttpCode(HttpStatus.ACCEPTED)
+  @ApiOperation({ summary: '批量重新向量化所有已向量化的新闻' })
+  @ApiResponse({ status: 202, description: '批量重新向量化任务已启动' })
+  async batchReVectorizeNews() {
+    const vectorizedNews = await this.newsService.getVectorizedNews();
+
+    for (const item of vectorizedNews) {
+      await this.newsService.reVectorizeNews(item.id);
+      await this.newsService.updateVectorizeStatus(item.id, 'vectorizing');
+      await this.queueService.sendMessage(QUEUE_NAMES.NEWS_VECTORIZE, { newsId: item.id });
+    }
+
+    return {
+      message: '批量重新向量化任务已启动',
+      count: vectorizedNews.length,
+    };
+  }
+
   @Get(':id')
   @Public()
   @ApiOperation({ summary: '根据 ID 获取新闻详情' })
@@ -224,6 +243,29 @@ export class NewsController {
 
     return {
       message: '新闻向量化任务已提交',
+      newsId: id,
+    };
+  }
+
+  @Post(':id/re-vectorize')
+  @HttpCode(HttpStatus.ACCEPTED)
+  @ApiOperation({ summary: '重新向量化新闻' })
+  @ApiParam({ name: 'id', description: '新闻 ID', type: String })
+  @ApiResponse({ status: 202, description: '重新向量化任务已提交' })
+  @ApiResponse({ status: 404, description: '新闻不存在' })
+  async reVectorizeNews(@Param('id') id: string) {
+    const newsItem = await this.newsService.getNewsById(id);
+    if (!newsItem) {
+      throw new NotFoundException('新闻不存在');
+    }
+
+    await this.newsService.reVectorizeNews(id);
+
+    await this.newsService.updateVectorizeStatus(id, 'vectorizing');
+    await this.queueService.sendMessage(QUEUE_NAMES.NEWS_VECTORIZE, { newsId: id });
+
+    return {
+      message: '重新向量化任务已提交',
       newsId: id,
     };
   }

@@ -1,10 +1,11 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { eq, and, desc, sql } from 'drizzle-orm';
+import { eq, and, desc, sql, or, like } from 'drizzle-orm';
 import axios, { AxiosInstance } from 'axios';
 import * as cheerio from 'cheerio';
 import { createHash } from 'crypto';
 import { DbService } from '../../core/db/db.service.js';
 import { QueueService } from '../../core/queue/queue.service.js';
+import { VectorService } from '../../core/vector/vector.service.js';
 import { news, signals, type NewNews } from '../../core/db/schema.js';
 import { QUEUE_NAMES } from '../../core/queue/queue.constants.js';
 import { NewsListQueryDto } from '../../interfaces/admin/news/dto/news-list-query.dto.js';
@@ -39,6 +40,7 @@ export class NewsService {
   constructor(
     private readonly dbService: DbService,
     private readonly queueService: QueueService,
+    private readonly vectorService: VectorService,
   ) {
     this.httpClient = axios.create({
       timeout: 30000,
@@ -335,10 +337,18 @@ export class NewsService {
   }
 
   async getNewsList(query: NewsListQueryDto): Promise<{ data: Array<typeof news.$inferSelect & { relatedStocks: string[] }>; total: number; page: number; pageSize: number }> {
-    const { page = 1, pageSize = 20, source, analyzeStatus, vectorizeStatus } = query;
+    const { page = 1, pageSize = 20, keyword, source, analyzeStatus, vectorizeStatus } = query;
     const offset = (page - 1) * pageSize;
 
     const conditions: ReturnType<typeof eq>[] = [];
+    if (keyword) {
+      conditions.push(
+        or(
+          like(news.title, `%${keyword}%`),
+          like(news.content, `%${keyword}%`)
+        )!
+      );
+    }
     if (source) {
       conditions.push(eq(news.source, source));
     }
@@ -365,7 +375,6 @@ export class NewsService {
       .limit(pageSize)
       .offset(offset);
 
-    // 获取每条新闻的关联股票
     const newsIds = newsData.map(n => n.id);
     let relatedStocksMap: Record<string, string[]> = {};
     
@@ -427,6 +436,15 @@ export class NewsService {
     this.logger.log(`Updated news ${id} vectorizeStatus to ${status}`);
   }
 
+  async updateEmbeddingModel(id: string, model: string): Promise<void> {
+    await this.dbService.db
+      .update(news)
+      .set({ embeddingModel: model })
+      .where(eq(news.id, id));
+
+    this.logger.log(`Updated news ${id} embeddingModel to ${model}`);
+  }
+
   async getVectorizeProgress(): Promise<{ pending: number; vectorizing: number; vectorized: number; failed: number }> {
     const [result] = await this.dbService.db
       .select({
@@ -452,5 +470,27 @@ export class NewsService {
       .where(eq(news.vectorizeStatus, 'pending'))
       .orderBy(news.publishTime)
       .limit(limit);
+  }
+
+  async reVectorizeNews(id: string): Promise<void> {
+    await this.vectorService.deleteEmbedding(id);
+
+    await this.dbService.db
+      .update(news)
+      .set({
+        vectorizeStatus: 'pending',
+        embeddingModel: null
+      })
+      .where(eq(news.id, id));
+
+    this.logger.log(`Reset vectorize status for news ${id}`);
+  }
+
+  async getVectorizedNews(): Promise<typeof news.$inferSelect[]> {
+    return this.dbService.db
+      .select()
+      .from(news)
+      .where(eq(news.vectorizeStatus, 'vectorized'))
+      .orderBy(news.publishTime);
   }
 }

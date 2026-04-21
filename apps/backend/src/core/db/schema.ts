@@ -44,6 +44,7 @@ export const news = pgTable(
     vectorizeStatus: varchar('vectorize_status', { length: 20 })
       .notNull()
       .default('pending'),
+    embeddingModel: varchar('embedding_model', { length: 100 }),
     publishTime: timestamp('publish_time', { withTimezone: true }).notNull(),
     originalUrl: text('original_url').notNull(),
     uniqueKey: varchar('unique_key', { length: 255 }).notNull().unique(),
