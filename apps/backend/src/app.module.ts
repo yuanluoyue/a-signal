@@ -19,6 +19,7 @@ import { BlacklistModule } from './modules/blacklist/blacklist.module.js';
 import { StocksModule } from './modules/stocks/stocks.module.js';
 import { SimulationModule } from './modules/simulation/simulation.module.js';
 import { StockTrackingModule } from './modules/stock-tracking/stock-tracking.module.js';
+import { EventModule } from './modules/event/event.module.js';
 import { AgentModule } from './modules/agent/agent.module.js';
 import { ApiKeyModule } from './modules/api-key/api-key.module.js';
 import { McpModule } from './modules/mcp/mcp.module.js';
@@ -36,6 +37,7 @@ import { SchedulerController } from './interfaces/admin/scheduler/scheduler.cont
 import { WebhooksController } from './interfaces/admin/notifications/webhooks.controller.js';
 import { ApiKeyController } from './interfaces/admin/api-key/api-key.controller.js';
 import { AgentController } from './interfaces/admin/agent/agent.controller.js';
+import { EventsController } from './interfaces/admin/events/events.controller.js';
 import { McpController } from './interfaces/mcp/mcp.controller.js';
 import { HealthController } from './interfaces/admin/health/health.controller.js';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard.js';
@@ -45,6 +47,7 @@ import { NewsVectorizeConsumer } from './jobs/news-vectorize.consumer.js';
 import { SignalAnalyzeConsumer } from './jobs/signal-analyze.consumer.js';
 import { KlineFetchConsumer } from './jobs/kline-fetch.consumer.js';
 import { StockTrackFetchConsumer } from './jobs/stock-track-fetch.consumer.js';
+import { EventAnalyzeConsumer } from './jobs/event-analyze.consumer.js';
 
 const jwtAuthGuardProvider: Provider = {
   provide: APP_GUARD,
@@ -75,6 +78,7 @@ const jwtAuthGuardProvider: Provider = {
     StocksModule,
     SimulationModule,
     StockTrackingModule,
+    EventModule,
     AgentModule,
     ApiKeyModule,
     McpModule,
@@ -94,6 +98,7 @@ const jwtAuthGuardProvider: Provider = {
     WebhooksController,
     ApiKeyController,
     AgentController,
+    EventsController,
     McpController,
     HealthController,
   ],
@@ -105,6 +110,7 @@ const jwtAuthGuardProvider: Provider = {
     SignalAnalyzeConsumer,
     KlineFetchConsumer,
     StockTrackFetchConsumer,
+    EventAnalyzeConsumer,
   ],
 })
 export class AppModule {}

@@ -6,6 +6,7 @@ import { SignalsListQueryDto } from '../../interfaces/admin/signals/dto/signals-
 
 export interface CreateSignalDto {
   newsId: string;
+  eventId?: string;
   stockCode: string;
   stockName: string;
   direction: string;
@@ -27,6 +28,7 @@ export class SignalsService {
     try {
       const newSignal: NewSignal = {
         newsId: dto.newsId,
+        eventId: dto.eventId || null,
         stockCode: dto.stockCode,
         stockName: dto.stockName,
         direction: dto.direction,
@@ -61,6 +63,7 @@ export class SignalsService {
     try {
       const newSignals: NewSignal[] = dtos.map((dto) => ({
         newsId: dto.newsId,
+        eventId: dto.eventId || null,
         stockCode: dto.stockCode,
         stockName: dto.stockName,
         direction: dto.direction,
@@ -98,6 +101,22 @@ export class SignalsService {
     } catch (error) {
       this.logger.error(
         `Failed to find signals by newsId ${newsId}: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
+  async findByEventId(eventId: string): Promise<Signal[]> {
+    try {
+      const results = await this.dbService.db
+        .select()
+        .from(signals)
+        .where(eq(signals.eventId, eventId));
+
+      return results;
+    } catch (error) {
+      this.logger.error(
+        `Failed to find signals by eventId ${eventId}: ${error instanceof Error ? error.message : String(error)}`,
       );
       throw error;
     }

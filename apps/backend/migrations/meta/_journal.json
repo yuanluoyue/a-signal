@@ -64,6 +64,13 @@
       "when": 1776777000173,
       "tag": "0008_flashy_meltdown",
       "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1776855672767,
+      "tag": "0009_events_table_and_signal_event_id",
+      "breakpoints": true
     }
   ]
 }

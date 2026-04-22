@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import {
   Card,
   Table,
@@ -26,7 +26,7 @@ import {
   MinusOutlined,
   DeleteOutlined,
 } from '@ant-design/icons';
-import { useNavigate } from 'umi';
+import { useNavigate, useLocation, history } from 'umi';
 import client from '@/services/client';
 
 const { Title } = Typography;
@@ -56,19 +56,55 @@ interface SignalsResponse {
 
 const SignalsPage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Signal[]>([]);
   const [total, setTotal] = useState(0);
   const [current, setCurrent] = useState(1);
   const [pageSize, setPageSize] = useState(20);
 
-  // 筛选条件
   const [stockCode, setStockCode] = useState('');
   const [direction, setDirection] = useState<string | undefined>(undefined);
   const [confidenceRange, setConfidenceRange] = useState<[number, number]>([0, 100]);
   const [dateRange, setDateRange] = useState<[any, any] | null>(null);
 
-  const fetchSignals = async (page = 1, size = 20) => {
+  const initializedRef = useRef(false);
+
+  const getUrlParams = useCallback(() => {
+    const searchParams = new URLSearchParams(location.search);
+    return {
+      page: parseInt(searchParams.get('page') || '1', 10),
+      size: parseInt(searchParams.get('pageSize') || '20', 10),
+      stock: searchParams.get('stockCode') || '',
+      dir: searchParams.get('direction') || undefined,
+      minConf: parseInt(searchParams.get('minConfidence') || '0', 10),
+      maxConf: parseInt(searchParams.get('maxConfidence') || '100', 10),
+      startTime: searchParams.get('startTime'),
+      endTime: searchParams.get('endTime'),
+    };
+  }, [location.search]);
+
+  const updateUrlParams = useCallback((params: Record<string, any>) => {
+    const searchParams = new URLSearchParams();
+    Object.entries(params).forEach(([key, value]) => {
+      if (value !== undefined && value !== null && value !== '' && value !== 0 && value !== 100) {
+        searchParams.set(key, String(value));
+      }
+    });
+    const newSearch = searchParams.toString();
+    if (newSearch !== location.search.slice(1)) {
+      history.replace({ pathname: location.pathname, search: newSearch ? `?${newSearch}` : '' });
+    }
+  }, [location.pathname, location.search]);
+
+  const fetchSignals = useCallback(async (page: number, size: number, filters?: {
+    stockCode?: string;
+    direction?: string;
+    minConfidence?: number;
+    maxConfidence?: number;
+    startTime?: string;
+    endTime?: string;
+  }) => {
     setLoading(true);
     try {
       const params: Record<string, any> = {
@@ -76,12 +112,19 @@ const SignalsPage: React.FC = () => {
         pageSize: size,
       };
 
-      if (stockCode) params.stockCode = stockCode;
-      if (direction) params.direction = direction;
-      if (confidenceRange[0] > 0) params.minConfidence = confidenceRange[0];
-      if (confidenceRange[1] < 100) params.maxConfidence = confidenceRange[1];
-      if (dateRange?.[0]) params.startTime = dateRange[0].toISOString ? dateRange[0].toISOString() : dateRange[0];
-      if (dateRange?.[1]) params.endTime = dateRange[1].toISOString ? dateRange[1].toISOString() : dateRange[1];
+      const stock = filters?.stockCode ?? stockCode;
+      const dir = filters?.direction ?? direction;
+      const minConf = filters?.minConfidence ?? confidenceRange[0];
+      const maxConf = filters?.maxConfidence ?? confidenceRange[1];
+      const start = filters?.startTime ?? (dateRange?.[0] ? (dateRange[0].toISOString ? dateRange[0].toISOString() : dateRange[0]) : undefined);
+      const end = filters?.endTime ?? (dateRange?.[1] ? (dateRange[1].toISOString ? dateRange[1].toISOString() : dateRange[1]) : undefined);
+
+      if (stock) params.stockCode = stock;
+      if (dir) params.direction = dir;
+      if (minConf > 0) params.minConfidence = minConf;
+      if (maxConf < 100) params.maxConfidence = maxConf;
+      if (start) params.startTime = start;
+      if (end) params.endTime = end;
 
       const response = await client.get<SignalsResponse>('/signals', { params });
       setData(response.data);
@@ -93,21 +136,59 @@ const SignalsPage: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  useEffect(() => {
-    fetchSignals();
-  }, []);
-
-  // 5秒轮询刷新
-  useEffect(() => {
-    const interval = setInterval(() => {
-      fetchSignals();
-    }, 5000);
-    return () => clearInterval(interval);
   }, [stockCode, direction, confidenceRange, dateRange]);
 
+  useEffect(() => {
+    if (!initializedRef.current) {
+      initializedRef.current = true;
+      const params = getUrlParams();
+      setCurrent(params.page);
+      setPageSize(params.size);
+      setStockCode(params.stock);
+      setDirection(params.dir);
+      setConfidenceRange([params.minConf, params.maxConf]);
+      if (params.startTime && params.endTime) {
+        setDateRange([params.startTime, params.endTime] as [any, any]);
+      }
+      fetchSignals(params.page, params.size, {
+        stockCode: params.stock,
+        direction: params.dir,
+        minConfidence: params.minConf,
+        maxConfidence: params.maxConf,
+        startTime: params.startTime || undefined,
+        endTime: params.endTime || undefined,
+      });
+    }
+  }, [getUrlParams, fetchSignals]);
+
+  useEffect(() => {
+    if (!initializedRef.current) return;
+    const interval = setInterval(() => {
+      const params = getUrlParams();
+      fetchSignals(params.page, params.size, {
+        stockCode: params.stock,
+        direction: params.dir,
+        minConfidence: params.minConf,
+        maxConfidence: params.maxConf,
+        startTime: params.startTime || undefined,
+        endTime: params.endTime || undefined,
+      });
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [getUrlParams, fetchSignals]);
+
   const handleSearch = () => {
+    const params: Record<string, any> = {
+      page: 1,
+      pageSize,
+    };
+    if (stockCode) params.stockCode = stockCode;
+    if (direction) params.direction = direction;
+    if (confidenceRange[0] > 0) params.minConfidence = confidenceRange[0];
+    if (confidenceRange[1] < 100) params.maxConfidence = confidenceRange[1];
+    if (dateRange?.[0]) params.startTime = dateRange[0].toISOString ? dateRange[0].toISOString() : dateRange[0];
+    if (dateRange?.[1]) params.endTime = dateRange[1].toISOString ? dateRange[1].toISOString() : dateRange[1];
+    updateUrlParams(params);
     fetchSignals(1, pageSize);
   };
 
@@ -116,7 +197,8 @@ const SignalsPage: React.FC = () => {
     setDirection(undefined);
     setConfidenceRange([0, 100]);
     setDateRange(null);
-    fetchSignals(1, pageSize);
+    history.replace({ pathname: location.pathname });
+    fetchSignals(1, 20, { stockCode: '', direction: undefined, minConfidence: 0, maxConfidence: 100 });
   };
 
   const handleViewDetail = (id: string) => {
@@ -380,6 +462,17 @@ const SignalsPage: React.FC = () => {
             onChange: (page, size) => {
               const newSize = size || pageSize;
               setPageSize(newSize);
+              const params: Record<string, any> = {
+                page,
+                pageSize: newSize,
+              };
+              if (stockCode) params.stockCode = stockCode;
+              if (direction) params.direction = direction;
+              if (confidenceRange[0] > 0) params.minConfidence = confidenceRange[0];
+              if (confidenceRange[1] < 100) params.maxConfidence = confidenceRange[1];
+              if (dateRange?.[0]) params.startTime = dateRange[0].toISOString ? dateRange[0].toISOString() : dateRange[0];
+              if (dateRange?.[1]) params.endTime = dateRange[1].toISOString ? dateRange[1].toISOString() : dateRange[1];
+              updateUrlParams(params);
               fetchSignals(page, newSize);
             },
           }}

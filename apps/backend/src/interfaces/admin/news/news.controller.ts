@@ -14,6 +14,7 @@ import {
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiQuery, ApiBearerAuth } from '@nestjs/swagger';
 import { NewsService } from '../../../modules/news/news.service.js';
 import { SignalsService } from '../../../modules/signals/signals.service.js';
+import { EventService } from '../../../modules/event/event.service.js';
 import { QueueService } from '../../../core/queue/queue.service.js';
 import { Public } from '../../../common/decorators/public.decorator.js';
 import { NewsListQueryDto } from './dto/news-list-query.dto.js';
@@ -26,6 +27,7 @@ export class NewsController {
   constructor(
     private readonly newsService: NewsService,
     private readonly signalsService: SignalsService,
+    private readonly eventService: EventService,
     private readonly queueService: QueueService,
   ) {}
 
@@ -186,6 +188,36 @@ export class NewsController {
     };
   }
 
+  @Post(':id/generate-events')
+  @HttpCode(HttpStatus.ACCEPTED)
+  @ApiOperation({ summary: '手动触发新闻事件生成' })
+  @ApiParam({ name: 'id', description: '新闻 ID', type: String })
+  @ApiResponse({ status: 202, description: '事件生成任务已提交到队列' })
+  @ApiResponse({ status: 404, description: '新闻不存在' })
+  async generateEvents(@Param('id') id: string) {
+    const newsItem = await this.newsService.getNewsById(id);
+    if (!newsItem) {
+      throw new NotFoundException('新闻不存在');
+    }
+
+    if (newsItem.analyzeStatus === 'analyzed') {
+      return {
+        message: '新闻已分析过，无需重复生成事件',
+        newsId: id,
+        status: newsItem.analyzeStatus,
+      };
+    }
+
+    await this.newsService.updateAnalyzeStatus(id, 'analyzing');
+
+    await this.queueService.sendMessage(QUEUE_NAMES.EVENT_ANALYZE, { newsId: id });
+
+    return {
+      message: '事件生成任务已提交到队列',
+      newsId: id,
+    };
+  }
+
   @Get(':id/signals')
   @Public()
   @ApiOperation({ summary: '获取新闻关联的信号列表' })
@@ -202,6 +234,25 @@ export class NewsController {
     return {
       data: signals,
       total: signals.length,
+    };
+  }
+
+  @Get(':id/events')
+  @Public()
+  @ApiOperation({ summary: '获取新闻关联的事件列表' })
+  @ApiParam({ name: 'id', description: '新闻 ID', type: String })
+  @ApiResponse({ status: 200, description: '成功获取事件列表' })
+  @ApiResponse({ status: 404, description: '新闻不存在' })
+  async getNewsEvents(@Param('id') id: string) {
+    const news = await this.newsService.getNewsById(id);
+    if (!news) {
+      throw new NotFoundException('新闻不存在');
+    }
+
+    const events = await this.eventService.findByNewsId(id);
+    return {
+      data: events,
+      total: events.length,
     };
   }
 

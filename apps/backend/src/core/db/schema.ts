@@ -67,11 +67,84 @@ export const news = pgTable(
 export type News = typeof news.$inferSelect;
 export type NewNews = typeof news.$inferInsert;
 
+export const events = pgTable(
+  'events',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    newsId: uuid('news_id'),
+    detectedAt: timestamp('detected_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    occurredAt: timestamp('occurred_at', { withTimezone: true }).notNull(),
+    category: varchar('category', { length: 20 }).notNull(),
+    subcategory: varchar('subcategory', { length: 50 }).notNull(),
+    subjects: jsonb('subjects').notNull().$type<
+      Array<{
+        type: 'stock' | 'sector' | 'index' | 'commodity';
+        code: string;
+        weight: number;
+      }>
+    >(),
+    sentimentDirection: integer('sentiment_direction').notNull(),
+    sentimentConfidence: decimal('sentiment_confidence', {
+      precision: 5,
+      scale: 4,
+    }).notNull(),
+    sentimentRationale: varchar('sentiment_rationale', { length: 50 }).notNull(),
+    importanceScore: decimal('importance_score', {
+      precision: 5,
+      scale: 4,
+    }).notNull(),
+    importanceBenchmark: varchar('importance_benchmark', { length: 30 }),
+    surpriseScore: decimal('surprise_score', { precision: 5, scale: 4 }),
+    surpriseBaseline: varchar('surprise_baseline', { length: 100 }),
+    effectivePeriodStart: timestamp('effective_period_start', {
+      withTimezone: true,
+    }).notNull(),
+    effectivePeriodEnd: timestamp('effective_period_end', {
+      withTimezone: true,
+    }),
+    effectiveDecayType: varchar('effective_decay_type', { length: 20 }).notNull(),
+    metrics: jsonb('metrics').$type<
+      Array<{ name: string; value: number; unit: string; yoyChange?: number | null }>
+    >(),
+    sourceUrl: text('source_url'),
+    sourceTitle: varchar('source_title', { length: 500 }).notNull(),
+    sourceSummary: text('source_summary').notNull(),
+    sourcePublisher: varchar('source_publisher', { length: 100 }).notNull(),
+    version: integer('version').notNull().default(1),
+    processed: boolean('processed').notNull().default(false),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.newsId],
+      foreignColumns: [news.id],
+      name: 'events_news_id_fk',
+    }),
+    index('events_category_idx').on(table.category),
+    index('events_subcategory_idx').on(table.subcategory),
+    index('events_occurred_at_idx').on(table.occurredAt),
+    index('events_processed_idx').on(table.processed),
+    index('events_news_id_idx').on(table.newsId),
+  ],
+);
+
+export type Event = typeof events.$inferSelect;
+export type NewEvent = typeof events.$inferInsert;
+
 export const signals = pgTable(
   'signals',
   {
     id: uuid('id').primaryKey().defaultRandom(),
     newsId: uuid('news_id').notNull(),
+    eventId: uuid('event_id'),
     stockCode: varchar('stock_code', { length: 20 }).notNull(),
     stockName: varchar('stock_name', { length: 100 }).notNull(),
     direction: varchar('direction', { length: 10 }).notNull(),
@@ -95,7 +168,13 @@ export const signals = pgTable(
       foreignColumns: [news.id],
       name: 'signals_news_id_fk',
     }),
+    foreignKey({
+      columns: [table.eventId],
+      foreignColumns: [events.id],
+      name: 'signals_event_id_fk',
+    }),
     index('signals_news_id_idx').on(table.newsId),
+    index('signals_event_id_idx').on(table.eventId),
     index('signals_stock_code_idx').on(table.stockCode),
     index('signals_direction_idx').on(table.direction),
     index('signals_confidence_idx').on(table.confidence),

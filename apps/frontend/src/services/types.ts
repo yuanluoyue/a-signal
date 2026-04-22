@@ -433,3 +433,66 @@ export interface SettingsUpdateRequest {
   notifications?: Partial<NotificationSettings>;
   trading?: Partial<TradingSettings>;
 }
+
+// ==================== 事件相关类型 ====================
+
+export type EventCategory = 'macro' | 'policy' | 'company' | 'market' | 'sentiment';
+export type EventDecayType = 'step' | 'linear' | 'exponential';
+
+export interface EventSubject {
+  type: 'stock' | 'sector' | 'index' | 'commodity';
+  code: string;
+  weight: number;
+}
+
+export interface EventMetric {
+  name: string;
+  value: number;
+  unit: string;
+  yoyChange?: number;
+}
+
+export interface EventItem {
+  id: string;
+  newsId: string | null;
+  detectedAt: string;
+  occurredAt: string;
+  category: EventCategory;
+  subcategory: string;
+  subjects: EventSubject[];
+  sentimentDirection: number;
+  sentimentConfidence: number;
+  sentimentRationale: string;
+  importanceScore: number;
+  importanceBenchmark: string | null;
+  surpriseScore: number | null;
+  surpriseBaseline: string | null;
+  effectivePeriodStart: string;
+  effectivePeriodEnd: string | null;
+  effectiveDecayType: EventDecayType;
+  metrics: EventMetric[] | null;
+  sourceUrl: string | null;
+  sourceTitle: string;
+  sourceSummary: string;
+  sourcePublisher: string;
+  version: number;
+  processed: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventsListQueryParams extends PaginationParams {
+  category?: EventCategory;
+  subcategory?: string;
+  sentimentDirection?: number;
+  processed?: boolean;
+  startTime?: string;
+  endTime?: string;
+}
+
+export interface EventsListResponse {
+  data: EventItem[];
+  total: number;
+  page: number;
+  pageSize: number;
+}

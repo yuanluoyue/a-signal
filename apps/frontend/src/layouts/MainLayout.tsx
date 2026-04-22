@@ -17,6 +17,7 @@ import {
   KeyOutlined,
   DatabaseOutlined,
   FundOutlined,
+  ThunderboltOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -61,6 +62,11 @@ const MENU_ITEMS = [
         key: '/signals',
         icon: <BellOutlined />,
         label: '信号管理',
+      },
+      {
+        key: '/events',
+        icon: <ThunderboltOutlined />,
+        label: '事件管理',
       },
       {
         key: '/simulation',
@@ -114,6 +120,7 @@ const getOpenKeys = (pathname: string): string[] => {
     '/stocks': '/data',
     '/stock-trackings': '/data',
     '/signals': '/analysis',
+    '/events': '/analysis',
     '/simulation': '/analysis',
     '/backtest': '/analysis',
     '/agent-chat': '/analysis',
