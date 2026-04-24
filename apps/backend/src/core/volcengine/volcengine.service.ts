@@ -159,7 +159,7 @@ export class VolcengineService {
    - company: earnings_forecast, earnings_actual, shareholder_reduction, shareholder_increase, dividend, m_a, management_change, product_launch, litigation
    - market: index_change, sector_rotation, volume_anomaly, margin_trading, institutional_activity
    - sentiment: analyst_rating, media_sentiment, social_media_trend, fear_greed_index
-5. subjects：提取受影响的标的，type可选stock/sector/index/commodity，code为标的代码（股票代码6位数字），weight为关联度0~1
+5. subjects：只提取中国A股市场相关的标的，type必须为stock，code必须是6位数字的A股股票代码（如：000001、600000、300001、688001等），weight为关联度0~1。不要提取港股、美股、债券、基金等非A股标的。
 6. sentimentDirection：-1利空/0中性/1利好
 7. sentimentConfidence：0~1，LLM判断的可信度
 8. sentimentRationale：简短理由，不超过20字

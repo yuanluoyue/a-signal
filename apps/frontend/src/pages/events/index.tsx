@@ -235,17 +235,19 @@ const EventsPage: React.FC = () => {
   const columns = [
     {
       title: '分类',
-      dataIndex: 'category',
+      dataIndex: 'categoryName',
       key: 'category',
-      width: 80,
+      width: 100,
       align: 'center' as const,
-      render: (cat: EventCategory) => getCategoryTag(cat),
+      render: (name: string, record: EventItem) => (
+        <Tag color={categoryColorMap[record.category]}>{name}</Tag>
+      ),
     },
     {
       title: '子分类',
-      dataIndex: 'subcategory',
+      dataIndex: 'subcategoryName',
       key: 'subcategory',
-      width: 100,
+      width: 120,
       ellipsis: true,
     },
     {

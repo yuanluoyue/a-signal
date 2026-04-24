@@ -41,7 +41,7 @@ export class GetSignalsByDateRangeTool extends BaseTool<GetSignalsByDateRangeInp
     try {
       this.logger.debug(`[GetSignalsByDateRangeTool] Executing with input: ${JSON.stringify(input)}`);
 
-      const result = await this.signalsService.getSignalsList({
+      const result = await this.signalsService.findList({
         page: 1,
         pageSize: input.limit,
         stockCode: input.stockCode,
@@ -51,15 +51,15 @@ export class GetSignalsByDateRangeTool extends BaseTool<GetSignalsByDateRangeInp
 
       return result.data.map((signal) => ({
         id: signal.id,
-        stockCode: signal.stockCode,
-        stockName: signal.stockName,
-        direction: signal.direction,
-        confidence: signal.confidence,
-        sentiment: signal.sentiment,
-        reasoning: signal.reasoning,
-        keyFactors: signal.keyFactors,
-        timeWindow: signal.timeWindow,
-        signalTime: signal.signalTime,
+        stockCode: signal.stockCode ?? '',
+        stockName: signal.stockName ?? '',
+        direction: signal.direction ?? '',
+        confidence: signal.confidence ?? 0,
+        sentiment: signal.sentiment ?? '',
+        reasoning: signal.reasoning ?? '',
+        keyFactors: Array.isArray(signal.keyFactors) ? signal.keyFactors : [],
+        timeWindow: signal.timeWindow ?? '',
+        signalTime: signal.signalTime ?? new Date(),
       }));
     } catch (error) {
       this.logger.error(`[GetSignalsByDateRangeTool] Error: ${this.formatError(error)}`);

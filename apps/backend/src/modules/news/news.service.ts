@@ -388,11 +388,13 @@ export class NewsService {
         .where(sql`${signals.newsId} IN ${newsIds}`);
 
       signalsData.forEach(s => {
-        if (!relatedStocksMap[s.newsId]) {
-          relatedStocksMap[s.newsId] = [];
-        }
-        if (!relatedStocksMap[s.newsId].includes(s.stockCode)) {
-          relatedStocksMap[s.newsId].push(s.stockCode);
+        if (s.newsId) {
+          if (!relatedStocksMap[s.newsId]) {
+            relatedStocksMap[s.newsId] = [];
+          }
+          if (!relatedStocksMap[s.newsId].includes(s.stockCode ?? '')) {
+            relatedStocksMap[s.newsId].push(s.stockCode ?? '');
+          }
         }
       });
     }

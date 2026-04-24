@@ -139,21 +139,66 @@ export const events = pgTable(
 export type Event = typeof events.$inferSelect;
 export type NewEvent = typeof events.$inferInsert;
 
+export const signalRules = pgTable(
+  'signal_rules',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    name: varchar('name', { length: 100 }).notNull().unique(),
+    type: varchar('type', { length: 20 }).notNull(),
+    eventType: varchar('event_type', { length: 50 }),
+    enabled: boolean('enabled').notNull().default(true),
+    multiplier: decimal('multiplier', { precision: 5, scale: 4 })
+      .notNull()
+      .default('1.0'),
+    threshold: decimal('threshold', { precision: 5, scale: 4 })
+      .notNull()
+      .default('0.2'),
+    enableSurprise: boolean('enable_surprise').notNull().default(true),
+    enableConfidence: boolean('enable_confidence').notNull().default(true),
+    description: text('description'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    index('signal_rules_type_idx').on(table.type),
+    index('signal_rules_event_type_idx').on(table.eventType),
+    index('signal_rules_enabled_idx').on(table.enabled),
+  ],
+);
+
+export type SignalRule = typeof signalRules.$inferSelect;
+export type NewSignalRule = typeof signalRules.$inferInsert;
+
 export const signals = pgTable(
   'signals',
   {
     id: uuid('id').primaryKey().defaultRandom(),
-    newsId: uuid('news_id').notNull(),
+    newsId: uuid('news_id'),
+    stockCode: varchar('stock_code', { length: 20 }),
+    stockName: varchar('stock_name', { length: 100 }),
+    direction: varchar('direction', { length: 10 }),
+    confidence: integer('confidence'),
+    sentiment: varchar('sentiment', { length: 10 }),
+    reasoning: text('reasoning'),
+    keyFactors: jsonb('key_factors'),
+    timeWindow: varchar('time_window', { length: 20 }),
+    signalTime: timestamp('signal_time', { withTimezone: true }),
     eventId: uuid('event_id'),
-    stockCode: varchar('stock_code', { length: 20 }).notNull(),
-    stockName: varchar('stock_name', { length: 100 }).notNull(),
-    direction: varchar('direction', { length: 10 }).notNull(),
-    confidence: integer('confidence').notNull(),
-    sentiment: varchar('sentiment', { length: 10 }).notNull(),
-    reasoning: text('reasoning').notNull(),
-    keyFactors: jsonb('key_factors').notNull().$type<string[]>(),
-    timeWindow: varchar('time_window', { length: 20 }).notNull(),
-    signalTime: timestamp('signal_time', { withTimezone: true }).notNull(),
+    symbol: varchar('symbol', { length: 20 }),
+    action: varchar('action', { length: 10 }),
+    score: decimal('score', { precision: 5, scale: 4 }),
+    generatedAt: timestamp('generated_at', { withTimezone: true }).defaultNow(),
+    validFrom: timestamp('valid_from', { withTimezone: true }),
+    validTo: timestamp('valid_to', { withTimezone: true }),
+    reason: text('reason'),
+    ruleId: uuid('rule_id'),
+    ruleSnapshot: jsonb('rule_snapshot'),
+    weight: decimal('weight', { precision: 5, scale: 4 }),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -164,22 +209,28 @@ export const signals = pgTable(
   },
   (table) => [
     foreignKey({
-      columns: [table.newsId],
-      foreignColumns: [news.id],
-      name: 'signals_news_id_fk',
-    }),
-    foreignKey({
       columns: [table.eventId],
       foreignColumns: [events.id],
       name: 'signals_event_id_fk',
     }),
+    foreignKey({
+      columns: [table.ruleId],
+      foreignColumns: [signalRules.id],
+      name: 'signals_rule_id_fk',
+    }),
     index('signals_news_id_idx').on(table.newsId),
-    index('signals_event_id_idx').on(table.eventId),
     index('signals_stock_code_idx').on(table.stockCode),
     index('signals_direction_idx').on(table.direction),
     index('signals_confidence_idx').on(table.confidence),
     index('signals_sentiment_idx').on(table.sentiment),
     index('signals_signal_time_idx').on(table.signalTime),
+    index('signals_event_id_idx').on(table.eventId),
+    index('signals_symbol_idx').on(table.symbol),
+    index('signals_action_idx').on(table.action),
+    index('signals_score_idx').on(table.score),
+    index('signals_generated_at_idx').on(table.generatedAt),
+    index('signals_valid_from_idx').on(table.validFrom),
+    index('signals_rule_id_idx').on(table.ruleId),
   ],
 );
 

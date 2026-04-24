@@ -459,6 +459,8 @@ export interface EventItem {
   occurredAt: string;
   category: EventCategory;
   subcategory: string;
+  categoryName: string;
+  subcategoryName: string;
   subjects: EventSubject[];
   sentimentDirection: number;
   sentimentConfidence: number;
@@ -495,4 +497,71 @@ export interface EventsListResponse {
   total: number;
   page: number;
   pageSize: number;
+}
+
+// ==================== 信号规则相关类型 ====================
+
+export type SignalRuleType = 'global' | 'specific';
+
+export interface SignalRule {
+  id: string;
+  name: string;
+  type: SignalRuleType;
+  eventType: string | null;
+  enabled: boolean;
+  multiplier: string;
+  threshold: string;
+  enableSurprise: boolean;
+  enableConfidence: boolean;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GlobalRule {
+  id: string;
+  name: string;
+  type: SignalRuleType;
+  multiplier: string;
+  threshold: string;
+  enableSurprise: boolean;
+  enableConfidence: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SignalRulesListQueryParams extends PaginationParams {
+  type?: SignalRuleType;
+  eventType?: string;
+  enabled?: boolean;
+}
+
+export interface SignalRulesListResponse extends PaginationResponse<SignalRule> {}
+
+export interface CreateSignalRuleParams {
+  name: string;
+  type: SignalRuleType;
+  eventType?: string;
+  enabled?: boolean;
+  multiplier?: number;
+  threshold?: number;
+  enableSurprise?: boolean;
+  enableConfidence?: boolean;
+  description?: string;
+}
+
+export interface UpdateSignalRuleParams {
+  name?: string;
+  eventType?: string;
+  enabled?: boolean;
+  multiplier?: number;
+  threshold?: number;
+  description?: string;
+}
+
+export interface UpdateGlobalRuleParams {
+  multiplier?: number;
+  threshold?: number;
+  enableSurprise?: boolean;
+  enableConfidence?: boolean;
 }

@@ -85,7 +85,7 @@ export class StocksService {
 
     return {
       stockCode,
-      stockName: latestSignal.stockName,
+      stockName: latestSignal.stockName ?? '',
       signalCount: stockSignals.length,
       latestSignalTime: latestSignal.signalTime,
       signals: stockSignals,

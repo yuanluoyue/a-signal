@@ -69,6 +69,11 @@ const MENU_ITEMS = [
         label: '事件管理',
       },
       {
+        key: '/signal-rules',
+        icon: <SettingOutlined />,
+        label: '信号规则',
+      },
+      {
         key: '/simulation',
         icon: <WalletOutlined />,
         label: '账户模拟',
@@ -121,6 +126,7 @@ const getOpenKeys = (pathname: string): string[] => {
     '/stock-trackings': '/data',
     '/signals': '/analysis',
     '/events': '/analysis',
+    '/signal-rules': '/analysis',
     '/simulation': '/analysis',
     '/backtest': '/analysis',
     '/agent-chat': '/analysis',

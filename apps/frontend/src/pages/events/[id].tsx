@@ -128,47 +128,51 @@ const EventDetailPage: React.FC = () => {
 
   const signalColumns = [
     {
-      title: '股票代码',
-      dataIndex: 'stockCode',
-      key: 'stockCode',
+      title: '标的代码',
+      key: 'symbol',
       width: 100,
+      render: (_: unknown, record: Signal) => record.symbol || record.stockCode || '-',
     },
     {
       title: '股票名称',
-      dataIndex: 'stockName',
       key: 'stockName',
       width: 100,
+      render: (_: unknown, record: Signal) => record.stockName || '-',
     },
     {
-      title: '方向',
-      dataIndex: 'direction',
-      key: 'direction',
+      title: '动作',
+      key: 'action',
       width: 80,
       align: 'center' as const,
-      render: (direction: string) => {
-        if (direction === 'bullish') {
-          return <Tag color="success" icon={<ArrowUpOutlined />}>买入</Tag>;
+      render: (_: unknown, record: Signal) => {
+        const action = record.action || (record.direction === 'bullish' ? 'long' : record.direction === 'bearish' ? 'short' : 'hold');
+        if (action === 'long') {
+          return <Tag color="success" icon={<ArrowUpOutlined />}>做多</Tag>;
         }
-        if (direction === 'bearish') {
-          return <Tag color="error" icon={<ArrowDownOutlined />}>卖出</Tag>;
+        if (action === 'short') {
+          return <Tag color="error" icon={<ArrowDownOutlined />}>做空</Tag>;
         }
-        return <Tag color="default" icon={<MinusOutlined />}>中性</Tag>;
+        return <Tag color="default" icon={<MinusOutlined />}>观望</Tag>;
       },
     },
     {
-      title: '置信度',
-      dataIndex: 'confidence',
-      key: 'confidence',
+      title: '分数',
+      key: 'score',
       width: 100,
       align: 'center' as const,
-      render: (confidence: number) => <span>{confidence}%</span>,
+      render: (_: unknown, record: Signal) => {
+        const score = record.score ? parseFloat(record.score) : (record.confidence ? record.confidence / 100 : 0);
+        return <span>{score.toFixed(2)}</span>;
+      },
     },
     {
-      title: '信号时间',
-      dataIndex: 'signalTime',
-      key: 'signalTime',
+      title: '生成时间',
+      key: 'generatedAt',
       width: 170,
-      render: (time: string) => new Date(time).toLocaleString('zh-CN'),
+      render: (_: unknown, record: Signal) => {
+        const time = record.generatedAt || record.signalTime || record.createdAt;
+        return new Date(time).toLocaleString('zh-CN');
+      },
     },
     {
       title: '操作',

@@ -204,7 +204,7 @@ export class EventService {
         .select()
         .from(events)
         .where(whereClause || sql`1=1`)
-        .orderBy(desc(events.occurredAt))
+        .orderBy(desc(events.detectedAt))
         .limit(pageSize)
         .offset(offset);
 

@@ -87,10 +87,10 @@ export class BacktestService {
     dto: BacktestRequestDto,
     period: KlinePeriod,
   ): Promise<TradeResult | null> {
-    const signalTime = new Date(signal.signalTime);
+    const signalTime = new Date(signal.signalTime ?? new Date());
 
     const klineData = await this.klinesService.getKlines(
-      signal.stockCode,
+      signal.stockCode ?? '',
       period,
       signalTime,
       dto.endTime,
@@ -169,9 +169,9 @@ export class BacktestService {
 
     return {
       signalId: signal.id,
-      stockCode: signal.stockCode,
-      stockName: signal.stockName,
-      direction: signal.direction,
+      stockCode: signal.stockCode ?? '',
+      stockName: signal.stockName ?? '',
+      direction: signal.direction ?? '',
       entryPrice,
       exitPrice,
       return: tradeReturn,

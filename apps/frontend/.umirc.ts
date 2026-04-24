@@ -56,6 +56,11 @@ export default defineConfig({
           title: '事件详情',
         },
         {
+          path: '/signal-rules',
+          component: '@/pages/signal-rules/index',
+          title: '信号规则',
+        },
+        {
           path: '/stocks',
           component: '@/pages/stocks/index',
           title: '股票查询',

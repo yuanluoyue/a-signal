@@ -304,7 +304,12 @@ export class StockTrackingService {
       .orderBy(desc(signals.signalTime))
       .limit(20);
 
-    return signalsList;
+    return signalsList.map(s => ({
+      direction: s.direction ?? '',
+      confidence: s.confidence ?? 0,
+      sentiment: s.sentiment ?? '',
+      reasoning: s.reasoning ?? '',
+    }));
   }
 
   private async getLatestBacktestResult() {

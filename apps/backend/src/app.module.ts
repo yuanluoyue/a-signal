@@ -23,9 +23,12 @@ import { EventModule } from './modules/event/event.module.js';
 import { AgentModule } from './modules/agent/agent.module.js';
 import { ApiKeyModule } from './modules/api-key/api-key.module.js';
 import { McpModule } from './modules/mcp/mcp.module.js';
+import { SignalRuleModule } from './modules/signal-rule/signal-rule.module.js';
+import { SignalGeneratorModule } from './modules/signal-generator/signal-generator.module.js';
 import { AuthController } from './interfaces/admin/auth/auth.controller.js';
 import { NewsController } from './interfaces/admin/news/news.controller.js';
 import { SignalsController } from './interfaces/admin/signals/signals.controller.js';
+import { SignalRulesController } from './interfaces/admin/signal-rules/signal-rules.controller.js';
 import { BacktestController } from './interfaces/admin/backtest/backtest.controller.js';
 import { StocksController } from './interfaces/admin/stocks/stocks.controller.js';
 import { KlinesController } from './interfaces/admin/klines/klines.controller.js';
@@ -82,11 +85,14 @@ const jwtAuthGuardProvider: Provider = {
     AgentModule,
     ApiKeyModule,
     McpModule,
+    SignalRuleModule,
+    SignalGeneratorModule,
   ],
   controllers: [
     AuthController,
     NewsController,
     SignalsController,
+    SignalRulesController,
     BacktestController,
     StocksController,
     KlinesController,

@@ -30,6 +30,7 @@ import {
 } from '@ant-design/icons';
 import { useParams, useNavigate } from 'umi';
 import client from '@/services/client';
+import { getEventTypeName } from '@/utils/event.utils';
 import type { NewsItem, NewsSignal, AnalysisStatus, VectorizedStatus, EventItem } from '@/services/types';
 
 const { Title, Text, Paragraph } = Typography;
@@ -422,6 +423,7 @@ const NewsDetailPage: React.FC = () => {
                   dataIndex: 'subcategory',
                   key: 'subcategory',
                   width: 120,
+                  render: (subcategory: string) => getEventTypeName(subcategory),
                 },
                 {
                   title: '情绪方向',

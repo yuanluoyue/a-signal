@@ -230,10 +230,10 @@ export class NewsController {
       throw new NotFoundException('新闻不存在');
     }
 
-    const signals = await this.signalsService.findByNewsId(id);
+    const result = await this.signalsService.findList({ newsId: id });
     return {
-      data: signals,
-      total: signals.length,
+      data: result.data,
+      total: result.total,
     };
   }
 

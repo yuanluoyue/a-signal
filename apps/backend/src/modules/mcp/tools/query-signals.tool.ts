@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { SignalsService } from '../../signals/signals.service.js';
 import { McpToolDefinition, McpToolProperty } from '../mcp.types.js';
-import { SignalDirection } from '../../../interfaces/admin/signals/dto/signals-list-query.dto.js';
+import { SignalAction } from '../../../interfaces/admin/signals/dto/signals-list-query.dto.js';
 
 @Injectable()
 export class QuerySignalsTool {
@@ -21,22 +21,22 @@ export class QuerySignalsTool {
         description: '每页数量，默认20',
         default: 20,
       },
-      stockCode: {
+      symbol: {
         type: 'string',
         description: '股票代码筛选',
       },
-      direction: {
+      action: {
         type: 'string',
-        description: '信号方向筛选',
+        description: '信号动作筛选',
         enum: ['buy', 'sell', 'hold'],
       },
-      minConfidence: {
+      minScore: {
         type: 'number',
-        description: '最低置信度筛选（0-100）',
+        description: '最低分数筛选（-1 到 1）',
       },
-      maxConfidence: {
+      maxScore: {
         type: 'number',
-        description: '最高置信度筛选（0-100）',
+        description: '最高分数筛选（-1 到 1）',
       },
       startTime: {
         type: 'string',
@@ -50,7 +50,7 @@ export class QuerySignalsTool {
 
     return {
       name: 'query_signals',
-      description: '查询交易信号列表，支持按股票代码、方向、置信度和时间范围筛选',
+      description: '查询交易信号列表，支持按股票代码、动作、分数和时间范围筛选',
       inputSchema: {
         type: 'object',
         properties,
@@ -62,13 +62,13 @@ export class QuerySignalsTool {
     this.logger.debug(`[QuerySignalsTool] Executing with args: ${JSON.stringify(args)}`);
 
     try {
-      const result = await this.signalsService.getSignalsList({
+      const result = await this.signalsService.findList({
         page: (args.page as number) || 1,
         pageSize: (args.pageSize as number) || 20,
-        stockCode: args.stockCode as string | undefined,
-        direction: args.direction as SignalDirection | undefined,
-        minConfidence: args.minConfidence as number | undefined,
-        maxConfidence: args.maxConfidence as number | undefined,
+        symbol: args.symbol as string | undefined,
+        action: args.action as SignalAction | undefined,
+        minScore: args.minScore as number | undefined,
+        maxScore: args.maxScore as number | undefined,
         startTime: args.startTime as string | undefined,
         endTime: args.endTime as string | undefined,
       });
@@ -76,15 +76,10 @@ export class QuerySignalsTool {
       return {
         data: result.data.map((signal) => ({
           id: signal.id,
-          stockCode: signal.stockCode,
-          stockName: signal.stockName,
-          direction: signal.direction,
-          confidence: signal.confidence,
-          sentiment: signal.sentiment,
-          reasoning: signal.reasoning,
-          keyFactors: signal.keyFactors,
-          timeWindow: signal.timeWindow,
-          signalTime: signal.signalTime,
+          symbol: signal.symbol,
+          action: signal.action,
+          score: signal.score,
+          generatedAt: signal.generatedAt,
         })),
         total: result.total,
         page: result.page,

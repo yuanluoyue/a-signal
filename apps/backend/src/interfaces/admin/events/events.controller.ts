@@ -13,6 +13,24 @@ import { EventService } from '../../../modules/event/event.service.js';
 import { SignalsService } from '../../../modules/signals/signals.service.js';
 import { Public } from '../../../common/decorators/public.decorator.js';
 import { EventsListQueryDto } from './dto/index.js';
+import {
+  getEventCategoryName,
+  getEventSubcategoryName,
+} from '../../../common/utils/stock.utils.js';
+import type { Event } from '../../../core/db/schema.js';
+
+interface EventWithTranslation extends Event {
+  categoryName: string;
+  subcategoryName: string;
+}
+
+function addEventTranslation(event: Event): EventWithTranslation {
+  return {
+    ...event,
+    categoryName: getEventCategoryName(event.category),
+    subcategoryName: getEventSubcategoryName(event.subcategory),
+  };
+}
 
 @ApiTags('事件管理')
 @Controller('events')
@@ -28,7 +46,11 @@ export class EventsController {
   @ApiOperation({ summary: '获取事件列表（支持分页和筛选）' })
   @ApiResponse({ status: 200, description: '成功获取事件列表' })
   async getEventsList(@Query() query: EventsListQueryDto) {
-    return await this.eventService.findList(query);
+    const result = await this.eventService.findList(query);
+    return {
+      ...result,
+      data: result.data.map(addEventTranslation),
+    };
   }
 
   @Get('unprocessed')
@@ -37,7 +59,7 @@ export class EventsController {
   @ApiResponse({ status: 200, description: '成功获取未处理事件列表' })
   async getUnprocessedEvents() {
     const data = await this.eventService.findUnprocessed();
-    return { data, total: data.length };
+    return { data: data.map(addEventTranslation), total: data.length };
   }
 
   @Get(':id')
@@ -51,7 +73,7 @@ export class EventsController {
     if (!event) {
       throw new NotFoundException('事件不存在');
     }
-    return { data: event };
+    return { data: addEventTranslation(event) };
   }
 
   @Get(':id/signals')

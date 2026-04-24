@@ -35,15 +35,33 @@ const { Option } = Select;
 
 interface Signal {
   id: string;
-  stockCode: string;
-  stockName: string;
-  direction: 'bullish' | 'bearish' | 'neutral';
-  confidence: number;
-  sentiment: 'positive' | 'negative' | 'neutral';
-  reasoning: string;
-  keyFactors: string[];
-  timeWindow: string;
-  signalTime: string;
+  stockCode?: string;
+  stockName?: string;
+  direction?: 'bullish' | 'bearish' | 'neutral';
+  confidence?: number;
+  sentiment?: 'positive' | 'negative' | 'neutral';
+  reasoning?: string;
+  keyFactors?: string[];
+  timeWindow?: string;
+  signalTime?: string;
+  
+  eventId?: string;
+  symbol?: string;
+  action?: 'long' | 'short' | 'hold';
+  score?: string;
+  generatedAt?: string;
+  validFrom?: string;
+  validTo?: string;
+  reason?: string;
+  ruleId?: string;
+  ruleSnapshot?: {
+    multiplier: string;
+    threshold: string;
+    enableSurprise: boolean;
+    enableConfidence: boolean;
+  };
+  weight?: string;
+  
   createdAt: string;
 }
 
@@ -61,7 +79,7 @@ const SignalsPage: React.FC = () => {
   const [data, setData] = useState<Signal[]>([]);
   const [total, setTotal] = useState(0);
   const [current, setCurrent] = useState(1);
-  const [pageSize, setPageSize] = useState(20);
+  const [pageSize, setPageSize] = useState(10);
 
   const [stockCode, setStockCode] = useState('');
   const [direction, setDirection] = useState<string | undefined>(undefined);
@@ -74,7 +92,7 @@ const SignalsPage: React.FC = () => {
     const searchParams = new URLSearchParams(location.search);
     return {
       page: parseInt(searchParams.get('page') || '1', 10),
-      size: parseInt(searchParams.get('pageSize') || '20', 10),
+      size: parseInt(searchParams.get('pageSize') || '10', 10),
       stock: searchParams.get('stockCode') || '',
       dir: searchParams.get('direction') || undefined,
       minConf: parseInt(searchParams.get('minConfidence') || '0', 10),
@@ -216,50 +234,46 @@ const SignalsPage: React.FC = () => {
     }
   };
 
-  const getDirectionTag = (direction: string) => {
-    switch (direction) {
-      case 'bullish':
+  const getActionTag = (action?: string, direction?: string) => {
+    const effectiveAction = action || (direction === 'bullish' ? 'long' : direction === 'bearish' ? 'short' : 'hold');
+    
+    switch (effectiveAction) {
+      case 'long':
         return (
           <Tag color="success" icon={<ArrowUpOutlined />}>
-            买入
+            做多
           </Tag>
         );
-      case 'bearish':
+      case 'short':
         return (
           <Tag color="error" icon={<ArrowDownOutlined />}>
-            卖出
+            做空
           </Tag>
         );
       default:
         return (
           <Tag color="default" icon={<MinusOutlined />}>
-            中性
+            观望
           </Tag>
         );
     }
   };
 
-  const getSentimentTag = (sentiment: string) => {
-    switch (sentiment) {
-      case 'positive':
-        return <Tag color="success">积极</Tag>;
-      case 'negative':
-        return <Tag color="error">消极</Tag>;
-      default:
-        return <Tag color="default">中性</Tag>;
-    }
-  };
-
-  const getConfidenceProgress = (confidence: number) => {
+  const getScoreProgress = (score?: string, confidence?: number) => {
+    const scoreValue = score ? parseFloat(score) : (confidence ? confidence / 100 : 0);
+    const percent = Math.round(Math.abs(scoreValue) * 100);
     let status: 'success' | 'normal' | 'exception' = 'normal';
-    if (confidence >= 80) status = 'success';
-    else if (confidence >= 60) status = 'normal';
-    else status = 'exception';
-
+    
+    if (scoreValue > 0) {
+      status = scoreValue >= 0.7 ? 'success' : 'normal';
+    } else if (scoreValue < 0) {
+      status = scoreValue <= -0.7 ? 'exception' : 'normal';
+    }
+    
     return (
-      <Tooltip title={`${confidence}%`}>
+      <Tooltip title={`${scoreValue.toFixed(3)}`}>
         <Progress
-          percent={confidence}
+          percent={percent}
           size="small"
           status={status}
           style={{ width: 80 }}
@@ -271,85 +285,76 @@ const SignalsPage: React.FC = () => {
 
   const columns = [
     {
-      title: '股票代码',
-      dataIndex: 'stockCode',
-      key: 'stockCode',
-      width: 100,
-      render: (code: string, record: Signal) => (
+      title: '标的代码',
+      key: 'symbol',
+      width: 120,
+      render: (_: any, record: Signal) => (
         <Space direction="vertical" size={0}>
-          <span style={{ fontWeight: 'bold' }}>{code}</span>
-          <span style={{ fontSize: 12, color: '#999' }}>{record.stockName}</span>
+          <span style={{ fontWeight: 'bold' }}>{record.symbol || record.stockCode || '-'}</span>
+          <span style={{ fontSize: 12, color: '#999' }}>{record.stockName || ''}</span>
         </Space>
       ),
     },
     {
-      title: '方向',
-      dataIndex: 'direction',
-      key: 'direction',
-      width: 100,
-      align: 'center' as const,
-      render: (direction: string) => getDirectionTag(direction),
-    },
-    {
-      title: '置信度',
-      dataIndex: 'confidence',
-      key: 'confidence',
+      title: '动作',
+      key: 'action',
       width: 120,
       align: 'center' as const,
-      sorter: (a: Signal, b: Signal) => a.confidence - b.confidence,
-      render: (confidence: number) => (
+      render: (_: any, record: Signal) => getActionTag(record.action, record.direction),
+    },
+    {
+      title: '分数',
+      key: 'score',
+      width: 150,
+      align: 'center' as const,
+      sorter: (a: Signal, b: Signal) => {
+        const scoreA = a.score ? parseFloat(a.score) : (a.confidence ? a.confidence / 100 : 0);
+        const scoreB = b.score ? parseFloat(b.score) : (b.confidence ? b.confidence / 100 : 0);
+        return scoreA - scoreB;
+      },
+      render: (_: any, record: Signal) => (
         <Space>
-          {getConfidenceProgress(confidence)}
-          <span>{confidence}%</span>
+          {getScoreProgress(record.score, record.confidence)}
+          <span>{record.score ? parseFloat(record.score).toFixed(2) : (record.confidence ? `${record.confidence}%` : '-')}</span>
         </Space>
       ),
     },
     {
-      title: '情绪',
-      dataIndex: 'sentiment',
-      key: 'sentiment',
-      width: 80,
-      align: 'center' as const,
-      render: (sentiment: string) => getSentimentTag(sentiment),
+      title: '生成时间',
+      key: 'generatedAt',
+      width: 200,
+      sorter: (a: Signal, b: Signal) => {
+        const timeA = a.generatedAt || a.signalTime || a.createdAt;
+        const timeB = b.generatedAt || b.signalTime || b.createdAt;
+        return new Date(timeA).getTime() - new Date(timeB).getTime();
+      },
+      render: (_: any, record: Signal) => {
+        const time = record.generatedAt || record.signalTime || record.createdAt;
+        return new Date(time).toLocaleString('zh-CN');
+      },
     },
     {
-      title: '时间窗口',
-      dataIndex: 'timeWindow',
-      key: 'timeWindow',
-      width: 100,
-      align: 'center' as const,
-    },
-    {
-      title: '信号时间',
-      dataIndex: 'signalTime',
-      key: 'signalTime',
-      width: 180,
-      sorter: (a: Signal, b: Signal) =>
-        new Date(a.signalTime).getTime() - new Date(b.signalTime).getTime(),
-      render: (time: string) => new Date(time).toLocaleString('zh-CN'),
-    },
-    {
-      title: '关键因子',
-      dataIndex: 'keyFactors',
-      key: 'keyFactors',
+      title: '原因',
+      dataIndex: 'reason',
+      key: 'reason',
       ellipsis: true,
-      render: (factors: string[]) => (
-        <Space size={4} wrap>
-          {factors?.slice(0, 3).map((factor, index) => (
-            <Tag key={index}>{factor}</Tag>
-          ))}
-          {factors?.length > 3 && (
-            <Tooltip title={factors.slice(3).join(', ')}>
-              <Tag>+{factors.length - 3}</Tag>
-            </Tooltip>
-          )}
-        </Space>
-      ),
+      render: (reason?: string, record?: Signal) => reason || record?.reasoning || '-',
+    },
+    {
+      title: '来源事件',
+      dataIndex: 'eventId',
+      key: 'eventId',
+      width: 140,
+      render: (eventId?: string) => eventId ? (
+        <Tooltip title={eventId}>
+          <Tag color="blue">{eventId.substring(0, 8)}...</Tag>
+        </Tooltip>
+      ) : '-',
     },
     {
       title: '操作',
       key: 'action',
-      width: 180,
+      width: 160,
       align: 'center' as const,
       fixed: 'right' as const,
       render: (_: any, record: Signal) => (
@@ -363,16 +368,14 @@ const SignalsPage: React.FC = () => {
             查看
           </Button>
           <Popconfirm
-            title="确认删除"
-            description="确定要删除这个信号吗？此操作不可恢复。"
+            title="确定要删除这个信号吗？"
             onConfirm={() => handleDelete(record.id)}
-            okText="删除"
+            okText="确定"
             cancelText="取消"
-            okButtonProps={{ danger: true }}
           >
             <Button
-              danger
               size="small"
+              danger
               icon={<DeleteOutlined />}
             >
               删除

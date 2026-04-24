@@ -254,7 +254,7 @@ export class KlinesService {
       .selectDistinct({ stockCode: signals.stockCode })
       .from(signals);
 
-    return results.map((r) => r.stockCode);
+    return results.map((r) => r.stockCode).filter((code): code is string => code !== null);
   }
 
   async getLatestKlineTime(stockCode: string, period: KlinePeriod): Promise<Date | null> {

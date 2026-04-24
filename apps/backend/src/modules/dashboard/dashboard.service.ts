@@ -62,13 +62,13 @@ export class DashboardService {
 
     return results.map((item) => ({
       id: item.id,
-      stockCode: item.stockCode,
-      stockName: item.stockName,
-      direction: item.direction,
-      confidence: item.confidence,
-      sentiment: item.sentiment,
-      signalTime: item.signalTime,
-      createdAt: item.createdAt,
+      stockCode: item.stockCode ?? '',
+      stockName: item.stockName ?? '',
+      direction: item.direction ?? '',
+      confidence: item.confidence ?? 0,
+      sentiment: item.sentiment ?? '',
+      signalTime: item.signalTime ?? new Date(),
+      createdAt: item.createdAt ?? new Date(),
     }));
   }
 

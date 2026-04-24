@@ -34,8 +34,8 @@ export class SignalsController {
   @Public()
   @ApiOperation({ summary: '获取信号列表（支持分页和筛选）' })
   @ApiResponse({ status: 200, description: '成功获取信号列表' })
-  async getSignalsList(@Query() query: SignalsListQueryDto) {
-    const result = await this.signalsService.getSignalsList(query);
+  async findList(@Query() query: SignalsListQueryDto) {
+    const result = await this.signalsService.findList(query);
     return result;
   }
 
@@ -75,7 +75,7 @@ export class SignalsController {
     const endDate = endTime ? new Date(endTime) : undefined;
 
     const klines = await this.klinesService.getKlines(
-      signal.stockCode,
+      signal.symbol ?? signal.stockCode ?? '',
       period as '1d' | '4h',
       startDate,
       endDate,
@@ -84,8 +84,7 @@ export class SignalsController {
     return {
       data: klines,
       total: klines.length,
-      stockCode: signal.stockCode,
-      stockName: signal.stockName,
+      symbol: signal.symbol ?? signal.stockCode ?? '',
       period,
     };
   }
@@ -106,14 +105,14 @@ export class SignalsController {
     }
 
     await this.queueService.sendMessage(QUEUE_NAMES.KLINE_FETCH, {
-      stockCode: signal.stockCode,
+      symbol: signal.symbol,
       period: dto.period,
     });
 
     return {
       message: 'K线获取任务已提交到队列',
       signalId: id,
-      stockCode: signal.stockCode,
+      symbol: signal.symbol,
       period: dto.period,
     };
   }
@@ -130,7 +129,7 @@ export class SignalsController {
       throw new NotFoundException('信号不存在');
     }
 
-    await this.signalsService.deleteSignal(id);
+    await this.signalsService.deleteById(id);
 
     return {
       message: '信号已删除',

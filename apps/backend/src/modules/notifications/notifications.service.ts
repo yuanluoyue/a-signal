@@ -71,16 +71,16 @@ export class NotificationsService {
     stockName: string,
     stockCode: string,
   ): WechatMessage {
-    const directionEmoji = this.getDirectionEmoji(signal.direction);
-    const sentimentEmoji = this.getSentimentEmoji(signal.sentiment);
+    const directionEmoji = this.getDirectionEmoji(signal.direction ?? '');
+    const sentimentEmoji = this.getSentimentEmoji(signal.sentiment ?? '');
 
     const content = `**${directionEmoji} 新交易信号**\n` +
       `>股票: ${stockName}(${stockCode})\n` +
-      `>方向: ${signal.direction}\n` +
-      `>置信度: ${signal.confidence}%\n` +
-      `>情绪: ${sentimentEmoji} ${signal.sentiment}\n` +
-      `>时间窗口: ${signal.timeWindow}\n` +
-      `>理由: ${signal.reasoning}`;
+      `>方向: ${signal.direction ?? ''}\n` +
+      `>置信度: ${signal.confidence ?? 0}%\n` +
+      `>情绪: ${sentimentEmoji} ${signal.sentiment ?? ''}\n` +
+      `>时间窗口: ${signal.timeWindow ?? ''}\n` +
+      `>理由: ${signal.reasoning ?? ''}`;
 
     return {
       msgtype: 'markdown',
@@ -156,9 +156,10 @@ export class NotificationsService {
     context: SignalNotificationContext,
   ): Promise<void> {
     try {
-      if (context.signal.confidence < webhook.minConfidence || context.signal.confidence > webhook.maxConfidence) {
+      const confidence = context.signal.confidence ?? 0;
+      if (confidence < webhook.minConfidence || confidence > webhook.maxConfidence) {
         this.logger.debug(
-          `Skipping webhook ${webhook.name} - signal confidence (${context.signal.confidence}%) ` +
+          `Skipping webhook ${webhook.name} - signal confidence (${confidence}%) ` +
             `is not in range [${webhook.minConfidence}%, ${webhook.maxConfidence}%]`,
         );
         return;
