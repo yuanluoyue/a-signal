@@ -128,6 +128,43 @@ async function seed() {
         console.log(`Signal rule already exists: ${rule.name}`);
       }
     }
+
+    // ==================== 定时任务数据 ====================
+    console.log('Seeding scheduler tasks...');
+
+    const schedulerTasksData = [
+      {
+        name: 'news-crawl',
+        cronExpression: '0 0 19 * * *',
+        description: '每天晚上7点抓取东方财富新闻',
+        enabled: true,
+      },
+      {
+        name: 'event-analyze',
+        cronExpression: '0 0 20 * * *',
+        description: '每天晚上8点分析未分析的新闻',
+        enabled: true,
+      },
+      {
+        name: 'kline-update',
+        cronExpression: '0 0 8 * * *',
+        description: '每天早上8点更新K线数据',
+        enabled: true,
+      },
+    ];
+
+    for (const task of schedulerTasksData) {
+      const existing = await db
+        .select()
+        .from(schema.schedulerTasks)
+        .where(eq(schema.schedulerTasks.name, task.name));
+      if (existing.length === 0) {
+        await db.insert(schema.schedulerTasks).values(task);
+        console.log(`Created scheduler task: ${task.name}`);
+      } else {
+        console.log(`Scheduler task already exists: ${task.name}`);
+      }
+    }
   } catch (error) {
     console.error('Seed failed:', error);
     throw error;

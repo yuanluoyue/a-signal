@@ -70,9 +70,9 @@ export class SchedulerController {
           this.logger.log('[triggerTask] Executing news-crawl task...');
           await this.schedulerTasksService.manualNewsCrawl();
           break;
-        case 'news-analyze':
-          this.logger.log('[triggerTask] Executing news-analyze task...');
-          await this.schedulerTasksService.manualNewsAnalyze();
+        case 'event-analyze':
+          this.logger.log('[triggerTask] Executing event-analyze task...');
+          await this.schedulerTasksService.manualEventAnalyze();
           break;
         case 'kline-update':
           this.logger.log('[triggerTask] Executing kline-update task...');

@@ -11,6 +11,7 @@ import {
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
 import { EventService } from '../../../modules/event/event.service.js';
 import { SignalsService } from '../../../modules/signals/signals.service.js';
+import { SignalGeneratorService } from '../../../modules/signal-generator/signal-generator.service.js';
 import { Public } from '../../../common/decorators/public.decorator.js';
 import { EventsListQueryDto } from './dto/index.js';
 import {
@@ -39,6 +40,7 @@ export class EventsController {
   constructor(
     private readonly eventService: EventService,
     private readonly signalsService: SignalsService,
+    private readonly signalGeneratorService: SignalGeneratorService,
   ) {}
 
   @Get()
@@ -90,5 +92,25 @@ export class EventsController {
 
     const signals = await this.signalsService.findByEventId(id);
     return { data: signals, total: signals.length };
+  }
+
+  @Post(':id/regenerate-signals')
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: '重新生成事件关联的信号' })
+  @ApiParam({ name: 'id', description: '事件 ID', type: String })
+  @ApiResponse({ status: 200, description: '信号重新生成成功' })
+  @ApiResponse({ status: 404, description: '事件不存在' })
+  async regenerateEventSignals(@Param('id') id: string) {
+    const event = await this.eventService.findById(id);
+    if (!event) {
+      throw new NotFoundException('事件不存在');
+    }
+
+    const signals = await this.signalGeneratorService.regenerateSignalsForEvent(id);
+    return {
+      message: `成功重新生成 ${signals.length} 个信号`,
+      data: signals,
+    };
   }
 }

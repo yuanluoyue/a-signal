@@ -49,31 +49,21 @@ export class WebhooksController {
     };
   }
 
-  @Put(':id')
-  @ApiOperation({ summary: '更新 Webhook' })
+  @Get(':id/signals')
+  @ApiOperation({ summary: '获取最近信号列表' })
   @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
-  @ApiResponse({ status: 200, description: 'Webhook 更新成功' })
+  @ApiResponse({ status: 200, description: '成功获取信号列表' })
   @ApiResponse({ status: 404, description: 'Webhook 不存在' })
-  async updateWebhook(
-    @Param('id') id: string,
-    @Body() dto: UpdateWebhookDto,
-  ) {
-    const webhook = await this.webhooksService.update(id, dto);
-    return {
-      data: webhook,
-      message: 'Webhook 更新成功',
-    };
-  }
+  async getRecentSignals(@Param('id') id: string) {
+    const webhook = await this.webhooksService.findById(id);
+    if (!webhook) {
+      throw new NotFoundException('Webhook 不存在');
+    }
 
-  @Delete(':id')
-  @ApiOperation({ summary: '删除 Webhook' })
-  @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
-  @ApiResponse({ status: 200, description: 'Webhook 删除成功' })
-  @ApiResponse({ status: 404, description: 'Webhook 不存在' })
-  async deleteWebhook(@Param('id') id: string) {
-    await this.webhooksService.delete(id);
+    const signals = await this.webhooksService.getRecentSignals(20);
     return {
-      message: 'Webhook 删除成功',
+      data: signals,
+      total: signals.length,
     };
   }
 
@@ -100,6 +90,53 @@ export class WebhooksController {
       message: 'Webhook 测试消息已发送',
       webhookId: id,
       webhookName: webhook.name,
+    };
+  }
+
+  @Post(':id/test-signal/:signalId')
+  @HttpCode(HttpStatus.OK)
+  @ApiOperation({ summary: '使用指定信号测试 Webhook' })
+  @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
+  @ApiParam({ name: 'signalId', description: 'Signal ID', type: String })
+  @ApiResponse({ status: 200, description: '测试消息已发送' })
+  @ApiResponse({ status: 404, description: 'Webhook 或信号不存在' })
+  async testWebhookWithSignal(
+    @Param('id') id: string,
+    @Param('signalId') signalId: string,
+  ) {
+    await this.webhooksService.sendSignalTestNotification(id, signalId);
+    return {
+      message: '测试消息已发送',
+      webhookId: id,
+      signalId,
+    };
+  }
+
+  @Put(':id')
+  @ApiOperation({ summary: '更新 Webhook' })
+  @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
+  @ApiResponse({ status: 200, description: 'Webhook 更新成功' })
+  @ApiResponse({ status: 404, description: 'Webhook 不存在' })
+  async updateWebhook(
+    @Param('id') id: string,
+    @Body() dto: UpdateWebhookDto,
+  ) {
+    const webhook = await this.webhooksService.update(id, dto);
+    return {
+      data: webhook,
+      message: 'Webhook 更新成功',
+    };
+  }
+
+  @Delete(':id')
+  @ApiOperation({ summary: '删除 Webhook' })
+  @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
+  @ApiResponse({ status: 200, description: 'Webhook 删除成功' })
+  @ApiResponse({ status: 404, description: 'Webhook 不存在' })
+  async deleteWebhook(@Param('id') id: string) {
+    await this.webhooksService.delete(id);
+    return {
+      message: 'Webhook 删除成功',
     };
   }
 

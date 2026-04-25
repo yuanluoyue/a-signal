@@ -15,6 +15,7 @@ import {
   message,
   Popconfirm,
   Tooltip,
+  Radio,
 } from 'antd';
 import {
   PlusOutlined,
@@ -28,6 +29,7 @@ import {
   CloseCircleOutlined,
 } from '@ant-design/icons';
 import client from '@/services/client';
+import type { Signal } from '@/services/types';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -37,8 +39,8 @@ interface Webhook {
   name: string;
   url: string;
   type: 'wechat' | 'dingtalk' | 'slack' | 'custom';
-  minConfidence: number;
-  maxConfidence: number;
+  minScore: number;
+  maxScore: number;
   enabled: boolean;
   createdAt: string;
   updatedAt: string;
@@ -48,7 +50,7 @@ interface WebhookFormData {
   name: string;
   url: string;
   type: 'wechat' | 'dingtalk' | 'slack' | 'custom';
-  confidenceRange: [number, number];
+  scoreRange: [number, number];
   enabled?: boolean;
 }
 
@@ -59,6 +61,11 @@ const NotificationsPage: React.FC = () => {
   const [editingWebhook, setEditingWebhook] = useState<Webhook | null>(null);
   const [form] = Form.useForm();
   const [testingWebhookId, setTestingWebhookId] = useState<string | null>(null);
+  const [testModalVisible, setTestModalVisible] = useState(false);
+  const [testingWebhook, setTestingWebhook] = useState<Webhook | null>(null);
+  const [recentSignals, setRecentSignals] = useState<Signal[]>([]);
+  const [selectedSignalId, setSelectedSignalId] = useState<string | null>(null);
+  const [loadingSignals, setLoadingSignals] = useState(false);
 
   // 获取 Webhook 列表
   const fetchWebhooks = async () => {
@@ -88,7 +95,7 @@ const NotificationsPage: React.FC = () => {
     form.resetFields();
     form.setFieldsValue({
       type: 'wechat',
-      confidenceRange: [0, 100],
+      scoreRange: [0, 1],
       enabled: true,
     });
     setModalVisible(true);
@@ -101,7 +108,7 @@ const NotificationsPage: React.FC = () => {
       name: record.name,
       url: record.url,
       type: record.type,
-      confidenceRange: [record.minConfidence, record.maxConfidence],
+      scoreRange: [record.minScore ?? 0, record.maxScore ?? 1],
       enabled: record.enabled,
     });
     setModalVisible(true);
@@ -114,8 +121,8 @@ const NotificationsPage: React.FC = () => {
         name: values.name,
         url: values.url,
         type: values.type,
-        minConfidence: values.confidenceRange[0],
-        maxConfidence: values.confidenceRange[1],
+        minScore: values.scoreRange[0],
+        maxScore: values.scoreRange[1],
         enabled: values.enabled,
       };
 
@@ -146,12 +153,40 @@ const NotificationsPage: React.FC = () => {
     }
   };
 
-  // 测试 Webhook
-  const handleTest = async (id: string) => {
+  // 测试 Webhook - 打开测试弹窗
+  const handleTest = async (webhook: Webhook) => {
     try {
-      setTestingWebhookId(id);
-      await client.post(`/webhooks/${id}/test`);
+      setTestingWebhook(webhook);
+      setLoadingSignals(true);
+      setSelectedSignalId(null);
+      setTestModalVisible(true);
+      
+      const response = await client.get<{ data: Signal[] }>(`/webhooks/${webhook.id}/signals`);
+      console.log('[Notifications] Signals response:', response);
+      const signalsData = response.data?.data || response.data || [];
+      console.log('[Notifications] Signals data:', signalsData);
+      setRecentSignals(Array.isArray(signalsData) ? signalsData : []);
+    } catch (error) {
+      console.error('获取信号列表失败:', error);
+      message.error('获取信号列表失败');
+      setTestModalVisible(false);
+    } finally {
+      setLoadingSignals(false);
+    }
+  };
+
+  // 发送测试通知
+  const handleTestSignal = async () => {
+    if (!testingWebhook || !selectedSignalId) {
+      message.warning('请选择一个信号进行测试');
+      return;
+    }
+
+    try {
+      setTestingWebhookId(testingWebhook.id);
+      await client.post(`/webhooks/${testingWebhook.id}/test-signal/${selectedSignalId}`);
       message.success('测试消息已发送');
+      setTestModalVisible(false);
     } catch (error) {
       console.error('测试 Webhook 失败:', error);
       message.error('测试 Webhook 失败');
@@ -184,12 +219,14 @@ const NotificationsPage: React.FC = () => {
     return <Tag color={config.color}>{config.label}</Tag>;
   };
 
-  // 格式化置信度范围显示
-  const formatConfidenceRange = (min: number, max: number) => {
+  // 格式化分数范围显示
+  const formatScoreRange = (min: number | null | undefined, max: number | null | undefined) => {
+    const minScore = min ?? 0;
+    const maxScore = max ?? 1;
     return (
       <Space style={{ whiteSpace: 'nowrap' }}>
-        <PercentageOutlined style={{ color: min >= 70 ? '#52c41a' : '#faad14' }} />
-        <span>{min}% - {max}%</span>
+        <PercentageOutlined style={{ color: minScore >= 0.5 ? '#52c41a' : '#faad14' }} />
+        <span>{minScore.toFixed(2)} - {maxScore.toFixed(2)}</span>
       </Space>
     );
   };
@@ -230,11 +267,11 @@ const NotificationsPage: React.FC = () => {
       render: (type: string) => getTypeTag(type),
     },
     {
-      title: '置信度范围',
-      key: 'confidenceRange',
+      title: '分数绝对值范围',
+      key: 'scoreRange',
       width: 140,
       align: 'center' as const,
-      render: (_: any, record: Webhook) => formatConfidenceRange(record.minConfidence, record.maxConfidence),
+      render: (_: any, record: Webhook) => formatScoreRange(record.minScore, record.maxScore),
     },
     {
       title: '状态',
@@ -270,8 +307,7 @@ const NotificationsPage: React.FC = () => {
             type="primary"
             size="small"
             icon={<SendOutlined />}
-            loading={testingWebhookId === record.id}
-            onClick={() => handleTest(record.id)}
+            onClick={() => handleTest(record)}
           >
             测试
           </Button>
@@ -375,30 +411,33 @@ const NotificationsPage: React.FC = () => {
           </Form.Item>
 
           <Form.Item
-            name="confidenceRange"
-            label="置信度范围"
-            rules={[{ required: true, message: '请设置置信度范围' }]}
-            tooltip="只有置信度在此范围内的信号才会触发通知"
+            name="scoreRange"
+            label="分数绝对值范围"
+            rules={[{ required: true, message: '请设置分数范围' }]}
+            tooltip="只有分数绝对值在此范围内的信号才会触发通知（范围：0 到 1）"
           >
             <Slider
               range
               min={0}
-              max={100}
+              max={1}
+              step={0.01}
               marks={{
-                0: '0%',
-                25: '25%',
-                50: '50%',
-                75: '75%',
-                100: '100%',
+                '0': '0',
+                '0.25': '0.25',
+                '0.5': '0.5',
+                '0.75': '0.75',
+                '1': '1',
               }}
             />
           </Form.Item>
-          <Form.Item shouldUpdate={(prev, curr) => prev.confidenceRange !== curr.confidenceRange}>
+          <Form.Item shouldUpdate={(prev, curr) => prev.scoreRange !== curr.scoreRange}>
             {({ getFieldValue }) => {
-              const range = getFieldValue('confidenceRange') || [0, 100];
+              const range = getFieldValue('scoreRange') || [0, 1];
+              const minScore = range?.[0] ?? 0;
+              const maxScore = range?.[1] ?? 1;
               return (
                 <Text type="secondary" style={{ display: 'block', marginTop: -8, marginBottom: 16 }}>
-                  当前范围: {range[0]}% - {range[1]}%
+                  当前范围: {minScore.toFixed(2)} - {maxScore.toFixed(2)}
                 </Text>
               );
             }}
@@ -415,6 +454,87 @@ const NotificationsPage: React.FC = () => {
             />
           </Form.Item>
         </Form>
+      </Modal>
+
+      <Modal
+        title={`测试 Webhook - ${testingWebhook?.name || ''}`}
+        open={testModalVisible}
+        onCancel={() => setTestModalVisible(false)}
+        onOk={handleTestSignal}
+        okText="发送测试"
+        cancelText="取消"
+        okButtonProps={{ 
+          disabled: !selectedSignalId,
+          loading: testingWebhookId === testingWebhook?.id,
+        }}
+        width={800}
+      >
+        <div style={{ marginBottom: 16 }}>
+          <Text type="secondary">选择一个信号进行测试，测试消息将发送到配置的 Webhook URL</Text>
+        </div>
+        
+        {loadingSignals ? (
+          <div style={{ textAlign: 'center', padding: '40px 0' }}>
+            <Text>加载信号列表中...</Text>
+          </div>
+        ) : recentSignals.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '40px 0' }}>
+            <Text type="secondary">暂无信号数据</Text>
+          </div>
+        ) : (
+          <Radio.Group
+            value={selectedSignalId}
+            onChange={(e) => setSelectedSignalId(e.target.value)}
+            style={{ width: '100%' }}
+          >
+            <div style={{ maxHeight: 400, overflow: 'auto' }}>
+              {recentSignals.map((signal) => {
+                const action = signal.action || (signal.direction === 'bullish' ? 'long' : signal.direction === 'bearish' ? 'short' : 'hold');
+                const score = signal.score ? parseFloat(signal.score) : (signal.confidence ? signal.confidence / 100 : 0);
+                const time = signal.generatedAt || signal.signalTime || signal.createdAt;
+                
+                return (
+                  <Radio
+                    key={signal.id}
+                    value={signal.id}
+                    style={{ 
+                      width: '100%', 
+                      padding: '12px',
+                      marginBottom: '8px',
+                      border: selectedSignalId === signal.id ? '2px solid #1890ff' : '1px solid #f0f0f0',
+                      borderRadius: '4px',
+                      display: 'block',
+                    }}
+                  >
+                    <div style={{ marginLeft: 8 }}>
+                      <Space direction="vertical" size="small" style={{ width: '100%' }}>
+                        <Space>
+                          <Tag color={action === 'long' ? 'green' : action === 'short' ? 'red' : 'default'}>
+                            {action === 'long' ? '买入' : action === 'short' ? '卖出' : '观望'}
+                          </Tag>
+                          <Text strong>{signal.stockName || signal.stockCode || signal.symbol}</Text>
+                          <Text type="secondary">({signal.stockCode || signal.symbol})</Text>
+                        </Space>
+                        <Space>
+                          <Text type="secondary">分数: {score.toFixed(2)}</Text>
+                          <Text type="secondary">|</Text>
+                          <Text type="secondary">
+                            {time ? new Date(time).toLocaleString('zh-CN') : '-'}
+                          </Text>
+                        </Space>
+                        {signal.reason && (
+                          <Text type="secondary" ellipsis style={{ maxWidth: 600 }}>
+                            理由: {signal.reason}
+                          </Text>
+                        )}
+                      </Space>
+                    </div>
+                  </Radio>
+                );
+              })}
+            </div>
+          </Radio.Group>
+        )}
       </Modal>
     </div>
   );

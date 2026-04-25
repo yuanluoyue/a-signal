@@ -275,8 +275,10 @@ export const webhooks = pgTable(
     name: varchar('name', { length: 100 }).notNull(),
     url: text('url').notNull(),
     type: varchar('type', { length: 20 }).notNull(),
-    minConfidence: integer('min_confidence').notNull().default(0),
-    maxConfidence: integer('max_confidence').notNull().default(100),
+    minConfidence: integer('min_confidence').default(0),
+    maxConfidence: integer('max_confidence').default(100),
+    minScore: decimal('min_score', { precision: 4, scale: 3 }).default('0'),
+    maxScore: decimal('max_score', { precision: 4, scale: 3 }).default('1'),
     enabled: boolean('enabled').notNull().default(true),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()

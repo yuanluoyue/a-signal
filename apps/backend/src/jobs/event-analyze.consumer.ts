@@ -10,6 +10,7 @@ import { EventService, CreateEventDto } from '../modules/event/event.service.js'
 import { SignalGeneratorService } from '../modules/signal-generator/signal-generator.service.js';
 import { news, News } from '../core/db/schema.js';
 import { filterAStockSubjects } from '../common/utils/stock.utils.js';
+import { SensitiveContentError } from '../common/errors/index.js';
 
 export interface EventAnalyzeMessage {
   newsId: string;
@@ -75,6 +76,14 @@ export class EventAnalyzeConsumer extends QueueConsumer {
 
       this.logger.log(`[EventAnalyzeConsumer] Successfully analyzed news ${newsId}, generated ${analysisResult.events.length} events`);
     } catch (error) {
+      if (error instanceof SensitiveContentError) {
+        this.logger.warn(
+          `[EventAnalyzeConsumer] News ${newsId} contains sensitive content, marking as failed without retry`,
+        );
+        await this.updateNewsAnalyzeStatus(newsId, 'failed');
+        return;
+      }
+      
       this.logger.error(
         `[EventAnalyzeConsumer] Failed to analyze news ${newsId}: ${error instanceof Error ? error.message : String(error)}`,
       );

@@ -1,4 +1,4 @@
-import { IsString, IsEnum, IsInt, Min, Max, IsOptional, IsBoolean } from 'class-validator';
+import { IsString, IsEnum, IsNumber, Min, Max, IsOptional, IsBoolean } from 'class-validator';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
 export enum WebhookType {
@@ -18,17 +18,17 @@ export class CreateWebhookDto {
   @IsEnum(WebhookType)
   type: WebhookType;
 
-  @ApiProperty({ description: '最小置信度 (0-100)', default: 0 })
-  @IsInt()
+  @ApiProperty({ description: '最小分数绝对值 (0 到 1)', default: 0 })
+  @IsNumber()
   @Min(0)
-  @Max(100)
-  minConfidence: number = 0;
+  @Max(1)
+  minScore: number = 0;
 
-  @ApiProperty({ description: '最大置信度 (0-100)', default: 100 })
-  @IsInt()
+  @ApiProperty({ description: '最大分数绝对值 (0 到 1)', default: 1 })
+  @IsNumber()
   @Min(0)
-  @Max(100)
-  maxConfidence: number = 100;
+  @Max(1)
+  maxScore: number = 1;
 
   @ApiPropertyOptional({ description: '是否启用', default: true })
   @IsOptional()

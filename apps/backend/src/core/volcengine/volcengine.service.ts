@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { z } from 'zod';
+import { SensitiveContentError } from '../../common/errors/index.js';
 
 const VOLCENGINE_API_URL = 'https://ark.cn-beijing.volces.com/api/v3/responses';
 const MODEL_NAME = 'deepseek-v3-2-251201';
@@ -109,6 +110,13 @@ export class VolcengineService {
 
       if (!response.ok) {
         const errorText = await response.text();
+        
+        if (errorText.includes('InputTextSensitiveContentDetected')) {
+          throw new SensitiveContentError(
+            `Volcengine API detected sensitive content: ${response.status} ${response.statusText}`,
+          );
+        }
+        
         throw new Error(
           `Volcengine API error: ${response.status} ${response.statusText} - ${errorText}`,
         );

@@ -71,16 +71,27 @@ export class NotificationsService {
     stockName: string,
     stockCode: string,
   ): WechatMessage {
-    const directionEmoji = this.getDirectionEmoji(signal.direction ?? '');
-    const sentimentEmoji = this.getSentimentEmoji(signal.sentiment ?? '');
+    const direction = (signal.action || signal.direction || '').toLowerCase();
+    const directionEmoji = this.getDirectionEmoji(direction);
+    
+    let directionText: string;
+    if (direction === 'bullish' || direction === 'long') {
+      directionText = '买入';
+    } else if (direction === 'bearish' || direction === 'short') {
+      directionText = '卖出';
+    } else {
+      directionText = '观望';
+    }
+    
+    const score = parseFloat(signal.score || '0');
+    const time = signal.generatedAt || signal.signalTime || signal.createdAt;
 
     const content = `**${directionEmoji} 新交易信号**\n` +
       `>股票: ${stockName}(${stockCode})\n` +
-      `>方向: ${signal.direction ?? ''}\n` +
-      `>置信度: ${signal.confidence ?? 0}%\n` +
-      `>情绪: ${sentimentEmoji} ${signal.sentiment ?? ''}\n` +
-      `>时间窗口: ${signal.timeWindow ?? ''}\n` +
-      `>理由: ${signal.reasoning ?? ''}`;
+      `>方向: ${directionText}\n` +
+      `>分数: ${score.toFixed(2)}\n` +
+      `>理由: ${signal.reason ?? signal.reasoning ?? ''}\n` +
+      `>时间: ${time ? new Date(time).toLocaleString('zh-CN') : '-'}`;
 
     return {
       msgtype: 'markdown',
@@ -95,17 +106,13 @@ export class NotificationsService {
       buy: '📈',
       sell: '📉',
       hold: '➡️',
+      bullish: '📈',
+      bearish: '📉',
+      neutral: '➡️',
+      long: '📈',
+      short: '📉',
     };
     return emojiMap[direction.toLowerCase()] || '📊';
-  }
-
-  private getSentimentEmoji(sentiment: string): string {
-    const emojiMap: Record<string, string> = {
-      positive: '😊',
-      negative: '😔',
-      neutral: '😐',
-    };
-    return emojiMap[sentiment.toLowerCase()] || '😐';
   }
 
   async notifySignalAnalyzed(context: SignalNotificationContext): Promise<void> {
@@ -156,11 +163,15 @@ export class NotificationsService {
     context: SignalNotificationContext,
   ): Promise<void> {
     try {
-      const confidence = context.signal.confidence ?? 0;
-      if (confidence < webhook.minConfidence || confidence > webhook.maxConfidence) {
+      const score = parseFloat(context.signal.score || '0');
+      const absScore = Math.abs(score);
+      const minScore = webhook.minScore ? parseFloat(webhook.minScore) : 0;
+      const maxScore = webhook.maxScore ? parseFloat(webhook.maxScore) : 1;
+      
+      if (absScore < minScore || absScore > maxScore) {
         this.logger.debug(
-          `Skipping webhook ${webhook.name} - signal confidence (${confidence}%) ` +
-            `is not in range [${webhook.minConfidence}%, ${webhook.maxConfidence}%]`,
+          `Skipping webhook ${webhook.name} - signal absolute score (${absScore}) ` +
+            `is not in range [${minScore}, ${maxScore}]`,
         );
         return;
       }

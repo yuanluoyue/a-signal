@@ -49,7 +49,6 @@ import { JwtAuthGuard } from './common/guards/jwt-auth.guard.js';
 import { SchedulerTasksService } from './jobs/scheduler-tasks.service.js';
 import { NewsCrawlConsumer } from './jobs/news-crawl.consumer.js';
 import { NewsVectorizeConsumer } from './jobs/news-vectorize.consumer.js';
-import { SignalAnalyzeConsumer } from './jobs/signal-analyze.consumer.js';
 import { KlineFetchConsumer } from './jobs/kline-fetch.consumer.js';
 import { StockTrackFetchConsumer } from './jobs/stock-track-fetch.consumer.js';
 import { EventAnalyzeConsumer } from './jobs/event-analyze.consumer.js';
@@ -117,7 +116,6 @@ const jwtAuthGuardProvider: Provider = {
     SchedulerTasksService,
     NewsCrawlConsumer,
     NewsVectorizeConsumer,
-    SignalAnalyzeConsumer,
     KlineFetchConsumer,
     StockTrackFetchConsumer,
     EventAnalyzeConsumer,

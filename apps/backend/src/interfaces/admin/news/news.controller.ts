@@ -178,8 +178,8 @@ export class NewsController {
 
     await this.newsService.updateAnalyzeStatus(id, 'analyzing');
 
-    console.log(`[NewsController] Sending news ${id} to queue ${QUEUE_NAMES.NEWS_ANALYZE}`);
-    await this.queueService.sendMessage(QUEUE_NAMES.NEWS_ANALYZE, { newsId: id });
+    console.log(`[NewsController] Sending news ${id} to queue ${QUEUE_NAMES.EVENT_ANALYZE}`);
+    await this.queueService.sendMessage(QUEUE_NAMES.EVENT_ANALYZE, { newsId: id });
     console.log(`[NewsController] Successfully sent news ${id} to queue`);
 
     return {

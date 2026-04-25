@@ -2,7 +2,9 @@ import { Injectable, Logger } from '@nestjs/common';
 import { SignalRuleService } from '../signal-rule/signal-rule.service.js';
 import { SignalsService } from '../signals/signals.service.js';
 import { EventService } from '../event/event.service.js';
-import type { Event } from '../../core/db/schema.js';
+import { NotificationsService } from '../notifications/notifications.service.js';
+import { StockService } from '../stock/stock.service.js';
+import type { Event, Signal } from '../../core/db/schema.js';
 import type { SignalRule } from '../../core/db/schema.js';
 
 export interface GeneratedSignal {
@@ -24,6 +26,8 @@ export class SignalGeneratorService {
     private readonly signalRuleService: SignalRuleService,
     private readonly signalsService: SignalsService,
     private readonly eventService: EventService,
+    private readonly notificationsService: NotificationsService,
+    private readonly stockService: StockService,
   ) {}
 
   async generateSignalsFromEvent(event: Event): Promise<GeneratedSignal[]> {
@@ -68,8 +72,10 @@ export class SignalGeneratorService {
       }
 
       if (signals.length > 0) {
-        await this.signalsService.createSignalsBatch(signals);
-        this.logger.log(`Generated ${signals.length} signals for event ${event.id}`);
+        const createdSignals = await this.signalsService.createSignalsBatch(signals);
+        this.logger.log(`Generated ${createdSignals.length} signals for event ${event.id}`);
+        
+        await this.sendNotificationsForSignals(createdSignals, event);
       } else {
         this.logger.log(`No signals generated for event ${event.id} (no stock subjects)`);
       }
@@ -78,6 +84,22 @@ export class SignalGeneratorService {
     } finally {
       await this.eventService.updateProcessed(event.id, true);
     }
+  }
+
+  async regenerateSignalsForEvent(eventId: string): Promise<GeneratedSignal[]> {
+    this.logger.log(`Regenerating signals for event ${eventId}`);
+    
+    const event = await this.eventService.findById(eventId);
+    if (!event) {
+      throw new Error(`Event ${eventId} not found`);
+    }
+    
+    const deletedCount = await this.signalsService.deleteByEventId(eventId);
+    this.logger.log(`Deleted ${deletedCount} existing signals for event ${eventId}`);
+    
+    await this.eventService.updateProcessed(eventId, false);
+    
+    return this.generateSignalsFromEvent(event);
   }
 
   private calculateGlobalScore(event: Event, globalRule: SignalRule): number {
@@ -120,5 +142,37 @@ export class SignalGeneratorService {
     if (score > 0.1) return 'long';
     if (score < -0.1) return 'short';
     return 'hold';
+  }
+
+  private async sendNotificationsForSignals(
+    signals: Signal[],
+    event: Event,
+  ): Promise<void> {
+    try {
+      const stockCodes = signals
+        .map(s => s.symbol || s.stockCode)
+        .filter((code): code is string => code !== null);
+      const stockNamesMap = await this.stockService.findByCodes(stockCodes);
+
+      for (const signal of signals) {
+        const stockCode = signal.symbol || signal.stockCode;
+        if (!stockCode) continue;
+        
+        const stockName = stockNamesMap.get(stockCode)?.name || signal.stockName || stockCode;
+        
+        await this.notificationsService.notifySignalAnalyzed({
+          signal,
+          newsPublishTime: event.occurredAt,
+          stockName,
+          stockCode,
+        });
+      }
+
+      this.logger.log(`Sent notifications for ${signals.length} signals`);
+    } catch (error) {
+      this.logger.error(
+        `Failed to send notifications: ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
   }
 }

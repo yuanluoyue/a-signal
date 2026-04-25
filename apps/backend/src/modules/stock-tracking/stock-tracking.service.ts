@@ -240,7 +240,7 @@ export class StockTrackingService {
 
     for (const newsItem of pendingNews) {
       try {
-        await this.queueService.sendMessage(QUEUE_NAMES.NEWS_ANALYZE, {
+        await this.queueService.sendMessage(QUEUE_NAMES.EVENT_ANALYZE, {
           newsId: newsItem.id,
           skipWebhook: true,
         });

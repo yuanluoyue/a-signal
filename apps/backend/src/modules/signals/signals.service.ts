@@ -311,4 +311,21 @@ export class SignalsService {
       throw error;
     }
   }
+
+  async deleteByEventId(eventId: string): Promise<number> {
+    try {
+      const results = await this.dbService.db
+        .delete(signals)
+        .where(eq(signals.eventId, eventId))
+        .returning();
+
+      this.logger.log(`Deleted ${results.length} signals for event ${eventId}`);
+      return results.length;
+    } catch (error) {
+      this.logger.error(
+        `Failed to delete signals for event ${eventId}: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
 }

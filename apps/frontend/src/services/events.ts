@@ -30,4 +30,12 @@ export const eventsApi = {
   generateEvents: async (newsId: string): Promise<void> => {
     await client.post(`/news/${newsId}/generate-events`);
   },
+
+  regenerateSignals: async (eventId: string): Promise<{ message: string; count: number }> => {
+    const response = await client.post<{ message: string; data: Signal[] }>(`/events/${eventId}/regenerate-signals`);
+    return {
+      message: (response as unknown as { message: string }).message,
+      count: (response as unknown as { data: Signal[] }).data?.length || 0,
+    };
+  },
 };

@@ -7,11 +7,10 @@ import { KlinesModule } from '../klines/klines.module.js';
 import { NotificationsModule } from '../notifications/notifications.module.js';
 import { StockModule } from '../stock/stock.module.js';
 import { SignalsService } from './signals.service.js';
-import { SignalAnalyzeService } from './signal-analyze.service.js';
 
 @Module({
   imports: [ConfigModule, DbModule, QueueModule, KlinesModule, HttpModule, NotificationsModule, StockModule],
-  providers: [SignalsService, SignalAnalyzeService],
-  exports: [SignalsService, SignalAnalyzeService],
+  providers: [SignalsService],
+  exports: [SignalsService],
 })
 export class SignalsModule {}

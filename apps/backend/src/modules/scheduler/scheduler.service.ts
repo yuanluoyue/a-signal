@@ -22,7 +22,7 @@ export class SchedulerService implements OnModuleInit {
         enabled: true,
       },
       {
-        name: 'news-analyze',
+        name: 'event-analyze',
         cronExpression: '0 0 20 * * *',
         description: '每天晚上8点分析未分析的新闻',
         enabled: true,

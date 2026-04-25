@@ -152,8 +152,8 @@ export class QueueService implements OnModuleInit, OnModuleDestroy {
     await this.sendMessage(QUEUE_NAMES.NEWS_CRAWL, data, { delay });
   }
 
-  async sendToNewsAnalyze<T>(data: T): Promise<void> {
-    await this.sendMessage(QUEUE_NAMES.NEWS_ANALYZE, data);
+  async sendToEventAnalyze<T>(data: T): Promise<void> {
+    await this.sendMessage(QUEUE_NAMES.EVENT_ANALYZE, data);
   }
 
   async sendToKlineFetch<T>(data: T, delay?: number): Promise<void> {

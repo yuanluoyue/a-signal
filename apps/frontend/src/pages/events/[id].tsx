@@ -17,6 +17,7 @@ import {
   ArrowDownOutlined,
   MinusOutlined,
   LinkOutlined,
+  ReloadOutlined,
 } from '@ant-design/icons';
 import { useNavigate, useParams } from 'umi';
 import { eventsApi } from '@/services/events';
@@ -83,6 +84,7 @@ const EventDetailPage: React.FC = () => {
   const [event, setEvent] = useState<EventItem | null>(null);
   const [signals, setSignals] = useState<Signal[]>([]);
   const [signalsLoading, setSignalsLoading] = useState(false);
+  const [regenerating, setRegenerating] = useState(false);
 
   const fetchEventDetail = async () => {
     if (!id) return;
@@ -108,6 +110,22 @@ const EventDetailPage: React.FC = () => {
       console.error('获取关联信号失败:', error);
     } finally {
       setSignalsLoading(false);
+    }
+  };
+
+  const handleRegenerateSignals = async () => {
+    if (!id) return;
+    try {
+      setRegenerating(true);
+      const result = await eventsApi.regenerateSignals(id);
+      message.success(result.message);
+      await fetchEventSignals();
+      await fetchEventDetail();
+    } catch (error) {
+      console.error('重新生成信号失败:', error);
+      message.error('重新生成信号失败');
+    } finally {
+      setRegenerating(false);
     }
   };
 
@@ -220,6 +238,14 @@ const EventDetailPage: React.FC = () => {
       <Space style={{ marginBottom: 16 }}>
         <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/events')}>
           返回列表
+        </Button>
+        <Button
+          type="primary"
+          icon={<ReloadOutlined />}
+          loading={regenerating}
+          onClick={handleRegenerateSignals}
+        >
+          重新生成信号
         </Button>
       </Space>
 

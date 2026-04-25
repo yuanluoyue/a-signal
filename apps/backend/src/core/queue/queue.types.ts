@@ -18,4 +18,4 @@ export interface SendMessageOptions {
   persistent?: boolean;
 }
 
-export type QueueName = 'news-crawl' | 'news-analyze' | 'kline-fetch' | 'news-vectorize' | 'stock-track-fetch' | 'event-analyze';
+export type QueueName = 'news-crawl' | 'kline-fetch' | 'news-vectorize' | 'stock-track-fetch' | 'event-analyze';
