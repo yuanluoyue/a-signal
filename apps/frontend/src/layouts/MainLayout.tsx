@@ -119,6 +119,49 @@ const MENU_ITEMS = [
   },
 ];
 
+const getSelectedKey = (pathname: string): string => {
+  const pathParts = pathname.split('/').filter(Boolean);
+  
+  if (pathParts.length === 0) {
+    return '/dashboard';
+  }
+  
+  const basePath = `/${pathParts[0]}`;
+  
+  if (pathParts.length >= 2) {
+    const secondLevelPath = `/${pathParts[0]}/${pathParts[1]}`;
+    const knownSecondLevelPaths = [
+      '/settings/notifications',
+      '/settings/scheduler',
+      '/settings/api-keys',
+    ];
+    
+    if (knownSecondLevelPaths.includes(secondLevelPath)) {
+      return secondLevelPath;
+    }
+  }
+  
+  const knownFirstLevelPaths = [
+    '/dashboard',
+    '/news',
+    '/stocks',
+    '/stock-trackings',
+    '/signals',
+    '/events',
+    '/signal-rules',
+    '/simulation',
+    '/backtest',
+    '/agent-chat',
+    '/blacklist',
+  ];
+  
+  if (knownFirstLevelPaths.includes(basePath)) {
+    return basePath;
+  }
+  
+  return pathname;
+};
+
 const getOpenKeys = (pathname: string): string[] => {
   const pathToParentMap: Record<string, string> = {
     '/news': '/data',
@@ -137,7 +180,8 @@ const getOpenKeys = (pathname: string): string[] => {
   };
   
   const openKeys: string[] = [];
-  const parentKey = pathToParentMap[pathname];
+  const selectedKey = getSelectedKey(pathname);
+  const parentKey = pathToParentMap[selectedKey];
   if (parentKey) {
     openKeys.push(parentKey);
   }
@@ -164,7 +208,7 @@ const MainLayout: React.FC = () => {
     navigate('/dashboard');
   }, [navigate]);
 
-  const selectedKeys = useMemo(() => [location.pathname], [location.pathname]);
+  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname)], [location.pathname]);
   const defaultOpenKeys = useMemo(() => getOpenKeys(location.pathname), [location.pathname]);
 
   const siderStyle = useMemo(() => ({

@@ -2,6 +2,7 @@ import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { eq, and, desc, sql, gte, lte, or } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { signals, Signal, NewSignal } from '../../core/db/schema.js';
+import { StockService } from '../stock/stock.service.js';
 
 export interface CreateSignalDto {
   newsId?: string;
@@ -48,7 +49,10 @@ export interface SignalsListQueryDto {
 export class SignalsService {
   private readonly logger = new Logger(SignalsService.name);
 
-  constructor(private readonly dbService: DbService) {}
+  constructor(
+    private readonly dbService: DbService,
+    private readonly stockService: StockService,
+  ) {}
 
   async createSignal(dto: CreateSignalDto): Promise<Signal> {
     try {
@@ -141,7 +145,21 @@ export class SignalsService {
         .from(signals)
         .where(eq(signals.id, id));
 
-      return result || null;
+      if (!result) {
+        return null;
+      }
+
+      const stockCode = result.symbol || result.stockCode;
+      if (stockCode) {
+        const stockNamesMap = await this.stockService.findByCodes([stockCode]);
+        const stockName = stockNamesMap.get(stockCode)?.name || result.stockName || stockCode;
+        return {
+          ...result,
+          stockName,
+        };
+      }
+
+      return result;
     } catch (error) {
       this.logger.error(
         `Failed to find signal by id ${id}: ${error instanceof Error ? error.message : String(error)}`,
@@ -157,7 +175,15 @@ export class SignalsService {
         .from(signals)
         .where(eq(signals.eventId, eventId));
 
-      return results;
+      const stockCodes = results
+        .map(s => s.symbol || s.stockCode)
+        .filter((code): code is string => code !== null);
+      const stockNamesMap = await this.stockService.findByCodes(stockCodes);
+
+      return results.map(signal => ({
+        ...signal,
+        stockName: stockNamesMap.get(signal.symbol || signal.stockCode || '')?.name || signal.stockName || signal.symbol || signal.stockCode || '',
+      }));
     } catch (error) {
       this.logger.error(
         `Failed to find signals by eventId ${eventId}: ${error instanceof Error ? error.message : String(error)}`,
@@ -242,8 +268,18 @@ export class SignalsService {
         .limit(pageSize)
         .offset(offset);
 
+      const stockCodes = data
+        .map(s => s.symbol || s.stockCode)
+        .filter((code): code is string => code !== null);
+      const stockNamesMap = await this.stockService.findByCodes(stockCodes);
+
+      const dataWithStockName = data.map(signal => ({
+        ...signal,
+        stockName: stockNamesMap.get(signal.symbol || signal.stockCode || '')?.name || signal.stockName || signal.symbol || signal.stockCode || '',
+      }));
+
       return {
-        data,
+        data: dataWithStockName,
         total,
         page,
         pageSize,

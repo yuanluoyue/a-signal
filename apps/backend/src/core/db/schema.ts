@@ -576,3 +576,26 @@ export const mcpLogs = pgTable(
 
 export type McpLog = typeof mcpLogs.$inferSelect;
 export type NewMcpLog = typeof mcpLogs.$inferInsert;
+
+export const stocks = pgTable(
+  'stocks',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    code: varchar('code', { length: 20 }).notNull().unique(),
+    name: varchar('name', { length: 100 }).notNull(),
+    market: varchar('market', { length: 10 }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    index('stocks_code_idx').on(table.code),
+  ],
+);
+
+export type Stock = typeof stocks.$inferSelect;
+export type NewStock = typeof stocks.$inferInsert;

@@ -13,6 +13,7 @@ import {
 } from '../../core/db/schema.js';
 import { QueueService } from '../../core/queue/queue.service.js';
 import { QUEUE_NAMES } from '../../core/queue/queue.constants.js';
+import { StockService } from '../stock/stock.service.js';
 
 export interface CreateTrackingDto {
   stockCode: string;
@@ -37,13 +38,26 @@ export class StockTrackingService {
     private readonly dbService: DbService,
     private readonly queueService: QueueService,
     private readonly configService: ConfigService,
+    private readonly stockService: StockService,
   ) {}
 
   async findAll(): Promise<StockTracking[]> {
-    return this.dbService.db
+    const trackings = await this.dbService.db
       .select()
       .from(stockTrackings)
       .orderBy(desc(stockTrackings.createdAt));
+
+    if (trackings.length === 0) {
+      return trackings;
+    }
+
+    const stockCodes = trackings.map(t => t.stockCode);
+    const stockMap = await this.stockService.findByCodes(stockCodes);
+
+    return trackings.map(tracking => ({
+      ...tracking,
+      stockName: stockMap.get(tracking.stockCode)?.name || tracking.stockCode,
+    }));
   }
 
   async findById(id: string): Promise<StockTracking | null> {

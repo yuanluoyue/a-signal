@@ -111,7 +111,7 @@ const SignalDetailPage: React.FC = () => {
   const [klines, setKlines] = useState<KlineData[]>([]);
   const [news, setNews] = useState<NewsItem | null>(null);
   const [event, setEvent] = useState<EventItem | null>(null);
-  const [period, setPeriod] = useState<'1d' | '4h'>('1d');
+  const [period, setPeriod] = useState<'1d' | '4h'>('4h');
   const [fetchingKlines, setFetchingKlines] = useState(false);
   const [chartReady, setChartReady] = useState(false);
 
@@ -288,8 +288,11 @@ const SignalDetailPage: React.FC = () => {
     console.log('[SignalDetail] Chart data set successfully');
 
     // 如果有信号时间，添加标记点
-    if (signal?.signalTime && markersRef.current) {
-      const signalTime = Math.floor(new Date(signal.signalTime).getTime() / 1000) as Time;
+    const signalTimeStr = signal?.generatedAt || signal?.signalTime || signal?.createdAt;
+    
+    if (signalTimeStr && markersRef.current) {
+      const signalTime = Math.floor(new Date(signalTimeStr).getTime() / 1000) as Time;
+      const action = signal?.action || (signal?.direction === 'bullish' ? 'long' : signal?.direction === 'bearish' ? 'short' : 'hold');
 
       // 调试：显示信号时间和K线时间范围
       console.log('[SignalDetail] Signal time:', signalTime, new Date(signalTime * 1000).toISOString());
@@ -308,9 +311,9 @@ const SignalDetailPage: React.FC = () => {
       if (closestData) {
         try {
           // lightweight-charts v5: 使用 createSeriesMarkers 添加标记
-          const markerColor = signal.direction === 'bullish' ? '#52c41a' : '#f5222d';
-          const markerShape: SeriesMarker<Time>['shape'] = signal.direction === 'bullish' ? 'arrowUp' : 'arrowDown';
-          const markerPosition: SeriesMarker<Time>['position'] = signal.direction === 'bullish' ? 'belowBar' : 'aboveBar';
+          const markerColor = action === 'long' ? '#52c41a' : action === 'short' ? '#f5222d' : '#faad14';
+          const markerShape: SeriesMarker<Time>['shape'] = action === 'long' ? 'arrowUp' : action === 'short' ? 'arrowDown' : 'circle';
+          const markerPosition: SeriesMarker<Time>['position'] = action === 'long' ? 'belowBar' : action === 'short' ? 'aboveBar' : 'inBar';
 
           const marker: SeriesMarker<Time> = {
             time: closestData.time,
@@ -318,7 +321,7 @@ const SignalDetailPage: React.FC = () => {
             shape: markerShape,
             color: markerColor,
             size: 2,
-            text: signal.direction === 'bullish' ? '买入' : '卖出',
+            text: action === 'long' ? '买入' : action === 'short' ? '卖出' : '观望',
           };
 
           markersRef.current.setMarkers([marker]);

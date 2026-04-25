@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { eq, and, gte, lte, desc, sql } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { events, NewEvent, Event } from '../../core/db/schema.js';
+import { StockService } from '../stock/stock.service.js';
 
 type SubjectType = 'stock' | 'sector' | 'index' | 'commodity';
 
@@ -44,7 +45,10 @@ export interface EventsListQueryDto {
 export class EventService {
   private readonly logger = new Logger(EventService.name);
 
-  constructor(private readonly dbService: DbService) {}
+  constructor(
+    private readonly dbService: DbService,
+    private readonly stockService: StockService,
+  ) {}
 
   async createEvent(dto: CreateEventDto): Promise<Event> {
     try {
@@ -141,7 +145,30 @@ export class EventService {
         .from(events)
         .where(eq(events.id, id));
 
-      return result || null;
+      if (!result) {
+        return null;
+      }
+
+      const stockCodes = result.subjects
+        .filter(subject => subject.type === 'stock')
+        .map(subject => subject.code);
+
+      if (stockCodes.length > 0) {
+        const stockMap = await this.stockService.findByCodes(stockCodes);
+        
+        result.subjects = result.subjects.map(subject => {
+          if (subject.type === 'stock') {
+            const stockInfo = stockMap.get(subject.code);
+            return {
+              ...subject,
+              name: stockInfo?.name || subject.code,
+            };
+          }
+          return subject;
+        });
+      }
+
+      return result;
     } catch (error) {
       this.logger.error(
         `Failed to find event by id ${id}: ${error instanceof Error ? error.message : String(error)}`,
@@ -207,6 +234,29 @@ export class EventService {
         .orderBy(desc(events.detectedAt))
         .limit(pageSize)
         .offset(offset);
+
+      const allStockCodes = data.flatMap(event =>
+        event.subjects
+          .filter(subject => subject.type === 'stock')
+          .map(subject => subject.code)
+      );
+
+      if (allStockCodes.length > 0) {
+        const stockMap = await this.stockService.findByCodes(allStockCodes);
+
+        data.forEach(event => {
+          event.subjects = event.subjects.map(subject => {
+            if (subject.type === 'stock') {
+              const stockInfo = stockMap.get(subject.code);
+              return {
+                ...subject,
+                name: stockInfo?.name || subject.code,
+              };
+            }
+            return subject;
+          });
+        });
+      }
 
       return {
         data,

@@ -161,7 +161,7 @@ const NewsListPage: React.FC = () => {
         url: item.originalUrl,
         analysisStatus: item.analyzeStatus,
         vectorizedStatus: item.vectorizeStatus,
-        relatedStocks: item.relatedStocks || [],
+        eventCount: item.eventCount || 0,
         publishedAt: item.publishTime,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
@@ -326,18 +326,14 @@ const NewsListPage: React.FC = () => {
       ),
     },
     {
-      title: '关联股票',
-      dataIndex: 'relatedStocks',
-      key: 'relatedStocks',
-      width: 150,
-      render: (stocks: string[]) => (
-        <Space size="small" wrap>
-          {stocks.map((stock) => (
-            <Tag key={stock} color="blue">
-              {stock}
-            </Tag>
-          ))}
-        </Space>
+      title: '关联事件',
+      dataIndex: 'eventCount',
+      key: 'eventCount',
+      width: 100,
+      render: (count: number) => (
+        <Tag color={count > 0 ? 'blue' : 'default'}>
+          {count} 个
+        </Tag>
       ),
     },
     {

@@ -34,18 +34,6 @@ interface DashboardStats {
   signals: SignalStats;
 }
 
-const getConfidenceColor = (confidence: number): 'success' | 'warning' | 'default' => {
-  if (confidence >= 80) return 'success';
-  if (confidence >= 60) return 'warning';
-  return 'default';
-};
-
-const getConfidenceText = (confidence: number): string => {
-  if (confidence >= 80) return '高';
-  if (confidence >= 60) return '中';
-  return '低';
-};
-
 const formatTime = (time: string): string => {
   try {
     const date = new Date(time);
@@ -87,15 +75,29 @@ const DashboardPage: React.FC = () => {
       });
 
       const signalsData = Array.isArray(signalsRes) ? signalsRes : (signalsRes?.data?.data || signalsRes?.data || []);
-      const formattedSignals = signalsData.map((item: Record<string, unknown>) => ({
-        id: item.id,
-        symbol: item.stockCode,
-        name: item.stockName,
-        type: item.direction === 'bullish' ? 'buy' : item.direction === 'bearish' ? 'sell' : 'buy',
-        price: item.price,
-        confidence: item.confidence,
-        createdAt: item.createdAt,
-      }));
+      const formattedSignals = signalsData.map((item: Record<string, unknown>) => {
+        const action = item.action || item.direction;
+        let actionText = '观望';
+        if (action === 'long' || action === 'bullish') {
+          actionText = '做多';
+        } else if (action === 'short' || action === 'bearish') {
+          actionText = '做空';
+        }
+
+        return {
+          id: item.id as string,
+          symbol: (item.symbol || item.stockCode) as string,
+          stockCode: item.stockCode as string,
+          stockName: (item.stockName || item.name) as string,
+          action: actionText,
+          direction: item.direction as string,
+          score: item.score as number,
+          confidence: item.confidence as number,
+          generatedAt: (item.generatedAt || item.signalTime || item.createdAt) as string,
+          signalTime: item.signalTime as string,
+          createdAt: item.createdAt as string,
+        };
+      });
       setRecentSignals(formattedSignals);
     } catch (error) {
       message.error('获取仪表盘数据失败');
@@ -113,42 +115,49 @@ const DashboardPage: React.FC = () => {
     fetchDashboardData();
   }, [fetchDashboardData]);
 
-  const renderSignalItem = useCallback((item: RecentSignal) => (
-    <List.Item
-      key={item.id}
-      actions={[
-        <Tag key="type" color={item.type === 'buy' ? 'success' : 'error'}>
-          {item.type === 'buy' ? '买入' : '卖出'}
-        </Tag>,
-        <Badge
-          key="confidence"
-          status={getConfidenceColor(item.confidence)}
-          text={`${getConfidenceText(item.confidence)}置信度`}
-        />,
-      ]}
-    >
-      <List.Item.Meta
-        title={
-          <Space>
-            <Text strong>{item.symbol}</Text>
-            {item.name && (
-              <Text type="secondary">{item.name}</Text>
-            )}
-          </Space>
-        }
-        description={
-          <Space split={<Divider type="vertical" />}>
-            {item.price !== undefined && item.price !== null && (
-              <Text>${item.price.toFixed(2)}</Text>
-            )}
-            <Text type="secondary">
-              {formatTime(item.createdAt)}
-            </Text>
-          </Space>
-        }
-      />
-    </List.Item>
-  ), []);
+  const renderSignalItem = useCallback((item: RecentSignal) => {
+    const displaySymbol = item.symbol || item.stockCode || '-';
+    const displayStockName = item.stockName || item.name || '';
+    const displayAction = item.action || '观望';
+    const displayScore = item.score !== undefined && item.score !== null
+      ? item.score.toFixed(2)
+      : item.confidence !== undefined && item.confidence !== null
+        ? item.confidence.toFixed(2)
+        : '-';
+    const displayTime = item.generatedAt || item.signalTime || item.createdAt;
+
+    const actionColor = displayAction === '做多' ? 'success' : displayAction === '做空' ? 'error' : 'default';
+
+    return (
+      <List.Item
+        key={item.id}
+        actions={[
+          <Tag key="action" color={actionColor}>
+            {displayAction}
+          </Tag>,
+        ]}
+      >
+        <List.Item.Meta
+          title={
+            <Space>
+              <Text strong>{displaySymbol}</Text>
+              {displayStockName && (
+                <Text type="secondary">{displayStockName}</Text>
+              )}
+            </Space>
+          }
+          description={
+            <Space split={<Divider type="vertical" />}>
+              <Text>分数: {displayScore}</Text>
+              <Text type="secondary">
+                {formatTime(displayTime)}
+              </Text>
+            </Space>
+          }
+        />
+      </List.Item>
+    );
+  }, []);
 
   const statsCards = useMemo(() => {
     if (!stats) return null;

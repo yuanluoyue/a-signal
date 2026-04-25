@@ -3,12 +3,16 @@ import { eq, gte, sql } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { news, signals, backtestRecords } from '../../core/db/schema.js';
 import { DashboardStatsResponse, RecentSignalItem } from '../../interfaces/admin/dashboard/dto/dashboard.dto.js';
+import { StockService } from '../stock/stock.service.js';
 
 @Injectable()
 export class DashboardService {
   private readonly logger = new Logger(DashboardService.name);
 
-  constructor(private readonly dbService: DbService) {}
+  constructor(
+    private readonly dbService: DbService,
+    private readonly stockService: StockService,
+  ) {}
 
   async getStats(): Promise<DashboardStatsResponse> {
     const today = new Date();
@@ -45,6 +49,8 @@ export class DashboardService {
   }
 
   async getRecentSignals(limit: number = 10): Promise<RecentSignalItem[]> {
+    this.logger.log('[DashboardService] Getting recent signals');
+
     const results = await this.dbService.db
       .select({
         id: signals.id,
@@ -55,21 +61,42 @@ export class DashboardService {
         sentiment: signals.sentiment,
         signalTime: signals.signalTime,
         createdAt: signals.createdAt,
+        symbol: signals.symbol,
+        action: signals.action,
+        score: signals.score,
+        generatedAt: signals.generatedAt,
       })
       .from(signals)
-      .orderBy(sql`${signals.signalTime} DESC`)
+      .orderBy(sql`${signals.generatedAt} DESC NULLS LAST, ${signals.signalTime} DESC NULLS LAST, ${signals.createdAt} DESC`)
       .limit(limit);
 
-    return results.map((item) => ({
-      id: item.id,
-      stockCode: item.stockCode ?? '',
-      stockName: item.stockName ?? '',
-      direction: item.direction ?? '',
-      confidence: item.confidence ?? 0,
-      sentiment: item.sentiment ?? '',
-      signalTime: item.signalTime ?? new Date(),
-      createdAt: item.createdAt ?? new Date(),
-    }));
+    const stockCodes = results
+      .map((item) => item.symbol || item.stockCode)
+      .filter((code): code is string => code !== null);
+
+    const stockInfoMap = new Map<string, string>();
+    if (stockCodes.length > 0) {
+      const stockInfos = await this.stockService.findByCodes(stockCodes);
+      stockInfos.forEach((info) => {
+        stockInfoMap.set(info.code, info.name);
+      });
+    }
+
+    return results.map((item) => {
+      const code = item.symbol || item.stockCode || '';
+      const stockName = stockInfoMap.get(code) || item.stockName || code;
+
+      return {
+        id: item.id,
+        stockCode: code,
+        stockName: stockName,
+        direction: item.action || item.direction || '',
+        confidence: item.score ? parseFloat(item.score.toString()) * 100 : (item.confidence || 0),
+        sentiment: item.sentiment ?? '',
+        signalTime: item.generatedAt || item.signalTime || item.createdAt || new Date(),
+        createdAt: item.createdAt ?? new Date(),
+      };
+    });
   }
 
   private async getTotalNews(): Promise<number> {

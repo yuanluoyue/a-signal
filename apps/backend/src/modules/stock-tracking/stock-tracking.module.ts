@@ -4,9 +4,10 @@ import { DbModule } from '../../core/db/db.module.js';
 import { QueueModule } from '../../core/queue/queue.module.js';
 import { NewsModule } from '../news/news.module.js';
 import { BacktestModule } from '../backtest/backtest.module.js';
+import { StockModule } from '../stock/stock.module.js';
 
 @Module({
-  imports: [DbModule, QueueModule, NewsModule, BacktestModule],
+  imports: [DbModule, QueueModule, NewsModule, BacktestModule, StockModule],
   providers: [StockTrackingService],
   exports: [StockTrackingService],
 })

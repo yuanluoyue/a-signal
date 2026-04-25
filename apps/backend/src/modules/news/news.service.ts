@@ -6,7 +6,7 @@ import { createHash } from 'crypto';
 import { DbService } from '../../core/db/db.service.js';
 import { QueueService } from '../../core/queue/queue.service.js';
 import { VectorService } from '../../core/vector/vector.service.js';
-import { news, signals, type NewNews } from '../../core/db/schema.js';
+import { news, signals, events, type NewNews } from '../../core/db/schema.js';
 import { QUEUE_NAMES } from '../../core/queue/queue.constants.js';
 import { NewsListQueryDto } from '../../interfaces/admin/news/dto/news-list-query.dto.js';
 
@@ -336,7 +336,7 @@ export class NewsService {
     return result[0] || null;
   }
 
-  async getNewsList(query: NewsListQueryDto): Promise<{ data: Array<typeof news.$inferSelect & { relatedStocks: string[] }>; total: number; page: number; pageSize: number }> {
+  async getNewsList(query: NewsListQueryDto): Promise<{ data: Array<typeof news.$inferSelect & { eventCount: number }>; total: number; page: number; pageSize: number }> {
     const { page = 1, pageSize = 20, keyword, source, analyzeStatus, vectorizeStatus } = query;
     const offset = (page - 1) * pageSize;
 
@@ -376,32 +376,29 @@ export class NewsService {
       .offset(offset);
 
     const newsIds = newsData.map(n => n.id);
-    let relatedStocksMap: Record<string, string[]> = {};
+    let eventCountMap: Record<string, number> = {};
     
     if (newsIds.length > 0) {
-      const signalsData = await this.dbService.db
+      const eventsData = await this.dbService.db
         .select({
-          newsId: signals.newsId,
-          stockCode: signals.stockCode,
+          newsId: events.newsId,
         })
-        .from(signals)
-        .where(sql`${signals.newsId} IN ${newsIds}`);
+        .from(events)
+        .where(sql`${events.newsId} IN ${newsIds}`);
 
-      signalsData.forEach(s => {
-        if (s.newsId) {
-          if (!relatedStocksMap[s.newsId]) {
-            relatedStocksMap[s.newsId] = [];
+      eventsData.forEach(e => {
+        if (e.newsId) {
+          if (!eventCountMap[e.newsId]) {
+            eventCountMap[e.newsId] = 0;
           }
-          if (!relatedStocksMap[s.newsId].includes(s.stockCode ?? '')) {
-            relatedStocksMap[s.newsId].push(s.stockCode ?? '');
-          }
+          eventCountMap[e.newsId]++;
         }
       });
     }
 
     const data = newsData.map(n => ({
       ...n,
-      relatedStocks: relatedStocksMap[n.id] || [],
+      eventCount: eventCountMap[n.id] || 0,
     }));
 
     return {

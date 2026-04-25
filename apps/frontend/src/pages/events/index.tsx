@@ -94,13 +94,21 @@ const getProcessedTag = (processed: boolean) =>
 
 const renderSubjects = (subjects: EventItem['subjects']) => {
   if (!subjects || subjects.length === 0) return '-';
+
+  const formatSubject = (s: EventItem['subjects'][0]) => {
+    if (s.type === 'stock' && s.name) {
+      return `${s.code} - ${s.name}`;
+    }
+    return s.code;
+  };
+
   return (
     <Space size={4} wrap>
       {subjects.slice(0, 3).map((s, index) => (
-        <Tag key={index}>{s.code}</Tag>
+        <Tag key={index}>{formatSubject(s)}</Tag>
       ))}
       {subjects.length > 3 && (
-        <Tooltip title={subjects.slice(3).map((s) => s.code).join(', ')}>
+        <Tooltip title={subjects.slice(3).map((s) => formatSubject(s)).join(', ')}>
           <Tag>+{subjects.length - 3}</Tag>
         </Tooltip>
       )}

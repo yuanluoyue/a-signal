@@ -238,7 +238,7 @@ const SignalRulesPage: React.FC = () => {
           <Tooltip title={
             <div>
               <div><strong>作用：</strong>过滤低质量信号，只保留分数足够高的信号</div>
-              <div><strong>规则：</strong>只有当 |final_score| > 阈值 时才生成信号</div>
+              <div><strong>规则：</strong>只有当 |final_score| {'>'} 阈值 时才生成信号</div>
               <div><strong>使用场景：</strong></div>
               <div>• 阈值越高：信号越少但质量越高（精确度高）</div>
               <div>• 阈值越低：信号越多但噪音增加（召回率高）</div>
@@ -318,7 +318,7 @@ const SignalRulesPage: React.FC = () => {
                 <Tooltip title={
                   <div>
                     <div><strong>作用：</strong>过滤低质量信号</div>
-                    <div><strong>规则：</strong>只有 |final_score| > 阈值 才生成信号</div>
+                    <div><strong>规则：</strong>只有 |final_score| {'>'} 阈值 才生成信号</div>
                     <div><strong>使用场景：</strong></div>
                     <div>• 阈值越高：信号越少但质量越高</div>
                     <div>• 阈值越低：信号越多但噪音增加</div>
@@ -457,7 +457,7 @@ const SignalRulesPage: React.FC = () => {
                 <Tooltip title={
                   <div>
                     <div><strong>作用：</strong>过滤低质量信号，只保留分数足够高的信号</div>
-                    <div><strong>规则：</strong>只有当 |final_score| > 阈值 时才生成信号</div>
+                    <div><strong>规则：</strong>只有当 |final_score| {'>'} 阈值 时才生成信号</div>
                     <div><strong>使用场景：</strong></div>
                     <div>• 阈值越高：信号越少但质量越高（精确度高）</div>
                     <div>• 阈值越低：信号越多但噪音增加（召回率高）</div>

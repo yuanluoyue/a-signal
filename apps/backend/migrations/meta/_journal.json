@@ -78,6 +78,13 @@
       "when": 1777028227412,
       "tag": "0010_add_signal_rules_and_signal_fields",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1777090171341,
+      "tag": "0011_pretty_goblin_queen",
+      "breakpoints": true
     }
   ]
 }

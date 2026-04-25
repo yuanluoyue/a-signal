@@ -285,6 +285,7 @@ const EventDetailPage: React.FC = () => {
             columns={[
               { title: '类型', dataIndex: 'type', key: 'type', width: 100 },
               { title: '代码', dataIndex: 'code', key: 'code', width: 120 },
+              { title: '名称', dataIndex: 'name', key: 'name', width: 150 },
               {
                 title: '权重',
                 dataIndex: 'weight',

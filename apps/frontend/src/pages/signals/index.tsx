@@ -8,7 +8,6 @@ import {
   Input,
   Select,
   DatePicker,
-  Slider,
   Row,
   Col,
   Typography,
@@ -83,7 +82,6 @@ const SignalsPage: React.FC = () => {
 
   const [stockCode, setStockCode] = useState('');
   const [direction, setDirection] = useState<string | undefined>(undefined);
-  const [confidenceRange, setConfidenceRange] = useState<[number, number]>([0, 100]);
   const [dateRange, setDateRange] = useState<[any, any] | null>(null);
 
   const initializedRef = useRef(false);
@@ -95,8 +93,6 @@ const SignalsPage: React.FC = () => {
       size: parseInt(searchParams.get('pageSize') || '10', 10),
       stock: searchParams.get('stockCode') || '',
       dir: searchParams.get('direction') || undefined,
-      minConf: parseInt(searchParams.get('minConfidence') || '0', 10),
-      maxConf: parseInt(searchParams.get('maxConfidence') || '100', 10),
       startTime: searchParams.get('startTime'),
       endTime: searchParams.get('endTime'),
     };
@@ -118,8 +114,6 @@ const SignalsPage: React.FC = () => {
   const fetchSignals = useCallback(async (page: number, size: number, filters?: {
     stockCode?: string;
     direction?: string;
-    minConfidence?: number;
-    maxConfidence?: number;
     startTime?: string;
     endTime?: string;
   }) => {
@@ -132,15 +126,11 @@ const SignalsPage: React.FC = () => {
 
       const stock = filters?.stockCode ?? stockCode;
       const dir = filters?.direction ?? direction;
-      const minConf = filters?.minConfidence ?? confidenceRange[0];
-      const maxConf = filters?.maxConfidence ?? confidenceRange[1];
       const start = filters?.startTime ?? (dateRange?.[0] ? (dateRange[0].toISOString ? dateRange[0].toISOString() : dateRange[0]) : undefined);
       const end = filters?.endTime ?? (dateRange?.[1] ? (dateRange[1].toISOString ? dateRange[1].toISOString() : dateRange[1]) : undefined);
 
       if (stock) params.stockCode = stock;
       if (dir) params.direction = dir;
-      if (minConf > 0) params.minConfidence = minConf;
-      if (maxConf < 100) params.maxConfidence = maxConf;
       if (start) params.startTime = start;
       if (end) params.endTime = end;
 
@@ -154,7 +144,7 @@ const SignalsPage: React.FC = () => {
     } finally {
       setLoading(false);
     }
-  }, [stockCode, direction, confidenceRange, dateRange]);
+  }, [stockCode, direction, dateRange]);
 
   useEffect(() => {
     if (!initializedRef.current) {
@@ -164,15 +154,12 @@ const SignalsPage: React.FC = () => {
       setPageSize(params.size);
       setStockCode(params.stock);
       setDirection(params.dir);
-      setConfidenceRange([params.minConf, params.maxConf]);
       if (params.startTime && params.endTime) {
         setDateRange([params.startTime, params.endTime] as [any, any]);
       }
       fetchSignals(params.page, params.size, {
         stockCode: params.stock,
         direction: params.dir,
-        minConfidence: params.minConf,
-        maxConfidence: params.maxConf,
         startTime: params.startTime || undefined,
         endTime: params.endTime || undefined,
       });
@@ -186,8 +173,6 @@ const SignalsPage: React.FC = () => {
       fetchSignals(params.page, params.size, {
         stockCode: params.stock,
         direction: params.dir,
-        minConfidence: params.minConf,
-        maxConfidence: params.maxConf,
         startTime: params.startTime || undefined,
         endTime: params.endTime || undefined,
       });
@@ -202,8 +187,6 @@ const SignalsPage: React.FC = () => {
     };
     if (stockCode) params.stockCode = stockCode;
     if (direction) params.direction = direction;
-    if (confidenceRange[0] > 0) params.minConfidence = confidenceRange[0];
-    if (confidenceRange[1] < 100) params.maxConfidence = confidenceRange[1];
     if (dateRange?.[0]) params.startTime = dateRange[0].toISOString ? dateRange[0].toISOString() : dateRange[0];
     if (dateRange?.[1]) params.endTime = dateRange[1].toISOString ? dateRange[1].toISOString() : dateRange[1];
     updateUrlParams(params);
@@ -213,10 +196,9 @@ const SignalsPage: React.FC = () => {
   const handleReset = () => {
     setStockCode('');
     setDirection(undefined);
-    setConfidenceRange([0, 100]);
     setDateRange(null);
     history.replace({ pathname: location.pathname });
-    fetchSignals(1, 20, { stockCode: '', direction: undefined, minConfidence: 0, maxConfidence: 100 });
+    fetchSignals(1, 20, { stockCode: '', direction: undefined });
   };
 
   const handleViewDetail = (id: string) => {
@@ -392,7 +374,7 @@ const SignalsPage: React.FC = () => {
 
       <Card style={{ marginBottom: 24 }}>
         <Row gutter={[16, 16]}>
-          <Col xs={24} sm={12} md={8} lg={5}>
+          <Col xs={24} sm={12} md={8} lg={6}>
             <Input
               placeholder="股票代码"
               value={stockCode}
@@ -401,7 +383,7 @@ const SignalsPage: React.FC = () => {
               prefix={<SearchOutlined />}
             />
           </Col>
-          <Col xs={24} sm={12} md={8} lg={4}>
+          <Col xs={24} sm={12} md={8} lg={6}>
             <Select
               placeholder="方向"
               value={direction}
@@ -414,21 +396,7 @@ const SignalsPage: React.FC = () => {
               <Option value="neutral">中性</Option>
             </Select>
           </Col>
-          <Col xs={24} sm={12} md={8} lg={5}>
-            <div style={{ padding: '0 8px' }}>
-              <div style={{ fontSize: 12, color: '#666', marginBottom: 4 }}>
-                置信度: {confidenceRange[0]}% - {confidenceRange[1]}%
-              </div>
-              <Slider
-                range
-                value={confidenceRange}
-                onChange={(value) => setConfidenceRange(value as [number, number])}
-                min={0}
-                max={100}
-              />
-            </div>
-          </Col>
-          <Col xs={24} sm={12} md={8} lg={5}>
+          <Col xs={24} sm={12} md={8} lg={6}>
             <RangePicker
               value={dateRange}
               onChange={(dates) => setDateRange(dates as [any, any])}
@@ -436,7 +404,7 @@ const SignalsPage: React.FC = () => {
               placeholder={['开始时间', '结束时间']}
             />
           </Col>
-          <Col xs={24} sm={12} md={8} lg={5}>
+          <Col xs={24} sm={12} md={8} lg={6}>
             <Space wrap>
               <Button type="primary" icon={<SearchOutlined />} onClick={handleSearch}>
                 搜索
@@ -471,8 +439,6 @@ const SignalsPage: React.FC = () => {
               };
               if (stockCode) params.stockCode = stockCode;
               if (direction) params.direction = direction;
-              if (confidenceRange[0] > 0) params.minConfidence = confidenceRange[0];
-              if (confidenceRange[1] < 100) params.maxConfidence = confidenceRange[1];
               if (dateRange?.[0]) params.startTime = dateRange[0].toISOString ? dateRange[0].toISOString() : dateRange[0];
               if (dateRange?.[1]) params.endTime = dateRange[1].toISOString ? dateRange[1].toISOString() : dateRange[1];
               updateUrlParams(params);

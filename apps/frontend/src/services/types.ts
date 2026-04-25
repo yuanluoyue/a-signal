@@ -98,7 +98,7 @@ export interface NewsItem {
   url: string;
   analysisStatus: AnalysisStatus;
   vectorizedStatus: VectorizedStatus;
-  relatedStocks: string[];
+  eventCount: number;
   publishedAt: string;
   createdAt: string;
   updatedAt: string;
@@ -147,16 +147,32 @@ export type SignalType = 'buy' | 'sell';
 
 export interface Signal {
   id: string;
-  newsId: string;
-  stockCode: string;
-  stockName: string;
-  direction: string;
-  confidence: number;
-  sentiment: string;
-  reasoning: string;
-  keyFactors: string[];
-  timeWindow: string;
-  signalTime: string;
+  newsId?: string;
+  stockCode?: string;
+  stockName?: string;
+  direction?: string;
+  confidence?: number;
+  sentiment?: string;
+  reasoning?: string;
+  keyFactors?: string[];
+  timeWindow?: string;
+  signalTime?: string;
+  eventId?: string;
+  symbol?: string;
+  action?: string;
+  score?: string;
+  generatedAt?: string;
+  validFrom?: string;
+  validTo?: string;
+  reason?: string;
+  ruleId?: string;
+  ruleSnapshot?: {
+    multiplier: string;
+    threshold: string;
+    enableSurprise: boolean;
+    enableConfidence: boolean;
+  };
+  weight?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -180,12 +196,19 @@ export interface SignalStats {
 
 export interface RecentSignal {
   id: string;
-  symbol: string;
-  name?: string;
-  type: SignalType;
-  price: number;
-  confidence: number;
+  symbol?: string;
+  stockCode?: string;
+  stockName?: string;
+  action?: string;
+  direction?: string;
+  score?: number;
+  confidence?: number;
+  generatedAt?: string;
+  signalTime?: string;
   createdAt: string;
+  type?: SignalType;
+  price?: number;
+  name?: string;
 }
 
 export interface SignalFilter {
@@ -443,6 +466,7 @@ export interface EventSubject {
   type: 'stock' | 'sector' | 'index' | 'commodity';
   code: string;
   weight: number;
+  name?: string;
 }
 
 export interface EventMetric {

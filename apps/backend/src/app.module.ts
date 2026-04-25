@@ -17,6 +17,7 @@ import { DashboardModule } from './modules/dashboard/dashboard.module.js';
 import { BacktestModule } from './modules/backtest/backtest.module.js';
 import { BlacklistModule } from './modules/blacklist/blacklist.module.js';
 import { StocksModule } from './modules/stocks/stocks.module.js';
+import { StockModule } from './modules/stock/stock.module.js';
 import { SimulationModule } from './modules/simulation/simulation.module.js';
 import { StockTrackingModule } from './modules/stock-tracking/stock-tracking.module.js';
 import { EventModule } from './modules/event/event.module.js';
@@ -41,6 +42,7 @@ import { WebhooksController } from './interfaces/admin/notifications/webhooks.co
 import { ApiKeyController } from './interfaces/admin/api-key/api-key.controller.js';
 import { AgentController } from './interfaces/admin/agent/agent.controller.js';
 import { EventsController } from './interfaces/admin/events/events.controller.js';
+import { StockController } from './interfaces/admin/stock/stock.controller.js';
 import { McpController } from './interfaces/mcp/mcp.controller.js';
 import { HealthController } from './interfaces/admin/health/health.controller.js';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard.js';
@@ -79,6 +81,7 @@ const jwtAuthGuardProvider: Provider = {
     BacktestModule,
     BlacklistModule,
     StocksModule,
+    StockModule,
     SimulationModule,
     StockTrackingModule,
     EventModule,
@@ -105,6 +108,7 @@ const jwtAuthGuardProvider: Provider = {
     ApiKeyController,
     AgentController,
     EventsController,
+    StockController,
     McpController,
     HealthController,
   ],
