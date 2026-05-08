@@ -1,7 +1,7 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { eq, and, desc, sql, gte, lte, or } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
-import { signals, Signal, NewSignal } from '../../core/db/schema.js';
+import { signals, events, Signal, NewSignal } from '../../core/db/schema.js';
 import { StockService } from '../stock/stock.service.js';
 
 export interface CreateSignalDto {
@@ -261,8 +261,35 @@ export class SignalsService {
       const total = Number(countResult[0]?.count || 0);
 
       const data = await this.dbService.db
-        .select()
+        .select({
+          id: signals.id,
+          newsId: signals.newsId,
+          stockCode: signals.stockCode,
+          stockName: signals.stockName,
+          direction: signals.direction,
+          confidence: signals.confidence,
+          sentiment: signals.sentiment,
+          reasoning: signals.reasoning,
+          keyFactors: signals.keyFactors,
+          timeWindow: signals.timeWindow,
+          signalTime: signals.signalTime,
+          eventId: signals.eventId,
+          symbol: signals.symbol,
+          action: signals.action,
+          score: signals.score,
+          generatedAt: signals.generatedAt,
+          validFrom: signals.validFrom,
+          validTo: signals.validTo,
+          reason: signals.reason,
+          ruleId: signals.ruleId,
+          ruleSnapshot: signals.ruleSnapshot,
+          weight: signals.weight,
+          createdAt: signals.createdAt,
+          updatedAt: signals.updatedAt,
+          eventOccurredAt: events.occurredAt,
+        })
         .from(signals)
+        .leftJoin(events, eq(signals.eventId, events.id))
         .where(whereClause || sql`1=1`)
         .orderBy(desc(signals.createdAt))
         .limit(pageSize)
@@ -279,7 +306,7 @@ export class SignalsService {
       }));
 
       return {
-        data: dataWithStockName,
+        data: dataWithStockName as Signal[],
         total,
         page,
         pageSize,

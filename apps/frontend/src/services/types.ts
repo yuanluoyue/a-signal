@@ -175,6 +175,7 @@ export interface Signal {
   weight?: string;
   createdAt: string;
   updatedAt: string;
+  eventOccurredAt?: string | null;
 }
 
 export interface SignalsListQueryParams extends PaginationParams {

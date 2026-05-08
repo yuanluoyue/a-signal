@@ -192,9 +192,6 @@ export class StockTrackingService {
   }
 
   async getTrackingNews(trackingId: string, stockCode: string) {
-    const oneYearAgo = new Date();
-    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-
     const newsList = await this.dbService.db
       .select({
         id: news.id,
@@ -205,12 +202,7 @@ export class StockTrackingService {
         analyzeStatus: news.analyzeStatus,
       })
       .from(news)
-      .where(
-        and(
-          gte(news.publishTime, oneYearAgo),
-          sql`${news.uniqueKey} LIKE ${stockCode + '_%'}`,
-        ),
-      )
+      .where(sql`${news.uniqueKey} LIKE ${stockCode + '_%'}`)
       .orderBy(desc(news.publishTime))
       .limit(100);
 
@@ -218,9 +210,6 @@ export class StockTrackingService {
   }
 
   async queueNewsForAnalysis(trackingId: string, stockCode: string): Promise<number> {
-    const oneYearAgo = new Date();
-    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-
     const pendingNews = await this.dbService.db
       .select({
         id: news.id,
@@ -231,17 +220,18 @@ export class StockTrackingService {
       .where(
         and(
           eq(news.analyzeStatus, 'pending'),
-          gte(news.publishTime, oneYearAgo),
+          sql`${news.uniqueKey} LIKE ${stockCode + '_%'}`,
         ),
       )
       .orderBy(news.publishTime);
 
-    this.logger.log(`Found ${pendingNews.length} pending news for analysis in tracking ${trackingId}`);
+    this.logger.log(`Found ${pendingNews.length} pending news for stock ${stockCode} in tracking ${trackingId}`);
 
     for (const newsItem of pendingNews) {
       try {
         await this.queueService.sendMessage(QUEUE_NAMES.EVENT_ANALYZE, {
           newsId: newsItem.id,
+          stockCode,
           skipWebhook: true,
         });
       } catch (error) {

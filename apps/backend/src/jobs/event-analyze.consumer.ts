@@ -14,6 +14,7 @@ import { SensitiveContentError } from '../common/errors/index.js';
 
 export interface EventAnalyzeMessage {
   newsId: string;
+  stockCode?: string;
 }
 
 @Injectable()
@@ -36,9 +37,9 @@ export class EventAnalyzeConsumer extends QueueConsumer {
 
   protected async processMessage<T>(message: QueueMessage<T>): Promise<void> {
     const data = message.data as EventAnalyzeMessage;
-    const { newsId } = data;
+    const { newsId, stockCode } = data;
 
-    this.logger.log(`[EventAnalyzeConsumer] Processing event analysis for newsId: ${newsId}`);
+    this.logger.log(`[EventAnalyzeConsumer] Processing event analysis for newsId: ${newsId}${stockCode ? `, stockCode: ${stockCode}` : ''}`);
 
     try {
       const newsItem = await this.fetchNewsById(newsId);
@@ -60,7 +61,7 @@ export class EventAnalyzeConsumer extends QueueConsumer {
       });
       this.logger.log(`[EventAnalyzeConsumer] Event extraction completed for news ${newsId}, got ${analysisResult.events.length} events`);
 
-      const createdEvents = await this.saveEvents(newsItem, analysisResult.events);
+      const createdEvents = await this.saveEvents(newsItem, analysisResult.events, stockCode);
 
       for (const event of createdEvents) {
         try {
@@ -108,7 +109,7 @@ export class EventAnalyzeConsumer extends QueueConsumer {
     }
   }
 
-  private async saveEvents(newsItem: News, eventOutputs: EventOutput[]) {
+  private async saveEvents(newsItem: News, eventOutputs: EventOutput[], stockCode?: string) {
     if (eventOutputs.length === 0) {
       this.logger.log(`No events generated for news ${newsItem.id}`);
       return [];
@@ -117,11 +118,17 @@ export class EventAnalyzeConsumer extends QueueConsumer {
     try {
       const eventDtos = eventOutputs
         .map((eventOutput) => {
-          const filteredSubjects = filterAStockSubjects(eventOutput.subjects);
+          let filteredSubjects = filterAStockSubjects(eventOutput.subjects);
+          
+          if (stockCode) {
+            filteredSubjects = filteredSubjects.filter(
+              (subject) => subject.code === stockCode,
+            );
+          }
           
           if (filteredSubjects.length === 0) {
             this.logger.log(
-              `Event ${eventOutput.category}/${eventOutput.subcategory} has no valid A-stock subjects, skipping`,
+              `Event ${eventOutput.category}/${eventOutput.subcategory} has no valid subjects${stockCode ? ` for stock ${stockCode}` : ''}, skipping`,
             );
             return null;
           }
@@ -160,7 +167,7 @@ export class EventAnalyzeConsumer extends QueueConsumer {
         .filter((dto): dto is NonNullable<typeof dto> => dto !== null) as CreateEventDto[];
 
       const results = await this.eventService.createEventsBatch(eventDtos);
-      this.logger.log(`Saved ${results.length} events for news ${newsItem.id}`);
+      this.logger.log(`Saved ${results.length} events for news ${newsItem.id}${stockCode ? ` (filtered by stock ${stockCode})` : ''}`);
       return results;
     } catch (error) {
       this.logger.error(

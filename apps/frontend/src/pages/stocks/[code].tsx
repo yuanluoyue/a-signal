@@ -267,7 +267,7 @@ const StockDetailPage: React.FC = () => {
       const markers: LightweightCharts.SeriesMarker<Time>[] = [];
 
       stockDetail.signals.forEach((signal) => {
-        const signalTimeStr = signal.generatedAt || signal.signalTime || signal.createdAt;
+        const signalTimeStr = signal.eventOccurredAt || signal.generatedAt || signal.signalTime || signal.createdAt;
         const action = signal.action || (signal.direction === 'bullish' ? 'long' : signal.direction === 'bearish' ? 'short' : 'hold');
         
         if (signalTimeStr) {

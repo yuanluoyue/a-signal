@@ -21,17 +21,11 @@ export const EventMetricSchema = z.object({
 
 export const EventOutputSchema = z.object({
   category: z.enum(['macro', 'policy', 'company', 'market', 'sentiment']),
-  subcategory: z.enum([
-    'gdp', 'cpi', 'pmi', 'rate_decision', 'employment', 'trade_balance', 'fiscal_policy',
-    'industry_policy', 'regulatory_change', 'tax_policy', 'subsidy', 'environmental',
-    'earnings_forecast', 'earnings_actual', 'shareholder_reduction', 'shareholder_increase', 'dividend', 'm_a', 'management_change', 'product_launch', 'litigation',
-    'index_change', 'sector_rotation', 'volume_anomaly', 'margin_trading', 'institutional_activity',
-    'analyst_rating', 'media_sentiment', 'social_media_trend', 'fear_greed_index',
-  ]),
+  subcategory: z.string().optional(),
   subjects: z.array(EventSubjectSchema),
   sentimentDirection: z.number().int().min(-1).max(1),
   sentimentConfidence: z.number().min(0).max(1),
-  sentimentRationale: z.string().max(20),
+  sentimentRationale: z.string().max(50),
   importanceScore: z.number().min(0).max(1),
   importanceBenchmark: z.enum(['global_daily', 'historical_similar']).nullish(),
   surpriseScore: z.number().min(-1).max(1).nullish(),
@@ -161,16 +155,11 @@ export class VolcengineService {
 1. 分析依据：优先参考新闻标题，结合正文内容，不添加任何外部信息
 2. 一条新闻最多提取0-3个事件，只关注中国A股市场相关事件
 3. 事件分类(category)必须为：macro(宏观经济)、policy(政策法规)、company(公司事件)、market(市场异动)、sentiment(情绪指标)
-4. 子分类(subcategory)必须从预定义枚举中选择：
-   - macro: gdp, cpi, pmi, rate_decision, employment, trade_balance, fiscal_policy
-   - policy: industry_policy, regulatory_change, tax_policy, subsidy, environmental
-   - company: earnings_forecast, earnings_actual, shareholder_reduction, shareholder_increase, dividend, m_a, management_change, product_launch, litigation
-   - market: index_change, sector_rotation, volume_anomaly, margin_trading, institutional_activity
-   - sentiment: analyst_rating, media_sentiment, social_media_trend, fear_greed_index
+4. 子分类(subcategory)：根据事件性质自定义，如：earnings(业绩)、dividend(分红)、shareholder_change(股东变动)、product_launch(产品发布)、contract(合同)、investment(投资)等
 5. subjects：只提取中国A股市场相关的标的，type必须为stock，code必须是6位数字的A股股票代码（如：000001、600000、300001、688001等），weight为关联度0~1。不要提取港股、美股、债券、基金等非A股标的。
 6. sentimentDirection：-1利空/0中性/1利好
 7. sentimentConfidence：0~1，LLM判断的可信度
-8. sentimentRationale：简短理由，不超过20字
+8. sentimentRationale：简短理由，不超过50字
 9. importanceScore：0~1，绝对重要性
 10. surpriseScore：-1~1，负值不及预期，正值超预期（如无预期对比则不填）
 11. effectiveDecayType：step(阶梯)/linear(线性)/exponential(指数)
@@ -183,11 +172,11 @@ export class VolcengineService {
   "events": [
     {
       "category": "macro|policy|company|market|sentiment",
-      "subcategory": "预定义枚举值",
+      "subcategory": "自定义子分类",
       "subjects": [{"type": "stock", "code": "000001", "weight": 1.0}],
       "sentimentDirection": -1|0|1,
       "sentimentConfidence": 0.0~1.0,
-      "sentimentRationale": "不超过20字的理由",
+      "sentimentRationale": "不超过50字的理由",
       "importanceScore": 0.0~1.0,
       "importanceBenchmark": "global_daily|historical_similar",
       "surpriseScore": -1.0~1.0,
