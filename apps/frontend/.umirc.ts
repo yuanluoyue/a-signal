@@ -61,6 +61,11 @@ export default defineConfig({
           title: '信号规则',
         },
         {
+          path: '/strategies',
+          component: '@/pages/strategy/index',
+          title: '策略管理',
+        },
+        {
           path: '/stocks',
           component: '@/pages/stocks/index',
           title: '股票查询',

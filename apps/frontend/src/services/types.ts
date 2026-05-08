@@ -589,3 +589,69 @@ export interface UpdateGlobalRuleParams {
   enableSurprise?: boolean;
   enableConfidence?: boolean;
 }
+
+// ==================== 策略相关类型 ====================
+
+export type DirectionMode = 'long_only' | 'short_only' | 'both';
+export type EntryMode = 'next_open';
+
+export interface Strategy {
+  id: string;
+  name: string;
+  description: string | null;
+  enabled: boolean;
+  minScore: string;
+  maxScore: string | null;
+  allowedRuleIds: string[] | null;
+  allowedCategories: string[] | null;
+  directionMode: DirectionMode;
+  entryMode: EntryMode;
+  holdPeriod: number;
+  stopLossPct: string | null;
+  takeProfitPct: string | null;
+  maxSignalsPerDay: number | null;
+  maxPositions: number | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface StrategiesListQueryParams extends PaginationParams {
+  enabled?: boolean;
+  directionMode?: DirectionMode;
+}
+
+export interface StrategiesListResponse extends PaginationResponse<Strategy> {}
+
+export interface CreateStrategyParams {
+  name: string;
+  description?: string;
+  enabled?: boolean;
+  minScore: number;
+  maxScore?: number;
+  allowedRuleIds?: string[];
+  allowedCategories?: string[];
+  directionMode: DirectionMode;
+  entryMode?: EntryMode;
+  holdPeriod: number;
+  stopLossPct?: number;
+  takeProfitPct?: number;
+  maxSignalsPerDay?: number;
+  maxPositions?: number;
+}
+
+export interface UpdateStrategyParams {
+  name?: string;
+  description?: string;
+  enabled?: boolean;
+  minScore?: number;
+  maxScore?: number;
+  allowedRuleIds?: string[];
+  allowedCategories?: string[];
+  directionMode?: DirectionMode;
+  entryMode?: EntryMode;
+  holdPeriod?: number;
+  stopLossPct?: number;
+  takeProfitPct?: number;
+  maxSignalsPerDay?: number;
+  maxPositions?: number;
+}

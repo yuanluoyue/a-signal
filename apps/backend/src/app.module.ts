@@ -26,6 +26,7 @@ import { ApiKeyModule } from './modules/api-key/api-key.module.js';
 import { McpModule } from './modules/mcp/mcp.module.js';
 import { SignalRuleModule } from './modules/signal-rule/signal-rule.module.js';
 import { SignalGeneratorModule } from './modules/signal-generator/signal-generator.module.js';
+import { StrategyModule } from './modules/strategy/strategy.module.js';
 import { AuthController } from './interfaces/admin/auth/auth.controller.js';
 import { NewsController } from './interfaces/admin/news/news.controller.js';
 import { SignalsController } from './interfaces/admin/signals/signals.controller.js';
@@ -42,6 +43,7 @@ import { WebhooksController } from './interfaces/admin/notifications/webhooks.co
 import { ApiKeyController } from './interfaces/admin/api-key/api-key.controller.js';
 import { AgentController } from './interfaces/admin/agent/agent.controller.js';
 import { EventsController } from './interfaces/admin/events/events.controller.js';
+import { StrategyController } from './interfaces/admin/strategy/strategy.controller.js';
 import { StockController } from './interfaces/admin/stock/stock.controller.js';
 import { McpController } from './interfaces/mcp/mcp.controller.js';
 import { HealthController } from './interfaces/admin/health/health.controller.js';
@@ -89,6 +91,7 @@ const jwtAuthGuardProvider: Provider = {
     McpModule,
     SignalRuleModule,
     SignalGeneratorModule,
+    StrategyModule,
   ],
   controllers: [
     AuthController,
@@ -107,6 +110,7 @@ const jwtAuthGuardProvider: Provider = {
     ApiKeyController,
     AgentController,
     EventsController,
+    StrategyController,
     StockController,
     McpController,
     HealthController,

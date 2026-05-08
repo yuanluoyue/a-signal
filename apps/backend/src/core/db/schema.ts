@@ -601,3 +601,39 @@ export const stocks = pgTable(
 
 export type Stock = typeof stocks.$inferSelect;
 export type NewStock = typeof stocks.$inferInsert;
+
+export const strategies = pgTable(
+  'strategies',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    name: varchar('name', { length: 100 }).notNull().unique(),
+    description: text('description'),
+    enabled: boolean('enabled').notNull().default(true),
+    minScore: decimal('min_score', { precision: 5, scale: 4 }).notNull(),
+    maxScore: decimal('max_score', { precision: 5, scale: 4 }),
+    allowedRuleIds: jsonb('allowed_rule_ids').$type<string[]>(),
+    allowedCategories: jsonb('allowed_categories').$type<string[]>(),
+    directionMode: varchar('direction_mode', { length: 20 }).notNull(),
+    entryMode: varchar('entry_mode', { length: 20 }).notNull().default('next_open'),
+    holdPeriod: integer('hold_period').notNull(),
+    stopLossPct: decimal('stop_loss_pct', { precision: 5, scale: 4 }),
+    takeProfitPct: decimal('take_profit_pct', { precision: 5, scale: 4 }),
+    maxSignalsPerDay: integer('max_signals_per_day'),
+    maxPositions: integer('max_positions'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    index('strategies_enabled_idx').on(table.enabled),
+    index('strategies_direction_mode_idx').on(table.directionMode),
+    index('strategies_created_at_idx').on(table.createdAt),
+  ],
+);
+
+export type Strategy = typeof strategies.$inferSelect;
+export type NewStrategy = typeof strategies.$inferInsert;

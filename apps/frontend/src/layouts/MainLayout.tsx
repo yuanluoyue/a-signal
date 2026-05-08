@@ -74,6 +74,11 @@ const MENU_ITEMS = [
         label: '信号规则',
       },
       {
+        key: '/strategies',
+        icon: <FundOutlined />,
+        label: '策略管理',
+      },
+      {
         key: '/simulation',
         icon: <WalletOutlined />,
         label: '账户模拟',
@@ -149,6 +154,7 @@ const getSelectedKey = (pathname: string): string => {
     '/signals',
     '/events',
     '/signal-rules',
+    '/strategies',
     '/simulation',
     '/backtest',
     '/agent-chat',
@@ -170,6 +176,7 @@ const getOpenKeys = (pathname: string): string[] => {
     '/signals': '/analysis',
     '/events': '/analysis',
     '/signal-rules': '/analysis',
+    '/strategies': '/analysis',
     '/simulation': '/analysis',
     '/backtest': '/analysis',
     '/agent-chat': '/analysis',

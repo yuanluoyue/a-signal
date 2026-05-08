@@ -165,6 +165,73 @@ async function seed() {
         console.log(`Scheduler task already exists: ${task.name}`);
       }
     }
+
+    // ==================== 策略数据 ====================
+    console.log('Seeding strategies...');
+
+    const initialStrategies = [
+      {
+        name: '保守多头',
+        description: '低风险多头策略，仅接受高分信号',
+        enabled: true,
+        minScore: '0.3',
+        maxScore: null,
+        allowedRuleIds: null,
+        allowedCategories: null,
+        directionMode: 'long_only',
+        entryMode: 'next_open',
+        holdPeriod: 5,
+        stopLossPct: '0.03',
+        takeProfitPct: '0.05',
+        maxSignalsPerDay: 3,
+        maxPositions: 5,
+      },
+      {
+        name: '激进双向',
+        description: '高频双向交易策略，接受更多信号',
+        enabled: true,
+        minScore: '0.15',
+        maxScore: null,
+        allowedRuleIds: null,
+        allowedCategories: null,
+        directionMode: 'both',
+        entryMode: 'next_open',
+        holdPeriod: 3,
+        stopLossPct: '0.05',
+        takeProfitPct: '0.08',
+        maxSignalsPerDay: 5,
+        maxPositions: 10,
+      },
+      {
+        name: '空头对冲',
+        description: '空头对冲策略，默认禁用',
+        enabled: false,
+        minScore: '0.25',
+        maxScore: null,
+        allowedRuleIds: null,
+        allowedCategories: null,
+        directionMode: 'short_only',
+        entryMode: 'next_open',
+        holdPeriod: 4,
+        stopLossPct: '0.04',
+        takeProfitPct: '0.06',
+        maxSignalsPerDay: 2,
+        maxPositions: 3,
+      },
+    ];
+
+    for (const strategy of initialStrategies) {
+      const existing = await db
+        .select()
+        .from(schema.strategies)
+        .where(eq(schema.strategies.name, strategy.name));
+      if (existing.length === 0) {
+        await db.insert(schema.strategies).values(strategy);
+        console.log(`Created strategy: ${strategy.name}`);
+      } else {
+        console.log(`Strategy already exists: ${strategy.name}`);
+      }
+    }
   } catch (error) {
     console.error('Seed failed:', error);
     throw error;
