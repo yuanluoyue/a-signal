@@ -1,10 +1,12 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
+import { and, eq, gte, lte } from 'drizzle-orm';
 import { SchedulerService } from '../modules/scheduler/scheduler.service.js';
 import { NewsService } from '../modules/news/news.service.js';
-import { SignalAnalyzeService } from '../modules/signals/signal-analyze.service.js';
 import { KlinesService } from '../modules/klines/klines.service.js';
 import { QueueService } from '../core/queue/queue.service.js';
+import { DbService } from '../core/db/db.service.js';
+import { news } from '../core/db/schema.js';
 
 @Injectable()
 export class SchedulerTasksService {
@@ -13,9 +15,9 @@ export class SchedulerTasksService {
   constructor(
     private readonly schedulerService: SchedulerService,
     private readonly newsService: NewsService,
-    private readonly signalAnalyzeService: SignalAnalyzeService,
     private readonly klinesService: KlinesService,
     private readonly queueService: QueueService,
+    private readonly dbService: DbService,
   ) {}
 
   @Cron('0 0 19 * * *', {
@@ -46,11 +48,11 @@ export class SchedulerTasksService {
   }
 
   @Cron('0 0 20 * * *', {
-    name: 'news-analyze',
+    name: 'event-analyze',
     timeZone: 'Asia/Shanghai',
   })
-  async handleNewsAnalyze(): Promise<void> {
-    const taskName = 'news-analyze';
+  async handleEventAnalyze(): Promise<void> {
+    const taskName = 'event-analyze';
     this.logger.log(`[${taskName}] Scheduled task triggered`);
 
     try {
@@ -60,10 +62,31 @@ export class SchedulerTasksService {
         return;
       }
 
-      await this.signalAnalyzeService.analyzePendingNews();
-      await this.schedulerService.updateLastExecutedAt(taskName);
+      const pendingNews = await this.fetchPendingNewsFromLastTwoDays();
 
-      this.logger.log(`[${taskName}] Task completed successfully`);
+      if (pendingNews.length === 0) {
+        this.logger.log(`[${taskName}] No pending news found for analysis`);
+        await this.schedulerService.updateLastExecutedAt(taskName);
+        return;
+      }
+
+      this.logger.log(`[${taskName}] Found ${pendingNews.length} pending news items to analyze`);
+
+      for (const newsItem of pendingNews) {
+        try {
+          await this.queueService.sendToEventAnalyze({
+            newsId: newsItem.id,
+          });
+          this.logger.debug(`[${taskName}] Queued news ${newsItem.id} for analysis`);
+        } catch (error) {
+          this.logger.error(
+            `[${taskName}] Failed to queue news ${newsItem.id}: ${error instanceof Error ? error.message : String(error)}`,
+          );
+        }
+      }
+
+      await this.schedulerService.updateLastExecutedAt(taskName);
+      this.logger.log(`[${taskName}] Task completed successfully, queued ${pendingNews.length} news items`);
     } catch (error) {
       this.logger.error(
         `[${taskName}] Task failed: ${error instanceof Error ? error.message : String(error)}`,
@@ -136,22 +159,6 @@ export class SchedulerTasksService {
     }
   }
 
-  async manualNewsAnalyze(): Promise<void> {
-    const taskName = 'news-analyze';
-    this.logger.log(`[${taskName}] Manual execution triggered`);
-
-    try {
-      await this.signalAnalyzeService.analyzePendingNews();
-      await this.schedulerService.updateLastExecutedAt(taskName);
-      this.logger.log(`[${taskName}] Manual execution completed`);
-    } catch (error) {
-      this.logger.error(
-        `[${taskName}] Manual execution failed: ${error instanceof Error ? error.message : String(error)}`,
-      );
-      throw error;
-    }
-  }
-
   async manualKlineUpdate(): Promise<void> {
     const taskName = 'kline-update';
     this.logger.log(`[${taskName}] Manual execution triggered`);
@@ -177,6 +184,62 @@ export class SchedulerTasksService {
     } catch (error) {
       this.logger.error(
         `[${taskName}] Manual execution failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
+  async manualEventAnalyze(): Promise<void> {
+    const taskName = 'event-analyze';
+    this.logger.log(`[${taskName}] Manual execution triggered`);
+
+    try {
+      const pendingNews = await this.fetchPendingNewsFromLastTwoDays();
+
+      if (pendingNews.length === 0) {
+        this.logger.log(`[${taskName}] No pending news found for analysis`);
+        await this.schedulerService.updateLastExecutedAt(taskName);
+        return;
+      }
+
+      this.logger.log(`[${taskName}] Found ${pendingNews.length} pending news items to analyze`);
+
+      for (const newsItem of pendingNews) {
+        await this.queueService.sendToEventAnalyze({
+          newsId: newsItem.id,
+        });
+      }
+
+      await this.schedulerService.updateLastExecutedAt(taskName);
+      this.logger.log(`[${taskName}] Manual execution completed, queued ${pendingNews.length} news items`);
+    } catch (error) {
+      this.logger.error(
+        `[${taskName}] Manual execution failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
+  private async fetchPendingNewsFromLastTwoDays(): Promise<{ id: string }[]> {
+    try {
+      const now = new Date();
+      const twoDaysAgo = new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000);
+
+      const results = await this.dbService.db
+        .select({ id: news.id })
+        .from(news)
+        .where(
+          and(
+            eq(news.analyzeStatus, 'pending'),
+            gte(news.publishTime, twoDaysAgo),
+            lte(news.publishTime, now),
+          ),
+        );
+
+      return results;
+    } catch (error) {
+      this.logger.error(
+        `Failed to fetch pending news: ${error instanceof Error ? error.message : String(error)}`,
       );
       throw error;
     }

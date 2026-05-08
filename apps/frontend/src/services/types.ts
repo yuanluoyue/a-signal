@@ -98,11 +98,12 @@ export interface NewsItem {
   url: string;
   analysisStatus: AnalysisStatus;
   vectorizedStatus: VectorizedStatus;
-  relatedStocks: string[];
+  eventCount: number;
   publishedAt: string;
   createdAt: string;
   updatedAt: string;
   metadata?: Record<string, unknown>;
+  embeddingModel?: string;
 }
 
 export interface NewsListQueryParams extends PaginationParams {
@@ -146,18 +147,35 @@ export type SignalType = 'buy' | 'sell';
 
 export interface Signal {
   id: string;
-  newsId: string;
-  stockCode: string;
-  stockName: string;
-  direction: string;
-  confidence: number;
-  sentiment: string;
-  reasoning: string;
-  keyFactors: string[];
-  timeWindow: string;
-  signalTime: string;
+  newsId?: string;
+  stockCode?: string;
+  stockName?: string;
+  direction?: string;
+  confidence?: number;
+  sentiment?: string;
+  reasoning?: string;
+  keyFactors?: string[];
+  timeWindow?: string;
+  signalTime?: string;
+  eventId?: string;
+  symbol?: string;
+  action?: string;
+  score?: string;
+  generatedAt?: string;
+  validFrom?: string;
+  validTo?: string;
+  reason?: string;
+  ruleId?: string;
+  ruleSnapshot?: {
+    multiplier: string;
+    threshold: string;
+    enableSurprise: boolean;
+    enableConfidence: boolean;
+  };
+  weight?: string;
   createdAt: string;
   updatedAt: string;
+  eventOccurredAt?: string | null;
 }
 
 export interface SignalsListQueryParams extends PaginationParams {
@@ -179,12 +197,19 @@ export interface SignalStats {
 
 export interface RecentSignal {
   id: string;
-  symbol: string;
-  name?: string;
-  type: SignalType;
-  price: number;
-  confidence: number;
+  symbol?: string;
+  stockCode?: string;
+  stockName?: string;
+  action?: string;
+  direction?: string;
+  score?: number;
+  confidence?: number;
+  generatedAt?: string;
+  signalTime?: string;
   createdAt: string;
+  type?: SignalType;
+  price?: number;
+  name?: string;
 }
 
 export interface SignalFilter {
@@ -253,8 +278,8 @@ export interface Webhook {
   name: string;
   url: string;
   type: WebhookType;
-  confidenceThreshold: number;
   enabled: boolean;
+  strategies?: Strategy[];
   createdAt: string;
   updatedAt: string;
 }
@@ -263,7 +288,6 @@ export interface CreateWebhookData {
   name: string;
   url: string;
   type: WebhookType;
-  confidenceThreshold: number;
   enabled?: boolean;
 }
 
@@ -271,7 +295,6 @@ export interface UpdateWebhookData {
   name?: string;
   url?: string;
   type?: WebhookType;
-  confidenceThreshold?: number;
   enabled?: boolean;
 }
 
@@ -299,69 +322,88 @@ export interface SchedulerTasksListResponse {
 
 // ==================== 回测相关类型 ====================
 
-export type BacktestPeriod = '4h' | '1d';
+export type BacktestStatus = 'completed' | 'failed' | 'running';
 
-export interface BacktestRequest {
-  startTime: Date | string;
-  endTime: Date | string;
-  minConfidence: number;
-  maxConfidence: number;
-  directions: string[];
-  stopLoss: number;
-  takeProfit: number;
-  period?: BacktestPeriod;
+export interface BacktestStrategySnapshot {
+  id: string;
+  name: string;
+  description?: string | null;
+  enabled: boolean;
+  minScore: string;
+  maxScore?: string | null;
+  allowedRuleIds?: string[] | null;
+  allowedCategories?: string[] | null;
+  directionMode: string;
+  entryMode: string;
+  holdPeriod: number;
+  stopLossPct?: string | null;
+  takeProfitPct?: string | null;
+  maxSignalsPerDay?: number | null;
+  maxPositions?: number | null;
 }
 
-export interface TradeResult {
-  signalId: string;
-  stockCode: string;
-  stockName: string;
-  direction: string;
-  entryPrice: number;
-  exitPrice: number;
-  return: number;
-  exitReason: 'takeProfit' | 'stopLoss' | 'timeExpired';
-  entryTime: Date | string;
-  exitTime: Date | string;
-}
-
-export interface BacktestResult {
+export interface BacktestRecord {
+  id: string;
+  name: string | null;
+  description: string | null;
+  strategyId: string | null;
+  strategySnapshot: BacktestStrategySnapshot | null;
+  stockCode: string | null;
+  startTime: string;
+  endTime: string;
+  period: string;
+  totalSignals: number | null;
+  filteredSignals: number | null;
   totalTrades: number;
   winningTrades: number;
   losingTrades: number;
-  winRate: number;
-  totalReturn: number;
-  maxDrawdown: number;
-  avgReturn: number;
-  trades: TradeResult[];
-}
-
-export interface BacktestFilter {
-  dateRange: [string, string];
-  confidenceRange: [number, number];
-  signalTypes: SignalType[];
-  takeProfitPercent: number;
-  stopLossPercent: number;
+  winRate: string | null;
+  totalReturnPct: string | null;
+  avgReturnPct: string | null;
+  maxDrawdownPct: string | null;
+  sharpeRatio: string | null;
+  profitFactor: string | null;
+  avgHoldingPeriod: string | null;
+  equityCurve: Array<{ time: string; equity: number }> | null;
+  status: string;
+  errorMessage: string | null;
+  createdAt: string;
 }
 
 export interface BacktestTrade {
   id: string;
+  backtestId: string;
+  strategyId: string;
+  signalId: string | null;
+  eventId: string | null;
   symbol: string;
-  type: SignalType;
-  entryPrice: number;
-  exitPrice: number;
+  stockName: string | null;
+  direction: string;
   entryTime: string;
-  exitTime: string;
-  quantity: number;
-  pnl: number;
-  pnlPercent: number;
-  exitReason: 'take_profit' | 'stop_loss' | 'signal';
+  entryPrice: string;
+  exitTime: string | null;
+  exitPrice: string | null;
+  pnlPct: string | null;
+  signalScore: string | null;
+  signalRuleId: string | null;
+  signalReason: string | null;
+  exitReason: string | null;
+  stopLossPrice: string | null;
+  takeProfitPrice: string | null;
+  createdAt: string;
 }
 
-export interface BacktestResponse {
-  success: boolean;
-  data: BacktestResult;
-  timestamp: string;
+export interface StrategyBacktestRequest {
+  strategyId: string;
+  startTime: string;
+  endTime: string;
+  name?: string;
+  stockCode?: string;
+}
+
+export interface BacktestRecordsQueryParams {
+  stockCode?: string;
+  strategyId?: string;
 }
 
 // ==================== 仪表盘相关类型 ====================
@@ -431,4 +473,206 @@ export interface SettingsUpdateRequest {
   language?: string;
   notifications?: Partial<NotificationSettings>;
   trading?: Partial<TradingSettings>;
+}
+
+// ==================== 事件相关类型 ====================
+
+export type EventCategory = 'macro' | 'policy' | 'company' | 'market' | 'sentiment';
+export type EventDecayType = 'step' | 'linear' | 'exponential';
+
+export interface EventSubject {
+  type: 'stock' | 'sector' | 'index' | 'commodity';
+  code: string;
+  weight: number;
+  name?: string;
+}
+
+export interface EventMetric {
+  name: string;
+  value: number;
+  unit: string;
+  yoyChange?: number;
+}
+
+export interface EventItem {
+  id: string;
+  newsId: string | null;
+  detectedAt: string;
+  occurredAt: string;
+  category: EventCategory;
+  subcategory: string;
+  categoryName: string;
+  subcategoryName: string;
+  subjects: EventSubject[];
+  sentimentDirection: number;
+  sentimentConfidence: number;
+  sentimentRationale: string;
+  importanceScore: number;
+  importanceBenchmark: string | null;
+  surpriseScore: number | null;
+  surpriseBaseline: string | null;
+  effectivePeriodStart: string;
+  effectivePeriodEnd: string | null;
+  effectiveDecayType: EventDecayType;
+  metrics: EventMetric[] | null;
+  sourceUrl: string | null;
+  sourceTitle: string;
+  sourceSummary: string;
+  sourcePublisher: string;
+  version: number;
+  processed: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface EventsListQueryParams extends PaginationParams {
+  category?: EventCategory;
+  subcategory?: string;
+  sentimentDirection?: number;
+  processed?: boolean;
+  startTime?: string;
+  endTime?: string;
+}
+
+export interface EventsListResponse {
+  data: EventItem[];
+  total: number;
+  page: number;
+  pageSize: number;
+}
+
+// ==================== 信号规则相关类型 ====================
+
+export type SignalRuleType = 'global' | 'specific';
+
+export interface SignalRule {
+  id: string;
+  name: string;
+  type: SignalRuleType;
+  eventType: string | null;
+  enabled: boolean;
+  multiplier: string;
+  threshold: string;
+  enableSurprise: boolean;
+  enableConfidence: boolean;
+  description: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface GlobalRule {
+  id: string;
+  name: string;
+  type: SignalRuleType;
+  multiplier: string;
+  threshold: string;
+  enableSurprise: boolean;
+  enableConfidence: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface SignalRulesListQueryParams extends PaginationParams {
+  type?: SignalRuleType;
+  eventType?: string;
+  enabled?: boolean;
+}
+
+export interface SignalRulesListResponse extends PaginationResponse<SignalRule> {}
+
+export interface CreateSignalRuleParams {
+  name: string;
+  type: SignalRuleType;
+  eventType?: string;
+  enabled?: boolean;
+  multiplier?: number;
+  threshold?: number;
+  enableSurprise?: boolean;
+  enableConfidence?: boolean;
+  description?: string;
+}
+
+export interface UpdateSignalRuleParams {
+  name?: string;
+  eventType?: string;
+  enabled?: boolean;
+  multiplier?: number;
+  threshold?: number;
+  description?: string;
+}
+
+export interface UpdateGlobalRuleParams {
+  multiplier?: number;
+  threshold?: number;
+  enableSurprise?: boolean;
+  enableConfidence?: boolean;
+}
+
+// ==================== 策略相关类型 ====================
+
+export type DirectionMode = 'long_only' | 'short_only' | 'both';
+export type EntryMode = 'next_open';
+
+export interface Strategy {
+  id: string;
+  name: string;
+  description: string | null;
+  enabled: boolean;
+  minScore: string;
+  maxScore: string | null;
+  allowedRuleIds: string[] | null;
+  allowedCategories: string[] | null;
+  directionMode: DirectionMode;
+  entryMode: EntryMode;
+  holdPeriod: number;
+  stopLossPct: string | null;
+  takeProfitPct: string | null;
+  maxSignalsPerDay: number | null;
+  maxPositions: number | null;
+  webhookId?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface StrategiesListQueryParams extends PaginationParams {
+  enabled?: boolean;
+  directionMode?: DirectionMode;
+}
+
+export interface StrategiesListResponse extends PaginationResponse<Strategy> {}
+
+export interface CreateStrategyParams {
+  name: string;
+  description?: string;
+  enabled?: boolean;
+  minScore: number;
+  maxScore?: number;
+  allowedRuleIds?: string[];
+  allowedCategories?: string[];
+  directionMode: DirectionMode;
+  entryMode?: EntryMode;
+  holdPeriod: number;
+  stopLossPct?: number;
+  takeProfitPct?: number;
+  maxSignalsPerDay?: number;
+  maxPositions?: number;
+  webhookId?: string;
+}
+
+export interface UpdateStrategyParams {
+  name?: string;
+  description?: string;
+  enabled?: boolean;
+  minScore?: number;
+  maxScore?: number;
+  allowedRuleIds?: string[];
+  allowedCategories?: string[];
+  directionMode?: DirectionMode;
+  entryMode?: EntryMode;
+  holdPeriod?: number;
+  stopLossPct?: number;
+  takeProfitPct?: number;
+  maxSignalsPerDay?: number;
+  maxPositions?: number;
+  webhookId?: string;
 }

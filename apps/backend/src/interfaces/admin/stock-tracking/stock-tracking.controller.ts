@@ -11,8 +11,6 @@ import {
 import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
 import { StockTrackingService } from '../../../modules/stock-tracking/stock-tracking.service.js';
 import { CreateTrackingDto } from './dto/index.js';
-import { BacktestService } from '../../../modules/backtest/backtest.service.js';
-import { BacktestPeriod } from '../backtest/dto/backtest.dto.js';
 import { QueueService } from '../../../core/queue/queue.service.js';
 import { QUEUE_NAMES } from '../../../core/queue/queue.constants.js';
 import { Public } from '../../../common/decorators/public.decorator.js';
@@ -23,7 +21,6 @@ export class StockTrackingController {
   constructor(
     private readonly stockTrackingService: StockTrackingService,
     private readonly queueService: QueueService,
-    private readonly backtestService: BacktestService,
   ) {}
 
   @Get()
@@ -127,40 +124,6 @@ export class StockTrackingController {
       message: `信号生成任务已启动，${newsCount} 条新闻待分析`,
       trackingId: id,
       newsCount,
-    };
-  }
-
-  @Post(':id/backtest')
-  @Public()
-  @ApiOperation({ summary: '执行回测' })
-  @ApiParam({ name: 'id', description: '追踪 ID' })
-  @ApiResponse({ status: 200, description: '回测执行成功' })
-  async backtest(@Param('id') id: string) {
-    const tracking = await this.stockTrackingService.findById(id);
-    if (!tracking) {
-      throw new NotFoundException('追踪记录不存在');
-    }
-
-    const endTime = new Date();
-    const startTime = new Date();
-    startTime.setFullYear(startTime.getFullYear() - 1);
-
-    const backtestResult = await this.backtestService.runBacktest({
-      startTime,
-      endTime,
-      minConfidence: 70,
-      maxConfidence: 100,
-      directions: ['bullish', 'bearish'],
-      stopLoss: 0.05,
-      takeProfit: 0.1,
-      period: BacktestPeriod.FOUR_HOURS,
-      stockCode: tracking.stockCode,
-    });
-
-    return {
-      message: '回测执行成功',
-      trackingId: id,
-      data: backtestResult,
     };
   }
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Table,
   Card,
@@ -11,6 +11,7 @@ import {
   Modal,
   Form,
   Popconfirm,
+  Select,
 } from 'antd';
 import { EyeOutlined, PlusOutlined, ReloadOutlined, DeleteOutlined } from '@ant-design/icons';
 import { useNavigate } from 'umi';
@@ -27,6 +28,13 @@ interface StockTracking {
   createdAt: string;
 }
 
+interface StockOption {
+  value: string;
+  label: string;
+  code: string;
+  name: string;
+}
+
 const StockTrackingsPage: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -38,6 +46,9 @@ const StockTrackingsPage: React.FC = () => {
     pageSize: 10,
     total: 0,
   });
+  const [stockOptions, setStockOptions] = useState<StockOption[]>([]);
+  const [searchLoading, setSearchLoading] = useState(false);
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const fetchData = async (page?: number, pageSize?: number) => {
     setLoading(true);
@@ -61,6 +72,59 @@ const StockTrackingsPage: React.FC = () => {
 
   useEffect(() => {
     fetchData();
+  }, []);
+
+  const searchStocks = async (keyword: string) => {
+    if (!keyword || keyword.trim().length === 0) {
+      setStockOptions([]);
+      return;
+    }
+    setSearchLoading(true);
+    try {
+      const response = await client.get('/stock/search', {
+        params: { keyword: keyword.trim() },
+      });
+      const stocks = response.data || [];
+      const options: StockOption[] = stocks.map((stock: { code: string; name: string }) => ({
+        value: stock.code,
+        label: `${stock.code} - ${stock.name}`,
+        code: stock.code,
+        name: stock.name,
+      }));
+      setStockOptions(options);
+    } catch (error) {
+      console.error('Search stocks error:', error);
+      setStockOptions([]);
+    } finally {
+      setSearchLoading(false);
+    }
+  };
+
+  const handleStockSearch = (value: string) => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+    debounceTimerRef.current = setTimeout(() => {
+      searchStocks(value);
+    }, 300);
+  };
+
+  const handleStockChange = (value: string) => {
+    const selectedOption = stockOptions.find(opt => opt.value === value);
+    if (selectedOption) {
+      form.setFieldsValue({
+        stockCode: selectedOption.code,
+        stockName: selectedOption.name,
+      });
+    }
+  };
+
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
   }, []);
 
   const handleView = (id: string) => {
@@ -236,23 +300,36 @@ const StockTrackingsPage: React.FC = () => {
       <Modal
         title="新增股票追踪"
         open={isModalVisible}
-        onCancel={() => setIsModalVisible(false)}
+        onCancel={() => {
+          setIsModalVisible(false);
+          setStockOptions([]);
+        }}
         onOk={() => form.submit()}
       >
         <Form form={form} onFinish={handleCreate} layout="vertical">
           <Form.Item
             name="stockCode"
             label="股票代码"
-            rules={[{ required: true, message: '请输入股票代码' }]}
+            rules={[{ required: true, message: '请选择股票' }]}
           >
-            <Input placeholder="例如: 00700" />
+            <Select
+              showSearch
+              placeholder="输入股票代码或名称搜索"
+              filterOption={false}
+              onSearch={handleStockSearch}
+              onChange={handleStockChange}
+              loading={searchLoading}
+              options={stockOptions}
+              allowClear
+              notFoundContent={searchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}
+            />
           </Form.Item>
           <Form.Item
             name="stockName"
             label="股票名称"
-            rules={[{ required: true, message: '请输入股票名称' }]}
+            rules={[{ required: true, message: '请选择股票' }]}
           >
-            <Input placeholder="例如: 腾讯控股" />
+            <Input disabled placeholder="选择股票后自动填充" />
           </Form.Item>
         </Form>
       </Modal>

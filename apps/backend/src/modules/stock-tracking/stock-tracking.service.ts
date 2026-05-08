@@ -13,6 +13,7 @@ import {
 } from '../../core/db/schema.js';
 import { QueueService } from '../../core/queue/queue.service.js';
 import { QUEUE_NAMES } from '../../core/queue/queue.constants.js';
+import { StockService } from '../stock/stock.service.js';
 
 export interface CreateTrackingDto {
   stockCode: string;
@@ -37,13 +38,26 @@ export class StockTrackingService {
     private readonly dbService: DbService,
     private readonly queueService: QueueService,
     private readonly configService: ConfigService,
+    private readonly stockService: StockService,
   ) {}
 
   async findAll(): Promise<StockTracking[]> {
-    return this.dbService.db
+    const trackings = await this.dbService.db
       .select()
       .from(stockTrackings)
       .orderBy(desc(stockTrackings.createdAt));
+
+    if (trackings.length === 0) {
+      return trackings;
+    }
+
+    const stockCodes = trackings.map(t => t.stockCode);
+    const stockMap = await this.stockService.findByCodes(stockCodes);
+
+    return trackings.map(tracking => ({
+      ...tracking,
+      stockName: stockMap.get(tracking.stockCode)?.name || tracking.stockCode,
+    }));
   }
 
   async findById(id: string): Promise<StockTracking | null> {
@@ -178,9 +192,6 @@ export class StockTrackingService {
   }
 
   async getTrackingNews(trackingId: string, stockCode: string) {
-    const oneYearAgo = new Date();
-    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-
     const newsList = await this.dbService.db
       .select({
         id: news.id,
@@ -191,12 +202,7 @@ export class StockTrackingService {
         analyzeStatus: news.analyzeStatus,
       })
       .from(news)
-      .where(
-        and(
-          gte(news.publishTime, oneYearAgo),
-          sql`${news.uniqueKey} LIKE ${stockCode + '_%'}`,
-        ),
-      )
+      .where(sql`${news.uniqueKey} LIKE ${stockCode + '_%'}`)
       .orderBy(desc(news.publishTime))
       .limit(100);
 
@@ -204,9 +210,6 @@ export class StockTrackingService {
   }
 
   async queueNewsForAnalysis(trackingId: string, stockCode: string): Promise<number> {
-    const oneYearAgo = new Date();
-    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-
     const pendingNews = await this.dbService.db
       .select({
         id: news.id,
@@ -217,17 +220,18 @@ export class StockTrackingService {
       .where(
         and(
           eq(news.analyzeStatus, 'pending'),
-          gte(news.publishTime, oneYearAgo),
+          sql`${news.uniqueKey} LIKE ${stockCode + '_%'}`,
         ),
       )
       .orderBy(news.publishTime);
 
-    this.logger.log(`Found ${pendingNews.length} pending news for analysis in tracking ${trackingId}`);
+    this.logger.log(`Found ${pendingNews.length} pending news for stock ${stockCode} in tracking ${trackingId}`);
 
     for (const newsItem of pendingNews) {
       try {
-        await this.queueService.sendMessage(QUEUE_NAMES.NEWS_ANALYZE, {
+        await this.queueService.sendMessage(QUEUE_NAMES.EVENT_ANALYZE, {
           newsId: newsItem.id,
+          stockCode,
           skipWebhook: true,
         });
       } catch (error) {
@@ -304,7 +308,12 @@ export class StockTrackingService {
       .orderBy(desc(signals.signalTime))
       .limit(20);
 
-    return signalsList;
+    return signalsList.map(s => ({
+      direction: s.direction ?? '',
+      confidence: s.confidence ?? 0,
+      sentiment: s.sentiment ?? '',
+      reasoning: s.reasoning ?? '',
+    }));
   }
 
   private async getLatestBacktestResult() {
@@ -314,9 +323,9 @@ export class StockTrackingService {
         winningTrades: backtestRecords.winningTrades,
         losingTrades: backtestRecords.losingTrades,
         winRate: backtestRecords.winRate,
-        totalReturn: backtestRecords.totalReturn,
-        maxDrawdown: backtestRecords.maxDrawdown,
-        avgReturn: backtestRecords.avgReturn,
+        totalReturnPct: backtestRecords.totalReturnPct,
+        maxDrawdownPct: backtestRecords.maxDrawdownPct,
+        avgReturnPct: backtestRecords.avgReturnPct,
       })
       .from(backtestRecords)
       .orderBy(desc(backtestRecords.createdAt))
@@ -334,10 +343,10 @@ export class StockTrackingService {
       totalTrades: number;
       winningTrades: number;
       losingTrades: number;
-      winRate: string;
-      totalReturn: string;
-      maxDrawdown: string;
-      avgReturn: string;
+      winRate: string | null;
+      totalReturnPct: string | null;
+      maxDrawdownPct: string | null;
+      avgReturnPct: string | null;
     } | null,
   ): Promise<string> {
     const apiKey = this.configService.get<string>('VOLCENGINE_API_KEY');
@@ -356,7 +365,7 @@ export class StockTrackingService {
       : 0;
 
     const backtestSummary = backtestResult
-      ? `回测结果：总交易 ${backtestResult.totalTrades} 笔，胜率 ${(parseFloat(backtestResult.winRate) * 100).toFixed(1)}%，总收益率 ${(parseFloat(backtestResult.totalReturn) * 100).toFixed(1)}%，最大回撤 ${(parseFloat(backtestResult.maxDrawdown) * 100).toFixed(1)}%`
+      ? `回测结果：总交易 ${backtestResult.totalTrades} 笔，胜率 ${backtestResult.winRate ? (parseFloat(backtestResult.winRate) * 100).toFixed(1) : 'N/A'}%，总收益率 ${backtestResult.totalReturnPct ? (parseFloat(backtestResult.totalReturnPct) * 100).toFixed(1) : 'N/A'}%，最大回撤 ${backtestResult.maxDrawdownPct ? (parseFloat(backtestResult.maxDrawdownPct) * 100).toFixed(1) : 'N/A'}%`
       : '暂无回测数据';
 
     const systemPrompt = `你是专业的股票投资分析师，基于提供的新闻、信号和回测数据生成简洁的研投报告。

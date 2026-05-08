@@ -1,6 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ChromaClient, Collection } from 'chromadb';
+import { pipeline, env } from '@xenova/transformers';
+import * as path from 'path';
+import * as fs from 'fs';
 
 export interface VectorDocument {
   id: string;
@@ -20,6 +23,8 @@ export class VectorService {
   private client: ChromaClient;
   private collection: Collection | null = null;
   private readonly collectionName = 'news_embeddings';
+  private readonly MODEL_NAME = 'Xenova/paraphrase-multilingual-MiniLM-L12-v2';
+  private extractor: any = null;
 
   constructor(private readonly configService: ConfigService) {
     const host = this.configService.get<string>('CHROMA_HOST') || 'localhost';
@@ -27,6 +32,55 @@ export class VectorService {
     this.client = new ChromaClient({
       path: `http://${host}:${port}`,
     });
+
+    this.configureModelCache();
+  }
+
+  private configureModelCache(): void {
+    const cacheDir = path.join(process.cwd(), '.model-cache');
+    if (!fs.existsSync(cacheDir)) {
+      fs.mkdirSync(cacheDir, { recursive: true });
+    }
+
+    env.cacheDir = cacheDir;
+    
+    const hfMirror = this.configService.get<string>('HF_MIRROR') || 'https://hf-mirror.com';
+    env.remoteHost = hfMirror;
+    
+    this.logger.log(`Model cache directory: ${cacheDir}`);
+    this.logger.log(`Using Hugging Face mirror: ${hfMirror}`);
+  }
+
+  private async initializeModel(): Promise<void> {
+    if (this.extractor) return;
+
+    this.logger.log('Initializing embedding model...');
+    this.extractor = await pipeline('feature-extraction', this.MODEL_NAME);
+    this.logger.log('Embedding model initialized successfully');
+  }
+
+  async generateEmbedding(text: string): Promise<number[]> {
+    await this.initializeModel();
+
+    try {
+      this.logger.log(`Generating embedding for text (${text.length} chars)`);
+      const output = await this.extractor(text, { pooling: 'mean', normalize: true });
+      const embedding = Array.from(output.data) as number[];
+      this.logger.log(`Generated embedding with ${embedding.length} dimensions`);
+      return embedding;
+    } catch (error) {
+      this.logger.error(`Failed to generate embedding: ${error instanceof Error ? error.message : String(error)}`);
+      throw error;
+    }
+  }
+
+  async generateBatchEmbeddings(texts: string[]): Promise<number[][]> {
+    const results: number[][] = [];
+    for (const text of texts) {
+      const embedding = await this.generateEmbedding(text);
+      results.push(embedding);
+    }
+    return results;
   }
 
   private async getCollection(): Promise<Collection> {

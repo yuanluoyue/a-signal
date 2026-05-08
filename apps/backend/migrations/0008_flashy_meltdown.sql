@@ -1,0 +1,1 @@
+ALTER TABLE "news" ADD COLUMN "embedding_model" varchar(100);

@@ -57,6 +57,62 @@
       "when": 1776009299867,
       "tag": "0007_nappy_sleeper",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1776777000173,
+      "tag": "0008_flashy_meltdown",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1776855672767,
+      "tag": "0009_events_table_and_signal_event_id",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1777028227412,
+      "tag": "0010_add_signal_rules_and_signal_fields",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1777090171341,
+      "tag": "0011_pretty_goblin_queen",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1777124323587,
+      "tag": "0012_majestic_la_nuit",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1778216089477,
+      "tag": "0013_complex_mother_askani",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1778222747011,
+      "tag": "0014_mature_young_avengers",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1778250752325,
+      "tag": "0015_wooden_marvel_zombies",
+      "breakpoints": true
     }
   ]
 }

@@ -17,14 +17,20 @@ import { DashboardModule } from './modules/dashboard/dashboard.module.js';
 import { BacktestModule } from './modules/backtest/backtest.module.js';
 import { BlacklistModule } from './modules/blacklist/blacklist.module.js';
 import { StocksModule } from './modules/stocks/stocks.module.js';
+import { StockModule } from './modules/stock/stock.module.js';
 import { SimulationModule } from './modules/simulation/simulation.module.js';
 import { StockTrackingModule } from './modules/stock-tracking/stock-tracking.module.js';
+import { EventModule } from './modules/event/event.module.js';
 import { AgentModule } from './modules/agent/agent.module.js';
 import { ApiKeyModule } from './modules/api-key/api-key.module.js';
 import { McpModule } from './modules/mcp/mcp.module.js';
+import { SignalRuleModule } from './modules/signal-rule/signal-rule.module.js';
+import { SignalGeneratorModule } from './modules/signal-generator/signal-generator.module.js';
+import { StrategyModule } from './modules/strategy/strategy.module.js';
 import { AuthController } from './interfaces/admin/auth/auth.controller.js';
 import { NewsController } from './interfaces/admin/news/news.controller.js';
 import { SignalsController } from './interfaces/admin/signals/signals.controller.js';
+import { SignalRulesController } from './interfaces/admin/signal-rules/signal-rules.controller.js';
 import { BacktestController } from './interfaces/admin/backtest/backtest.controller.js';
 import { StocksController } from './interfaces/admin/stocks/stocks.controller.js';
 import { KlinesController } from './interfaces/admin/klines/klines.controller.js';
@@ -36,15 +42,18 @@ import { SchedulerController } from './interfaces/admin/scheduler/scheduler.cont
 import { WebhooksController } from './interfaces/admin/notifications/webhooks.controller.js';
 import { ApiKeyController } from './interfaces/admin/api-key/api-key.controller.js';
 import { AgentController } from './interfaces/admin/agent/agent.controller.js';
+import { EventsController } from './interfaces/admin/events/events.controller.js';
+import { StrategyController } from './interfaces/admin/strategy/strategy.controller.js';
+import { StockController } from './interfaces/admin/stock/stock.controller.js';
 import { McpController } from './interfaces/mcp/mcp.controller.js';
 import { HealthController } from './interfaces/admin/health/health.controller.js';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard.js';
 import { SchedulerTasksService } from './jobs/scheduler-tasks.service.js';
 import { NewsCrawlConsumer } from './jobs/news-crawl.consumer.js';
 import { NewsVectorizeConsumer } from './jobs/news-vectorize.consumer.js';
-import { SignalAnalyzeConsumer } from './jobs/signal-analyze.consumer.js';
 import { KlineFetchConsumer } from './jobs/kline-fetch.consumer.js';
 import { StockTrackFetchConsumer } from './jobs/stock-track-fetch.consumer.js';
+import { EventAnalyzeConsumer } from './jobs/event-analyze.consumer.js';
 
 const jwtAuthGuardProvider: Provider = {
   provide: APP_GUARD,
@@ -73,16 +82,22 @@ const jwtAuthGuardProvider: Provider = {
     BacktestModule,
     BlacklistModule,
     StocksModule,
+    StockModule,
     SimulationModule,
     StockTrackingModule,
+    EventModule,
     AgentModule,
     ApiKeyModule,
     McpModule,
+    SignalRuleModule,
+    SignalGeneratorModule,
+    StrategyModule,
   ],
   controllers: [
     AuthController,
     NewsController,
     SignalsController,
+    SignalRulesController,
     BacktestController,
     StocksController,
     KlinesController,
@@ -94,6 +109,9 @@ const jwtAuthGuardProvider: Provider = {
     WebhooksController,
     ApiKeyController,
     AgentController,
+    EventsController,
+    StrategyController,
+    StockController,
     McpController,
     HealthController,
   ],
@@ -102,9 +120,9 @@ const jwtAuthGuardProvider: Provider = {
     SchedulerTasksService,
     NewsCrawlConsumer,
     NewsVectorizeConsumer,
-    SignalAnalyzeConsumer,
     KlineFetchConsumer,
     StockTrackFetchConsumer,
+    EventAnalyzeConsumer,
   ],
 })
 export class AppModule {}

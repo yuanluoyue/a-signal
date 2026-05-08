@@ -1,6 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { eq, inArray } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
+import { StockService } from '../stock/stock.service.js';
 import { stockBlacklist, type NewStockBlacklist, type StockBlacklist } from '../../core/db/schema.js';
 
 export interface CreateBlacklistDto {
@@ -9,17 +10,41 @@ export interface CreateBlacklistDto {
   reason?: string;
 }
 
+export interface BlacklistWithStockName extends StockBlacklist {
+  stockName: string;
+}
+
 @Injectable()
 export class BlacklistService {
   private readonly logger = new Logger(BlacklistService.name);
 
-  constructor(private readonly dbService: DbService) {}
+  constructor(
+    private readonly dbService: DbService,
+    private readonly stockService: StockService,
+  ) {}
 
-  async findAll(): Promise<StockBlacklist[]> {
-    return this.dbService.db
+  async findAll(): Promise<BlacklistWithStockName[]> {
+    const blacklists = await this.dbService.db
       .select()
       .from(stockBlacklist)
       .orderBy(stockBlacklist.createdAt);
+
+    if (blacklists.length === 0) {
+      return [];
+    }
+
+    const stockCodes = blacklists.map(b => b.stockCode);
+    const stocks = await this.stockService.findByCodes(stockCodes);
+
+    const stockNameMap = new Map<string, string>();
+    stocks.forEach(stock => {
+      stockNameMap.set(stock.code, stock.name);
+    });
+
+    return blacklists.map(blacklist => ({
+      ...blacklist,
+      stockName: stockNameMap.get(blacklist.stockCode) || blacklist.stockCode,
+    }));
   }
 
   async findById(id: string): Promise<StockBlacklist | null> {

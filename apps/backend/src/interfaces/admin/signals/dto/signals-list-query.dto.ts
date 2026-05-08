@@ -2,10 +2,10 @@ import { IsOptional, IsString, IsEnum, IsInt, Min, IsNumber, Max } from 'class-v
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 
-export enum SignalDirection {
-  BULLISH = 'bullish',
-  BEARISH = 'bearish',
-  NEUTRAL = 'neutral',
+export enum SignalAction {
+  BUY = 'buy',
+  SELL = 'sell',
+  HOLD = 'hold',
 }
 
 export class SignalsListQueryDto {
@@ -26,28 +26,28 @@ export class SignalsListQueryDto {
   @ApiPropertyOptional({ description: '股票代码' })
   @IsOptional()
   @IsString()
-  stockCode?: string;
+  symbol?: string;
 
-  @ApiPropertyOptional({ description: '信号方向', enum: SignalDirection })
+  @ApiPropertyOptional({ description: '信号动作', enum: SignalAction })
   @IsOptional()
-  @IsEnum(SignalDirection)
-  direction?: SignalDirection;
+  @IsEnum(SignalAction)
+  action?: SignalAction;
 
-  @ApiPropertyOptional({ description: '最小置信度 (0-100)' })
-  @IsOptional()
-  @Type(() => Number)
-  @IsNumber()
-  @Min(0)
-  @Max(100)
-  minConfidence?: number;
-
-  @ApiPropertyOptional({ description: '最大置信度 (0-100)' })
+  @ApiPropertyOptional({ description: '最小分数 (-1 到 1)' })
   @IsOptional()
   @Type(() => Number)
   @IsNumber()
-  @Min(0)
-  @Max(100)
-  maxConfidence?: number;
+  @Min(-1)
+  @Max(1)
+  minScore?: number;
+
+  @ApiPropertyOptional({ description: '最大分数 (-1 到 1)' })
+  @IsOptional()
+  @Type(() => Number)
+  @IsNumber()
+  @Min(-1)
+  @Max(1)
+  maxScore?: number;
 
   @ApiPropertyOptional({ description: '开始时间 (ISO 8601)' })
   @IsOptional()

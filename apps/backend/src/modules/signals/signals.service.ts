@@ -1,41 +1,82 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { eq, and, gte, lte, desc, sql } from 'drizzle-orm';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { eq, and, desc, sql, gte, lte, or } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
-import { signals, NewSignal, Signal } from '../../core/db/schema.js';
-import { SignalsListQueryDto } from '../../interfaces/admin/signals/dto/signals-list-query.dto.js';
+import { signals, events, Signal, NewSignal } from '../../core/db/schema.js';
+import { StockService } from '../stock/stock.service.js';
 
 export interface CreateSignalDto {
-  newsId: string;
-  stockCode: string;
-  stockName: string;
-  direction: string;
-  confidence: number;
-  sentiment: string;
-  reasoning: string;
-  keyFactors: string[];
-  timeWindow: string;
-  signalTime: Date;
+  newsId?: string;
+  stockCode?: string;
+  stockName?: string;
+  direction?: string;
+  confidence?: number;
+  sentiment?: string;
+  reasoning?: string;
+  keyFactors?: string[];
+  timeWindow?: string;
+  signalTime?: Date;
+
+  eventId?: string;
+  symbol?: string;
+  action?: 'long' | 'short' | 'hold';
+  score?: number;
+  validFrom?: Date;
+  validTo?: Date;
+  reason?: string;
+  ruleId?: string;
+  ruleSnapshot?: Record<string, any>;
+  weight?: number;
+}
+
+export interface SignalsListQueryDto {
+  page?: number;
+  pageSize?: number;
+  newsId?: string;
+  eventId?: string;
+  symbol?: string;
+  stockCode?: string;
+  action?: string;
+  direction?: string;
+  minScore?: number;
+  maxScore?: number;
+  minConfidence?: number;
+  maxConfidence?: number;
+  startTime?: string;
+  endTime?: string;
 }
 
 @Injectable()
 export class SignalsService {
   private readonly logger = new Logger(SignalsService.name);
 
-  constructor(private readonly dbService: DbService) {}
+  constructor(
+    private readonly dbService: DbService,
+    private readonly stockService: StockService,
+  ) {}
 
   async createSignal(dto: CreateSignalDto): Promise<Signal> {
     try {
       const newSignal: NewSignal = {
-        newsId: dto.newsId,
-        stockCode: dto.stockCode,
-        stockName: dto.stockName,
-        direction: dto.direction,
-        confidence: dto.confidence,
-        sentiment: dto.sentiment,
-        reasoning: dto.reasoning,
-        keyFactors: dto.keyFactors,
-        timeWindow: dto.timeWindow,
-        signalTime: dto.signalTime,
+        newsId: dto.newsId || null,
+        stockCode: dto.stockCode || null,
+        stockName: dto.stockName || null,
+        direction: dto.direction || null,
+        confidence: dto.confidence !== undefined ? dto.confidence : null,
+        sentiment: dto.sentiment || null,
+        reasoning: dto.reasoning || null,
+        keyFactors: dto.keyFactors || null,
+        timeWindow: dto.timeWindow || null,
+        signalTime: dto.signalTime || null,
+        eventId: dto.eventId || null,
+        symbol: dto.symbol || null,
+        action: dto.action || null,
+        score: dto.score !== undefined ? dto.score.toString() : null,
+        validFrom: dto.validFrom || null,
+        validTo: dto.validTo || null,
+        reason: dto.reason || null,
+        ruleId: dto.ruleId || null,
+        ruleSnapshot: dto.ruleSnapshot || null,
+        weight: dto.weight !== undefined ? dto.weight.toString() : null,
       };
 
       const [result] = await this.dbService.db
@@ -43,11 +84,11 @@ export class SignalsService {
         .values(newSignal)
         .returning();
 
-      this.logger.log(`Created signal ${result.id} for news ${dto.newsId}`);
+      this.logger.log(`Created signal ${result.id}`);
       return result;
     } catch (error) {
       this.logger.error(
-        `Failed to create signal for news ${dto.newsId}: ${error instanceof Error ? error.message : String(error)}`,
+        `Failed to create signal: ${error instanceof Error ? error.message : String(error)}`,
       );
       throw error;
     }
@@ -60,16 +101,26 @@ export class SignalsService {
 
     try {
       const newSignals: NewSignal[] = dtos.map((dto) => ({
-        newsId: dto.newsId,
-        stockCode: dto.stockCode,
-        stockName: dto.stockName,
-        direction: dto.direction,
-        confidence: dto.confidence,
-        sentiment: dto.sentiment,
-        reasoning: dto.reasoning,
-        keyFactors: dto.keyFactors,
-        timeWindow: dto.timeWindow,
-        signalTime: dto.signalTime,
+        newsId: dto.newsId || null,
+        stockCode: dto.stockCode || null,
+        stockName: dto.stockName || null,
+        direction: dto.direction || null,
+        confidence: dto.confidence !== undefined ? dto.confidence : null,
+        sentiment: dto.sentiment || null,
+        reasoning: dto.reasoning || null,
+        keyFactors: dto.keyFactors || null,
+        timeWindow: dto.timeWindow || null,
+        signalTime: dto.signalTime || null,
+        eventId: dto.eventId || null,
+        symbol: dto.symbol || null,
+        action: dto.action || null,
+        score: dto.score !== undefined ? dto.score.toString() : null,
+        validFrom: dto.validFrom || null,
+        validTo: dto.validTo || null,
+        reason: dto.reason || null,
+        ruleId: dto.ruleId || null,
+        ruleSnapshot: dto.ruleSnapshot || null,
+        weight: dto.weight !== undefined ? dto.weight.toString() : null,
       }));
 
       const results = await this.dbService.db
@@ -87,22 +138,6 @@ export class SignalsService {
     }
   }
 
-  async findByNewsId(newsId: string): Promise<Signal[]> {
-    try {
-      const results = await this.dbService.db
-        .select()
-        .from(signals)
-        .where(eq(signals.newsId, newsId));
-
-      return results;
-    } catch (error) {
-      this.logger.error(
-        `Failed to find signals by newsId ${newsId}: ${error instanceof Error ? error.message : String(error)}`,
-      );
-      throw error;
-    }
-  }
-
   async findById(id: string): Promise<Signal | null> {
     try {
       const [result] = await this.dbService.db
@@ -110,7 +145,21 @@ export class SignalsService {
         .from(signals)
         .where(eq(signals.id, id));
 
-      return result || null;
+      if (!result) {
+        return null;
+      }
+
+      const stockCode = result.symbol || result.stockCode;
+      if (stockCode) {
+        const stockNamesMap = await this.stockService.findByCodes([stockCode]);
+        const stockName = stockNamesMap.get(stockCode)?.name || result.stockName || stockCode;
+        return {
+          ...result,
+          stockName,
+        };
+      }
+
+      return result;
     } catch (error) {
       this.logger.error(
         `Failed to find signal by id ${id}: ${error instanceof Error ? error.message : String(error)}`,
@@ -119,33 +168,66 @@ export class SignalsService {
     }
   }
 
-  async deleteSignal(id: string): Promise<void> {
+  async findByEventId(eventId: string): Promise<Signal[]> {
     try {
-      await this.dbService.db
-        .delete(signals)
-        .where(eq(signals.id, id));
+      const results = await this.dbService.db
+        .select()
+        .from(signals)
+        .where(eq(signals.eventId, eventId));
 
-      this.logger.log(`Deleted signal ${id}`);
+      const stockCodes = results
+        .map(s => s.symbol || s.stockCode)
+        .filter((code): code is string => code !== null);
+      const stockNamesMap = await this.stockService.findByCodes(stockCodes);
+
+      return results.map(signal => ({
+        ...signal,
+        stockName: stockNamesMap.get(signal.symbol || signal.stockCode || '')?.name || signal.stockName || signal.symbol || signal.stockCode || '',
+      }));
     } catch (error) {
       this.logger.error(
-        `Failed to delete signal ${id}: ${error instanceof Error ? error.message : String(error)}`,
+        `Failed to find signals by eventId ${eventId}: ${error instanceof Error ? error.message : String(error)}`,
       );
       throw error;
     }
   }
 
-  async getSignalsList(query: SignalsListQueryDto): Promise<{ data: Signal[]; total: number; page: number; pageSize: number }> {
+  async findList(query: SignalsListQueryDto): Promise<{ data: Signal[]; total: number; page: number; pageSize: number }> {
     try {
-      const { page = 1, pageSize = 20, stockCode, direction, minConfidence, maxConfidence, startTime, endTime } = query;
+      const { page = 1, pageSize = 20, newsId, eventId, symbol, stockCode, action, direction, minScore, maxScore, minConfidence, maxConfidence, startTime, endTime } = query;
       const offset = (page - 1) * pageSize;
 
-      const conditions: ReturnType<typeof eq | typeof gte | typeof lte>[] = [];
+      const conditions: ReturnType<typeof eq | typeof gte | typeof lte | typeof or>[] = [];
 
-      if (stockCode) {
-        conditions.push(eq(signals.stockCode, stockCode));
+      if (newsId) {
+        conditions.push(eq(signals.newsId, newsId));
       }
-      if (direction) {
-        conditions.push(eq(signals.direction, direction));
+      if (eventId) {
+        conditions.push(eq(signals.eventId, eventId));
+      }
+      if (symbol || stockCode) {
+        if (symbol && stockCode) {
+          conditions.push(or(eq(signals.symbol, symbol), eq(signals.stockCode, stockCode)));
+        } else if (symbol) {
+          conditions.push(eq(signals.symbol, symbol));
+        } else {
+          conditions.push(eq(signals.stockCode, stockCode!));
+        }
+      }
+      if (action || direction) {
+        if (action && direction) {
+          conditions.push(or(eq(signals.action, action), eq(signals.direction, direction)));
+        } else if (action) {
+          conditions.push(eq(signals.action, action));
+        } else {
+          conditions.push(eq(signals.direction, direction!));
+        }
+      }
+      if (minScore !== undefined) {
+        conditions.push(gte(signals.score, minScore.toString()));
+      }
+      if (maxScore !== undefined) {
+        conditions.push(lte(signals.score, maxScore.toString()));
       }
       if (minConfidence !== undefined) {
         conditions.push(gte(signals.confidence, minConfidence));
@@ -154,10 +236,20 @@ export class SignalsService {
         conditions.push(lte(signals.confidence, maxConfidence));
       }
       if (startTime) {
-        conditions.push(gte(signals.signalTime, new Date(startTime)));
+        conditions.push(
+          or(
+            gte(signals.generatedAt, new Date(startTime)),
+            gte(signals.signalTime, new Date(startTime))
+          )
+        );
       }
       if (endTime) {
-        conditions.push(lte(signals.signalTime, new Date(endTime)));
+        conditions.push(
+          or(
+            lte(signals.generatedAt, new Date(endTime)),
+            lte(signals.signalTime, new Date(endTime))
+          )
+        );
       }
 
       const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
@@ -169,22 +261,96 @@ export class SignalsService {
       const total = Number(countResult[0]?.count || 0);
 
       const data = await this.dbService.db
-        .select()
+        .select({
+          id: signals.id,
+          newsId: signals.newsId,
+          stockCode: signals.stockCode,
+          stockName: signals.stockName,
+          direction: signals.direction,
+          confidence: signals.confidence,
+          sentiment: signals.sentiment,
+          reasoning: signals.reasoning,
+          keyFactors: signals.keyFactors,
+          timeWindow: signals.timeWindow,
+          signalTime: signals.signalTime,
+          eventId: signals.eventId,
+          symbol: signals.symbol,
+          action: signals.action,
+          score: signals.score,
+          generatedAt: signals.generatedAt,
+          validFrom: signals.validFrom,
+          validTo: signals.validTo,
+          reason: signals.reason,
+          ruleId: signals.ruleId,
+          ruleSnapshot: signals.ruleSnapshot,
+          weight: signals.weight,
+          createdAt: signals.createdAt,
+          updatedAt: signals.updatedAt,
+          eventOccurredAt: events.occurredAt,
+        })
         .from(signals)
+        .leftJoin(events, eq(signals.eventId, events.id))
         .where(whereClause || sql`1=1`)
-        .orderBy(desc(signals.signalTime))
+        .orderBy(desc(signals.createdAt))
         .limit(pageSize)
         .offset(offset);
 
+      const stockCodes = data
+        .map(s => s.symbol || s.stockCode)
+        .filter((code): code is string => code !== null);
+      const stockNamesMap = await this.stockService.findByCodes(stockCodes);
+
+      const dataWithStockName = data.map(signal => ({
+        ...signal,
+        stockName: stockNamesMap.get(signal.symbol || signal.stockCode || '')?.name || signal.stockName || signal.symbol || signal.stockCode || '',
+      }));
+
       return {
-        data,
+        data: dataWithStockName as Signal[],
         total,
         page,
         pageSize,
       };
     } catch (error) {
       this.logger.error(
-        `Failed to get signals list: ${error instanceof Error ? error.message : String(error)}`,
+        `Failed to find signals list: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
+  async deleteById(id: string): Promise<void> {
+    try {
+      const [result] = await this.dbService.db
+        .delete(signals)
+        .where(eq(signals.id, id))
+        .returning();
+
+      if (!result) {
+        throw new NotFoundException(`Signal with id ${id} not found`);
+      }
+
+      this.logger.log(`Deleted signal ${id}`);
+    } catch (error) {
+      this.logger.error(
+        `Failed to delete signal ${id}: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
+  async deleteByEventId(eventId: string): Promise<number> {
+    try {
+      const results = await this.dbService.db
+        .delete(signals)
+        .where(eq(signals.eventId, eventId))
+        .returning();
+
+      this.logger.log(`Deleted ${results.length} signals for event ${eventId}`);
+      return results.length;
+    } catch (error) {
+      this.logger.error(
+        `Failed to delete signals for event ${eventId}: ${error instanceof Error ? error.message : String(error)}`,
       );
       throw error;
     }

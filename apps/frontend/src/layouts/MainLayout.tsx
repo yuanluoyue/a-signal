@@ -17,6 +17,7 @@ import {
   KeyOutlined,
   DatabaseOutlined,
   FundOutlined,
+  ThunderboltOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -61,6 +62,21 @@ const MENU_ITEMS = [
         key: '/signals',
         icon: <BellOutlined />,
         label: '信号管理',
+      },
+      {
+        key: '/events',
+        icon: <ThunderboltOutlined />,
+        label: '事件管理',
+      },
+      {
+        key: '/signal-rules',
+        icon: <SettingOutlined />,
+        label: '信号规则',
+      },
+      {
+        key: '/strategies',
+        icon: <FundOutlined />,
+        label: '策略管理',
       },
       {
         key: '/simulation',
@@ -108,12 +124,59 @@ const MENU_ITEMS = [
   },
 ];
 
+const getSelectedKey = (pathname: string): string => {
+  const pathParts = pathname.split('/').filter(Boolean);
+  
+  if (pathParts.length === 0) {
+    return '/dashboard';
+  }
+  
+  const basePath = `/${pathParts[0]}`;
+  
+  if (pathParts.length >= 2) {
+    const secondLevelPath = `/${pathParts[0]}/${pathParts[1]}`;
+    const knownSecondLevelPaths = [
+      '/settings/notifications',
+      '/settings/scheduler',
+      '/settings/api-keys',
+    ];
+    
+    if (knownSecondLevelPaths.includes(secondLevelPath)) {
+      return secondLevelPath;
+    }
+  }
+  
+  const knownFirstLevelPaths = [
+    '/dashboard',
+    '/news',
+    '/stocks',
+    '/stock-trackings',
+    '/signals',
+    '/events',
+    '/signal-rules',
+    '/strategies',
+    '/simulation',
+    '/backtest',
+    '/agent-chat',
+    '/blacklist',
+  ];
+  
+  if (knownFirstLevelPaths.includes(basePath)) {
+    return basePath;
+  }
+  
+  return pathname;
+};
+
 const getOpenKeys = (pathname: string): string[] => {
   const pathToParentMap: Record<string, string> = {
     '/news': '/data',
     '/stocks': '/data',
     '/stock-trackings': '/data',
     '/signals': '/analysis',
+    '/events': '/analysis',
+    '/signal-rules': '/analysis',
+    '/strategies': '/analysis',
     '/simulation': '/analysis',
     '/backtest': '/analysis',
     '/agent-chat': '/analysis',
@@ -124,7 +187,8 @@ const getOpenKeys = (pathname: string): string[] => {
   };
   
   const openKeys: string[] = [];
-  const parentKey = pathToParentMap[pathname];
+  const selectedKey = getSelectedKey(pathname);
+  const parentKey = pathToParentMap[selectedKey];
   if (parentKey) {
     openKeys.push(parentKey);
   }
@@ -151,7 +215,7 @@ const MainLayout: React.FC = () => {
     navigate('/dashboard');
   }, [navigate]);
 
-  const selectedKeys = useMemo(() => [location.pathname], [location.pathname]);
+  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname)], [location.pathname]);
   const defaultOpenKeys = useMemo(() => getOpenKeys(location.pathname), [location.pathname]);
 
   const siderStyle = useMemo(() => ({

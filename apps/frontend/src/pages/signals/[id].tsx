@@ -37,16 +37,34 @@ const { Option } = Select;
 
 interface Signal {
   id: string;
-  newsId: string;
-  stockCode: string;
-  stockName: string;
-  direction: 'bullish' | 'bearish' | 'neutral';
-  confidence: number;
-  sentiment: 'positive' | 'negative' | 'neutral';
-  reasoning: string;
-  keyFactors: string[];
-  timeWindow: string;
-  signalTime: string;
+  newsId?: string;
+  stockCode?: string;
+  stockName?: string;
+  direction?: 'bullish' | 'bearish' | 'neutral';
+  confidence?: number;
+  sentiment?: 'positive' | 'negative' | 'neutral';
+  reasoning?: string;
+  keyFactors?: string[];
+  timeWindow?: string;
+  signalTime?: string;
+  
+  eventId?: string;
+  symbol?: string;
+  action?: 'long' | 'short' | 'hold';
+  score?: string;
+  generatedAt?: string;
+  validFrom?: string;
+  validTo?: string;
+  reason?: string;
+  ruleId?: string;
+  ruleSnapshot?: {
+    multiplier: string;
+    threshold: string;
+    enableSurprise: boolean;
+    enableConfidence: boolean;
+  };
+  weight?: string;
+  
   createdAt: string;
 }
 
@@ -66,6 +84,20 @@ interface NewsItem {
   publishTime: string;
 }
 
+interface EventItem {
+  id: string;
+  category: string;
+  subcategory: string;
+  categoryName: string;
+  subcategoryName: string;
+  sentimentDirection: number;
+  sentimentConfidence: number;
+  sentimentRationale: string;
+  importanceScore: string;
+  detectedAt: string;
+  occurredAt: string;
+}
+
 const SignalDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -78,7 +110,8 @@ const SignalDetailPage: React.FC = () => {
   const [signal, setSignal] = useState<Signal | null>(null);
   const [klines, setKlines] = useState<KlineData[]>([]);
   const [news, setNews] = useState<NewsItem | null>(null);
-  const [period, setPeriod] = useState<'1d' | '4h'>('1d');
+  const [event, setEvent] = useState<EventItem | null>(null);
+  const [period, setPeriod] = useState<'1d' | '4h'>('4h');
   const [fetchingKlines, setFetchingKlines] = useState(false);
   const [chartReady, setChartReady] = useState(false);
 
@@ -146,6 +179,16 @@ const SignalDetailPage: React.FC = () => {
       setNews(response.data);
     } catch (error) {
       console.error('获取关联新闻失败:', error);
+    }
+  };
+
+  // 获取关联事件
+  const fetchRelatedEvent = async (eventId: string) => {
+    try {
+      const response = await client.get<{ data: EventItem }>(`/events/${eventId}`);
+      setEvent(response.data);
+    } catch (error) {
+      console.error('获取关联事件失败:', error);
     }
   };
 
@@ -245,8 +288,11 @@ const SignalDetailPage: React.FC = () => {
     console.log('[SignalDetail] Chart data set successfully');
 
     // 如果有信号时间，添加标记点
-    if (signal?.signalTime && markersRef.current) {
-      const signalTime = Math.floor(new Date(signal.signalTime).getTime() / 1000) as Time;
+    const signalTimeStr = signal?.generatedAt || signal?.signalTime || signal?.createdAt;
+    
+    if (signalTimeStr && markersRef.current) {
+      const signalTime = Math.floor(new Date(signalTimeStr).getTime() / 1000) as Time;
+      const action = signal?.action || (signal?.direction === 'bullish' ? 'long' : signal?.direction === 'bearish' ? 'short' : 'hold');
 
       // 调试：显示信号时间和K线时间范围
       console.log('[SignalDetail] Signal time:', signalTime, new Date(signalTime * 1000).toISOString());
@@ -265,9 +311,9 @@ const SignalDetailPage: React.FC = () => {
       if (closestData) {
         try {
           // lightweight-charts v5: 使用 createSeriesMarkers 添加标记
-          const markerColor = signal.direction === 'bullish' ? '#52c41a' : '#f5222d';
-          const markerShape: SeriesMarker<Time>['shape'] = signal.direction === 'bullish' ? 'arrowUp' : 'arrowDown';
-          const markerPosition: SeriesMarker<Time>['position'] = signal.direction === 'bullish' ? 'belowBar' : 'aboveBar';
+          const markerColor = action === 'long' ? '#52c41a' : action === 'short' ? '#f5222d' : '#faad14';
+          const markerShape: SeriesMarker<Time>['shape'] = action === 'long' ? 'arrowUp' : action === 'short' ? 'arrowDown' : 'circle';
+          const markerPosition: SeriesMarker<Time>['position'] = action === 'long' ? 'belowBar' : action === 'short' ? 'aboveBar' : 'inBar';
 
           const marker: SeriesMarker<Time> = {
             time: closestData.time,
@@ -275,7 +321,7 @@ const SignalDetailPage: React.FC = () => {
             shape: markerShape,
             color: markerColor,
             size: 2,
-            text: signal.direction === 'bullish' ? '买入' : '卖出',
+            text: action === 'long' ? '买入' : action === 'short' ? '卖出' : '观望',
           };
 
           markersRef.current.setMarkers([marker]);
@@ -295,7 +341,7 @@ const SignalDetailPage: React.FC = () => {
     fetchSignalDetail();
   }, [id]);
 
-  // 信号和图表都准备好后获取K线和新闻
+  // 信号和图表都准备好后获取K线和新闻/事件
   useEffect(() => {
     if (signal && chartReady) {
       console.log('[SignalDetail] Signal and chart ready, fetching klines for period:', period);
@@ -306,36 +352,44 @@ const SignalDetailPage: React.FC = () => {
       // 清空旧数据，避免显示错误的K线
       setKlines([]);
       fetchKlines();
-      if (signal.newsId) {
+      
+      // 优先获取关联事件
+      if (signal.eventId) {
+        fetchRelatedEvent(signal.eventId);
+      }
+      // 如果没有事件，尝试获取关联新闻
+      if (!signal.eventId && signal.newsId) {
         fetchRelatedNews(signal.newsId);
       }
     }
   }, [signal, period, chartReady]);
 
-  const getDirectionTag = (direction: string) => {
-    switch (direction) {
-      case 'bullish':
+  const getDirectionTag = (direction?: string, action?: string) => {
+    const effectiveAction = action || (direction === 'bullish' ? 'long' : direction === 'bearish' ? 'short' : 'hold');
+    
+    switch (effectiveAction) {
+      case 'long':
         return (
           <Tag color="success" icon={<ArrowUpOutlined />} style={{ fontSize: 14, padding: '4px 8px' }}>
-            买入
+            做多
           </Tag>
         );
-      case 'bearish':
+      case 'short':
         return (
           <Tag color="error" icon={<ArrowDownOutlined />} style={{ fontSize: 14, padding: '4px 8px' }}>
-            卖出
+            做空
           </Tag>
         );
       default:
         return (
           <Tag color="default" icon={<MinusOutlined />} style={{ fontSize: 14, padding: '4px 8px' }}>
-            中性
+            观望
           </Tag>
         );
     }
   };
 
-  const getSentimentTag = (sentiment: string) => {
+  const getSentimentTag = (sentiment?: string) => {
     switch (sentiment) {
       case 'positive':
         return <Tag color="success">积极</Tag>;
@@ -346,10 +400,13 @@ const SignalDetailPage: React.FC = () => {
     }
   };
 
-  const getConfidenceColor = (confidence: number) => {
-    if (confidence >= 80) return '#52c41a';
-    if (confidence >= 60) return '#faad14';
-    return '#f5222d';
+  const getScoreColor = (score?: string, confidence?: number) => {
+    const scoreValue = score ? parseFloat(score) : (confidence ? confidence / 100 : 0);
+    if (scoreValue >= 0.7) return '#52c41a';
+    if (scoreValue >= 0.3) return '#faad14';
+    if (scoreValue <= -0.7) return '#f5222d';
+    if (scoreValue <= -0.3) return '#faad14';
+    return '#999';
   };
 
   if (loading) {
@@ -385,7 +442,7 @@ const SignalDetailPage: React.FC = () => {
       </Space>
 
       <Title level={2}>
-        {signal.stockCode} - {signal.stockName}
+        {signal.symbol || signal.stockCode} - {signal.stockName || '未知股票'}
       </Title>
 
       <Row gutter={[16, 16]}>
@@ -425,10 +482,46 @@ const SignalDetailPage: React.FC = () => {
             }
             style={{ marginTop: 16 }}
           >
-            <Paragraph style={{ fontSize: 14, lineHeight: 1.8 }}>{signal.reasoning}</Paragraph>
+            <Paragraph style={{ fontSize: 14, lineHeight: 1.8 }}>
+              {signal.reason || signal.reasoning || '暂无分析理由'}
+            </Paragraph>
           </Card>
 
-          {news && (
+          {event && (
+            <Card
+              title={
+                <Space>
+                  <LinkOutlined />
+                  关联事件
+                </Space>
+              }
+              style={{ marginTop: 16 }}
+              extra={<Link to={`/events/${event.id}`}>查看详情</Link>}
+            >
+              <Descriptions column={1} size="small">
+                <Descriptions.Item label="事件类型">
+                  <Tag color="blue">{event.categoryName}</Tag>
+                  <Tag color="geekblue">{event.subcategoryName}</Tag>
+                </Descriptions.Item>
+                <Descriptions.Item label="情感方向">
+                  <Tag color={event.sentimentDirection > 0 ? 'success' : event.sentimentDirection < 0 ? 'error' : 'default'}>
+                    {event.sentimentDirection > 0 ? '利好' : event.sentimentDirection < 0 ? '利空' : '中性'}
+                  </Tag>
+                </Descriptions.Item>
+                <Descriptions.Item label="重要性">
+                  {(parseFloat(event.importanceScore) * 100).toFixed(0)}%
+                </Descriptions.Item>
+                <Descriptions.Item label="发生时间">
+                  {new Date(event.occurredAt).toLocaleString('zh-CN')}
+                </Descriptions.Item>
+                <Descriptions.Item label="事件说明">
+                  {event.sentimentRationale}
+                </Descriptions.Item>
+              </Descriptions>
+            </Card>
+          )}
+
+          {news && !event && (
             <Card
               title={
                 <Space>
@@ -459,44 +552,65 @@ const SignalDetailPage: React.FC = () => {
         <Col xs={24} lg={8}>
           <Card title="信号信息">
             <Descriptions column={1} styles={{ label: { fontWeight: 'bold' } }}>
-              <Descriptions.Item label="方向">{getDirectionTag(signal.direction)}</Descriptions.Item>
-              <Descriptions.Item label="置信度">
+              <Descriptions.Item label="动作">{getDirectionTag(signal.direction, signal.action)}</Descriptions.Item>
+              <Descriptions.Item label="分数">
                 <Space>
-                  <Text strong style={{ fontSize: 18, color: getConfidenceColor(signal.confidence) }}>
-                    {signal.confidence}%
+                  <Text strong style={{ fontSize: 18, color: getScoreColor(signal.score, signal.confidence) }}>
+                    {signal.score ? parseFloat(signal.score).toFixed(2) : (signal.confidence ? `${signal.confidence}%` : '-')}
                   </Text>
-                  <Tooltip title="置信度表示AI对信号准确性的评估">
+                  <Tooltip title="分数范围 -1 到 1，正值表示看多，负值表示看空">
                     <PercentageOutlined style={{ color: '#999' }} />
                   </Tooltip>
                 </Space>
               </Descriptions.Item>
-              <Descriptions.Item label="情绪">{getSentimentTag(signal.sentiment)}</Descriptions.Item>
-              <Descriptions.Item label="时间窗口">{signal.timeWindow}</Descriptions.Item>
-              <Descriptions.Item label="信号时间">
+              {signal.sentiment && (
+                <Descriptions.Item label="情绪">{getSentimentTag(signal.sentiment)}</Descriptions.Item>
+              )}
+              {signal.timeWindow && (
+                <Descriptions.Item label="时间窗口">{signal.timeWindow}</Descriptions.Item>
+              )}
+              <Descriptions.Item label="生成时间">
                 <Space>
                   <CalendarOutlined />
-                  {new Date(signal.signalTime).toLocaleString('zh-CN')}
+                  {new Date(signal.generatedAt || signal.signalTime || signal.createdAt).toLocaleString('zh-CN')}
                 </Space>
               </Descriptions.Item>
+              {signal.ruleSnapshot && (
+                <Descriptions.Item label="规则快照">
+                  <Space direction="vertical" size="small">
+                    <Text>系数: {signal.ruleSnapshot.multiplier}</Text>
+                    <Text>阈值: {signal.ruleSnapshot.threshold}</Text>
+                    <Text>启用惊喜: {signal.ruleSnapshot.enableSurprise ? '是' : '否'}</Text>
+                    <Text>启用置信度: {signal.ruleSnapshot.enableConfidence ? '是' : '否'}</Text>
+                  </Space>
+                </Descriptions.Item>
+              )}
             </Descriptions>
           </Card>
 
-          <Card title="关键因子" style={{ marginTop: 16 }}>
-            <Space direction="vertical" style={{ width: '100%' }}>
-              {signal.keyFactors?.map((factor, index) => (
-                <Tag key={index} style={{ fontSize: 13, padding: '4px 8px' }}>
-                  {factor}
-                </Tag>
-              ))}
-            </Space>
-          </Card>
+          {signal.keyFactors && signal.keyFactors.length > 0 && (
+            <Card title="关键因子" style={{ marginTop: 16 }}>
+              <Space direction="vertical" style={{ width: '100%' }}>
+                {signal.keyFactors.map((factor, index) => (
+                  <Tag key={index} style={{ fontSize: 13, padding: '4px 8px' }}>
+                    {factor}
+                  </Tag>
+                ))}
+              </Space>
+            </Card>
+          )}
 
           <Card title="操作" style={{ marginTop: 16 }}>
             <Space direction="vertical" style={{ width: '100%' }}>
-              <Button type="primary" block onClick={() => navigate(`/stocks/${signal.stockCode}`)}>
+              <Button type="primary" block onClick={() => navigate(`/stocks/${signal.symbol || signal.stockCode}`)}>
                 查看股票详情
               </Button>
-              {signal.newsId && (
+              {signal.eventId && (
+                <Button block onClick={() => navigate(`/events/${signal.eventId}`)}>
+                  查看关联事件
+                </Button>
+              )}
+              {signal.newsId && !signal.eventId && (
                 <Button block onClick={() => navigate(`/news/${signal.newsId}`)}>
                   查看关联新闻
                 </Button>

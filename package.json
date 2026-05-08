@@ -43,6 +43,8 @@
       "bcrypt",
       "core-js",
       "esbuild",
+      "protobufjs",
+      "sharp",
       "unrs-resolver"
     ]
   }

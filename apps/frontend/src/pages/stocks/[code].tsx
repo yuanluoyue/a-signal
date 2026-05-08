@@ -9,12 +9,14 @@ import {
   Spin,
   Empty,
   Select,
+  Result,
 } from 'antd';
-import { ArrowLeftOutlined, ReloadOutlined, BarChartOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, ReloadOutlined, BarChartOutlined, SyncOutlined } from '@ant-design/icons';
 import { useParams, useNavigate } from 'umi';
 import * as LightweightCharts from 'lightweight-charts';
 import type { CandlestickData, Time, IChartApi, ISeriesApi } from 'lightweight-charts';
 import client from '@/services/client';
+import { klinesApi } from '@/services/klines';
 import type { Signal, KlineData } from '@/services/types';
 
 const { Title, Text } = Typography;
@@ -41,25 +43,61 @@ const StockDetailPage: React.FC = () => {
   const [klines, setKlines] = useState<KlineData[]>([]);
   const [period, setPeriod] = useState<'1d' | '4h'>('4h');
   const [fetchingKlines, setFetchingKlines] = useState(false);
+  const [syncingKlines, setSyncingKlines] = useState(false);
+  const [syncingStock, setSyncingStock] = useState(false);
+  const [notFound, setNotFound] = useState(false);
 
   const fetchStockDetail = async () => {
     if (!code) return;
     setLoading(true);
+    setNotFound(false);
     try {
       const response = await client.get(`/stocks/${code}`);
       setStockDetail(response.data);
-    } catch (error) {
-      message.error('获取股票详情失败');
-      console.error('Fetch stock detail error:', error);
+    } catch (error: any) {
+      if (error?.response?.status === 404) {
+        setNotFound(true);
+      } else {
+        message.error('获取股票详情失败');
+        console.error('Fetch stock detail error:', error);
+      }
     } finally {
       setLoading(false);
     }
   };
 
-  const fetchKlines = async (p: '1d' | '4h' = period) => {
+  const checkAndUpdateKlines = async (p: '1d' | '4h' = period): Promise<boolean> => {
+    if (!code) return false;
+    try {
+      setSyncingKlines(true);
+      const result = await klinesApi.checkAndUpdate(code, p);
+      if ('updated' in result) {
+        if (result.updated) {
+          message.success(`K线数据已更新: ${result.message}`);
+          return true;
+        }
+      } else if (result[p]?.updated) {
+        message.success(`K线数据已更新: ${result[p].message}`);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Check and update klines error:', error);
+      return false;
+    } finally {
+      setSyncingKlines(false);
+    }
+  };
+
+  const fetchKlines = async (p: '1d' | '4h' = period, autoUpdate: boolean = true) => {
     if (!code) return;
     try {
       setFetchingKlines(true);
+      
+      if (autoUpdate) {
+        await checkAndUpdateKlines(p);
+      }
+      
       const response = await client.get(`/stocks/${code}/klines`, {
         params: { period: p, limit: 100 },
       });
@@ -88,9 +126,49 @@ const StockDetailPage: React.FC = () => {
     }
   };
 
+  const handleSyncStock = async () => {
+    if (!code) return;
+    try {
+      setSyncingStock(true);
+      message.loading({ content: '正在获取K线数据...', key: 'syncStock' });
+      await client.post(`/stocks/${code}/fetch-klines`, { period: '4h' });
+      message.success({ 
+        content: 'K线数据获取任务已提交，请稍后刷新页面', 
+        key: 'syncStock' 
+      });
+      setTimeout(() => {
+        fetchStockDetail();
+      }, 3000);
+    } catch (error) {
+      console.error('获取K线数据失败:', error);
+      message.error({ content: '获取K线数据失败', key: 'syncStock' });
+    } finally {
+      setSyncingStock(false);
+    }
+  };
+
   useEffect(() => {
     fetchStockDetail();
   }, [code]);
+
+  // 初始化时获取K线数据
+  useEffect(() => {
+    if (stockDetail && !loading) {
+      fetchKlines(period);
+    }
+  }, [stockDetail, loading]);
+
+  // 切换周期时重新获取K线
+  useEffect(() => {
+    if (stockDetail && !loading) {
+      // 清空旧markers
+      if (markersRef.current) {
+        markersRef.current.setMarkers([]);
+      }
+      setKlines([]);
+      fetchKlines(period);
+    }
+  }, [period]);
 
   // 初始化图表
   useEffect(() => {
@@ -189,8 +267,11 @@ const StockDetailPage: React.FC = () => {
       const markers: LightweightCharts.SeriesMarker<Time>[] = [];
 
       stockDetail.signals.forEach((signal) => {
-        if (signal.signalTime && signal.direction) {
-          const signalTime = new Date(signal.signalTime).getTime();
+        const signalTimeStr = signal.eventOccurredAt || signal.generatedAt || signal.signalTime || signal.createdAt;
+        const action = signal.action || (signal.direction === 'bullish' ? 'long' : signal.direction === 'bearish' ? 'short' : 'hold');
+        
+        if (signalTimeStr) {
+          const signalTime = new Date(signalTimeStr).getTime();
           let bestKline: KlineData | null = null;
           let minDiff = Infinity;
 
@@ -212,14 +293,14 @@ const StockDetailPage: React.FC = () => {
               text: string;
             };
 
-            if (signal.direction === 'bullish') {
+            if (action === 'long') {
               markerConfig = {
                 position: 'belowBar',
                 color: '#52c41a',
                 shape: 'arrowUp',
                 text: '买入',
               };
-            } else if (signal.direction === 'bearish') {
+            } else if (action === 'short') {
               markerConfig = {
                 position: 'aboveBar',
                 color: '#f5222d',
@@ -258,18 +339,6 @@ const StockDetailPage: React.FC = () => {
     chartRef.current?.timeScale().fitContent();
   }, [klines, stockDetail]);
 
-  // 切换周期时重新获取K线
-  useEffect(() => {
-    if (stockDetail) {
-      // 清空旧markers
-      if (markersRef.current) {
-        markersRef.current.setMarkers([]);
-      }
-      setKlines([]);
-      fetchKlines(period);
-    }
-  }, [period, stockDetail]);
-
   const formatDate = (dateString: string | null) => {
     if (!dateString) return '-';
     const date = new Date(dateString);
@@ -300,7 +369,29 @@ const StockDetailPage: React.FC = () => {
       </Space>
 
       <Spin spinning={loading}>
-        {stockDetail ? (
+        {notFound ? (
+          <Result
+            status="404"
+            title="股票数据不存在"
+            subTitle="该股票暂无信号或K线数据，您可以尝试获取K线数据"
+            extra={[
+              <Button 
+                type="primary" 
+                key="fetch" 
+                loading={syncingStock}
+                onClick={handleSyncStock}
+              >
+                获取K线数据
+              </Button>,
+              <Button 
+                key="back" 
+                onClick={() => navigate('/stocks')}
+              >
+                返回列表
+              </Button>,
+            ]}
+          />
+        ) : stockDetail ? (
           <>
             <Card style={{ marginBottom: 24 }}>
               <Title level={3}>
@@ -326,11 +417,18 @@ const StockDetailPage: React.FC = () => {
                     <Option value="1d">日线</Option>
                   </Select>
                   <Button
+                    icon={<SyncOutlined spin={syncingKlines} />}
+                    loading={syncingKlines}
+                    onClick={() => checkAndUpdateKlines(period)}
+                  >
+                    同步K线
+                  </Button>
+                  <Button
                     icon={<ReloadOutlined />}
                     loading={fetchingKlines}
-                    onClick={handleFetchKlines}
+                    onClick={() => fetchKlines(period, false)}
                   >
-                    获取K线
+                    刷新
                   </Button>
                 </Space>
               }
@@ -344,17 +442,23 @@ const StockDetailPage: React.FC = () => {
                 <Empty description="暂无信号数据" />
               ) : (
                 <Space direction="vertical" style={{ width: '100%' }}>
-                  {stockDetail.signals.map((signal) => (
-                    <Card key={signal.id} size="small" style={{ marginBottom: 8 }}>
-                      <Space>
-                        <Tag color={getDirectionColor(signal.direction)}>
-                          {getDirectionText(signal.direction)}
-                        </Tag>
-                        <Text>置信度: {signal.confidence}%</Text>
-                        <Text type="secondary">{formatDate(signal.signalTime)}</Text>
-                      </Space>
-                    </Card>
-                  ))}
+                  {stockDetail.signals.map((signal) => {
+                    const action = signal.action || (signal.direction === 'bullish' ? 'long' : signal.direction === 'bearish' ? 'short' : 'hold');
+                    const score = signal.score ? parseFloat(signal.score) : (signal.confidence ? signal.confidence / 100 : 0);
+                    const time = signal.generatedAt || signal.signalTime || signal.createdAt;
+                    
+                    return (
+                      <Card key={signal.id} size="small" style={{ marginBottom: 8 }}>
+                        <Space>
+                          <Tag color={getDirectionColor(action === 'long' ? 'bullish' : action === 'short' ? 'bearish' : 'neutral')}>
+                            {getDirectionText(action === 'long' ? 'bullish' : action === 'short' ? 'bearish' : 'neutral')}
+                          </Tag>
+                          <Text>分数: {score.toFixed(2)}</Text>
+                          <Text type="secondary">{formatDate(time)}</Text>
+                        </Space>
+                      </Card>
+                    );
+                  })}
                 </Space>
               )}
             </Card>

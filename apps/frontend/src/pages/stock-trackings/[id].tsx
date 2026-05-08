@@ -29,11 +29,13 @@ import {
   HistoryOutlined,
   DeleteOutlined,
   BarChartOutlined,
+  SyncOutlined,
 } from '@ant-design/icons';
 import { useParams, useNavigate, Link } from 'umi';
 import * as LightweightCharts from 'lightweight-charts';
 import type { CandlestickData, Time, IChartApi, ISeriesApi, SeriesMarker } from 'lightweight-charts';
 import client from '@/services/client';
+import { klinesApi } from '@/services/klines';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -58,39 +60,64 @@ interface NewsItem {
 
 interface BacktestRecord {
   id: string;
+  name: string | null;
+  strategyId: string | null;
+  strategySnapshot: {
+    id: string;
+    name: string;
+    minScore: string;
+    maxScore: string | null;
+    directionMode: string;
+    holdPeriod: number;
+    stopLossPct: string | null;
+    takeProfitPct: string | null;
+  } | null;
   startTime: string;
   endTime: string;
   period: string;
+  totalSignals: number | null;
+  filteredSignals: number | null;
   totalTrades: number;
   winningTrades: number;
   losingTrades: number;
-  winRate: string;
-  totalReturn: string;
-  maxDrawdown: string;
-  avgReturn: string;
-  trades: Array<{
-    signalId: string;
-    stockCode: string;
-    stockName: string;
-    direction: string;
-    entryPrice: number;
-    exitPrice: number;
-    return: number;
-    exitReason: string;
-    entryTime: string;
-    exitTime: string;
-  }>;
+  winRate: string | null;
+  totalReturnPct: string | null;
+  avgReturnPct: string | null;
+  maxDrawdownPct: string | null;
+  sharpeRatio: string | null;
+  profitFactor: string | null;
+  status: string;
   createdAt: string;
+}
+
+interface BacktestTrade {
+  id: string;
+  signalId: string | null;
+  symbol: string;
+  stockName: string | null;
+  direction: string;
+  entryTime: string;
+  entryPrice: string;
+  exitTime: string | null;
+  exitPrice: string | null;
+  pnlPct: string | null;
+  exitReason: string | null;
 }
 
 interface Signal {
   id: string;
-  stockCode: string;
-  stockName: string;
-  direction: 'bullish' | 'bearish' | 'neutral';
-  confidence: number;
-  signalTime: string;
-  reasoning: string;
+  symbol: string | null;
+  stockCode: string | null;
+  stockName: string | null;
+  action: string;
+  score: string | null;
+  generatedAt: string | null;
+  createdAt: string | null;
+  reason: string | null;
+  reasoning: string | null;
+  ruleId: string | null;
+  eventId: string | null;
+  eventOccurredAt?: string | null;
 }
 
 interface KlineData {
@@ -123,10 +150,13 @@ const StockTrackingDetailPage: React.FC = () => {
   const [backtestRecords, setBacktestRecords] = useState<BacktestRecord[]>([]);
   const [backtestModalVisible, setBacktestModalVisible] = useState(false);
   const [selectedBacktest, setSelectedBacktest] = useState<BacktestRecord | null>(null);
+  const [backtestTrades, setBacktestTrades] = useState<BacktestTrade[]>([]);
+  const [backtestTradesLoading, setBacktestTradesLoading] = useState(false);
   const [signals, setSignals] = useState<Signal[]>([]);
   const [klines, setKlines] = useState<KlineData[]>([]);
   const [period, setPeriod] = useState<'1d' | '4h'>('1d');
   const [chartReady, setChartReady] = useState(false);
+  const [syncingKlines, setSyncingKlines] = useState(false);
 
   const fetchTrackingDetail = async () => {
     if (!id) return;
@@ -185,16 +215,44 @@ const StockTrackingDetailPage: React.FC = () => {
   const fetchSignals = async () => {
     if (!tracking?.stockCode) return;
     try {
-      const response = await client.get(`/signals?stockCode=${tracking.stockCode}`);
+      const response = await client.get(`/signals`, {
+        params: { symbol: tracking.stockCode, pageSize: 100 },
+      });
       setSignals(response.data || []);
     } catch (error) {
-      console.error('Fetch signals error:', error);
+      console.error("Fetch signals error:", error);
     }
   };
 
-  const fetchKlines = async () => {
+  const checkAndUpdateKlines = async (p: '1d' | '4h' = period): Promise<boolean> => {
+    if (!tracking?.stockCode) return false;
+    try {
+      setSyncingKlines(true);
+      const result = await klinesApi.checkAndUpdate(tracking.stockCode, p);
+      if ('updated' in result) {
+        if (result.updated) {
+          message.success(`K线数据已更新: ${result.message}`);
+          return true;
+        }
+      } else if (result[p]?.updated) {
+        message.success(`K线数据已更新: ${result[p].message}`);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Check and update klines error:', error);
+      return false;
+    } finally {
+      setSyncingKlines(false);
+    }
+  };
+
+  const fetchKlines = async (autoUpdate: boolean = true) => {
     if (!tracking?.stockCode) return;
     try {
+      if (autoUpdate) {
+        await checkAndUpdateKlines(period);
+      }
       const response = await client.get(`/klines/${tracking.stockCode}`, {
         params: { period },
       });
@@ -289,23 +347,23 @@ const StockTrackingDetailPage: React.FC = () => {
 
     candlestickSeriesRef.current.setData(chartData);
 
-    // 添加信号标记
     if (signals.length > 0 && markersRef.current) {
       const markers: SeriesMarker<Time>[] = signals.map((signal) => {
-        const signalTime = Math.floor(new Date(signal.signalTime).getTime() / 1000) as Time;
+        const signalTime = Math.floor(new Date(signal.eventOccurredAt || signal.generatedAt || signal.createdAt || "").getTime() / 1000) as Time;
         const closestData = chartData.reduce((closest, current) => {
           const currentDiff = Math.abs(Number(current.time) - Number(signalTime));
           const closestDiff = Math.abs(Number(closest.time) - Number(signalTime));
           return currentDiff < closestDiff ? current : closest;
         }, chartData[0]);
 
+        const isLong = signal.action === "long";
         return {
           time: closestData?.time || signalTime,
-          position: signal.direction === 'bullish' ? 'belowBar' : 'aboveBar',
-          shape: signal.direction === 'bullish' ? 'arrowUp' : 'arrowDown',
-          color: signal.direction === 'bullish' ? '#52c41a' : '#f5222d',
+          position: isLong ? "belowBar" : "aboveBar",
+          shape: isLong ? "arrowUp" : "arrowDown",
+          color: isLong ? "#52c41a" : "#f5222d",
           size: 2,
-          text: `${signal.direction === 'bullish' ? '买入' : '卖出'} ${signal.confidence}%`,
+          text: `${isLong ? "做多" : "做空"} ${signal.score ? parseFloat(signal.score).toFixed(2) : "-"}`,
         };
       });
 
@@ -341,24 +399,24 @@ const StockTrackingDetailPage: React.FC = () => {
     }
   };
 
-  const handleBacktest = async () => {
-    if (!id) return;
-    setBacktestLoading(true);
-    try {
-      await client.post(`/stock-trackings/${id}/backtest`);
-      message.success('回测执行成功');
-      await fetchBacktestRecords();
-    } catch (error) {
-      message.error('回测失败');
-      console.error('Backtest error:', error);
-    } finally {
-      setBacktestLoading(false);
-    }
+  const handleBacktest = () => {
+    message.info("请在回测管理页面选择策略进行回测");
+    navigate("/backtest");
   };
 
-  const handleViewBacktestDetail = (record: BacktestRecord) => {
+  const handleViewBacktestDetail = async (record: BacktestRecord) => {
     setSelectedBacktest(record);
     setBacktestModalVisible(true);
+    setBacktestTradesLoading(true);
+    try {
+      const response = await client.get(`/backtest/records/${record.id}/trades`);
+      setBacktestTrades(response.data || []);
+    } catch (error) {
+      console.error("Fetch backtest trades error:", error);
+      message.error("获取交易明细失败");
+    } finally {
+      setBacktestTradesLoading(false);
+    }
   };
 
   const handleDeleteBacktest = async (backtestId: string) => {
@@ -432,46 +490,83 @@ const StockTrackingDetailPage: React.FC = () => {
 
   const backtestColumns = [
     {
-      title: '回测时间',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
+      title: "名称",
+      dataIndex: "name",
+      key: "name",
+      render: (name: string | null) => name || "-",
+    },
+    {
+      title: "策略",
+      key: "strategy",
+      render: (_: unknown, record: BacktestRecord) =>
+        record.strategySnapshot?.name || "-",
+    },
+    {
+      title: "回测时间",
+      dataIndex: "createdAt",
+      key: "createdAt",
       render: (time: string) => formatDate(time),
     },
     {
-      title: '交易次数',
-      dataIndex: 'totalTrades',
-      key: 'totalTrades',
+      title: "交易次数",
+      dataIndex: "totalTrades",
+      key: "totalTrades",
       render: (count: number) => <Tag color="blue">{count} 笔</Tag>,
     },
     {
-      title: '胜率',
-      dataIndex: 'winRate',
-      key: 'winRate',
-      render: (rate: string) => {
+      title: "胜率",
+      dataIndex: "winRate",
+      key: "winRate",
+      render: (rate: string | null) => {
+        if (!rate) return "-";
         const num = parseFloat(rate);
-        const color = num >= 0.5 ? 'success' : num >= 0.3 ? 'warning' : 'error';
+        const color = num >= 0.5 ? "success" : num >= 0.3 ? "warning" : "error";
         return <Tag color={color}>{formatPercent(rate)}</Tag>;
       },
     },
     {
-      title: '总收益率',
-      dataIndex: 'totalReturn',
-      key: 'totalReturn',
-      render: (ret: string) => {
+      title: "总收益率",
+      dataIndex: "totalReturnPct",
+      key: "totalReturnPct",
+      render: (ret: string | null) => {
+        if (!ret) return "-";
         const num = parseFloat(ret);
-        const color = num > 0 ? 'red' : num < 0 ? 'green' : 'default';
+        const color = num > 0 ? "red" : num < 0 ? "green" : "default";
         return <Tag color={color}>{formatPercent(ret)}</Tag>;
       },
     },
     {
-      title: '最大回撤',
-      dataIndex: 'maxDrawdown',
-      key: 'maxDrawdown',
-      render: (dd: string) => <Text type="danger">{formatPercent(dd)}</Text>,
+      title: "最大回撤",
+      dataIndex: "maxDrawdownPct",
+      key: "maxDrawdownPct",
+      render: (dd: string | null) =>
+        dd ? <Text type="danger">{formatPercent(dd)}</Text> : "-",
     },
     {
-      title: '操作',
-      key: 'action',
+      title: "状态",
+      dataIndex: "status",
+      key: "status",
+      render: (status: string) => {
+        const colorMap: Record<string, string> = {
+          completed: "green",
+          failed: "red",
+          running: "blue",
+        };
+        const labelMap: Record<string, string> = {
+          completed: "完成",
+          failed: "失败",
+          running: "运行中",
+        };
+        return (
+          <Tag color={colorMap[status] || "default"}>
+            {labelMap[status] || status}
+          </Tag>
+        );
+      },
+    },
+    {
+      title: "操作",
+      key: "action",
       render: (_: unknown, record: BacktestRecord) => (
         <Space size="small">
           <Button
@@ -489,7 +584,9 @@ const StockTrackingDetailPage: React.FC = () => {
             okText="确认"
             cancelText="取消"
           >
-            <Button danger icon={<DeleteOutlined />} size="small">删除</Button>
+            <Button danger icon={<DeleteOutlined />} size="small">
+              删除
+            </Button>
           </Popconfirm>
         </Space>
       ),
@@ -498,99 +595,106 @@ const StockTrackingDetailPage: React.FC = () => {
 
   const signalColumns = [
     {
-      title: '时间',
-      dataIndex: 'signalTime',
-      key: 'signalTime',
-      render: (time: string) => formatDate(time),
+      title: "时间",
+      dataIndex: "generatedAt",
+      key: "generatedAt",
+      render: (time: string | null) => formatDate(time || ""),
     },
     {
-      title: '方向',
-      dataIndex: 'direction',
-      key: 'direction',
-      render: (direction: string) => {
-        const color = direction === 'bullish' ? 'red' : 'green';
-        const text = direction === 'bullish' ? '买入' : '卖出';
+      title: "方向",
+      dataIndex: "action",
+      key: "action",
+      render: (action: string) => {
+        const color = action === "long" ? "red" : action === "short" ? "green" : "default";
+        const text = action === "long" ? "做多" : action === "short" ? "做空" : "观望";
         return <Tag color={color}>{text}</Tag>;
       },
     },
     {
-      title: '置信度',
-      dataIndex: 'confidence',
-      key: 'confidence',
-      render: (confidence: number) => `${confidence}%`,
+      title: "分数",
+      dataIndex: "score",
+      key: "score",
+      render: (score: string | null) =>
+        score ? parseFloat(score).toFixed(4) : "-",
     },
     {
-      title: '操作',
-      key: 'action',
+      title: "操作",
+      key: "action",
       render: (_: unknown, record: Signal) => (
-        <Button type="link" onClick={() => navigate(`/signals/${record.id}`)}>查看</Button>
+        <Button type="link" onClick={() => navigate(`/signals/${record.id}`)}>
+          查看
+        </Button>
       ),
     },
   ];
 
   const tradeColumns = [
     {
-      title: '股票代码',
-      dataIndex: 'stockCode',
-      key: 'stockCode',
+      title: "标的",
+      dataIndex: "symbol",
+      key: "symbol",
     },
     {
-      title: '股票名称',
-      dataIndex: 'stockName',
-      key: 'stockName',
-    },
-    {
-      title: '方向',
-      dataIndex: 'direction',
-      key: 'direction',
+      title: "方向",
+      dataIndex: "direction",
+      key: "direction",
       render: (direction: string) => {
-        const color = direction === 'buy' || direction === 'bullish' ? 'red' : 'green';
-        const text = direction === 'buy' || direction === 'bullish' ? '买入' : '卖出';
+        const isLong = direction === "long";
+        return (
+          <Tag color={isLong ? "red" : "green"}>{isLong ? "做多" : "做空"}</Tag>
+        );
+      },
+    },
+    {
+      title: "入场时间",
+      dataIndex: "entryTime",
+      key: "entryTime",
+      render: (time: string) => formatDate(time),
+    },
+    {
+      title: "入场价",
+      dataIndex: "entryPrice",
+      key: "entryPrice",
+      render: (price: string) => parseFloat(price).toFixed(2),
+    },
+    {
+      title: "出场时间",
+      dataIndex: "exitTime",
+      key: "exitTime",
+      render: (time: string | null) => (time ? formatDate(time) : "-"),
+    },
+    {
+      title: "出场价",
+      dataIndex: "exitPrice",
+      key: "exitPrice",
+      render: (price: string | null) =>
+        price ? parseFloat(price).toFixed(2) : "-",
+    },
+    {
+      title: "收益率",
+      dataIndex: "pnlPct",
+      key: "pnlPct",
+      render: (pct: string | null) => {
+        if (!pct) return "-";
+        const num = parseFloat(pct);
+        const color = num > 0 ? "red" : num < 0 ? "green" : "default";
+        const text =
+          num > 0 ? `+${(num * 100).toFixed(2)}%` : `${(num * 100).toFixed(2)}%`;
         return <Tag color={color}>{text}</Tag>;
       },
     },
     {
-      title: '入场价',
-      dataIndex: 'entryPrice',
-      key: 'entryPrice',
-      render: (price: number) => price?.toFixed(2) || '-',
-    },
-    {
-      title: '出场价',
-      dataIndex: 'exitPrice',
-      key: 'exitPrice',
-      render: (price: number) => price?.toFixed(2) || '-',
-    },
-    {
-      title: '收益率',
-      dataIndex: 'return',
-      key: 'return',
-      render: (ret: number) => {
-        const color = ret > 0 ? 'red' : ret < 0 ? 'green' : 'default';
-        const text = ret > 0 ? `+${(ret * 100).toFixed(2)}%` : `${(ret * 100).toFixed(2)}%`;
-        return <Tag color={color}>{text}</Tag>;
+      title: "出场原因",
+      dataIndex: "exitReason",
+      key: "exitReason",
+      render: (reason: string | null) => {
+        const reasonMap: Record<string, string> = {
+          hold_period: "持仓到期",
+          stop_loss: "止损",
+          take_profit: "止盈",
+        };
+        return reason ? reasonMap[reason] || reason : "-";
       },
-    },
-    {
-      title: '出场原因',
-      dataIndex: 'exitReason',
-      key: 'exitReason',
-      render: (reason: string) => {
-        const reasonMap: Record<string, string> = { takeProfit: '止盈', stopLoss: '止损', timeExpired: '到期' };
-        return reasonMap[reason] || reason;
-      },
-    },
-    {
-      title: '入场时间',
-      dataIndex: 'entryTime',
-      key: 'entryTime',
-      render: (time: string) => formatDate(time),
-    },
-    {
-      title: '出场时间',
-      dataIndex: 'exitTime',
-      key: 'exitTime',
-      render: (time: string) => formatDate(time),
     },
   ];
 
@@ -650,10 +754,25 @@ const StockTrackingDetailPage: React.FC = () => {
                 <Card
                   title={<Space><BarChartOutlined />K线图</Space>}
                   extra={
-                    <Select value={period} onChange={setPeriod} style={{ width: 100 }}>
-                      <Option value="1d">日线</Option>
-                      <Option value="4h">4小时</Option>
-                    </Select>
+                    <Space>
+                      <Select value={period} onChange={setPeriod} style={{ width: 100 }}>
+                        <Option value="1d">日线</Option>
+                        <Option value="4h">4小时</Option>
+                      </Select>
+                      <Button
+                        icon={<SyncOutlined spin={syncingKlines} />}
+                        loading={syncingKlines}
+                        onClick={() => checkAndUpdateKlines(period)}
+                      >
+                        同步K线
+                      </Button>
+                      <Button
+                        icon={<ReloadOutlined />}
+                        onClick={() => fetchKlines(false)}
+                      >
+                        刷新
+                      </Button>
+                    </Space>
                   }
                 >
                   <div ref={chartContainerRef} style={{ width: '100%', height: 400 }} />
@@ -721,26 +840,86 @@ const StockTrackingDetailPage: React.FC = () => {
         open={backtestModalVisible}
         onCancel={() => setBacktestModalVisible(false)}
         width={1400}
-        footer={[<Button key="close" onClick={() => setBacktestModalVisible(false)}>关闭</Button>]}
+        footer={[
+          <Button key="close" onClick={() => setBacktestModalVisible(false)}>
+            关闭
+          </Button>,
+        ]}
       >
         {selectedBacktest ? (
           <>
             <Descriptions bordered column={3} style={{ marginBottom: 24 }}>
-              <Descriptions.Item label="回测时间">{formatDate(selectedBacktest.createdAt)}</Descriptions.Item>
-              <Descriptions.Item label="回测区间">{formatDate(selectedBacktest.startTime)} ~ {formatDate(selectedBacktest.endTime)}</Descriptions.Item>
-              <Descriptions.Item label="K线周期">{selectedBacktest.period}</Descriptions.Item>
-              <Descriptions.Item label="总交易次数">{selectedBacktest.totalTrades} 笔</Descriptions.Item>
-              <Descriptions.Item label="盈利次数" style={{ color: '#52c41a' }}>{selectedBacktest.winningTrades} 笔</Descriptions.Item>
-              <Descriptions.Item label="亏损次数" style={{ color: '#ff4d4f' }}>{selectedBacktest.losingTrades} 笔</Descriptions.Item>
-              <Descriptions.Item label="胜率">{formatPercent(selectedBacktest.winRate)}</Descriptions.Item>
-              <Descriptions.Item label="总收益率">
-                <Tag color={parseFloat(selectedBacktest.totalReturn) > 0 ? 'red' : 'green'}>{formatPercent(selectedBacktest.totalReturn)}</Tag>
+              <Descriptions.Item label="策略名称">
+                {selectedBacktest.strategySnapshot?.name || "-"}
               </Descriptions.Item>
-              <Descriptions.Item label="平均收益率">{formatPercent(selectedBacktest.avgReturn)}</Descriptions.Item>
-              <Descriptions.Item label="最大回撤" span={3}><Text type="danger">{formatPercent(selectedBacktest.maxDrawdown)}</Text></Descriptions.Item>
+              <Descriptions.Item label="回测区间">
+                {formatDate(selectedBacktest.startTime)} ~{" "}
+                {formatDate(selectedBacktest.endTime)}
+              </Descriptions.Item>
+              <Descriptions.Item label="K线周期">
+                {selectedBacktest.period}
+              </Descriptions.Item>
+              <Descriptions.Item label="信号总数/过滤后">
+                {selectedBacktest.totalSignals ?? "-"} /{" "}
+                {selectedBacktest.filteredSignals ?? "-"}
+              </Descriptions.Item>
+              <Descriptions.Item label="总交易次数">
+                {selectedBacktest.totalTrades} 笔
+              </Descriptions.Item>
+              <Descriptions.Item label="盈利/亏损">
+                <Text style={{ color: "#52c41a" }}>
+                  {selectedBacktest.winningTrades}
+                </Text>{" "}
+                /{" "}
+                <Text style={{ color: "#ff4d4f" }}>
+                  {selectedBacktest.losingTrades}
+                </Text>
+              </Descriptions.Item>
+              <Descriptions.Item label="胜率">
+                {formatPercent(selectedBacktest.winRate)}
+              </Descriptions.Item>
+              <Descriptions.Item label="总收益率">
+                <Tag
+                  color={
+                    selectedBacktest.totalReturnPct &&
+                    parseFloat(selectedBacktest.totalReturnPct) > 0
+                      ? "red"
+                      : "green"
+                  }
+                >
+                  {formatPercent(selectedBacktest.totalReturnPct)}
+                </Tag>
+              </Descriptions.Item>
+              <Descriptions.Item label="平均收益率">
+                {formatPercent(selectedBacktest.avgReturnPct)}
+              </Descriptions.Item>
+              <Descriptions.Item label="最大回撤">
+                <Text type="danger">
+                  {formatPercent(selectedBacktest.maxDrawdownPct)}
+                </Text>
+              </Descriptions.Item>
+              <Descriptions.Item label="夏普比率">
+                {selectedBacktest.sharpeRatio
+                  ? parseFloat(selectedBacktest.sharpeRatio).toFixed(2)
+                  : "-"}
+              </Descriptions.Item>
+              <Descriptions.Item label="盈亏比">
+                {selectedBacktest.profitFactor
+                  ? parseFloat(selectedBacktest.profitFactor).toFixed(2)
+                  : "-"}
+              </Descriptions.Item>
             </Descriptions>
             <Title level={5}>交易明细</Title>
-            <Table dataSource={selectedBacktest.trades} columns={tradeColumns} rowKey="signalId" pagination={{ pageSize: 10 }} size="small" scroll={{ x: 1200 }} />
+            <Spin spinning={backtestTradesLoading}>
+              <Table
+                dataSource={backtestTrades}
+                columns={tradeColumns}
+                rowKey="id"
+                pagination={{ pageSize: 10 }}
+                size="small"
+                scroll={{ x: 1200 }}
+              />
+            </Spin>
           </>
         ) : (
           <Empty description="暂无数据" />

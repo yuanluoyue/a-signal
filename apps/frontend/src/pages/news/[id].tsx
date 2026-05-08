@@ -14,6 +14,9 @@ import {
   Col,
   Badge,
   Empty,
+  Table,
+  Progress,
+  Tooltip,
 } from 'antd';
 import {
   ArrowLeftOutlined,
@@ -23,10 +26,12 @@ import {
   CheckCircleOutlined,
   ClockCircleOutlined,
   LoadingOutlined,
+  ReloadOutlined,
 } from '@ant-design/icons';
 import { useParams, useNavigate } from 'umi';
 import client from '@/services/client';
-import type { NewsItem, NewsSignal, AnalysisStatus, VectorizedStatus } from '@/services/types';
+import { getEventTypeName } from '@/utils/event.utils';
+import type { NewsItem, NewsSignal, AnalysisStatus, VectorizedStatus, EventItem } from '@/services/types';
 
 const { Title, Text, Paragraph } = Typography;
 
@@ -127,13 +132,17 @@ const NewsDetailPage: React.FC = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [analyzing, setAnalyzing] = useState(false);
+  const [revectorizing, setRevectorizing] = useState(false);
   const [news, setNews] = useState<NewsItem | null>(null);
   const [signals, setSignals] = useState<NewsSignal[]>([]);
+  const [relatedEvents, setRelatedEvents] = useState<EventItem[]>([]);
+  const [eventsLoading, setEventsLoading] = useState(false);
 
   useEffect(() => {
     if (id) {
       fetchNewsDetail(id);
       fetchNewsSignals(id);
+      fetchRelatedEvents();
     }
   }, [id]);
 
@@ -144,7 +153,6 @@ const NewsDetailPage: React.FC = () => {
       const newsData = response?.data || response;
       
       if (newsData) {
-        // 转换后端数据格式到前端格式
         const formattedNews: NewsItem = {
           id: newsData.id,
           title: newsData.title,
@@ -157,6 +165,7 @@ const NewsDetailPage: React.FC = () => {
           publishedAt: newsData.publishTime,
           createdAt: newsData.createdAt,
           updatedAt: newsData.updatedAt,
+          embeddingModel: newsData.embeddingModel,
         };
         setNews(formattedNews);
       } else {
@@ -193,6 +202,20 @@ const NewsDetailPage: React.FC = () => {
     }
   };
 
+  const fetchRelatedEvents = async () => {
+    if (!id) return;
+    setEventsLoading(true);
+    try {
+      const response = await client.get(`/news/${id}/events`);
+      const data = (response as any)?.data || [];
+      setRelatedEvents(data);
+    } catch (error) {
+      console.error('获取关联事件失败:', error);
+    } finally {
+      setEventsLoading(false);
+    }
+  };
+
   const handleAnalyze = async () => {
     if (!id || !news) return;
 
@@ -200,7 +223,6 @@ const NewsDetailPage: React.FC = () => {
     try {
       await client.post(`/news/${id}/analyze`);
       message.success('分析任务已提交，请稍后刷新查看结果');
-      // 3秒后刷新数据
       setTimeout(() => {
         fetchNewsDetail(id);
         fetchNewsSignals(id);
@@ -210,6 +232,24 @@ const NewsDetailPage: React.FC = () => {
       console.error('Analyze error:', error);
     } finally {
       setAnalyzing(false);
+    }
+  };
+
+  const handleRevectorize = async () => {
+    if (!id || !news) return;
+
+    setRevectorizing(true);
+    try {
+      await client.post(`/news/${id}/re-vectorize`);
+      message.success('重新向量化任务已提交，请稍后刷新查看结果');
+      setTimeout(() => {
+        fetchNewsDetail(id);
+      }, 3000);
+    } catch (error) {
+      message.error('提交重新向量化任务失败');
+      console.error('Revectorize error:', error);
+    } finally {
+      setRevectorizing(false);
     }
   };
 
@@ -294,6 +334,15 @@ const NewsDetailPage: React.FC = () => {
                   {analyzing ? '分析中...' : '手动分析'}
                 </Button>
               )}
+              {news.vectorizedStatus === 'vectorized' && (
+                <Button
+                  icon={revectorizing ? <LoadingOutlined /> : <ReloadOutlined />}
+                  onClick={handleRevectorize}
+                  loading={revectorizing}
+                >
+                  {revectorizing ? '向量化中...' : '重新向量化'}
+                </Button>
+              )}
             </Space>
           </Card>
 
@@ -329,6 +378,110 @@ const NewsDetailPage: React.FC = () => {
               />
             </Card>
           )}
+
+          <Card title="关联事件" style={{ marginTop: 16 }}>
+            <Table
+              dataSource={relatedEvents}
+              rowKey="id"
+              loading={eventsLoading}
+              pagination={false}
+              locale={{ emptyText: '暂无关联事件' }}
+              onRow={(record) => ({
+                onClick: () => navigate(`/events/${record.id}`),
+                style: { cursor: 'pointer' },
+              })}
+              columns={[
+                {
+                  title: '分类',
+                  dataIndex: 'category',
+                  key: 'category',
+                  width: 100,
+                  render: (category: string) => {
+                    const categoryColorMap: Record<string, string> = {
+                      macro: 'blue',
+                      policy: 'purple',
+                      company: 'green',
+                      market: 'orange',
+                      sentiment: 'cyan',
+                    };
+                    const categoryTextMap: Record<string, string> = {
+                      macro: '宏观',
+                      policy: '政策',
+                      company: '公司',
+                      market: '市场',
+                      sentiment: '情绪',
+                    };
+                    return (
+                      <Tag color={categoryColorMap[category] || 'default'}>
+                        {categoryTextMap[category] || category}
+                      </Tag>
+                    );
+                  },
+                },
+                {
+                  title: '子分类',
+                  dataIndex: 'subcategory',
+                  key: 'subcategory',
+                  width: 120,
+                  render: (subcategory: string) => getEventTypeName(subcategory),
+                },
+                {
+                  title: '情绪方向',
+                  dataIndex: 'sentimentDirection',
+                  key: 'sentimentDirection',
+                  width: 100,
+                  render: (val: number) => {
+                    if (val === 1) return <Tag color="green">利好</Tag>;
+                    if (val === -1) return <Tag color="red">利空</Tag>;
+                    return <Tag>中性</Tag>;
+                  },
+                },
+                {
+                  title: '重要性',
+                  dataIndex: 'importanceScore',
+                  key: 'importanceScore',
+                  width: 120,
+                  render: (score: number) => {
+                    const percent = Math.round(score * 100);
+                    let status: 'success' | 'normal' | 'exception' = 'normal';
+                    if (percent >= 80) status = 'success';
+                    else if (percent >= 50) status = 'normal';
+                    else status = 'exception';
+                    return (
+                      <Tooltip title={`${percent}%`}>
+                        <Progress
+                          percent={percent}
+                          size="small"
+                          status={status}
+                          style={{ width: 80 }}
+                          showInfo={false}
+                        />
+                      </Tooltip>
+                    );
+                  },
+                },
+                {
+                  title: '发生时间',
+                  dataIndex: 'occurredAt',
+                  key: 'occurredAt',
+                  width: 180,
+                  render: (time: string) => formatDate(time),
+                },
+                {
+                  title: '处理状态',
+                  dataIndex: 'processed',
+                  key: 'processed',
+                  width: 100,
+                  render: (processed: boolean) =>
+                    processed ? (
+                      <Tag color="green">已处理</Tag>
+                    ) : (
+                      <Tag color="orange">未处理</Tag>
+                    ),
+                },
+              ]}
+            />
+          </Card>
         </Col>
 
         <Col span={8}>
@@ -348,6 +501,9 @@ const NewsDetailPage: React.FC = () => {
                 <Tag color={getVectorizedStatusColor(news.vectorizedStatus)}>
                   {getVectorizedStatusText(news.vectorizedStatus)}
                 </Tag>
+              </Descriptions.Item>
+              <Descriptions.Item label="向量化模型">
+                {news.embeddingModel || '未记录'}
               </Descriptions.Item>
             </Descriptions>
           </Card>

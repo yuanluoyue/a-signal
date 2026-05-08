@@ -1,0 +1,13 @@
+- [x] strategies 表 schema 已定义在 schema.ts 中，字段和类型符合 spec
+- [x] 迁移文件已通过 drizzle-kit generate 生成，无 DROP/DELETE/TRUNCATE/RENAME 语句
+- [x] StrategyModule 已创建并注册到 app.module.ts
+- [x] StrategyService 实现 CRUD 和列表分页筛选
+- [x] StrategyController 提供 GET/POST/PUT 接口，路由前缀 /strategies
+- [x] DTO 使用 class-validator 装饰器校验输入
+- [x] 前端 types.ts 中新增 Strategy 相关类型
+- [x] 前端 strategy.ts API 服务正确调用后端接口
+- [x] 策略管理页面包含列表表格、创建/编辑弹窗、启用/禁用 Switch
+- [x] 创建/编辑弹窗分为四个区域：基本信息、信号筛选、入场/出场、交易控制
+- [x] .umirc.ts 中已新增 /strategies 路由
+- [x] MainLayout.tsx 中已新增策略管理菜单项（分析中心分组下）
+- [x] seed.ts 中新增初始策略数据，幂等处理（已存在则跳过）

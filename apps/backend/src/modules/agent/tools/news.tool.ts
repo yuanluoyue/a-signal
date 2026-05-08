@@ -3,7 +3,6 @@ import { z } from 'zod';
 import { BaseTool } from './base.tool.js';
 import { NewsService } from '../../news/news.service.js';
 import { VectorService } from '../../../core/vector/vector.service.js';
-import { VolcengineEmbeddingService } from '../../../core/volcengine/volcengine-embedding.service.js';
 
 const GetNewsByDateRangeSchema = z.object({
   startDate: z.string().describe('开始日期，格式: YYYY-MM-DD'),
@@ -70,10 +69,7 @@ export class SearchNewsByKeywordTool extends BaseTool<SearchNewsByKeywordInput, 
 
   private readonly logger = new Logger(SearchNewsByKeywordTool.name);
 
-  constructor(
-    private readonly vectorService: VectorService,
-    private readonly embeddingService: VolcengineEmbeddingService,
-  ) {
+  constructor(private readonly vectorService: VectorService) {
     super();
   }
 
@@ -81,7 +77,7 @@ export class SearchNewsByKeywordTool extends BaseTool<SearchNewsByKeywordInput, 
     try {
       this.logger.debug(`[SearchNewsByKeywordTool] Executing with keyword: ${input.keyword}`);
 
-      const embedding = await this.embeddingService.getTextEmbedding(input.keyword);
+      const embedding = await this.vectorService.generateEmbedding(input.keyword);
       const results = await this.vectorService.similaritySearch(embedding, input.limit);
 
       return results.map((result) => ({

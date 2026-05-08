@@ -14,6 +14,10 @@ export class QueryBacktestTool {
         type: 'string',
         description: '股票代码筛选（可选）',
       },
+      strategyId: {
+        type: 'string',
+        description: '策略 ID 筛选（可选）',
+      },
       limit: {
         type: 'number',
         description: '返回数量限制，默认10',
@@ -37,22 +41,28 @@ export class QueryBacktestTool {
     try {
       const records = await this.backtestService.findAllRecords(
         args.stockCode as string | undefined,
-        (args.limit as number) || 10,
+        args.strategyId as string | undefined,
+        typeof args.limit === 'number' ? args.limit : 10,
       );
 
       return records.map((record) => ({
         id: record.id,
         stockCode: record.stockCode,
+        strategyId: record.strategyId,
+        name: record.name,
         startTime: record.startTime,
         endTime: record.endTime,
         period: record.period,
         totalTrades: record.totalTrades,
         winningTrades: record.winningTrades,
         losingTrades: record.losingTrades,
-        winRate: parseFloat(record.winRate),
-        totalReturn: parseFloat(record.totalReturn),
-        maxDrawdown: parseFloat(record.maxDrawdown),
-        avgReturn: parseFloat(record.avgReturn),
+        winRate: record.winRate ? parseFloat(record.winRate) : null,
+        totalReturnPct: record.totalReturnPct ? parseFloat(record.totalReturnPct) : null,
+        avgReturnPct: record.avgReturnPct ? parseFloat(record.avgReturnPct) : null,
+        maxDrawdownPct: record.maxDrawdownPct ? parseFloat(record.maxDrawdownPct) : null,
+        sharpeRatio: record.sharpeRatio ? parseFloat(record.sharpeRatio) : null,
+        profitFactor: record.profitFactor ? parseFloat(record.profitFactor) : null,
+        status: record.status,
         createdAt: record.createdAt,
       }));
     } catch (error) {

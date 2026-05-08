@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   Table,
   Card,
@@ -113,6 +113,8 @@ const NewsListPage: React.FC = () => {
     total: 0,
   });
 
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+
   // 更新 URL 参数
   const updateUrlParams = useCallback((page: number, pageSize: number, currentFilters: NewsFilter) => {
     const params: Record<string, string> = {
@@ -159,7 +161,7 @@ const NewsListPage: React.FC = () => {
         url: item.originalUrl,
         analysisStatus: item.analyzeStatus,
         vectorizedStatus: item.vectorizeStatus,
-        relatedStocks: item.relatedStocks || [],
+        eventCount: item.eventCount || 0,
         publishedAt: item.publishTime,
         createdAt: item.createdAt,
         updatedAt: item.updatedAt,
@@ -256,13 +258,30 @@ const NewsListPage: React.FC = () => {
     fetchVectorizeProgress();
   };
 
-  // 处理筛选变化
   const handleFilterChange = (key: keyof NewsFilter, value: string | undefined) => {
     const newFilters = { ...filters, [key]: value };
     setFilters(newFilters);
-    // 重置到第一页
-    fetchData(1, pagination.pageSize, newFilters);
+
+    if (key === 'keyword') {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+
+      debounceTimerRef.current = setTimeout(() => {
+        fetchData(1, pagination.pageSize, newFilters);
+      }, 500);
+    } else {
+      fetchData(1, pagination.pageSize, newFilters);
+    }
   };
+
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
 
   // 处理分页变化
   const handlePageChange = (page: number, pageSize?: number) => {
@@ -307,18 +326,14 @@ const NewsListPage: React.FC = () => {
       ),
     },
     {
-      title: '关联股票',
-      dataIndex: 'relatedStocks',
-      key: 'relatedStocks',
-      width: 150,
-      render: (stocks: string[]) => (
-        <Space size="small" wrap>
-          {stocks.map((stock) => (
-            <Tag key={stock} color="blue">
-              {stock}
-            </Tag>
-          ))}
-        </Space>
+      title: '关联事件',
+      dataIndex: 'eventCount',
+      key: 'eventCount',
+      width: 100,
+      render: (count: number) => (
+        <Tag color={count > 0 ? 'blue' : 'default'}>
+          {count} 个
+        </Tag>
       ),
     },
     {

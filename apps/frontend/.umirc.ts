@@ -46,6 +46,26 @@ export default defineConfig({
           title: '信号详情',
         },
         {
+          path: '/events',
+          component: '@/pages/events/index',
+          title: '事件列表',
+        },
+        {
+          path: '/events/:id',
+          component: '@/pages/events/[id]',
+          title: '事件详情',
+        },
+        {
+          path: '/signal-rules',
+          component: '@/pages/signal-rules/index',
+          title: '信号规则',
+        },
+        {
+          path: '/strategies',
+          component: '@/pages/strategy/index',
+          title: '策略管理',
+        },
+        {
           path: '/stocks',
           component: '@/pages/stocks/index',
           title: '股票查询',

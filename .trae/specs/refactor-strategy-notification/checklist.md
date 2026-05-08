@@ -1,0 +1,14 @@
+- [x] strategies 表新增 webhookId 字段，外键关联 webhooks.id
+- [x] webhooks 表 minScore/maxScore/minConfidence/maxConfidence 改为 nullable
+- [x] 迁移文件已通过 drizzle-kit generate 生成，无 DROP/DELETE/TRUNCATE/RENAME 语句
+- [x] StrategyService 新增 findEnabledWithWebhook 方法
+- [x] StrategyService 新增 filterSignalByStrategy 方法，使用策略条件过滤信号
+- [x] NotificationsService 实现策略驱动的通知流程（遍历策略 → 过滤信号 → 发送 webhook）
+- [x] Webhook 通知消息包含策略名称
+- [x] Strategy DTO 新增 webhookId 字段
+- [x] Webhook DTO 移除分数过滤字段
+- [x] Webhook 详情 API 返回绑定的策略列表
+- [x] 前端 Webhook 类型定义更新（移除 minScore/maxScore，新增绑定策略信息）
+- [x] 前端 Strategy 类型定义更新（新增 webhookId）
+- [x] 通知管理页面 webhook 表单移除分数范围配置，显示绑定策略
+- [x] 策略管理页面新增 webhook 绑定选择
