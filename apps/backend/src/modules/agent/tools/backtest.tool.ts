@@ -5,6 +5,7 @@ import { BacktestService } from '../../backtest/backtest.service.js';
 
 const GetBacktestByStockSchema = z.object({
   stockCode: z.string().optional().describe('股票代码（可选，不传则返回所有回测）'),
+  strategyId: z.string().optional().describe('策略 ID（可选，用于过滤特定策略的回测记录）'),
   limit: z.number().optional().default(5).describe('返回数量限制'),
 });
 
@@ -13,16 +14,21 @@ type GetBacktestByStockInput = z.infer<typeof GetBacktestByStockSchema>;
 interface BacktestItem {
   id: string;
   stockCode: string | null;
+  strategyId: string | null;
+  name: string | null;
   startTime: Date;
   endTime: Date;
   period: string;
   totalTrades: number;
   winningTrades: number;
   losingTrades: number;
-  winRate: number;
-  totalReturn: number;
-  maxDrawdown: number;
-  avgReturn: number;
+  winRate: number | null;
+  totalReturnPct: number | null;
+  avgReturnPct: number | null;
+  maxDrawdownPct: number | null;
+  sharpeRatio: number | null;
+  profitFactor: number | null;
+  status: string | null;
   createdAt: Date;
 }
 
@@ -44,22 +50,28 @@ export class GetBacktestByStockTool extends BaseTool<GetBacktestByStockInput, Ba
 
       const records = await this.backtestService.findAllRecords(
         input.stockCode,
+        input.strategyId,
         input.limit,
       );
 
       return records.map((record) => ({
         id: record.id,
         stockCode: record.stockCode,
+        strategyId: record.strategyId,
+        name: record.name,
         startTime: record.startTime,
         endTime: record.endTime,
         period: record.period,
         totalTrades: record.totalTrades,
         winningTrades: record.winningTrades,
         losingTrades: record.losingTrades,
-        winRate: parseFloat(record.winRate),
-        totalReturn: parseFloat(record.totalReturn),
-        maxDrawdown: parseFloat(record.maxDrawdown),
-        avgReturn: parseFloat(record.avgReturn),
+        winRate: record.winRate ? parseFloat(record.winRate) : null,
+        totalReturnPct: record.totalReturnPct ? parseFloat(record.totalReturnPct) : null,
+        avgReturnPct: record.avgReturnPct ? parseFloat(record.avgReturnPct) : null,
+        maxDrawdownPct: record.maxDrawdownPct ? parseFloat(record.maxDrawdownPct) : null,
+        sharpeRatio: record.sharpeRatio ? parseFloat(record.sharpeRatio) : null,
+        profitFactor: record.profitFactor ? parseFloat(record.profitFactor) : null,
+        status: record.status,
         createdAt: record.createdAt,
       }));
     } catch (error) {

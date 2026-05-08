@@ -1,13 +1,12 @@
-import { IsDate, IsNumber, IsString, IsArray, IsEnum, IsOptional, Min, Max } from 'class-validator';
+import { IsDate, IsString, IsOptional, IsUUID } from 'class-validator';
 import { Type } from 'class-transformer';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
-export enum BacktestPeriod {
-  FOUR_HOURS = '4h',
-  ONE_DAY = '1d',
-}
+export class StrategyBacktestRequestDto {
+  @ApiProperty({ description: '策略 ID' })
+  @IsUUID()
+  strategyId: string;
 
-export class BacktestRequestDto {
   @ApiProperty({ description: '开始时间', example: '2024-01-01T00:00:00Z' })
   @IsDate()
   @Type(() => Date)
@@ -18,73 +17,60 @@ export class BacktestRequestDto {
   @Type(() => Date)
   endTime: Date;
 
-  @ApiProperty({ description: '最小置信度 (0-100)', example: 70, minimum: 0, maximum: 100 })
-  @IsNumber()
-  @Min(0)
-  @Max(100)
-  minConfidence: number;
-
-  @ApiProperty({ description: '最大置信度 (0-100)', example: 100, minimum: 0, maximum: 100 })
-  @IsNumber()
-  @Min(0)
-  @Max(100)
-  maxConfidence: number;
-
-  @ApiProperty({ description: '信号类型', example: ['buy', 'sell'], enum: ['buy', 'sell'] })
-  @IsArray()
-  @IsString({ each: true })
-  directions: string[];
-
-  @ApiProperty({ description: '止损比例 (如 0.05 表示5%)', example: 0.05, minimum: 0, maximum: 1 })
-  @IsNumber()
-  @Min(0)
-  @Max(1)
-  stopLoss: number;
-
-  @ApiProperty({ description: '止盈比例 (如 0.1 表示10%)', example: 0.1, minimum: 0, maximum: 1 })
-  @IsNumber()
-  @Min(0)
-  @Max(1)
-  takeProfit: number;
-
-  @ApiProperty({ description: 'K线周期', enum: BacktestPeriod, default: BacktestPeriod.FOUR_HOURS })
-  @IsEnum(BacktestPeriod)
+  @ApiPropertyOptional({ description: '回测名称' })
   @IsOptional()
-  period?: BacktestPeriod;
-
-  @ApiProperty({ description: '股票代码（可选，用于限制特定股票的回测）', example: '000001', required: false })
   @IsString()
+  name?: string;
+
+  @ApiPropertyOptional({ description: '股票代码（可选，用于限制特定股票的回测）' })
   @IsOptional()
+  @IsString()
   stockCode?: string;
 }
 
 export class QueryBacktestRecordsDto {
-  @ApiProperty({ description: '股票代码（可选，用于过滤特定股票的回测记录）', example: '000001', required: false })
-  @IsString()
+  @ApiPropertyOptional({ description: '股票代码（可选，用于过滤特定股票的回测记录）' })
   @IsOptional()
+  @IsString()
   stockCode?: string;
+
+  @ApiPropertyOptional({ description: '策略 ID（可选，用于过滤特定策略的回测记录）' })
+  @IsOptional()
+  @IsUUID()
+  strategyId?: string;
 }
 
-export interface TradeResult {
-  signalId: string;
-  stockCode: string;
-  stockName: string;
+export interface BacktestTradeResult {
+  signalId: string | null;
+  eventId: string | null;
+  symbol: string;
+  stockName: string | null;
   direction: string;
-  entryPrice: number;
-  exitPrice: number;
-  return: number;
-  exitReason: 'takeProfit' | 'stopLoss' | 'timeExpired';
   entryTime: Date;
-  exitTime: Date;
+  entryPrice: number;
+  exitTime: Date | null;
+  exitPrice: number | null;
+  pnlPct: number | null;
+  signalScore: string | null;
+  signalRuleId: string | null;
+  signalReason: string | null;
+  exitReason: 'hold_period' | 'stop_loss' | 'take_profit' | null;
+  stopLossPrice: number | null;
+  takeProfitPrice: number | null;
 }
 
-export interface BacktestResponse {
+export interface BacktestStatistics {
+  totalSignals: number;
+  filteredSignals: number;
   totalTrades: number;
   winningTrades: number;
   losingTrades: number;
   winRate: number;
-  totalReturn: number;
-  maxDrawdown: number;
-  avgReturn: number;
-  trades: TradeResult[];
+  totalReturnPct: number;
+  avgReturnPct: number;
+  maxDrawdownPct: number;
+  sharpeRatio: number | null;
+  profitFactor: number | null;
+  avgHoldingPeriod: number | null;
+  equityCurve: Array<{ time: string; equity: number }>;
 }

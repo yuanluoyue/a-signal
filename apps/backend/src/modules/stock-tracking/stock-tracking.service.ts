@@ -333,9 +333,9 @@ export class StockTrackingService {
         winningTrades: backtestRecords.winningTrades,
         losingTrades: backtestRecords.losingTrades,
         winRate: backtestRecords.winRate,
-        totalReturn: backtestRecords.totalReturn,
-        maxDrawdown: backtestRecords.maxDrawdown,
-        avgReturn: backtestRecords.avgReturn,
+        totalReturnPct: backtestRecords.totalReturnPct,
+        maxDrawdownPct: backtestRecords.maxDrawdownPct,
+        avgReturnPct: backtestRecords.avgReturnPct,
       })
       .from(backtestRecords)
       .orderBy(desc(backtestRecords.createdAt))
@@ -353,10 +353,10 @@ export class StockTrackingService {
       totalTrades: number;
       winningTrades: number;
       losingTrades: number;
-      winRate: string;
-      totalReturn: string;
-      maxDrawdown: string;
-      avgReturn: string;
+      winRate: string | null;
+      totalReturnPct: string | null;
+      maxDrawdownPct: string | null;
+      avgReturnPct: string | null;
     } | null,
   ): Promise<string> {
     const apiKey = this.configService.get<string>('VOLCENGINE_API_KEY');
@@ -375,7 +375,7 @@ export class StockTrackingService {
       : 0;
 
     const backtestSummary = backtestResult
-      ? `回测结果：总交易 ${backtestResult.totalTrades} 笔，胜率 ${(parseFloat(backtestResult.winRate) * 100).toFixed(1)}%，总收益率 ${(parseFloat(backtestResult.totalReturn) * 100).toFixed(1)}%，最大回撤 ${(parseFloat(backtestResult.maxDrawdown) * 100).toFixed(1)}%`
+      ? `回测结果：总交易 ${backtestResult.totalTrades} 笔，胜率 ${backtestResult.winRate ? (parseFloat(backtestResult.winRate) * 100).toFixed(1) : 'N/A'}%，总收益率 ${backtestResult.totalReturnPct ? (parseFloat(backtestResult.totalReturnPct) * 100).toFixed(1) : 'N/A'}%，最大回撤 ${backtestResult.maxDrawdownPct ? (parseFloat(backtestResult.maxDrawdownPct) * 100).toFixed(1) : 'N/A'}%`
       : '暂无回测数据';
 
     const systemPrompt = `你是专业的股票投资分析师，基于提供的新闻、信号和回测数据生成简洁的研投报告。

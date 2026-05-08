@@ -11,11 +11,12 @@ import {
   Select,
   Result,
 } from 'antd';
-import { ArrowLeftOutlined, ReloadOutlined, BarChartOutlined } from '@ant-design/icons';
+import { ArrowLeftOutlined, ReloadOutlined, BarChartOutlined, SyncOutlined } from '@ant-design/icons';
 import { useParams, useNavigate } from 'umi';
 import * as LightweightCharts from 'lightweight-charts';
 import type { CandlestickData, Time, IChartApi, ISeriesApi } from 'lightweight-charts';
 import client from '@/services/client';
+import { klinesApi } from '@/services/klines';
 import type { Signal, KlineData } from '@/services/types';
 
 const { Title, Text } = Typography;
@@ -42,6 +43,7 @@ const StockDetailPage: React.FC = () => {
   const [klines, setKlines] = useState<KlineData[]>([]);
   const [period, setPeriod] = useState<'1d' | '4h'>('4h');
   const [fetchingKlines, setFetchingKlines] = useState(false);
+  const [syncingKlines, setSyncingKlines] = useState(false);
   const [syncingStock, setSyncingStock] = useState(false);
   const [notFound, setNotFound] = useState(false);
 
@@ -64,10 +66,38 @@ const StockDetailPage: React.FC = () => {
     }
   };
 
-  const fetchKlines = async (p: '1d' | '4h' = period) => {
+  const checkAndUpdateKlines = async (p: '1d' | '4h' = period): Promise<boolean> => {
+    if (!code) return false;
+    try {
+      setSyncingKlines(true);
+      const result = await klinesApi.checkAndUpdate(code, p);
+      if ('updated' in result) {
+        if (result.updated) {
+          message.success(`K线数据已更新: ${result.message}`);
+          return true;
+        }
+      } else if (result[p]?.updated) {
+        message.success(`K线数据已更新: ${result[p].message}`);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error('Check and update klines error:', error);
+      return false;
+    } finally {
+      setSyncingKlines(false);
+    }
+  };
+
+  const fetchKlines = async (p: '1d' | '4h' = period, autoUpdate: boolean = true) => {
     if (!code) return;
     try {
       setFetchingKlines(true);
+      
+      if (autoUpdate) {
+        await checkAndUpdateKlines(p);
+      }
+      
       const response = await client.get(`/stocks/${code}/klines`, {
         params: { period: p, limit: 100 },
       });
@@ -387,11 +417,18 @@ const StockDetailPage: React.FC = () => {
                     <Option value="1d">日线</Option>
                   </Select>
                   <Button
+                    icon={<SyncOutlined spin={syncingKlines} />}
+                    loading={syncingKlines}
+                    onClick={() => checkAndUpdateKlines(period)}
+                  >
+                    同步K线
+                  </Button>
+                  <Button
                     icon={<ReloadOutlined />}
                     loading={fetchingKlines}
-                    onClick={handleFetchKlines}
+                    onClick={() => fetchKlines(period, false)}
                   >
-                    获取K线
+                    刷新
                   </Button>
                 </Space>
               }

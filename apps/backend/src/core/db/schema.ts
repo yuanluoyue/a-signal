@@ -476,35 +476,91 @@ export const backtestRecords = pgTable(
   'backtest_records',
   {
     id: uuid('id').primaryKey().defaultRandom(),
+    name: varchar('name', { length: 200 }),
+    description: text('description'),
+    strategyId: uuid('strategy_id'),
+    strategySnapshot: jsonb('strategy_snapshot').$type<Record<string, unknown>>(),
     stockCode: varchar('stock_code', { length: 20 }),
     startTime: timestamp('start_time', { withTimezone: true }).notNull(),
     endTime: timestamp('end_time', { withTimezone: true }).notNull(),
-    minConfidence: integer('min_confidence').notNull(),
-    maxConfidence: integer('max_confidence').notNull(),
-    directions: jsonb('directions').notNull().$type<string[]>(),
-    stopLoss: decimal('stop_loss', { precision: 18, scale: 4 }).notNull(),
-    takeProfit: decimal('take_profit', { precision: 18, scale: 4 }).notNull(),
-    period: varchar('period', { length: 10 }).notNull().default('4h'),
+    minConfidence: integer('min_confidence'),
+    maxConfidence: integer('max_confidence'),
+    directions: jsonb('directions').$type<string[]>(),
+    stopLoss: decimal('stop_loss', { precision: 18, scale: 4 }),
+    takeProfit: decimal('take_profit', { precision: 18, scale: 4 }),
+    period: varchar('period', { length: 20 }).notNull().default('1d'),
+    totalSignals: integer('total_signals'),
+    filteredSignals: integer('filtered_signals'),
     totalTrades: integer('total_trades').notNull(),
     winningTrades: integer('winning_trades').notNull(),
     losingTrades: integer('losing_trades').notNull(),
-    winRate: decimal('win_rate', { precision: 18, scale: 4 }).notNull(),
-    totalReturn: decimal('total_return', { precision: 18, scale: 4 }).notNull(),
-    maxDrawdown: decimal('max_drawdown', { precision: 18, scale: 4 }).notNull(),
-    avgReturn: decimal('avg_return', { precision: 18, scale: 4 }).notNull(),
-    trades: jsonb('trades').notNull().$type<unknown[]>(),
+    winRate: decimal('win_rate', { precision: 18, scale: 6 }),
+    totalReturn: decimal('total_return', { precision: 18, scale: 4 }),
+    totalReturnPct: decimal('total_return_pct', { precision: 18, scale: 6 }),
+    avgReturn: decimal('avg_return', { precision: 18, scale: 4 }),
+    avgReturnPct: decimal('avg_return_pct', { precision: 18, scale: 6 }),
+    maxDrawdown: decimal('max_drawdown', { precision: 18, scale: 4 }),
+    maxDrawdownPct: decimal('max_drawdown_pct', { precision: 18, scale: 6 }),
+    sharpeRatio: decimal('sharpe_ratio', { precision: 18, scale: 6 }),
+    profitFactor: decimal('profit_factor', { precision: 18, scale: 6 }),
+    avgHoldingPeriod: decimal('avg_holding_period', { precision: 18, scale: 2 }),
+    trades: jsonb('trades').$type<unknown[]>(),
+    equityCurve: jsonb('equity_curve').$type<Array<{ time: string; equity: number }>>(),
+    status: varchar('status', { length: 20 }).notNull().default('completed'),
+    errorMessage: text('error_message'),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
   },
   (table) => [
+    index('backtest_records_strategy_id_idx').on(table.strategyId),
     index('backtest_records_created_at_idx').on(table.createdAt),
     index('backtest_records_stock_code_idx').on(table.stockCode),
+    index('backtest_records_start_time_idx').on(table.startTime),
+    index('backtest_records_end_time_idx').on(table.endTime),
   ],
 );
 
 export type BacktestRecord = typeof backtestRecords.$inferSelect;
 export type NewBacktestRecord = typeof backtestRecords.$inferInsert;
+
+export const backtestTrades = pgTable(
+  'backtest_trades',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    backtestId: uuid('backtest_id').notNull(),
+    strategyId: uuid('strategy_id').notNull(),
+    signalId: uuid('signal_id'),
+    eventId: uuid('event_id'),
+    symbol: varchar('symbol', { length: 20 }).notNull(),
+    stockName: varchar('stock_name', { length: 100 }),
+    direction: varchar('direction', { length: 10 }).notNull(),
+    entryTime: timestamp('entry_time', { withTimezone: true }).notNull(),
+    entryPrice: decimal('entry_price', { precision: 18, scale: 4 }).notNull(),
+    exitTime: timestamp('exit_time', { withTimezone: true }),
+    exitPrice: decimal('exit_price', { precision: 18, scale: 4 }),
+    pnlPct: decimal('pnl_pct', { precision: 18, scale: 6 }),
+    pnlAmount: decimal('pnl_amount', { precision: 18, scale: 2 }),
+    signalScore: decimal('signal_score', { precision: 10, scale: 4 }),
+    signalRuleId: varchar('signal_rule_id', { length: 100 }),
+    signalReason: text('signal_reason'),
+    exitReason: varchar('exit_reason', { length: 30 }),
+    stopLossPrice: decimal('stop_loss_price', { precision: 18, scale: 4 }),
+    takeProfitPrice: decimal('take_profit_price', { precision: 18, scale: 4 }),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .defaultNow()
+      .notNull(),
+  },
+  (table) => [
+    index('backtest_trades_backtest_id_idx').on(table.backtestId),
+    index('backtest_trades_strategy_id_idx').on(table.strategyId),
+    index('backtest_trades_direction_idx').on(table.direction),
+    index('backtest_trades_exit_reason_idx').on(table.exitReason),
+  ],
+);
+
+export type BacktestTrade = typeof backtestTrades.$inferSelect;
+export type NewBacktestTrade = typeof backtestTrades.$inferInsert;
 
 export const chatMessages = pgTable(
   'chat_messages',

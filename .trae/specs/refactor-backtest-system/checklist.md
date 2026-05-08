@@ -1,0 +1,13 @@
+- [x] backtestRecords 表已重构，新增 name、description、strategyId、strategySnapshot、period、totalSignals、filteredSignals、totalReturnPct、avgReturnPct、maxDrawdownPct、sharpeRatio、profitFactor、avgHoldingPeriod、equityCurve、status、errorMessage 字段
+- [x] 已移除的旧字段（minConfidence、maxConfidence、directions、stopLoss、takeProfit、trades）保留为 nullable，不在迁移中删除
+- [x] backtestTrades 表已新增，包含关联、标的、方向、入场、出场、收益、信号快照、出场原因、止盈止损价格等字段
+- [x] 迁移文件已通过 drizzle-kit generate 生成，无 DROP/DELETE/TRUNCATE/RENAME 语句
+- [x] BacktestModule 已导入 StrategyModule
+- [x] BacktestService 基于策略执行回测，信号筛选使用策略参数
+- [x] BacktestService 出场逻辑：hold_period / stop_loss / take_profit
+- [x] BacktestService 保存交易明细到 backtest_trades 表
+- [x] BacktestController 提供 GET /backtest/records/:id/trades 接口
+- [x] DTO 使用 strategyId + startTime + endTime 替代旧参数
+- [x] 前端回测页面新增回测表单（策略选择 + 时间范围）
+- [x] 前端回测记录列表展示策略名称、信号统计、增强收益指标
+- [x] 前端回测详情从 backtest_trades 接口查询交易明细

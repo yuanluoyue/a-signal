@@ -111,6 +111,16 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -133,6 +143,16 @@
             3,
             12,
             4,
+            3,
+            4,
+            7,
+            5,
+            3,
+            3,
+            5,
+            3,
+            4,
+            5,
             3,
             4
           ]
@@ -158,7 +178,17 @@
             43,
             14,
             14,
-            15
+            15,
+            14,
+            24,
+            14,
+            17,
+            12,
+            15,
+            17,
+            14,
+            17,
+            16
           ]
         },
         "register": 342
@@ -177,6 +207,16 @@
           "addEntryCode": [
             0,
             1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0
@@ -208,9 +248,32 @@
             0,
             0,
             0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onCheckCode": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1257,6 +1320,27 @@
             0,
             0,
             0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1278,9 +1362,29 @@
             2,
             1,
             1,
+            1,
+            1,
+            2,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            2,
             1
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1363,9 +1467,39 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addEntryImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1413,9 +1547,39 @@
             92,
             37,
             38,
-            30
+            30,
+            31,
+            44,
+            54,
+            42,
+            27,
+            61,
+            54,
+            29,
+            41,
+            28
           ],
           "addPolyfillImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1450,6 +1614,26 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1468,6 +1652,16 @@
         "hooks": {
           "onGenerateFiles": [
             338,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1518,7 +1712,17 @@
             1,
             0,
             1,
-            1
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
           ],
           "addBeforeMiddlewares": [
             0
@@ -1547,7 +1751,27 @@
             28,
             5,
             29,
-            6
+            6,
+            31,
+            5,
+            106,
+            40,
+            40,
+            7,
+            34,
+            5,
+            24,
+            6,
+            38,
+            6,
+            40,
+            5,
+            26,
+            5,
+            30,
+            4,
+            25,
+            4
           ]
         },
         "register": 77
@@ -1606,7 +1830,17 @@
             18,
             9,
             8,
-            11
+            11,
+            10,
+            36,
+            15,
+            10,
+            8,
+            14,
+            15,
+            7,
+            9,
+            7
           ]
         },
         "register": 59
@@ -1695,7 +1929,17 @@
             17,
             2,
             2,
-            1
+            1,
+            1,
+            20,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            0
           ]
         },
         "register": 17
@@ -1828,6 +2072,27 @@
       "time": {
         "hooks": {
           "addHTMLHeadScripts": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2227,6 +2492,26 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
@@ -2234,9 +2519,29 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePluginKey": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2248,6 +2553,16 @@
             25,
             1,
             1,
+            2,
+            2,
+            47,
+            3,
+            2,
+            1,
+            2,
+            2,
+            1,
+            2,
             2
           ],
           "addExtraBabelPlugins": [
@@ -2274,6 +2589,16 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -2281,7 +2606,17 @@
             55,
             34,
             31,
-            35
+            35,
+            48,
+            68,
+            38,
+            41,
+            35,
+            43,
+            47,
+            34,
+            39,
+            31
           ],
           "addTmpGenerateWatcherPaths": [
             0
@@ -2310,6 +2645,26 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
@@ -2317,9 +2672,29 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
             0
           ],
           "addRuntimePluginKey": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2331,7 +2706,17 @@
             64,
             15,
             14,
-            16
+            16,
+            23,
+            99,
+            27,
+            18,
+            15,
+            17,
+            20,
+            16,
+            20,
+            15
           ],
           "addTmpGenerateWatcherPaths": [
             10
@@ -3627,7 +4012,7 @@
       "file": "@/layouts/MainLayout.tsx",
       "id": "3",
       "absPath": "/",
-      "__content": "import React, { useState, useMemo, useCallback, Suspense } from 'react';\nimport { Layout, Menu, theme } from 'antd';\nimport {\n  DashboardOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n  KeyOutlined,\n  DatabaseOutlined,\n  FundOutlined,\n  ThunderboltOutlined,\n} from '@ant-design/icons';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\nimport PageLoading from '@/components/PageLoading';\n\nconst { Sider, Content } = Layout;\n\nconst MENU_ITEMS = [\n  {\n    key: '/dashboard',\n    icon: <DashboardOutlined />,\n    label: '仪表盘',\n  },\n  {\n    key: '/data',\n    icon: <DatabaseOutlined />,\n    label: '数据管理',\n    children: [\n      {\n        key: '/news',\n        icon: <ReadOutlined />,\n        label: '新闻管理',\n      },\n      {\n        key: '/stocks',\n        icon: <SearchOutlined />,\n        label: '股票查询',\n      },\n      {\n        key: '/stock-trackings',\n        icon: <EyeOutlined />,\n        label: '股票追踪',\n      },\n    ],\n  },\n  {\n    key: '/analysis',\n    icon: <FundOutlined />,\n    label: '分析中心',\n    children: [\n      {\n        key: '/signals',\n        icon: <BellOutlined />,\n        label: '信号管理',\n      },\n      {\n        key: '/events',\n        icon: <ThunderboltOutlined />,\n        label: '事件管理',\n      },\n      {\n        key: '/signal-rules',\n        icon: <SettingOutlined />,\n        label: '信号规则',\n      },\n      {\n        key: '/strategies',\n        icon: <FundOutlined />,\n        label: '策略管理',\n      },\n      {\n        key: '/simulation',\n        icon: <WalletOutlined />,\n        label: '账户模拟',\n      },\n      {\n        key: '/backtest',\n        icon: <LineChartOutlined />,\n        label: '回测记录',\n      },\n      {\n        key: '/agent-chat',\n        icon: <RobotOutlined />,\n        label: 'AI 助手',\n      },\n    ],\n  },\n  {\n    key: '/settings',\n    icon: <SettingOutlined />,\n    label: '系统设置',\n    children: [\n      {\n        key: '/settings/notifications',\n        icon: <NotificationOutlined />,\n        label: '通知设置',\n      },\n      {\n        key: '/settings/scheduler',\n        icon: <ClockCircleOutlined />,\n        label: '定时任务',\n      },\n      {\n        key: '/settings/api-keys',\n        icon: <KeyOutlined />,\n        label: 'API Key',\n      },\n      {\n        key: '/blacklist',\n        icon: <BlockOutlined />,\n        label: '黑名单',\n      },\n    ],\n  },\n];\n\nconst getSelectedKey = (pathname: string): string => {\n  const pathParts = pathname.split('/').filter(Boolean);\n  \n  if (pathParts.length === 0) {\n    return '/dashboard';\n  }\n  \n  const basePath = `/${pathParts[0]}`;\n  \n  if (pathParts.length >= 2) {\n    const secondLevelPath = `/${pathParts[0]}/${pathParts[1]}`;\n    const knownSecondLevelPaths = [\n      '/settings/notifications',\n      '/settings/scheduler',\n      '/settings/api-keys',\n    ];\n    \n    if (knownSecondLevelPaths.includes(secondLevelPath)) {\n      return secondLevelPath;\n    }\n  }\n  \n  const knownFirstLevelPaths = [\n    '/dashboard',\n    '/news',\n    '/stocks',\n    '/stock-trackings',\n    '/signals',\n    '/events',\n    '/signal-rules',\n    '/strategies',\n    '/simulation',\n    '/backtest',\n    '/agent-chat',\n    '/blacklist',\n  ];\n  \n  if (knownFirstLevelPaths.includes(basePath)) {\n    return basePath;\n  }\n  \n  return pathname;\n};\n\nconst getOpenKeys = (pathname: string): string[] => {\n  const pathToParentMap: Record<string, string> = {\n    '/news': '/data',\n    '/stocks': '/data',\n    '/stock-trackings': '/data',\n    '/signals': '/analysis',\n    '/events': '/analysis',\n    '/signal-rules': '/analysis',\n    '/simulation': '/analysis',\n    '/backtest': '/analysis',\n    '/agent-chat': '/analysis',\n    '/settings/notifications': '/settings',\n    '/settings/scheduler': '/settings',\n    '/settings/api-keys': '/settings',\n    '/blacklist': '/settings',\n  };\n  \n  const openKeys: string[] = [];\n  const selectedKey = getSelectedKey(pathname);\n  const parentKey = pathToParentMap[selectedKey];\n  if (parentKey) {\n    openKeys.push(parentKey);\n  }\n  return openKeys;\n};\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  const handleMenuClick = useCallback(({ key }: { key: string }) => {\n    navigate(key);\n  }, [navigate]);\n\n  const handleToggle = useCallback(() => {\n    setCollapsed(prev => !prev);\n  }, []);\n\n  const handleLogoClick = useCallback(() => {\n    navigate('/dashboard');\n  }, [navigate]);\n\n  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname)], [location.pathname]);\n  const defaultOpenKeys = useMemo(() => getOpenKeys(location.pathname), [location.pathname]);\n\n  const siderStyle = useMemo(() => ({\n    height: '100vh',\n    position: 'fixed' as const,\n    left: 0,\n    top: 0,\n    bottom: 0,\n    zIndex: 100,\n  }), []);\n\n  const logoStyle = useMemo(() => ({\n    height: 64,\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: collapsed ? 'center' : 'flex-start',\n    padding: collapsed ? 0 : '0 20px',\n    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n    cursor: 'pointer',\n    gap: 10,\n    whiteSpace: 'nowrap' as const,\n  }), [collapsed]);\n\n  const menuContainerStyle = useMemo(() => ({\n    height: 'calc(100vh - 64px)',\n    overflow: 'auto' as const,\n    overflowX: 'hidden' as const,\n  }), []);\n\n  const layoutStyle = useMemo(() => ({\n    marginLeft: collapsed ? 80 : 200,\n    transition: 'margin-left 0.2s',\n  }), [collapsed]);\n\n  const contentStyle = useMemo(() => ({\n    margin: '88px 16px 24px',\n    padding: 24,\n    minHeight: 280,\n    background: colorBgContainer,\n    borderRadius: borderRadiusLG,\n    overflow: location.pathname === '/agent-chat' ? 'hidden' as const : 'auto' as const,\n  }), [colorBgContainer, borderRadiusLG, location.pathname]);\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={siderStyle}\n      >\n        <div onClick={handleLogoClick} style={logoStyle}>\n          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          {!collapsed && (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <div style={menuContainerStyle} className=\"custom-scrollbar\">\n          <Menu\n            theme=\"dark\"\n            mode=\"inline\"\n            selectedKeys={selectedKeys}\n            defaultOpenKeys={defaultOpenKeys}\n            items={MENU_ITEMS}\n            onClick={handleMenuClick}\n            style={{ borderRight: 0 }}\n          />\n        </div>\n      </Sider>\n      <Layout style={layoutStyle}>\n        <Header collapsed={collapsed} onToggle={handleToggle} />\n        <Content style={contentStyle}>\n          <Suspense fallback={<PageLoading />}>\n            <Outlet />\n          </Suspense>\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
+      "__content": "import React, { useState, useMemo, useCallback, Suspense } from 'react';\nimport { Layout, Menu, theme } from 'antd';\nimport {\n  DashboardOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n  KeyOutlined,\n  DatabaseOutlined,\n  FundOutlined,\n  ThunderboltOutlined,\n} from '@ant-design/icons';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\nimport PageLoading from '@/components/PageLoading';\n\nconst { Sider, Content } = Layout;\n\nconst MENU_ITEMS = [\n  {\n    key: '/dashboard',\n    icon: <DashboardOutlined />,\n    label: '仪表盘',\n  },\n  {\n    key: '/data',\n    icon: <DatabaseOutlined />,\n    label: '数据管理',\n    children: [\n      {\n        key: '/news',\n        icon: <ReadOutlined />,\n        label: '新闻管理',\n      },\n      {\n        key: '/stocks',\n        icon: <SearchOutlined />,\n        label: '股票查询',\n      },\n      {\n        key: '/stock-trackings',\n        icon: <EyeOutlined />,\n        label: '股票追踪',\n      },\n    ],\n  },\n  {\n    key: '/analysis',\n    icon: <FundOutlined />,\n    label: '分析中心',\n    children: [\n      {\n        key: '/signals',\n        icon: <BellOutlined />,\n        label: '信号管理',\n      },\n      {\n        key: '/events',\n        icon: <ThunderboltOutlined />,\n        label: '事件管理',\n      },\n      {\n        key: '/signal-rules',\n        icon: <SettingOutlined />,\n        label: '信号规则',\n      },\n      {\n        key: '/strategies',\n        icon: <FundOutlined />,\n        label: '策略管理',\n      },\n      {\n        key: '/simulation',\n        icon: <WalletOutlined />,\n        label: '账户模拟',\n      },\n      {\n        key: '/backtest',\n        icon: <LineChartOutlined />,\n        label: '回测记录',\n      },\n      {\n        key: '/agent-chat',\n        icon: <RobotOutlined />,\n        label: 'AI 助手',\n      },\n    ],\n  },\n  {\n    key: '/settings',\n    icon: <SettingOutlined />,\n    label: '系统设置',\n    children: [\n      {\n        key: '/settings/notifications',\n        icon: <NotificationOutlined />,\n        label: '通知设置',\n      },\n      {\n        key: '/settings/scheduler',\n        icon: <ClockCircleOutlined />,\n        label: '定时任务',\n      },\n      {\n        key: '/settings/api-keys',\n        icon: <KeyOutlined />,\n        label: 'API Key',\n      },\n      {\n        key: '/blacklist',\n        icon: <BlockOutlined />,\n        label: '黑名单',\n      },\n    ],\n  },\n];\n\nconst getSelectedKey = (pathname: string): string => {\n  const pathParts = pathname.split('/').filter(Boolean);\n  \n  if (pathParts.length === 0) {\n    return '/dashboard';\n  }\n  \n  const basePath = `/${pathParts[0]}`;\n  \n  if (pathParts.length >= 2) {\n    const secondLevelPath = `/${pathParts[0]}/${pathParts[1]}`;\n    const knownSecondLevelPaths = [\n      '/settings/notifications',\n      '/settings/scheduler',\n      '/settings/api-keys',\n    ];\n    \n    if (knownSecondLevelPaths.includes(secondLevelPath)) {\n      return secondLevelPath;\n    }\n  }\n  \n  const knownFirstLevelPaths = [\n    '/dashboard',\n    '/news',\n    '/stocks',\n    '/stock-trackings',\n    '/signals',\n    '/events',\n    '/signal-rules',\n    '/strategies',\n    '/simulation',\n    '/backtest',\n    '/agent-chat',\n    '/blacklist',\n  ];\n  \n  if (knownFirstLevelPaths.includes(basePath)) {\n    return basePath;\n  }\n  \n  return pathname;\n};\n\nconst getOpenKeys = (pathname: string): string[] => {\n  const pathToParentMap: Record<string, string> = {\n    '/news': '/data',\n    '/stocks': '/data',\n    '/stock-trackings': '/data',\n    '/signals': '/analysis',\n    '/events': '/analysis',\n    '/signal-rules': '/analysis',\n    '/strategies': '/analysis',\n    '/simulation': '/analysis',\n    '/backtest': '/analysis',\n    '/agent-chat': '/analysis',\n    '/settings/notifications': '/settings',\n    '/settings/scheduler': '/settings',\n    '/settings/api-keys': '/settings',\n    '/blacklist': '/settings',\n  };\n  \n  const openKeys: string[] = [];\n  const selectedKey = getSelectedKey(pathname);\n  const parentKey = pathToParentMap[selectedKey];\n  if (parentKey) {\n    openKeys.push(parentKey);\n  }\n  return openKeys;\n};\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  const handleMenuClick = useCallback(({ key }: { key: string }) => {\n    navigate(key);\n  }, [navigate]);\n\n  const handleToggle = useCallback(() => {\n    setCollapsed(prev => !prev);\n  }, []);\n\n  const handleLogoClick = useCallback(() => {\n    navigate('/dashboard');\n  }, [navigate]);\n\n  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname)], [location.pathname]);\n  const defaultOpenKeys = useMemo(() => getOpenKeys(location.pathname), [location.pathname]);\n\n  const siderStyle = useMemo(() => ({\n    height: '100vh',\n    position: 'fixed' as const,\n    left: 0,\n    top: 0,\n    bottom: 0,\n    zIndex: 100,\n  }), []);\n\n  const logoStyle = useMemo(() => ({\n    height: 64,\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: collapsed ? 'center' : 'flex-start',\n    padding: collapsed ? 0 : '0 20px',\n    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n    cursor: 'pointer',\n    gap: 10,\n    whiteSpace: 'nowrap' as const,\n  }), [collapsed]);\n\n  const menuContainerStyle = useMemo(() => ({\n    height: 'calc(100vh - 64px)',\n    overflow: 'auto' as const,\n    overflowX: 'hidden' as const,\n  }), []);\n\n  const layoutStyle = useMemo(() => ({\n    marginLeft: collapsed ? 80 : 200,\n    transition: 'margin-left 0.2s',\n  }), [collapsed]);\n\n  const contentStyle = useMemo(() => ({\n    margin: '88px 16px 24px',\n    padding: 24,\n    minHeight: 280,\n    background: colorBgContainer,\n    borderRadius: borderRadiusLG,\n    overflow: location.pathname === '/agent-chat' ? 'hidden' as const : 'auto' as const,\n  }), [colorBgContainer, borderRadiusLG, location.pathname]);\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={siderStyle}\n      >\n        <div onClick={handleLogoClick} style={logoStyle}>\n          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          {!collapsed && (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <div style={menuContainerStyle} className=\"custom-scrollbar\">\n          <Menu\n            theme=\"dark\"\n            mode=\"inline\"\n            selectedKeys={selectedKeys}\n            defaultOpenKeys={defaultOpenKeys}\n            items={MENU_ITEMS}\n            onClick={handleMenuClick}\n            style={{ borderRight: 0 }}\n          />\n        </div>\n      </Sider>\n      <Layout style={layoutStyle}>\n        <Header collapsed={collapsed} onToggle={handleToggle} />\n        <Content style={contentStyle}>\n          <Suspense fallback={<PageLoading />}>\n            <Outlet />\n          </Suspense>\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/layouts/MainLayout.tsx"
     },
@@ -3748,7 +4133,7 @@
       "parentId": "3",
       "id": "14",
       "absPath": "/stocks/:code",
-      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  message,\n  Spin,\n  Empty,\n  Select,\n  Result,\n} from 'antd';\nimport { ArrowLeftOutlined, ReloadOutlined, BarChartOutlined } from '@ant-design/icons';\nimport { useParams, useNavigate } from 'umi';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { CandlestickData, Time, IChartApi, ISeriesApi } from 'lightweight-charts';\nimport client from '@/services/client';\nimport type { Signal, KlineData } from '@/services/types';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface StockDetail {\n  stockCode: string;\n  stockName: string;\n  signalCount: number;\n  latestSignalTime: string | null;\n  signals: Signal[];\n}\n\nconst StockDetailPage: React.FC = () => {\n  const { code } = useParams<{ code: string }>();\n  const navigate = useNavigate();\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n  const candlestickSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null);\n  const markersRef = useRef<LightweightCharts.ISeriesMarkersPluginApi<Time> | null>(null);\n\n  const [loading, setLoading] = useState(true);\n  const [stockDetail, setStockDetail] = useState<StockDetail | null>(null);\n  const [klines, setKlines] = useState<KlineData[]>([]);\n  const [period, setPeriod] = useState<'1d' | '4h'>('4h');\n  const [fetchingKlines, setFetchingKlines] = useState(false);\n  const [syncingStock, setSyncingStock] = useState(false);\n  const [notFound, setNotFound] = useState(false);\n\n  const fetchStockDetail = async () => {\n    if (!code) return;\n    setLoading(true);\n    setNotFound(false);\n    try {\n      const response = await client.get(`/stocks/${code}`);\n      setStockDetail(response.data);\n    } catch (error: any) {\n      if (error?.response?.status === 404) {\n        setNotFound(true);\n      } else {\n        message.error('获取股票详情失败');\n        console.error('Fetch stock detail error:', error);\n      }\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const fetchKlines = async (p: '1d' | '4h' = period) => {\n    if (!code) return;\n    try {\n      setFetchingKlines(true);\n      const response = await client.get(`/stocks/${code}/klines`, {\n        params: { period: p, limit: 100 },\n      });\n      setKlines(response.data || []);\n    } catch (error) {\n      console.error('Fetch klines error:', error);\n    } finally {\n      setFetchingKlines(false);\n    }\n  };\n\n  const handleFetchKlines = async () => {\n    if (!code) return;\n    try {\n      setFetchingKlines(true);\n      await client.post(`/stocks/${code}/fetch-klines`, { period });\n      message.success('K线获取任务已提交到队列');\n      setTimeout(() => {\n        fetchKlines(period);\n      }, 3000);\n    } catch (error) {\n      console.error('提交K线获取任务失败:', error);\n      message.error('提交K线获取任务失败');\n    } finally {\n      setFetchingKlines(false);\n    }\n  };\n\n  const handleSyncStock = async () => {\n    if (!code) return;\n    try {\n      setSyncingStock(true);\n      message.loading({ content: '正在获取K线数据...', key: 'syncStock' });\n      await client.post(`/stocks/${code}/fetch-klines`, { period: '4h' });\n      message.success({ \n        content: 'K线数据获取任务已提交，请稍后刷新页面', \n        key: 'syncStock' \n      });\n      setTimeout(() => {\n        fetchStockDetail();\n      }, 3000);\n    } catch (error) {\n      console.error('获取K线数据失败:', error);\n      message.error({ content: '获取K线数据失败', key: 'syncStock' });\n    } finally {\n      setSyncingStock(false);\n    }\n  };\n\n  useEffect(() => {\n    fetchStockDetail();\n  }, [code]);\n\n  // 初始化时获取K线数据\n  useEffect(() => {\n    if (stockDetail && !loading) {\n      fetchKlines(period);\n    }\n  }, [stockDetail, loading]);\n\n  // 切换周期时重新获取K线\n  useEffect(() => {\n    if (stockDetail && !loading) {\n      // 清空旧markers\n      if (markersRef.current) {\n        markersRef.current.setMarkers([]);\n      }\n      setKlines([]);\n      fetchKlines(period);\n    }\n  }, [period]);\n\n  // 初始化图表\n  useEffect(() => {\n    if (loading || !stockDetail || !chartContainerRef.current) {\n      return;\n    }\n\n    console.log('[StockDetail] Creating chart...');\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: {\n        mode: 1,\n      },\n      rightPriceScale: {\n        borderColor: '#d9d9d9',\n      },\n      timeScale: {\n        borderColor: '#d9d9d9',\n        timeVisible: true,\n      },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    // lightweight-charts v5: 使用 addSeries 方法\n    const candlestickSeries = chart.addSeries(LightweightCharts.CandlestickSeries, {\n      upColor: '#52c41a',\n      downColor: '#f5222d',\n      borderVisible: false,\n      wickUpColor: '#52c41a',\n      wickDownColor: '#f5222d',\n    });\n\n    candlestickSeriesRef.current = candlestickSeries;\n\n    // 创建 markers 插件\n    const markersPlugin = LightweightCharts.createSeriesMarkers(candlestickSeries);\n    markersRef.current = markersPlugin;\n\n    console.log('[StockDetail] Chart initialized');\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({\n          width: chartContainerRef.current.clientWidth,\n        });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n    };\n  }, [loading, stockDetail]);\n\n  // 更新图表数据\n  useEffect(() => {\n    if (!candlestickSeriesRef.current) {\n      return;\n    }\n\n    if (klines.length === 0) {\n      return;\n    }\n\n    const chartData: CandlestickData<Time>[] = klines\n      .map((k) => ({\n        time: Math.floor(new Date(k.timestamp).getTime() / 1000) as Time,\n        open: Number(k.open),\n        high: Number(k.high),\n        low: Number(k.low),\n        close: Number(k.close),\n      }))\n      .sort((a, b) => {\n        const timeA = typeof a.time === 'number' ? a.time : 0;\n        const timeB = typeof b.time === 'number' ? b.time : 0;\n        return timeA - timeB;\n      });\n\n    console.log('[StockDetail] Setting chart data:', chartData.length, 'items');\n    candlestickSeriesRef.current.setData(chartData);\n\n    // 添加信号标记点\n    if (stockDetail?.signals && stockDetail.signals.length > 0) {\n      const markers: LightweightCharts.SeriesMarker<Time>[] = [];\n\n      stockDetail.signals.forEach((signal) => {\n        const signalTimeStr = signal.generatedAt || signal.signalTime || signal.createdAt;\n        const action = signal.action || (signal.direction === 'bullish' ? 'long' : signal.direction === 'bearish' ? 'short' : 'hold');\n        \n        if (signalTimeStr) {\n          const signalTime = new Date(signalTimeStr).getTime();\n          let bestKline: KlineData | null = null;\n          let minDiff = Infinity;\n\n          klines.forEach((k) => {\n            const klineTime = new Date(k.timestamp).getTime();\n            const diff = Math.abs(klineTime - signalTime);\n            if (diff < minDiff) {\n              minDiff = diff;\n              bestKline = k;\n            }\n          });\n\n          // 只添加时间差在合理范围内的标记（1年内）\n          if (bestKline && minDiff < 365 * 24 * 60 * 60 * 1000) {\n            let markerConfig: {\n              position: LightweightCharts.SeriesMarker<Time>['position'];\n              color: string;\n              shape: LightweightCharts.SeriesMarker<Time>['shape'];\n              text: string;\n            };\n\n            if (action === 'long') {\n              markerConfig = {\n                position: 'belowBar',\n                color: '#52c41a',\n                shape: 'arrowUp',\n                text: '买入',\n              };\n            } else if (action === 'short') {\n              markerConfig = {\n                position: 'aboveBar',\n                color: '#f5222d',\n                shape: 'arrowDown',\n                text: '卖出',\n              };\n            } else {\n              // 观望信号使用圆圈标记\n              markerConfig = {\n                position: 'inBar',\n                color: '#faad14',\n                shape: 'circle',\n                text: '观望',\n              };\n            }\n\n            markers.push({\n              time: Math.floor(new Date(bestKline.timestamp).getTime() / 1000) as Time,\n              position: markerConfig.position,\n              color: markerConfig.color,\n              shape: markerConfig.shape,\n              text: markerConfig.text,\n            });\n          }\n        }\n      });\n\n      if (markers.length > 0 && markersRef.current) {\n        // 按时间排序\n        markers.sort((a, b) => (a.time as number) - (b.time as number));\n        markersRef.current.setMarkers(markers);\n        console.log('[StockDetail] Added', markers.length, 'signal markers');\n      }\n    }\n\n    chartRef.current?.timeScale().fitContent();\n  }, [klines, stockDetail]);\n\n  const formatDate = (dateString: string | null) => {\n    if (!dateString) return '-';\n    const date = new Date(dateString);\n    return date.toLocaleString('zh-CN');\n  };\n\n  const getDirectionColor = (direction: string) => {\n    if (direction === 'bullish') return 'success';\n    if (direction === 'bearish') return 'error';\n    return 'default';\n  };\n\n  const getDirectionText = (direction: string) => {\n    if (direction === 'bullish') return '买入';\n    if (direction === 'bearish') return '卖出';\n    return '观望';\n  };\n\n  return (\n    <div>\n      <Space style={{ marginBottom: 16 }}>\n        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/stocks')}>\n          返回\n        </Button>\n        <Button icon={<ReloadOutlined />} onClick={fetchStockDetail}>\n          刷新\n        </Button>\n      </Space>\n\n      <Spin spinning={loading}>\n        {notFound ? (\n          <Result\n            status=\"404\"\n            title=\"股票数据不存在\"\n            subTitle=\"该股票暂无信号或K线数据，您可以尝试获取K线数据\"\n            extra={[\n              <Button \n                type=\"primary\" \n                key=\"fetch\" \n                loading={syncingStock}\n                onClick={handleSyncStock}\n              >\n                获取K线数据\n              </Button>,\n              <Button \n                key=\"back\" \n                onClick={() => navigate('/stocks')}\n              >\n                返回列表\n              </Button>,\n            ]}\n          />\n        ) : stockDetail ? (\n          <>\n            <Card style={{ marginBottom: 24 }}>\n              <Title level={3}>\n                {stockDetail.stockName} ({stockDetail.stockCode})\n              </Title>\n              <Space size=\"large\">\n                <Text>信号数量: <Tag color=\"blue\">{stockDetail.signalCount} 条</Tag></Text>\n                <Text>最新信号: {formatDate(stockDetail.latestSignalTime)}</Text>\n              </Space>\n            </Card>\n\n            <Card\n              title={\n                <Space>\n                  <BarChartOutlined />\n                  K线图\n                </Space>\n              }\n              extra={\n                <Space>\n                  <Select value={period} onChange={setPeriod} style={{ width: 100 }}>\n                    <Option value=\"4h\">4小时</Option>\n                    <Option value=\"1d\">日线</Option>\n                  </Select>\n                  <Button\n                    icon={<ReloadOutlined />}\n                    loading={fetchingKlines}\n                    onClick={handleFetchKlines}\n                  >\n                    获取K线\n                  </Button>\n                </Space>\n              }\n              style={{ marginBottom: 24 }}\n            >\n              <div ref={chartContainerRef} style={{ width: '100%', height: 400 }} />\n            </Card>\n\n            <Card title=\"历史信号\">\n              {stockDetail.signals.length === 0 ? (\n                <Empty description=\"暂无信号数据\" />\n              ) : (\n                <Space direction=\"vertical\" style={{ width: '100%' }}>\n                  {stockDetail.signals.map((signal) => {\n                    const action = signal.action || (signal.direction === 'bullish' ? 'long' : signal.direction === 'bearish' ? 'short' : 'hold');\n                    const score = signal.score ? parseFloat(signal.score) : (signal.confidence ? signal.confidence / 100 : 0);\n                    const time = signal.generatedAt || signal.signalTime || signal.createdAt;\n                    \n                    return (\n                      <Card key={signal.id} size=\"small\" style={{ marginBottom: 8 }}>\n                        <Space>\n                          <Tag color={getDirectionColor(action === 'long' ? 'bullish' : action === 'short' ? 'bearish' : 'neutral')}>\n                            {getDirectionText(action === 'long' ? 'bullish' : action === 'short' ? 'bearish' : 'neutral')}\n                          </Tag>\n                          <Text>分数: {score.toFixed(2)}</Text>\n                          <Text type=\"secondary\">{formatDate(time)}</Text>\n                        </Space>\n                      </Card>\n                    );\n                  })}\n                </Space>\n              )}\n            </Card>\n          </>\n        ) : (\n          <Empty description=\"股票不存在\" />\n        )}\n      </Spin>\n    </div>\n  );\n};\n\nexport default StockDetailPage;\n",
+      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  message,\n  Spin,\n  Empty,\n  Select,\n  Result,\n} from 'antd';\nimport { ArrowLeftOutlined, ReloadOutlined, BarChartOutlined, SyncOutlined } from '@ant-design/icons';\nimport { useParams, useNavigate } from 'umi';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { CandlestickData, Time, IChartApi, ISeriesApi } from 'lightweight-charts';\nimport client from '@/services/client';\nimport { klinesApi } from '@/services/klines';\nimport type { Signal, KlineData } from '@/services/types';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface StockDetail {\n  stockCode: string;\n  stockName: string;\n  signalCount: number;\n  latestSignalTime: string | null;\n  signals: Signal[];\n}\n\nconst StockDetailPage: React.FC = () => {\n  const { code } = useParams<{ code: string }>();\n  const navigate = useNavigate();\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n  const candlestickSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null);\n  const markersRef = useRef<LightweightCharts.ISeriesMarkersPluginApi<Time> | null>(null);\n\n  const [loading, setLoading] = useState(true);\n  const [stockDetail, setStockDetail] = useState<StockDetail | null>(null);\n  const [klines, setKlines] = useState<KlineData[]>([]);\n  const [period, setPeriod] = useState<'1d' | '4h'>('4h');\n  const [fetchingKlines, setFetchingKlines] = useState(false);\n  const [syncingKlines, setSyncingKlines] = useState(false);\n  const [syncingStock, setSyncingStock] = useState(false);\n  const [notFound, setNotFound] = useState(false);\n\n  const fetchStockDetail = async () => {\n    if (!code) return;\n    setLoading(true);\n    setNotFound(false);\n    try {\n      const response = await client.get(`/stocks/${code}`);\n      setStockDetail(response.data);\n    } catch (error: any) {\n      if (error?.response?.status === 404) {\n        setNotFound(true);\n      } else {\n        message.error('获取股票详情失败');\n        console.error('Fetch stock detail error:', error);\n      }\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const checkAndUpdateKlines = async (p: '1d' | '4h' = period): Promise<boolean> => {\n    if (!code) return false;\n    try {\n      setSyncingKlines(true);\n      const result = await klinesApi.checkAndUpdate(code, p);\n      if ('updated' in result) {\n        if (result.updated) {\n          message.success(`K线数据已更新: ${result.message}`);\n          return true;\n        }\n      } else if (result[p]?.updated) {\n        message.success(`K线数据已更新: ${result[p].message}`);\n        return true;\n      }\n      return false;\n    } catch (error) {\n      console.error('Check and update klines error:', error);\n      return false;\n    } finally {\n      setSyncingKlines(false);\n    }\n  };\n\n  const fetchKlines = async (p: '1d' | '4h' = period, autoUpdate: boolean = true) => {\n    if (!code) return;\n    try {\n      setFetchingKlines(true);\n      \n      if (autoUpdate) {\n        await checkAndUpdateKlines(p);\n      }\n      \n      const response = await client.get(`/stocks/${code}/klines`, {\n        params: { period: p, limit: 100 },\n      });\n      setKlines(response.data || []);\n    } catch (error) {\n      console.error('Fetch klines error:', error);\n    } finally {\n      setFetchingKlines(false);\n    }\n  };\n\n  const handleFetchKlines = async () => {\n    if (!code) return;\n    try {\n      setFetchingKlines(true);\n      await client.post(`/stocks/${code}/fetch-klines`, { period });\n      message.success('K线获取任务已提交到队列');\n      setTimeout(() => {\n        fetchKlines(period);\n      }, 3000);\n    } catch (error) {\n      console.error('提交K线获取任务失败:', error);\n      message.error('提交K线获取任务失败');\n    } finally {\n      setFetchingKlines(false);\n    }\n  };\n\n  const handleSyncStock = async () => {\n    if (!code) return;\n    try {\n      setSyncingStock(true);\n      message.loading({ content: '正在获取K线数据...', key: 'syncStock' });\n      await client.post(`/stocks/${code}/fetch-klines`, { period: '4h' });\n      message.success({ \n        content: 'K线数据获取任务已提交，请稍后刷新页面', \n        key: 'syncStock' \n      });\n      setTimeout(() => {\n        fetchStockDetail();\n      }, 3000);\n    } catch (error) {\n      console.error('获取K线数据失败:', error);\n      message.error({ content: '获取K线数据失败', key: 'syncStock' });\n    } finally {\n      setSyncingStock(false);\n    }\n  };\n\n  useEffect(() => {\n    fetchStockDetail();\n  }, [code]);\n\n  // 初始化时获取K线数据\n  useEffect(() => {\n    if (stockDetail && !loading) {\n      fetchKlines(period);\n    }\n  }, [stockDetail, loading]);\n\n  // 切换周期时重新获取K线\n  useEffect(() => {\n    if (stockDetail && !loading) {\n      // 清空旧markers\n      if (markersRef.current) {\n        markersRef.current.setMarkers([]);\n      }\n      setKlines([]);\n      fetchKlines(period);\n    }\n  }, [period]);\n\n  // 初始化图表\n  useEffect(() => {\n    if (loading || !stockDetail || !chartContainerRef.current) {\n      return;\n    }\n\n    console.log('[StockDetail] Creating chart...');\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: {\n        mode: 1,\n      },\n      rightPriceScale: {\n        borderColor: '#d9d9d9',\n      },\n      timeScale: {\n        borderColor: '#d9d9d9',\n        timeVisible: true,\n      },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    // lightweight-charts v5: 使用 addSeries 方法\n    const candlestickSeries = chart.addSeries(LightweightCharts.CandlestickSeries, {\n      upColor: '#52c41a',\n      downColor: '#f5222d',\n      borderVisible: false,\n      wickUpColor: '#52c41a',\n      wickDownColor: '#f5222d',\n    });\n\n    candlestickSeriesRef.current = candlestickSeries;\n\n    // 创建 markers 插件\n    const markersPlugin = LightweightCharts.createSeriesMarkers(candlestickSeries);\n    markersRef.current = markersPlugin;\n\n    console.log('[StockDetail] Chart initialized');\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({\n          width: chartContainerRef.current.clientWidth,\n        });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n    };\n  }, [loading, stockDetail]);\n\n  // 更新图表数据\n  useEffect(() => {\n    if (!candlestickSeriesRef.current) {\n      return;\n    }\n\n    if (klines.length === 0) {\n      return;\n    }\n\n    const chartData: CandlestickData<Time>[] = klines\n      .map((k) => ({\n        time: Math.floor(new Date(k.timestamp).getTime() / 1000) as Time,\n        open: Number(k.open),\n        high: Number(k.high),\n        low: Number(k.low),\n        close: Number(k.close),\n      }))\n      .sort((a, b) => {\n        const timeA = typeof a.time === 'number' ? a.time : 0;\n        const timeB = typeof b.time === 'number' ? b.time : 0;\n        return timeA - timeB;\n      });\n\n    console.log('[StockDetail] Setting chart data:', chartData.length, 'items');\n    candlestickSeriesRef.current.setData(chartData);\n\n    // 添加信号标记点\n    if (stockDetail?.signals && stockDetail.signals.length > 0) {\n      const markers: LightweightCharts.SeriesMarker<Time>[] = [];\n\n      stockDetail.signals.forEach((signal) => {\n        const signalTimeStr = signal.generatedAt || signal.signalTime || signal.createdAt;\n        const action = signal.action || (signal.direction === 'bullish' ? 'long' : signal.direction === 'bearish' ? 'short' : 'hold');\n        \n        if (signalTimeStr) {\n          const signalTime = new Date(signalTimeStr).getTime();\n          let bestKline: KlineData | null = null;\n          let minDiff = Infinity;\n\n          klines.forEach((k) => {\n            const klineTime = new Date(k.timestamp).getTime();\n            const diff = Math.abs(klineTime - signalTime);\n            if (diff < minDiff) {\n              minDiff = diff;\n              bestKline = k;\n            }\n          });\n\n          // 只添加时间差在合理范围内的标记（1年内）\n          if (bestKline && minDiff < 365 * 24 * 60 * 60 * 1000) {\n            let markerConfig: {\n              position: LightweightCharts.SeriesMarker<Time>['position'];\n              color: string;\n              shape: LightweightCharts.SeriesMarker<Time>['shape'];\n              text: string;\n            };\n\n            if (action === 'long') {\n              markerConfig = {\n                position: 'belowBar',\n                color: '#52c41a',\n                shape: 'arrowUp',\n                text: '买入',\n              };\n            } else if (action === 'short') {\n              markerConfig = {\n                position: 'aboveBar',\n                color: '#f5222d',\n                shape: 'arrowDown',\n                text: '卖出',\n              };\n            } else {\n              // 观望信号使用圆圈标记\n              markerConfig = {\n                position: 'inBar',\n                color: '#faad14',\n                shape: 'circle',\n                text: '观望',\n              };\n            }\n\n            markers.push({\n              time: Math.floor(new Date(bestKline.timestamp).getTime() / 1000) as Time,\n              position: markerConfig.position,\n              color: markerConfig.color,\n              shape: markerConfig.shape,\n              text: markerConfig.text,\n            });\n          }\n        }\n      });\n\n      if (markers.length > 0 && markersRef.current) {\n        // 按时间排序\n        markers.sort((a, b) => (a.time as number) - (b.time as number));\n        markersRef.current.setMarkers(markers);\n        console.log('[StockDetail] Added', markers.length, 'signal markers');\n      }\n    }\n\n    chartRef.current?.timeScale().fitContent();\n  }, [klines, stockDetail]);\n\n  const formatDate = (dateString: string | null) => {\n    if (!dateString) return '-';\n    const date = new Date(dateString);\n    return date.toLocaleString('zh-CN');\n  };\n\n  const getDirectionColor = (direction: string) => {\n    if (direction === 'bullish') return 'success';\n    if (direction === 'bearish') return 'error';\n    return 'default';\n  };\n\n  const getDirectionText = (direction: string) => {\n    if (direction === 'bullish') return '买入';\n    if (direction === 'bearish') return '卖出';\n    return '观望';\n  };\n\n  return (\n    <div>\n      <Space style={{ marginBottom: 16 }}>\n        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/stocks')}>\n          返回\n        </Button>\n        <Button icon={<ReloadOutlined />} onClick={fetchStockDetail}>\n          刷新\n        </Button>\n      </Space>\n\n      <Spin spinning={loading}>\n        {notFound ? (\n          <Result\n            status=\"404\"\n            title=\"股票数据不存在\"\n            subTitle=\"该股票暂无信号或K线数据，您可以尝试获取K线数据\"\n            extra={[\n              <Button \n                type=\"primary\" \n                key=\"fetch\" \n                loading={syncingStock}\n                onClick={handleSyncStock}\n              >\n                获取K线数据\n              </Button>,\n              <Button \n                key=\"back\" \n                onClick={() => navigate('/stocks')}\n              >\n                返回列表\n              </Button>,\n            ]}\n          />\n        ) : stockDetail ? (\n          <>\n            <Card style={{ marginBottom: 24 }}>\n              <Title level={3}>\n                {stockDetail.stockName} ({stockDetail.stockCode})\n              </Title>\n              <Space size=\"large\">\n                <Text>信号数量: <Tag color=\"blue\">{stockDetail.signalCount} 条</Tag></Text>\n                <Text>最新信号: {formatDate(stockDetail.latestSignalTime)}</Text>\n              </Space>\n            </Card>\n\n            <Card\n              title={\n                <Space>\n                  <BarChartOutlined />\n                  K线图\n                </Space>\n              }\n              extra={\n                <Space>\n                  <Select value={period} onChange={setPeriod} style={{ width: 100 }}>\n                    <Option value=\"4h\">4小时</Option>\n                    <Option value=\"1d\">日线</Option>\n                  </Select>\n                  <Button\n                    icon={<SyncOutlined spin={syncingKlines} />}\n                    loading={syncingKlines}\n                    onClick={() => checkAndUpdateKlines(period)}\n                  >\n                    同步K线\n                  </Button>\n                  <Button\n                    icon={<ReloadOutlined />}\n                    loading={fetchingKlines}\n                    onClick={() => fetchKlines(period, false)}\n                  >\n                    刷新\n                  </Button>\n                </Space>\n              }\n              style={{ marginBottom: 24 }}\n            >\n              <div ref={chartContainerRef} style={{ width: '100%', height: 400 }} />\n            </Card>\n\n            <Card title=\"历史信号\">\n              {stockDetail.signals.length === 0 ? (\n                <Empty description=\"暂无信号数据\" />\n              ) : (\n                <Space direction=\"vertical\" style={{ width: '100%' }}>\n                  {stockDetail.signals.map((signal) => {\n                    const action = signal.action || (signal.direction === 'bullish' ? 'long' : signal.direction === 'bearish' ? 'short' : 'hold');\n                    const score = signal.score ? parseFloat(signal.score) : (signal.confidence ? signal.confidence / 100 : 0);\n                    const time = signal.generatedAt || signal.signalTime || signal.createdAt;\n                    \n                    return (\n                      <Card key={signal.id} size=\"small\" style={{ marginBottom: 8 }}>\n                        <Space>\n                          <Tag color={getDirectionColor(action === 'long' ? 'bullish' : action === 'short' ? 'bearish' : 'neutral')}>\n                            {getDirectionText(action === 'long' ? 'bullish' : action === 'short' ? 'bearish' : 'neutral')}\n                          </Tag>\n                          <Text>分数: {score.toFixed(2)}</Text>\n                          <Text type=\"secondary\">{formatDate(time)}</Text>\n                        </Space>\n                      </Card>\n                    );\n                  })}\n                </Space>\n              )}\n            </Card>\n          </>\n        ) : (\n          <Empty description=\"股票不存在\" />\n        )}\n      </Spin>\n    </div>\n  );\n};\n\nexport default StockDetailPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/stocks/[code].tsx"
     },
@@ -3803,7 +4188,7 @@
       "parentId": "3",
       "id": "19",
       "absPath": "/backtest",
-      "__content": "import React, { useState, useEffect } from 'react';\nimport {\n  Table,\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  message,\n  Spin,\n  Empty,\n  Modal,\n  Descriptions,\n  Table as DetailTable,\n} from 'antd';\nimport { ReloadOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons';\nimport { Popconfirm } from 'antd';\nimport client from '@/services/client';\n\nconst { Title, Text } = Typography;\n\ninterface BacktestRecord {\n  id: string;\n  startTime: string;\n  endTime: string;\n  minConfidence: number;\n  maxConfidence: number;\n  directions: string[];\n  stopLoss: string;\n  takeProfit: string;\n  period: string;\n  totalTrades: number;\n  winningTrades: number;\n  losingTrades: number;\n  winRate: string;\n  totalReturn: string;\n  maxDrawdown: string;\n  avgReturn: string;\n  trades: Array<{\n    signalId: string;\n    stockCode: string;\n    stockName: string;\n    direction: string;\n    entryPrice: number;\n    exitPrice: number;\n    return: number;\n    exitReason: string;\n    entryTime: string;\n    exitTime: string;\n  }>;\n  createdAt: string;\n}\n\nconst BacktestPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<BacktestRecord[]>([]);\n  const [detailModalVisible, setDetailModalVisible] = useState(false);\n  const [selectedRecord, setSelectedRecord] = useState<BacktestRecord | null>(null);\n\n  const fetchData = async () => {\n    setLoading(true);\n    try {\n      const response = await client.get('/backtest/records');\n      setData(response.data || []);\n    } catch (error) {\n      message.error('获取回测记录失败');\n      console.error('Fetch backtest records error:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  useEffect(() => {\n    fetchData();\n  }, []);\n\n  const handleViewDetail = (record: BacktestRecord) => {\n    setSelectedRecord(record);\n    setDetailModalVisible(true);\n  };\n\n  const handleDelete = async (id: string) => {\n    try {\n      await client.delete(`/backtest/records/${id}`);\n      message.success('删除成功');\n      fetchData();\n    } catch (error) {\n      message.error('删除失败');\n      console.error('Delete backtest record error:', error);\n    }\n  };\n\n  const formatDate = (dateString: string) => {\n    if (!dateString) return '-';\n    const date = new Date(dateString);\n    return date.toLocaleString('zh-CN');\n  };\n\n  const formatPercent = (value: string | number) => {\n    const num = typeof value === 'string' ? parseFloat(value) : value;\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const getDirectionTag = (directions: string[]) => {\n    return directions.map((dir) => {\n      const color = dir === 'buy' || dir === 'bullish' ? 'red' : 'green';\n      const text = dir === 'buy' || dir === 'bullish' ? '买入' : '卖出';\n      return <Tag key={dir} color={color}>{text}</Tag>;\n    });\n  };\n\n  const columns = [\n    {\n      title: '回测时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 180,\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: '回测区间',\n      key: 'timeRange',\n      width: 220,\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space direction=\"vertical\" size=\"small\">\n          <Text type=\"secondary\">开始: {formatDate(record.startTime)}</Text>\n          <Text type=\"secondary\">结束: {formatDate(record.endTime)}</Text>\n        </Space>\n      ),\n    },\n    {\n      title: '交易次数',\n      dataIndex: 'totalTrades',\n      key: 'totalTrades',\n      width: 100,\n      render: (count: number) => <Tag color=\"blue\">{count} 笔</Tag>,\n    },\n    {\n      title: '胜率',\n      dataIndex: 'winRate',\n      key: 'winRate',\n      width: 100,\n      render: (rate: string) => {\n        const num = parseFloat(rate);\n        const color = num >= 0.5 ? 'success' : num >= 0.3 ? 'warning' : 'error';\n        return <Tag color={color}>{formatPercent(rate)}</Tag>;\n      },\n    },\n    {\n      title: '总收益率',\n      dataIndex: 'totalReturn',\n      key: 'totalReturn',\n      width: 120,\n      render: (ret: string) => {\n        const num = parseFloat(ret);\n        const color = num > 0 ? 'red' : num < 0 ? 'green' : 'default';\n        return <Tag color={color}>{formatPercent(ret)}</Tag>;\n      },\n    },\n    {\n      title: '最大回撤',\n      dataIndex: 'maxDrawdown',\n      key: 'maxDrawdown',\n      width: 120,\n      render: (dd: string) => <Text type=\"danger\">{formatPercent(dd)}</Text>,\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 200,\n      fixed: 'right' as const,\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space size=\"small\">\n          <Button\n            type=\"primary\"\n            icon={<EyeOutlined />}\n            size=\"small\"\n            onClick={() => handleViewDetail(record)}\n          >\n            查看详情\n          </Button>\n          <Popconfirm\n            title=\"确认删除\"\n            description=\"确定要删除这条回测记录吗？\"\n            onConfirm={() => handleDelete(record.id)}\n            okText=\"确认\"\n            cancelText=\"取消\"\n          >\n            <Button\n              danger\n              icon={<DeleteOutlined />}\n              size=\"small\"\n            >\n              删除\n            </Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  // 交易明细表格列\n  const tradeColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n      width: 100,\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n      width: 120,\n    },\n    {\n      title: '方向',\n      dataIndex: 'direction',\n      key: 'direction',\n      width: 80,\n      render: (direction: string) => {\n        const color = direction === 'buy' || direction === 'bullish' ? 'red' : 'green';\n        const text = direction === 'buy' || direction === 'bullish' ? '买入' : '卖出';\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: '入场价',\n      dataIndex: 'entryPrice',\n      key: 'entryPrice',\n      width: 100,\n      render: (price: number) => price?.toFixed(2) || '-',\n    },\n    {\n      title: '出场价',\n      dataIndex: 'exitPrice',\n      key: 'exitPrice',\n      width: 100,\n      render: (price: number) => price?.toFixed(2) || '-',\n    },\n    {\n      title: '收益率',\n      dataIndex: 'return',\n      key: 'return',\n      width: 100,\n      render: (ret: number) => {\n        const color = ret > 0 ? 'red' : ret < 0 ? 'green' : 'default';\n        const text = ret > 0 ? `+${(ret * 100).toFixed(2)}%` : `${(ret * 100).toFixed(2)}%`;\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: '出场原因',\n      dataIndex: 'exitReason',\n      key: 'exitReason',\n      width: 100,\n      render: (reason: string) => {\n        const reasonMap: Record<string, string> = {\n          takeProfit: '止盈',\n          stopLoss: '止损',\n          timeExpired: '到期',\n        };\n        return reasonMap[reason] || reason;\n      },\n    },\n    {\n      title: '入场时间',\n      dataIndex: 'entryTime',\n      key: 'entryTime',\n      width: 180,\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: '出场时间',\n      dataIndex: 'exitTime',\n      key: 'exitTime',\n      width: 180,\n      render: (time: string) => formatDate(time),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>回测记录</Title>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button icon={<ReloadOutlined />} onClick={fetchData}>\n            刷新\n          </Button>\n        </Space>\n      </Card>\n\n      <Card>\n        <Spin spinning={loading}>\n          {data.length === 0 ? (\n            <Empty description=\"暂无回测记录\" />\n          ) : (\n            <Table\n              columns={columns}\n              dataSource={data}\n              rowKey=\"id\"\n              pagination={{\n                pageSize: 10,\n                showSizeChanger: true,\n                showQuickJumper: true,\n                showTotal: (total) => `共 ${total} 条`,\n              }}\n              scroll={{ x: 1200 }}\n            />\n          )}\n        </Spin>\n      </Card>\n\n      {/* 回测详情弹窗 */}\n      <Modal\n        title=\"回测详情\"\n        open={detailModalVisible}\n        onCancel={() => setDetailModalVisible(false)}\n        width={1400}\n        footer={[\n          <Button key=\"close\" onClick={() => setDetailModalVisible(false)}>\n            关闭\n          </Button>,\n        ]}\n      >\n        {selectedRecord ? (\n          <>\n            <Descriptions bordered column={3} style={{ marginBottom: 24 }}>\n              <Descriptions.Item label=\"回测时间\">{formatDate(selectedRecord.createdAt)}</Descriptions.Item>\n              <Descriptions.Item label=\"回测区间\">\n                {formatDate(selectedRecord.startTime)} ~ {formatDate(selectedRecord.endTime)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"K线周期\">{selectedRecord.period}</Descriptions.Item>\n              <Descriptions.Item label=\"置信度范围\">\n                {selectedRecord.minConfidence}% ~ {selectedRecord.maxConfidence}%\n              </Descriptions.Item>\n              <Descriptions.Item label=\"止损/止盈\">\n                {formatPercent(selectedRecord.stopLoss)} / {formatPercent(selectedRecord.takeProfit)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"信号类型\">{getDirectionTag(selectedRecord.directions)}</Descriptions.Item>\n              <Descriptions.Item label=\"总交易次数\">{selectedRecord.totalTrades} 笔</Descriptions.Item>\n              <Descriptions.Item label=\"盈利次数\" style={{ color: '#52c41a' }}>\n                {selectedRecord.winningTrades} 笔\n              </Descriptions.Item>\n              <Descriptions.Item label=\"亏损次数\" style={{ color: '#ff4d4f' }}>\n                {selectedRecord.losingTrades} 笔\n              </Descriptions.Item>\n              <Descriptions.Item label=\"胜率\">{formatPercent(selectedRecord.winRate)}</Descriptions.Item>\n              <Descriptions.Item label=\"总收益率\">\n                <Tag color={parseFloat(selectedRecord.totalReturn) > 0 ? 'red' : 'green'}>\n                  {formatPercent(selectedRecord.totalReturn)}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"平均收益率\">\n                {formatPercent(selectedRecord.avgReturn)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"最大回撤\" span={3}>\n                <Text type=\"danger\">{formatPercent(selectedRecord.maxDrawdown)}</Text>\n              </Descriptions.Item>\n            </Descriptions>\n\n            <Title level={5}>交易明细</Title>\n            <DetailTable\n              dataSource={selectedRecord.trades}\n              columns={tradeColumns}\n              rowKey=\"signalId\"\n              pagination={{ pageSize: 10 }}\n              size=\"small\"\n              scroll={{ x: 1200 }}\n            />\n          </>\n        ) : (\n          <Empty description=\"暂无数据\" />\n        )}\n      </Modal>\n    </div>\n  );\n};\n\nexport default BacktestPage;\n",
+      "__content": "import React, { useState, useEffect, useCallback } from \"react\";\nimport {\n  Table,\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  message,\n  Spin,\n  Empty,\n  Modal,\n  Descriptions,\n  Select,\n  DatePicker,\n  Input,\n  Form,\n  Popconfirm,\n} from \"antd\";\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  EyeOutlined,\n  DeleteOutlined,\n  LinkOutlined,\n} from \"@ant-design/icons\";\nimport { backtestApi } from \"@/services/backtest\";\nimport { strategyApi } from \"@/services/strategy\";\nimport { signalsApi } from \"@/services/signals\";\nimport type { BacktestRecord, BacktestTrade, Strategy, Signal } from \"@/services/types\";\nimport dayjs from \"dayjs\";\n\nconst { Title, Text, Paragraph } = Typography;\n\nconst BacktestPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<BacktestRecord[]>([]);\n\n  const [formVisible, setFormVisible] = useState(false);\n  const [formLoading, setFormLoading] = useState(false);\n  const [strategies, setStrategies] = useState<Strategy[]>([]);\n  const [form] = Form.useForm();\n\n  const [detailVisible, setDetailVisible] = useState(false);\n  const [detailLoading, setDetailLoading] = useState(false);\n  const [selectedRecord, setSelectedRecord] = useState<BacktestRecord | null>(\n    null,\n  );\n  const [tradesData, setTradesData] = useState<BacktestTrade[]>([]);\n\n  const [signalDetailVisible, setSignalDetailVisible] = useState(false);\n  const [signalDetailLoading, setSignalDetailLoading] = useState(false);\n  const [selectedSignal, setSelectedSignal] = useState<Signal | null>(null);\n\n  const fetchData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const response = await backtestApi.getRecords();\n      setData(response || []);\n    } catch (error) {\n      message.error(\"获取回测记录失败\");\n      console.error(\"Fetch backtest records error:\", error);\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  useEffect(() => {\n    fetchData();\n  }, [fetchData]);\n\n  const handleOpenForm = async () => {\n    setFormVisible(true);\n    form.resetFields();\n    try {\n      const response = await strategyApi.getStrategiesList({ pageSize: 100 });\n      setStrategies(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch strategies error:\", error);\n    }\n  };\n\n  const handleRunBacktest = async () => {\n    try {\n      const values = await form.validateFields();\n      setFormLoading(true);\n      const params = {\n        strategyId: values.strategyId,\n        startTime: values.timeRange[0].toISOString(),\n        endTime: values.timeRange[1].toISOString(),\n        name: values.name || undefined,\n      };\n      await backtestApi.runBacktest(params);\n      message.success(\"回测执行完成\");\n      setFormVisible(false);\n      fetchData();\n    } catch (error) {\n      console.error(\"Run backtest error:\", error);\n      message.error(\"回测执行失败\");\n    } finally {\n      setFormLoading(false);\n    }\n  };\n\n  const handleViewDetail = async (record: BacktestRecord) => {\n    setSelectedRecord(record);\n    setDetailVisible(true);\n    setDetailLoading(true);\n    try {\n      const trades = await backtestApi.getRecordTrades(record.id);\n      setTradesData(trades || []);\n    } catch (error) {\n      console.error(\"Fetch trades error:\", error);\n      message.error(\"获取交易明细失败\");\n    } finally {\n      setDetailLoading(false);\n    }\n  };\n\n  const handleViewSignalDetail = async (signalId: string | null) => {\n    if (!signalId) {\n      message.warning(\"该交易无关联信号\");\n      return;\n    }\n    setSignalDetailVisible(true);\n    setSignalDetailLoading(true);\n    try {\n      const signal = await signalsApi.getSignalById(signalId);\n      setSelectedSignal(signal);\n    } catch (error) {\n      console.error(\"Fetch signal detail error:\", error);\n      message.error(\"获取信号详情失败\");\n    } finally {\n      setSignalDetailLoading(false);\n    }\n  };\n\n  const handleDelete = async (id: string) => {\n    try {\n      await backtestApi.deleteRecord(id);\n      message.success(\"删除成功\");\n      fetchData();\n    } catch (error) {\n      message.error(\"删除失败\");\n      console.error(\"Delete backtest record error:\", error);\n    }\n  };\n\n  const formatDate = (dateString: string) => {\n    if (!dateString) return \"-\";\n    return dayjs(dateString).format(\"YYYY-MM-DD HH:mm\");\n  };\n\n  const formatPercent = (value: string | number | null | undefined) => {\n    if (value === null || value === undefined) return \"-\";\n    const num = typeof value === \"string\" ? parseFloat(value) : value;\n    if (isNaN(num)) return \"-\";\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const columns = [\n    {\n      title: \"名称\",\n      dataIndex: \"name\",\n      key: \"name\",\n      width: 150,\n      render: (name: string | null) => name || \"-\",\n    },\n    {\n      title: \"策略\",\n      key: \"strategy\",\n      width: 120,\n      render: (_: unknown, record: BacktestRecord) =>\n        record.strategySnapshot?.name || \"-\",\n    },\n    {\n      title: \"总收益率\",\n      dataIndex: \"totalReturnPct\",\n      key: \"totalReturnPct\",\n      width: 100,\n      align: \"center\" as const,\n      render: (ret: string | null) => {\n        if (!ret) return \"-\";\n        const num = parseFloat(ret);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        return <Tag color={color}>{formatPercent(ret)}</Tag>;\n      },\n    },\n    {\n      title: \"回测区间\",\n      key: \"timeRange\",\n      width: 220,\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space direction=\"vertical\" size=\"small\">\n          <Text type=\"secondary\">{formatDate(record.startTime)}</Text>\n          <Text type=\"secondary\">{formatDate(record.endTime)}</Text>\n        </Space>\n      ),\n    },\n    {\n      title: \"信号\",\n      key: \"signals\",\n      width: 100,\n      align: \"center\" as const,\n      render: (_: unknown, record: BacktestRecord) => {\n        if (record.totalSignals === null && record.filteredSignals === null)\n          return \"-\";\n        return `${record.filteredSignals ?? \"-\"}/${record.totalSignals ?? \"-\"}`;\n      },\n    },\n    {\n      title: \"交易次数\",\n      dataIndex: \"totalTrades\",\n      key: \"totalTrades\",\n      width: 80,\n      align: \"center\" as const,\n      render: (count: number) => <Tag color=\"blue\">{count}</Tag>,\n    },\n    {\n      title: \"胜率\",\n      dataIndex: \"winRate\",\n      key: \"winRate\",\n      width: 80,\n      align: \"center\" as const,\n      render: (rate: string | null) => {\n        if (!rate) return \"-\";\n        const num = parseFloat(rate);\n        const color = num >= 0.5 ? \"success\" : num >= 0.3 ? \"warning\" : \"error\";\n        return <Tag color={color}>{formatPercent(rate)}</Tag>;\n      },\n    },\n\n    {\n      title: \"最大回撤\",\n      dataIndex: \"maxDrawdownPct\",\n      key: \"maxDrawdownPct\",\n      width: 90,\n      align: \"center\" as const,\n      render: (dd: string | null) => {\n        if (!dd) return \"-\";\n        return <Text type=\"danger\">{formatPercent(dd)}</Text>;\n      },\n    },\n    {\n      title: \"夏普比率\",\n      dataIndex: \"sharpeRatio\",\n      key: \"sharpeRatio\",\n      width: 90,\n      align: \"center\" as const,\n      render: (val: string | null) => (val ? parseFloat(val).toFixed(2) : \"-\"),\n    },\n    {\n      title: \"状态\",\n      dataIndex: \"status\",\n      key: \"status\",\n      width: 80,\n      align: \"center\" as const,\n      render: (status: string) => {\n        const colorMap: Record<string, string> = {\n          completed: \"green\",\n          failed: \"red\",\n          running: \"blue\",\n        };\n        const labelMap: Record<string, string> = {\n          completed: \"完成\",\n          failed: \"失败\",\n          running: \"运行中\",\n        };\n        return (\n          <Tag color={colorMap[status] || \"default\"}>\n            {labelMap[status] || status}\n          </Tag>\n        );\n      },\n    },\n    {\n      title: \"创建时间\",\n      dataIndex: \"createdAt\",\n      key: \"createdAt\",\n      width: 160,\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      width: 160,\n      fixed: \"right\" as const,\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space size=\"small\">\n          <Button\n            type=\"primary\"\n            icon={<EyeOutlined />}\n            size=\"small\"\n            onClick={() => handleViewDetail(record)}\n          >\n            详情\n          </Button>\n          <Popconfirm\n            title=\"确认删除\"\n            description=\"确定要删除这条回测记录吗？\"\n            onConfirm={() => handleDelete(record.id)}\n            okText=\"确认\"\n            cancelText=\"取消\"\n          >\n            <Button danger icon={<DeleteOutlined />} size=\"small\">\n              删除\n            </Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: \"标的\",\n      dataIndex: \"symbol\",\n      key: \"symbol\",\n      width: 100,\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"direction\",\n      key: \"direction\",\n      width: 80,\n      render: (dir: string) => {\n        const isLong = dir === \"long\";\n        return (\n          <Tag color={isLong ? \"red\" : \"green\"}>{isLong ? \"做多\" : \"做空\"}</Tag>\n        );\n      },\n    },\n    {\n      title: \"入场时间\",\n      dataIndex: \"entryTime\",\n      key: \"entryTime\",\n      width: 150,\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"入场价\",\n      dataIndex: \"entryPrice\",\n      key: \"entryPrice\",\n      width: 100,\n      render: (price: string) => parseFloat(price).toFixed(2),\n    },\n    {\n      title: \"出场时间\",\n      dataIndex: \"exitTime\",\n      key: \"exitTime\",\n      width: 150,\n      render: (time: string | null) => (time ? formatDate(time) : \"-\"),\n    },\n    {\n      title: \"出场价\",\n      dataIndex: \"exitPrice\",\n      key: \"exitPrice\",\n      width: 100,\n      render: (price: string | null) =>\n        price ? parseFloat(price).toFixed(2) : \"-\",\n    },\n    {\n      title: \"收益率\",\n      dataIndex: \"pnlPct\",\n      key: \"pnlPct\",\n      width: 100,\n      render: (pct: string | null) => {\n        if (!pct) return \"-\";\n        const num = parseFloat(pct);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        const text =\n          num > 0\n            ? `+${(num * 100).toFixed(2)}%`\n            : `${(num * 100).toFixed(2)}%`;\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"出场原因\",\n      dataIndex: \"exitReason\",\n      key: \"exitReason\",\n      width: 100,\n      render: (reason: string | null) => {\n        const reasonMap: Record<string, string> = {\n          hold_period: \"持仓到期\",\n          stop_loss: \"止损\",\n          take_profit: \"止盈\",\n        };\n        return reason ? reasonMap[reason] || reason : \"-\";\n      },\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      width: 100,\n      fixed: \"right\" as const,\n      render: (_: unknown, record: BacktestTrade) => (\n        <Button\n          type=\"link\"\n          size=\"small\"\n          icon={<LinkOutlined />}\n          onClick={() => handleViewSignalDetail(record.signalId)}\n          disabled={!record.signalId}\n        >\n          信号\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>回测记录</Title>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={handleOpenForm}\n          >\n            新建回测\n          </Button>\n          <Button icon={<ReloadOutlined />} onClick={fetchData}>\n            刷新\n          </Button>\n        </Space>\n      </Card>\n\n      <Card>\n        <Spin spinning={loading}>\n          {data.length === 0 ? (\n            <Empty description=\"暂无回测记录\" />\n          ) : (\n            <Table\n              columns={columns}\n              dataSource={data}\n              rowKey=\"id\"\n              pagination={{\n                pageSize: 10,\n                showSizeChanger: true,\n                showQuickJumper: true,\n                showTotal: (total) => `共 ${total} 条`,\n              }}\n              scroll={{ x: 1500 }}\n            />\n          )}\n        </Spin>\n      </Card>\n\n      <Modal\n        title=\"新建回测\"\n        open={formVisible}\n        onOk={handleRunBacktest}\n        onCancel={() => setFormVisible(false)}\n        confirmLoading={formLoading}\n        width={500}\n      >\n        <Form form={form} layout=\"vertical\">\n          <Form.Item\n            name=\"strategyId\"\n            label=\"选择策略\"\n            rules={[{ required: true, message: \"请选择策略\" }]}\n          >\n            <Select\n              placeholder=\"请选择策略\"\n              options={strategies.map((s) => ({ label: s.name, value: s.id }))}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"timeRange\"\n            label=\"时间范围\"\n            rules={[{ required: true, message: \"请选择时间范围\" }]}\n          >\n            <DatePicker.RangePicker showTime style={{ width: \"100%\" }} />\n          </Form.Item>\n          <Form.Item name=\"name\" label=\"回测名称\">\n            <Input placeholder=\"可选，默认使用策略名称\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"回测详情\"\n        open={detailVisible}\n        onCancel={() => setDetailVisible(false)}\n        width={1200}\n        footer={[\n          <Button key=\"close\" onClick={() => setDetailVisible(false)}>\n            关闭\n          </Button>,\n        ]}\n      >\n        {selectedRecord ? (\n          <>\n            <Descriptions bordered column={3} style={{ marginBottom: 24 }}>\n              <Descriptions.Item label=\"策略名称\">\n                {selectedRecord.strategySnapshot?.name || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"回测区间\">\n                {formatDate(selectedRecord.startTime)} ~{\" \"}\n                {formatDate(selectedRecord.endTime)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"K线周期\">\n                {selectedRecord.period}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"信号总数/过滤后\">\n                {selectedRecord.totalSignals ?? \"-\"} /{\" \"}\n                {selectedRecord.filteredSignals ?? \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"交易次数\">\n                {selectedRecord.totalTrades} 笔\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈利/亏损\">\n                <Text style={{ color: \"#52c41a\" }}>\n                  {selectedRecord.winningTrades}\n                </Text>{\" \"}\n                /{\" \"}\n                <Text style={{ color: \"#ff4d4f\" }}>\n                  {selectedRecord.losingTrades}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"胜率\">\n                {formatPercent(selectedRecord.winRate)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"总收益率\">\n                <Tag\n                  color={\n                    selectedRecord.totalReturnPct &&\n                    parseFloat(selectedRecord.totalReturnPct) > 0\n                      ? \"red\"\n                      : \"green\"\n                  }\n                >\n                  {formatPercent(selectedRecord.totalReturnPct)}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"平均收益率\">\n                {formatPercent(selectedRecord.avgReturnPct)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"最大回撤\">\n                <Text type=\"danger\">\n                  {formatPercent(selectedRecord.maxDrawdownPct)}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"夏普比率\">\n                {selectedRecord.sharpeRatio\n                  ? parseFloat(selectedRecord.sharpeRatio).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈亏比\">\n                {selectedRecord.profitFactor\n                  ? parseFloat(selectedRecord.profitFactor).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n            </Descriptions>\n\n            <Title level={5}>交易明细</Title>\n            <Spin spinning={detailLoading}>\n              <Table\n                dataSource={tradesData}\n                columns={tradeColumns}\n                rowKey=\"id\"\n                pagination={{ pageSize: 10 }}\n                size=\"small\"\n                scroll={{ x: 1000 }}\n              />\n            </Spin>\n          </>\n        ) : (\n          <Empty description=\"暂无数据\" />\n        )}\n      </Modal>\n    </div>\n  );\n};\n\nexport default BacktestPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/backtest/index.tsx"
     },
@@ -3890,7 +4275,9 @@
     ]
   },
   "mfsuBundleStatus": {
-    "done": true
+    "done": true,
+    "percent": 1,
+    "status": ""
   },
   "react": {
     "version": "18.3.1",
@@ -6157,8 +6544,19 @@
             ],
             "format": "esm"
           },
+          "src/services/klines.ts": {
+            "bytes": 1380,
+            "imports": [
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "./client"
+              }
+            ],
+            "format": "esm"
+          },
           "src/pages/stocks/[code].tsx": {
-            "bytes": 13855,
+            "bytes": 15083,
             "imports": [
               {
                 "path": "react",
@@ -6189,6 +6587,11 @@
                 "path": "src/services/client.ts",
                 "kind": "import-statement",
                 "original": "@/services/client"
+              },
+              {
+                "path": "src/services/klines.ts",
+                "kind": "import-statement",
+                "original": "@/services/klines"
               },
               {
                 "path": "react/jsx-runtime",
@@ -6337,8 +6740,30 @@
             ],
             "format": "esm"
           },
+          "src/services/backtest.ts": {
+            "bytes": 1280,
+            "imports": [
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "./client"
+              }
+            ],
+            "format": "esm"
+          },
+          "src/services/signals.ts": {
+            "bytes": 1085,
+            "imports": [
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "./client"
+              }
+            ],
+            "format": "esm"
+          },
           "src/pages/backtest/index.tsx": {
-            "bytes": 11173,
+            "bytes": 19672,
             "imports": [
               {
                 "path": "react",
@@ -6356,14 +6781,24 @@
                 "external": true
               },
               {
-                "path": "antd",
+                "path": "src/services/backtest.ts",
                 "kind": "import-statement",
-                "external": true
+                "original": "@/services/backtest"
               },
               {
-                "path": "src/services/client.ts",
+                "path": "src/services/strategy.ts",
                 "kind": "import-statement",
-                "original": "@/services/client"
+                "original": "@/services/strategy"
+              },
+              {
+                "path": "src/services/signals.ts",
+                "kind": "import-statement",
+                "original": "@/services/signals"
+              },
+              {
+                "path": "dayjs",
+                "kind": "import-statement",
+                "external": true
               },
               {
                 "path": "react/jsx-runtime",
@@ -7417,7 +7852,7 @@
                 "external": true
               },
               {
-                "path": "antd",
+                "path": "dayjs",
                 "kind": "import-statement",
                 "external": true
               },
@@ -8776,8 +9211,11 @@
               "src/pages/stocks/index.tsx": {
                 "bytesInOutput": 7143
               },
+              "src/services/klines.ts": {
+                "bytesInOutput": 819
+              },
               "src/pages/stocks/[code].tsx": {
-                "bytesInOutput": 15470
+                "bytesInOutput": 16872
               },
               "src/pages/stock-trackings/index.tsx": {
                 "bytesInOutput": 11459
@@ -8791,8 +9229,14 @@
               "src/pages/blacklist/index.tsx": {
                 "bytesInOutput": 10300
               },
+              "src/services/backtest.ts": {
+                "bytesInOutput": 883
+              },
+              "src/services/signals.ts": {
+                "bytesInOutput": 733
+              },
               "src/pages/backtest/index.tsx": {
-                "bytesInOutput": 13800
+                "bytesInOutput": 23164
               },
               "src/pages/agent-chat/index.tsx": {
                 "bytesInOutput": 25894
@@ -8807,7 +9251,7 @@
                 "bytesInOutput": 352
               },
               "src/pages/settings/api-keys.tsx": {
-                "bytesInOutput": 11293
+                "bytesInOutput": 11298
               },
               "src/pages/profile.tsx": {
                 "bytesInOutput": 12022
@@ -8816,7 +9260,7 @@
                 "bytesInOutput": 383
               },
               "src/.umi/core/route.tsx": {
-                "bytesInOutput": 4965
+                "bytesInOutput": 4966
               },
               "src/.umi/core/polyfill.ts": {
                 "bytesInOutput": 30238
@@ -8825,7 +9269,7 @@
                 "bytesInOutput": 2095
               }
             },
-            "bytes": 459750
+            "bytes": 473041
           }
         }
       }
@@ -12981,7 +13425,7 @@
       ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\backtest\\index.tsx": [
         {
-          "end": 52,
+          "end": 65,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -12998,13 +13442,18 @@
               "imported": "useEffect",
               "local": "useEffect",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useCallback",
+              "local": "useCallback",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 1,
           "type": "ImportDeclaration"
         },
         {
-          "end": 210,
+          "end": 254,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -13064,22 +13513,47 @@
               "type": "ImportSpecifier"
             },
             {
-              "imported": "Table",
-              "local": "DetailTable",
+              "imported": "Select",
+              "local": "Select",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "DatePicker",
+              "local": "DatePicker",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Input",
+              "local": "Input",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Form",
+              "local": "Form",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Popconfirm",
+              "local": "Popconfirm",
               "type": "ImportSpecifier"
             }
           ],
-          "start": 53,
+          "start": 66,
           "type": "ImportDeclaration"
         },
         {
-          "end": 291,
+          "end": 374,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
             {
               "imported": "ReloadOutlined",
               "local": "ReloadOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "PlusOutlined",
+              "local": "PlusOutlined",
               "type": "ImportSpecifier"
             },
             {
@@ -13091,36 +13565,98 @@
               "imported": "DeleteOutlined",
               "local": "DeleteOutlined",
               "type": "ImportSpecifier"
-            }
-          ],
-          "start": 211,
-          "type": "ImportDeclaration"
-        },
-        {
-          "end": 326,
-          "importKind": "value",
-          "source": "antd",
-          "specifiers": [
+            },
             {
-              "imported": "Popconfirm",
-              "local": "Popconfirm",
+              "imported": "LinkOutlined",
+              "local": "LinkOutlined",
               "type": "ImportSpecifier"
             }
           ],
-          "start": 292,
+          "start": 255,
           "type": "ImportDeclaration"
         },
         {
-          "end": 366,
+          "end": 425,
           "importKind": "value",
-          "source": "@/services/client",
+          "source": "@/services/backtest",
           "specifiers": [
             {
-              "local": "client",
+              "imported": "backtestApi",
+              "local": "backtestApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 375,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 476,
+          "importKind": "value",
+          "source": "@/services/strategy",
+          "specifiers": [
+            {
+              "imported": "strategyApi",
+              "local": "strategyApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 426,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 525,
+          "importKind": "value",
+          "source": "@/services/signals",
+          "specifiers": [
+            {
+              "imported": "signalsApi",
+              "local": "signalsApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 477,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 614,
+          "importKind": "type",
+          "source": "@/services/types",
+          "specifiers": [
+            {
+              "imported": "BacktestRecord",
+              "local": "BacktestRecord",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "BacktestTrade",
+              "local": "BacktestTrade",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Strategy",
+              "local": "Strategy",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Signal",
+              "local": "Signal",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 526,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 641,
+          "importKind": "value",
+          "source": "dayjs",
+          "specifiers": [
+            {
+              "local": "dayjs",
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 327,
+          "start": 615,
           "type": "ImportDeclaration"
         }
       ],
@@ -16609,7 +17145,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 269,
+          "end": 283,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -16627,13 +17163,18 @@
               "imported": "BarChartOutlined",
               "local": "BarChartOutlined",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "SyncOutlined",
+              "local": "SyncOutlined",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 181,
           "type": "ImportDeclaration"
         },
         {
-          "end": 315,
+          "end": 329,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -16648,11 +17189,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 270,
+          "start": 284,
           "type": "ImportDeclaration"
         },
         {
-          "end": 372,
+          "end": 386,
           "importKind": "value",
           "source": "lightweight-charts",
           "specifiers": [
@@ -16661,11 +17202,11 @@
               "type": "ImportNamespaceSpecifier"
             }
           ],
-          "start": 316,
+          "start": 330,
           "type": "ImportDeclaration"
         },
         {
-          "end": 460,
+          "end": 474,
           "importKind": "type",
           "source": "lightweight-charts",
           "specifiers": [
@@ -16690,11 +17231,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 373,
+          "start": 387,
           "type": "ImportDeclaration"
         },
         {
-          "end": 500,
+          "end": 514,
           "importKind": "value",
           "source": "@/services/client",
           "specifiers": [
@@ -16703,11 +17244,25 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 461,
+          "start": 475,
           "type": "ImportDeclaration"
         },
         {
-          "end": 559,
+          "end": 561,
+          "importKind": "value",
+          "source": "@/services/klines",
+          "specifiers": [
+            {
+              "imported": "klinesApi",
+              "local": "klinesApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 515,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 620,
           "importKind": "type",
           "source": "@/services/types",
           "specifiers": [
@@ -16722,7 +17277,7 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 501,
+          "start": 562,
           "type": "ImportDeclaration"
         }
       ],
@@ -17115,6 +17670,50 @@
           "type": "ImportDeclaration"
         }
       ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\backtest.ts": [
+        {
+          "end": 31,
+          "importKind": "value",
+          "source": "./client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 155,
+          "importKind": "type",
+          "source": "./types",
+          "specifiers": [
+            {
+              "imported": "BacktestRecord",
+              "local": "BacktestRecord",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "BacktestTrade",
+              "local": "BacktestTrade",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "StrategyBacktestRequest",
+              "local": "StrategyBacktestRequest",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "BacktestRecordsQueryParams",
+              "local": "BacktestRecordsQueryParams",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 32,
+          "type": "ImportDeclaration"
+        }
+      ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\client.ts": [
         {
           "end": 86,
@@ -17236,6 +17835,21 @@
           "type": "ImportDeclaration"
         }
       ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\klines.ts": [
+        {
+          "end": 31,
+          "importKind": "value",
+          "source": "./client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        }
+      ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\signal-rules.ts": [
         {
           "end": 31,
@@ -17288,6 +17902,65 @@
             {
               "imported": "UpdateGlobalRuleParams",
               "local": "UpdateGlobalRuleParams",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 32,
+          "type": "ImportDeclaration"
+        }
+      ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\signals.ts": [
+        {
+          "end": 31,
+          "importKind": "value",
+          "source": "./client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 191,
+          "importKind": "type",
+          "source": "./types",
+          "specifiers": [
+            {
+              "imported": "Signal",
+              "local": "Signal",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Kline",
+              "local": "Kline",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "SignalsListQueryParams",
+              "local": "SignalsListQueryParams",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "SignalsListResponse",
+              "local": "SignalsListResponse",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "KlinesQueryParams",
+              "local": "KlinesQueryParams",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "SignalKlinesResponse",
+              "local": "SignalKlinesResponse",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "KlinePeriod",
+              "local": "KlinePeriod",
               "type": "ImportSpecifier"
             }
           ],

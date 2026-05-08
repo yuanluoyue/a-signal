@@ -283,4 +283,96 @@ export class KlinesService {
     const result = await query;
     return result.rowCount || 0;
   }
+
+  async checkAndUpdateKlines(stockCode: string, period: KlinePeriod): Promise<{ updated: boolean; latestTime: Date | null; message: string }> {
+    const cleanCode = stockCode.trim().toLowerCase();
+    const now = new Date();
+    
+    const latestTimeRaw = await this.getLatestKlineTime(cleanCode, period);
+    const latestTime = latestTimeRaw ? new Date(latestTimeRaw) : null;
+    
+    const needsUpdate = this.checkIfNeedsUpdate(latestTime, period, now);
+    
+    if (!needsUpdate) {
+      return {
+        updated: false,
+        latestTime,
+        message: `K线数据已是最新，最新时间: ${latestTime ? latestTime.toISOString() : '无数据'}`,
+      };
+    }
+    
+    this.logger.log(`K线数据需要更新，正在获取 ${cleanCode} (${period}) 的最新数据...`);
+    
+    const savedCount = await this.fetchKlines(cleanCode, period);
+    
+    const newLatestTimeRaw = await this.getLatestKlineTime(cleanCode, period);
+    const newLatestTime = newLatestTimeRaw ? new Date(newLatestTimeRaw) : null;
+    
+    return {
+      updated: savedCount > 0,
+      latestTime: newLatestTime,
+      message: savedCount > 0 
+        ? `成功更新 ${savedCount} 条K线数据` 
+        : '更新失败，未获取到新数据',
+    };
+  }
+
+  private checkIfNeedsUpdate(latestTime: Date | null, period: KlinePeriod, now: Date): boolean {
+    if (!latestTime) {
+      return true;
+    }
+    
+    const latest = new Date(latestTime);
+    
+    if (period === '1d') {
+      const todayStart = new Date(now);
+      todayStart.setHours(0, 0, 0, 0);
+      
+      const yesterdayStart = new Date(todayStart);
+      yesterdayStart.setDate(yesterdayStart.getDate() - 1);
+      
+      if (latest < yesterdayStart) {
+        return true;
+      }
+      
+      const hour = now.getHours();
+      if (hour >= 15 && latest < todayStart) {
+        return true;
+      }
+      
+      return false;
+    }
+    
+    if (period === '4h') {
+      const fourHoursAgo = new Date(now.getTime() - 4 * 60 * 60 * 1000);
+      return latest < fourHoursAgo;
+    }
+    
+    return false;
+  }
+
+  async checkAndUpdateKlinesForBacktest(stockCodes: string[]): Promise<{ updated: number; failed: number }> {
+    const periods: KlinePeriod[] = ['1d', '4h'];
+    let updated = 0;
+    let failed = 0;
+    
+    const uniqueCodes = [...new Set(stockCodes.map(code => code.trim().toLowerCase()))];
+    
+    for (const code of uniqueCodes) {
+      for (const period of periods) {
+        try {
+          const result = await this.checkAndUpdateKlines(code, period);
+          if (result.updated) {
+            updated++;
+            this.logger.log(`Updated ${period} klines for ${code}: ${result.message}`);
+          }
+        } catch (error) {
+          failed++;
+          this.logger.error(`Failed to update ${period} klines for ${code}:`, error);
+        }
+      }
+    }
+    
+    return { updated, failed };
+  }
 }

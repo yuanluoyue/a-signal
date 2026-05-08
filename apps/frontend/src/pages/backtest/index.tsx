@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from "react";
 import {
   Table,
   Card,
@@ -11,164 +11,280 @@ import {
   Empty,
   Modal,
   Descriptions,
-  Table as DetailTable,
-} from 'antd';
-import { ReloadOutlined, EyeOutlined, DeleteOutlined } from '@ant-design/icons';
-import { Popconfirm } from 'antd';
-import client from '@/services/client';
+  Select,
+  DatePicker,
+  Input,
+  Form,
+  Popconfirm,
+} from "antd";
+import {
+  ReloadOutlined,
+  PlusOutlined,
+  EyeOutlined,
+  DeleteOutlined,
+  LinkOutlined,
+} from "@ant-design/icons";
+import { backtestApi } from "@/services/backtest";
+import { strategyApi } from "@/services/strategy";
+import { signalsApi } from "@/services/signals";
+import type { BacktestRecord, BacktestTrade, Strategy, Signal } from "@/services/types";
+import dayjs from "dayjs";
 
-const { Title, Text } = Typography;
-
-interface BacktestRecord {
-  id: string;
-  startTime: string;
-  endTime: string;
-  minConfidence: number;
-  maxConfidence: number;
-  directions: string[];
-  stopLoss: string;
-  takeProfit: string;
-  period: string;
-  totalTrades: number;
-  winningTrades: number;
-  losingTrades: number;
-  winRate: string;
-  totalReturn: string;
-  maxDrawdown: string;
-  avgReturn: string;
-  trades: Array<{
-    signalId: string;
-    stockCode: string;
-    stockName: string;
-    direction: string;
-    entryPrice: number;
-    exitPrice: number;
-    return: number;
-    exitReason: string;
-    entryTime: string;
-    exitTime: string;
-  }>;
-  createdAt: string;
-}
+const { Title, Text, Paragraph } = Typography;
 
 const BacktestPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<BacktestRecord[]>([]);
-  const [detailModalVisible, setDetailModalVisible] = useState(false);
-  const [selectedRecord, setSelectedRecord] = useState<BacktestRecord | null>(null);
 
-  const fetchData = async () => {
+  const [formVisible, setFormVisible] = useState(false);
+  const [formLoading, setFormLoading] = useState(false);
+  const [strategies, setStrategies] = useState<Strategy[]>([]);
+  const [form] = Form.useForm();
+
+  const [detailVisible, setDetailVisible] = useState(false);
+  const [detailLoading, setDetailLoading] = useState(false);
+  const [selectedRecord, setSelectedRecord] = useState<BacktestRecord | null>(
+    null,
+  );
+  const [tradesData, setTradesData] = useState<BacktestTrade[]>([]);
+
+  const [signalDetailVisible, setSignalDetailVisible] = useState(false);
+  const [signalDetailLoading, setSignalDetailLoading] = useState(false);
+  const [selectedSignal, setSelectedSignal] = useState<Signal | null>(null);
+
+  const fetchData = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await client.get('/backtest/records');
-      setData(response.data || []);
+      const response = await backtestApi.getRecords();
+      setData(response || []);
     } catch (error) {
-      message.error('获取回测记录失败');
-      console.error('Fetch backtest records error:', error);
+      message.error("获取回测记录失败");
+      console.error("Fetch backtest records error:", error);
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
 
-  const handleViewDetail = (record: BacktestRecord) => {
+  const handleOpenForm = async () => {
+    setFormVisible(true);
+    form.resetFields();
+    try {
+      const response = await strategyApi.getStrategiesList({ pageSize: 100 });
+      setStrategies(response.data || []);
+    } catch (error) {
+      console.error("Fetch strategies error:", error);
+    }
+  };
+
+  const handleRunBacktest = async () => {
+    try {
+      const values = await form.validateFields();
+      setFormLoading(true);
+      const params = {
+        strategyId: values.strategyId,
+        startTime: values.timeRange[0].toISOString(),
+        endTime: values.timeRange[1].toISOString(),
+        name: values.name || undefined,
+      };
+      await backtestApi.runBacktest(params);
+      message.success("回测执行完成");
+      setFormVisible(false);
+      fetchData();
+    } catch (error) {
+      console.error("Run backtest error:", error);
+      message.error("回测执行失败");
+    } finally {
+      setFormLoading(false);
+    }
+  };
+
+  const handleViewDetail = async (record: BacktestRecord) => {
     setSelectedRecord(record);
-    setDetailModalVisible(true);
+    setDetailVisible(true);
+    setDetailLoading(true);
+    try {
+      const trades = await backtestApi.getRecordTrades(record.id);
+      setTradesData(trades || []);
+    } catch (error) {
+      console.error("Fetch trades error:", error);
+      message.error("获取交易明细失败");
+    } finally {
+      setDetailLoading(false);
+    }
+  };
+
+  const handleViewSignalDetail = async (signalId: string | null) => {
+    if (!signalId) {
+      message.warning("该交易无关联信号");
+      return;
+    }
+    setSignalDetailVisible(true);
+    setSignalDetailLoading(true);
+    try {
+      const signal = await signalsApi.getSignalById(signalId);
+      setSelectedSignal(signal);
+    } catch (error) {
+      console.error("Fetch signal detail error:", error);
+      message.error("获取信号详情失败");
+    } finally {
+      setSignalDetailLoading(false);
+    }
   };
 
   const handleDelete = async (id: string) => {
     try {
-      await client.delete(`/backtest/records/${id}`);
-      message.success('删除成功');
+      await backtestApi.deleteRecord(id);
+      message.success("删除成功");
       fetchData();
     } catch (error) {
-      message.error('删除失败');
-      console.error('Delete backtest record error:', error);
+      message.error("删除失败");
+      console.error("Delete backtest record error:", error);
     }
   };
 
   const formatDate = (dateString: string) => {
-    if (!dateString) return '-';
-    const date = new Date(dateString);
-    return date.toLocaleString('zh-CN');
+    if (!dateString) return "-";
+    return dayjs(dateString).format("YYYY-MM-DD HH:mm");
   };
 
-  const formatPercent = (value: string | number) => {
-    const num = typeof value === 'string' ? parseFloat(value) : value;
+  const formatPercent = (value: string | number | null | undefined) => {
+    if (value === null || value === undefined) return "-";
+    const num = typeof value === "string" ? parseFloat(value) : value;
+    if (isNaN(num)) return "-";
     return `${(num * 100).toFixed(2)}%`;
-  };
-
-  const getDirectionTag = (directions: string[]) => {
-    return directions.map((dir) => {
-      const color = dir === 'buy' || dir === 'bullish' ? 'red' : 'green';
-      const text = dir === 'buy' || dir === 'bullish' ? '买入' : '卖出';
-      return <Tag key={dir} color={color}>{text}</Tag>;
-    });
   };
 
   const columns = [
     {
-      title: '回测时间',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
-      width: 180,
-      render: (time: string) => formatDate(time),
+      title: "名称",
+      dataIndex: "name",
+      key: "name",
+      width: 150,
+      render: (name: string | null) => name || "-",
     },
     {
-      title: '回测区间',
-      key: 'timeRange',
-      width: 220,
-      render: (_: unknown, record: BacktestRecord) => (
-        <Space direction="vertical" size="small">
-          <Text type="secondary">开始: {formatDate(record.startTime)}</Text>
-          <Text type="secondary">结束: {formatDate(record.endTime)}</Text>
-        </Space>
-      ),
-    },
-    {
-      title: '交易次数',
-      dataIndex: 'totalTrades',
-      key: 'totalTrades',
-      width: 100,
-      render: (count: number) => <Tag color="blue">{count} 笔</Tag>,
-    },
-    {
-      title: '胜率',
-      dataIndex: 'winRate',
-      key: 'winRate',
-      width: 100,
-      render: (rate: string) => {
-        const num = parseFloat(rate);
-        const color = num >= 0.5 ? 'success' : num >= 0.3 ? 'warning' : 'error';
-        return <Tag color={color}>{formatPercent(rate)}</Tag>;
-      },
-    },
-    {
-      title: '总收益率',
-      dataIndex: 'totalReturn',
-      key: 'totalReturn',
+      title: "策略",
+      key: "strategy",
       width: 120,
-      render: (ret: string) => {
+      render: (_: unknown, record: BacktestRecord) =>
+        record.strategySnapshot?.name || "-",
+    },
+    {
+      title: "总收益率",
+      dataIndex: "totalReturnPct",
+      key: "totalReturnPct",
+      width: 100,
+      align: "center" as const,
+      render: (ret: string | null) => {
+        if (!ret) return "-";
         const num = parseFloat(ret);
-        const color = num > 0 ? 'red' : num < 0 ? 'green' : 'default';
+        const color = num > 0 ? "red" : num < 0 ? "green" : "default";
         return <Tag color={color}>{formatPercent(ret)}</Tag>;
       },
     },
     {
-      title: '最大回撤',
-      dataIndex: 'maxDrawdown',
-      key: 'maxDrawdown',
-      width: 120,
-      render: (dd: string) => <Text type="danger">{formatPercent(dd)}</Text>,
+      title: "回测区间",
+      key: "timeRange",
+      width: 220,
+      render: (_: unknown, record: BacktestRecord) => (
+        <Space direction="vertical" size="small">
+          <Text type="secondary">{formatDate(record.startTime)}</Text>
+          <Text type="secondary">{formatDate(record.endTime)}</Text>
+        </Space>
+      ),
     },
     {
-      title: '操作',
-      key: 'action',
-      width: 200,
-      fixed: 'right' as const,
+      title: "信号",
+      key: "signals",
+      width: 100,
+      align: "center" as const,
+      render: (_: unknown, record: BacktestRecord) => {
+        if (record.totalSignals === null && record.filteredSignals === null)
+          return "-";
+        return `${record.filteredSignals ?? "-"}/${record.totalSignals ?? "-"}`;
+      },
+    },
+    {
+      title: "交易次数",
+      dataIndex: "totalTrades",
+      key: "totalTrades",
+      width: 80,
+      align: "center" as const,
+      render: (count: number) => <Tag color="blue">{count}</Tag>,
+    },
+    {
+      title: "胜率",
+      dataIndex: "winRate",
+      key: "winRate",
+      width: 80,
+      align: "center" as const,
+      render: (rate: string | null) => {
+        if (!rate) return "-";
+        const num = parseFloat(rate);
+        const color = num >= 0.5 ? "success" : num >= 0.3 ? "warning" : "error";
+        return <Tag color={color}>{formatPercent(rate)}</Tag>;
+      },
+    },
+
+    {
+      title: "最大回撤",
+      dataIndex: "maxDrawdownPct",
+      key: "maxDrawdownPct",
+      width: 90,
+      align: "center" as const,
+      render: (dd: string | null) => {
+        if (!dd) return "-";
+        return <Text type="danger">{formatPercent(dd)}</Text>;
+      },
+    },
+    {
+      title: "夏普比率",
+      dataIndex: "sharpeRatio",
+      key: "sharpeRatio",
+      width: 90,
+      align: "center" as const,
+      render: (val: string | null) => (val ? parseFloat(val).toFixed(2) : "-"),
+    },
+    {
+      title: "状态",
+      dataIndex: "status",
+      key: "status",
+      width: 80,
+      align: "center" as const,
+      render: (status: string) => {
+        const colorMap: Record<string, string> = {
+          completed: "green",
+          failed: "red",
+          running: "blue",
+        };
+        const labelMap: Record<string, string> = {
+          completed: "完成",
+          failed: "失败",
+          running: "运行中",
+        };
+        return (
+          <Tag color={colorMap[status] || "default"}>
+            {labelMap[status] || status}
+          </Tag>
+        );
+      },
+    },
+    {
+      title: "创建时间",
+      dataIndex: "createdAt",
+      key: "createdAt",
+      width: 160,
+      render: (time: string) => formatDate(time),
+    },
+    {
+      title: "操作",
+      key: "action",
+      width: 160,
+      fixed: "right" as const,
       render: (_: unknown, record: BacktestRecord) => (
         <Space size="small">
           <Button
@@ -177,7 +293,7 @@ const BacktestPage: React.FC = () => {
             size="small"
             onClick={() => handleViewDetail(record)}
           >
-            查看详情
+            详情
           </Button>
           <Popconfirm
             title="确认删除"
@@ -186,11 +302,7 @@ const BacktestPage: React.FC = () => {
             okText="确认"
             cancelText="取消"
           >
-            <Button
-              danger
-              icon={<DeleteOutlined />}
-              size="small"
-            >
+            <Button danger icon={<DeleteOutlined />} size="small">
               删除
             </Button>
           </Popconfirm>
@@ -199,83 +311,100 @@ const BacktestPage: React.FC = () => {
     },
   ];
 
-  // 交易明细表格列
   const tradeColumns = [
     {
-      title: '股票代码',
-      dataIndex: 'stockCode',
-      key: 'stockCode',
+      title: "标的",
+      dataIndex: "symbol",
+      key: "symbol",
       width: 100,
     },
     {
-      title: '股票名称',
-      dataIndex: 'stockName',
-      key: 'stockName',
-      width: 120,
-    },
-    {
-      title: '方向',
-      dataIndex: 'direction',
-      key: 'direction',
+      title: "方向",
+      dataIndex: "direction",
+      key: "direction",
       width: 80,
-      render: (direction: string) => {
-        const color = direction === 'buy' || direction === 'bullish' ? 'red' : 'green';
-        const text = direction === 'buy' || direction === 'bullish' ? '买入' : '卖出';
+      render: (dir: string) => {
+        const isLong = dir === "long";
+        return (
+          <Tag color={isLong ? "red" : "green"}>{isLong ? "做多" : "做空"}</Tag>
+        );
+      },
+    },
+    {
+      title: "入场时间",
+      dataIndex: "entryTime",
+      key: "entryTime",
+      width: 150,
+      render: (time: string) => formatDate(time),
+    },
+    {
+      title: "入场价",
+      dataIndex: "entryPrice",
+      key: "entryPrice",
+      width: 100,
+      render: (price: string) => parseFloat(price).toFixed(2),
+    },
+    {
+      title: "出场时间",
+      dataIndex: "exitTime",
+      key: "exitTime",
+      width: 150,
+      render: (time: string | null) => (time ? formatDate(time) : "-"),
+    },
+    {
+      title: "出场价",
+      dataIndex: "exitPrice",
+      key: "exitPrice",
+      width: 100,
+      render: (price: string | null) =>
+        price ? parseFloat(price).toFixed(2) : "-",
+    },
+    {
+      title: "收益率",
+      dataIndex: "pnlPct",
+      key: "pnlPct",
+      width: 100,
+      render: (pct: string | null) => {
+        if (!pct) return "-";
+        const num = parseFloat(pct);
+        const color = num > 0 ? "red" : num < 0 ? "green" : "default";
+        const text =
+          num > 0
+            ? `+${(num * 100).toFixed(2)}%`
+            : `${(num * 100).toFixed(2)}%`;
         return <Tag color={color}>{text}</Tag>;
       },
     },
     {
-      title: '入场价',
-      dataIndex: 'entryPrice',
-      key: 'entryPrice',
+      title: "出场原因",
+      dataIndex: "exitReason",
+      key: "exitReason",
       width: 100,
-      render: (price: number) => price?.toFixed(2) || '-',
-    },
-    {
-      title: '出场价',
-      dataIndex: 'exitPrice',
-      key: 'exitPrice',
-      width: 100,
-      render: (price: number) => price?.toFixed(2) || '-',
-    },
-    {
-      title: '收益率',
-      dataIndex: 'return',
-      key: 'return',
-      width: 100,
-      render: (ret: number) => {
-        const color = ret > 0 ? 'red' : ret < 0 ? 'green' : 'default';
-        const text = ret > 0 ? `+${(ret * 100).toFixed(2)}%` : `${(ret * 100).toFixed(2)}%`;
-        return <Tag color={color}>{text}</Tag>;
-      },
-    },
-    {
-      title: '出场原因',
-      dataIndex: 'exitReason',
-      key: 'exitReason',
-      width: 100,
-      render: (reason: string) => {
+      render: (reason: string | null) => {
         const reasonMap: Record<string, string> = {
-          takeProfit: '止盈',
-          stopLoss: '止损',
-          timeExpired: '到期',
+          hold_period: "持仓到期",
+          stop_loss: "止损",
+          take_profit: "止盈",
         };
-        return reasonMap[reason] || reason;
+        return reason ? reasonMap[reason] || reason : "-";
       },
     },
     {
-      title: '入场时间',
-      dataIndex: 'entryTime',
-      key: 'entryTime',
-      width: 180,
-      render: (time: string) => formatDate(time),
-    },
-    {
-      title: '出场时间',
-      dataIndex: 'exitTime',
-      key: 'exitTime',
-      width: 180,
-      render: (time: string) => formatDate(time),
+      title: "操作",
+      key: "action",
+      width: 100,
+      fixed: "right" as const,
+      render: (_: unknown, record: BacktestTrade) => (
+        <Button
+          type="link"
+          size="small"
+          icon={<LinkOutlined />}
+          onClick={() => handleViewSignalDetail(record.signalId)}
+          disabled={!record.signalId}
+        >
+          信号
+        </Button>
+      ),
     },
   ];
 
@@ -285,6 +414,13 @@ const BacktestPage: React.FC = () => {
 
       <Card style={{ marginBottom: 24 }}>
         <Space>
+          <Button
+            type="primary"
+            icon={<PlusOutlined />}
+            onClick={handleOpenForm}
+          >
+            新建回测
+          </Button>
           <Button icon={<ReloadOutlined />} onClick={fetchData}>
             刷新
           </Button>
@@ -306,20 +442,51 @@ const BacktestPage: React.FC = () => {
                 showQuickJumper: true,
                 showTotal: (total) => `共 ${total} 条`,
               }}
-              scroll={{ x: 1200 }}
+              scroll={{ x: 1500 }}
             />
           )}
         </Spin>
       </Card>
 
-      {/* 回测详情弹窗 */}
+      <Modal
+        title="新建回测"
+        open={formVisible}
+        onOk={handleRunBacktest}
+        onCancel={() => setFormVisible(false)}
+        confirmLoading={formLoading}
+        width={500}
+      >
+        <Form form={form} layout="vertical">
+          <Form.Item
+            name="strategyId"
+            label="选择策略"
+            rules={[{ required: true, message: "请选择策略" }]}
+          >
+            <Select
+              placeholder="请选择策略"
+              options={strategies.map((s) => ({ label: s.name, value: s.id }))}
+            />
+          </Form.Item>
+          <Form.Item
+            name="timeRange"
+            label="时间范围"
+            rules={[{ required: true, message: "请选择时间范围" }]}
+          >
+            <DatePicker.RangePicker showTime style={{ width: "100%" }} />
+          </Form.Item>
+          <Form.Item name="name" label="回测名称">
+            <Input placeholder="可选，默认使用策略名称" />
+          </Form.Item>
+        </Form>
+      </Modal>
+
       <Modal
         title="回测详情"
-        open={detailModalVisible}
-        onCancel={() => setDetailModalVisible(false)}
-        width={1400}
+        open={detailVisible}
+        onCancel={() => setDetailVisible(false)}
+        width={1200}
         footer={[
-          <Button key="close" onClick={() => setDetailModalVisible(false)}>
+          <Button key="close" onClick={() => setDetailVisible(false)}>
             关闭
           </Button>,
         ]}
@@ -327,52 +494,154 @@ const BacktestPage: React.FC = () => {
         {selectedRecord ? (
           <>
             <Descriptions bordered column={3} style={{ marginBottom: 24 }}>
-              <Descriptions.Item label="回测时间">{formatDate(selectedRecord.createdAt)}</Descriptions.Item>
+              <Descriptions.Item label="策略名称">
+                {selectedRecord.strategySnapshot?.name || "-"}
+              </Descriptions.Item>
               <Descriptions.Item label="回测区间">
-                {formatDate(selectedRecord.startTime)} ~ {formatDate(selectedRecord.endTime)}
+                {formatDate(selectedRecord.startTime)} ~{" "}
+                {formatDate(selectedRecord.endTime)}
               </Descriptions.Item>
-              <Descriptions.Item label="K线周期">{selectedRecord.period}</Descriptions.Item>
-              <Descriptions.Item label="置信度范围">
-                {selectedRecord.minConfidence}% ~ {selectedRecord.maxConfidence}%
+              <Descriptions.Item label="K线周期">
+                {selectedRecord.period}
               </Descriptions.Item>
-              <Descriptions.Item label="止损/止盈">
-                {formatPercent(selectedRecord.stopLoss)} / {formatPercent(selectedRecord.takeProfit)}
+              <Descriptions.Item label="信号总数/过滤后">
+                {selectedRecord.totalSignals ?? "-"} /{" "}
+                {selectedRecord.filteredSignals ?? "-"}
               </Descriptions.Item>
-              <Descriptions.Item label="信号类型">{getDirectionTag(selectedRecord.directions)}</Descriptions.Item>
-              <Descriptions.Item label="总交易次数">{selectedRecord.totalTrades} 笔</Descriptions.Item>
-              <Descriptions.Item label="盈利次数" style={{ color: '#52c41a' }}>
-                {selectedRecord.winningTrades} 笔
+              <Descriptions.Item label="交易次数">
+                {selectedRecord.totalTrades} 笔
               </Descriptions.Item>
-              <Descriptions.Item label="亏损次数" style={{ color: '#ff4d4f' }}>
-                {selectedRecord.losingTrades} 笔
+              <Descriptions.Item label="盈利/亏损">
+                <Text style={{ color: "#52c41a" }}>
+                  {selectedRecord.winningTrades}
+                </Text>{" "}
+                /{" "}
+                <Text style={{ color: "#ff4d4f" }}>
+                  {selectedRecord.losingTrades}
+                </Text>
               </Descriptions.Item>
-              <Descriptions.Item label="胜率">{formatPercent(selectedRecord.winRate)}</Descriptions.Item>
+              <Descriptions.Item label="胜率">
+                {formatPercent(selectedRecord.winRate)}
+              </Descriptions.Item>
               <Descriptions.Item label="总收益率">
-                <Tag color={parseFloat(selectedRecord.totalReturn) > 0 ? 'red' : 'green'}>
-                  {formatPercent(selectedRecord.totalReturn)}
+                <Tag
+                  color={
+                    selectedRecord.totalReturnPct &&
+                    parseFloat(selectedRecord.totalReturnPct) > 0
+                      ? "red"
+                      : "green"
+                  }
+                >
+                  {formatPercent(selectedRecord.totalReturnPct)}
                 </Tag>
               </Descriptions.Item>
               <Descriptions.Item label="平均收益率">
-                {formatPercent(selectedRecord.avgReturn)}
+                {formatPercent(selectedRecord.avgReturnPct)}
               </Descriptions.Item>
-              <Descriptions.Item label="最大回撤" span={3}>
-                <Text type="danger">{formatPercent(selectedRecord.maxDrawdown)}</Text>
+              <Descriptions.Item label="最大回撤">
+                <Text type="danger">
+                  {formatPercent(selectedRecord.maxDrawdownPct)}
+                </Text>
+              </Descriptions.Item>
+              <Descriptions.Item label="夏普比率">
+                {selectedRecord.sharpeRatio
+                  ? parseFloat(selectedRecord.sharpeRatio).toFixed(2)
+                  : "-"}
+              </Descriptions.Item>
+              <Descriptions.Item label="盈亏比">
+                {selectedRecord.profitFactor
+                  ? parseFloat(selectedRecord.profitFactor).toFixed(2)
+                  : "-"}
               </Descriptions.Item>
             </Descriptions>
 
             <Title level={5}>交易明细</Title>
-            <DetailTable
-              dataSource={selectedRecord.trades}
-              columns={tradeColumns}
-              rowKey="signalId"
-              pagination={{ pageSize: 10 }}
-              size="small"
-              scroll={{ x: 1200 }}
-            />
+            <Spin spinning={detailLoading}>
+              <Table
+                dataSource={tradesData}
+                columns={tradeColumns}
+                rowKey="id"
+                pagination={{ pageSize: 10 }}
+                size="small"
+                scroll={{ x: 1000 }}
+              />
+            </Spin>
           </>
         ) : (
           <Empty description="暂无数据" />
         )}
+      </Modal>
+
+      <Modal
+        title="信号详情"
+        open={signalDetailVisible}
+        onCancel={() => setSignalDetailVisible(false)}
+        width={800}
+        footer={[
+          <Button key="close" onClick={() => setSignalDetailVisible(false)}>
+            关闭
+          </Button>,
+        ]}
+      >
+        <Spin spinning={signalDetailLoading}>
+          {selectedSignal ? (
+            <Descriptions bordered column={2}>
+              <Descriptions.Item label="标的">
+                {selectedSignal.symbol || selectedSignal.stockCode || "-"}
+              </Descriptions.Item>
+              <Descriptions.Item label="名称">
+                {selectedSignal.stockName || "-"}
+              </Descriptions.Item>
+              <Descriptions.Item label="方向">
+                <Tag
+                  color={
+                    selectedSignal.action === "long"
+                      ? "red"
+                      : selectedSignal.action === "short"
+                        ? "green"
+                        : "default"
+                  }
+                >
+                  {selectedSignal.action === "long"
+                    ? "做多"
+                    : selectedSignal.action === "short"
+                      ? "做空"
+                      : "观望"}
+                </Tag>
+              </Descriptions.Item>
+              <Descriptions.Item label="分数">
+                {selectedSignal.score
+                  ? parseFloat(selectedSignal.score).toFixed(4)
+                  : "-"}
+              </Descriptions.Item>
+              <Descriptions.Item label="生成时间" span={2}>
+                {formatDate(
+                  selectedSignal.generatedAt ||
+                    selectedSignal.createdAt ||
+                    "",
+                )}
+              </Descriptions.Item>
+              <Descriptions.Item label="有效期" span={2}>
+                {selectedSignal.validFrom && selectedSignal.validTo
+                  ? `${formatDate(selectedSignal.validFrom)} ~ ${formatDate(selectedSignal.validTo)}`
+                  : "-"}
+              </Descriptions.Item>
+              <Descriptions.Item label="分析理由" span={2}>
+                <Paragraph style={{ marginBottom: 0 }}>
+                  {selectedSignal.reason || selectedSignal.reasoning || "暂无分析理由"}
+                </Paragraph>
+              </Descriptions.Item>
+              <Descriptions.Item label="规则ID">
+                {selectedSignal.ruleId || "-"}
+              </Descriptions.Item>
+              <Descriptions.Item label="关联事件">
+                {selectedSignal.eventId || "-"}
+              </Descriptions.Item>
+            </Descriptions>
+          ) : (
+            <Empty description="暂无信号数据" />
+          )}
+        </Spin>
       </Modal>
     </div>
   );

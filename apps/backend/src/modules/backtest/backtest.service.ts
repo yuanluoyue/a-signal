@@ -1,9 +1,20 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { and, gte, lte, inArray, desc, eq } from 'drizzle-orm';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { and, gte, lte, inArray, desc, eq, sql } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { KlinesService, KlinePeriod } from '../klines/klines.service.js';
-import { signals, klines, backtestRecords, Signal, Kline, type NewBacktestRecord, type BacktestRecord } from '../../core/db/schema.js';
-import { BacktestRequestDto, BacktestResponse, TradeResult, BacktestPeriod } from '../../interfaces/admin/backtest/dto/backtest.dto.js';
+import { StrategyService } from '../strategy/strategy.service.js';
+import {
+  signals,
+  klines,
+  backtestRecords,
+  backtestTrades,
+  Signal,
+  type NewBacktestRecord,
+  type NewBacktestTrade,
+  type BacktestRecord,
+  type BacktestTrade,
+} from '../../core/db/schema.js';
+import { StrategyBacktestRequestDto, BacktestTradeResult, BacktestStatistics } from '../../interfaces/admin/backtest/dto/backtest.dto.js';
 
 @Injectable()
 export class BacktestService {
@@ -12,92 +23,223 @@ export class BacktestService {
   constructor(
     private readonly dbService: DbService,
     private readonly klinesService: KlinesService,
+    private readonly strategyService: StrategyService,
   ) {}
 
-  async runBacktest(dto: BacktestRequestDto): Promise<BacktestResponse> {
-    const period = dto.period || BacktestPeriod.FOUR_HOURS;
-    const klinePeriod: KlinePeriod = period === BacktestPeriod.ONE_DAY ? '1d' : '4h';
-
+  async runBacktest(dto: StrategyBacktestRequestDto): Promise<BacktestRecord> {
     this.logger.log(
-      `Running backtest from ${dto.startTime.toISOString()} to ${dto.endTime.toISOString()} with period ${period}`,
+      `Running strategy backtest: strategyId=${dto.strategyId}, ${dto.startTime.toISOString()} ~ ${dto.endTime.toISOString()}`,
     );
 
-    const signalsList = await this.querySignals(dto);
-    this.logger.log(`Found ${signalsList.length} signals matching criteria`);
-
-    if (signalsList.length === 0) {
-      return {
-        totalTrades: 0,
-        winningTrades: 0,
-        losingTrades: 0,
-        winRate: 0,
-        totalReturn: 0,
-        maxDrawdown: 0,
-        avgReturn: 0,
-        trades: [],
-      };
+    const strategy = await this.strategyService.findById(dto.strategyId);
+    if (!strategy) {
+      throw new NotFoundException(`Strategy ${dto.strategyId} not found`);
     }
 
-    const trades: TradeResult[] = [];
+    const strategySnapshot: Record<string, unknown> = {
+      id: strategy.id,
+      name: strategy.name,
+      description: strategy.description,
+      enabled: strategy.enabled,
+      minScore: strategy.minScore,
+      maxScore: strategy.maxScore,
+      allowedRuleIds: strategy.allowedRuleIds,
+      allowedCategories: strategy.allowedCategories,
+      directionMode: strategy.directionMode,
+      entryMode: strategy.entryMode,
+      holdPeriod: strategy.holdPeriod,
+      stopLossPct: strategy.stopLossPct,
+      takeProfitPct: strategy.takeProfitPct,
+      maxSignalsPerDay: strategy.maxSignalsPerDay,
+      maxPositions: strategy.maxPositions,
+    };
 
-    for (const signal of signalsList) {
-      try {
-        const trade = await this.simulateTrade(signal, dto, klinePeriod);
-        if (trade) {
-          trades.push(trade);
-        }
-      } catch (error) {
-        this.logger.error(
-          `Failed to simulate trade for signal ${signal.id}: ${error instanceof Error ? error.message : String(error)}`,
-        );
+    try {
+      const allSignals = await this.queryAllSignals(dto);
+      this.logger.log(`Found ${allSignals.length} total signals in time range`);
+
+      const filteredSignals = this.filterSignalsByStrategy(allSignals, strategy);
+      this.logger.log(`Filtered to ${filteredSignals.length} signals matching strategy`);
+
+      const stockCodes = [...new Set(filteredSignals.map(s => s.symbol).filter((code): code is string => code !== null))];
+      if (stockCodes.length > 0) {
+        this.logger.log(`Checking and updating klines for ${stockCodes.length} stocks...`);
+        const updateResult = await this.klinesService.checkAndUpdateKlinesForBacktest(stockCodes);
+        this.logger.log(`Klines update completed: ${updateResult.updated} updated, ${updateResult.failed} failed`);
       }
+
+      const klinePeriod: KlinePeriod = '1d';
+      const trades: BacktestTradeResult[] = [];
+
+      for (const signal of filteredSignals) {
+        try {
+          const trade = await this.simulateTrade(signal, strategy, dto, klinePeriod);
+          if (trade) {
+            trades.push(trade);
+          }
+        } catch (error) {
+          this.logger.error(
+            `Failed to simulate trade for signal ${signal.id}: ${error instanceof Error ? error.message : String(error)}`,
+          );
+        }
+      }
+
+      const stats = this.calculateStatistics(trades);
+
+      const [record] = await this.dbService.db
+        .insert(backtestRecords)
+        .values({
+          name: dto.name || `${strategy.name} 回测`,
+          description: null,
+          strategyId: strategy.id,
+          strategySnapshot,
+          stockCode: dto.stockCode || null,
+          startTime: dto.startTime,
+          endTime: dto.endTime,
+          period: '1d',
+          totalSignals: allSignals.length,
+          filteredSignals: filteredSignals.length,
+          totalTrades: stats.totalTrades,
+          winningTrades: stats.winningTrades,
+          losingTrades: stats.losingTrades,
+          winRate: stats.winRate.toString(),
+          totalReturnPct: stats.totalReturnPct.toString(),
+          avgReturnPct: stats.avgReturnPct.toString(),
+          maxDrawdownPct: stats.maxDrawdownPct.toString(),
+          sharpeRatio: stats.sharpeRatio?.toString() || null,
+          profitFactor: stats.profitFactor?.toString() || null,
+          avgHoldingPeriod: stats.avgHoldingPeriod?.toString() || null,
+          equityCurve: stats.equityCurve,
+          status: 'completed',
+          errorMessage: null,
+        })
+        .returning();
+
+      if (trades.length > 0) {
+        const tradeValues: NewBacktestTrade[] = trades.map((t) => ({
+          backtestId: record.id,
+          strategyId: strategy.id,
+          signalId: t.signalId || null,
+          eventId: t.eventId || null,
+          symbol: t.symbol,
+          stockName: t.stockName || null,
+          direction: t.direction,
+          entryTime: t.entryTime,
+          entryPrice: t.entryPrice.toString(),
+          exitTime: t.exitTime || null,
+          exitPrice: t.exitPrice?.toString() || null,
+          pnlPct: t.pnlPct?.toString() || null,
+          signalScore: t.signalScore || null,
+          signalRuleId: t.signalRuleId || null,
+          signalReason: t.signalReason || null,
+          exitReason: t.exitReason || null,
+          stopLossPrice: t.stopLossPrice?.toString() || null,
+          takeProfitPrice: t.takeProfitPrice?.toString() || null,
+        }));
+
+        await this.dbService.db.insert(backtestTrades).values(tradeValues);
+      }
+
+      this.logger.log(`Backtest completed: ${record.id}, ${stats.totalTrades} trades, winRate=${stats.winRate.toFixed(4)}, totalReturn=${stats.totalReturnPct.toFixed(4)}`);
+      return record;
+    } catch (error) {
+      const [record] = await this.dbService.db
+        .insert(backtestRecords)
+        .values({
+          name: dto.name || `${strategy.name} 回测`,
+          description: null,
+          strategyId: strategy.id,
+          strategySnapshot,
+          stockCode: dto.stockCode || null,
+          startTime: dto.startTime,
+          endTime: dto.endTime,
+          period: '1d',
+          totalSignals: 0,
+          filteredSignals: 0,
+          totalTrades: 0,
+          winningTrades: 0,
+          losingTrades: 0,
+          winRate: '0',
+          totalReturnPct: '0',
+          avgReturnPct: '0',
+          maxDrawdownPct: '0',
+          equityCurve: [],
+          status: 'failed',
+          errorMessage: error instanceof Error ? error.message : String(error),
+        })
+        .returning();
+
+      this.logger.error(`Backtest failed: ${record.id}, error: ${error instanceof Error ? error.message : String(error)}`);
+      return record;
     }
-
-    const result = this.calculateStatistics(trades);
-
-    await this.saveBacktestRecord(dto, result, period);
-
-    return result;
   }
 
-  private async querySignals(dto: BacktestRequestDto): Promise<Signal[]> {
+  private async queryAllSignals(dto: StrategyBacktestRequestDto): Promise<Signal[]> {
     const conditions = [
-      gte(signals.signalTime, dto.startTime),
-      lte(signals.signalTime, dto.endTime),
-      gte(signals.confidence, dto.minConfidence),
-      lte(signals.confidence, dto.maxConfidence),
-      inArray(signals.direction, dto.directions),
+      gte(signals.generatedAt, dto.startTime),
+      lte(signals.generatedAt, dto.endTime),
     ];
 
     if (dto.stockCode) {
-      conditions.push(eq(signals.stockCode, dto.stockCode));
+      conditions.push(eq(signals.symbol, dto.stockCode));
     }
 
     const results = await this.dbService.db
       .select()
       .from(signals)
       .where(and(...conditions))
-      .orderBy(signals.signalTime);
+      .orderBy(signals.generatedAt);
 
     return results;
   }
 
+  private filterSignalsByStrategy(allSignals: Signal[], strategy: { minScore: string; maxScore: string | null; allowedRuleIds: string[] | null; allowedCategories: string[] | null; directionMode: string }): Signal[] {
+    let filtered = allSignals;
+
+    const minScore = parseFloat(strategy.minScore);
+    filtered = filtered.filter((s) => {
+      const score = parseFloat(s.score || '0');
+      return Math.abs(score) >= minScore;
+    });
+
+    if (strategy.maxScore) {
+      const maxScore = parseFloat(strategy.maxScore);
+      filtered = filtered.filter((s) => {
+        const score = parseFloat(s.score || '0');
+        return Math.abs(score) <= maxScore;
+      });
+    }
+
+    if (strategy.directionMode === 'long_only') {
+      filtered = filtered.filter((s) => s.action === 'long');
+    } else if (strategy.directionMode === 'short_only') {
+      filtered = filtered.filter((s) => s.action === 'short');
+    }
+
+    if (strategy.allowedRuleIds && strategy.allowedRuleIds.length > 0) {
+      filtered = filtered.filter((s) => s.ruleId && strategy.allowedRuleIds!.includes(s.ruleId));
+    }
+
+    return filtered;
+  }
+
   private async simulateTrade(
     signal: Signal,
-    dto: BacktestRequestDto,
+    strategy: { holdPeriod: number; stopLossPct: string | null; takeProfitPct: string | null },
+    dto: StrategyBacktestRequestDto,
     period: KlinePeriod,
-  ): Promise<TradeResult | null> {
-    const signalTime = new Date(signal.signalTime ?? new Date());
+  ): Promise<BacktestTradeResult | null> {
+    const signalTime = new Date(signal.generatedAt ?? new Date());
 
     const klineData = await this.klinesService.getKlines(
-      signal.stockCode ?? '',
+      signal.symbol ?? '',
       period,
       signalTime,
       dto.endTime,
     );
 
     if (klineData.length === 0) {
-      this.logger.warn(`No kline data found for ${signal.stockCode} after ${signalTime.toISOString()}`);
+      this.logger.warn(`No kline data found for ${signal.symbol} after ${signalTime.toISOString()}`);
       return null;
     }
 
@@ -109,20 +251,26 @@ export class BacktestService {
       return null;
     }
 
-    const isBuy = signal.direction === 'buy';
-    const stopLossPrice = isBuy
-      ? entryPrice * (1 - dto.stopLoss)
-      : entryPrice * (1 + dto.stopLoss);
-    const takeProfitPrice = isBuy
-      ? entryPrice * (1 + dto.takeProfit)
-      : entryPrice * (1 - dto.takeProfit);
+    const isLong = signal.action === 'long';
+    const stopLossPct = strategy.stopLossPct ? parseFloat(strategy.stopLossPct) : null;
+    const takeProfitPct = strategy.takeProfitPct ? parseFloat(strategy.takeProfitPct) : null;
+
+    const stopLossPrice = stopLossPct !== null
+      ? (isLong ? entryPrice * (1 - stopLossPct) : entryPrice * (1 + stopLossPct))
+      : null;
+    const takeProfitPrice = takeProfitPct !== null
+      ? (isLong ? entryPrice * (1 + takeProfitPct) : entryPrice * (1 - takeProfitPct))
+      : null;
+
+    const maxKlines = strategy.holdPeriod + 1;
+    const limitedKlines = klineData.slice(0, maxKlines);
 
     let exitPrice = entryPrice;
-    let exitReason: 'takeProfit' | 'stopLoss' | 'timeExpired' = 'timeExpired';
+    let exitReason: 'hold_period' | 'stop_loss' | 'take_profit' = 'hold_period';
     let exitTime = signalTime;
 
-    for (let i = 1; i < klineData.length; i++) {
-      const kline = klineData[i];
+    for (let i = 1; i < limitedKlines.length; i++) {
+      const kline = limitedKlines[i];
       const high = parseFloat(kline.high);
       const low = parseFloat(kline.low);
       const close = parseFloat(kline.close);
@@ -131,29 +279,29 @@ export class BacktestService {
         continue;
       }
 
-      if (isBuy) {
-        if (low <= stopLossPrice) {
+      if (isLong) {
+        if (stopLossPrice !== null && low <= stopLossPrice) {
           exitPrice = stopLossPrice;
-          exitReason = 'stopLoss';
+          exitReason = 'stop_loss';
           exitTime = new Date(kline.timestamp);
           break;
         }
-        if (high >= takeProfitPrice) {
+        if (takeProfitPrice !== null && high >= takeProfitPrice) {
           exitPrice = takeProfitPrice;
-          exitReason = 'takeProfit';
+          exitReason = 'take_profit';
           exitTime = new Date(kline.timestamp);
           break;
         }
       } else {
-        if (high >= stopLossPrice) {
+        if (stopLossPrice !== null && high >= stopLossPrice) {
           exitPrice = stopLossPrice;
-          exitReason = 'stopLoss';
+          exitReason = 'stop_loss';
           exitTime = new Date(kline.timestamp);
           break;
         }
-        if (low <= takeProfitPrice) {
+        if (takeProfitPrice !== null && low <= takeProfitPrice) {
           exitPrice = takeProfitPrice;
-          exitReason = 'takeProfit';
+          exitReason = 'take_profit';
           exitTime = new Date(kline.timestamp);
           break;
         }
@@ -163,114 +311,131 @@ export class BacktestService {
       exitTime = new Date(kline.timestamp);
     }
 
-    const tradeReturn = isBuy
+    const pnlPct = isLong
       ? (exitPrice - entryPrice) / entryPrice
       : (entryPrice - exitPrice) / entryPrice;
 
     return {
-      signalId: signal.id,
-      stockCode: signal.stockCode ?? '',
-      stockName: signal.stockName ?? '',
-      direction: signal.direction ?? '',
-      entryPrice,
-      exitPrice,
-      return: tradeReturn,
-      exitReason,
+      signalId: signal.id || null,
+      eventId: signal.eventId || null,
+      symbol: signal.symbol || '',
+      stockName: null,
+      direction: signal.action || 'long',
       entryTime: signalTime,
+      entryPrice,
       exitTime,
+      exitPrice,
+      pnlPct,
+      signalScore: signal.score || null,
+      signalRuleId: signal.ruleId || null,
+      signalReason: signal.reason || null,
+      exitReason,
+      stopLossPrice,
+      takeProfitPrice,
     };
   }
 
-  private calculateStatistics(trades: TradeResult[]): BacktestResponse {
+  private calculateStatistics(trades: BacktestTradeResult[]): BacktestStatistics {
     if (trades.length === 0) {
       return {
+        totalSignals: 0,
+        filteredSignals: 0,
         totalTrades: 0,
         winningTrades: 0,
         losingTrades: 0,
         winRate: 0,
-        totalReturn: 0,
-        maxDrawdown: 0,
-        avgReturn: 0,
-        trades: [],
+        totalReturnPct: 0,
+        avgReturnPct: 0,
+        maxDrawdownPct: 0,
+        sharpeRatio: null,
+        profitFactor: null,
+        avgHoldingPeriod: null,
+        equityCurve: [],
       };
     }
 
-    const winningTrades = trades.filter((t) => t.return > 0);
-    const losingTrades = trades.filter((t) => t.return <= 0);
+    const winningTrades = trades.filter((t) => (t.pnlPct ?? 0) > 0);
+    const losingTrades = trades.filter((t) => (t.pnlPct ?? 0) <= 0);
 
-    const totalReturn = trades.reduce((sum, t) => sum + t.return, 0);
-    const avgReturn = totalReturn / trades.length;
+    const totalReturnPct = trades.reduce((sum, t) => sum + (t.pnlPct ?? 0), 0);
+    const avgReturnPct = totalReturnPct / trades.length;
     const winRate = winningTrades.length / trades.length;
 
-    let maxDrawdown = 0;
+    let maxDrawdownPct = 0;
     let peak = 0;
     let cumulativeReturn = 0;
+    const equityCurve: Array<{ time: string; equity: number }> = [];
+    let equity = 1;
 
     for (const trade of trades) {
-      cumulativeReturn += trade.return;
+      cumulativeReturn += trade.pnlPct ?? 0;
+      equity *= (1 + (trade.pnlPct ?? 0));
       if (cumulativeReturn > peak) {
         peak = cumulativeReturn;
       }
       const drawdown = peak - cumulativeReturn;
-      if (drawdown > maxDrawdown) {
-        maxDrawdown = drawdown;
+      if (drawdown > maxDrawdownPct) {
+        maxDrawdownPct = drawdown;
       }
+      equityCurve.push({
+        time: trade.entryTime.toISOString(),
+        equity,
+      });
     }
 
+    const grossProfit = winningTrades.reduce((sum, t) => sum + (t.pnlPct ?? 0), 0);
+    const grossLoss = Math.abs(losingTrades.reduce((sum, t) => sum + (t.pnlPct ?? 0), 0));
+    const profitFactor = grossLoss > 0 ? grossProfit / grossLoss : null;
+
+    const returns = trades.map((t) => t.pnlPct ?? 0);
+    const avgReturn = returns.reduce((a, b) => a + b, 0) / returns.length;
+    const stdDev = Math.sqrt(returns.reduce((sum, r) => sum + Math.pow(r - avgReturn, 2), 0) / returns.length);
+    const sharpeRatio = stdDev > 0 ? (avgReturn / stdDev) * Math.sqrt(252) : null;
+
+    const holdingPeriods = trades
+      .filter((t) => t.entryTime && t.exitTime)
+      .map((t) => {
+        const entry = new Date(t.entryTime).getTime();
+        const exit = new Date(t.exitTime!).getTime();
+        return (exit - entry) / (1000 * 60 * 60 * 24);
+      });
+    const avgHoldingPeriod = holdingPeriods.length > 0
+      ? holdingPeriods.reduce((a, b) => a + b, 0) / holdingPeriods.length
+      : null;
+
     return {
+      totalSignals: 0,
+      filteredSignals: 0,
       totalTrades: trades.length,
       winningTrades: winningTrades.length,
       losingTrades: losingTrades.length,
       winRate,
-      totalReturn,
-      maxDrawdown,
-      avgReturn,
-      trades,
+      totalReturnPct,
+      avgReturnPct,
+      maxDrawdownPct,
+      sharpeRatio,
+      profitFactor,
+      avgHoldingPeriod,
+      equityCurve,
     };
   }
 
-  private async saveBacktestRecord(
-    dto: BacktestRequestDto,
-    result: BacktestResponse,
-    period: string,
-  ): Promise<void> {
-    const record: NewBacktestRecord = {
-      stockCode: dto.stockCode || null,
-      startTime: dto.startTime,
-      endTime: dto.endTime,
-      minConfidence: dto.minConfidence,
-      maxConfidence: dto.maxConfidence,
-      directions: dto.directions,
-      stopLoss: dto.stopLoss.toString(),
-      takeProfit: dto.takeProfit.toString(),
-      period,
-      totalTrades: result.totalTrades,
-      winningTrades: result.winningTrades,
-      losingTrades: result.losingTrades,
-      winRate: result.winRate.toString(),
-      totalReturn: result.totalReturn.toString(),
-      maxDrawdown: result.maxDrawdown.toString(),
-      avgReturn: result.avgReturn.toString(),
-      trades: result.trades,
-    };
+  async findAllRecords(stockCode?: string, strategyId?: string, limit: number = 50): Promise<BacktestRecord[]> {
+    const conditions: ReturnType<typeof eq>[] = [];
 
-    await this.dbService.db.insert(backtestRecords).values(record);
-    this.logger.log(`Saved backtest record with ${result.totalTrades} trades`);
-  }
-
-  async findAllRecords(stockCode?: string, limit: number = 50): Promise<BacktestRecord[]> {
     if (stockCode) {
-      return this.dbService.db
-        .select()
-        .from(backtestRecords)
-        .where(eq(backtestRecords.stockCode, stockCode))
-        .orderBy(desc(backtestRecords.createdAt))
-        .limit(limit);
+      conditions.push(eq(backtestRecords.stockCode, stockCode));
     }
+    if (strategyId) {
+      conditions.push(eq(backtestRecords.strategyId, strategyId));
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
 
     return this.dbService.db
       .select()
       .from(backtestRecords)
+      .where(whereClause || sql`1=1`)
       .orderBy(desc(backtestRecords.createdAt))
       .limit(limit);
   }
@@ -284,10 +449,22 @@ export class BacktestService {
     return record || null;
   }
 
+  async findTradesByBacktestId(backtestId: string): Promise<BacktestTrade[]> {
+    return this.dbService.db
+      .select()
+      .from(backtestTrades)
+      .where(eq(backtestTrades.backtestId, backtestId))
+      .orderBy(backtestTrades.entryTime);
+  }
+
   async deleteRecord(id: string): Promise<void> {
+    await this.dbService.db
+      .delete(backtestTrades)
+      .where(eq(backtestTrades.backtestId, id));
+
     await this.dbService.db
       .delete(backtestRecords)
       .where(eq(backtestRecords.id, id));
-    this.logger.log(`Deleted backtest record: ${id}`);
+    this.logger.log(`Deleted backtest record and trades: ${id}`);
   }
 }

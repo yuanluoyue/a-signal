@@ -323,69 +323,88 @@ export interface SchedulerTasksListResponse {
 
 // ==================== 回测相关类型 ====================
 
-export type BacktestPeriod = '4h' | '1d';
+export type BacktestStatus = 'completed' | 'failed' | 'running';
 
-export interface BacktestRequest {
-  startTime: Date | string;
-  endTime: Date | string;
-  minConfidence: number;
-  maxConfidence: number;
-  directions: string[];
-  stopLoss: number;
-  takeProfit: number;
-  period?: BacktestPeriod;
+export interface BacktestStrategySnapshot {
+  id: string;
+  name: string;
+  description?: string | null;
+  enabled: boolean;
+  minScore: string;
+  maxScore?: string | null;
+  allowedRuleIds?: string[] | null;
+  allowedCategories?: string[] | null;
+  directionMode: string;
+  entryMode: string;
+  holdPeriod: number;
+  stopLossPct?: string | null;
+  takeProfitPct?: string | null;
+  maxSignalsPerDay?: number | null;
+  maxPositions?: number | null;
 }
 
-export interface TradeResult {
-  signalId: string;
-  stockCode: string;
-  stockName: string;
-  direction: string;
-  entryPrice: number;
-  exitPrice: number;
-  return: number;
-  exitReason: 'takeProfit' | 'stopLoss' | 'timeExpired';
-  entryTime: Date | string;
-  exitTime: Date | string;
-}
-
-export interface BacktestResult {
+export interface BacktestRecord {
+  id: string;
+  name: string | null;
+  description: string | null;
+  strategyId: string | null;
+  strategySnapshot: BacktestStrategySnapshot | null;
+  stockCode: string | null;
+  startTime: string;
+  endTime: string;
+  period: string;
+  totalSignals: number | null;
+  filteredSignals: number | null;
   totalTrades: number;
   winningTrades: number;
   losingTrades: number;
-  winRate: number;
-  totalReturn: number;
-  maxDrawdown: number;
-  avgReturn: number;
-  trades: TradeResult[];
-}
-
-export interface BacktestFilter {
-  dateRange: [string, string];
-  confidenceRange: [number, number];
-  signalTypes: SignalType[];
-  takeProfitPercent: number;
-  stopLossPercent: number;
+  winRate: string | null;
+  totalReturnPct: string | null;
+  avgReturnPct: string | null;
+  maxDrawdownPct: string | null;
+  sharpeRatio: string | null;
+  profitFactor: string | null;
+  avgHoldingPeriod: string | null;
+  equityCurve: Array<{ time: string; equity: number }> | null;
+  status: string;
+  errorMessage: string | null;
+  createdAt: string;
 }
 
 export interface BacktestTrade {
   id: string;
+  backtestId: string;
+  strategyId: string;
+  signalId: string | null;
+  eventId: string | null;
   symbol: string;
-  type: SignalType;
-  entryPrice: number;
-  exitPrice: number;
+  stockName: string | null;
+  direction: string;
   entryTime: string;
-  exitTime: string;
-  quantity: number;
-  pnl: number;
-  pnlPercent: number;
-  exitReason: 'take_profit' | 'stop_loss' | 'signal';
+  entryPrice: string;
+  exitTime: string | null;
+  exitPrice: string | null;
+  pnlPct: string | null;
+  signalScore: string | null;
+  signalRuleId: string | null;
+  signalReason: string | null;
+  exitReason: string | null;
+  stopLossPrice: string | null;
+  takeProfitPrice: string | null;
+  createdAt: string;
 }
 
-export interface BacktestResponse {
-  success: boolean;
-  data: BacktestResult;
-  timestamp: string;
+export interface StrategyBacktestRequest {
+  strategyId: string;
+  startTime: string;
+  endTime: string;
+  name?: string;
+  stockCode?: string;
+}
+
+export interface BacktestRecordsQueryParams {
+  stockCode?: string;
+  strategyId?: string;
 }
 
 // ==================== 仪表盘相关类型 ====================
