@@ -1,5 +1,5 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { eq, and, sql, desc } from 'drizzle-orm';
+import { eq, and, desc } from 'drizzle-orm';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { DbService } from '../../core/db/db.service.js';
@@ -8,13 +8,12 @@ import * as schema from '../../core/db/schema.js';
 
 export type Webhook = schema.Webhook;
 export type NewWebhook = schema.NewWebhook;
+export type Strategy = schema.Strategy;
 
 export interface CreateWebhookInput {
   name: string;
   url: string;
   type: 'wechat';
-  minScore: number;
-  maxScore: number;
   enabled?: boolean;
 }
 
@@ -22,8 +21,6 @@ export interface UpdateWebhookInput {
   name?: string;
   url?: string;
   type?: 'wechat';
-  minScore?: number;
-  maxScore?: number;
   enabled?: boolean;
 }
 
@@ -88,8 +85,6 @@ export class WebhooksService {
         name: input.name,
         url: input.url,
         type: input.type,
-        minScore: input.minScore.toString(),
-        maxScore: input.maxScore.toString(),
         enabled: input.enabled ?? true,
       })
       .returning();
@@ -110,13 +105,6 @@ export class WebhooksService {
       type: input.type,
       enabled: input.enabled,
     };
-
-    if (input.minScore !== undefined) {
-      updateData.minScore = input.minScore.toString();
-    }
-    if (input.maxScore !== undefined) {
-      updateData.maxScore = input.maxScore.toString();
-    }
 
     const result = await this.dbService.db
       .update(schema.webhooks)
@@ -158,39 +146,14 @@ export class WebhooksService {
     return result[0];
   }
 
-  async sendSignalNotifications(signal: SignalNotification): Promise<void> {
-    const absScore = Math.abs(signal.score);
-    const webhooks = await this.dbService.db
+  async findStrategiesByWebhookId(webhookId: string): Promise<Strategy[]> {
+    return this.dbService.db
       .select()
-      .from(schema.webhooks)
-      .where(
-        and(
-          eq(schema.webhooks.enabled, true),
-          sql`${absScore} >= ${schema.webhooks.minScore}::numeric`,
-          sql`${absScore} <= ${schema.webhooks.maxScore}::numeric`,
-        ),
-      );
-
-    if (webhooks.length === 0) {
-      this.logger.log(`No webhooks found for signal ${signal.stockCode} with absolute score ${absScore}`);
-      return;
-    }
-
-    this.logger.log(`Sending signal notification to ${webhooks.length} webhooks`);
-
-    const message = this.buildWechatMessage(signal);
-
-    for (const webhook of webhooks) {
-      try {
-        await this.sendToWebhook(webhook, message);
-        this.logger.log(`Sent notification to webhook: ${webhook.name}`);
-      } catch (error) {
-        this.logger.error(`Failed to send notification to webhook ${webhook.name}:`, error);
-      }
-    }
+      .from(schema.strategies)
+      .where(eq(schema.strategies.webhookId, webhookId));
   }
 
-  private buildWechatMessage(signal: SignalNotification): object {
+  private buildWechatMessage(signal: SignalNotification, strategyName?: string): object {
     let directionText: string;
     const direction = signal.direction?.toLowerCase();
     
@@ -202,10 +165,12 @@ export class WebhooksService {
       directionText = '观望';
     }
 
+    const strategyLabel = strategyName ? ` [策略: ${strategyName}]` : '';
+
     return {
       msgtype: 'markdown',
       markdown: {
-        content: `## 🔔 新的交易信号\n\n` +
+        content: `## 🔔 新的交易信号${strategyLabel}\n\n` +
           `**股票**: ${signal.stockName} (${signal.stockCode})\n\n` +
           `**方向**: ${directionText}\n\n` +
           `**分数**: ${signal.score.toFixed(2)}\n\n` +

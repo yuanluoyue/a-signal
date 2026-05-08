@@ -275,10 +275,10 @@ export const webhooks = pgTable(
     name: varchar('name', { length: 100 }).notNull(),
     url: text('url').notNull(),
     type: varchar('type', { length: 20 }).notNull(),
-    minConfidence: integer('min_confidence').default(0),
-    maxConfidence: integer('max_confidence').default(100),
-    minScore: decimal('min_score', { precision: 4, scale: 3 }).default('0'),
-    maxScore: decimal('max_score', { precision: 4, scale: 3 }).default('1'),
+    minConfidence: integer('min_confidence'),
+    maxConfidence: integer('max_confidence'),
+    minScore: decimal('min_score', { precision: 4, scale: 3 }),
+    maxScore: decimal('max_score', { precision: 4, scale: 3 }),
     enabled: boolean('enabled').notNull().default(true),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
@@ -676,6 +676,7 @@ export const strategies = pgTable(
     takeProfitPct: decimal('take_profit_pct', { precision: 5, scale: 4 }),
     maxSignalsPerDay: integer('max_signals_per_day'),
     maxPositions: integer('max_positions'),
+    webhookId: uuid('webhook_id'),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -685,9 +686,15 @@ export const strategies = pgTable(
       .$onUpdate(() => new Date()),
   },
   (table) => [
+    foreignKey({
+      columns: [table.webhookId],
+      foreignColumns: [webhooks.id],
+      name: 'strategies_webhook_id_fk',
+    }),
     index('strategies_enabled_idx').on(table.enabled),
     index('strategies_direction_mode_idx').on(table.directionMode),
     index('strategies_created_at_idx').on(table.createdAt),
+    index('strategies_webhook_id_idx').on(table.webhookId),
   ],
 );
 

@@ -1,7 +1,7 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { eq, and, sql, desc } from 'drizzle-orm';
+import { eq, and, sql, desc, isNotNull } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
-import { strategies, Strategy, NewStrategy } from '../../core/db/schema.js';
+import { strategies, Strategy, NewStrategy, webhooks, Webhook, events, Signal } from '../../core/db/schema.js';
 
 export interface CreateStrategyDto {
   name: string;
@@ -18,6 +18,7 @@ export interface CreateStrategyDto {
   takeProfitPct?: number;
   maxSignalsPerDay?: number;
   maxPositions?: number;
+  webhookId?: string;
 }
 
 export interface UpdateStrategyDto {
@@ -35,6 +36,7 @@ export interface UpdateStrategyDto {
   takeProfitPct?: number;
   maxSignalsPerDay?: number;
   maxPositions?: number;
+  webhookId?: string;
 }
 
 export interface StrategyListQueryDto {
@@ -67,6 +69,7 @@ export class StrategyService {
         takeProfitPct: dto.takeProfitPct !== undefined ? String(dto.takeProfitPct) : null,
         maxSignalsPerDay: dto.maxSignalsPerDay || null,
         maxPositions: dto.maxPositions || null,
+        webhookId: dto.webhookId || null,
       };
 
       const [result] = await this.dbService.db
@@ -190,6 +193,9 @@ export class StrategyService {
       if (dto.maxPositions !== undefined) {
         updateData.maxPositions = dto.maxPositions || null;
       }
+      if (dto.webhookId !== undefined) {
+        updateData.webhookId = dto.webhookId || null;
+      }
 
       const [result] = await this.dbService.db
         .update(strategies)
@@ -208,6 +214,111 @@ export class StrategyService {
         `Failed to update strategy ${id}: ${error instanceof Error ? error.message : String(error)}`,
       );
       throw error;
+    }
+  }
+
+  async findEnabledWithWebhook(): Promise<Array<Strategy & { webhook: Webhook }>> {
+    try {
+      const rows = await this.dbService.db
+        .select({
+          strategy: strategies,
+          webhook: webhooks,
+        })
+        .from(strategies)
+        .innerJoin(webhooks, eq(strategies.webhookId, webhooks.id))
+        .where(
+          and(
+            eq(strategies.enabled, true),
+            isNotNull(strategies.webhookId),
+          ),
+        );
+
+      this.logger.log(`StrategyService.findEnabledWithWebhook: found ${rows.length} enabled strategies with webhooks`);
+
+      return rows.map((row) => ({
+        ...row.strategy,
+        webhook: row.webhook,
+      }));
+    } catch (error) {
+      this.logger.error(
+        `StrategyService.findEnabledWithWebhook: failed to query enabled strategies with webhooks: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
+  async filterSignalByStrategy(strategy: Strategy, signal: Signal): Promise<boolean> {
+    try {
+      const absScore = Math.abs(parseFloat(signal.score || '0'));
+      const minScore = parseFloat(strategy.minScore);
+      const maxScore = strategy.maxScore ? parseFloat(strategy.maxScore) : null;
+
+      if (absScore < minScore) {
+        this.logger.debug(
+          `StrategyService.filterSignalByStrategy: strategy [${strategy.name}] rejected signal ${signal.id} - absScore(${absScore}) < minScore(${minScore})`,
+        );
+        return false;
+      }
+      if (maxScore !== null && absScore > maxScore) {
+        this.logger.debug(
+          `StrategyService.filterSignalByStrategy: strategy [${strategy.name}] rejected signal ${signal.id} - absScore(${absScore}) > maxScore(${maxScore})`,
+        );
+        return false;
+      }
+
+      const action = (signal.action || signal.direction || '').toLowerCase();
+      if (strategy.directionMode === 'long_only' && action !== 'long') {
+        this.logger.debug(
+          `StrategyService.filterSignalByStrategy: strategy [${strategy.name}] rejected signal ${signal.id} - directionMode is long_only but action is ${action}`,
+        );
+        return false;
+      }
+      if (strategy.directionMode === 'short_only' && action !== 'short') {
+        this.logger.debug(
+          `StrategyService.filterSignalByStrategy: strategy [${strategy.name}] rejected signal ${signal.id} - directionMode is short_only but action is ${action}`,
+        );
+        return false;
+      }
+
+      if (strategy.allowedCategories && strategy.allowedCategories.length > 0) {
+        if (!signal.eventId) {
+          this.logger.debug(
+            `StrategyService.filterSignalByStrategy: strategy [${strategy.name}] rejected signal ${signal.id} - allowedCategories set but signal has no eventId`,
+          );
+          return false;
+        }
+        const [eventRow] = await this.dbService.db
+          .select({ category: events.category })
+          .from(events)
+          .where(eq(events.id, signal.eventId))
+          .limit(1);
+
+        if (!eventRow || !strategy.allowedCategories.includes(eventRow.category)) {
+          this.logger.debug(
+            `StrategyService.filterSignalByStrategy: strategy [${strategy.name}] rejected signal ${signal.id} - event category ${eventRow?.category} not in allowedCategories [${strategy.allowedCategories.join(',')}]`,
+          );
+          return false;
+        }
+      }
+
+      if (strategy.allowedRuleIds && strategy.allowedRuleIds.length > 0) {
+        if (!signal.ruleId || !strategy.allowedRuleIds.includes(signal.ruleId)) {
+          this.logger.debug(
+            `StrategyService.filterSignalByStrategy: strategy [${strategy.name}] rejected signal ${signal.id} - ruleId ${signal.ruleId} not in allowedRuleIds [${strategy.allowedRuleIds.join(',')}]`,
+          );
+          return false;
+        }
+      }
+
+      this.logger.debug(
+        `StrategyService.filterSignalByStrategy: strategy [${strategy.name}] matched signal ${signal.id}`,
+      );
+      return true;
+    } catch (error) {
+      this.logger.error(
+        `StrategyService.filterSignalByStrategy: error filtering signal ${signal.id} for strategy [${strategy.name}]: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      return false;
     }
   }
 }

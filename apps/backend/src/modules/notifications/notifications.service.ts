@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 import { WebhooksService, Webhook } from './webhooks.service.js';
 import { Signal } from '../../core/db/schema.js';
 import { BlacklistService } from '../blacklist/blacklist.service.js';
+import { StrategyService } from '../strategy/strategy.service.js';
 
 export interface WechatMessage {
   msgtype: 'markdown';
@@ -28,6 +29,7 @@ export class NotificationsService {
     private readonly httpService: HttpService,
     private readonly webhooksService: WebhooksService,
     private readonly blacklistService: BlacklistService,
+    private readonly strategyService: StrategyService,
   ) {}
 
   async sendWechatNotification(
@@ -35,9 +37,10 @@ export class NotificationsService {
     signal: Signal,
     stockName: string,
     stockCode: string,
+    strategyName: string,
   ): Promise<boolean> {
     try {
-      const message = this.buildWechatMessage(signal, stockName, stockCode);
+      const message = this.buildWechatMessage(signal, stockName, stockCode, strategyName);
 
       const response = await firstValueFrom(
         this.httpService.post(webhookUrl, message, {
@@ -70,6 +73,7 @@ export class NotificationsService {
     signal: Signal,
     stockName: string,
     stockCode: string,
+    strategyName: string,
   ): WechatMessage {
     const direction = (signal.action || signal.direction || '').toLowerCase();
     const directionEmoji = this.getDirectionEmoji(direction);
@@ -86,7 +90,7 @@ export class NotificationsService {
     const score = parseFloat(signal.score || '0');
     const time = signal.generatedAt || signal.signalTime || signal.createdAt;
 
-    const content = `**${directionEmoji} 新交易信号**\n` +
+    const content = `**${directionEmoji} 新交易信号 [策略: ${strategyName}]**\n` +
       `>股票: ${stockName}(${stockCode})\n` +
       `>方向: ${directionText}\n` +
       `>分数: ${score.toFixed(2)}\n` +
@@ -120,33 +124,66 @@ export class NotificationsService {
       const isBlacklisted = await this.blacklistService.isBlacklisted(context.stockCode);
       if (isBlacklisted) {
         this.logger.debug(
-          `Skipping notification for signal ${context.signal.id} - stock ${context.stockCode} is blacklisted`,
+          `NotificationsService.notifySignalAnalyzed: skipping signal ${context.signal.id} - stock ${context.stockCode} is blacklisted`,
         );
         return;
       }
 
       if (!this.isNewsWithinTwoDays(context.newsPublishTime)) {
         this.logger.debug(
-          `Skipping notification for signal ${context.signal.id} - news is older than 2 days`,
+          `NotificationsService.notifySignalAnalyzed: skipping signal ${context.signal.id} - news is older than 2 days`,
         );
         return;
       }
 
-      const enabledWebhooks = await this.webhooksService.findAllEnabled();
+      const strategiesWithWebhook = await this.strategyService.findEnabledWithWebhook();
 
-      if (enabledWebhooks.length === 0) {
-        this.logger.debug('No enabled webhooks found, skipping notifications');
+      if (strategiesWithWebhook.length === 0) {
+        this.logger.debug(
+          `NotificationsService.notifySignalAnalyzed: no enabled strategies with webhooks found, skipping signal ${context.signal.id}`,
+        );
         return;
       }
 
-      const notificationPromises = enabledWebhooks.map((webhook) =>
-        this.processWebhookNotification(webhook, context),
-      );
+      let matchedCount = 0;
+      const notificationPromises = strategiesWithWebhook.map(async (strategy) => {
+        const matched = await this.strategyService.filterSignalByStrategy(strategy, context.signal);
+        if (!matched) {
+          return;
+        }
+
+        matchedCount++;
+        this.logger.log(
+          `NotificationsService.notifySignalAnalyzed: strategy [${strategy.name}] matched signal ${context.signal.id}, sending notification via webhook [${strategy.webhook.name}]`,
+        );
+
+        switch (strategy.webhook.type) {
+          case 'wechat':
+            await this.sendWechatNotification(
+              strategy.webhook.url,
+              context.signal,
+              context.stockName,
+              context.stockCode,
+              strategy.name,
+            );
+            break;
+          default:
+            this.logger.warn(
+              `NotificationsService.notifySignalAnalyzed: unsupported webhook type ${strategy.webhook.type} for strategy [${strategy.name}]`,
+            );
+        }
+      });
 
       await Promise.all(notificationPromises);
+
+      if (matchedCount === 0) {
+        this.logger.debug(
+          `NotificationsService.notifySignalAnalyzed: no strategy matched signal ${context.signal.id}`,
+        );
+      }
     } catch (error) {
       this.logger.error(
-        `Error in notifySignalAnalyzed: ${error.message}`,
+        `NotificationsService.notifySignalAnalyzed: error processing signal ${context.signal.id}: ${error.message}`,
         error.stack,
       );
     }
@@ -156,44 +193,6 @@ export class NotificationsService {
     const now = new Date();
     const diffMs = now.getTime() - new Date(publishTime).getTime();
     return diffMs <= this.TWO_DAYS_MS;
-  }
-
-  private async processWebhookNotification(
-    webhook: Webhook,
-    context: SignalNotificationContext,
-  ): Promise<void> {
-    try {
-      const score = parseFloat(context.signal.score || '0');
-      const absScore = Math.abs(score);
-      const minScore = webhook.minScore ? parseFloat(webhook.minScore) : 0;
-      const maxScore = webhook.maxScore ? parseFloat(webhook.maxScore) : 1;
-      
-      if (absScore < minScore || absScore > maxScore) {
-        this.logger.debug(
-          `Skipping webhook ${webhook.name} - signal absolute score (${absScore}) ` +
-            `is not in range [${minScore}, ${maxScore}]`,
-        );
-        return;
-      }
-
-      switch (webhook.type) {
-        case 'wechat':
-          await this.sendWechatNotification(
-            webhook.url,
-            context.signal,
-            context.stockName,
-            context.stockCode,
-          );
-          break;
-        default:
-          this.logger.warn(`Unsupported webhook type: ${webhook.type}`);
-      }
-    } catch (error) {
-      this.logger.error(
-        `Failed to process webhook notification for ${webhook.name}: ${error.message}`,
-        error.stack,
-      );
-    }
   }
 
   async sendTestNotification(webhookId: string): Promise<boolean> {

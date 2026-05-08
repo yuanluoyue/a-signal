@@ -10,7 +10,6 @@ import {
   Form,
   Input,
   Select,
-  Slider,
   Typography,
   message,
   Popconfirm,
@@ -24,7 +23,6 @@ import {
   SendOutlined,
   BellOutlined,
   LinkOutlined,
-  PercentageOutlined,
   CheckCircleOutlined,
   CloseCircleOutlined,
 } from '@ant-design/icons';
@@ -39,9 +37,8 @@ interface Webhook {
   name: string;
   url: string;
   type: 'wechat' | 'dingtalk' | 'slack' | 'custom';
-  minScore: number;
-  maxScore: number;
   enabled: boolean;
+  strategies?: Array<{ id: string; name: string }>;
   createdAt: string;
   updatedAt: string;
 }
@@ -50,7 +47,6 @@ interface WebhookFormData {
   name: string;
   url: string;
   type: 'wechat' | 'dingtalk' | 'slack' | 'custom';
-  scoreRange: [number, number];
   enabled?: boolean;
 }
 
@@ -73,10 +69,22 @@ const NotificationsPage: React.FC = () => {
     try {
       const response = await client.get<{ data: Webhook[]; total: number }>('/webhooks');
       console.log('[Notifications] Webhooks response:', response);
-      // 处理响应数据
       const webhooksData = response.data?.data || response.data || [];
       console.log('[Notifications] Webhooks data:', webhooksData);
-      setWebhooks(webhooksData);
+
+      const webhooksWithStrategies = await Promise.all(
+        (webhooksData as Webhook[]).map(async (wh: Webhook) => {
+          try {
+            const strategiesRes = await client.get<{ data: Array<{ id: string; name: string }> }>(`/webhooks/${wh.id}/strategies`);
+            const strategies = strategiesRes.data?.data || strategiesRes.data || [];
+            return { ...wh, strategies: Array.isArray(strategies) ? strategies : [] };
+          } catch {
+            return { ...wh, strategies: [] };
+          }
+        })
+      );
+
+      setWebhooks(webhooksWithStrategies);
     } catch (error) {
       console.error('获取 Webhook 列表失败:', error);
       message.error('获取 Webhook 列表失败');
@@ -95,7 +103,6 @@ const NotificationsPage: React.FC = () => {
     form.resetFields();
     form.setFieldsValue({
       type: 'wechat',
-      scoreRange: [0, 1],
       enabled: true,
     });
     setModalVisible(true);
@@ -108,7 +115,6 @@ const NotificationsPage: React.FC = () => {
       name: record.name,
       url: record.url,
       type: record.type,
-      scoreRange: [record.minScore ?? 0, record.maxScore ?? 1],
       enabled: record.enabled,
     });
     setModalVisible(true);
@@ -121,8 +127,6 @@ const NotificationsPage: React.FC = () => {
         name: values.name,
         url: values.url,
         type: values.type,
-        minScore: values.scoreRange[0],
-        maxScore: values.scoreRange[1],
         enabled: values.enabled,
       };
 
@@ -220,17 +224,6 @@ const NotificationsPage: React.FC = () => {
   };
 
   // 格式化分数范围显示
-  const formatScoreRange = (min: number | null | undefined, max: number | null | undefined) => {
-    const minScore = min ?? 0;
-    const maxScore = max ?? 1;
-    return (
-      <Space style={{ whiteSpace: 'nowrap' }}>
-        <PercentageOutlined style={{ color: minScore >= 0.5 ? '#52c41a' : '#faad14' }} />
-        <span>{minScore.toFixed(2)} - {maxScore.toFixed(2)}</span>
-      </Space>
-    );
-  };
-
   const columns = [
     {
       title: '名称',
@@ -267,11 +260,21 @@ const NotificationsPage: React.FC = () => {
       render: (type: string) => getTypeTag(type),
     },
     {
-      title: '分数绝对值范围',
-      key: 'scoreRange',
-      width: 140,
-      align: 'center' as const,
-      render: (_: any, record: Webhook) => formatScoreRange(record.minScore, record.maxScore),
+      title: '绑定策略',
+      key: 'strategies',
+      width: 200,
+      render: (_: any, record: Webhook) => {
+        if (!record.strategies || record.strategies.length === 0) {
+          return <Text type="secondary">未绑定</Text>;
+        }
+        return (
+          <Space wrap>
+            {record.strategies.map((s) => (
+              <Tag key={s.id} color="blue">{s.name}</Tag>
+            ))}
+          </Space>
+        );
+      },
     },
     {
       title: '状态',
@@ -408,39 +411,6 @@ const NotificationsPage: React.FC = () => {
               <Option value="slack">Slack</Option>
               <Option value="custom">自定义</Option>
             </Select>
-          </Form.Item>
-
-          <Form.Item
-            name="scoreRange"
-            label="分数绝对值范围"
-            rules={[{ required: true, message: '请设置分数范围' }]}
-            tooltip="只有分数绝对值在此范围内的信号才会触发通知（范围：0 到 1）"
-          >
-            <Slider
-              range
-              min={0}
-              max={1}
-              step={0.01}
-              marks={{
-                '0': '0',
-                '0.25': '0.25',
-                '0.5': '0.5',
-                '0.75': '0.75',
-                '1': '1',
-              }}
-            />
-          </Form.Item>
-          <Form.Item shouldUpdate={(prev, curr) => prev.scoreRange !== curr.scoreRange}>
-            {({ getFieldValue }) => {
-              const range = getFieldValue('scoreRange') || [0, 1];
-              const minScore = range?.[0] ?? 0;
-              const maxScore = range?.[1] ?? 1;
-              return (
-                <Text type="secondary" style={{ display: 'block', marginTop: -8, marginBottom: 16 }}>
-                  当前范围: {minScore.toFixed(2)} - {maxScore.toFixed(2)}
-                </Text>
-              );
-            }}
           </Form.Item>
 
           <Form.Item

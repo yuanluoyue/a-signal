@@ -74,4 +74,9 @@ export class CreateStrategyDto {
   @IsOptional()
   @IsNumber()
   maxPositions?: number;
+
+  @ApiPropertyOptional({ description: '绑定的 Webhook ID' })
+  @IsOptional()
+  @IsString()
+  webhookId?: string;
 }

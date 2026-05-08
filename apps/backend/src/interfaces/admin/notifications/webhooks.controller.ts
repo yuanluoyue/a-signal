@@ -67,6 +67,19 @@ export class WebhooksController {
     };
   }
 
+  @Get(':id/strategies')
+  @Public()
+  @ApiOperation({ summary: '获取绑定到 Webhook 的策略列表' })
+  @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
+  async getWebhookStrategies(@Param('id') id: string) {
+    const webhook = await this.webhooksService.findById(id);
+    if (!webhook) {
+      throw new NotFoundException('Webhook 不存在');
+    }
+    const strategies = await this.webhooksService.findStrategiesByWebhookId(id);
+    return { data: strategies };
+  }
+
   @Post(':id/test')
   @HttpCode(HttpStatus.OK)
   @ApiOperation({ summary: '测试 Webhook' })

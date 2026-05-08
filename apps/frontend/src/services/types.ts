@@ -278,8 +278,8 @@ export interface Webhook {
   name: string;
   url: string;
   type: WebhookType;
-  confidenceThreshold: number;
   enabled: boolean;
+  strategies?: Strategy[];
   createdAt: string;
   updatedAt: string;
 }
@@ -288,7 +288,6 @@ export interface CreateWebhookData {
   name: string;
   url: string;
   type: WebhookType;
-  confidenceThreshold: number;
   enabled?: boolean;
 }
 
@@ -296,7 +295,6 @@ export interface UpdateWebhookData {
   name?: string;
   url?: string;
   type?: WebhookType;
-  confidenceThreshold?: number;
   enabled?: boolean;
 }
 
@@ -631,6 +629,7 @@ export interface Strategy {
   takeProfitPct: string | null;
   maxSignalsPerDay: number | null;
   maxPositions: number | null;
+  webhookId?: string | null;
   createdAt: string;
   updatedAt: string;
 }
@@ -657,6 +656,7 @@ export interface CreateStrategyParams {
   takeProfitPct?: number;
   maxSignalsPerDay?: number;
   maxPositions?: number;
+  webhookId?: string;
 }
 
 export interface UpdateStrategyParams {
@@ -674,4 +674,5 @@ export interface UpdateStrategyParams {
   takeProfitPct?: number;
   maxSignalsPerDay?: number;
   maxPositions?: number;
+  webhookId?: string;
 }
