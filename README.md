@@ -1,79 +1,84 @@
-# A Signal - 智能股票分析系统
+# A Signal - AI 驱动的量化交易信号系统
 
-A Signal 是一个基于 AI 的智能股票分析平台，提供新闻情绪分析、交易信号生成、量化回测、智能投研助手和 MCP 服务等功能。
+A Signal 是一个基于 AI 的智能股票分析平台，通过新闻事件提取、情绪分析、信号生成、策略过滤、Webhook 通知的完整链路，将非结构化新闻信息转化为可执行的交易机会。
 
-## ✨ 核心功能
-
-### 📊 智能投研助手 (Agent)
-基于 LangGraph 的多轮对话投研助手，支持：
-- **多轮对话** - 上下文感知的连续对话能力
-- **智能工具调用** - 自动识别用户意图并调用相应工具
-- **记忆系统** - 短期记忆（PostgreSQL）+ 长期记忆（ChromaDB 向量检索）
-- **专业分析输出** - 标准化的投资分析结论格式
-
-### 🔌 MCP 服务
-符合 Model Context Protocol 标准的外部 API 接入服务：
-- **JSON-RPC 2.0 协议** - 标准化的接口协议
-- **API Key 管理** - 完整的密钥生命周期管理
-- **限流控制** - 基于令牌桶的速率限制
-- **调用日志** - 完整的 API 调用审计
-
-### 📈 信号分析
-- **AI 新闻分析** - 基于火山引擎大模型分析新闻情绪
-- **交易信号生成** - 自动生成买入/卖出/持有信号
-- **信号追踪** - 信号历史记录与效果追踪
-
-### 📰 新闻管理
-- **新闻采集** - 自动化新闻爬取
-- **向量化存储** - 基于 ChromaDB 的向量检索
-- **情绪分析** - 新闻情绪倾向判断
-
-### 💼 模拟交易
-- **虚拟账户** - 模拟真实交易环境
-- **持仓管理** - 实时盈亏计算
-- **交易记录** - 完整的交易历史
-
-### 📊 量化回测
-- **策略回测** - 基于历史信号的回测引擎
-- **风险控制** - 止盈止损设置
-- **绩效报告** - 胜率、收益率、最大回撤等指标
-
-### 🔔 通知系统
-- **Webhook 推送** - 支持自定义 Webhook 通知
-- **信号过滤** - 基于置信度的通知过滤
-- **定时任务** - 可配置的定时调度
-
-## 🏗️ 技术架构
+## 核心流程
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                         Frontend (UMI 4)                        │
-│  ┌──────────┬──────────┬──────────┬──────────┬──────────────┐  │
-│  │ Dashboard│  News    │ Signals  │ Backtest │ Agent Chat   │  │
-│  └──────────┴──────────┴──────────┴──────────┴──────────────┘  │
-└─────────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      Backend (NestJS 11)                        │
-│  ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐ │
-│  │  Agent  │   MCP   │ Signals │ Backtest│  News   │  Queue  │ │
-│  │ (LangGraph)│(JSON-RPC)│       │         │         │(RabbitMQ)│
-│  └─────────┴─────────┴─────────┴─────────┴─────────┴─────────┘ │
-│  ┌─────────┬─────────┬─────────┬─────────┬─────────┬─────────┐ │
-│  │ API Key │  Auth   │  Users  │Simulation│Scheduler│Webhook │ │
-│  └─────────┴─────────┴─────────┴─────────┴─────────┴─────────┘ │
-└─────────────────────────────────────────────────────────────────┘
-                              │
-        ┌─────────────────────┼─────────────────────┐
-        ▼                     ▼                     ▼
-┌───────────────┐    ┌───────────────┐    ┌───────────────┐
-│  PostgreSQL   │    │   RabbitMQ    │    │   ChromaDB    │
-│  (主数据库)    │    │  (消息队列)    │    │ (向量数据库)   │
-└───────────────┘    └───────────────┘    └───────────────┘
+新闻采集 → 事件提取（AI）→ 信号生成（规则引擎）→ 策略过滤 → Webhook 通知
+                                                              ↓
+                                                         量化回测验证
 ```
 
-## 🚀 快速开始
+1. **新闻采集**：定时爬取财经新闻，入队待处理
+2. **事件提取**：AI 分析新闻，提取结构化事件（类别、方向、重要性、置信度、有效期）
+3. **信号生成**：规则引擎基于事件生成交易信号（做多/做空/观望），计算综合分数
+4. **策略过滤**：已启用的策略按条件（分数、方向、类别、规则）过滤信号，匹配的交易机会通过策略绑定的 Webhook 发送通知
+5. **量化回测**：基于历史信号和策略参数回测，验证策略有效性
+
+## 功能模块
+
+### 信号管线
+
+| 模块 | 说明 |
+|------|------|
+| 新闻管理 | 自动爬取、AI 分析、向量化存储 |
+| 事件分析 | 从新闻提取结构化事件（宏观/政策/公司/市场/情绪） |
+| 信号规则 | 全局规则 + 事件类型专属规则，控制信号生成的阈值和乘数 |
+| 信号生成 | 基于规则引擎自动生成交易信号，计算综合分数 |
+| 策略管理 | 定义筛选条件（分数范围、方向模式、事件类别、规则 ID）并绑定 Webhook |
+| 策略通知 | 信号经策略过滤后，通过绑定的 Webhook 推送交易机会（含策略名称） |
+
+### 辅助功能
+
+| 模块 | 说明 |
+|------|------|
+| 量化回测 | 选择策略 + 时间范围回测，生成交易记录和绩效指标 |
+| 股票追踪 | 追踪关注股票，K 线叠加信号标记，关联新闻和事件 |
+| 模拟交易 | 虚拟账户、持仓管理、交易记录 |
+| AI 投研助手 | 基于 LangGraph 的多轮对话，支持工具调用和记忆系统 |
+| MCP 服务 | 符合 Model Context Protocol 的外部 API 接入 |
+| 黑名单 | 过滤不想接收信号的股票 |
+
+## 技术架构
+
+```
+┌──────────────────────────────────────────────────────────────────┐
+│                        Frontend (Umi 4 + React 18)               │
+│  ┌───────┬──────┬───────┬──────────┬──────────┬───────────────┐ │
+│  │Dashboard│News │Signals│ Strategy │ Backtest │ Agent Chat    │ │
+│  └───────┴──────┴───────┴──────────┴──────────┴───────────────┘ │
+└──────────────────────────────────────────────────────────────────┘
+                               │
+                               ▼
+┌──────────────────────────────────────────────────────────────────┐
+│                       Backend (NestJS 11)                        │
+│                                                                  │
+│  信号管线          辅助模块           基础设施                    │
+│  ┌──────────┐     ┌──────────┐      ┌──────────┐               │
+│  │News      │     │Backtest  │      │Auth      │               │
+│  │Event     │     │Simulation│      │Users     │               │
+│  │SignalRule│     │StockTrack│      │API Key   │               │
+│  │SignalGen │     │Agent     │      │Scheduler │               │
+│  │Strategy  │     │MCP       │      │Webhook   │               │
+│  │Notification│   │Blacklist │      │Dashboard │               │
+│  └──────────┘     └──────────┘      └──────────┘               │
+│                                                                  │
+│  队列消费者                                                       │
+│  ┌─────────┬──────────────┬──────────────┬─────────────────┐    │
+│  │NewsCrawl│EventAnalyze  │NewsVectorize │KlineFetch       │    │
+│  └─────────┴──────────────┴──────────────┴─────────────────┘    │
+└──────────────────────────────────────────────────────────────────┘
+                               │
+         ┌─────────────────────┼─────────────────────┐
+         ▼                     ▼                     ▼
+ ┌───────────────┐     ┌───────────────┐     ┌───────────────┐
+ │  PostgreSQL   │     │   RabbitMQ    │     │   ChromaDB    │
+ │  (主数据库)    │     │  (消息队列)    │     │ (向量数据库)   │
+ └───────────────┘     └───────────────┘     └───────────────┘
+```
+
+## 快速开始
 
 ### 环境要求
 
@@ -102,6 +107,7 @@ cp docker/.env.example docker/.env
 ```
 
 必需配置项：
+
 ```env
 # 数据库
 DB_HOST=localhost
@@ -152,90 +158,97 @@ pnpm run dev:frontend
 - Swagger 文档: http://localhost:3001/api
 - RabbitMQ 管理界面: http://localhost:15672
 
-## 📁 项目结构
+## 项目结构
 
 ```
 a-signal/
 ├── apps/
-│   ├── backend/              # NestJS 后端
-│   │   ├── migrations/       # 数据库迁移文件
+│   ├── backend/                  # NestJS 后端
+│   │   ├── migrations/           # 数据库迁移文件 (Drizzle ORM)
+│   │   ├── scripts/              # 迁移和种子脚本
 │   │   ├── src/
-│   │   │   ├── common/       # 通用基础设施（装饰器、守卫、拦截器、中间件）
-│   │   │   ├── core/         # 核心基础设施（数据库、队列、向量、日志、认证）
-│   │   │   ├── interfaces/   # API 接口层
-│   │   │   │   ├── admin/    # 管理端 API（/api/v1/）
-│   │   │   │   └── mcp/      # MCP 对外接口（/mcp/）
-│   │   │   ├── modules/      # 业务模块（Service 层）
-│   │   │   │   ├── agent/    # 投研 Agent (LangGraph)
-│   │   │   │   ├── mcp/      # MCP Server
-│   │   │   │   ├── signals/  # 信号管理
-│   │   │   │   ├── backtest/ # 回测引擎
-│   │   │   │   ├── news/     # 新闻管理
-│   │   │   │   └── ...
-│   │   │   ├── jobs/         # 定时任务和消费者
-│   │   │   ├── app.module.ts # 根模块
-│   │   │   └── main.ts       # 入口文件
-│   │   └── test/             # E2E 测试
-│   ├── frontend/             # UMI 前端
+│   │   │   ├── common/           # 通用基础设施（装饰器、守卫、拦截器、中间件）
+│   │   │   ├── core/             # 核心基础设施（数据库、队列、向量、日志、认证）
+│   │   │   ├── interfaces/       # API 接口层
+│   │   │   │   ├── admin/        # 管理端 API（/api/v1/）
+│   │   │   │   └── mcp/          # MCP 对外接口（/mcp/）
+│   │   │   ├── modules/          # 业务模块（Service 层）
+│   │   │   ├── jobs/             # 定时任务和队列消费者
+│   │   │   ├── app.module.ts
+│   │   │   └── main.ts
+│   │   └── test/
+│   ├── frontend/                 # Umi 前端
 │   │   └── src/
-│   │       ├── pages/        # 页面组件
-│   │       ├── api/          # API 封装
-│   │       └── components/   # 公共组件
-│   └── mcp-demo/             # MCP 调用演示 (Next.js)
+│   │       ├── pages/            # 页面组件
+│   │       ├── services/         # API 封装和类型定义
+│   │       ├── layouts/          # 布局组件
+│   │       └── components/       # 公共组件
+│   └── mcp-demo/                 # MCP 调用演示 (Next.js)
 ├── docker/
 │   ├── docker-compose.dev.yml
 │   └── .env.example
 └── .trae/
-    ├── skills/               # AI 开发技能
-    └── specs/                # 功能规格文档
+    └── specs/                    # 功能规格文档
 ```
 
 ### 后端架构分层
 
 ```
 src/
-├── common/                    # 通用基础设施
-│   ├── decorators/            # @CurrentUser, @Public
-│   ├── filters/               # 异常过滤器
-│   ├── guards/                # JwtAuthGuard
-│   ├── interceptors/          # 响应拦截器
-│   └── middleware/            # TraceIdMiddleware
+├── common/                       # 通用基础设施
+│   ├── decorators/               # @CurrentUser, @Public
+│   ├── filters/                  # 异常过滤器
+│   ├── guards/                   # JwtAuthGuard
+│   ├── interceptors/             # 响应拦截器
+│   └── middleware/               # TraceIdMiddleware
 │
-├── core/                      # 核心基础设施
-│   ├── auth/                  # JWT/API Key 认证策略
-│   ├── db/                    # 数据库（Drizzle ORM）
-│   ├── logger/                # Winston 日志
-│   ├── queue/                 # RabbitMQ 队列
-│   ├── vector/                # ChromaDB 向量数据库
-│   └── volcengine/            # 火山引擎 AI 服务
+├── core/                         # 核心基础设施
+│   ├── auth/                     # JWT/API Key 认证策略
+│   ├── db/                       # 数据库（Drizzle ORM + Schema）
+│   ├── logger/                   # Winston 日志
+│   ├── queue/                    # RabbitMQ 队列
+│   ├── vector/                   # ChromaDB 向量数据库
+│   └── volcengine/               # 火山引擎 AI 服务
 │
-├── interfaces/                # API 接口层（控制器 + DTO）
-│   ├── admin/                 # 管理端 API（/api/v1/）
-│   │   ├── auth/              # 认证接口
-│   │   ├── news/              # 新闻接口
-│   │   ├── signals/           # 信号接口
-│   │   ├── backtest/          # 回测接口
-│   │   ├── agent/             # Agent 对话接口
+├── interfaces/                   # API 接口层（Controller + DTO）
+│   ├── admin/                    # 管理端 API（/api/v1/）
+│   │   ├── auth/                 # 认证
+│   │   ├── news/                 # 新闻
+│   │   ├── events/               # 事件
+│   │   ├── signals/              # 信号
+│   │   ├── signal-rules/         # 信号规则
+│   │   ├── strategy/             # 策略
+│   │   ├── notifications/        # Webhook 通知
+│   │   ├── backtest/             # 回测
+│   │   ├── stock-tracking/       # 股票追踪
+│   │   ├── simulation/           # 模拟交易
+│   │   ├── agent/                # AI 投研
 │   │   └── ...
-│   └── mcp/                   # MCP 对外接口（/mcp/）
+│   └── mcp/                      # MCP 对外接口（/mcp/）
 │
-├── modules/                   # 业务模块（Service 层）
-│   ├── auth/                  # 认证服务
-│   ├── news/                  # 新闻服务
-│   ├── signals/               # 信号服务
-│   ├── backtest/              # 回测服务
-│   ├── agent/                 # Agent 服务（含 graph/memory/nodes/tools）
-│   ├── mcp/                   # MCP 服务
+├── modules/                      # 业务模块（Service 层）
+│   ├── news/                     # 新闻服务
+│   ├── event/                    # 事件服务
+│   ├── signal-rule/              # 信号规则服务
+│   ├── signal-generator/         # 信号生成服务
+│   ├── strategy/                 # 策略服务
+│   ├── notifications/            # 通知 + Webhook 服务
+│   ├── backtest/                 # 回测服务
+│   ├── stock-tracking/           # 股票追踪服务
+│   ├── agent/                    # Agent 服务（graph/memory/nodes/tools）
+│   ├── mcp/                      # MCP 服务
 │   └── ...
 │
-└── jobs/                      # 定时任务和消费者
+└── jobs/                         # 定时任务和队列消费者
     ├── scheduler-tasks.service.ts
     ├── news-crawl.consumer.ts
-    ├── signal-analyze.consumer.ts
-    └── ...
+    ├── event-analyze.consumer.ts
+    ├── news-vectorize.consumer.ts
+    ├── kline-fetch.consumer.ts
+    └── stock-track-fetch.consumer.ts
 ```
 
-## 🛠️ 开发指南
+## 开发指南
 
 ### 常用命令
 
@@ -291,7 +304,30 @@ pnpm run build:frontend
 pnpm run build
 ```
 
-## 📚 核心模块说明
+## 核心模块说明
+
+### 信号生成管线
+
+信号从新闻到通知的完整链路：
+
+```
+新闻 → EventAnalyzeConsumer → 事件提取 (AI)
+                                    ↓
+                              SignalGeneratorService → 信号生成 (规则引擎)
+                                    ↓
+                              NotificationsService → 策略过滤 → Webhook 通知
+```
+
+**信号规则引擎**：
+- 全局规则：所有事件通用的阈值和乘数
+- 专属规则：按事件类型（如 cpi、earnings_actual）定制的乘数
+- 信号分数 = 重要性 × 方向 × 置信度 × (1 + 惊喜值) × 规则乘数
+
+**策略过滤**：
+- 分数范围：minScore / maxScore
+- 方向模式：仅做多 / 仅做空 / 双向
+- 事件类别：macro / policy / company / market / sentiment
+- 规则 ID：限定信号来源规则
 
 ### Agent 模块
 
@@ -319,11 +355,11 @@ pnpm run build
 
 提供符合 MCP 标准的外部 API：
 
-**Endpoints:**
+**Endpoints：**
 - `POST /mcp/v1` - JSON-RPC 2.0 接口
 - `GET /mcp/tools` - Tools 文档
 
-**Tools:**
+**Tools：**
 - `query_recent_news` - 查询最近新闻
 - `query_news_by_keyword` - 关键词搜索新闻
 - `query_backtest_data` - 查询回测数据
@@ -333,35 +369,38 @@ pnpm run build
 
 | 消费者 | 职责 |
 |--------|------|
-| `KlineFetchConsumer` | 获取 K线数据 |
-| `NewsCrawlConsumer` | 爬取新闻 |
-| `NewsVectorizeConsumer` | 新闻向量化 |
-| `SignalAnalyzeConsumer` | 信号分析 |
-| `StockTrackFetchConsumer` | 股票跟踪数据获取 |
+| `NewsCrawlConsumer` | 爬取财经新闻 |
+| `EventAnalyzeConsumer` | AI 事件提取和信号生成 |
+| `NewsVectorizeConsumer` | 新闻向量化存储 |
+| `KlineFetchConsumer` | 获取 K 线数据 |
+| `StockTrackFetchConsumer` | 股票追踪数据获取 |
 
-## 🗄️ 数据库模型
-
-### 核心表
+## 数据库模型
 
 | 表名 | 说明 |
 |------|------|
 | `users` | 用户表 |
 | `news` | 新闻表 |
+| `events` | 事件表（从新闻提取的结构化事件） |
+| `signal_rules` | 信号规则表（全局 + 专属规则） |
 | `signals` | 交易信号表 |
-| `klines` | K线数据表 |
+| `strategies` | 策略表（含 webhookId 绑定 Webhook） |
+| `webhooks` | Webhook 配置表 |
+| `klines` | K 线数据表 |
+| `backtest_records` | 回测记录表 |
+| `backtest_trades` | 回测交易记录表 |
+| `stock_trackings` | 股票追踪表 |
+| `stocks` | 股票信息表 |
+| `stock_blacklist` | 黑名单表 |
 | `simulation_accounts` | 模拟账户表 |
 | `simulation_positions` | 模拟持仓表 |
 | `simulation_trades` | 模拟交易记录表 |
-| `backtest_records` | 回测记录表 |
-| `stock_trackings` | 股票追踪表 |
-| `stock_blacklist` | 黑名单表 |
-| `webhooks` | Webhook 配置表 |
 | `scheduler_tasks` | 定时任务表 |
 | `chat_messages` | Agent 对话历史表 |
 | `api_keys` | API Key 表 |
 | `mcp_logs` | MCP 调用日志表 |
 
-## 🔧 技术栈
+## 技术栈
 
 ### 后端
 - **框架**: NestJS 11.x
@@ -374,18 +413,18 @@ pnpm run build
 - **文档**: Swagger/OpenAPI
 
 ### 前端
-- **框架**: UMI 4.x + React 18
+- **框架**: Umi 4.x + React 18
 - **语言**: TypeScript
 - **UI 库**: Ant Design 5.x + @ant-design/x
 - **图表**: Lightweight Charts
-- **状态管理**: UMI Model
+- **状态管理**: Umi Model
 
 ### 基础设施
 - **包管理**: pnpm 10.x
 - **容器**: Docker + Docker Compose
 - **测试**: Jest + SuperTest
 
-## 📖 文档
+## 文档
 
 - [AGENTS.md](./AGENTS.md) - 开发指南和项目规范
 - [Swagger API](http://localhost:3001/api) - API 文档
