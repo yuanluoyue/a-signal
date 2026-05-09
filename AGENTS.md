@@ -1,402 +1,247 @@
 # AGENTS.md
 
-开发项目时需要遵守项目已有 skill
+AI Agent 开发本项目时必须遵守本文档中的规则和约定。
 
 ## 项目概述
 
-A Signal 是一个全栈 monorepo 项目，提供股票分析系统，包含 AI 驱动的新闻分析、量化回测、持仓管理、智能投研 Agent 和 MCP 服务等功能。
+A Signal 是一个 AI 驱动的量化交易信号系统。核心链路：新闻采集 → 事件提取（AI）→ 信号生成（规则引擎）→ 策略过滤 → Webhook 通知。
 
 ### 技术栈
 
 | 层级 | 技术 |
 |------|------|
-| 包管理器 | pnpm 10.x |
-| 后端框架 | NestJS 11.x |
+| 包管理器 | pnpm 10.x (monorepo) |
+| 后端框架 | NestJS 11.x (ESM) |
 | 数据库 | PostgreSQL 15 + Drizzle ORM |
 | 消息队列 | RabbitMQ |
 | 向量数据库 | ChromaDB |
 | AI/ML | LangChain + LangGraph + 火山引擎 |
-| 前端框架 | UMI 4.x + React 18 |
+| 前端框架 | Umi 4.x + React 18 |
 | UI 组件库 | Ant Design 5.x |
 | API 文档 | Swagger (OpenAPI 3.0) |
 
-### 架构说明
-
-```
-apps/
-├── backend/          # NestJS 后端服务
-│   └── src/
-│       ├── agent/    # 投研 Agent (LangGraph)
-│       ├── mcp/      # MCP Server 服务
-│       ├── api-key/  # API Key 管理
-│       ├── signals/  # 信号管理
-│       ├── backtest/ # 回测引擎
-│       ├── news/     # 新闻采集与向量存储
-│       ├── klines/   # K线数据
-│       ├── queue/    # RabbitMQ 队列
-│       └── ...
-├── frontend/         # UMI 前端应用
-│   └── src/pages/    # 页面组件
-└── mcp-demo/         # Next.js MCP 调用演示
-```
-
----
-
-## 可用 Skills
-
-项目已配置以下 Skill，开发对应功能时必须参考：
-
-| Skill | 路径 | 用途 |
-|-------|------|------|
-| `nestjs-best-practices` | `.trae/skills/nestjs-best-practices/` | 开发 NestJS 后端代码时参考 |
-| `vercel-react-best-practices` | `.trae/skills/vercel-react-best-practices/` | 开发 React 前端代码时参考 |
-| `volcengine-llm-call` | `.trae/skills/volcengine-llm-call/` | 调用火山引擎 LLM API 时参考 |
-| `news-analyze` | `.trae/skills/news-analyze/` | 开发新闻分析模块时参考 |
-
----
-
-## 开发命令
-
-### 环境准备
-
-```bash
-# 安装依赖（根目录执行）
-pnpm install
-
-# 复制环境变量配置
-cp docker/.env.example docker/.env
-# 编辑 docker/.env 填入实际配置
-```
-
-**启动应用：**
-
-```bash
-# 启动基础设施（PostgreSQL、RabbitMQ、ChromaDB）
-pnpm run dev:docker
-
-# 启动后端（热重载）
-pnpm run dev:backend
-
-# 启动前端
-pnpm run dev:frontend
-
-# 启动 MCP Demo
-pnpm run dev:demo
-```
-
-### 构建
-
-```bash
-# 构建后端
-pnpm run build:backend
-
-# 构建前端
-pnpm run build:frontend
-
-# 构建全部
-pnpm run build
-```
-
-### 代码质量
-
-```bash
-# 格式化代码（整个项目）
-pnpm run format
-
-# 后端 Lint
-pnpm run lint
-
-# 后端单元测试
-pnpm run test:backend
-
-# 后端 E2E 测试
-pnpm run test:e2e:backend
-```
-
-### 数据库迁移
-
-```bash
-# 生成迁移文件
-cd apps/backend && pnpm run db:generate
-
-# 执行迁移
-cd apps/backend && pnpm run db:migrate
-
-# 启动 Drizzle Studio
-cd apps/backend && pnpm run db:studio
-```
-
----
-
-## 项目结构
-
-### 后端核心模块
-
-| 模块 | 路径 | 职责 |
-|------|------|------|
-| `agent` | `src/agent/` | 投研 Agent (LangGraph 工作流、Memory 系统、Tools) |
-| `mcp` | `src/mcp/` | MCP Server (JSON-RPC 2.0、Tools、限流、日志) |
-| `api-key` | `src/api-key/` | API Key 管理 (CRUD、鉴权) |
-| `signals` | `src/signals/` | 信号 CRUD、信号分析消费者 |
-| `backtest` | `src/backtest/` | 回测引擎 |
-| `news` | `src/news/` | 新闻采集、解析、向量化、消费者 |
-| `stocks` | `src/stocks/` | 股票基础数据 |
-| `klines` | `src/klines/` | K线数据获取 |
-| `stock-tracking` | `src/stock-tracking/` | 股票跟踪管理 |
-| `simulation` | `src/simulation/` | 模拟交易持仓 |
-| `scheduler` | `src/scheduler/` | 定时任务调度 |
-| `queue` | `src/queue/` | RabbitMQ 队列生产者/消费者 |
-| `vector` | `src/vector/` | ChromaDB 向量存储 |
-| `volcengine` | `src/volcengine/` | 火山引擎 LLM/Embedding 服务 |
-| `notifications` | `src/notifications/` | Webhook 通知管理 |
-| `dashboard` | `src/dashboard/` | 仪表盘数据聚合 |
-| `auth` | `src/auth/` | JWT 认证 |
-| `users` | `src/users/` | 用户管理 |
-| `database` | `src/database/` | Drizzle ORM 配置 |
-
-### Agent 模块结构
-
-```
-src/agent/
-├── graph/
-│   └── agent-graph.ts       # LangGraph 工作流定义
-├── memory/
-│   ├── memory.service.ts    # 记忆服务 (短期+长期)
-│   ├── pg-memory.repository.ts
-│   └── vector-memory.service.ts
-├── nodes/
-│   ├── index.ts
-│   ├── memory-load.node.ts  # 加载记忆
-│   ├── intent.node.ts       # 意图识别
-│   ├── planner.node.ts      # 计划生成
-│   ├── tool.node.ts         # 工具执行
-│   ├── aggregator.node.ts   # 结果聚合
-│   ├── final.node.ts        # 最终回答
-│   └── memory-save.node.ts  # 保存记忆
-├── tools/
-│   ├── index.ts
-│   ├── base.tool.ts         # Tool 基类
-│   ├── news.tool.ts         # 新闻查询工具
-│   ├── portfolio.tool.ts    # 持仓查询工具
-│   ├── signals.tool.ts      # 信号查询工具
-│   ├── backtest.tool.ts     # 回测查询工具
-│   └── reports.tool.ts      # 报告查询工具
-├── types/
-│   └── agent-state.ts       # Agent State 定义
-├── dto/
-│   ├── chat-request.dto.ts
-│   └── chat-response.dto.ts
-├── agent.module.ts
-├── agent.controller.ts
-└── research-agent.service.ts
-```
-
-### MCP 模块结构
-
-```
-src/mcp/
-├── tools/
-│   ├── index.ts
-│   ├── query-news.tool.ts
-│   ├── query-signals.tool.ts
-│   └── query-backtest.tool.ts
-├── mcp.controller.ts        # JSON-RPC 端点
-├── mcp.service.ts           # MCP 核心逻辑
-├── mcp.module.ts
-├── mcp.guard.ts             # API Key 鉴权
-├── mcp.types.ts             # 类型定义
-├── mcp-logger.service.ts    # 调用日志
-└── rate-limiter.service.ts  # 限流服务
-```
-
-### 前端核心目录
-
-```
-apps/frontend/src/
-├── pages/              # 页面组件 (UMI 约定式路由)
-│   ├── agent-chat/     # Agent 聊天页面
-│   ├── signals/        # 信号管理
-│   ├── backtest/       # 回测页面
-│   ├── news/           # 新闻页面
-│   ├── stocks/         # 股票详情
-│   ├── stock-trackings/# 股票跟踪
-│   ├── simulation/     # 模拟持仓
-│   ├── settings/       # 设置页面
-│   └── ...
-├── api/                # API 请求封装
-├── components/         # 公共组件
-├── layouts/            # 布局组件
-├── contexts/           # React Context
-├── services/           # 服务封装
-├── types/              # TypeScript 类型
-└── utils/              # 工具函数
-```
-
----
-
-## 代码规范
-
-### TypeScript 规范
-
-- **严格模式**：后端启用 `strictNullChecks`
-- **模块**：`module: nodenext`，支持 ESM
-- **装饰器**：启用 `experimentalDecorators` 和 `emitDecoratorMetadata`
-- **目标**：ES2023
-
-### 后端命名约定
-
-| 类型 | 规则 | 示例 |
-|------|------|------|
-| 文件 | kebab-case | `news.service.ts` |
-| 类 | PascalCase | `NewsService` |
-| 接口 | PascalCase | `SignalModel` |
-| 常量 | UPPER_SNAKE_CASE | `DEFAULT_TIMEOUT` |
-| 函数/方法 | camelCase | `getSignalById()` |
-
-### NestJS 最佳实践
-
-- **模块化**：每个功能域独立模块（如 `SignalsModule`、`AgentModule`）
-- **依赖注入**：优先使用构造函数注入
-- **DTO**：使用 `class-validator` + `class-transformer` 验证输入
-- **异常处理**：使用 `AllExceptionsFilter` 统一处理
-- **响应拦截**：使用 `ResponseInterceptor` 统一响应格式
-- **API 版本**：全局前缀 `api/v1`，排除 `/mcp/v1/*`
-
-### 前端规范
-
-- 使用 UMI 4.x 约定式路由
-- API 请求封装在 `src/api/` 目录
-- 使用 Ant Design 5.x 组件库
-- 使用 @ant-design/x 的 XChat 组件实现聊天界面
-
----
-
-## 队列消费者
-
-| 消费者 | 路径 | 职责 |
-|--------|------|------|
-| `KlineFetchConsumer` | `klines/kline-fetch.consumer.ts` | 获取 K线数据 |
-| `NewsCrawlConsumer` | `news/news-crawl.consumer.ts` | 爬取新闻 |
-| `NewsVectorizeConsumer` | `news/news-vectorize.consumer.ts` | 新闻向量化 |
-| `SignalAnalyzeConsumer` | `signals/signal-analyze.consumer.ts` | 信号分析 |
-| `StockTrackFetchConsumer` | `stock-tracking/stock-track-fetch.consumer.ts` | 股票跟踪数据获取 |
-
----
-
-## 测试策略
-
-### 测试框架
-
-| 层级 | 框架 |
-|------|------|
-| 单元测试 | Jest 30.x |
-| E2E 测试 | SuperTest |
-
-### 运行命令
-
-```bash
-# 单元测试
-pnpm --filter backend run test
-
-# 覆盖率报告
-pnpm --filter backend run test:cov
-
-# E2E 测试
-pnpm --filter backend run test:e2e
-```
-
-### 测试文件位置
-
-- 单元测试：`src/**/*.spec.ts`
-- E2E 测试：`test/**/*.e2e-spec.ts`
-
----
-
-## API 文档
-
-启动后端后访问：
-
-- **Swagger UI**: `http://localhost:3001/api`
-- **健康检查**: `http://localhost:3001/health`
-- **MCP 文档**: `http://localhost:3001/mcp/tools`
-
----
-
-## 环境变量
-
-### 必需配置（docker/.env）
-
-```bash
-# 数据库
-DB_HOST=localhost
-DB_PORT=5432
-DB_USER=admin
-DB_PASSWORD=your-secure-password
-DB_NAME=a_signal
-
-# RabbitMQ
-RABBITMQ_USER=admin
-RABBITMQ_PASS=your-secure-password
-
-# JWT
-JWT_SECRET=your-super-secret-jwt-key
-JWT_EXPIRES_IN=7d
-
-# 火山引擎
-VOLCENGINE_API_KEY=your-key
-
-# ChromaDB
-CHROMA_HOST=localhost
-CHROMA_PORT=8000
-VOLCENGINE_EMBEDDING_MODEL=doubao-embedding-vision-251215
-```
-
----
-
-## Docker 服务
-
-| 服务 | 端口 | 说明 |
-|------|------|------|
-| PostgreSQL | 5432 | 主数据库 |
-| RabbitMQ | 5672, 15672 | 消息队列 + 管理界面 |
-| ChromaDB | 8000 | 向量数据库 |
-| 后端 | 3001 | API 服务 |
-| 前端 | 8001 | Web UI |
-| MCP Demo | 8005 | MCP 演示项目 |
-
----
-
-## 开发规则
-
-### 日志规范
+## 必须遵守的规则
+
+### 数据库规则（最高优先级）
+
+1. 只能使用 Drizzle 定义 schema，禁止手写 SQL
+2. 结构变更只能通过 `drizzle-kit generate`，禁止 push
+3. 绝对不能生成 DROP / DELETE / TRUNCATE / RENAME 语句
+4. 字段必须默认 nullable，禁止直接加 NOT NULL 约束
+5. 禁止删除表、删除字段、重命名
+6. 一个需求最终只保留一个迁移文件
+7. 禁止在迁移中执行数据更新（UPDATE/INSERT/DELETE）
+8. 任何结构变更必须向前兼容，保证旧代码可运行
+9. 有更新菜单的需求，必须同步更新 seed 文件
+10. 有需要手动插入数据的需求，必须在 seed 文件中新增，禁止直接在数据库中手动插入
+
+### 日志规则
 
 1. 如果不确定问题的原因，就加日志排查
 2. 日志要详细，能够看出来源于哪个模块或者哪个具体的函数
 
-### Agent 开发规范
+### 代码规则
 
-1. **数据真实性**: 必须优先使用 tools 获取数据，禁止编造
-2. **分析规范**: 涉及投资分析必须调用 tool
-3. **风险提示**: 不允许直接给出确定性买卖建议
-4. **输出格式**: 投资相关回答必须包含【结论】【理由】【风险】【数据来源】
+- 禁止添加注释，除非被要求
+- 修改代码前先阅读周围上下文，理解现有模式和约定
+- 不要假设某个库可用，先检查项目中是否已使用
 
-### MCP 开发规范
+## 后端架构
 
-1. 遵循 JSON-RPC 2.0 协议
-2. 所有 tools 必须包含 name、description、inputSchema
-3. 返回格式必须符合 MCP 标准
-4. 记录所有调用日志
+### 分层约定
 
----
+```
+src/
+├── core/           # 基础设施（db, queue, vector, volcengine, auth, logger）
+├── common/         # 通用工具（decorators, guards, filters, interceptors, middleware）
+├── modules/        # 业务 Service 层（纯逻辑，不依赖 HTTP 概念）
+├── interfaces/     # API 接口层（Controller + DTO，依赖 modules）
+└── jobs/           # 队列消费者和定时任务
+```
 
-## 历史 Spec
+**关键约定**：
+- `modules/` 只包含业务逻辑，不引用 `@nestjs/common` 的 HTTP 装饰器
+- `interfaces/` 包含 Controller 和 DTO，负责 HTTP 层适配
+- 每个模块通过 `*.module.ts` 组织，对外 export Service
+- Schema 统一定义在 `core/db/schema.ts`
 
-项目迭代历史记录在 `.trae/specs/` 目录：
+### 核心模块
 
-| Spec | 说明 |
+| 模块 | 路径 | 职责 |
+|------|------|------|
+| news | modules/news/ | 新闻采集、解析、向量化 |
+| event | modules/event/ | 事件 CRUD |
+| signal-rule | modules/signal-rule/ | 信号规则（全局 + 专属），控制阈值和乘数 |
+| signal-generator | modules/signal-generator/ | 基于规则引擎生成交易信号 |
+| strategy | modules/strategy/ | 策略管理，筛选条件过滤，绑定 Webhook |
+| notifications | modules/notifications/ | 策略驱动的通知流程 + Webhook 管理 |
+| backtest | modules/backtest/ | 量化回测引擎 |
+| stock-tracking | modules/stock-tracking/ | 股票追踪，K 线 + 信号标记 |
+| agent | modules/agent/ | 投研 Agent (LangGraph) |
+| mcp | modules/mcp/ | MCP Server (JSON-RPC 2.0) |
+
+### 信号管线
+
+```
+新闻 → EventAnalyzeConsumer → 事件提取 (AI)
+                                    ↓
+                              SignalGeneratorService → 信号生成 (规则引擎)
+                                    ↓
+                              NotificationsService → 策略过滤 → Webhook 通知
+```
+
+- 信号分数 = 重要性 × 方向 × 置信度 × (1 + 惊喜值) × 规则乘数
+- 策略过滤条件：分数范围、方向模式、事件类别、规则 ID
+- 通知消息包含策略名称，标明来源策略
+
+### 队列消费者
+
+| 消费者 | 文件 | 职责 |
+|--------|------|------|
+| NewsCrawlConsumer | jobs/news-crawl.consumer.ts | 爬取财经新闻 |
+| EventAnalyzeConsumer | jobs/event-analyze.consumer.ts | AI 事件提取 + 信号生成 |
+| NewsVectorizeConsumer | jobs/news-vectorize.consumer.ts | 新闻向量化存储 |
+| KlineFetchConsumer | jobs/kline-fetch.consumer.ts | 获取 K 线数据 |
+| StockTrackFetchConsumer | jobs/stock-track-fetch.consumer.ts | 股票追踪数据获取 |
+
+### 全局配置
+
+- API 前缀：`api/v1`（排除 `/health` 和 `/mcp/v1/*`）
+- 认证：JWT Bearer Token（`@Public()` 装饰器跳过认证）
+- 验证：`ValidationPipe` + `whitelist: true` + `forbidNonWhitelisted: true`
+- 响应：`ResponseInterceptor` 统一包装
+- 异常：`AllExceptionsFilter` 统一处理
+- 日志：Winston（`createWinstonLogger`）
+- 追踪：`TraceIdMiddleware` 注入 traceId
+
+## 前端架构
+
+### 目录结构
+
+```
+apps/frontend/src/
+├── pages/              # 页面组件（Umi 约定式路由）
+│   ├── dashboard.tsx
+│   ├── news/           # 新闻列表 + 详情
+│   ├── events/         # 事件列表 + 详情
+│   ├── signals/        # 信号列表 + 详情
+│   ├── signal-rules/   # 信号规则管理
+│   ├── strategy/       # 策略管理
+│   ├── backtest/       # 回测分析
+│   ├── stock-trackings/# 股票追踪 + 详情
+│   ├── stocks/         # 股票查询 + 详情
+│   ├── simulation/     # 模拟交易
+│   ├── blacklist/      # 黑名单
+│   ├── agent-chat/     # AI 投研助手
+│   ├── settings/       # 通知设置 / 定时任务 / API Key
+│   ├── login.tsx
+│   ├── register.tsx
+│   └── profile.tsx
+├── services/           # API 封装 + 类型定义
+│   ├── client.ts       # Axios 实例
+│   ├── types.ts        # 全局类型定义
+│   └── *.ts            # 各模块 API 函数
+├── layouts/            # 布局组件
+│   └── MainLayout.tsx
+├── components/         # 公共组件
+├── contexts/           # React Context
+│   └── UserContext.tsx
+└── utils/              # 工具函数
+```
+
+### 前端约定
+
+- 路由：Umi 约定式路由，配置在 `.umirc.ts`
+- API 请求：统一通过 `services/client.ts` 的 Axios 实例
+- 类型定义：集中在 `services/types.ts`
+- UI 组件：Ant Design 5.x，聊天界面用 @ant-design/x
+- 图表：Lightweight Charts（K 线图）
+- 代理：`/api` 代理到 `http://localhost:3001`
+
+## 数据库模型
+
+Schema 统一定义在 `apps/backend/src/core/db/schema.ts`。
+
+| 表名 | 说明 |
 |------|------|
-| `init-fullstack-project` | 项目初始化 |
-| `core-signal-pipeline` | 核心信号流水线 |
-| `enhanced-features-v2` | 增强功能 V2 |
-| `research-agent` | 投研 Agent |
-| `implement-mcp-service` | MCP 服务实现 |
+| users | 用户 |
+| news | 新闻 |
+| events | 事件（从新闻提取的结构化事件） |
+| signal_rules | 信号规则（全局 + 专属） |
+| signals | 交易信号 |
+| strategies | 策略（含 webhookId 绑定 Webhook） |
+| webhooks | Webhook 配置 |
+| klines | K 线数据 |
+| backtest_records | 回测记录 |
+| backtest_trades | 回测交易记录 |
+| stock_trackings | 股票追踪 |
+| stocks | 股票信息 |
+| stock_blacklist | 黑名单 |
+| simulation_accounts | 模拟账户 |
+| simulation_positions | 模拟持仓 |
+| simulation_trades | 模拟交易记录 |
+| scheduler_tasks | 定时任务 |
+| chat_messages | Agent 对话历史 |
+| api_keys | API Key |
+| mcp_logs | MCP 调用日志 |
+
+## 开发命令
+
+```bash
+# 基础设施
+pnpm run dev:docker          # 启动 PostgreSQL + RabbitMQ + ChromaDB
+pnpm run dev:docker:down     # 停止基础设施
+
+# 开发
+pnpm run dev:backend         # 启动后端（热重载）
+pnpm run dev:frontend        # 启动前端
+
+# 构建
+pnpm run build               # 构建全部
+pnpm run build:backend       # 构建后端
+pnpm run build:frontend      # 构建前端
+
+# 代码质量
+pnpm run format              # 格式化
+pnpm run lint                # 后端 Lint
+pnpm run test:backend        # 后端单元测试
+pnpm run test:e2e:backend    # 后端 E2E 测试
+
+# 数据库
+cd apps/backend
+pnpm run db:generate         # 生成迁移文件
+pnpm run db:migrate          # 执行迁移
+pnpm run db:studio           # Drizzle Studio
+```
+
+## 环境变量
+
+配置文件：`docker/.env`，模板：`docker/.env.example`
+
+```bash
+DB_HOST=localhost             # 数据库主机
+DB_PORT=5432                  # 数据库端口
+DB_USER=admin                 # 数据库用户
+DB_PASSWORD=                  # 数据库密码
+DB_NAME=a_signal              # 数据库名
+RABBITMQ_USER=admin           # RabbitMQ 用户
+RABBITMQ_PASS=                # RabbitMQ 密码
+JWT_SECRET=                   # JWT 密钥
+JWT_EXPIRES_IN=7d             # JWT 过期时间
+VOLCENGINE_API_KEY=           # 火山引擎 API Key
+CHROMA_HOST=localhost          # ChromaDB 主机
+CHROMA_PORT=8000              # ChromaDB 端口
+VOLCENGINE_EMBEDDING_MODEL=doubao-embedding-vision-251215
+CORS_ORIGIN=*                 # CORS 配置
+BACKEND_PORT=3001             # 后端端口
+FRONTEND_PORT=8001            # 前端端口
+```
+
+## 可用 Skills
+
+| Skill | 用途 |
+|-------|------|
+| nestjs-best-practices | 开发 NestJS 后端代码时参考 |
+| vercel-react-best-practices | 开发 React 前端代码时参考 |
+| volcengine-llm-call | 调用火山引擎 LLM API 时参考 |
+| news-analyze | 开发新闻分析模块时参考 |
