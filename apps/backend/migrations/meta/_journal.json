@@ -113,6 +113,13 @@
       "when": 1778250752325,
       "tag": "0015_wooden_marvel_zombies",
       "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1778389639436,
+      "tag": "0016_lethal_ghost_rider",
+      "breakpoints": true
     }
   ]
 }

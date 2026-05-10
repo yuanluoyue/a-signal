@@ -366,6 +366,9 @@ export const simulationPositions = pgTable(
     marketValue: decimal('market_value', { precision: 18, scale: 2 }),
     profit: decimal('profit', { precision: 18, scale: 2 }).notNull().default('0'),
     return: decimal('return', { precision: 18, scale: 4 }).notNull().default('0'),
+    takeProfitPrice: decimal('take_profit_price', { precision: 18, scale: 2 }),
+    stopLossPrice: decimal('stop_loss_price', { precision: 18, scale: 2 }),
+    tradeSource: varchar('trade_source', { length: 20 }).default('manual'),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -401,6 +404,8 @@ export const simulationTrades = pgTable(
     price: decimal('price', { precision: 18, scale: 2 }).notNull(),
     totalAmount: decimal('total_amount', { precision: 18, scale: 2 }).notNull(),
     profit: decimal('profit', { precision: 18, scale: 2 }),
+    closeReason: varchar('close_reason', { length: 20 }),
+    tradeSource: varchar('trade_source', { length: 20 }).default('manual'),
     tradeTime: timestamp('trade_time', { withTimezone: true }).notNull(),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
@@ -420,6 +425,35 @@ export const simulationTrades = pgTable(
 
 export type SimulationTrade = typeof simulationTrades.$inferSelect;
 export type NewSimulationTrade = typeof simulationTrades.$inferInsert;
+
+export const simulationEquityCurve = pgTable(
+  'simulation_equity_curve',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    accountId: uuid('account_id').notNull(),
+    totalEquity: decimal('total_equity', { precision: 18, scale: 2 }).notNull(),
+    availableCash: decimal('available_cash', { precision: 18, scale: 2 }).notNull(),
+    positionValue: decimal('position_value', { precision: 18, scale: 2 }).notNull(),
+    totalProfit: decimal('total_profit', { precision: 18, scale: 2 }).notNull(),
+    totalReturn: decimal('total_return', { precision: 18, scale: 4 }).notNull(),
+    recordedAt: timestamp('recorded_at', { withTimezone: true }).notNull(),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.accountId],
+      foreignColumns: [simulationAccounts.id],
+      name: 'simulation_equity_curve_account_id_fk',
+    }),
+    index('simulation_equity_curve_account_id_idx').on(table.accountId),
+    index('simulation_equity_curve_recorded_at_idx').on(table.recordedAt),
+  ],
+);
+
+export type SimulationEquityCurve = typeof simulationEquityCurve.$inferSelect;
+export type NewSimulationEquityCurve = typeof simulationEquityCurve.$inferInsert;
 
 export const stockBlacklist = pgTable(
   'stock_blacklist',

@@ -1,0 +1,23 @@
+- [x] 数据库迁移文件已生成，simulation_positions 新增 takeProfitPrice/stopLossPrice/tradeSource 字段
+- [x] 数据库迁移文件已生成，simulation_trades 新增 closeReason/tradeSource 字段
+- [x] 数据库迁移文件已生成，simulation_equity_curve 新表已创建
+- [x] SimulationModule 正确导入 KlinesModule，KlinesService 可注入
+- [x] getLatestPrice 方法能正确获取最新 4h K 线 close 价格
+- [x] refreshPositionPrices 方法能批量更新所有持仓的实时价格和盈亏
+- [x] refreshAccountEquity 方法能正确重算账户总权益
+- [x] GET /simulation/refresh 接口返回刷新后的账户和持仓数据
+- [x] ExecuteTradeDto 已移除 price 必填，新增 takeProfitPrice/stopLossPrice 可选字段
+- [x] 买入交易自动获取实时价格，保存止盈止损和 tradeSource
+- [x] 卖出交易自动获取实时价格，记录 closeReason 和 tradeSource
+- [x] recordEquityCurve 方法在交易完成后自动记录资金曲线数据点
+- [x] GET /simulation/equity-curve 接口返回资金曲线数据
+- [x] checkTakeProfitStopLoss 方法能检测并执行止盈止损自动平仓
+- [x] 自动平仓 closeReason 为 take_profit/stop_loss，tradeSource 为 system
+- [x] AddPositionDto 新增 takeProfitPrice/stopLossPrice 可选字段
+- [x] 添加持仓弹窗股票代码改为 Select 搜索组件，stockName 自动填充只读
+- [x] 模拟交易弹窗股票代码改为 Select 搜索组件，stockName 自动填充只读
+- [x] 模拟交易弹窗选择股票后自动获取实时价格，价格字段只读
+- [x] 页面加载时调用 refresh 接口刷新实时盈亏
+- [x] 资金曲线 Tab 折线图正确展示总权益随时间变化
+- [x] 模拟交易弹窗买入时显示止盈止损可选输入框
+- [x] 交易记录列表显示平仓理由列

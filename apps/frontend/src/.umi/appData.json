@@ -111,6 +111,11 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -135,7 +140,13 @@
             3,
             3,
             2,
-            3
+            3,
+            4,
+            4,
+            3,
+            3,
+            5,
+            4
           ]
         },
         "register": 19
@@ -159,7 +170,12 @@
             13,
             17,
             15,
-            20
+            20,
+            21,
+            20,
+            14,
+            17,
+            14
           ]
         },
         "register": 261
@@ -176,6 +192,11 @@
       "time": {
         "hooks": {
           "addEntryCode": [
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -209,6 +230,12 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
             0
           ],
           "onCheckCode": [
@@ -225,6 +252,12 @@
             0,
             0,
             1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1244,6 +1277,24 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1265,9 +1316,19 @@
             1,
             1,
             0,
+            1,
+            1,
+            1,
+            1,
+            1,
             1
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1350,9 +1411,24 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addEntryImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1399,9 +1475,24 @@
             36,
             55,
             29,
-            32
+            32,
+            35,
+            32,
+            33,
+            30,
+            30
           ],
           "addPolyfillImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1436,6 +1527,16 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1454,6 +1555,11 @@
         "hooks": {
           "onGenerateFiles": [
             364,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1504,6 +1610,11 @@
             1,
             1,
             0,
+            0,
+            0,
+            0,
+            1,
+            1,
             0
           ],
           "addBeforeMiddlewares": [
@@ -1533,6 +1644,16 @@
             30,
             6,
             29,
+            5,
+            81,
+            38,
+            28,
+            5,
+            32,
+            6,
+            29,
+            6,
+            31,
             5
           ]
         },
@@ -1592,7 +1713,12 @@
             16,
             22,
             14,
-            9
+            9,
+            7,
+            13,
+            9,
+            10,
+            10
           ]
         },
         "register": 69
@@ -1681,7 +1807,12 @@
             1,
             1,
             1,
-            1
+            1,
+            16,
+            2,
+            2,
+            2,
+            2
           ]
         },
         "register": 17
@@ -1814,6 +1945,24 @@
       "time": {
         "hooks": {
           "addHTMLHeadScripts": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2210,9 +2359,24 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2224,6 +2388,11 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -2231,6 +2400,11 @@
             2,
             2,
             3,
+            2,
+            18,
+            2,
+            2,
+            2,
             2
           ],
           "addExtraBabelPlugins": [
@@ -2257,6 +2431,11 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -2264,7 +2443,12 @@
             36,
             36,
             38,
-            37
+            37,
+            51,
+            35,
+            48,
+            36,
+            41
           ],
           "addTmpGenerateWatcherPaths": [
             0
@@ -2293,9 +2477,24 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2307,6 +2506,11 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -2314,7 +2518,12 @@
             15,
             17,
             16,
-            19
+            19,
+            60,
+            17,
+            21,
+            19,
+            18
           ],
           "addTmpGenerateWatcherPaths": [
             13
@@ -3774,7 +3983,7 @@
       "parentId": "3",
       "id": "17",
       "absPath": "/simulation",
-      "__content": "import React, { useState, useEffect } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  Table,\n  Form,\n  InputNumber,\n  Input,\n  Select,\n  message,\n  Modal,\n  Statistic,\n  Row,\n  Col,\n  Divider,\n  Empty,\n  Popconfirm,\n} from 'antd';\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  WalletOutlined,\n  ShoppingCartOutlined,\n  HistoryOutlined,\n  EditOutlined,\n  DeleteOutlined,\n} from '@ant-design/icons';\nimport client from '@/services/client';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface SimulationAccount {\n  id: string;\n  initialCapital: number;\n  currentCapital: number;\n  availableCash: number;\n  totalProfit: number;\n  totalReturn: number;\n}\n\ninterface SimulationPosition {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  quantity: number;\n  avgCost: number;\n  currentPrice?: number;\n  marketValue?: number;\n  profit: number;\n  return: number;\n}\n\ninterface SimulationTrade {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  type: 'buy' | 'sell';\n  quantity: number;\n  price: number;\n  totalAmount: number;\n  profit?: number;\n  tradeTime: string;\n}\n\nconst SimulationPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [account, setAccount] = useState<SimulationAccount | null>(null);\n  const [positions, setPositions] = useState<SimulationPosition[]>([]);\n  const [trades, setTrades] = useState<SimulationTrade[]>([]);\n  const [isTradeModalVisible, setIsTradeModalVisible] = useState(false);\n  const [isBalanceModalVisible, setIsBalanceModalVisible] = useState(false);\n  const [isPositionModalVisible, setIsPositionModalVisible] = useState(false);\n  const [tradeForm] = Form.useForm();\n  const [balanceForm] = Form.useForm();\n  const [positionForm] = Form.useForm();\n  const [activeTab, setActiveTab] = useState<'positions' | 'trades'>('positions');\n\n  const fetchAccount = async () => {\n    try {\n      const response = await client.get('/simulation/account');\n      setAccount(response.data);\n    } catch (error) {\n      console.error('Fetch account error:', error);\n      setAccount(null);\n    }\n  };\n\n  const fetchPositions = async () => {\n    try {\n      const response = await client.get('/simulation/positions');\n      setPositions(response.data || []);\n    } catch (error) {\n      console.error('Fetch positions error:', error);\n      setPositions([]);\n    }\n  };\n\n  const fetchTrades = async () => {\n    try {\n      const response = await client.get('/simulation/trades');\n      setTrades(response.data || []);\n    } catch (error) {\n      console.error('Fetch trades error:', error);\n      setTrades([]);\n    }\n  };\n\n  const fetchAllData = async () => {\n    setLoading(true);\n    await Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]);\n    setLoading(false);\n  };\n\n  useEffect(() => {\n    fetchAllData();\n  }, []);\n\n  const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {\n    try {\n      await client.put('/simulation/account', values);\n      message.success('余额更新成功');\n      setIsBalanceModalVisible(false);\n      balanceForm.resetFields();\n      fetchAccount();\n    } catch (error) {\n      message.error('余额更新失败');\n      console.error('Update balance error:', error);\n    }\n  };\n\n  const handleAddPosition = async (values: {\n    stockCode: string;\n    stockName: string;\n    quantity: number;\n    avgCost: number;\n  }) => {\n    try {\n      await client.post('/simulation/position', values);\n      message.success('持仓添加成功');\n      setIsPositionModalVisible(false);\n      positionForm.resetFields();\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓添加失败');\n      console.error('Add position error:', error);\n    }\n  };\n\n  const handleDeletePosition = async (positionId: string) => {\n    try {\n      await client.delete(`/simulation/position/${positionId}`);\n      message.success('持仓删除成功');\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓删除失败');\n      console.error('Delete position error:', error);\n    }\n  };\n\n  const handleTrade = async (values: {\n    stockCode: string;\n    stockName: string;\n    type: 'buy' | 'sell';\n    quantity: number;\n    price: number;\n  }) => {\n    try {\n      await client.post('/simulation/trade', values);\n      message.success('交易成功');\n      setIsTradeModalVisible(false);\n      tradeForm.resetFields();\n      fetchAllData();\n    } catch (error) {\n      message.error('交易失败');\n      console.error('Trade error:', error);\n    }\n  };\n\n  const formatMoney = (amount: number | string | null | undefined) => {\n    if (amount === null || amount === undefined) return '¥0.00';\n    const num = typeof amount === 'string' ? parseFloat(amount) : amount;\n    if (isNaN(num)) return '¥0.00';\n    return `¥${num.toFixed(2)}`;\n  };\n\n  const formatPercent = (value: number | string | null | undefined) => {\n    if (value === null || value === undefined) return '0.00%';\n    const num = typeof value === 'string' ? parseFloat(value) : value;\n    if (isNaN(num)) return '0.00%';\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const positionColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '持仓数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '平均成本',\n      dataIndex: 'avgCost',\n      key: 'avgCost',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '当前市值',\n      dataIndex: 'marketValue',\n      key: 'marketValue',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value: number) => (\n        <Tag color={value >= 0 ? 'success' : 'error'}>\n          {value >= 0 ? '+' : ''}{formatMoney(value)}\n        </Tag>\n      ),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      render: (_: unknown, record: SimulationPosition) => (\n        <Popconfirm\n          title=\"确认删除\"\n          description=\"确定要删除这条持仓吗？\"\n          onConfirm={() => handleDeletePosition(record.id)}\n          okText=\"确认\"\n          cancelText=\"取消\"\n        >\n          <Button danger icon={<DeleteOutlined />} size=\"small\">\n            删除\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      render: (type: string) => (\n        <Tag color={type === 'buy' ? 'success' : 'error'}>\n          {type === 'buy' ? '买入' : '卖出'}\n        </Tag>\n      ),\n    },\n    {\n      title: '数量',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '价格',\n      dataIndex: 'price',\n      key: 'price',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '总金额',\n      dataIndex: 'totalAmount',\n      key: 'totalAmount',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value?: number) =>\n        value !== undefined ? (\n          <Tag color={value >= 0 ? 'success' : 'error'}>\n            {value >= 0 ? '+' : ''}{formatMoney(value)}\n          </Tag>\n        ) : '-',\n    },\n    {\n      title: '时间',\n      dataIndex: 'tradeTime',\n      key: 'tradeTime',\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n  ];\n\n  if (!account) {\n    return (\n      <div>\n        <Title level={2}>账户模拟</Title>\n        <Card>\n          <Empty description=\"加载中...\" />\n        </Card>\n      </div>\n    );\n  }\n\n  return (\n    <div>\n      <Title level={2}>账户模拟</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"初始资金\"\n              value={account.initialCapital}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"当前资金\"\n              value={account.currentCapital}\n              precision={2}\n              prefix=\"¥\"\n              valueStyle={{ color: account.currentCapital >= account.initialCapital ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"可用现金\"\n              value={account.availableCash}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"总收益率\"\n              value={account.totalReturn * 100}\n              precision={2}\n              suffix=\"%\"\n              valueStyle={{ color: account.totalReturn >= 0 ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n            刷新\n          </Button>\n          <Button\n            icon={<EditOutlined />}\n            onClick={() => {\n              balanceForm.setFieldsValue({\n                currentCapital: account.currentCapital,\n                availableCash: account.availableCash,\n              });\n              setIsBalanceModalVisible(true);\n            }}\n          >\n            修改余额\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={() => setIsPositionModalVisible(true)}\n          >\n            添加持仓\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<ShoppingCartOutlined />}\n            onClick={() => setIsTradeModalVisible(true)}\n          >\n            模拟交易\n          </Button>\n        </Space>\n      </Card>\n\n      <Card\n        tabList={[\n          { key: 'positions', tab: <><WalletOutlined /> 持仓</> },\n          { key: 'trades', tab: <><HistoryOutlined /> 交易记录</> },\n        ]}\n        activeTabKey={activeTab}\n        onTabChange={(key) => setActiveTab(key as 'positions' | 'trades')}\n      >\n        {activeTab === 'positions' ? (\n          <Table\n            columns={positionColumns}\n            dataSource={positions}\n            rowKey=\"id\"\n            pagination={false}\n            locale={{ emptyText: '暂无持仓' }}\n          />\n        ) : (\n          <Table\n            columns={tradeColumns}\n            dataSource={trades}\n            rowKey=\"id\"\n            pagination={{ pageSize: 10 }}\n          />\n        )}\n      </Card>\n\n      {/* 修改余额弹窗 */}\n      <Modal\n        title=\"修改余额\"\n        open={isBalanceModalVisible}\n        onCancel={() => setIsBalanceModalVisible(false)}\n        onOk={() => balanceForm.submit()}\n        width={400}\n      >\n        <Form form={balanceForm} onFinish={handleUpdateBalance} layout=\"vertical\">\n          <Form.Item\n            name=\"currentCapital\"\n            label=\"当前资金\"\n            rules={[{ required: true, message: '请输入当前资金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"availableCash\"\n            label=\"可用现金\"\n            rules={[{ required: true, message: '请输入可用现金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      {/* 添加持仓弹窗 */}\n      <Modal\n        title=\"添加持仓\"\n        open={isPositionModalVisible}\n        onCancel={() => setIsPositionModalVisible(false)}\n        onOk={() => positionForm.submit()}\n        width={400}\n      >\n        <Form form={positionForm} onFinish={handleAddPosition} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请输入股票代码' }]}\n          >\n            <Input placeholder=\"例如: 00700\" />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请输入股票名称' }]}\n          >\n            <Input placeholder=\"例如: 腾讯控股\" />\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"持仓数量\"\n            rules={[{ required: true, message: '请输入持仓数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入数量\" />\n          </Form.Item>\n          <Form.Item\n            name=\"avgCost\"\n            label=\"平均成本\"\n            rules={[{ required: true, message: '请输入平均成本' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入平均成本\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      {/* 模拟交易弹窗 */}\n      <Modal\n        title=\"模拟交易\"\n        open={isTradeModalVisible}\n        onCancel={() => setIsTradeModalVisible(false)}\n        onOk={() => tradeForm.submit()}\n        width={500}\n      >\n        <Form form={tradeForm} onFinish={handleTrade} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请输入股票代码' }]}\n          >\n            <Input placeholder=\"例如: 00700\" />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请输入股票名称' }]}\n          >\n            <Input placeholder=\"例如: 腾讯控股\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"交易类型\"\n            rules={[{ required: true, message: '请选择交易类型' }]}\n            initialValue=\"buy\"\n          >\n            <Select>\n              <Option value=\"buy\">买入</Option>\n              <Option value=\"sell\">卖出</Option>\n            </Select>\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"数量\"\n            rules={[{ required: true, message: '请输入数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入数量\" />\n          </Form.Item>\n          <Form.Item\n            name=\"price\"\n            label=\"价格\"\n            rules={[{ required: true, message: '请输入价格' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入价格\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default SimulationPage;\n",
+      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  Table,\n  Form,\n  InputNumber,\n  Input,\n  Select,\n  message,\n  Modal,\n  Statistic,\n  Row,\n  Col,\n  Empty,\n  Popconfirm,\n  Spin,\n} from 'antd';\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  WalletOutlined,\n  ShoppingCartOutlined,\n  HistoryOutlined,\n  EditOutlined,\n  DeleteOutlined,\n  LineChartOutlined,\n} from '@ant-design/icons';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { IChartApi, Time } from 'lightweight-charts';\nimport client from '@/services/client';\nimport { klinesApi } from '@/services/klines';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface SimulationAccount {\n  id: string;\n  initialCapital: number;\n  currentCapital: number;\n  availableCash: number;\n  totalProfit: number;\n  totalReturn: number;\n}\n\ninterface SimulationPosition {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  quantity: number;\n  avgCost: number;\n  currentPrice?: number;\n  marketValue?: number;\n  profit: number;\n  return: number;\n  takeProfitPrice?: number;\n  stopLossPrice?: number;\n  tradeSource?: string;\n}\n\ninterface SimulationTrade {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  type: 'buy' | 'sell';\n  quantity: number;\n  price: number;\n  totalAmount: number;\n  profit?: number;\n  closeReason?: string;\n  tradeSource?: string;\n  tradeTime: string;\n}\n\ninterface StockOption {\n  value: string;\n  label: string;\n  code: string;\n  name: string;\n}\n\ninterface EquityCurvePoint {\n  id: string;\n  accountId: string;\n  totalEquity: string;\n  availableCash: string;\n  positionValue: string;\n  totalProfit: string;\n  totalReturn: string;\n  recordedAt: string;\n  createdAt: string;\n}\n\nconst SimulationPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [refreshLoading, setRefreshLoading] = useState(false);\n  const [account, setAccount] = useState<SimulationAccount | null>(null);\n  const [positions, setPositions] = useState<SimulationPosition[]>([]);\n  const [trades, setTrades] = useState<SimulationTrade[]>([]);\n  const [equityCurveData, setEquityCurveData] = useState<EquityCurvePoint[]>([]);\n  const [isTradeModalVisible, setIsTradeModalVisible] = useState(false);\n  const [isBalanceModalVisible, setIsBalanceModalVisible] = useState(false);\n  const [isPositionModalVisible, setIsPositionModalVisible] = useState(false);\n  const [tradeForm] = Form.useForm();\n  const [balanceForm] = Form.useForm();\n  const [positionForm] = Form.useForm();\n  const [activeTab, setActiveTab] = useState<'positions' | 'trades' | 'equity-curve'>('positions');\n\n  const [tradeStockOptions, setTradeStockOptions] = useState<StockOption[]>([]);\n  const [tradeSearchLoading, setTradeSearchLoading] = useState(false);\n  const tradeDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  const [positionStockOptions, setPositionStockOptions] = useState<StockOption[]>([]);\n  const [positionSearchLoading, setPositionSearchLoading] = useState(false);\n  const positionDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  const [tradePrice, setTradePrice] = useState<number | null>(null);\n  const [tradePriceLoading, setTradePriceLoading] = useState(false);\n\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n\n  const fetchAccount = async () => {\n    try {\n      const response = await client.get('/simulation/account');\n      setAccount(response.data);\n    } catch (error) {\n      console.error('Fetch account error:', error);\n      setAccount(null);\n    }\n  };\n\n  const fetchPositions = async () => {\n    try {\n      const response = await client.get('/simulation/positions');\n      setPositions(response.data || []);\n    } catch (error) {\n      console.error('Fetch positions error:', error);\n      setPositions([]);\n    }\n  };\n\n  const fetchTrades = async () => {\n    try {\n      const response = await client.get('/simulation/trades');\n      setTrades(response.data || []);\n    } catch (error) {\n      console.error('Fetch trades error:', error);\n      setTrades([]);\n    }\n  };\n\n  const fetchEquityCurve = async () => {\n    try {\n      const response = await client.get('/simulation/equity-curve');\n      setEquityCurveData(response.data || []);\n    } catch (error) {\n      console.error('Fetch equity curve error:', error);\n      setEquityCurveData([]);\n    }\n  };\n\n  const refreshPositions = async () => {\n    setRefreshLoading(true);\n    try {\n      const response = await client.get('/simulation/refresh');\n      const { account: refreshedAccount, positions: refreshedPositions } = response.data;\n      if (refreshedAccount) setAccount(refreshedAccount);\n      if (refreshedPositions) setPositions(refreshedPositions);\n    } catch (error) {\n      console.error('Refresh positions error:', error);\n    } finally {\n      setRefreshLoading(false);\n    }\n  };\n\n  const fetchAllData = async () => {\n    setLoading(true);\n    await Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]);\n    setLoading(false);\n  };\n\n  useEffect(() => {\n    refreshPositions();\n    fetchAllData();\n  }, []);\n\n  useEffect(() => {\n    if (activeTab === 'equity-curve') {\n      fetchEquityCurve();\n    }\n  }, [activeTab]);\n\n  useEffect(() => {\n    if (!chartContainerRef.current || equityCurveData.length === 0) return;\n\n    if (chartRef.current) {\n      chartRef.current.remove();\n      chartRef.current = null;\n    }\n\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: {\n        mode: 1,\n      },\n      rightPriceScale: {\n        borderColor: '#d9d9d9',\n      },\n      timeScale: {\n        borderColor: '#d9d9d9',\n        timeVisible: true,\n      },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    const lineSeries = chart.addSeries(LightweightCharts.LineSeries, {\n      color: '#1890ff',\n      lineWidth: 2,\n    });\n\n    const sortedData = [...equityCurveData].sort(\n      (a, b) => new Date(a.recordedAt).getTime() - new Date(b.recordedAt).getTime()\n    );\n\n    const chartData = sortedData.map((point) => ({\n      time: (Math.floor(new Date(point.recordedAt).getTime() / 1000)) as Time,\n      value: parseFloat(point.totalEquity),\n    }));\n\n    lineSeries.setData(chartData);\n\n    chart.timeScale().fitContent();\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({\n          width: chartContainerRef.current.clientWidth,\n        });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n      chartRef.current = null;\n    };\n  }, [equityCurveData]);\n\n  useEffect(() => {\n    return () => {\n      if (tradeDebounceTimerRef.current) {\n        clearTimeout(tradeDebounceTimerRef.current);\n      }\n      if (positionDebounceTimerRef.current) {\n        clearTimeout(positionDebounceTimerRef.current);\n      }\n    };\n  }, []);\n\n  const searchStocks = async (keyword: string, type: 'trade' | 'position') => {\n    if (!keyword || keyword.trim().length === 0) {\n      if (type === 'trade') setTradeStockOptions([]);\n      else setPositionStockOptions([]);\n      return;\n    }\n    if (type === 'trade') setTradeSearchLoading(true);\n    else setPositionSearchLoading(true);\n    try {\n      const response = await client.get('/stock/search', {\n        params: { keyword: keyword.trim() },\n      });\n      const stocks = response.data || [];\n      const options: StockOption[] = stocks.map((stock: { code: string; name: string }) => ({\n        value: stock.code,\n        label: `${stock.code} - ${stock.name}`,\n        code: stock.code,\n        name: stock.name,\n      }));\n      if (type === 'trade') setTradeStockOptions(options);\n      else setPositionStockOptions(options);\n    } catch (error) {\n      console.error('Search stocks error:', error);\n      if (type === 'trade') setTradeStockOptions([]);\n      else setPositionStockOptions([]);\n    } finally {\n      if (type === 'trade') setTradeSearchLoading(false);\n      else setPositionSearchLoading(false);\n    }\n  };\n\n  const handleTradeStockSearch = (value: string) => {\n    if (tradeDebounceTimerRef.current) {\n      clearTimeout(tradeDebounceTimerRef.current);\n    }\n    tradeDebounceTimerRef.current = setTimeout(() => {\n      searchStocks(value, 'trade');\n    }, 300);\n  };\n\n  const handlePositionStockSearch = (value: string) => {\n    if (positionDebounceTimerRef.current) {\n      clearTimeout(positionDebounceTimerRef.current);\n    }\n    positionDebounceTimerRef.current = setTimeout(() => {\n      searchStocks(value, 'position');\n    }, 300);\n  };\n\n  const handleTradeStockChange = async (value: string) => {\n    const selectedOption = tradeStockOptions.find(opt => opt.value === value);\n    if (selectedOption) {\n      tradeForm.setFieldsValue({\n        stockCode: selectedOption.code,\n        stockName: selectedOption.name,\n      });\n      setTradePrice(null);\n      setTradePriceLoading(true);\n      try {\n        await klinesApi.checkAndUpdate(selectedOption.code, '4h');\n        const klineResponse = await client.get(`/klines/${selectedOption.code}`, {\n          params: { period: '4h' },\n        });\n        const klineData = klineResponse.data?.data || klineResponse.data || [];\n        if (Array.isArray(klineData) && klineData.length > 0) {\n          const lastItem = klineData[klineData.length - 1];\n          const closePrice = lastItem.close || lastItem.c;\n          if (closePrice) {\n            setTradePrice(parseFloat(String(closePrice)));\n          }\n        }\n      } catch (error) {\n        console.error('Fetch trade price error:', error);\n      } finally {\n        setTradePriceLoading(false);\n      }\n    }\n  };\n\n  const handlePositionStockChange = (value: string) => {\n    const selectedOption = positionStockOptions.find(opt => opt.value === value);\n    if (selectedOption) {\n      positionForm.setFieldsValue({\n        stockCode: selectedOption.code,\n        stockName: selectedOption.name,\n      });\n    }\n  };\n\n  const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {\n    try {\n      await client.put('/simulation/account', values);\n      message.success('余额更新成功');\n      setIsBalanceModalVisible(false);\n      balanceForm.resetFields();\n      fetchAccount();\n    } catch (error) {\n      message.error('余额更新失败');\n      console.error('Update balance error:', error);\n    }\n  };\n\n  const handleAddPosition = async (values: {\n    stockCode: string;\n    stockName: string;\n    quantity: number;\n    avgCost: number;\n    takeProfitPrice?: number;\n    stopLossPrice?: number;\n  }) => {\n    try {\n      await client.post('/simulation/position', values);\n      message.success('持仓添加成功');\n      setIsPositionModalVisible(false);\n      positionForm.resetFields();\n      setPositionStockOptions([]);\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓添加失败');\n      console.error('Add position error:', error);\n    }\n  };\n\n  const handleDeletePosition = async (positionId: string) => {\n    try {\n      await client.delete(`/simulation/position/${positionId}`);\n      message.success('持仓删除成功');\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓删除失败');\n      console.error('Delete position error:', error);\n    }\n  };\n\n  const handleTrade = async (values: {\n    stockCode: string;\n    stockName: string;\n    type: 'buy' | 'sell';\n    quantity: number;\n    takeProfitPrice?: number;\n    stopLossPrice?: number;\n  }) => {\n    try {\n      const payload: Record<string, unknown> = {\n        stockCode: values.stockCode,\n        stockName: values.stockName,\n        type: values.type,\n        quantity: values.quantity,\n      };\n      if (values.type === 'buy') {\n        if (values.takeProfitPrice !== undefined && values.takeProfitPrice !== null) {\n          payload.takeProfitPrice = values.takeProfitPrice;\n        }\n        if (values.stopLossPrice !== undefined && values.stopLossPrice !== null) {\n          payload.stopLossPrice = values.stopLossPrice;\n        }\n      }\n      await client.post('/simulation/trade', payload);\n      message.success('交易成功');\n      setIsTradeModalVisible(false);\n      tradeForm.resetFields();\n      setTradeStockOptions([]);\n      setTradePrice(null);\n      fetchAllData();\n    } catch (error) {\n      message.error('交易失败');\n      console.error('Trade error:', error);\n    }\n  };\n\n  const formatMoney = (amount: number | string | null | undefined) => {\n    if (amount === null || amount === undefined) return '¥0.00';\n    const num = typeof amount === 'string' ? parseFloat(amount) : amount;\n    if (isNaN(num)) return '¥0.00';\n    return `¥${num.toFixed(2)}`;\n  };\n\n  const closeReasonMap: Record<string, { text: string; color: string }> = {\n    manual: { text: '手动平仓', color: 'blue' },\n    take_profit: { text: '止盈平仓', color: 'green' },\n    stop_loss: { text: '止损平仓', color: 'red' },\n    agent: { text: 'Agent平仓', color: 'purple' },\n  };\n\n  const tradeType = Form.useWatch('type', tradeForm);\n\n  const positionColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '持仓数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '平均成本',\n      dataIndex: 'avgCost',\n      key: 'avgCost',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '当前市值',\n      dataIndex: 'marketValue',\n      key: 'marketValue',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value: number) => (\n        <Tag color={value >= 0 ? 'success' : 'error'}>\n          {value >= 0 ? '+' : ''}{formatMoney(value)}\n        </Tag>\n      ),\n    },\n    {\n      title: '止盈价',\n      dataIndex: 'takeProfitPrice',\n      key: 'takeProfitPrice',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '止损价',\n      dataIndex: 'stopLossPrice',\n      key: 'stopLossPrice',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      render: (_: unknown, record: SimulationPosition) => (\n        <Popconfirm\n          title=\"确认删除\"\n          description=\"确定要删除这条持仓吗？\"\n          onConfirm={() => handleDeletePosition(record.id)}\n          okText=\"确认\"\n          cancelText=\"取消\"\n        >\n          <Button danger icon={<DeleteOutlined />} size=\"small\">\n            删除\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      render: (type: string) => (\n        <Tag color={type === 'buy' ? 'success' : 'error'}>\n          {type === 'buy' ? '买入' : '卖出'}\n        </Tag>\n      ),\n    },\n    {\n      title: '数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '价格',\n      dataIndex: 'price',\n      key: 'price',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '总金额',\n      dataIndex: 'totalAmount',\n      key: 'totalAmount',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value?: number) =>\n        value !== undefined ? (\n          <Tag color={value >= 0 ? 'success' : 'error'}>\n            {value >= 0 ? '+' : ''}{formatMoney(value)}\n          </Tag>\n        ) : '-',\n    },\n    {\n      title: '平仓理由',\n      dataIndex: 'closeReason',\n      key: 'closeReason',\n      render: (value?: string, record?: SimulationTrade) => {\n        if (record?.type !== 'sell' || !value) return '-';\n        const mapping = closeReasonMap[value];\n        if (!mapping) return '-';\n        return <Tag color={mapping.color}>{mapping.text}</Tag>;\n      },\n    },\n    {\n      title: '时间',\n      dataIndex: 'tradeTime',\n      key: 'tradeTime',\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n  ];\n\n  if (!account) {\n    return (\n      <div>\n        <Title level={2}>账户模拟</Title>\n        <Card>\n          <Empty description=\"加载中...\" />\n        </Card>\n      </div>\n    );\n  }\n\n  return (\n    <div>\n      <Title level={2}>账户模拟</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"初始资金\"\n              value={account.initialCapital}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"当前资金\"\n              value={account.currentCapital}\n              precision={2}\n              prefix=\"¥\"\n              valueStyle={{ color: account.currentCapital >= account.initialCapital ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"可用现金\"\n              value={account.availableCash}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"总收益率\"\n              value={account.totalReturn * 100}\n              precision={2}\n              suffix=\"%\"\n              valueStyle={{ color: account.totalReturn >= 0 ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n            刷新\n          </Button>\n          <Button icon={<ReloadOutlined />} onClick={refreshPositions} loading={refreshLoading}>\n            更新行情\n          </Button>\n          <Button\n            icon={<EditOutlined />}\n            onClick={() => {\n              balanceForm.setFieldsValue({\n                currentCapital: account.currentCapital,\n                availableCash: account.availableCash,\n              });\n              setIsBalanceModalVisible(true);\n            }}\n          >\n            修改余额\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={() => setIsPositionModalVisible(true)}\n          >\n            添加持仓\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<ShoppingCartOutlined />}\n            onClick={() => {\n              setTradePrice(null);\n              setIsTradeModalVisible(true);\n            }}\n          >\n            模拟交易\n          </Button>\n        </Space>\n      </Card>\n\n      <Card\n        tabList={[\n          { key: 'positions', tab: <><WalletOutlined /> 持仓</> },\n          { key: 'trades', tab: <><HistoryOutlined /> 交易记录</> },\n          { key: 'equity-curve', tab: <><LineChartOutlined /> 资金曲线</> },\n        ]}\n        activeTabKey={activeTab}\n        onTabChange={(key) => setActiveTab(key as 'positions' | 'trades' | 'equity-curve')}\n      >\n        {activeTab === 'positions' && (\n          <Table\n            columns={positionColumns}\n            dataSource={positions}\n            rowKey=\"id\"\n            pagination={false}\n            locale={{ emptyText: '暂无持仓' }}\n          />\n        )}\n        {activeTab === 'trades' && (\n          <Table\n            columns={tradeColumns}\n            dataSource={trades}\n            rowKey=\"id\"\n            pagination={{ pageSize: 10 }}\n          />\n        )}\n        {activeTab === 'equity-curve' && (\n          equityCurveData.length > 0 ? (\n            <div ref={chartContainerRef} />\n          ) : (\n            <Empty description=\"暂无资金曲线数据\" />\n          )\n        )}\n      </Card>\n\n      <Modal\n        title=\"修改余额\"\n        open={isBalanceModalVisible}\n        onCancel={() => setIsBalanceModalVisible(false)}\n        onOk={() => balanceForm.submit()}\n        width={400}\n      >\n        <Form form={balanceForm} onFinish={handleUpdateBalance} layout=\"vertical\">\n          <Form.Item\n            name=\"currentCapital\"\n            label=\"当前资金\"\n            rules={[{ required: true, message: '请输入当前资金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"availableCash\"\n            label=\"可用现金\"\n            rules={[{ required: true, message: '请输入可用现金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"添加持仓\"\n        open={isPositionModalVisible}\n        onCancel={() => {\n          setIsPositionModalVisible(false);\n          setPositionStockOptions([]);\n        }}\n        onOk={() => positionForm.submit()}\n        width={400}\n      >\n        <Form form={positionForm} onFinish={handleAddPosition} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Select\n              showSearch\n              placeholder=\"输入股票代码或名称搜索\"\n              filterOption={false}\n              onSearch={handlePositionStockSearch}\n              onChange={handlePositionStockChange}\n              loading={positionSearchLoading}\n              options={positionStockOptions}\n              allowClear\n              notFoundContent={positionSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Input disabled placeholder=\"选择股票后自动填充\" />\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"持仓数量（股）\"\n            rules={[{ required: true, message: '请输入持仓数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入股数\" />\n          </Form.Item>\n          <Form.Item\n            name=\"avgCost\"\n            label=\"平均成本\"\n            rules={[{ required: true, message: '请输入平均成本' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入平均成本\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"takeProfitPrice\"\n            label=\"止盈价（可选）\"\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入止盈价\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stopLossPrice\"\n            label=\"止损价（可选）\"\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入止损价\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"模拟交易\"\n        open={isTradeModalVisible}\n        onCancel={() => {\n          setIsTradeModalVisible(false);\n          setTradeStockOptions([]);\n          setTradePrice(null);\n        }}\n        onOk={() => tradeForm.submit()}\n        width={500}\n      >\n        <Form form={tradeForm} onFinish={handleTrade} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Select\n              showSearch\n              placeholder=\"输入股票代码或名称搜索\"\n              filterOption={false}\n              onSearch={handleTradeStockSearch}\n              onChange={handleTradeStockChange}\n              loading={tradeSearchLoading}\n              options={tradeStockOptions}\n              allowClear\n              notFoundContent={tradeSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Input disabled placeholder=\"选择股票后自动填充\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"交易类型\"\n            rules={[{ required: true, message: '请选择交易类型' }]}\n            initialValue=\"buy\"\n          >\n            <Select>\n              <Option value=\"buy\">买入</Option>\n              <Option value=\"sell\">卖出</Option>\n            </Select>\n          </Form.Item>\n          <Form.Item label=\"当前价格\">\n            {tradePriceLoading ? (\n              <Spin size=\"small\" />\n            ) : tradePrice !== null ? (\n              <InputNumber\n                style={{ width: '100%' }}\n                value={tradePrice}\n                disabled\n                precision={2}\n                formatter={(value) => `¥ ${value}`}\n              />\n            ) : (\n              <Text type=\"secondary\">选择股票后自动获取4H行情价格</Text>\n            )}\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"数量\"\n            rules={[{ required: true, message: '请输入数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入数量\" />\n          </Form.Item>\n          {tradeType === 'buy' && (\n            <>\n              <Form.Item\n                name=\"takeProfitPrice\"\n                label=\"止盈价（可选）\"\n              >\n                <InputNumber\n                  style={{ width: '100%' }}\n                  min={0.01}\n                  step={0.01}\n                  precision={2}\n                  placeholder=\"请输入止盈价\"\n                />\n              </Form.Item>\n              <Form.Item\n                name=\"stopLossPrice\"\n                label=\"止损价（可选）\"\n              >\n                <InputNumber\n                  style={{ width: '100%' }}\n                  min={0.01}\n                  step={0.01}\n                  precision={2}\n                  placeholder=\"请输入止损价\"\n                />\n              </Form.Item>\n            </>\n          )}\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default SimulationPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/simulation/index.tsx"
     },
@@ -3796,7 +4005,7 @@
       "parentId": "3",
       "id": "19",
       "absPath": "/backtest",
-      "__content": "import React, { useState, useEffect, useCallback } from \"react\";\nimport {\n  Table,\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  message,\n  Spin,\n  Empty,\n  Modal,\n  Descriptions,\n  Select,\n  DatePicker,\n  Input,\n  Form,\n  Popconfirm,\n} from \"antd\";\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  EyeOutlined,\n  DeleteOutlined,\n  LinkOutlined,\n} from \"@ant-design/icons\";\nimport { backtestApi } from \"@/services/backtest\";\nimport { strategyApi } from \"@/services/strategy\";\nimport { signalsApi } from \"@/services/signals\";\nimport type { BacktestRecord, BacktestTrade, Strategy, Signal } from \"@/services/types\";\nimport dayjs from \"dayjs\";\n\nconst { Title, Text, Paragraph } = Typography;\n\nconst BacktestPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<BacktestRecord[]>([]);\n\n  const [formVisible, setFormVisible] = useState(false);\n  const [formLoading, setFormLoading] = useState(false);\n  const [strategies, setStrategies] = useState<Strategy[]>([]);\n  const [form] = Form.useForm();\n\n  const [detailVisible, setDetailVisible] = useState(false);\n  const [detailLoading, setDetailLoading] = useState(false);\n  const [selectedRecord, setSelectedRecord] = useState<BacktestRecord | null>(\n    null,\n  );\n  const [tradesData, setTradesData] = useState<BacktestTrade[]>([]);\n\n  const [signalDetailVisible, setSignalDetailVisible] = useState(false);\n  const [signalDetailLoading, setSignalDetailLoading] = useState(false);\n  const [selectedSignal, setSelectedSignal] = useState<Signal | null>(null);\n\n  const fetchData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const response = await backtestApi.getRecords();\n      setData(response || []);\n    } catch (error) {\n      message.error(\"获取回测记录失败\");\n      console.error(\"Fetch backtest records error:\", error);\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  useEffect(() => {\n    fetchData();\n  }, [fetchData]);\n\n  const handleOpenForm = async () => {\n    setFormVisible(true);\n    form.resetFields();\n    try {\n      const response = await strategyApi.getStrategiesList({ pageSize: 100 });\n      setStrategies(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch strategies error:\", error);\n    }\n  };\n\n  const handleRunBacktest = async () => {\n    try {\n      const values = await form.validateFields();\n      setFormLoading(true);\n      const params = {\n        strategyId: values.strategyId,\n        startTime: values.timeRange[0].toISOString(),\n        endTime: values.timeRange[1].toISOString(),\n        period: values.period || '4h',\n        name: values.name || undefined,\n      };\n      await backtestApi.runBacktest(params);\n      message.success(\"回测执行完成\");\n      setFormVisible(false);\n      fetchData();\n    } catch (error) {\n      console.error(\"Run backtest error:\", error);\n      message.error(\"回测执行失败\");\n    } finally {\n      setFormLoading(false);\n    }\n  };\n\n  const handleViewDetail = async (record: BacktestRecord) => {\n    setSelectedRecord(record);\n    setDetailVisible(true);\n    setDetailLoading(true);\n    try {\n      const trades = await backtestApi.getRecordTrades(record.id);\n      setTradesData(trades || []);\n    } catch (error) {\n      console.error(\"Fetch trades error:\", error);\n      message.error(\"获取交易明细失败\");\n    } finally {\n      setDetailLoading(false);\n    }\n  };\n\n  const handleViewSignalDetail = async (signalId: string | null) => {\n    if (!signalId) {\n      message.warning(\"该交易无关联信号\");\n      return;\n    }\n    setSignalDetailVisible(true);\n    setSignalDetailLoading(true);\n    try {\n      const signal = await signalsApi.getSignalById(signalId);\n      setSelectedSignal(signal);\n    } catch (error) {\n      console.error(\"Fetch signal detail error:\", error);\n      message.error(\"获取信号详情失败\");\n    } finally {\n      setSignalDetailLoading(false);\n    }\n  };\n\n  const handleDelete = async (id: string) => {\n    try {\n      await backtestApi.deleteRecord(id);\n      message.success(\"删除成功\");\n      fetchData();\n    } catch (error) {\n      message.error(\"删除失败\");\n      console.error(\"Delete backtest record error:\", error);\n    }\n  };\n\n  const formatDate = (dateString: string) => {\n    if (!dateString) return \"-\";\n    return dayjs(dateString).format(\"YYYY-MM-DD HH:mm\");\n  };\n\n  const formatPercent = (value: string | number | null | undefined) => {\n    if (value === null || value === undefined) return \"-\";\n    const num = typeof value === \"string\" ? parseFloat(value) : value;\n    if (isNaN(num)) return \"-\";\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const columns = [\n    {\n      title: \"名称\",\n      dataIndex: \"name\",\n      key: \"name\",\n      width: 150,\n      render: (name: string | null) => name || \"-\",\n    },\n    {\n      title: \"策略\",\n      key: \"strategy\",\n      width: 120,\n      render: (_: unknown, record: BacktestRecord) =>\n        record.strategySnapshot?.name || \"-\",\n    },\n    {\n      title: \"总收益率\",\n      dataIndex: \"totalReturnPct\",\n      key: \"totalReturnPct\",\n      width: 100,\n      align: \"center\" as const,\n      render: (ret: string | null) => {\n        if (!ret) return \"-\";\n        const num = parseFloat(ret);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        return <Tag color={color}>{formatPercent(ret)}</Tag>;\n      },\n    },\n    {\n      title: \"回测区间\",\n      key: \"timeRange\",\n      width: 220,\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space direction=\"vertical\" size=\"small\">\n          <Text type=\"secondary\">{formatDate(record.startTime)}</Text>\n          <Text type=\"secondary\">{formatDate(record.endTime)}</Text>\n        </Space>\n      ),\n    },\n    {\n      title: \"信号\",\n      key: \"signals\",\n      width: 100,\n      align: \"center\" as const,\n      render: (_: unknown, record: BacktestRecord) => {\n        if (record.totalSignals === null && record.filteredSignals === null)\n          return \"-\";\n        return `${record.filteredSignals ?? \"-\"}/${record.totalSignals ?? \"-\"}`;\n      },\n    },\n    {\n      title: \"交易次数\",\n      dataIndex: \"totalTrades\",\n      key: \"totalTrades\",\n      width: 80,\n      align: \"center\" as const,\n      render: (count: number) => <Tag color=\"blue\">{count}</Tag>,\n    },\n    {\n      title: \"胜率\",\n      dataIndex: \"winRate\",\n      key: \"winRate\",\n      width: 80,\n      align: \"center\" as const,\n      render: (rate: string | null) => {\n        if (!rate) return \"-\";\n        const num = parseFloat(rate);\n        const color = num >= 0.5 ? \"success\" : num >= 0.3 ? \"warning\" : \"error\";\n        return <Tag color={color}>{formatPercent(rate)}</Tag>;\n      },\n    },\n\n    {\n      title: \"最大回撤\",\n      dataIndex: \"maxDrawdownPct\",\n      key: \"maxDrawdownPct\",\n      width: 90,\n      align: \"center\" as const,\n      render: (dd: string | null) => {\n        if (!dd) return \"-\";\n        return <Text type=\"danger\">{formatPercent(dd)}</Text>;\n      },\n    },\n    {\n      title: \"夏普比率\",\n      dataIndex: \"sharpeRatio\",\n      key: \"sharpeRatio\",\n      width: 90,\n      align: \"center\" as const,\n      render: (val: string | null) => (val ? parseFloat(val).toFixed(2) : \"-\"),\n    },\n    {\n      title: \"状态\",\n      dataIndex: \"status\",\n      key: \"status\",\n      width: 80,\n      align: \"center\" as const,\n      render: (status: string) => {\n        const colorMap: Record<string, string> = {\n          completed: \"green\",\n          failed: \"red\",\n          running: \"blue\",\n        };\n        const labelMap: Record<string, string> = {\n          completed: \"完成\",\n          failed: \"失败\",\n          running: \"运行中\",\n        };\n        return (\n          <Tag color={colorMap[status] || \"default\"}>\n            {labelMap[status] || status}\n          </Tag>\n        );\n      },\n    },\n    {\n      title: \"创建时间\",\n      dataIndex: \"createdAt\",\n      key: \"createdAt\",\n      width: 160,\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      width: 160,\n      fixed: \"right\" as const,\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space size=\"small\">\n          <Button\n            type=\"primary\"\n            icon={<EyeOutlined />}\n            size=\"small\"\n            onClick={() => handleViewDetail(record)}\n          >\n            详情\n          </Button>\n          <Popconfirm\n            title=\"确认删除\"\n            description=\"确定要删除这条回测记录吗？\"\n            onConfirm={() => handleDelete(record.id)}\n            okText=\"确认\"\n            cancelText=\"取消\"\n          >\n            <Button danger icon={<DeleteOutlined />} size=\"small\">\n              删除\n            </Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: \"标的\",\n      dataIndex: \"symbol\",\n      key: \"symbol\",\n      width: 100,\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"direction\",\n      key: \"direction\",\n      width: 80,\n      render: (dir: string) => {\n        const isLong = dir === \"long\";\n        return (\n          <Tag color={isLong ? \"red\" : \"green\"}>{isLong ? \"做多\" : \"做空\"}</Tag>\n        );\n      },\n    },\n    {\n      title: \"入场时间\",\n      dataIndex: \"entryTime\",\n      key: \"entryTime\",\n      width: 150,\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"入场价\",\n      dataIndex: \"entryPrice\",\n      key: \"entryPrice\",\n      width: 100,\n      render: (price: string) => parseFloat(price).toFixed(2),\n    },\n    {\n      title: \"出场时间\",\n      dataIndex: \"exitTime\",\n      key: \"exitTime\",\n      width: 150,\n      render: (time: string | null) => (time ? formatDate(time) : \"-\"),\n    },\n    {\n      title: \"出场价\",\n      dataIndex: \"exitPrice\",\n      key: \"exitPrice\",\n      width: 100,\n      render: (price: string | null) =>\n        price ? parseFloat(price).toFixed(2) : \"-\",\n    },\n    {\n      title: \"收益率\",\n      dataIndex: \"pnlPct\",\n      key: \"pnlPct\",\n      width: 100,\n      render: (pct: string | null) => {\n        if (!pct) return \"-\";\n        const num = parseFloat(pct);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        const text =\n          num > 0\n            ? `+${(num * 100).toFixed(2)}%`\n            : `${(num * 100).toFixed(2)}%`;\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"出场原因\",\n      dataIndex: \"exitReason\",\n      key: \"exitReason\",\n      width: 100,\n      render: (reason: string | null) => {\n        const reasonMap: Record<string, string> = {\n          hold_period: \"持仓到期\",\n          stop_loss: \"止损\",\n          take_profit: \"止盈\",\n        };\n        return reason ? reasonMap[reason] || reason : \"-\";\n      },\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      width: 100,\n      fixed: \"right\" as const,\n      render: (_: unknown, record: BacktestTrade) => (\n        <Button\n          type=\"link\"\n          size=\"small\"\n          icon={<LinkOutlined />}\n          onClick={() => handleViewSignalDetail(record.signalId)}\n          disabled={!record.signalId}\n        >\n          信号\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>回测记录</Title>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={handleOpenForm}\n          >\n            新建回测\n          </Button>\n          <Button icon={<ReloadOutlined />} onClick={fetchData}>\n            刷新\n          </Button>\n        </Space>\n      </Card>\n\n      <Card>\n        <Spin spinning={loading}>\n          {data.length === 0 ? (\n            <Empty description=\"暂无回测记录\" />\n          ) : (\n            <Table\n              columns={columns}\n              dataSource={data}\n              rowKey=\"id\"\n              pagination={{\n                pageSize: 10,\n                showSizeChanger: true,\n                showQuickJumper: true,\n                showTotal: (total) => `共 ${total} 条`,\n              }}\n              scroll={{ x: 1500 }}\n            />\n          )}\n        </Spin>\n      </Card>\n\n      <Modal\n        title=\"新建回测\"\n        open={formVisible}\n        onOk={handleRunBacktest}\n        onCancel={() => setFormVisible(false)}\n        confirmLoading={formLoading}\n        width={500}\n      >\n        <Form form={form} layout=\"vertical\" initialValues={{ period: '4h' }}>\n          <Form.Item\n            name=\"strategyId\"\n            label=\"选择策略\"\n            rules={[{ required: true, message: \"请选择策略\" }]}\n          >\n            <Select\n              placeholder=\"请选择策略\"\n              options={strategies.map((s) => ({ label: s.name, value: s.id }))}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"period\"\n            label=\"K线周期\"\n            rules={[{ required: true, message: \"请选择K线周期\" }]}\n          >\n            <Select\n              placeholder=\"请选择K线周期\"\n              options={[\n                { label: '4小时线', value: '4h' },\n                { label: '日线', value: '1d' },\n              ]}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"timeRange\"\n            label=\"时间范围\"\n            rules={[{ required: true, message: \"请选择时间范围\" }]}\n          >\n            <DatePicker.RangePicker showTime style={{ width: \"100%\" }} />\n          </Form.Item>\n          <Form.Item name=\"name\" label=\"回测名称\">\n            <Input placeholder=\"可选，默认使用策略名称\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"回测详情\"\n        open={detailVisible}\n        onCancel={() => setDetailVisible(false)}\n        width={1200}\n        footer={[\n          <Button key=\"close\" onClick={() => setDetailVisible(false)}>\n            关闭\n          </Button>,\n        ]}\n      >\n        {selectedRecord ? (\n          <>\n            <Descriptions bordered column={3} style={{ marginBottom: 24 }}>\n              <Descriptions.Item label=\"策略名称\">\n                {selectedRecord.strategySnapshot?.name || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"回测区间\">\n                {formatDate(selectedRecord.startTime)} ~{\" \"}\n                {formatDate(selectedRecord.endTime)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"K线周期\">\n                {selectedRecord.period === '4h' ? '4小时线' : selectedRecord.period === '1d' ? '日线' : selectedRecord.period}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"信号总数/过滤后\">\n                {selectedRecord.totalSignals ?? \"-\"} /{\" \"}\n                {selectedRecord.filteredSignals ?? \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"交易次数\">\n                {selectedRecord.totalTrades} 笔\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈利/亏损\">\n                <Text style={{ color: \"#52c41a\" }}>\n                  {selectedRecord.winningTrades}\n                </Text>{\" \"}\n                /{\" \"}\n                <Text style={{ color: \"#ff4d4f\" }}>\n                  {selectedRecord.losingTrades}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"胜率\">\n                {formatPercent(selectedRecord.winRate)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"总收益率\">\n                <Tag\n                  color={\n                    selectedRecord.totalReturnPct &&\n                    parseFloat(selectedRecord.totalReturnPct) > 0\n                      ? \"red\"\n                      : \"green\"\n                  }\n                >\n                  {formatPercent(selectedRecord.totalReturnPct)}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"平均收益率\">\n                {formatPercent(selectedRecord.avgReturnPct)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"最大回撤\">\n                <Text type=\"danger\">\n                  {formatPercent(selectedRecord.maxDrawdownPct)}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"夏普比率\">\n                {selectedRecord.sharpeRatio\n                  ? parseFloat(selectedRecord.sharpeRatio).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈亏比\">\n                {selectedRecord.profitFactor\n                  ? parseFloat(selectedRecord.profitFactor).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n            </Descriptions>\n\n            <Title level={5}>交易明细</Title>\n            <Spin spinning={detailLoading}>\n              <Table\n                dataSource={tradesData}\n                columns={tradeColumns}\n                rowKey=\"id\"\n                pagination={{ pageSize: 10 }}\n                size=\"small\"\n                scroll={{ x: 1000 }}\n              />\n            </Spin>\n          </>\n        ) : (\n          <Empty description=\"暂无数据\" />\n        )}\n      </Modal>\n\n      <Modal\n        title=\"信号详情\"\n        open={signalDetailVisible}\n        onCancel={() => setSignalDetailVisible(false)}\n        width={800}\n        footer={[\n          <Button key=\"close\" onClick={() => setSignalDetailVisible(false)}>\n            关闭\n          </Button>,\n        ]}\n      >\n        <Spin spinning={signalDetailLoading}>\n          {selectedSignal ? (\n            <Descriptions bordered column={2}>\n              <Descriptions.Item label=\"标的\">\n                {selectedSignal.symbol || selectedSignal.stockCode || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"名称\">\n                {selectedSignal.stockName || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"方向\">\n                <Tag\n                  color={\n                    selectedSignal.action === \"long\"\n                      ? \"red\"\n                      : selectedSignal.action === \"short\"\n                        ? \"green\"\n                        : \"default\"\n                  }\n                >\n                  {selectedSignal.action === \"long\"\n                    ? \"做多\"\n                    : selectedSignal.action === \"short\"\n                      ? \"做空\"\n                      : \"观望\"}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"分数\">\n                {selectedSignal.score\n                  ? parseFloat(selectedSignal.score).toFixed(4)\n                  : \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"生成时间\" span={2}>\n                {formatDate(\n                  selectedSignal.generatedAt ||\n                    selectedSignal.createdAt ||\n                    \"\",\n                )}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"有效期\" span={2}>\n                {selectedSignal.validFrom && selectedSignal.validTo\n                  ? `${formatDate(selectedSignal.validFrom)} ~ ${formatDate(selectedSignal.validTo)}`\n                  : \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"分析理由\" span={2}>\n                <Paragraph style={{ marginBottom: 0 }}>\n                  {selectedSignal.reason || selectedSignal.reasoning || \"暂无分析理由\"}\n                </Paragraph>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"规则ID\">\n                {selectedSignal.ruleId || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"关联事件\">\n                {selectedSignal.eventId || \"-\"}\n              </Descriptions.Item>\n            </Descriptions>\n          ) : (\n            <Empty description=\"暂无信号数据\" />\n          )}\n        </Spin>\n      </Modal>\n    </div>\n  );\n};\n\nexport default BacktestPage;\n",
+      "__content": "import React, { useState, useEffect, useCallback, useRef } from \"react\";\nimport {\n  Table,\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  message,\n  Spin,\n  Empty,\n  Modal,\n  Descriptions,\n  Select,\n  DatePicker,\n  Input,\n  Form,\n  Popconfirm,\n} from \"antd\";\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  EyeOutlined,\n  DeleteOutlined,\n  LinkOutlined,\n  LoadingOutlined,\n} from \"@ant-design/icons\";\nimport { backtestApi } from \"@/services/backtest\";\nimport { strategyApi } from \"@/services/strategy\";\nimport { signalsApi } from \"@/services/signals\";\nimport type { BacktestRecord, BacktestTrade, Strategy, Signal } from \"@/services/types\";\nimport dayjs from \"dayjs\";\n\nconst { Title, Text, Paragraph } = Typography;\n\nconst PERIOD_LABEL: Record<string, string> = {\n  '4h': '4小时线',\n  '1d': '日线',\n};\n\nconst BacktestPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<BacktestRecord[]>([]);\n  const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);\n\n  const [formVisible, setFormVisible] = useState(false);\n  const [formLoading, setFormLoading] = useState(false);\n  const [strategies, setStrategies] = useState<Strategy[]>([]);\n  const [form] = Form.useForm();\n\n  const [detailVisible, setDetailVisible] = useState(false);\n  const [detailLoading, setDetailLoading] = useState(false);\n  const [selectedRecord, setSelectedRecord] = useState<BacktestRecord | null>(\n    null,\n  );\n  const [tradesData, setTradesData] = useState<BacktestTrade[]>([]);\n\n  const [signalDetailVisible, setSignalDetailVisible] = useState(false);\n  const [signalDetailLoading, setSignalDetailLoading] = useState(false);\n  const [selectedSignal, setSelectedSignal] = useState<Signal | null>(null);\n\n  const fetchData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const response = await backtestApi.getRecords();\n      setData(response || []);\n    } catch (error) {\n      message.error(\"获取回测记录失败\");\n      console.error(\"Fetch backtest records error:\", error);\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  const startPolling = useCallback(() => {\n    if (pollingRef.current) return;\n    pollingRef.current = setInterval(async () => {\n      try {\n        const response = await backtestApi.getRecords();\n        const records = response || [];\n        setData(records);\n        const hasRunning = records.some((r) => r.status === \"running\");\n        if (!hasRunning && pollingRef.current) {\n          clearInterval(pollingRef.current);\n          pollingRef.current = null;\n        }\n      } catch {\n        if (pollingRef.current) {\n          clearInterval(pollingRef.current);\n          pollingRef.current = null;\n        }\n      }\n    }, 3000);\n  }, []);\n\n  useEffect(() => {\n    fetchData();\n    return () => {\n      if (pollingRef.current) {\n        clearInterval(pollingRef.current);\n        pollingRef.current = null;\n      }\n    };\n  }, [fetchData]);\n\n  useEffect(() => {\n    if (data.some((r) => r.status === \"running\")) {\n      startPolling();\n    }\n  }, [data, startPolling]);\n\n  const handleOpenForm = async () => {\n    setFormVisible(true);\n    form.resetFields();\n    try {\n      const response = await strategyApi.getStrategiesList({ pageSize: 100 });\n      setStrategies(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch strategies error:\", error);\n    }\n  };\n\n  const handleRunBacktest = async () => {\n    try {\n      const values = await form.validateFields();\n      setFormLoading(true);\n      const params = {\n        strategyId: values.strategyId,\n        startTime: values.timeRange[0].toISOString(),\n        endTime: values.timeRange[1].toISOString(),\n        period: values.period || '4h',\n        name: values.name || undefined,\n      };\n      await backtestApi.runBacktest(params);\n      message.success(\"回测任务已创建，正在后台执行\");\n      setFormVisible(false);\n      fetchData();\n      startPolling();\n    } catch (error) {\n      console.error(\"Run backtest error:\", error);\n      message.error(\"创建回测任务失败\");\n    } finally {\n      setFormLoading(false);\n    }\n  };\n\n  const handleViewDetail = async (record: BacktestRecord) => {\n    if (record.status === \"running\") {\n      const fresh = await backtestApi.getRecordById(record.id);\n      setSelectedRecord(fresh);\n    } else {\n      setSelectedRecord(record);\n    }\n    setDetailVisible(true);\n    setDetailLoading(true);\n    try {\n      const trades = await backtestApi.getRecordTrades(record.id);\n      setTradesData(trades || []);\n    } catch (error) {\n      console.error(\"Fetch trades error:\", error);\n      message.error(\"获取交易明细失败\");\n    } finally {\n      setDetailLoading(false);\n    }\n  };\n\n  const handleViewSignalDetail = async (signalId: string | null) => {\n    if (!signalId) {\n      message.warning(\"该交易无关联信号\");\n      return;\n    }\n    setSignalDetailVisible(true);\n    setSignalDetailLoading(true);\n    try {\n      const signal = await signalsApi.getSignalById(signalId);\n      setSelectedSignal(signal);\n    } catch (error) {\n      console.error(\"Fetch signal detail error:\", error);\n      message.error(\"获取信号详情失败\");\n    } finally {\n      setSignalDetailLoading(false);\n    }\n  };\n\n  const handleDelete = async (id: string) => {\n    try {\n      await backtestApi.deleteRecord(id);\n      message.success(\"删除成功\");\n      fetchData();\n    } catch (error) {\n      message.error(\"删除失败\");\n      console.error(\"Delete backtest record error:\", error);\n    }\n  };\n\n  const formatDate = (dateString: string) => {\n    if (!dateString) return \"-\";\n    return dayjs(dateString).format(\"YYYY-MM-DD HH:mm\");\n  };\n\n  const formatPercent = (value: string | number | null | undefined) => {\n    if (value === null || value === undefined) return \"-\";\n    const num = typeof value === \"string\" ? parseFloat(value) : value;\n    if (isNaN(num)) return \"-\";\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const columns = [\n    {\n      title: \"名称\",\n      dataIndex: \"name\",\n      key: \"name\",\n      width: 150,\n      render: (name: string | null, record: BacktestRecord) => (\n        <Space>\n          {record.status === \"running\" && <LoadingOutlined />}\n          {name || \"-\"}\n        </Space>\n      ),\n    },\n    {\n      title: \"策略\",\n      key: \"strategy\",\n      width: 120,\n      render: (_: unknown, record: BacktestRecord) =>\n        record.strategySnapshot?.name || \"-\",\n    },\n    {\n      title: \"总收益率\",\n      dataIndex: \"totalReturnPct\",\n      key: \"totalReturnPct\",\n      width: 100,\n      align: \"center\" as const,\n      render: (ret: string | null, record: BacktestRecord) => {\n        if (record.status === \"running\") return <Tag color=\"processing\">-</Tag>;\n        if (!ret) return \"-\";\n        const num = parseFloat(ret);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        return <Tag color={color}>{formatPercent(ret)}</Tag>;\n      },\n    },\n    {\n      title: \"回测区间\",\n      key: \"timeRange\",\n      width: 220,\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space direction=\"vertical\" size=\"small\">\n          <Text type=\"secondary\">{formatDate(record.startTime)}</Text>\n          <Text type=\"secondary\">{formatDate(record.endTime)}</Text>\n        </Space>\n      ),\n    },\n    {\n      title: \"信号\",\n      key: \"signals\",\n      width: 100,\n      align: \"center\" as const,\n      render: (_: unknown, record: BacktestRecord) => {\n        if (record.status === \"running\") return \"-\";\n        if (record.totalSignals === null && record.filteredSignals === null)\n          return \"-\";\n        return `${record.filteredSignals ?? \"-\"}/${record.totalSignals ?? \"-\"}`;\n      },\n    },\n    {\n      title: \"交易次数\",\n      dataIndex: \"totalTrades\",\n      key: \"totalTrades\",\n      width: 80,\n      align: \"center\" as const,\n      render: (count: number, record: BacktestRecord) => {\n        if (record.status === \"running\") return \"-\";\n        return <Tag color=\"blue\">{count}</Tag>;\n      },\n    },\n    {\n      title: \"胜率\",\n      dataIndex: \"winRate\",\n      key: \"winRate\",\n      width: 80,\n      align: \"center\" as const,\n      render: (rate: string | null, record: BacktestRecord) => {\n        if (record.status === \"running\") return \"-\";\n        if (!rate) return \"-\";\n        const num = parseFloat(rate);\n        const color = num >= 0.5 ? \"success\" : num >= 0.3 ? \"warning\" : \"error\";\n        return <Tag color={color}>{formatPercent(rate)}</Tag>;\n      },\n    },\n\n    {\n      title: \"最大回撤\",\n      dataIndex: \"maxDrawdownPct\",\n      key: \"maxDrawdownPct\",\n      width: 90,\n      align: \"center\" as const,\n      render: (dd: string | null, record: BacktestRecord) => {\n        if (record.status === \"running\") return \"-\";\n        if (!dd) return \"-\";\n        return <Text type=\"danger\">{formatPercent(dd)}</Text>;\n      },\n    },\n    {\n      title: \"夏普比率\",\n      dataIndex: \"sharpeRatio\",\n      key: \"sharpeRatio\",\n      width: 90,\n      align: \"center\" as const,\n      render: (val: string | null, record: BacktestRecord) => {\n        if (record.status === \"running\") return \"-\";\n        return val ? parseFloat(val).toFixed(2) : \"-\";\n      },\n    },\n    {\n      title: \"状态\",\n      dataIndex: \"status\",\n      key: \"status\",\n      width: 80,\n      align: \"center\" as const,\n      render: (status: string) => {\n        const colorMap: Record<string, string> = {\n          completed: \"green\",\n          failed: \"red\",\n          running: \"processing\",\n        };\n        const labelMap: Record<string, string> = {\n          completed: \"完成\",\n          failed: \"失败\",\n          running: \"运行中\",\n        };\n        return (\n          <Tag color={colorMap[status] || \"default\"} icon={status === \"running\" ? <LoadingOutlined /> : undefined}>\n            {labelMap[status] || status}\n          </Tag>\n        );\n      },\n    },\n    {\n      title: \"创建时间\",\n      dataIndex: \"createdAt\",\n      key: \"createdAt\",\n      width: 160,\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      width: 160,\n      fixed: \"right\" as const,\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space size=\"small\">\n          <Button\n            type=\"primary\"\n            icon={<EyeOutlined />}\n            size=\"small\"\n            onClick={() => handleViewDetail(record)}\n          >\n            详情\n          </Button>\n          <Popconfirm\n            title=\"确认删除\"\n            description=\"确定要删除这条回测记录吗？\"\n            onConfirm={() => handleDelete(record.id)}\n            okText=\"确认\"\n            cancelText=\"取消\"\n          >\n            <Button danger icon={<DeleteOutlined />} size=\"small\">\n              删除\n            </Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: \"标的\",\n      dataIndex: \"symbol\",\n      key: \"symbol\",\n      width: 100,\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"direction\",\n      key: \"direction\",\n      width: 80,\n      render: (dir: string) => {\n        const isLong = dir === \"long\";\n        return (\n          <Tag color={isLong ? \"red\" : \"green\"}>{isLong ? \"做多\" : \"做空\"}</Tag>\n        );\n      },\n    },\n    {\n      title: \"入场时间\",\n      dataIndex: \"entryTime\",\n      key: \"entryTime\",\n      width: 150,\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"入场价\",\n      dataIndex: \"entryPrice\",\n      key: \"entryPrice\",\n      width: 100,\n      render: (price: string) => parseFloat(price).toFixed(2),\n    },\n    {\n      title: \"出场时间\",\n      dataIndex: \"exitTime\",\n      key: \"exitTime\",\n      width: 150,\n      render: (time: string | null) => (time ? formatDate(time) : \"-\"),\n    },\n    {\n      title: \"出场价\",\n      dataIndex: \"exitPrice\",\n      key: \"exitPrice\",\n      width: 100,\n      render: (price: string | null) =>\n        price ? parseFloat(price).toFixed(2) : \"-\",\n    },\n    {\n      title: \"收益率\",\n      dataIndex: \"pnlPct\",\n      key: \"pnlPct\",\n      width: 100,\n      render: (pct: string | null) => {\n        if (!pct) return \"-\";\n        const num = parseFloat(pct);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        const text =\n          num > 0\n            ? `+${(num * 100).toFixed(2)}%`\n            : `${(num * 100).toFixed(2)}%`;\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"出场原因\",\n      dataIndex: \"exitReason\",\n      key: \"exitReason\",\n      width: 100,\n      render: (reason: string | null) => {\n        const reasonMap: Record<string, string> = {\n          hold_period: \"持仓到期\",\n          stop_loss: \"止损\",\n          take_profit: \"止盈\",\n        };\n        return reason ? reasonMap[reason] || reason : \"-\";\n      },\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      width: 100,\n      fixed: \"right\" as const,\n      render: (_: unknown, record: BacktestTrade) => (\n        <Button\n          type=\"link\"\n          size=\"small\"\n          icon={<LinkOutlined />}\n          onClick={() => handleViewSignalDetail(record.signalId)}\n          disabled={!record.signalId}\n        >\n          信号\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>回测记录</Title>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={handleOpenForm}\n          >\n            新建回测\n          </Button>\n          <Button icon={<ReloadOutlined />} onClick={fetchData}>\n            刷新\n          </Button>\n        </Space>\n      </Card>\n\n      <Card>\n        <Spin spinning={loading}>\n          {data.length === 0 ? (\n            <Empty description=\"暂无回测记录\" />\n          ) : (\n            <Table\n              columns={columns}\n              dataSource={data}\n              rowKey=\"id\"\n              pagination={{\n                pageSize: 10,\n                showSizeChanger: true,\n                showQuickJumper: true,\n                showTotal: (total) => `共 ${total} 条`,\n              }}\n              scroll={{ x: 1500 }}\n            />\n          )}\n        </Spin>\n      </Card>\n\n      <Modal\n        title=\"新建回测\"\n        open={formVisible}\n        onOk={handleRunBacktest}\n        onCancel={() => setFormVisible(false)}\n        confirmLoading={formLoading}\n        width={500}\n      >\n        <Form form={form} layout=\"vertical\" initialValues={{ period: '4h' }}>\n          <Form.Item\n            name=\"strategyId\"\n            label=\"选择策略\"\n            rules={[{ required: true, message: \"请选择策略\" }]}\n          >\n            <Select\n              placeholder=\"请选择策略\"\n              options={strategies.map((s) => ({ label: s.name, value: s.id }))}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"period\"\n            label=\"K线周期\"\n            rules={[{ required: true, message: \"请选择K线周期\" }]}\n          >\n            <Select\n              placeholder=\"请选择K线周期\"\n              options={[\n                { label: '4小时线', value: '4h' },\n                { label: '日线', value: '1d' },\n              ]}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"timeRange\"\n            label=\"时间范围\"\n            rules={[{ required: true, message: \"请选择时间范围\" }]}\n          >\n            <DatePicker.RangePicker showTime style={{ width: \"100%\" }} />\n          </Form.Item>\n          <Form.Item name=\"name\" label=\"回测名称\">\n            <Input placeholder=\"可选，默认使用策略名称\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"回测详情\"\n        open={detailVisible}\n        onCancel={() => setDetailVisible(false)}\n        width={1200}\n        footer={[\n          <Button key=\"close\" onClick={() => setDetailVisible(false)}>\n            关闭\n          </Button>,\n        ]}\n      >\n        {selectedRecord ? (\n          selectedRecord.status === \"running\" ? (\n            <div style={{ textAlign: \"center\", padding: \"40px 0\" }}>\n              <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} />} />\n              <div style={{ marginTop: 16 }}>\n                <Text type=\"secondary\">回测正在执行中，请稍后刷新查看结果</Text>\n              </div>\n            </div>\n          ) : (\n            <>\n              <Descriptions bordered column={3} style={{ marginBottom: 24 }}>\n                <Descriptions.Item label=\"策略名称\">\n                  {selectedRecord.strategySnapshot?.name || \"-\"}\n                </Descriptions.Item>\n                <Descriptions.Item label=\"回测区间\">\n                  {formatDate(selectedRecord.startTime)} ~{\" \"}\n                  {formatDate(selectedRecord.endTime)}\n                </Descriptions.Item>\n                <Descriptions.Item label=\"K线周期\">\n                  {PERIOD_LABEL[selectedRecord.period] || selectedRecord.period}\n                </Descriptions.Item>\n                <Descriptions.Item label=\"信号总数/过滤后\">\n                  {selectedRecord.totalSignals ?? \"-\"} /{\" \"}\n                  {selectedRecord.filteredSignals ?? \"-\"}\n                </Descriptions.Item>\n                <Descriptions.Item label=\"交易次数\">\n                  {selectedRecord.totalTrades} 笔\n                </Descriptions.Item>\n                <Descriptions.Item label=\"盈利/亏损\">\n                  <Text style={{ color: \"#52c41a\" }}>\n                    {selectedRecord.winningTrades}\n                  </Text>{\" \"}\n                  /{\" \"}\n                  <Text style={{ color: \"#ff4d4f\" }}>\n                    {selectedRecord.losingTrades}\n                  </Text>\n                </Descriptions.Item>\n                <Descriptions.Item label=\"胜率\">\n                  {formatPercent(selectedRecord.winRate)}\n                </Descriptions.Item>\n                <Descriptions.Item label=\"总收益率\">\n                  <Tag\n                    color={\n                      selectedRecord.totalReturnPct &&\n                      parseFloat(selectedRecord.totalReturnPct) > 0\n                        ? \"red\"\n                        : \"green\"\n                    }\n                  >\n                    {formatPercent(selectedRecord.totalReturnPct)}\n                  </Tag>\n                </Descriptions.Item>\n                <Descriptions.Item label=\"平均收益率\">\n                  {formatPercent(selectedRecord.avgReturnPct)}\n                </Descriptions.Item>\n                <Descriptions.Item label=\"最大回撤\">\n                  <Text type=\"danger\">\n                    {formatPercent(selectedRecord.maxDrawdownPct)}\n                  </Text>\n                </Descriptions.Item>\n                <Descriptions.Item label=\"夏普比率\">\n                  {selectedRecord.sharpeRatio\n                    ? parseFloat(selectedRecord.sharpeRatio).toFixed(2)\n                    : \"-\"}\n                </Descriptions.Item>\n                <Descriptions.Item label=\"盈亏比\">\n                  {selectedRecord.profitFactor\n                    ? parseFloat(selectedRecord.profitFactor).toFixed(2)\n                    : \"-\"}\n                </Descriptions.Item>\n                {selectedRecord.status === \"failed\" && selectedRecord.errorMessage && (\n                  <Descriptions.Item label=\"错误信息\" span={3}>\n                    <Text type=\"danger\">{selectedRecord.errorMessage}</Text>\n                  </Descriptions.Item>\n                )}\n              </Descriptions>\n\n              <Title level={5}>交易明细</Title>\n              <Spin spinning={detailLoading}>\n                <Table\n                  dataSource={tradesData}\n                  columns={tradeColumns}\n                  rowKey=\"id\"\n                  pagination={{ pageSize: 10 }}\n                  size=\"small\"\n                  scroll={{ x: 1000 }}\n                />\n              </Spin>\n            </>\n          )\n        ) : (\n          <Empty description=\"暂无数据\" />\n        )}\n      </Modal>\n\n      <Modal\n        title=\"信号详情\"\n        open={signalDetailVisible}\n        onCancel={() => setSignalDetailVisible(false)}\n        width={800}\n        footer={[\n          <Button key=\"close\" onClick={() => setSignalDetailVisible(false)}>\n            关闭\n          </Button>,\n        ]}\n      >\n        <Spin spinning={signalDetailLoading}>\n          {selectedSignal ? (\n            <Descriptions bordered column={2}>\n              <Descriptions.Item label=\"标的\">\n                {selectedSignal.symbol || selectedSignal.stockCode || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"名称\">\n                {selectedSignal.stockName || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"方向\">\n                <Tag\n                  color={\n                    selectedSignal.action === \"long\"\n                      ? \"red\"\n                      : selectedSignal.action === \"short\"\n                        ? \"green\"\n                        : \"default\"\n                  }\n                >\n                  {selectedSignal.action === \"long\"\n                    ? \"做多\"\n                    : selectedSignal.action === \"short\"\n                      ? \"做空\"\n                      : \"观望\"}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"分数\">\n                {selectedSignal.score\n                  ? parseFloat(selectedSignal.score).toFixed(4)\n                  : \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"生成时间\" span={2}>\n                {formatDate(\n                  selectedSignal.generatedAt ||\n                    selectedSignal.createdAt ||\n                    \"\",\n                )}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"有效期\" span={2}>\n                {selectedSignal.validFrom && selectedSignal.validTo\n                  ? `${formatDate(selectedSignal.validFrom)} ~ ${formatDate(selectedSignal.validTo)}`\n                  : \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"分析理由\" span={2}>\n                <Paragraph style={{ marginBottom: 0 }}>\n                  {selectedSignal.reason || selectedSignal.reasoning || \"暂无分析理由\"}\n                </Paragraph>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"规则ID\">\n                {selectedSignal.ruleId || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"关联事件\">\n                {selectedSignal.eventId || \"-\"}\n              </Descriptions.Item>\n            </Descriptions>\n          ) : (\n            <Empty description=\"暂无信号数据\" />\n          )}\n        </Spin>\n      </Modal>\n    </div>\n  );\n};\n\nexport default BacktestPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/backtest/index.tsx"
     },
@@ -5024,7 +5233,7 @@
             "format": "esm"
           },
           "src/services/client.ts": {
-            "bytes": 2248,
+            "bytes": 2389,
             "imports": [
               {
                 "path": "axios",
@@ -6295,7 +6504,7 @@
             "format": "esm"
           },
           "src/pages/simulation/index.tsx": {
-            "bytes": 15802,
+            "bytes": 28018,
             "imports": [
               {
                 "path": "react",
@@ -6313,9 +6522,19 @@
                 "external": true
               },
               {
+                "path": "lightweight-charts",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "src/services/client.ts",
                 "kind": "import-statement",
                 "original": "@/services/client"
+              },
+              {
+                "path": "src/services/klines.ts",
+                "kind": "import-statement",
+                "original": "@/services/klines"
               },
               {
                 "path": "react/jsx-runtime",
@@ -7424,6 +7643,11 @@
               },
               {
                 "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "lightweight-charts",
                 "kind": "import-statement",
                 "external": true
               },
@@ -8708,7 +8932,7 @@
                 "bytesInOutput": 1743
               },
               "src/services/client.ts": {
-                "bytesInOutput": 2579
+                "bytesInOutput": 2758
               },
               "src/services/auth.ts": {
                 "bytesInOutput": 923
@@ -8840,10 +9064,10 @@
                 "bytesInOutput": 32787
               },
               "src/pages/simulation/index.tsx": {
-                "bytesInOutput": 20869
+                "bytesInOutput": 34963
               },
               "src/pages/blacklist/index.tsx": {
-                "bytesInOutput": 10300
+                "bytesInOutput": 10302
               },
               "src/services/backtest.ts": {
                 "bytesInOutput": 883
@@ -8885,7 +9109,7 @@
                 "bytesInOutput": 2095
               }
             },
-            "bytes": 481357
+            "bytes": 495632
           }
         }
       }
@@ -16071,7 +16295,7 @@
       ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\simulation\\index.tsx": [
         {
-          "end": 52,
+          "end": 60,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -16088,13 +16312,18 @@
               "imported": "useEffect",
               "local": "useEffect",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useRef",
+              "local": "useRef",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 1,
           "type": "ImportDeclaration"
         },
         {
-          "end": 256,
+          "end": 261,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -16174,11 +16403,6 @@
               "type": "ImportSpecifier"
             },
             {
-              "imported": "Divider",
-              "local": "Divider",
-              "type": "ImportSpecifier"
-            },
-            {
               "imported": "Empty",
               "local": "Empty",
               "type": "ImportSpecifier"
@@ -16187,13 +16411,18 @@
               "imported": "Popconfirm",
               "local": "Popconfirm",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Spin",
+              "local": "Spin",
+              "type": "ImportSpecifier"
             }
           ],
-          "start": 53,
+          "start": 61,
           "type": "ImportDeclaration"
         },
         {
-          "end": 422,
+          "end": 448,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -16231,13 +16460,50 @@
               "imported": "DeleteOutlined",
               "local": "DeleteOutlined",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "LineChartOutlined",
+              "local": "LineChartOutlined",
+              "type": "ImportSpecifier"
             }
           ],
-          "start": 257,
+          "start": 262,
           "type": "ImportDeclaration"
         },
         {
-          "end": 462,
+          "end": 505,
+          "importKind": "value",
+          "source": "lightweight-charts",
+          "specifiers": [
+            {
+              "local": "LightweightCharts",
+              "type": "ImportNamespaceSpecifier"
+            }
+          ],
+          "start": 449,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 564,
+          "importKind": "type",
+          "source": "lightweight-charts",
+          "specifiers": [
+            {
+              "imported": "IChartApi",
+              "local": "IChartApi",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Time",
+              "local": "Time",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 506,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 604,
           "importKind": "value",
           "source": "@/services/client",
           "specifiers": [
@@ -16246,7 +16512,21 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 423,
+          "start": 565,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 651,
+          "importKind": "value",
+          "source": "@/services/klines",
+          "specifiers": [
+            {
+              "imported": "klinesApi",
+              "local": "klinesApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 605,
           "type": "ImportDeclaration"
         }
       ],
