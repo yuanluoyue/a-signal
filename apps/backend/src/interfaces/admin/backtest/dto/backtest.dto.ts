@@ -1,4 +1,4 @@
-import { IsDate, IsString, IsOptional, IsUUID } from 'class-validator';
+import { IsDate, IsString, IsOptional, IsUUID, IsIn } from 'class-validator';
 import { Type } from 'class-transformer';
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 
@@ -16,6 +16,11 @@ export class StrategyBacktestRequestDto {
   @IsDate()
   @Type(() => Date)
   endTime: Date;
+
+  @ApiPropertyOptional({ description: 'K线周期', enum: ['1d', '4h'], default: '4h' })
+  @IsOptional()
+  @IsIn(['1d', '4h'])
+  period?: '1d' | '4h';
 
   @ApiPropertyOptional({ description: '回测名称' })
   @IsOptional()

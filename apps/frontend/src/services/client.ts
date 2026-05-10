@@ -36,7 +36,9 @@ client.interceptors.response.use(
     return data;
   },
   (error: AxiosError) => {
-    if (error.response) {
+    if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+      message.error('请求超时，请稍后重试');
+    } else if (error.response) {
       const { status, data } = error.response;
       
       switch (status) {
