@@ -857,7 +857,7 @@ const StockTrackingDetailPage: React.FC = () => {
                 {formatDate(selectedBacktest.endTime)}
               </Descriptions.Item>
               <Descriptions.Item label="K线周期">
-                {selectedBacktest.period}
+                {selectedBacktest.period === '4h' ? '4小时线' : selectedBacktest.period === '1d' ? '日线' : selectedBacktest.period}
               </Descriptions.Item>
               <Descriptions.Item label="信号总数/过滤后">
                 {selectedBacktest.totalSignals ?? "-"} /{" "}

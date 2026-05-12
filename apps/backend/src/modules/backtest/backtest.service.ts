@@ -26,11 +26,7 @@ export class BacktestService {
     private readonly strategyService: StrategyService,
   ) {}
 
-  async runBacktest(dto: StrategyBacktestRequestDto): Promise<BacktestRecord> {
-    this.logger.log(
-      `Running strategy backtest: strategyId=${dto.strategyId}, ${dto.startTime.toISOString()} ~ ${dto.endTime.toISOString()}`,
-    );
-
+  async createBacktest(dto: StrategyBacktestRequestDto): Promise<BacktestRecord> {
     const strategy = await this.strategyService.findById(dto.strategyId);
     if (!strategy) {
       throw new NotFoundException(`Strategy ${dto.strategyId} not found`);
@@ -54,49 +50,85 @@ export class BacktestService {
       maxPositions: strategy.maxPositions,
     };
 
+    const klinePeriod: KlinePeriod = dto.period || '4h';
+
+    const [record] = await this.dbService.db
+      .insert(backtestRecords)
+      .values({
+        name: dto.name || `${strategy.name} 回测`,
+        description: null,
+        strategyId: strategy.id,
+        strategySnapshot,
+        stockCode: dto.stockCode || null,
+        startTime: dto.startTime,
+        endTime: dto.endTime,
+        period: klinePeriod,
+        totalSignals: 0,
+        filteredSignals: 0,
+        totalTrades: 0,
+        winningTrades: 0,
+        losingTrades: 0,
+        winRate: '0',
+        totalReturnPct: '0',
+        avgReturnPct: '0',
+        maxDrawdownPct: '0',
+        equityCurve: [],
+        status: 'running',
+        errorMessage: null,
+      })
+      .returning();
+
+    this.logger.log(`[BacktestService] Created backtest record: ${record.id}, status=running`);
+
+    this.executeBacktest(record.id, dto, strategy, klinePeriod).catch((err) => {
+      this.logger.error(`[BacktestService] Unhandled error in executeBacktest for ${record.id}: ${err instanceof Error ? err.message : String(err)}`);
+    });
+
+    return record;
+  }
+
+  private async executeBacktest(
+    recordId: string,
+    dto: StrategyBacktestRequestDto,
+    strategy: Awaited<ReturnType<StrategyService['findById']>>,
+    klinePeriod: KlinePeriod,
+  ): Promise<void> {
+    this.logger.log(`[BacktestService] Starting backtest execution: ${recordId}`);
+
     try {
       const allSignals = await this.queryAllSignals(dto);
-      this.logger.log(`Found ${allSignals.length} total signals in time range`);
+      this.logger.log(`[BacktestService] [${recordId}] Found ${allSignals.length} total signals in time range`);
 
-      const filteredSignals = this.filterSignalsByStrategy(allSignals, strategy);
-      this.logger.log(`Filtered to ${filteredSignals.length} signals matching strategy`);
+      const filteredSignals = this.filterSignalsByStrategy(allSignals, strategy!);
+      this.logger.log(`[BacktestService] [${recordId}] Filtered to ${filteredSignals.length} signals matching strategy`);
 
       const stockCodes = [...new Set(filteredSignals.map(s => s.symbol).filter((code): code is string => code !== null))];
       if (stockCodes.length > 0) {
-        this.logger.log(`Checking and updating klines for ${stockCodes.length} stocks...`);
+        this.logger.log(`[BacktestService] [${recordId}] Checking and updating klines for ${stockCodes.length} stocks...`);
         const updateResult = await this.klinesService.checkAndUpdateKlinesForBacktest(stockCodes);
-        this.logger.log(`Klines update completed: ${updateResult.updated} updated, ${updateResult.failed} failed`);
+        this.logger.log(`[BacktestService] [${recordId}] Klines update completed: ${updateResult.updated} updated, ${updateResult.failed} failed`);
       }
 
-      const klinePeriod: KlinePeriod = '1d';
       const trades: BacktestTradeResult[] = [];
 
       for (const signal of filteredSignals) {
         try {
-          const trade = await this.simulateTrade(signal, strategy, dto, klinePeriod);
+          const trade = await this.simulateTrade(signal, strategy!, dto, klinePeriod);
           if (trade) {
             trades.push(trade);
           }
         } catch (error) {
           this.logger.error(
-            `Failed to simulate trade for signal ${signal.id}: ${error instanceof Error ? error.message : String(error)}`,
+            `[BacktestService] [${recordId}] Failed to simulate trade for signal ${signal.id}: ${error instanceof Error ? error.message : String(error)}`,
           );
         }
       }
 
       const stats = this.calculateStatistics(trades);
 
-      const [record] = await this.dbService.db
-        .insert(backtestRecords)
-        .values({
-          name: dto.name || `${strategy.name} 回测`,
-          description: null,
-          strategyId: strategy.id,
-          strategySnapshot,
-          stockCode: dto.stockCode || null,
-          startTime: dto.startTime,
-          endTime: dto.endTime,
-          period: '1d',
+      await this.dbService.db
+        .update(backtestRecords)
+        .set({
           totalSignals: allSignals.length,
           filteredSignals: filteredSignals.length,
           totalTrades: stats.totalTrades,
@@ -113,12 +145,12 @@ export class BacktestService {
           status: 'completed',
           errorMessage: null,
         })
-        .returning();
+        .where(eq(backtestRecords.id, recordId));
 
       if (trades.length > 0) {
         const tradeValues: NewBacktestTrade[] = trades.map((t) => ({
-          backtestId: record.id,
-          strategyId: strategy.id,
+          backtestId: recordId,
+          strategyId: strategy!.id,
           signalId: t.signalId || null,
           eventId: t.eventId || null,
           symbol: t.symbol,
@@ -140,20 +172,11 @@ export class BacktestService {
         await this.dbService.db.insert(backtestTrades).values(tradeValues);
       }
 
-      this.logger.log(`Backtest completed: ${record.id}, ${stats.totalTrades} trades, winRate=${stats.winRate.toFixed(4)}, totalReturn=${stats.totalReturnPct.toFixed(4)}`);
-      return record;
+      this.logger.log(`[BacktestService] [${recordId}] Backtest completed: ${stats.totalTrades} trades, winRate=${stats.winRate.toFixed(4)}, totalReturn=${stats.totalReturnPct.toFixed(4)}`);
     } catch (error) {
-      const [record] = await this.dbService.db
-        .insert(backtestRecords)
-        .values({
-          name: dto.name || `${strategy.name} 回测`,
-          description: null,
-          strategyId: strategy.id,
-          strategySnapshot,
-          stockCode: dto.stockCode || null,
-          startTime: dto.startTime,
-          endTime: dto.endTime,
-          period: '1d',
+      await this.dbService.db
+        .update(backtestRecords)
+        .set({
           totalSignals: 0,
           filteredSignals: 0,
           totalTrades: 0,
@@ -167,10 +190,9 @@ export class BacktestService {
           status: 'failed',
           errorMessage: error instanceof Error ? error.message : String(error),
         })
-        .returning();
+        .where(eq(backtestRecords.id, recordId));
 
-      this.logger.error(`Backtest failed: ${record.id}, error: ${error instanceof Error ? error.message : String(error)}`);
-      return record;
+      this.logger.error(`[BacktestService] [${recordId}] Backtest failed: ${error instanceof Error ? error.message : String(error)}`);
     }
   }
 

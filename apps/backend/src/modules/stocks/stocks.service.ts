@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { eq, and, desc, sql, inArray, notInArray, or } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
-import { signals, klines, stocks, type Signal, type Kline } from '../../core/db/schema.js';
+import { signals, klines, stocks, events, type Signal, type Kline } from '../../core/db/schema.js';
 import { KlinesService } from '../klines/klines.service.js';
 import { BlacklistService } from '../blacklist/blacklist.service.js';
 import { QueueService } from '../../core/queue/queue.service.js';
@@ -79,8 +79,35 @@ export class StocksService {
     const stockName = stockInfo.get(stockCode)?.name || stockCode;
 
     const stockSignals = await this.dbService.db
-      .select()
+      .select({
+        id: signals.id,
+        newsId: signals.newsId,
+        stockCode: signals.stockCode,
+        stockName: signals.stockName,
+        direction: signals.direction,
+        confidence: signals.confidence,
+        sentiment: signals.sentiment,
+        reasoning: signals.reasoning,
+        keyFactors: signals.keyFactors,
+        timeWindow: signals.timeWindow,
+        signalTime: signals.signalTime,
+        eventId: signals.eventId,
+        symbol: signals.symbol,
+        action: signals.action,
+        score: signals.score,
+        generatedAt: signals.generatedAt,
+        validFrom: signals.validFrom,
+        validTo: signals.validTo,
+        reason: signals.reason,
+        ruleId: signals.ruleId,
+        ruleSnapshot: signals.ruleSnapshot,
+        weight: signals.weight,
+        createdAt: signals.createdAt,
+        updatedAt: signals.updatedAt,
+        eventOccurredAt: events.occurredAt,
+      })
       .from(signals)
+      .leftJoin(events, eq(signals.eventId, events.id))
       .where(
         or(
           eq(signals.stockCode, stockCode),
@@ -106,7 +133,7 @@ export class StocksService {
       stockName: latestSignal.stockName ?? stockName,
       signalCount: stockSignals.length,
       latestSignalTime: latestSignal.signalTime,
-      signals: stockSignals,
+      signals: stockSignals as Signal[],
     };
   }
 

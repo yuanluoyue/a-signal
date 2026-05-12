@@ -66,6 +66,11 @@ export default defineConfig({
           title: '策略管理',
         },
         {
+          path: '/runtime',
+          component: '@/pages/runtime/index',
+          title: '运行管理',
+        },
+        {
           path: '/stocks',
           component: '@/pages/stocks/index',
           title: '股票查询',

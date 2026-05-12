@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Card,
   Button,
@@ -15,9 +15,9 @@ import {
   Statistic,
   Row,
   Col,
-  Divider,
   Empty,
   Popconfirm,
+  Spin,
 } from 'antd';
 import {
   ReloadOutlined,
@@ -27,8 +27,12 @@ import {
   HistoryOutlined,
   EditOutlined,
   DeleteOutlined,
+  LineChartOutlined,
 } from '@ant-design/icons';
+import * as LightweightCharts from 'lightweight-charts';
+import type { IChartApi, Time } from 'lightweight-charts';
 import client from '@/services/client';
+import { klinesApi } from '@/services/klines';
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -52,6 +56,10 @@ interface SimulationPosition {
   marketValue?: number;
   profit: number;
   return: number;
+  takeProfitPrice?: number;
+  stopLossPrice?: number;
+  tradeSource?: string;
+  strategyId?: string;
 }
 
 interface SimulationTrade {
@@ -63,21 +71,65 @@ interface SimulationTrade {
   price: number;
   totalAmount: number;
   profit?: number;
+  closeReason?: string;
+  tradeSource?: string;
+  strategyId?: string;
   tradeTime: string;
+}
+
+interface StockOption {
+  value: string;
+  label: string;
+  code: string;
+  name: string;
+}
+
+interface EquityCurvePoint {
+  id: string;
+  accountId: string;
+  totalEquity: string;
+  availableCash: string;
+  positionValue: string;
+  totalProfit: string;
+  totalReturn: string;
+  recordedAt: string;
+  createdAt: string;
+}
+
+interface StrategyInfo {
+  id: string;
+  name: string;
 }
 
 const SimulationPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
+  const [refreshLoading, setRefreshLoading] = useState(false);
   const [account, setAccount] = useState<SimulationAccount | null>(null);
   const [positions, setPositions] = useState<SimulationPosition[]>([]);
   const [trades, setTrades] = useState<SimulationTrade[]>([]);
+  const [equityCurveData, setEquityCurveData] = useState<EquityCurvePoint[]>([]);
   const [isTradeModalVisible, setIsTradeModalVisible] = useState(false);
   const [isBalanceModalVisible, setIsBalanceModalVisible] = useState(false);
   const [isPositionModalVisible, setIsPositionModalVisible] = useState(false);
   const [tradeForm] = Form.useForm();
   const [balanceForm] = Form.useForm();
   const [positionForm] = Form.useForm();
-  const [activeTab, setActiveTab] = useState<'positions' | 'trades'>('positions');
+  const [activeTab, setActiveTab] = useState<'positions' | 'trades' | 'equity-curve'>('positions');
+
+  const [tradeStockOptions, setTradeStockOptions] = useState<StockOption[]>([]);
+  const [tradeSearchLoading, setTradeSearchLoading] = useState(false);
+  const tradeDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  const [positionStockOptions, setPositionStockOptions] = useState<StockOption[]>([]);
+  const [positionSearchLoading, setPositionSearchLoading] = useState(false);
+  const positionDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [strategies, setStrategies] = useState<StrategyInfo[]>([]);
+
+  const [tradePrice, setTradePrice] = useState<number | null>(null);
+  const [tradePriceLoading, setTradePriceLoading] = useState(false);
+
+  const chartContainerRef = useRef<HTMLDivElement>(null);
+  const chartRef = useRef<IChartApi | null>(null);
 
   const fetchAccount = async () => {
     try {
@@ -109,6 +161,41 @@ const SimulationPage: React.FC = () => {
     }
   };
 
+  const fetchEquityCurve = async () => {
+    try {
+      const response = await client.get('/simulation/equity-curve');
+      setEquityCurveData(response.data || []);
+    } catch (error) {
+      console.error('Fetch equity curve error:', error);
+      setEquityCurveData([]);
+    }
+  };
+
+  const fetchStrategies = async () => {
+    try {
+      const response = await client.get('/strategies', { params: { pageSize: 100 } });
+      const data = response.data || [];
+      setStrategies(Array.isArray(data) ? data.map((s: StrategyInfo) => ({ id: s.id, name: s.name })) : []);
+    } catch (error) {
+      console.error('Fetch strategies error:', error);
+      setStrategies([]);
+    }
+  };
+
+  const refreshPositions = async () => {
+    setRefreshLoading(true);
+    try {
+      const response = await client.get('/simulation/refresh');
+      const { account: refreshedAccount, positions: refreshedPositions } = response.data;
+      if (refreshedAccount) setAccount(refreshedAccount);
+      if (refreshedPositions) setPositions(refreshedPositions);
+    } catch (error) {
+      console.error('Refresh positions error:', error);
+    } finally {
+      setRefreshLoading(false);
+    }
+  };
+
   const fetchAllData = async () => {
     setLoading(true);
     await Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]);
@@ -116,8 +203,192 @@ const SimulationPage: React.FC = () => {
   };
 
   useEffect(() => {
+    refreshPositions();
     fetchAllData();
+    fetchStrategies();
   }, []);
+
+  useEffect(() => {
+    if (activeTab === 'equity-curve') {
+      fetchEquityCurve();
+    }
+  }, [activeTab]);
+
+  useEffect(() => {
+    if (!chartContainerRef.current || equityCurveData.length === 0) return;
+
+    if (chartRef.current) {
+      chartRef.current.remove();
+      chartRef.current = null;
+    }
+
+    const chart = LightweightCharts.createChart(chartContainerRef.current, {
+      layout: {
+        background: { color: '#ffffff' },
+        textColor: '#333',
+      },
+      grid: {
+        vertLines: { color: '#f0f0f0' },
+        horzLines: { color: '#f0f0f0' },
+      },
+      crosshair: {
+        mode: 1,
+      },
+      rightPriceScale: {
+        borderColor: '#d9d9d9',
+      },
+      timeScale: {
+        borderColor: '#d9d9d9',
+        timeVisible: true,
+      },
+      width: chartContainerRef.current.clientWidth,
+      height: 400,
+    });
+
+    chartRef.current = chart;
+
+    const lineSeries = chart.addSeries(LightweightCharts.LineSeries, {
+      color: '#1890ff',
+      lineWidth: 2,
+    });
+
+    const sortedData = [...equityCurveData].sort(
+      (a, b) => new Date(a.recordedAt).getTime() - new Date(b.recordedAt).getTime()
+    );
+
+    const seen = new Map<number, number>();
+    for (const point of sortedData) {
+      const timeKey = Math.floor(new Date(point.recordedAt).getTime() / 1000);
+      seen.set(timeKey, parseFloat(point.totalEquity));
+    }
+
+    const chartData = Array.from(seen.entries())
+      .sort((a, b) => a[0] - b[0])
+      .map(([time, value]) => ({
+        time: time as Time,
+        value,
+      }));
+
+    lineSeries.setData(chartData);
+
+    chart.timeScale().fitContent();
+
+    const handleResize = () => {
+      if (chartContainerRef.current && chartRef.current) {
+        chartRef.current.applyOptions({
+          width: chartContainerRef.current.clientWidth,
+        });
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      chart.remove();
+      chartRef.current = null;
+    };
+  }, [equityCurveData]);
+
+  useEffect(() => {
+    return () => {
+      if (tradeDebounceTimerRef.current) {
+        clearTimeout(tradeDebounceTimerRef.current);
+      }
+      if (positionDebounceTimerRef.current) {
+        clearTimeout(positionDebounceTimerRef.current);
+      }
+    };
+  }, []);
+
+  const searchStocks = async (keyword: string, type: 'trade' | 'position') => {
+    if (!keyword || keyword.trim().length === 0) {
+      if (type === 'trade') setTradeStockOptions([]);
+      else setPositionStockOptions([]);
+      return;
+    }
+    if (type === 'trade') setTradeSearchLoading(true);
+    else setPositionSearchLoading(true);
+    try {
+      const response = await client.get('/stock/search', {
+        params: { keyword: keyword.trim() },
+      });
+      const stocks = response.data || [];
+      const options: StockOption[] = stocks.map((stock: { code: string; name: string }) => ({
+        value: stock.code,
+        label: `${stock.code} - ${stock.name}`,
+        code: stock.code,
+        name: stock.name,
+      }));
+      if (type === 'trade') setTradeStockOptions(options);
+      else setPositionStockOptions(options);
+    } catch (error) {
+      console.error('Search stocks error:', error);
+      if (type === 'trade') setTradeStockOptions([]);
+      else setPositionStockOptions([]);
+    } finally {
+      if (type === 'trade') setTradeSearchLoading(false);
+      else setPositionSearchLoading(false);
+    }
+  };
+
+  const handleTradeStockSearch = (value: string) => {
+    if (tradeDebounceTimerRef.current) {
+      clearTimeout(tradeDebounceTimerRef.current);
+    }
+    tradeDebounceTimerRef.current = setTimeout(() => {
+      searchStocks(value, 'trade');
+    }, 300);
+  };
+
+  const handlePositionStockSearch = (value: string) => {
+    if (positionDebounceTimerRef.current) {
+      clearTimeout(positionDebounceTimerRef.current);
+    }
+    positionDebounceTimerRef.current = setTimeout(() => {
+      searchStocks(value, 'position');
+    }, 300);
+  };
+
+  const handleTradeStockChange = async (value: string) => {
+    const selectedOption = tradeStockOptions.find(opt => opt.value === value);
+    if (selectedOption) {
+      tradeForm.setFieldsValue({
+        stockCode: selectedOption.code,
+        stockName: selectedOption.name,
+      });
+      setTradePrice(null);
+      setTradePriceLoading(true);
+      try {
+        await klinesApi.checkAndUpdate(selectedOption.code, '4h');
+        const klineResponse = await client.get(`/klines/${selectedOption.code}`, {
+          params: { period: '4h' },
+        });
+        const klineData = klineResponse.data?.data || klineResponse.data || [];
+        if (Array.isArray(klineData) && klineData.length > 0) {
+          const lastItem = klineData[klineData.length - 1];
+          const closePrice = lastItem.close || lastItem.c;
+          if (closePrice) {
+            setTradePrice(parseFloat(String(closePrice)));
+          }
+        }
+      } catch (error) {
+        console.error('Fetch trade price error:', error);
+      } finally {
+        setTradePriceLoading(false);
+      }
+    }
+  };
+
+  const handlePositionStockChange = (value: string) => {
+    const selectedOption = positionStockOptions.find(opt => opt.value === value);
+    if (selectedOption) {
+      positionForm.setFieldsValue({
+        stockCode: selectedOption.code,
+        stockName: selectedOption.name,
+      });
+    }
+  };
 
   const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {
     try {
@@ -137,12 +408,15 @@ const SimulationPage: React.FC = () => {
     stockName: string;
     quantity: number;
     avgCost: number;
+    takeProfitPrice?: number;
+    stopLossPrice?: number;
   }) => {
     try {
       await client.post('/simulation/position', values);
       message.success('持仓添加成功');
       setIsPositionModalVisible(false);
       positionForm.resetFields();
+      setPositionStockOptions([]);
       fetchPositions();
     } catch (error) {
       message.error('持仓添加失败');
@@ -166,13 +440,30 @@ const SimulationPage: React.FC = () => {
     stockName: string;
     type: 'buy' | 'sell';
     quantity: number;
-    price: number;
+    takeProfitPrice?: number;
+    stopLossPrice?: number;
   }) => {
     try {
-      await client.post('/simulation/trade', values);
+      const payload: Record<string, unknown> = {
+        stockCode: values.stockCode,
+        stockName: values.stockName,
+        type: values.type,
+        quantity: values.quantity,
+      };
+      if (values.type === 'buy') {
+        if (values.takeProfitPrice !== undefined && values.takeProfitPrice !== null) {
+          payload.takeProfitPrice = values.takeProfitPrice;
+        }
+        if (values.stopLossPrice !== undefined && values.stopLossPrice !== null) {
+          payload.stopLossPrice = values.stopLossPrice;
+        }
+      }
+      await client.post('/simulation/trade', payload);
       message.success('交易成功');
       setIsTradeModalVisible(false);
       tradeForm.resetFields();
+      setTradeStockOptions([]);
+      setTradePrice(null);
       fetchAllData();
     } catch (error) {
       message.error('交易失败');
@@ -187,12 +478,14 @@ const SimulationPage: React.FC = () => {
     return `¥${num.toFixed(2)}`;
   };
 
-  const formatPercent = (value: number | string | null | undefined) => {
-    if (value === null || value === undefined) return '0.00%';
-    const num = typeof value === 'string' ? parseFloat(value) : value;
-    if (isNaN(num)) return '0.00%';
-    return `${(num * 100).toFixed(2)}%`;
+  const closeReasonMap: Record<string, { text: string; color: string }> = {
+    manual: { text: '手动平仓', color: 'blue' },
+    take_profit: { text: '止盈平仓', color: 'green' },
+    stop_loss: { text: '止损平仓', color: 'red' },
+    agent: { text: 'Agent平仓', color: 'purple' },
   };
+
+  const tradeType = Form.useWatch('type', tradeForm);
 
   const positionColumns = [
     {
@@ -231,6 +524,32 @@ const SimulationPage: React.FC = () => {
           {value >= 0 ? '+' : ''}{formatMoney(value)}
         </Tag>
       ),
+    },
+    {
+      title: '止盈价',
+      dataIndex: 'takeProfitPrice',
+      key: 'takeProfitPrice',
+      render: (value?: number) => (value ? formatMoney(value) : '-'),
+    },
+    {
+      title: '止损价',
+      dataIndex: 'stopLossPrice',
+      key: 'stopLossPrice',
+      render: (value?: number) => (value ? formatMoney(value) : '-'),
+    },
+    {
+      title: '来源',
+      dataIndex: 'tradeSource',
+      key: 'tradeSource',
+      width: 100,
+      render: (value?: string, record?: SimulationPosition) => {
+        if (value === 'strategy' && record?.strategyId) {
+          const strategy = strategies.find(s => s.id === record.strategyId);
+          return <Tag color="purple">{strategy?.name || '策略'}</Tag>;
+        }
+        if (value === 'system') return <Tag color="orange">系统</Tag>;
+        return <Tag>手动</Tag>;
+      },
     },
     {
       title: '操作',
@@ -273,7 +592,7 @@ const SimulationPage: React.FC = () => {
       ),
     },
     {
-      title: '数量',
+      title: '数量（股）',
       dataIndex: 'quantity',
       key: 'quantity',
     },
@@ -299,6 +618,31 @@ const SimulationPage: React.FC = () => {
             {value >= 0 ? '+' : ''}{formatMoney(value)}
           </Tag>
         ) : '-',
+    },
+    {
+      title: '平仓理由',
+      dataIndex: 'closeReason',
+      key: 'closeReason',
+      render: (value?: string, record?: SimulationTrade) => {
+        if (record?.type !== 'sell' || !value) return '-';
+        const mapping = closeReasonMap[value];
+        if (!mapping) return '-';
+        return <Tag color={mapping.color}>{mapping.text}</Tag>;
+      },
+    },
+    {
+      title: '来源',
+      dataIndex: 'tradeSource',
+      key: 'tradeSource',
+      width: 100,
+      render: (value?: string, record?: SimulationTrade) => {
+        if (value === 'strategy' && record?.strategyId) {
+          const strategy = strategies.find(s => s.id === record.strategyId);
+          return <Tag color="purple">{strategy?.name || '策略'}</Tag>;
+        }
+        if (value === 'system') return <Tag color="orange">系统</Tag>;
+        return <Tag>手动</Tag>;
+      },
     },
     {
       title: '时间',
@@ -373,6 +717,9 @@ const SimulationPage: React.FC = () => {
           <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>
             刷新
           </Button>
+          <Button icon={<ReloadOutlined />} onClick={refreshPositions} loading={refreshLoading}>
+            更新行情
+          </Button>
           <Button
             icon={<EditOutlined />}
             onClick={() => {
@@ -395,7 +742,10 @@ const SimulationPage: React.FC = () => {
           <Button
             type="primary"
             icon={<ShoppingCartOutlined />}
-            onClick={() => setIsTradeModalVisible(true)}
+            onClick={() => {
+              setTradePrice(null);
+              setIsTradeModalVisible(true);
+            }}
           >
             模拟交易
           </Button>
@@ -406,11 +756,12 @@ const SimulationPage: React.FC = () => {
         tabList={[
           { key: 'positions', tab: <><WalletOutlined /> 持仓</> },
           { key: 'trades', tab: <><HistoryOutlined /> 交易记录</> },
+          { key: 'equity-curve', tab: <><LineChartOutlined /> 资金曲线</> },
         ]}
         activeTabKey={activeTab}
-        onTabChange={(key) => setActiveTab(key as 'positions' | 'trades')}
+        onTabChange={(key) => setActiveTab(key as 'positions' | 'trades' | 'equity-curve')}
       >
-        {activeTab === 'positions' ? (
+        {activeTab === 'positions' && (
           <Table
             columns={positionColumns}
             dataSource={positions}
@@ -418,7 +769,8 @@ const SimulationPage: React.FC = () => {
             pagination={false}
             locale={{ emptyText: '暂无持仓' }}
           />
-        ) : (
+        )}
+        {activeTab === 'trades' && (
           <Table
             columns={tradeColumns}
             dataSource={trades}
@@ -426,9 +778,15 @@ const SimulationPage: React.FC = () => {
             pagination={{ pageSize: 10 }}
           />
         )}
+        {activeTab === 'equity-curve' && (
+          equityCurveData.length > 0 ? (
+            <div ref={chartContainerRef} />
+          ) : (
+            <Empty description="暂无资金曲线数据" />
+          )
+        )}
       </Card>
 
-      {/* 修改余额弹窗 */}
       <Modal
         title="修改余额"
         open={isBalanceModalVisible}
@@ -466,11 +824,13 @@ const SimulationPage: React.FC = () => {
         </Form>
       </Modal>
 
-      {/* 添加持仓弹窗 */}
       <Modal
         title="添加持仓"
         open={isPositionModalVisible}
-        onCancel={() => setIsPositionModalVisible(false)}
+        onCancel={() => {
+          setIsPositionModalVisible(false);
+          setPositionStockOptions([]);
+        }}
         onOk={() => positionForm.submit()}
         width={400}
       >
@@ -478,23 +838,33 @@ const SimulationPage: React.FC = () => {
           <Form.Item
             name="stockCode"
             label="股票代码"
-            rules={[{ required: true, message: '请输入股票代码' }]}
+            rules={[{ required: true, message: '请选择股票' }]}
           >
-            <Input placeholder="例如: 00700" />
+            <Select
+              showSearch
+              placeholder="输入股票代码或名称搜索"
+              filterOption={false}
+              onSearch={handlePositionStockSearch}
+              onChange={handlePositionStockChange}
+              loading={positionSearchLoading}
+              options={positionStockOptions}
+              allowClear
+              notFoundContent={positionSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}
+            />
           </Form.Item>
           <Form.Item
             name="stockName"
             label="股票名称"
-            rules={[{ required: true, message: '请输入股票名称' }]}
+            rules={[{ required: true, message: '请选择股票' }]}
           >
-            <Input placeholder="例如: 腾讯控股" />
+            <Input disabled placeholder="选择股票后自动填充" />
           </Form.Item>
           <Form.Item
             name="quantity"
-            label="持仓数量"
+            label="持仓数量（股）"
             rules={[{ required: true, message: '请输入持仓数量' }]}
           >
-            <InputNumber style={{ width: '100%' }} min={1} placeholder="请输入数量" />
+            <InputNumber style={{ width: '100%' }} min={1} placeholder="请输入股数" />
           </Form.Item>
           <Form.Item
             name="avgCost"
@@ -509,14 +879,41 @@ const SimulationPage: React.FC = () => {
               placeholder="请输入平均成本"
             />
           </Form.Item>
+          <Form.Item
+            name="takeProfitPrice"
+            label="止盈价（可选）"
+          >
+            <InputNumber
+              style={{ width: '100%' }}
+              min={0.01}
+              step={0.01}
+              precision={2}
+              placeholder="请输入止盈价"
+            />
+          </Form.Item>
+          <Form.Item
+            name="stopLossPrice"
+            label="止损价（可选）"
+          >
+            <InputNumber
+              style={{ width: '100%' }}
+              min={0.01}
+              step={0.01}
+              precision={2}
+              placeholder="请输入止损价"
+            />
+          </Form.Item>
         </Form>
       </Modal>
 
-      {/* 模拟交易弹窗 */}
       <Modal
         title="模拟交易"
         open={isTradeModalVisible}
-        onCancel={() => setIsTradeModalVisible(false)}
+        onCancel={() => {
+          setIsTradeModalVisible(false);
+          setTradeStockOptions([]);
+          setTradePrice(null);
+        }}
         onOk={() => tradeForm.submit()}
         width={500}
       >
@@ -524,16 +921,26 @@ const SimulationPage: React.FC = () => {
           <Form.Item
             name="stockCode"
             label="股票代码"
-            rules={[{ required: true, message: '请输入股票代码' }]}
+            rules={[{ required: true, message: '请选择股票' }]}
           >
-            <Input placeholder="例如: 00700" />
+            <Select
+              showSearch
+              placeholder="输入股票代码或名称搜索"
+              filterOption={false}
+              onSearch={handleTradeStockSearch}
+              onChange={handleTradeStockChange}
+              loading={tradeSearchLoading}
+              options={tradeStockOptions}
+              allowClear
+              notFoundContent={tradeSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}
+            />
           </Form.Item>
           <Form.Item
             name="stockName"
             label="股票名称"
-            rules={[{ required: true, message: '请输入股票名称' }]}
+            rules={[{ required: true, message: '请选择股票' }]}
           >
-            <Input placeholder="例如: 腾讯控股" />
+            <Input disabled placeholder="选择股票后自动填充" />
           </Form.Item>
           <Form.Item
             name="type"
@@ -546,26 +953,56 @@ const SimulationPage: React.FC = () => {
               <Option value="sell">卖出</Option>
             </Select>
           </Form.Item>
+          <Form.Item label="当前价格">
+            {tradePriceLoading ? (
+              <Spin size="small" />
+            ) : tradePrice !== null ? (
+              <InputNumber
+                style={{ width: '100%' }}
+                value={tradePrice}
+                disabled
+                precision={2}
+                formatter={(value) => `¥ ${value}`}
+              />
+            ) : (
+              <Text type="secondary">选择股票后自动获取4H行情价格</Text>
+            )}
+          </Form.Item>
           <Form.Item
             name="quantity"
-            label="数量"
+            label="数量（股）"
             rules={[{ required: true, message: '请输入数量' }]}
           >
-            <InputNumber style={{ width: '100%' }} min={1} placeholder="请输入数量" />
+            <InputNumber style={{ width: '100%' }} min={1} placeholder="请输入股数" />
           </Form.Item>
-          <Form.Item
-            name="price"
-            label="价格"
-            rules={[{ required: true, message: '请输入价格' }]}
-          >
-            <InputNumber
-              style={{ width: '100%' }}
-              min={0.01}
-              step={0.01}
-              precision={2}
-              placeholder="请输入价格"
-            />
-          </Form.Item>
+          {tradeType === 'buy' && (
+            <>
+              <Form.Item
+                name="takeProfitPrice"
+                label="止盈价（可选）"
+              >
+                <InputNumber
+                  style={{ width: '100%' }}
+                  min={0.01}
+                  step={0.01}
+                  precision={2}
+                  placeholder="请输入止盈价"
+                />
+              </Form.Item>
+              <Form.Item
+                name="stopLossPrice"
+                label="止损价（可选）"
+              >
+                <InputNumber
+                  style={{ width: '100%' }}
+                  min={0.01}
+                  step={0.01}
+                  precision={2}
+                  placeholder="请输入止损价"
+                />
+              </Form.Item>
+            </>
+          )}
         </Form>
       </Modal>
     </div>

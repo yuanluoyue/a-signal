@@ -5,6 +5,7 @@ import { WebhooksService, Webhook } from './webhooks.service.js';
 import { Signal } from '../../core/db/schema.js';
 import { BlacklistService } from '../blacklist/blacklist.service.js';
 import { StrategyService } from '../strategy/strategy.service.js';
+import { SimulationService } from '../simulation/simulation.service.js';
 
 export interface WechatMessage {
   msgtype: 'markdown';
@@ -30,6 +31,7 @@ export class NotificationsService {
     private readonly webhooksService: WebhooksService,
     private readonly blacklistService: BlacklistService,
     private readonly strategyService: StrategyService,
+    private readonly simulationService: SimulationService,
   ) {}
 
   async sendWechatNotification(
@@ -136,41 +138,73 @@ export class NotificationsService {
         return;
       }
 
-      const strategiesWithWebhook = await this.strategyService.findEnabledWithWebhook();
+      const strategiesWithRuntime = await this.strategyService.findEnabledWithRuntime();
 
-      if (strategiesWithWebhook.length === 0) {
+      if (strategiesWithRuntime.length === 0) {
         this.logger.debug(
-          `NotificationsService.notifySignalAnalyzed: no enabled strategies with webhooks found, skipping signal ${context.signal.id}`,
+          `NotificationsService.notifySignalAnalyzed: no enabled strategies found, skipping signal ${context.signal.id}`,
         );
         return;
       }
 
       let matchedCount = 0;
-      const notificationPromises = strategiesWithWebhook.map(async (strategy) => {
+      const notificationPromises = strategiesWithRuntime.map(async (strategy) => {
         const matched = await this.strategyService.filterSignalByStrategy(strategy, context.signal);
         if (!matched) {
           return;
         }
 
         matchedCount++;
-        this.logger.log(
-          `NotificationsService.notifySignalAnalyzed: strategy [${strategy.name}] matched signal ${context.signal.id}, sending notification via webhook [${strategy.webhook.name}]`,
-        );
 
-        switch (strategy.webhook.type) {
-          case 'wechat':
-            await this.sendWechatNotification(
-              strategy.webhook.url,
-              context.signal,
-              context.stockName,
-              context.stockCode,
-              strategy.name,
+        if (strategy.runtime?.enableWebhook && strategy.runtime.webhookId && strategy.webhook) {
+          this.logger.log(
+            `NotificationsService.notifySignalAnalyzed: strategy [${strategy.name}] matched signal ${context.signal.id}, sending notification via webhook [${strategy.webhook.name}]`,
+          );
+
+          switch (strategy.webhook.type) {
+            case 'wechat':
+              await this.sendWechatNotification(
+                strategy.webhook.url,
+                context.signal,
+                context.stockName,
+                context.stockCode,
+                strategy.name,
+              );
+              break;
+            default:
+              this.logger.warn(
+                `NotificationsService.notifySignalAnalyzed: unsupported webhook type ${strategy.webhook.type} for strategy [${strategy.name}]`,
+              );
+          }
+        }
+
+        if (strategy.runtime?.enableSimulation) {
+          const action = (context.signal.action || context.signal.direction || '').toLowerCase();
+          if (action === 'long') {
+            this.logger.log(
+              `NotificationsService.notifySignalAnalyzed: strategy [${strategy.name}] enableSimulation=true, triggering simulation trade for signal ${context.signal.id}`,
             );
-            break;
-          default:
-            this.logger.warn(
-              `NotificationsService.notifySignalAnalyzed: unsupported webhook type ${strategy.webhook.type} for strategy [${strategy.name}]`,
+            try {
+              const stopLossPct = strategy.stopLossPct ? parseFloat(strategy.stopLossPct) : undefined;
+              const takeProfitPct = strategy.takeProfitPct ? parseFloat(strategy.takeProfitPct) : undefined;
+              await this.simulationService.executeStrategyTrade({
+                strategyId: strategy.id,
+                stockCode: context.stockCode,
+                stockName: context.stockName,
+                quantity: 100,
+                stopLossPct,
+                takeProfitPct,
+              });
+            } catch (error) {
+              this.logger.error(
+                `NotificationsService.notifySignalAnalyzed: failed to execute strategy trade for strategy [${strategy.name}]: ${error instanceof Error ? error.message : String(error)}`,
+              );
+            }
+          } else {
+            this.logger.debug(
+              `NotificationsService.notifySignalAnalyzed: strategy [${strategy.name}] enableSimulation=true but signal action is ${action}, skipping simulation trade`,
             );
+          }
         }
       });
 

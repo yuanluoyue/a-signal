@@ -232,6 +232,61 @@ async function seed() {
         console.log(`Strategy already exists: ${strategy.name}`);
       }
     }
+
+    console.log('Seeding strategies runtime...');
+
+    const runtimeData = [
+      {
+        strategyName: '保守多头',
+        webhookId: null,
+        enableWebhook: true,
+        enableSimulation: false,
+        enableLiveTrading: false,
+      },
+      {
+        strategyName: '激进双向',
+        webhookId: null,
+        enableWebhook: true,
+        enableSimulation: false,
+        enableLiveTrading: false,
+      },
+      {
+        strategyName: '空头对冲',
+        webhookId: null,
+        enableWebhook: true,
+        enableSimulation: false,
+        enableLiveTrading: false,
+      },
+    ];
+
+    for (const runtime of runtimeData) {
+      const [strategy] = await db
+        .select()
+        .from(schema.strategies)
+        .where(eq(schema.strategies.name, runtime.strategyName))
+        .limit(1);
+
+      if (strategy) {
+        const existingRuntime = await db
+          .select()
+          .from(schema.strategiesRuntime)
+          .where(eq(schema.strategiesRuntime.strategyId, strategy.id))
+          .limit(1);
+
+        if (existingRuntime.length === 0) {
+          await db.insert(schema.strategiesRuntime).values({
+            strategyId: strategy.id,
+            webhookId: runtime.webhookId,
+            enableWebhook: runtime.enableWebhook,
+            enableSimulation: runtime.enableSimulation,
+            enableLiveTrading: runtime.enableLiveTrading,
+          });
+          console.log(`Created runtime for strategy: ${runtime.strategyName}`);
+        } else {
+          console.log(`Runtime already exists for strategy: ${runtime.strategyName}`);
+        }
+      }
+    }
   } catch (error) {
     console.error('Seed failed:', error);
     throw error;

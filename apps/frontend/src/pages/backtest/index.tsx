@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import {
   Table,
   Card,
@@ -23,6 +23,7 @@ import {
   EyeOutlined,
   DeleteOutlined,
   LinkOutlined,
+  LoadingOutlined,
 } from "@ant-design/icons";
 import { backtestApi } from "@/services/backtest";
 import { strategyApi } from "@/services/strategy";
@@ -32,9 +33,15 @@ import dayjs from "dayjs";
 
 const { Title, Text, Paragraph } = Typography;
 
+const PERIOD_LABEL: Record<string, string> = {
+  '4h': '4小时线',
+  '1d': '日线',
+};
+
 const BacktestPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState<BacktestRecord[]>([]);
+  const pollingRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const [formVisible, setFormVisible] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
@@ -65,9 +72,42 @@ const BacktestPage: React.FC = () => {
     }
   }, []);
 
+  const startPolling = useCallback(() => {
+    if (pollingRef.current) return;
+    pollingRef.current = setInterval(async () => {
+      try {
+        const response = await backtestApi.getRecords();
+        const records = response || [];
+        setData(records);
+        const hasRunning = records.some((r) => r.status === "running");
+        if (!hasRunning && pollingRef.current) {
+          clearInterval(pollingRef.current);
+          pollingRef.current = null;
+        }
+      } catch {
+        if (pollingRef.current) {
+          clearInterval(pollingRef.current);
+          pollingRef.current = null;
+        }
+      }
+    }, 3000);
+  }, []);
+
   useEffect(() => {
     fetchData();
+    return () => {
+      if (pollingRef.current) {
+        clearInterval(pollingRef.current);
+        pollingRef.current = null;
+      }
+    };
   }, [fetchData]);
+
+  useEffect(() => {
+    if (data.some((r) => r.status === "running")) {
+      startPolling();
+    }
+  }, [data, startPolling]);
 
   const handleOpenForm = async () => {
     setFormVisible(true);
@@ -88,22 +128,29 @@ const BacktestPage: React.FC = () => {
         strategyId: values.strategyId,
         startTime: values.timeRange[0].toISOString(),
         endTime: values.timeRange[1].toISOString(),
+        period: values.period || '4h',
         name: values.name || undefined,
       };
       await backtestApi.runBacktest(params);
-      message.success("回测执行完成");
+      message.success("回测任务已创建，正在后台执行");
       setFormVisible(false);
       fetchData();
+      startPolling();
     } catch (error) {
       console.error("Run backtest error:", error);
-      message.error("回测执行失败");
+      message.error("创建回测任务失败");
     } finally {
       setFormLoading(false);
     }
   };
 
   const handleViewDetail = async (record: BacktestRecord) => {
-    setSelectedRecord(record);
+    if (record.status === "running") {
+      const fresh = await backtestApi.getRecordById(record.id);
+      setSelectedRecord(fresh);
+    } else {
+      setSelectedRecord(record);
+    }
     setDetailVisible(true);
     setDetailLoading(true);
     try {
@@ -164,7 +211,12 @@ const BacktestPage: React.FC = () => {
       dataIndex: "name",
       key: "name",
       width: 150,
-      render: (name: string | null) => name || "-",
+      render: (name: string | null, record: BacktestRecord) => (
+        <Space>
+          {record.status === "running" && <LoadingOutlined />}
+          {name || "-"}
+        </Space>
+      ),
     },
     {
       title: "策略",
@@ -179,7 +231,8 @@ const BacktestPage: React.FC = () => {
       key: "totalReturnPct",
       width: 100,
       align: "center" as const,
-      render: (ret: string | null) => {
+      render: (ret: string | null, record: BacktestRecord) => {
+        if (record.status === "running") return <Tag color="processing">-</Tag>;
         if (!ret) return "-";
         const num = parseFloat(ret);
         const color = num > 0 ? "red" : num < 0 ? "green" : "default";
@@ -203,6 +256,7 @@ const BacktestPage: React.FC = () => {
       width: 100,
       align: "center" as const,
       render: (_: unknown, record: BacktestRecord) => {
+        if (record.status === "running") return "-";
         if (record.totalSignals === null && record.filteredSignals === null)
           return "-";
         return `${record.filteredSignals ?? "-"}/${record.totalSignals ?? "-"}`;
@@ -214,7 +268,10 @@ const BacktestPage: React.FC = () => {
       key: "totalTrades",
       width: 80,
       align: "center" as const,
-      render: (count: number) => <Tag color="blue">{count}</Tag>,
+      render: (count: number, record: BacktestRecord) => {
+        if (record.status === "running") return "-";
+        return <Tag color="blue">{count}</Tag>;
+      },
     },
     {
       title: "胜率",
@@ -222,7 +279,8 @@ const BacktestPage: React.FC = () => {
       key: "winRate",
       width: 80,
       align: "center" as const,
-      render: (rate: string | null) => {
+      render: (rate: string | null, record: BacktestRecord) => {
+        if (record.status === "running") return "-";
         if (!rate) return "-";
         const num = parseFloat(rate);
         const color = num >= 0.5 ? "success" : num >= 0.3 ? "warning" : "error";
@@ -236,7 +294,8 @@ const BacktestPage: React.FC = () => {
       key: "maxDrawdownPct",
       width: 90,
       align: "center" as const,
-      render: (dd: string | null) => {
+      render: (dd: string | null, record: BacktestRecord) => {
+        if (record.status === "running") return "-";
         if (!dd) return "-";
         return <Text type="danger">{formatPercent(dd)}</Text>;
       },
@@ -247,7 +306,10 @@ const BacktestPage: React.FC = () => {
       key: "sharpeRatio",
       width: 90,
       align: "center" as const,
-      render: (val: string | null) => (val ? parseFloat(val).toFixed(2) : "-"),
+      render: (val: string | null, record: BacktestRecord) => {
+        if (record.status === "running") return "-";
+        return val ? parseFloat(val).toFixed(2) : "-";
+      },
     },
     {
       title: "状态",
@@ -259,7 +321,7 @@ const BacktestPage: React.FC = () => {
         const colorMap: Record<string, string> = {
           completed: "green",
           failed: "red",
-          running: "blue",
+          running: "processing",
         };
         const labelMap: Record<string, string> = {
           completed: "完成",
@@ -267,7 +329,7 @@ const BacktestPage: React.FC = () => {
           running: "运行中",
         };
         return (
-          <Tag color={colorMap[status] || "default"}>
+          <Tag color={colorMap[status] || "default"} icon={status === "running" ? <LoadingOutlined /> : undefined}>
             {labelMap[status] || status}
           </Tag>
         );
@@ -456,7 +518,7 @@ const BacktestPage: React.FC = () => {
         confirmLoading={formLoading}
         width={500}
       >
-        <Form form={form} layout="vertical">
+        <Form form={form} layout="vertical" initialValues={{ period: '4h' }}>
           <Form.Item
             name="strategyId"
             label="选择策略"
@@ -465,6 +527,19 @@ const BacktestPage: React.FC = () => {
             <Select
               placeholder="请选择策略"
               options={strategies.map((s) => ({ label: s.name, value: s.id }))}
+            />
+          </Form.Item>
+          <Form.Item
+            name="period"
+            label="K线周期"
+            rules={[{ required: true, message: "请选择K线周期" }]}
+          >
+            <Select
+              placeholder="请选择K线周期"
+              options={[
+                { label: '4小时线', value: '4h' },
+                { label: '日线', value: '1d' },
+              ]}
             />
           </Form.Item>
           <Form.Item
@@ -492,81 +567,95 @@ const BacktestPage: React.FC = () => {
         ]}
       >
         {selectedRecord ? (
-          <>
-            <Descriptions bordered column={3} style={{ marginBottom: 24 }}>
-              <Descriptions.Item label="策略名称">
-                {selectedRecord.strategySnapshot?.name || "-"}
-              </Descriptions.Item>
-              <Descriptions.Item label="回测区间">
-                {formatDate(selectedRecord.startTime)} ~{" "}
-                {formatDate(selectedRecord.endTime)}
-              </Descriptions.Item>
-              <Descriptions.Item label="K线周期">
-                {selectedRecord.period}
-              </Descriptions.Item>
-              <Descriptions.Item label="信号总数/过滤后">
-                {selectedRecord.totalSignals ?? "-"} /{" "}
-                {selectedRecord.filteredSignals ?? "-"}
-              </Descriptions.Item>
-              <Descriptions.Item label="交易次数">
-                {selectedRecord.totalTrades} 笔
-              </Descriptions.Item>
-              <Descriptions.Item label="盈利/亏损">
-                <Text style={{ color: "#52c41a" }}>
-                  {selectedRecord.winningTrades}
-                </Text>{" "}
-                /{" "}
-                <Text style={{ color: "#ff4d4f" }}>
-                  {selectedRecord.losingTrades}
-                </Text>
-              </Descriptions.Item>
-              <Descriptions.Item label="胜率">
-                {formatPercent(selectedRecord.winRate)}
-              </Descriptions.Item>
-              <Descriptions.Item label="总收益率">
-                <Tag
-                  color={
-                    selectedRecord.totalReturnPct &&
-                    parseFloat(selectedRecord.totalReturnPct) > 0
-                      ? "red"
-                      : "green"
-                  }
-                >
-                  {formatPercent(selectedRecord.totalReturnPct)}
-                </Tag>
-              </Descriptions.Item>
-              <Descriptions.Item label="平均收益率">
-                {formatPercent(selectedRecord.avgReturnPct)}
-              </Descriptions.Item>
-              <Descriptions.Item label="最大回撤">
-                <Text type="danger">
-                  {formatPercent(selectedRecord.maxDrawdownPct)}
-                </Text>
-              </Descriptions.Item>
-              <Descriptions.Item label="夏普比率">
-                {selectedRecord.sharpeRatio
-                  ? parseFloat(selectedRecord.sharpeRatio).toFixed(2)
-                  : "-"}
-              </Descriptions.Item>
-              <Descriptions.Item label="盈亏比">
-                {selectedRecord.profitFactor
-                  ? parseFloat(selectedRecord.profitFactor).toFixed(2)
-                  : "-"}
-              </Descriptions.Item>
-            </Descriptions>
+          selectedRecord.status === "running" ? (
+            <div style={{ textAlign: "center", padding: "40px 0" }}>
+              <Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} />} />
+              <div style={{ marginTop: 16 }}>
+                <Text type="secondary">回测正在执行中，请稍后刷新查看结果</Text>
+              </div>
+            </div>
+          ) : (
+            <>
+              <Descriptions bordered column={3} style={{ marginBottom: 24 }}>
+                <Descriptions.Item label="策略名称">
+                  {selectedRecord.strategySnapshot?.name || "-"}
+                </Descriptions.Item>
+                <Descriptions.Item label="回测区间">
+                  {formatDate(selectedRecord.startTime)} ~{" "}
+                  {formatDate(selectedRecord.endTime)}
+                </Descriptions.Item>
+                <Descriptions.Item label="K线周期">
+                  {PERIOD_LABEL[selectedRecord.period] || selectedRecord.period}
+                </Descriptions.Item>
+                <Descriptions.Item label="信号总数/过滤后">
+                  {selectedRecord.totalSignals ?? "-"} /{" "}
+                  {selectedRecord.filteredSignals ?? "-"}
+                </Descriptions.Item>
+                <Descriptions.Item label="交易次数">
+                  {selectedRecord.totalTrades} 笔
+                </Descriptions.Item>
+                <Descriptions.Item label="盈利/亏损">
+                  <Text style={{ color: "#52c41a" }}>
+                    {selectedRecord.winningTrades}
+                  </Text>{" "}
+                  /{" "}
+                  <Text style={{ color: "#ff4d4f" }}>
+                    {selectedRecord.losingTrades}
+                  </Text>
+                </Descriptions.Item>
+                <Descriptions.Item label="胜率">
+                  {formatPercent(selectedRecord.winRate)}
+                </Descriptions.Item>
+                <Descriptions.Item label="总收益率">
+                  <Tag
+                    color={
+                      selectedRecord.totalReturnPct &&
+                      parseFloat(selectedRecord.totalReturnPct) > 0
+                        ? "red"
+                        : "green"
+                    }
+                  >
+                    {formatPercent(selectedRecord.totalReturnPct)}
+                  </Tag>
+                </Descriptions.Item>
+                <Descriptions.Item label="平均收益率">
+                  {formatPercent(selectedRecord.avgReturnPct)}
+                </Descriptions.Item>
+                <Descriptions.Item label="最大回撤">
+                  <Text type="danger">
+                    {formatPercent(selectedRecord.maxDrawdownPct)}
+                  </Text>
+                </Descriptions.Item>
+                <Descriptions.Item label="夏普比率">
+                  {selectedRecord.sharpeRatio
+                    ? parseFloat(selectedRecord.sharpeRatio).toFixed(2)
+                    : "-"}
+                </Descriptions.Item>
+                <Descriptions.Item label="盈亏比">
+                  {selectedRecord.profitFactor
+                    ? parseFloat(selectedRecord.profitFactor).toFixed(2)
+                    : "-"}
+                </Descriptions.Item>
+                {selectedRecord.status === "failed" && selectedRecord.errorMessage && (
+                  <Descriptions.Item label="错误信息" span={3}>
+                    <Text type="danger">{selectedRecord.errorMessage}</Text>
+                  </Descriptions.Item>
+                )}
+              </Descriptions>
 
-            <Title level={5}>交易明细</Title>
-            <Spin spinning={detailLoading}>
-              <Table
-                dataSource={tradesData}
-                columns={tradeColumns}
-                rowKey="id"
-                pagination={{ pageSize: 10 }}
-                size="small"
-                scroll={{ x: 1000 }}
-              />
-            </Spin>
-          </>
+              <Title level={5}>交易明细</Title>
+              <Spin spinning={detailLoading}>
+                <Table
+                  dataSource={tradesData}
+                  columns={tradeColumns}
+                  rowKey="id"
+                  pagination={{ pageSize: 10 }}
+                  size="small"
+                  scroll={{ x: 1000 }}
+                />
+              </Spin>
+            </>
+          )
         ) : (
           <Empty description="暂无数据" />
         )}

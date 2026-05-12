@@ -89,6 +89,45 @@ export class SimulationController {
     return { data: updated, message: '账户更新成功' };
   }
 
+  @Get('refresh')
+  @ApiOperation({ summary: '刷新持仓实时价格和盈亏' })
+  async refresh(@Request() req: { user?: { userId: string; sub?: string } }) {
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+
+    const account = await this.simulationService.getAccountByUserId(userId);
+    if (!account) {
+      throw new NotFoundException('账户不存在');
+    }
+
+    await this.simulationService.refreshPositionPrices(account.id);
+    await this.simulationService.checkTakeProfitStopLoss(account.id);
+
+    const updatedAccount = await this.simulationService.getAccountById(account.id);
+    const positions = await this.simulationService.getPositions(account.id);
+
+    return { data: { account: updatedAccount, positions } };
+  }
+
+  @Get('equity-curve')
+  @ApiOperation({ summary: '获取资金曲线' })
+  async getEquityCurve(@Request() req: { user?: { userId: string; sub?: string } }) {
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+
+    const account = await this.simulationService.getAccountByUserId(userId);
+    if (!account) {
+      return { data: [] };
+    }
+
+    const equityCurve = await this.simulationService.getEquityCurve(account.id);
+    return { data: equityCurve };
+  }
+
   @Get('positions')
   @ApiOperation({ summary: '获取持仓列表' })
   @ApiResponse({ status: 200, description: '成功获取持仓列表' })

@@ -45,10 +45,20 @@ export class ExecuteTradeDto {
   @Min(1)
   quantity: number;
 
-  @ApiProperty({ description: '交易价格', example: 10.5 })
+  @ApiPropertyOptional()
   @IsNumber()
-  @Min(0)
-  price: number;
+  @IsOptional()
+  takeProfitPrice?: number;
+
+  @ApiPropertyOptional()
+  @IsNumber()
+  @IsOptional()
+  stopLossPrice?: number;
+
+  @ApiPropertyOptional({ description: '策略ID' })
+  @IsString()
+  @IsOptional()
+  strategyId?: string;
 }
 
 export class AddPositionDto {
@@ -71,4 +81,19 @@ export class AddPositionDto {
   @IsNumber()
   @Min(0)
   avgCost: number;
+
+  @ApiPropertyOptional()
+  @IsNumber()
+  @IsOptional()
+  takeProfitPrice?: number;
+
+  @ApiPropertyOptional()
+  @IsNumber()
+  @IsOptional()
+  stopLossPrice?: number;
+
+  @ApiPropertyOptional({ description: '策略ID' })
+  @IsString()
+  @IsOptional()
+  strategyId?: string;
 }

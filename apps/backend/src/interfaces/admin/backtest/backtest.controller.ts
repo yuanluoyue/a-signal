@@ -13,13 +13,13 @@ export class BacktestController {
   @Post()
   @Public()
   @ApiOperation({
-    summary: '基于策略执行回测',
-    description: '选择策略和时间范围执行回测分析',
+    summary: '创建回测任务',
+    description: '创建回测任务，立即返回 running 状态的记录，后台异步执行回测',
   })
-  @ApiResponse({ status: 201, description: '回测成功' })
+  @ApiResponse({ status: 201, description: '回测任务创建成功' })
   @ApiResponse({ status: 400, description: '请求参数错误' })
-  async runBacktest(@Body() dto: StrategyBacktestRequestDto) {
-    const data = await this.backtestService.runBacktest(dto);
+  async createBacktest(@Body() dto: StrategyBacktestRequestDto) {
+    const data = await this.backtestService.createBacktest(dto);
     return { data };
   }
 

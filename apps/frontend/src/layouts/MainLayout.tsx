@@ -79,6 +79,11 @@ const MENU_ITEMS = [
         label: '策略管理',
       },
       {
+        key: '/runtime',
+        icon: <ThunderboltOutlined />,
+        label: '运行管理',
+      },
+      {
         key: '/simulation',
         icon: <WalletOutlined />,
         label: '账户模拟',
@@ -155,6 +160,7 @@ const getSelectedKey = (pathname: string): string => {
     '/events',
     '/signal-rules',
     '/strategies',
+    '/runtime',
     '/simulation',
     '/backtest',
     '/agent-chat',
