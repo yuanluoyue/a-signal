@@ -369,6 +369,7 @@ export const simulationPositions = pgTable(
     takeProfitPrice: decimal('take_profit_price', { precision: 18, scale: 2 }),
     stopLossPrice: decimal('stop_loss_price', { precision: 18, scale: 2 }),
     tradeSource: varchar('trade_source', { length: 20 }).default('manual'),
+    strategyId: uuid('strategy_id'),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -383,8 +384,14 @@ export const simulationPositions = pgTable(
       foreignColumns: [simulationAccounts.id],
       name: 'simulation_positions_account_id_fk',
     }),
+    foreignKey({
+      columns: [table.strategyId],
+      foreignColumns: [strategies.id],
+      name: 'simulation_positions_strategy_id_fk',
+    }),
     index('simulation_positions_account_id_idx').on(table.accountId),
     index('simulation_positions_stock_code_idx').on(table.stockCode),
+    index('simulation_positions_strategy_id_idx').on(table.strategyId),
     uniqueIndex('simulation_positions_account_stock_unique_idx').on(table.accountId, table.stockCode),
   ],
 );
@@ -406,6 +413,7 @@ export const simulationTrades = pgTable(
     profit: decimal('profit', { precision: 18, scale: 2 }),
     closeReason: varchar('close_reason', { length: 20 }),
     tradeSource: varchar('trade_source', { length: 20 }).default('manual'),
+    strategyId: uuid('strategy_id'),
     tradeTime: timestamp('trade_time', { withTimezone: true }).notNull(),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
@@ -417,9 +425,15 @@ export const simulationTrades = pgTable(
       foreignColumns: [simulationAccounts.id],
       name: 'simulation_trades_account_id_fk',
     }),
+    foreignKey({
+      columns: [table.strategyId],
+      foreignColumns: [strategies.id],
+      name: 'simulation_trades_strategy_id_fk',
+    }),
     index('simulation_trades_account_id_idx').on(table.accountId),
     index('simulation_trades_stock_code_idx').on(table.stockCode),
     index('simulation_trades_trade_time_idx').on(table.tradeTime),
+    index('simulation_trades_strategy_id_idx').on(table.strategyId),
   ],
 );
 
@@ -734,3 +748,39 @@ export const strategies = pgTable(
 
 export type Strategy = typeof strategies.$inferSelect;
 export type NewStrategy = typeof strategies.$inferInsert;
+
+export const strategiesRuntime = pgTable(
+  'strategies_runtime',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    strategyId: uuid('strategy_id').notNull(),
+    webhookId: uuid('webhook_id'),
+    enableWebhook: boolean('enable_webhook').notNull().default(true),
+    enableSimulation: boolean('enable_simulation').notNull().default(false),
+    enableLiveTrading: boolean('enable_live_trading').notNull().default(false),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.strategyId],
+      foreignColumns: [strategies.id],
+      name: 'strategies_runtime_strategy_id_fk',
+    }),
+    foreignKey({
+      columns: [table.webhookId],
+      foreignColumns: [webhooks.id],
+      name: 'strategies_runtime_webhook_id_fk',
+    }),
+    uniqueIndex('strategies_runtime_strategy_id_unique_idx').on(table.strategyId),
+    index('strategies_runtime_webhook_id_idx').on(table.webhookId),
+  ],
+);
+
+export type StrategyRuntime = typeof strategiesRuntime.$inferSelect;
+export type NewStrategyRuntime = typeof strategiesRuntime.$inferInsert;

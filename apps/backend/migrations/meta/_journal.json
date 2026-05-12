@@ -120,6 +120,13 @@
       "when": 1778389639436,
       "tag": "0016_lethal_ghost_rider",
       "breakpoints": true
+    },
+    {
+      "idx": 17,
+      "version": "7",
+      "when": 1778569109830,
+      "tag": "0017_jazzy_giant_man",
+      "breakpoints": true
     }
   ]
 }

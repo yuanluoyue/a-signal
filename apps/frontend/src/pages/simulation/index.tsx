@@ -59,6 +59,7 @@ interface SimulationPosition {
   takeProfitPrice?: number;
   stopLossPrice?: number;
   tradeSource?: string;
+  strategyId?: string;
 }
 
 interface SimulationTrade {
@@ -72,6 +73,7 @@ interface SimulationTrade {
   profit?: number;
   closeReason?: string;
   tradeSource?: string;
+  strategyId?: string;
   tradeTime: string;
 }
 
@@ -92,6 +94,11 @@ interface EquityCurvePoint {
   totalReturn: string;
   recordedAt: string;
   createdAt: string;
+}
+
+interface StrategyInfo {
+  id: string;
+  name: string;
 }
 
 const SimulationPage: React.FC = () => {
@@ -116,6 +123,7 @@ const SimulationPage: React.FC = () => {
   const [positionStockOptions, setPositionStockOptions] = useState<StockOption[]>([]);
   const [positionSearchLoading, setPositionSearchLoading] = useState(false);
   const positionDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const [strategies, setStrategies] = useState<StrategyInfo[]>([]);
 
   const [tradePrice, setTradePrice] = useState<number | null>(null);
   const [tradePriceLoading, setTradePriceLoading] = useState(false);
@@ -163,6 +171,17 @@ const SimulationPage: React.FC = () => {
     }
   };
 
+  const fetchStrategies = async () => {
+    try {
+      const response = await client.get('/strategies', { params: { pageSize: 100 } });
+      const data = response.data || [];
+      setStrategies(Array.isArray(data) ? data.map((s: StrategyInfo) => ({ id: s.id, name: s.name })) : []);
+    } catch (error) {
+      console.error('Fetch strategies error:', error);
+      setStrategies([]);
+    }
+  };
+
   const refreshPositions = async () => {
     setRefreshLoading(true);
     try {
@@ -186,6 +205,7 @@ const SimulationPage: React.FC = () => {
   useEffect(() => {
     refreshPositions();
     fetchAllData();
+    fetchStrategies();
   }, []);
 
   useEffect(() => {
@@ -236,10 +256,18 @@ const SimulationPage: React.FC = () => {
       (a, b) => new Date(a.recordedAt).getTime() - new Date(b.recordedAt).getTime()
     );
 
-    const chartData = sortedData.map((point) => ({
-      time: (Math.floor(new Date(point.recordedAt).getTime() / 1000)) as Time,
-      value: parseFloat(point.totalEquity),
-    }));
+    const seen = new Map<number, number>();
+    for (const point of sortedData) {
+      const timeKey = Math.floor(new Date(point.recordedAt).getTime() / 1000);
+      seen.set(timeKey, parseFloat(point.totalEquity));
+    }
+
+    const chartData = Array.from(seen.entries())
+      .sort((a, b) => a[0] - b[0])
+      .map(([time, value]) => ({
+        time: time as Time,
+        value,
+      }));
 
     lineSeries.setData(chartData);
 
@@ -510,6 +538,20 @@ const SimulationPage: React.FC = () => {
       render: (value?: number) => (value ? formatMoney(value) : '-'),
     },
     {
+      title: '来源',
+      dataIndex: 'tradeSource',
+      key: 'tradeSource',
+      width: 100,
+      render: (value?: string, record?: SimulationPosition) => {
+        if (value === 'strategy' && record?.strategyId) {
+          const strategy = strategies.find(s => s.id === record.strategyId);
+          return <Tag color="purple">{strategy?.name || '策略'}</Tag>;
+        }
+        if (value === 'system') return <Tag color="orange">系统</Tag>;
+        return <Tag>手动</Tag>;
+      },
+    },
+    {
       title: '操作',
       key: 'action',
       render: (_: unknown, record: SimulationPosition) => (
@@ -586,6 +628,20 @@ const SimulationPage: React.FC = () => {
         const mapping = closeReasonMap[value];
         if (!mapping) return '-';
         return <Tag color={mapping.color}>{mapping.text}</Tag>;
+      },
+    },
+    {
+      title: '来源',
+      dataIndex: 'tradeSource',
+      key: 'tradeSource',
+      width: 100,
+      render: (value?: string, record?: SimulationTrade) => {
+        if (value === 'strategy' && record?.strategyId) {
+          const strategy = strategies.find(s => s.id === record.strategyId);
+          return <Tag color="purple">{strategy?.name || '策略'}</Tag>;
+        }
+        if (value === 'system') return <Tag color="orange">系统</Tag>;
+        return <Tag>手动</Tag>;
       },
     },
     {

@@ -12,10 +12,8 @@ import {
   message,
   Select,
   Divider,
-  Tag,
 } from 'antd';
 import { PlusOutlined, EditOutlined } from '@ant-design/icons';
-import client from '@/services/client';
 import { strategyApi } from '@/services/strategy';
 import type {
   Strategy,
@@ -57,7 +55,6 @@ const StrategyPage: React.FC = () => {
   const [modalLoading, setModalLoading] = useState(false);
   const [editingStrategy, setEditingStrategy] = useState<Strategy | null>(null);
   const [form] = Form.useForm();
-  const [webhooks, setWebhooks] = useState<Array<{ id: string; name: string; enabled: boolean }>>([]);
 
   const fetchData = useCallback(async (page: number, size: number) => {
     setLoading(true);
@@ -78,19 +75,8 @@ const StrategyPage: React.FC = () => {
     }
   }, []);
 
-  const fetchWebhooks = async () => {
-    try {
-      const response = await client.get<{ data: Array<{ id: string; name: string; enabled: boolean }> }>('/webhooks');
-      const data = response.data?.data || response.data || [];
-      setWebhooks((Array.isArray(data) ? data : []).filter((w: { enabled: boolean }) => w.enabled));
-    } catch (error) {
-      console.error('获取 Webhook 列表失败:', error);
-    }
-  };
-
   useEffect(() => {
     fetchData(1, 10);
-    fetchWebhooks();
   }, [fetchData]);
 
   const handleAdd = () => {
@@ -122,7 +108,6 @@ const StrategyPage: React.FC = () => {
       takeProfitPct: record.takeProfitPct ? parseFloat(record.takeProfitPct) * 100 : undefined,
       maxSignalsPerDay: record.maxSignalsPerDay || undefined,
       maxPositions: record.maxPositions || undefined,
-      webhookId: record.webhookId || undefined,
     });
     setModalVisible(true);
   };
@@ -150,7 +135,6 @@ const StrategyPage: React.FC = () => {
           takeProfitPct,
           maxSignalsPerDay: values.maxSignalsPerDay,
           maxPositions: values.maxPositions,
-          webhookId: values.webhookId,
         };
         await strategyApi.updateStrategy(editingStrategy.id, params);
         message.success('策略更新成功');
@@ -169,7 +153,6 @@ const StrategyPage: React.FC = () => {
           takeProfitPct,
           maxSignalsPerDay: values.maxSignalsPerDay,
           maxPositions: values.maxPositions,
-          webhookId: values.webhookId,
         };
         await strategyApi.createStrategy(params);
         message.success('策略创建成功');
@@ -222,17 +205,6 @@ const StrategyPage: React.FC = () => {
       key: 'directionMode',
       width: 100,
       render: (mode: DirectionMode) => getDirectionModeLabel(mode),
-    },
-    {
-      title: '绑定 Webhook',
-      dataIndex: 'webhookId',
-      key: 'webhookId',
-      width: 120,
-      render: (webhookId: string | null) => {
-        if (!webhookId) return <Typography.Text type="secondary">未绑定</Typography.Text>;
-        const webhook = webhooks.find(w => w.id === webhookId);
-        return webhook ? <Tag color="green">{webhook.name}</Tag> : <Typography.Text type="secondary">未知</Typography.Text>;
-      },
     },
     {
       title: '最低分数',
@@ -349,13 +321,6 @@ const StrategyPage: React.FC = () => {
           </Form.Item>
           <Form.Item name="enabled" label="启用状态" valuePropName="checked">
             <Switch />
-          </Form.Item>
-          <Form.Item name="webhookId" label="绑定 Webhook">
-            <Select
-              allowClear
-              placeholder="选择绑定的 Webhook（可选）"
-              options={webhooks.map(w => ({ label: w.name, value: w.id }))}
-            />
           </Form.Item>
 
           <Divider orientation="left" plain>信号筛选</Divider>

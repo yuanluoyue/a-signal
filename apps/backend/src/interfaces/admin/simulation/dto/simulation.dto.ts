@@ -54,6 +54,11 @@ export class ExecuteTradeDto {
   @IsNumber()
   @IsOptional()
   stopLossPrice?: number;
+
+  @ApiPropertyOptional({ description: '策略ID' })
+  @IsString()
+  @IsOptional()
+  strategyId?: string;
 }
 
 export class AddPositionDto {
@@ -86,4 +91,9 @@ export class AddPositionDto {
   @IsNumber()
   @IsOptional()
   stopLossPrice?: number;
+
+  @ApiPropertyOptional({ description: '策略ID' })
+  @IsString()
+  @IsOptional()
+  strategyId?: string;
 }

@@ -6,9 +6,10 @@ import { WebhooksService } from './webhooks.service.js';
 import { BlacklistModule } from '../blacklist/blacklist.module.js';
 import { StockModule } from '../stock/stock.module.js';
 import { StrategyModule } from '../strategy/strategy.module.js';
+import { SimulationModule } from '../simulation/simulation.module.js';
 
 @Module({
-  imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule],
+  imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule, SimulationModule],
   providers: [NotificationsService, WebhooksService],
   exports: [NotificationsService, WebhooksService],
 })

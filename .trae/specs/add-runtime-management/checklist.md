@@ -1,0 +1,31 @@
+- [x] strategies_runtime 表已创建，包含 strategyId(unique FK)、webhookId(nullable FK)、enableWebhook、enableSimulation、enableLiveTrading、createdAt、updatedAt
+- [x] simulation_positions 表 strategyId 字段已添加
+- [x] simulation_trades 表 strategyId 字段已添加
+- [x] 迁移文件已生成，包含 CREATE TABLE 和 ALTER TABLE ADD COLUMN，无 DROP/DELETE/TRUNCATE
+- [x] StrategyService.findEnabledWithRuntime() 方法返回所有 enabled=true 的策略（含 runtime + webhook 信息）
+- [x] StrategyService.create 创建策略后同时创建 strategies_runtime 记录
+- [x] StrategyService.updateRuntime() 方法可更新 enableWebhook/enableSimulation/enableLiveTrading/webhookId
+- [x] StrategyService.findList 返回数据包含 runtime 信息
+- [x] StrategyController 新增 PUT /strategies/:id/runtime 接口
+- [x] GET /strategies 返回数据包含 runtime 字段
+- [x] POST /strategies 创建策略时同时创建 runtime 记录
+- [x] NotificationsService.notifySignalAnalyzed 改用 findEnabledWithRuntime()
+- [x] 匹配策略后 enableWebhook=true 且 webhookId 非空才发送 webhook 通知
+- [x] 匹配策略后 enableSimulation=true 且信号方向为 long 时触发模拟交易
+- [x] 策略触发的模拟交易 tradeSource='strategy'，strategyId 记录策略 ID
+- [x] 策略触发的模拟交易使用策略的 stopLossPct/takeProfitPct 计算止盈止损价
+- [x] NotificationsModule 导入 SimulationModule
+- [x] TradeDto 新增 strategyId 和 tradeSource 字段
+- [x] executeTrade 买入时保存 strategyId 到 position 和 trade
+- [x] refreshPositionPrices 完成后调用 recordEquityCurve，产生有意义的曲线数据点
+- [x] 资金曲线图表能正确展示总权益随时间变化（非直线）
+- [x] /runtime 路由已添加到 .umirc.ts
+- [x] 运行管理菜单项已添加到 MainLayout.tsx 分析中心分组
+- [x] 运行管理页面展示已启用策略列表
+- [x] 每个策略行有三个 Switch：Webhook 通知、模拟交易、实盘交易
+- [x] 每个策略行有 Webhook 绑定 Select
+- [x] 实盘交易 Switch 禁用且带 Tooltip 提示"暂未开放"
+- [x] Switch/Webhook Select 切换即时生效并显示成功提示
+- [x] 模拟交易持仓列表新增「来源」列
+- [x] 模拟交易记录列表新增「来源」列
+- [x] seed.ts 策略创建后同步创建 strategies_runtime 记录

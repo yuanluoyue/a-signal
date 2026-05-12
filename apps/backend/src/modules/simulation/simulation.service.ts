@@ -36,6 +36,8 @@ export interface TradeDto {
   quantity: number;
   takeProfitPrice?: number;
   stopLossPrice?: number;
+  strategyId?: string;
+  tradeSource?: string;
 }
 
 export interface AddPositionDto {
@@ -46,6 +48,7 @@ export interface AddPositionDto {
   avgCost: number;
   takeProfitPrice?: number;
   stopLossPrice?: number;
+  strategyId?: string;
 }
 
 @Injectable()
@@ -138,11 +141,16 @@ export class SimulationService {
   }
 
   async getPositions(accountId: string): Promise<SimulationPosition[]> {
-    return this.dbService.db
+    const positions = await this.dbService.db
       .select()
       .from(simulationPositions)
       .where(eq(simulationPositions.accountId, accountId))
       .orderBy(desc(simulationPositions.updatedAt));
+    
+    return positions.map(p => ({
+      ...p,
+      tradeSource: p.tradeSource || 'manual',
+    }));
   }
 
   async getPositionByStock(accountId: string, stockCode: string): Promise<SimulationPosition | null> {
@@ -200,6 +208,7 @@ export class SimulationService {
     }
 
     await this.refreshAccountEquity(accountId);
+    await this.recordEquityCurve(accountId);
   }
 
   async refreshAccountEquity(accountId: string): Promise<void> {
@@ -247,15 +256,39 @@ export class SimulationService {
     const totalProfit = totalEquity - initialCapital;
     const totalReturn = totalProfit / initialCapital;
 
-    await this.dbService.db.insert(simulationEquityCurve).values({
-      accountId,
-      totalEquity: totalEquity.toString(),
-      availableCash: availableCash.toString(),
-      positionValue: positionValue.toString(),
-      totalProfit: totalProfit.toString(),
-      totalReturn: totalReturn.toString(),
-      recordedAt: new Date(),
-    });
+    const recentRecords = await this.dbService.db
+      .select()
+      .from(simulationEquityCurve)
+      .where(eq(simulationEquityCurve.accountId, accountId))
+      .orderBy(desc(simulationEquityCurve.recordedAt))
+      .limit(1);
+
+    const now = new Date();
+    const oneMinuteAgo = new Date(now.getTime() - 60 * 1000);
+
+    if (recentRecords.length > 0 && new Date(recentRecords[0].recordedAt) >= oneMinuteAgo) {
+      await this.dbService.db
+        .update(simulationEquityCurve)
+        .set({
+          totalEquity: totalEquity.toString(),
+          availableCash: availableCash.toString(),
+          positionValue: positionValue.toString(),
+          totalProfit: totalProfit.toString(),
+          totalReturn: totalReturn.toString(),
+          recordedAt: now,
+        })
+        .where(eq(simulationEquityCurve.id, recentRecords[0].id));
+    } else {
+      await this.dbService.db.insert(simulationEquityCurve).values({
+        accountId,
+        totalEquity: totalEquity.toString(),
+        availableCash: availableCash.toString(),
+        positionValue: positionValue.toString(),
+        totalProfit: totalProfit.toString(),
+        totalReturn: totalReturn.toString(),
+        recordedAt: now,
+      });
+    }
   }
 
   async getEquityCurve(accountId: string): Promise<SimulationEquityCurve[]> {
@@ -384,7 +417,8 @@ export class SimulationService {
             return: ((price - newAvgCost) / newAvgCost).toString(),
             takeProfitPrice: dto.takeProfitPrice?.toString() ?? existingPosition.takeProfitPrice,
             stopLossPrice: dto.stopLossPrice?.toString() ?? existingPosition.stopLossPrice,
-            tradeSource: 'manual',
+            strategyId: dto.strategyId || existingPosition.strategyId,
+            tradeSource: dto.tradeSource || 'manual',
             updatedAt: new Date(),
           })
           .where(eq(simulationPositions.id, existingPosition.id));
@@ -401,7 +435,8 @@ export class SimulationService {
           return: '0',
           takeProfitPrice: dto.takeProfitPrice?.toString(),
           stopLossPrice: dto.stopLossPrice?.toString(),
-          tradeSource: 'manual',
+          strategyId: dto.strategyId || null,
+          tradeSource: dto.tradeSource || 'manual',
         };
         await this.dbService.db.insert(simulationPositions).values(newPosition);
       }
@@ -414,7 +449,8 @@ export class SimulationService {
         quantity: dto.quantity,
         price: price.toString(),
         totalAmount: totalAmount.toString(),
-        tradeSource: 'manual',
+        tradeSource: dto.tradeSource || 'manual',
+        strategyId: dto.strategyId || null,
         tradeTime: new Date(),
       };
 
@@ -471,7 +507,8 @@ export class SimulationService {
         totalAmount: totalAmount.toString(),
         profit: profit.toString(),
         closeReason: 'manual',
-        tradeSource: 'manual',
+        tradeSource: dto.tradeSource || 'manual',
+        strategyId: dto.strategyId || null,
         tradeTime: new Date(),
       };
 
@@ -496,13 +533,62 @@ export class SimulationService {
     }
   }
 
+  async executeStrategyTrade(dto: {
+    strategyId: string;
+    stockCode: string;
+    stockName: string;
+    quantity: number;
+    stopLossPct?: number;
+    takeProfitPct?: number;
+  }): Promise<SimulationTrade | null> {
+    const [account] = await this.dbService.db
+      .select()
+      .from(simulationAccounts)
+      .limit(1);
+    if (!account) {
+      this.logger.error('executeStrategyTrade: no simulation account found');
+      return null;
+    }
+    const price = await this.getLatestPrice(dto.stockCode);
+    const totalAmount = price * dto.quantity;
+    const availableCash = parseFloat(account.availableCash);
+    if (availableCash < totalAmount) {
+      this.logger.warn(`executeStrategyTrade: insufficient funds for strategy ${dto.strategyId}, need ${totalAmount}, have ${availableCash}`);
+      return null;
+    }
+    let takeProfitPrice: number | undefined;
+    let stopLossPrice: number | undefined;
+    if (dto.takeProfitPct) {
+      takeProfitPrice = price * (1 + dto.takeProfitPct);
+    }
+    if (dto.stopLossPct) {
+      stopLossPrice = price * (1 - dto.stopLossPct);
+    }
+    return this.executeTrade({
+      accountId: account.id,
+      stockCode: dto.stockCode,
+      stockName: dto.stockName,
+      type: 'buy',
+      quantity: dto.quantity,
+      takeProfitPrice,
+      stopLossPrice,
+      strategyId: dto.strategyId,
+      tradeSource: 'strategy',
+    });
+  }
+
   async getTrades(accountId: string, limit: number = 50): Promise<SimulationTrade[]> {
-    return this.dbService.db
+    const trades = await this.dbService.db
       .select()
       .from(simulationTrades)
       .where(eq(simulationTrades.accountId, accountId))
       .orderBy(desc(simulationTrades.tradeTime))
       .limit(limit);
+    
+    return trades.map(t => ({
+      ...t,
+      tradeSource: t.tradeSource || 'manual',
+    }));
   }
 
   async addPosition(dto: AddPositionDto): Promise<SimulationPosition> {
@@ -528,6 +614,7 @@ export class SimulationService {
           marketValue: marketValue.toString(),
           takeProfitPrice: dto.takeProfitPrice?.toString() ?? existingPosition.takeProfitPrice,
           stopLossPrice: dto.stopLossPrice?.toString() ?? existingPosition.stopLossPrice,
+          strategyId: dto.strategyId ?? existingPosition.strategyId,
           tradeSource: 'manual',
           updatedAt: new Date(),
         })
@@ -551,6 +638,7 @@ export class SimulationService {
       return: '0',
       takeProfitPrice: dto.takeProfitPrice?.toString(),
       stopLossPrice: dto.stopLossPrice?.toString(),
+      strategyId: dto.strategyId || null,
       tradeSource: 'manual',
     };
 
