@@ -3,6 +3,7 @@ import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { eq, and, gte, lte, inArray, sql } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
+import { CacheService } from '../../core/cache/cache.service.js';
 import { klines, signals, NewKline, Kline } from '../../core/db/schema.js';
 
 export type KlinePeriod = '1d' | '4h';
@@ -29,6 +30,7 @@ export class KlinesService {
   constructor(
     private readonly httpService: HttpService,
     private readonly dbService: DbService,
+    private readonly cacheService: CacheService,
   ) {}
 
   private formatStockCode(code: string): string {
@@ -286,6 +288,13 @@ export class KlinesService {
 
   async checkAndUpdateKlines(stockCode: string, period: KlinePeriod): Promise<{ updated: boolean; latestTime: Date | null; message: string }> {
     const cleanCode = stockCode.trim().toLowerCase();
+    const cacheKey = `kline:check:${cleanCode}:${period}`;
+    
+    const cached = await this.cacheService.get<{ updated: boolean; latestTime: Date | null; message: string }>(cacheKey);
+    if (cached) {
+      return cached;
+    }
+
     const now = new Date();
     
     const latestTimeRaw = await this.getLatestKlineTime(cleanCode, period);
@@ -294,11 +303,13 @@ export class KlinesService {
     const needsUpdate = this.checkIfNeedsUpdate(latestTime, period, now);
     
     if (!needsUpdate) {
-      return {
+      const result = {
         updated: false,
         latestTime,
         message: `K线数据已是最新，最新时间: ${latestTime ? latestTime.toISOString() : '无数据'}`,
       };
+      await this.cacheService.set(cacheKey, result, 5 * 60 * 1000);
+      return result;
     }
     
     this.logger.log(`K线数据需要更新，正在获取 ${cleanCode} (${period}) 的最新数据...`);
@@ -308,13 +319,15 @@ export class KlinesService {
     const newLatestTimeRaw = await this.getLatestKlineTime(cleanCode, period);
     const newLatestTime = newLatestTimeRaw ? new Date(newLatestTimeRaw) : null;
     
-    return {
+    const result = {
       updated: savedCount > 0,
       latestTime: newLatestTime,
       message: savedCount > 0 
         ? `成功更新 ${savedCount} 条K线数据` 
         : '更新失败，未获取到新数据',
     };
+    await this.cacheService.set(cacheKey, result, 5 * 60 * 1000);
+    return result;
   }
 
   private checkIfNeedsUpdate(latestTime: Date | null, period: KlinePeriod, now: Date): boolean {

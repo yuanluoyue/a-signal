@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { TerminusModule } from '@nestjs/terminus';
 import { APP_GUARD } from '@nestjs/core';
 import { DbModule } from './core/db/db.module.js';
+import { CacheModule } from './core/cache/cache.module.js';
 import { QueueModule } from './core/queue/queue.module.js';
 import { VectorModule } from './core/vector/vector.module.js';
 import { VolcengineModule } from './core/volcengine/volcengine.module.js';
@@ -68,6 +69,7 @@ const jwtAuthGuardProvider: Provider = {
     }),
     TerminusModule,
     DbModule,
+    CacheModule,
     QueueModule,
     VectorModule,
     VolcengineModule,

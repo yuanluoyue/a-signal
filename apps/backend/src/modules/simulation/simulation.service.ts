@@ -2,6 +2,7 @@ import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { eq, and, desc } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { KlinesService } from '../../modules/klines/klines.service.js';
+import { CacheService } from '../../core/cache/cache.service.js';
 import {
   users,
   klines,
@@ -58,6 +59,7 @@ export class SimulationService {
   constructor(
     private readonly dbService: DbService,
     private readonly klinesService: KlinesService,
+    private readonly cacheService: CacheService,
   ) {}
 
   async createAccount(dto: CreateAccountDto): Promise<SimulationAccount> {
@@ -169,12 +171,20 @@ export class SimulationService {
   }
 
   async getLatestPrice(stockCode: string): Promise<number> {
-    await this.klinesService.checkAndUpdateKlines(stockCode, '4h');
+    const cleanCode = stockCode.trim().toLowerCase();
+    const cacheKey = `price:${cleanCode}:4h`;
+
+    const cached = await this.cacheService.get<number>(cacheKey);
+    if (cached !== undefined) {
+      return cached;
+    }
+
+    await this.klinesService.checkAndUpdateKlines(cleanCode, '4h');
 
     const result = await this.dbService.db
       .select({ close: klines.close })
       .from(klines)
-      .where(and(eq(klines.stockCode, stockCode.trim().toLowerCase()), eq(klines.period, '4h')))
+      .where(and(eq(klines.stockCode, cleanCode), eq(klines.period, '4h')))
       .orderBy(desc(klines.timestamp))
       .limit(1);
 
@@ -182,14 +192,29 @@ export class SimulationService {
       throw new Error(`无法获取 ${stockCode} 的最新价格`);
     }
 
-    return parseFloat(result[0].close);
+    const price = parseFloat(result[0].close);
+    await this.cacheService.set(cacheKey, price, 5 * 60 * 1000);
+    return price;
   }
 
   async refreshPositionPrices(accountId: string): Promise<void> {
     const positions = await this.getPositions(accountId);
 
-    for (const position of positions) {
-      const latestPrice = await this.getLatestPrice(position.stockCode);
+    const pricePromises = positions.map(async (position) => {
+      try {
+        const latestPrice = await this.getLatestPrice(position.stockCode);
+        return { position, latestPrice };
+      } catch (error) {
+        this.logger.error(`refreshPositionPrices: failed to get price for ${position.stockCode}: ${error instanceof Error ? error.message : String(error)}`);
+        return null;
+      }
+    });
+
+    const results = await Promise.all(pricePromises);
+
+    for (const item of results) {
+      if (!item) continue;
+      const { position, latestPrice } = item;
       const avgCost = parseFloat(position.avgCost);
       const marketValue = position.quantity * latestPrice;
       const profit = (latestPrice - avgCost) * position.quantity;
