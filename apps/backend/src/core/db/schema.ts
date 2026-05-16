@@ -272,6 +272,7 @@ export const webhooks = pgTable(
   'webhooks',
   {
     id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id'),
     name: varchar('name', { length: 100 }).notNull(),
     url: text('url').notNull(),
     type: varchar('type', { length: 20 }).notNull(),
@@ -289,6 +290,12 @@ export const webhooks = pgTable(
       .$onUpdate(() => new Date()),
   },
   (table) => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'webhooks_user_id_fk',
+    }),
+    index('webhooks_user_id_idx').on(table.userId),
     index('webhooks_type_idx').on(table.type),
     index('webhooks_enabled_idx').on(table.enabled),
   ],
@@ -327,6 +334,7 @@ export const simulationAccounts = pgTable(
   {
     id: uuid('id').primaryKey().defaultRandom(),
     userId: uuid('user_id').notNull(),
+    name: varchar('name', { length: 100 }),
     initialCapital: decimal('initial_capital', { precision: 18, scale: 2 }).notNull(),
     currentCapital: decimal('current_capital', { precision: 18, scale: 2 }).notNull(),
     availableCash: decimal('available_cash', { precision: 18, scale: 2 }).notNull(),
@@ -346,6 +354,7 @@ export const simulationAccounts = pgTable(
       foreignColumns: [users.id],
       name: 'simulation_accounts_user_id_fk',
     }),
+    uniqueIndex('simulation_accounts_user_name_unique_idx').on(table.userId, table.name),
     index('simulation_accounts_user_id_idx').on(table.userId),
   ],
 );
@@ -496,6 +505,7 @@ export const stockTrackings = pgTable(
   'stock_trackings',
   {
     id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id'),
     stockCode: varchar('stock_code', { length: 20 }).notNull(),
     stockName: varchar('stock_name', { length: 100 }).notNull(),
     status: varchar('status', { length: 20 }).notNull().default('pending'),
@@ -511,9 +521,15 @@ export const stockTrackings = pgTable(
       .$onUpdate(() => new Date()),
   },
   (table) => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'stock_trackings_user_id_fk',
+    }),
+    index('stock_trackings_user_id_idx').on(table.userId),
     index('stock_trackings_stock_code_idx').on(table.stockCode),
     index('stock_trackings_status_idx').on(table.status),
-    uniqueIndex('stock_trackings_stock_unique_idx').on(table.stockCode),
+    uniqueIndex('stock_trackings_user_stock_unique_idx').on(table.userId, table.stockCode),
   ],
 );
 
@@ -524,6 +540,7 @@ export const backtestRecords = pgTable(
   'backtest_records',
   {
     id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id'),
     name: varchar('name', { length: 200 }),
     description: text('description'),
     strategyId: uuid('strategy_id'),
@@ -561,6 +578,12 @@ export const backtestRecords = pgTable(
       .defaultNow(),
   },
   (table) => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'backtest_records_user_id_fk',
+    }),
+    index('backtest_records_user_id_idx').on(table.userId),
     index('backtest_records_strategy_id_idx').on(table.strategyId),
     index('backtest_records_created_at_idx').on(table.createdAt),
     index('backtest_records_stock_code_idx').on(table.stockCode),
@@ -576,6 +599,7 @@ export const backtestTrades = pgTable(
   'backtest_trades',
   {
     id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id'),
     backtestId: uuid('backtest_id').notNull(),
     strategyId: uuid('strategy_id').notNull(),
     signalId: uuid('signal_id'),
@@ -600,6 +624,12 @@ export const backtestTrades = pgTable(
       .notNull(),
   },
   (table) => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'backtest_trades_user_id_fk',
+    }),
+    index('backtest_trades_user_id_idx').on(table.userId),
     index('backtest_trades_backtest_id_idx').on(table.backtestId),
     index('backtest_trades_strategy_id_idx').on(table.strategyId),
     index('backtest_trades_direction_idx').on(table.direction),
@@ -638,6 +668,7 @@ export const apiKeys = pgTable(
   'api_keys',
   {
     id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id'),
     key: varchar('key', { length: 255 }).notNull().unique(),
     name: varchar('name', { length: 100 }).notNull(),
     status: varchar('status', { length: 20 }).notNull().default('active'),
@@ -647,6 +678,12 @@ export const apiKeys = pgTable(
       .defaultNow(),
   },
   (table) => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'api_keys_user_id_fk',
+    }),
+    index('api_keys_user_id_idx').on(table.userId),
     index('api_keys_key_idx').on(table.key),
     index('api_keys_status_idx').on(table.status),
   ],
@@ -710,7 +747,8 @@ export const strategies = pgTable(
   'strategies',
   {
     id: uuid('id').primaryKey().defaultRandom(),
-    name: varchar('name', { length: 100 }).notNull().unique(),
+    userId: uuid('user_id'),
+    name: varchar('name', { length: 100 }).notNull(),
     description: text('description'),
     enabled: boolean('enabled').notNull().default(true),
     minScore: decimal('min_score', { precision: 5, scale: 4 }).notNull(),
@@ -735,10 +773,17 @@ export const strategies = pgTable(
   },
   (table) => [
     foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'strategies_user_id_fk',
+    }),
+    foreignKey({
       columns: [table.webhookId],
       foreignColumns: [webhooks.id],
       name: 'strategies_webhook_id_fk',
     }),
+    uniqueIndex('strategies_user_name_unique_idx').on(table.userId, table.name),
+    index('strategies_user_id_idx').on(table.userId),
     index('strategies_enabled_idx').on(table.enabled),
     index('strategies_direction_mode_idx').on(table.directionMode),
     index('strategies_created_at_idx').on(table.createdAt),
@@ -754,6 +799,7 @@ export const strategiesRuntime = pgTable(
   {
     id: uuid('id').primaryKey().defaultRandom(),
     strategyId: uuid('strategy_id').notNull(),
+    accountId: uuid('account_id'),
     webhookId: uuid('webhook_id'),
     enableWebhook: boolean('enable_webhook').notNull().default(true),
     enableSimulation: boolean('enable_simulation').notNull().default(false),
@@ -773,11 +819,17 @@ export const strategiesRuntime = pgTable(
       name: 'strategies_runtime_strategy_id_fk',
     }),
     foreignKey({
+      columns: [table.accountId],
+      foreignColumns: [simulationAccounts.id],
+      name: 'strategies_runtime_account_id_fk',
+    }),
+    foreignKey({
       columns: [table.webhookId],
       foreignColumns: [webhooks.id],
       name: 'strategies_runtime_webhook_id_fk',
     }),
     uniqueIndex('strategies_runtime_strategy_id_unique_idx').on(table.strategyId),
+    index('strategies_runtime_account_id_idx').on(table.accountId),
     index('strategies_runtime_webhook_id_idx').on(table.webhookId),
   ],
 );

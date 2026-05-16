@@ -49,8 +49,9 @@ export class GetBacktestByStockTool extends BaseTool<GetBacktestByStockInput, Ba
       this.logger.debug(`[GetBacktestByStockTool] Executing for stock: ${input.stockCode || 'all'}`);
 
       const records = await this.backtestService.findAllRecords(
-        input.stockCode,
-        input.strategyId,
+        '',
+        input.stockCode ?? undefined,
+        input.strategyId ?? undefined,
         input.limit,
       );
 

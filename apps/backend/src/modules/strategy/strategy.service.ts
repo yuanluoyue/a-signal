@@ -1,4 +1,4 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { eq, and, sql, desc } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { strategies, Strategy, NewStrategy, webhooks, Webhook, strategiesRuntime, StrategyRuntime, NewStrategyRuntime, events, Signal } from '../../core/db/schema.js';
@@ -41,6 +41,7 @@ export interface UpdateStrategyDto {
 
 export interface UpdateStrategyRuntimeDto {
   webhookId?: string;
+  accountId?: string;
   enableWebhook?: boolean;
   enableSimulation?: boolean;
   enableLiveTrading?: boolean;
@@ -59,9 +60,19 @@ export class StrategyService {
 
   constructor(private readonly dbService: DbService) {}
 
-  async create(dto: CreateStrategyDto): Promise<Strategy> {
+  async create(dto: CreateStrategyDto, userId: string): Promise<Strategy> {
     try {
+      const [existing] = await this.dbService.db
+        .select()
+        .from(strategies)
+        .where(and(eq(strategies.name, dto.name), eq(strategies.userId, userId)));
+
+      if (existing) {
+        throw new ConflictException(`Strategy with name "${dto.name}" already exists for this user`);
+      }
+
       const newStrategy: NewStrategy = {
+        userId: userId,
         name: dto.name,
         description: dto.description || null,
         enabled: dto.enabled ?? true,
@@ -104,12 +115,17 @@ export class StrategyService {
     }
   }
 
-  async findById(id: string): Promise<Strategy | null> {
+  async findById(id: string, userId?: string): Promise<Strategy | null> {
     try {
+      const conditions = [eq(strategies.id, id)];
+      if (userId) {
+        conditions.push(eq(strategies.userId, userId));
+      }
+
       const [result] = await this.dbService.db
         .select()
         .from(strategies)
-        .where(eq(strategies.id, id));
+        .where(and(...conditions));
 
       return result || null;
     } catch (error) {
@@ -120,12 +136,14 @@ export class StrategyService {
     }
   }
 
-  async findList(query: StrategyListQueryDto): Promise<{ data: Array<Strategy & { runtime: StrategyRuntime | null }>; total: number; page: number; pageSize: number }> {
+  async findList(query: StrategyListQueryDto, userId: string): Promise<{ data: Array<Strategy & { runtime: StrategyRuntime | null }>; total: number; page: number; pageSize: number }> {
     try {
       const { page = 1, pageSize = 10, enabled, directionMode } = query;
       const offset = (page - 1) * pageSize;
 
       const conditions: ReturnType<typeof eq>[] = [];
+
+      conditions.push(eq(strategies.userId, userId));
 
       if (enabled !== undefined) {
         conditions.push(eq(strategies.enabled, enabled));
@@ -173,8 +191,13 @@ export class StrategyService {
     }
   }
 
-  async update(id: string, dto: UpdateStrategyDto): Promise<Strategy> {
+  async update(id: string, dto: UpdateStrategyDto, userId: string): Promise<Strategy> {
     try {
+      const strategy = await this.findById(id);
+      if (!strategy || strategy.userId !== userId) {
+        throw new NotFoundException(`Strategy ${id} not found`);
+      }
+
       const updateData: Partial<NewStrategy> = {};
 
       if (dto.name !== undefined) {
@@ -243,8 +266,13 @@ export class StrategyService {
     }
   }
 
-  async findEnabledWithRuntime(): Promise<Array<Strategy & { runtime: StrategyRuntime | null; webhook: Webhook | null }>> {
+  async findEnabledWithRuntime(userId?: string): Promise<Array<Strategy & { runtime: StrategyRuntime | null; webhook: Webhook | null }>> {
     try {
+      const conditions = [eq(strategies.enabled, true)];
+      if (userId) {
+        conditions.push(eq(strategies.userId, userId));
+      }
+
       const rows = await this.dbService.db
         .select({
           strategy: strategies,
@@ -254,7 +282,7 @@ export class StrategyService {
         .from(strategies)
         .leftJoin(strategiesRuntime, eq(strategiesRuntime.strategyId, strategies.id))
         .leftJoin(webhooks, eq(strategiesRuntime.webhookId, webhooks.id))
-        .where(eq(strategies.enabled, true));
+        .where(and(...conditions));
 
       this.logger.log(`StrategyService.findEnabledWithRuntime: found ${rows.length} enabled strategies with runtime`);
 
@@ -292,8 +320,15 @@ export class StrategyService {
     }
   }
 
-  async updateRuntime(strategyId: string, dto: UpdateStrategyRuntimeDto): Promise<StrategyRuntime> {
+  async updateRuntime(strategyId: string, dto: UpdateStrategyRuntimeDto, userId?: string): Promise<StrategyRuntime> {
     try {
+      if (userId) {
+        const strategy = await this.findById(strategyId, userId);
+        if (!strategy) {
+          throw new NotFoundException(`Strategy ${strategyId} not found`);
+        }
+      }
+
       const existing = await this.getOrCreateRuntime(strategyId);
 
       const updateData: Partial<NewStrategyRuntime> = {};
@@ -309,6 +344,9 @@ export class StrategyService {
       }
       if (dto.enableLiveTrading !== undefined) {
         updateData.enableLiveTrading = dto.enableLiveTrading;
+      }
+      if (dto.accountId !== undefined) {
+        updateData.accountId = dto.accountId || null;
       }
 
       const [result] = await this.dbService.db
@@ -331,8 +369,15 @@ export class StrategyService {
     }
   }
 
-  async getOrCreateRuntime(strategyId: string): Promise<StrategyRuntime> {
+  async getOrCreateRuntime(strategyId: string, userId?: string): Promise<StrategyRuntime> {
     try {
+      if (userId) {
+        const strategy = await this.findById(strategyId, userId);
+        if (!strategy) {
+          throw new NotFoundException(`Strategy ${strategyId} not found`);
+        }
+      }
+
       const [existing] = await this.dbService.db
         .select()
         .from(strategiesRuntime)

@@ -39,6 +39,7 @@ const { Option } = Select;
 
 interface SimulationAccount {
   id: string;
+  name?: string;
   initialCapital: number;
   currentCapital: number;
   availableCash: number;
@@ -104,6 +105,8 @@ interface StrategyInfo {
 const SimulationPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [refreshLoading, setRefreshLoading] = useState(false);
+  const [accounts, setAccounts] = useState<SimulationAccount[]>([]);
+  const [selectedAccountId, setSelectedAccountId] = useState<string | null>(null);
   const [account, setAccount] = useState<SimulationAccount | null>(null);
   const [positions, setPositions] = useState<SimulationPosition[]>([]);
   const [trades, setTrades] = useState<SimulationTrade[]>([]);
@@ -111,9 +114,11 @@ const SimulationPage: React.FC = () => {
   const [isTradeModalVisible, setIsTradeModalVisible] = useState(false);
   const [isBalanceModalVisible, setIsBalanceModalVisible] = useState(false);
   const [isPositionModalVisible, setIsPositionModalVisible] = useState(false);
+  const [isCreateAccountModalVisible, setIsCreateAccountModalVisible] = useState(false);
   const [tradeForm] = Form.useForm();
   const [balanceForm] = Form.useForm();
   const [positionForm] = Form.useForm();
+  const [createAccountForm] = Form.useForm();
   const [activeTab, setActiveTab] = useState<'positions' | 'trades' | 'equity-curve'>('positions');
 
   const [tradeStockOptions, setTradeStockOptions] = useState<StockOption[]>([]);
@@ -131,9 +136,24 @@ const SimulationPage: React.FC = () => {
   const chartContainerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
 
-  const fetchAccount = async () => {
+  const fetchAccounts = async () => {
     try {
-      const response = await client.get('/simulation/account');
+      const response = await client.get('/simulation/accounts');
+      setAccounts(response.data || []);
+      return response.data || [];
+    } catch (error) {
+      console.error('Fetch accounts error:', error);
+      setAccounts([]);
+      return [];
+    }
+  };
+
+  const fetchAccount = async () => {
+    if (!selectedAccountId) return;
+    try {
+      const response = await client.get('/simulation/account', {
+        params: { accountId: selectedAccountId },
+      });
       setAccount(response.data);
     } catch (error) {
       console.error('Fetch account error:', error);
@@ -142,8 +162,11 @@ const SimulationPage: React.FC = () => {
   };
 
   const fetchPositions = async () => {
+    if (!selectedAccountId) return;
     try {
-      const response = await client.get('/simulation/positions');
+      const response = await client.get('/simulation/positions', {
+        params: { accountId: selectedAccountId },
+      });
       setPositions(response.data || []);
     } catch (error) {
       console.error('Fetch positions error:', error);
@@ -152,8 +175,11 @@ const SimulationPage: React.FC = () => {
   };
 
   const fetchTrades = async () => {
+    if (!selectedAccountId) return;
     try {
-      const response = await client.get('/simulation/trades');
+      const response = await client.get('/simulation/trades', {
+        params: { accountId: selectedAccountId },
+      });
       setTrades(response.data || []);
     } catch (error) {
       console.error('Fetch trades error:', error);
@@ -162,8 +188,11 @@ const SimulationPage: React.FC = () => {
   };
 
   const fetchEquityCurve = async () => {
+    if (!selectedAccountId) return;
     try {
-      const response = await client.get('/simulation/equity-curve');
+      const response = await client.get('/simulation/equity-curve', {
+        params: { accountId: selectedAccountId },
+      });
       setEquityCurveData(response.data || []);
     } catch (error) {
       console.error('Fetch equity curve error:', error);
@@ -183,9 +212,12 @@ const SimulationPage: React.FC = () => {
   };
 
   const refreshPositions = async () => {
+    if (!selectedAccountId) return;
     setRefreshLoading(true);
     try {
-      const response = await client.get('/simulation/refresh');
+      const response = await client.get('/simulation/refresh', {
+        params: { accountId: selectedAccountId },
+      });
       const { account: refreshedAccount, positions: refreshedPositions } = response.data;
       if (refreshedAccount) setAccount(refreshedAccount);
       if (refreshedPositions) setPositions(refreshedPositions);
@@ -203,16 +235,29 @@ const SimulationPage: React.FC = () => {
   };
 
   useEffect(() => {
-    refreshPositions();
-    fetchAllData();
+    const init = async () => {
+      const accountList = await fetchAccounts();
+      if (accountList.length > 0) {
+        setSelectedAccountId(accountList[0].id);
+      }
+    };
+    init();
     fetchStrategies();
   }, []);
 
   useEffect(() => {
-    if (activeTab === 'equity-curve') {
+    if (!selectedAccountId) return;
+    setLoading(true);
+    Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]).finally(() => {
+      setLoading(false);
+    });
+  }, [selectedAccountId]);
+
+  useEffect(() => {
+    if (selectedAccountId && activeTab === 'equity-curve') {
       fetchEquityCurve();
     }
-  }, [activeTab]);
+  }, [activeTab, selectedAccountId]);
 
   useEffect(() => {
     if (!chartContainerRef.current || equityCurveData.length === 0) return;
@@ -403,6 +448,25 @@ const SimulationPage: React.FC = () => {
     }
   };
 
+  const handleCreateAccount = async (values: { name: string; initialCapital: number }) => {
+    try {
+      const response = await client.post('/simulation/account', values);
+      message.success('账户创建成功');
+      setIsCreateAccountModalVisible(false);
+      createAccountForm.resetFields();
+      const accountList = await fetchAccounts();
+      const newAccountId = response.data?.id;
+      if (newAccountId) {
+        setSelectedAccountId(newAccountId);
+      } else if (accountList.length > 0) {
+        setSelectedAccountId(accountList[accountList.length - 1].id);
+      }
+    } catch (error) {
+      message.error('账户创建失败');
+      console.error('Create account error:', error);
+    }
+  };
+
   const handleAddPosition = async (values: {
     stockCode: string;
     stockName: string;
@@ -412,7 +476,7 @@ const SimulationPage: React.FC = () => {
     stopLossPrice?: number;
   }) => {
     try {
-      await client.post('/simulation/position', values);
+      await client.post('/simulation/position', { ...values, accountId: selectedAccountId });
       message.success('持仓添加成功');
       setIsPositionModalVisible(false);
       positionForm.resetFields();
@@ -449,6 +513,7 @@ const SimulationPage: React.FC = () => {
         stockName: values.stockName,
         type: values.type,
         quantity: values.quantity,
+        accountId: selectedAccountId,
       };
       if (values.type === 'buy') {
         if (values.takeProfitPrice !== undefined && values.takeProfitPrice !== null) {
@@ -666,6 +731,36 @@ const SimulationPage: React.FC = () => {
   return (
     <div>
       <Title level={2}>账户模拟</Title>
+
+      {accounts.length >= 2 && (
+        <Row style={{ marginBottom: 16 }} align="middle" gutter={16}>
+          <Col>
+            <Select
+              value={selectedAccountId || undefined}
+              onChange={(value: string) => setSelectedAccountId(value)}
+              style={{ minWidth: 240 }}
+              placeholder="选择账户"
+            >
+              {accounts.map((acc) => (
+                <Option key={acc.id} value={acc.id}>
+                  {acc.name || acc.id} — {formatMoney(acc.currentCapital)}
+                </Option>
+              ))}
+            </Select>
+          </Col>
+          <Col>
+            <Button
+              icon={<PlusOutlined />}
+              onClick={() => {
+                createAccountForm.resetFields();
+                setIsCreateAccountModalVisible(true);
+              }}
+            >
+              创建账户
+            </Button>
+          </Col>
+        </Row>
+      )}
 
       <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
         <Col xs={24} sm={12} lg={6}>
@@ -1003,6 +1098,37 @@ const SimulationPage: React.FC = () => {
               </Form.Item>
             </>
           )}
+        </Form>
+      </Modal>
+
+      <Modal
+        title="创建账户"
+        open={isCreateAccountModalVisible}
+        onCancel={() => setIsCreateAccountModalVisible(false)}
+        onOk={() => createAccountForm.submit()}
+        width={400}
+      >
+        <Form form={createAccountForm} onFinish={handleCreateAccount} layout="vertical">
+          <Form.Item
+            name="name"
+            label="账户名称"
+            rules={[{ required: true, message: '请输入账户名称' }]}
+          >
+            <Input placeholder="请输入账户名称" />
+          </Form.Item>
+          <Form.Item
+            name="initialCapital"
+            label="初始资金"
+            initialValue={100000}
+          >
+            <InputNumber
+              style={{ width: '100%' }}
+              min={1}
+              step={10000}
+              precision={2}
+              formatter={(value) => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+            />
+          </Form.Item>
         </Form>
       </Modal>
     </div>

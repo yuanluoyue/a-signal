@@ -26,6 +26,7 @@ export type NewsListResult = z.infer<typeof NewsListSchema>;
 
 export interface StockTrackFetchTask {
   trackingId: string;
+  userId: string;
 }
 
 @Injectable()
@@ -48,7 +49,7 @@ export class StockTrackFetchConsumer extends QueueConsumer {
     this.logger.log(`[StockTrackFetchConsumer] 开始处理股票追踪任务，trackingId: ${task.trackingId}`);
 
     try {
-      const tracking = await this.stockTrackingService.findById(task.trackingId);
+      const tracking = await this.stockTrackingService.findById(task.trackingId, task.userId);
       if (!tracking) {
         this.logger.error(`[StockTrackFetchConsumer] 追踪记录不存在，trackingId: ${task.trackingId}`);
         return;
@@ -75,14 +76,14 @@ export class StockTrackFetchConsumer extends QueueConsumer {
         }
       }
 
-      await this.stockTrackingService.updateStatus(task.trackingId, 'completed', savedCount);
+      await this.stockTrackingService.updateStatus(task.trackingId, task.userId, 'completed', savedCount);
 
       this.logger.log(`[StockTrackFetchConsumer] 成功保存 ${savedCount} 条新闻，股票: ${stockName}`);
     } catch (error) {
       this.logger.error(
         `[StockTrackFetchConsumer] 处理任务失败: ${error instanceof Error ? error.message : String(error)}`,
       );
-      await this.stockTrackingService.updateStatus(task.trackingId, 'failed');
+      await this.stockTrackingService.updateStatus(task.trackingId, task.userId, 'failed');
       throw error;
     }
   }

@@ -238,6 +238,7 @@ export class NotificationsService {
               const takeProfitPct = strategy.takeProfitPct ? parseFloat(strategy.takeProfitPct) : undefined;
               await this.simulationService.executeStrategyTrade({
                 strategyId: strategy.id,
+                accountId: strategy.runtime.accountId || undefined,
                 stockCode: context.stockCode,
                 stockName: context.stockName,
                 quantity: 100,
@@ -278,9 +279,9 @@ export class NotificationsService {
     return diffMs <= this.TWO_DAYS_MS;
   }
 
-  async sendTestNotification(webhookId: string): Promise<boolean> {
+  async sendTestNotification(webhookId: string, userId: string): Promise<boolean> {
     try {
-      const webhook = await this.webhooksService.findById(webhookId);
+      const webhook = await this.webhooksService.findById(webhookId, userId);
       if (!webhook) {
         this.logger.error(`Webhook ${webhookId} not found`);
         return false;

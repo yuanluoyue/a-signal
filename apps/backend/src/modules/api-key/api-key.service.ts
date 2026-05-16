@@ -1,5 +1,5 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { eq, and } from 'drizzle-orm';
 import { randomBytes } from 'crypto';
 import { DbService } from '../../core/db/db.service.js';
 import { apiKeys, mcpLogs, type NewApiKey, type ApiKey } from '../../core/db/schema.js';
@@ -15,10 +15,11 @@ export class ApiKeyService {
     return `ak_${randomBytes(32).toString('hex')}`;
   }
 
-  async create(dto: CreateApiKeyDto): Promise<ApiKeyWithKeyResponseDto> {
+  async create(dto: CreateApiKeyDto, userId: string): Promise<ApiKeyWithKeyResponseDto> {
     const key = this.generateApiKey();
 
     const newApiKey: NewApiKey = {
+      userId,
       key,
       name: dto.name,
       status: 'active',
@@ -42,7 +43,7 @@ export class ApiKeyService {
     };
   }
 
-  async findAll(): Promise<ApiKeyResponseDto[]> {
+  async findAll(userId: string): Promise<ApiKeyResponseDto[]> {
     const results = await this.dbService.db
       .select({
         id: apiKeys.id,
@@ -52,16 +53,17 @@ export class ApiKeyService {
         createdAt: apiKeys.createdAt,
       })
       .from(apiKeys)
+      .where(eq(apiKeys.userId, userId))
       .orderBy(apiKeys.createdAt);
 
     return results;
   }
 
-  async findById(id: string): Promise<ApiKey | null> {
+  async findById(id: string, userId: string): Promise<ApiKey | null> {
     const [result] = await this.dbService.db
       .select()
       .from(apiKeys)
-      .where(eq(apiKeys.id, id))
+      .where(and(eq(apiKeys.id, id), eq(apiKeys.userId, userId)))
       .limit(1);
 
     return result || null;
@@ -77,7 +79,12 @@ export class ApiKeyService {
     return result || null;
   }
 
-  async delete(id: string): Promise<void> {
+  async delete(id: string, userId: string): Promise<void> {
+    const apiKey = await this.findById(id, userId);
+    if (!apiKey) {
+      throw new NotFoundException(`API Key with id ${id} not found`);
+    }
+
     await this.dbService.db
       .delete(mcpLogs)
       .where(eq(mcpLogs.apiKeyId, id));

@@ -26,7 +26,7 @@ export class BacktestService {
     private readonly strategyService: StrategyService,
   ) {}
 
-  async createBacktest(dto: StrategyBacktestRequestDto): Promise<BacktestRecord> {
+  async createBacktest(dto: StrategyBacktestRequestDto, userId: string): Promise<BacktestRecord> {
     const strategy = await this.strategyService.findById(dto.strategyId);
     if (!strategy) {
       throw new NotFoundException(`Strategy ${dto.strategyId} not found`);
@@ -55,6 +55,7 @@ export class BacktestService {
     const [record] = await this.dbService.db
       .insert(backtestRecords)
       .values({
+        userId,
         name: dto.name || `${strategy.name} 回测`,
         description: null,
         strategyId: strategy.id,
@@ -80,7 +81,7 @@ export class BacktestService {
 
     this.logger.log(`[BacktestService] Created backtest record: ${record.id}, status=running`);
 
-    this.executeBacktest(record.id, dto, strategy, klinePeriod).catch((err) => {
+    this.executeBacktest(record.id, dto, strategy, klinePeriod, userId).catch((err) => {
       this.logger.error(`[BacktestService] Unhandled error in executeBacktest for ${record.id}: ${err instanceof Error ? err.message : String(err)}`);
     });
 
@@ -92,6 +93,7 @@ export class BacktestService {
     dto: StrategyBacktestRequestDto,
     strategy: Awaited<ReturnType<StrategyService['findById']>>,
     klinePeriod: KlinePeriod,
+    userId: string,
   ): Promise<void> {
     this.logger.log(`[BacktestService] Starting backtest execution: ${recordId}`);
 
@@ -149,6 +151,7 @@ export class BacktestService {
 
       if (trades.length > 0) {
         const tradeValues: NewBacktestTrade[] = trades.map((t) => ({
+          userId,
           backtestId: recordId,
           strategyId: strategy!.id,
           signalId: t.signalId || null,
@@ -442,8 +445,10 @@ export class BacktestService {
     };
   }
 
-  async findAllRecords(stockCode?: string, strategyId?: string, limit: number = 50): Promise<BacktestRecord[]> {
+  async findAllRecords(userId: string, stockCode?: string, strategyId?: string, limit: number = 50): Promise<BacktestRecord[]> {
     const conditions: ReturnType<typeof eq>[] = [];
+
+    conditions.push(eq(backtestRecords.userId, userId));
 
     if (stockCode) {
       conditions.push(eq(backtestRecords.stockCode, stockCode));
@@ -462,24 +467,29 @@ export class BacktestService {
       .limit(limit);
   }
 
-  async findRecordById(id: string): Promise<BacktestRecord | null> {
+  async findRecordById(id: string, userId: string): Promise<BacktestRecord | null> {
     const [record] = await this.dbService.db
       .select()
       .from(backtestRecords)
-      .where(eq(backtestRecords.id, id))
+      .where(and(eq(backtestRecords.id, id), eq(backtestRecords.userId, userId)))
       .limit(1);
     return record || null;
   }
 
-  async findTradesByBacktestId(backtestId: string): Promise<BacktestTrade[]> {
+  async findTradesByBacktestId(backtestId: string, userId: string): Promise<BacktestTrade[]> {
     return this.dbService.db
       .select()
       .from(backtestTrades)
-      .where(eq(backtestTrades.backtestId, backtestId))
+      .where(and(eq(backtestTrades.backtestId, backtestId), eq(backtestTrades.userId, userId)))
       .orderBy(backtestTrades.entryTime);
   }
 
-  async deleteRecord(id: string): Promise<void> {
+  async deleteRecord(id: string, userId: string): Promise<void> {
+    const record = await this.findRecordById(id, userId);
+    if (!record) {
+      throw new NotFoundException(`Backtest record with id ${id} not found`);
+    }
+
     await this.dbService.db
       .delete(backtestTrades)
       .where(eq(backtestTrades.backtestId, id));

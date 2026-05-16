@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { eq, desc, and, gte, lte, inArray, sql } from 'drizzle-orm';
 import { ConfigService } from '@nestjs/config';
 import { DbService } from '../../core/db/db.service.js';
@@ -41,10 +41,11 @@ export class StockTrackingService {
     private readonly stockService: StockService,
   ) {}
 
-  async findAll(): Promise<StockTracking[]> {
+  async findAll(userId: string): Promise<StockTracking[]> {
     const trackings = await this.dbService.db
       .select()
       .from(stockTrackings)
+      .where(eq(stockTrackings.userId, userId))
       .orderBy(desc(stockTrackings.createdAt));
 
     if (trackings.length === 0) {
@@ -60,31 +61,32 @@ export class StockTrackingService {
     }));
   }
 
-  async findById(id: string): Promise<StockTracking | null> {
+  async findById(id: string, userId: string): Promise<StockTracking | null> {
     const [tracking] = await this.dbService.db
       .select()
       .from(stockTrackings)
-      .where(eq(stockTrackings.id, id))
+      .where(and(eq(stockTrackings.id, id), eq(stockTrackings.userId, userId)))
       .limit(1);
     return tracking || null;
   }
 
-  async findByStockCode(stockCode: string): Promise<StockTracking | null> {
+  async findByStockCode(stockCode: string, userId: string): Promise<StockTracking | null> {
     const [tracking] = await this.dbService.db
       .select()
       .from(stockTrackings)
-      .where(eq(stockTrackings.stockCode, stockCode))
+      .where(and(eq(stockTrackings.stockCode, stockCode), eq(stockTrackings.userId, userId)))
       .limit(1);
     return tracking || null;
   }
 
-  async create(dto: CreateTrackingDto): Promise<StockTracking> {
-    const existing = await this.findByStockCode(dto.stockCode);
+  async create(dto: CreateTrackingDto, userId: string): Promise<StockTracking> {
+    const existing = await this.findByStockCode(dto.stockCode, userId);
     if (existing) {
       throw new Error(`Stock ${dto.stockCode} is already being tracked`);
     }
 
     const newTracking: NewStockTracking = {
+      userId,
       stockCode: dto.stockCode,
       stockName: dto.stockName,
       status: 'pending',
@@ -100,10 +102,10 @@ export class StockTrackingService {
     return tracking;
   }
 
-  async delete(id: string): Promise<void> {
-    const tracking = await this.findById(id);
+  async delete(id: string, userId: string): Promise<void> {
+    const tracking = await this.findById(id, userId);
     if (!tracking) {
-      throw new Error('Tracking not found');
+      throw new NotFoundException('Tracking not found');
     }
 
     const { stockCode } = tracking;
@@ -131,9 +133,15 @@ export class StockTrackingService {
 
   async updateStatus(
     id: string,
+    userId: string,
     status: 'pending' | 'processing' | 'completed' | 'failed',
     totalNews?: number,
   ): Promise<void> {
+    const tracking = await this.findById(id, userId);
+    if (!tracking) {
+      throw new NotFoundException('Tracking not found');
+    }
+
     const updateData: Partial<StockTracking> = { status };
     if (totalNews !== undefined) {
       updateData.totalNews = totalNews;
@@ -151,6 +159,7 @@ export class StockTrackingService {
     trackingId: string,
     stockCode: string,
     newsItems: FetchNewsResult['news'],
+    userId: string,
   ): Promise<number> {
     let savedCount = 0;
 
@@ -185,7 +194,7 @@ export class StockTrackingService {
       }
     }
 
-    await this.updateStatus(trackingId, 'completed', savedCount);
+    await this.updateStatus(trackingId, userId, 'completed', savedCount);
 
     this.logger.log(`Saved ${savedCount} news items for tracking ${trackingId}`);
     return savedCount;
@@ -246,6 +255,7 @@ export class StockTrackingService {
     trackingId: string,
     stockCode: string,
     stockName: string,
+    userId: string,
   ): Promise<string> {
     this.logger.log(`[StockTrackingService] 开始生成研投报告，股票: ${stockName} (${stockCode})`);
 
@@ -275,11 +285,11 @@ export class StockTrackingService {
     return report;
   }
 
-  async getResearchReport(trackingId: string): Promise<string | null> {
+  async getResearchReport(trackingId: string, userId: string): Promise<string | null> {
     const [tracking] = await this.dbService.db
       .select({ report: stockTrackings.report })
       .from(stockTrackings)
-      .where(eq(stockTrackings.id, trackingId))
+      .where(and(eq(stockTrackings.id, trackingId), eq(stockTrackings.userId, userId)))
       .limit(1);
 
     return tracking?.report || null;

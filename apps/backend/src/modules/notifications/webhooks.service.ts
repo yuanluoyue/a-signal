@@ -46,15 +46,15 @@ export class WebhooksService {
     private readonly stockService: StockService,
   ) {}
 
-  async findAll(): Promise<Webhook[]> {
-    return this.dbService.db.select().from(schema.webhooks);
+  async findAll(userId: string): Promise<Webhook[]> {
+    return this.dbService.db.select().from(schema.webhooks).where(eq(schema.webhooks.userId, userId));
   }
 
-  async findById(id: string): Promise<Webhook | null> {
+  async findById(id: string, userId: string): Promise<Webhook | null> {
     const result = await this.dbService.db
       .select()
       .from(schema.webhooks)
-      .where(eq(schema.webhooks.id, id))
+      .where(and(eq(schema.webhooks.id, id), eq(schema.webhooks.userId, userId)))
       .limit(1);
     return result[0] || null;
   }
@@ -78,10 +78,11 @@ export class WebhooksService {
       .where(eq(schema.webhooks.enabled, true));
   }
 
-  async create(input: CreateWebhookInput): Promise<Webhook> {
+  async create(input: CreateWebhookInput, userId: string): Promise<Webhook> {
     const result = await this.dbService.db
       .insert(schema.webhooks)
       .values({
+        userId,
         name: input.name,
         url: input.url,
         type: input.type,
@@ -93,8 +94,8 @@ export class WebhooksService {
     return result[0];
   }
 
-  async update(id: string, input: UpdateWebhookInput): Promise<Webhook> {
-    const existing = await this.findById(id);
+  async update(id: string, input: UpdateWebhookInput, userId: string): Promise<Webhook> {
+    const existing = await this.findById(id, userId);
     if (!existing) {
       throw new NotFoundException(`Webhook with id ${id} not found`);
     }
@@ -116,8 +117,8 @@ export class WebhooksService {
     return result[0];
   }
 
-  async delete(id: string): Promise<void> {
-    const existing = await this.findById(id);
+  async delete(id: string, userId: string): Promise<void> {
+    const existing = await this.findById(id, userId);
     if (!existing) {
       throw new NotFoundException(`Webhook with id ${id} not found`);
     }
@@ -126,8 +127,8 @@ export class WebhooksService {
     this.logger.log(`Deleted webhook: ${existing.name} (${id})`);
   }
 
-  async toggleEnabled(id: string): Promise<Webhook> {
-    const existing = await this.findById(id);
+  async toggleEnabled(id: string, userId: string): Promise<Webhook> {
+    const existing = await this.findById(id, userId);
     if (!existing) {
       throw new NotFoundException(`Webhook with id ${id} not found`);
     }
@@ -146,11 +147,11 @@ export class WebhooksService {
     return result[0];
   }
 
-  async findStrategiesByWebhookId(webhookId: string): Promise<Strategy[]> {
+  async findStrategiesByWebhookId(webhookId: string, userId: string): Promise<Strategy[]> {
     return this.dbService.db
       .select()
       .from(schema.strategies)
-      .where(eq(schema.strategies.webhookId, webhookId));
+      .where(and(eq(schema.strategies.webhookId, webhookId), eq(schema.strategies.userId, userId)));
   }
 
   private buildWechatMessage(signal: SignalNotification, strategyName?: string): object {
@@ -181,7 +182,7 @@ export class WebhooksService {
     };
   }
 
-  async getRecentSignals(limit: number = 20): Promise<schema.Signal[]> {
+  async getRecentSignals(userId: string, limit: number = 20): Promise<schema.Signal[]> {
     const signals = await this.dbService.db
       .select()
       .from(schema.signals)
@@ -203,8 +204,8 @@ export class WebhooksService {
     return signals;
   }
 
-  async sendSignalTestNotification(webhookId: string, signalId: string): Promise<void> {
-    const webhook = await this.findById(webhookId);
+  async sendSignalTestNotification(webhookId: string, signalId: string, userId: string): Promise<void> {
+    const webhook = await this.findById(webhookId, userId);
     if (!webhook) {
       throw new NotFoundException(`Webhook with id ${webhookId} not found`);
     }

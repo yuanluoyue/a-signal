@@ -7,6 +7,12 @@ export enum TradeType {
 }
 
 export class CreateAccountDto {
+  @ApiPropertyOptional({ description: '账户名称', example: '保守账户' })
+  @IsString()
+  @IsOptional()
+  @MaxLength(100)
+  name?: string;
+
   @ApiPropertyOptional({ description: '初始资金', example: 100000, default: 100000 })
   @IsNumber()
   @IsOptional()
@@ -59,6 +65,11 @@ export class ExecuteTradeDto {
   @IsString()
   @IsOptional()
   strategyId?: string;
+
+  @ApiPropertyOptional({ description: '账户ID' })
+  @IsString()
+  @IsOptional()
+  accountId?: string;
 }
 
 export class AddPositionDto {
@@ -96,4 +107,9 @@ export class AddPositionDto {
   @IsString()
   @IsOptional()
   strategyId?: string;
+
+  @ApiPropertyOptional({ description: '账户ID' })
+  @IsString()
+  @IsOptional()
+  accountId?: string;
 }

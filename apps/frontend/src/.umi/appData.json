@@ -46,7 +46,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 17
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -59,7 +59,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 97
+        "register": 30
       },
       "enableBy": "register"
     },
@@ -76,7 +76,7 @@
             0
           ]
         },
-        "register": 75
+        "register": 7
       },
       "enableBy": "register"
     },
@@ -90,10 +90,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            3
+            4
           ]
         },
-        "register": 104
+        "register": 4
       },
       "enableBy": "register"
     },
@@ -113,7 +113,7 @@
             0,
             0,
             0,
-            1,
+            0,
             0,
             0,
             0,
@@ -123,7 +123,7 @@
             0
           ]
         },
-        "register": 21
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -137,26 +137,26 @@
       "time": {
         "hooks": {
           "onDevCompileDone": [
-            45,
-            5,
-            4,
-            7,
-            5,
-            3,
-            4,
-            6,
+            56,
             4,
             2,
-            5,
             4,
             3,
-            6,
+            3,
+            3,
+            3,
             2,
+            3,
             2,
+            3,
+            3,
+            2,
+            5,
+            4,
             3
           ]
         },
-        "register": 32
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -170,26 +170,26 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            68
+            56
           ],
           "onGenerateFiles": [
-            5,
-            20,
-            15,
-            16,
-            17,
-            16,
-            18,
-            14,
-            17,
+            4,
+            32,
             13,
             14,
-            13,
             14,
-            16
+            17,
+            12,
+            16,
+            13,
+            13,
+            13,
+            17,
+            16,
+            12
           ]
         },
-        "register": 264
+        "register": 32
       },
       "enableBy": "register"
     },
@@ -219,7 +219,7 @@
             0
           ]
         },
-        "register": 18
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -241,7 +241,7 @@
           "onPrepareBuildSuccess": [
             0,
             0,
-            0,
+            1,
             0,
             0,
             0,
@@ -260,41 +260,7 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             1,
             0,
             0,
@@ -325,20 +291,11 @@
             0,
             0,
             0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
             0,
             0
           ]
         },
-        "register": 25
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -355,7 +312,7 @@
             0
           ]
         },
-        "register": 21
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -368,7 +325,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 21
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -385,7 +342,7 @@
             0
           ]
         },
-        "register": 140
+        "register": 20
       },
       "enableBy": "register"
     },
@@ -1237,7 +1194,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 18
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -1251,10 +1208,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            1
+            0
           ]
         },
-        "register": 22
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -1268,10 +1225,10 @@
       "time": {
         "hooks": {
           "addBeforeMiddlewares": [
-            75
+            12
           ]
         },
-        "register": 25
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -1284,7 +1241,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 451
+        "register": 97
       },
       "enableBy": "register"
     },
@@ -1297,7 +1254,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1190
+        "register": 81
       },
       "enableBy": "config"
     },
@@ -1310,7 +1267,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 275
+        "register": 32
       },
       "enableBy": "config"
     },
@@ -1335,36 +1292,10 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 17
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1378,7 +1309,8 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            4,
+            32,
+            3,
             2,
             1,
             1,
@@ -1386,10 +1318,9 @@
             1,
             1,
             1,
+            0,
+            1,
             2,
-            1,
-            1,
-            1,
             1,
             1
           ],
@@ -1410,7 +1341,7 @@
             0
           ]
         },
-        "register": 17
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -1423,7 +1354,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 25
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -1437,13 +1368,13 @@
       "time": {
         "hooks": {
           "onStart": [
-            1
+            2
           ],
           "addBeforeMiddlewares": [
-            1
+            0
           ]
         },
-        "register": 312
+        "register": 40
       }
     },
     "@umijs/preset-umi/dist/features/mpa/mpa": {
@@ -1455,7 +1386,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 25
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -1468,7 +1399,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 20
+        "register": 2
       }
     },
     "@umijs/preset-umi/dist/features/overrides/overrides": {
@@ -1481,7 +1412,7 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            0,
+            1,
             0,
             0,
             0,
@@ -1540,7 +1471,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 23
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -1554,32 +1485,32 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            9
+            2
           ],
           "onGenerateFiles": [
-            217,
-            65,
-            30,
-            38,
-            48,
-            43,
-            28,
-            25,
-            43,
-            33,
-            27,
-            33,
+            113,
+            46,
             32,
-            54
+            30,
+            31,
+            29,
+            25,
+            26,
+            27,
+            34,
+            37,
+            57,
+            38,
+            32
           ],
           "addPolyfillImports": [
             0,
             0,
-            1,
             0,
             0,
             0,
-            1,
+            0,
+            0,
             0,
             0,
             0,
@@ -1603,7 +1534,7 @@
             0
           ]
         },
-        "register": 38
+        "register": 4
       }
     },
     "@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill": {
@@ -1646,7 +1577,7 @@
             0
           ]
         },
-        "register": 15
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1660,13 +1591,13 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            619,
+            130,
             0,
             0,
             0,
             0,
             0,
-            0,
+            1,
             0,
             0,
             0,
@@ -1676,7 +1607,7 @@
             0
           ]
         },
-        "register": 24
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -1689,7 +1620,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 14
+        "register": 0
       },
       "enableBy": "config"
     },
@@ -1702,7 +1633,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 17
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -1719,23 +1650,23 @@
             1,
             1,
             0,
-            1,
-            1,
-            0,
-            1,
-            0,
-            0,
-            1,
             0,
             0,
             0,
-            0
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1
           ],
           "addBeforeMiddlewares": [
             0
           ]
         },
-        "register": 18
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -1749,37 +1680,37 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            28,
-            23,
-            57,
-            9,
             30,
+            11,
+            96,
+            53,
+            32,
+            6,
+            26,
             5,
-            34,
-            7,
-            36,
-            6,
-            32,
-            4,
-            30,
-            6,
-            31,
-            4,
-            38,
-            6,
-            32,
-            4,
-            33,
+            29,
             5,
             29,
             4,
             28,
             5,
-            41,
-            6
+            27,
+            4,
+            26,
+            5,
+            26,
+            5,
+            27,
+            4,
+            44,
+            7,
+            39,
+            4,
+            29,
+            4
           ]
         },
-        "register": 89
+        "register": 9
       },
       "enableBy": "register"
     },
@@ -1792,7 +1723,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 36
+        "register": 2
       },
       "enableBy": "config"
     },
@@ -1805,7 +1736,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 17
+        "register": 1
       }
     },
     "@umijs/preset-umi/dist/features/ssr/ssr": {
@@ -1817,7 +1748,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 42
+        "register": 6
       },
       "enableBy": "config"
     },
@@ -1831,23 +1762,23 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            1213,
-            27,
+            532,
+            22,
             10,
+            7,
+            8,
+            8,
+            7,
+            9,
+            8,
+            8,
             9,
             13,
             10,
-            12,
-            7,
-            15,
-            7,
-            11,
-            11,
-            8,
-            12
+            9
           ]
         },
-        "register": 70
+        "register": 6
       },
       "enableBy": "register"
     },
@@ -1864,7 +1795,7 @@
             0
           ]
         },
-        "register": 55
+        "register": 5
       },
       "enableBy": "register"
     },
@@ -1877,7 +1808,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 53
+        "register": 5
       },
       "enableBy": "config"
     },
@@ -1890,7 +1821,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 16
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -1903,7 +1834,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 121
+        "register": 11
       }
     },
     "@umijs/preset-umi/dist/features/monorepo/redirect": {
@@ -1915,7 +1846,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 636
+        "register": 27
       },
       "enableBy": "config"
     },
@@ -1929,23 +1860,23 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            14,
-            3,
-            1,
-            2,
-            2,
-            1,
+            8,
+            17,
             1,
             1,
             2,
             1,
-            1,
             2,
             1,
+            1,
+            1,
+            1,
+            2,
+            2,
             1
           ]
         },
-        "register": 20
+        "register": 3
       }
     },
     "@umijs/preset-umi/dist/features/clickToComponent/clickToComponent": {
@@ -1957,7 +1888,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 18
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -1970,7 +1901,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 21
+        "register": 3
       },
       "enableBy": "config"
     },
@@ -1983,7 +1914,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 15
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -1996,7 +1927,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 34
+        "register": 1
       }
     },
     "@umijs/preset-umi/dist/features/swc/swc": {
@@ -2012,7 +1943,7 @@
             0
           ]
         },
-        "register": 15
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2025,7 +1956,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 67
+        "register": 6
       }
     },
     "@umijs/preset-umi/dist/features/mako/mako": {
@@ -2037,7 +1968,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 21
+        "register": 1
       },
       "enableBy": "config"
     },
@@ -2050,7 +1981,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 22
+        "register": 2
       }
     },
     "@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
@@ -2062,7 +1993,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 39
+        "register": 4
       }
     },
     "@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
@@ -2075,32 +2006,6 @@
       "time": {
         "hooks": {
           "addHTMLHeadScripts": [
-            41,
-            41,
-            3,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -2109,7 +2014,7 @@
             0
           ]
         },
-        "register": 193
+        "register": 34
       }
     },
     "@umijs/preset-umi/dist/features/forget/forget": {
@@ -2121,7 +2026,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 27
+        "register": 4
       },
       "enableBy": "config"
     },
@@ -2135,10 +2040,10 @@
       "time": {
         "hooks": {
           "modifyUniBundler": [
-            9079
+            970
           ]
         },
-        "register": 32
+        "register": 3
       },
       "enableBy": "register"
     },
@@ -2151,7 +2056,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 95
+        "register": 7
       },
       "enableBy": "register"
     },
@@ -2164,7 +2069,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 297
+        "register": 63
       },
       "enableBy": "register"
     },
@@ -2178,10 +2083,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            19
+            99
           ]
         },
-        "register": 1103
+        "register": 82
       }
     },
     "@umijs/preset-umi/dist/commands/help": {
@@ -2193,7 +2098,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 18
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2206,7 +2111,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 17
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2219,7 +2124,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 15
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2232,7 +2137,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 21
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2245,7 +2150,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 15
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2258,7 +2163,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 51
+        "register": 10
       },
       "enableBy": "register"
     },
@@ -2271,7 +2176,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 16
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2284,7 +2189,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 18
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2297,7 +2202,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 21
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2310,7 +2215,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 18
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2323,7 +2228,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 17
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2336,7 +2241,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 20
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2349,7 +2254,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 17
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2362,7 +2267,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2375,7 +2280,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 21
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2388,7 +2293,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2401,7 +2306,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 16
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -2414,7 +2319,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 35
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2427,7 +2332,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 142
+        "register": 25
       },
       "enableBy": "register"
     },
@@ -2440,7 +2345,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 21
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2453,7 +2358,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 55
+        "register": 10
       },
       "enableBy": "register"
     },
@@ -2466,7 +2371,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 2
       },
       "enableBy": "register"
     },
@@ -2480,7 +2385,7 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            20
+            3
           ],
           "modifyAppData": [
             0
@@ -2489,7 +2394,7 @@
             0
           ],
           "addEntryImportsAhead": [
-            0,
+            1,
             0,
             0,
             0,
@@ -2543,7 +2448,7 @@
             0,
             0,
             0,
-            1,
+            0,
             0,
             0,
             0,
@@ -2551,19 +2456,19 @@
             0
           ],
           "onGenerateFiles": [
-            14,
+            6,
+            24,
+            2,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            2,
             3,
             2,
-            2,
-            2,
-            2,
-            2,
-            1,
-            5,
-            1,
-            2,
-            1,
-            1,
             2
           ],
           "addExtraBabelPlugins": [
@@ -2573,7 +2478,7 @@
             0
           ]
         },
-        "register": 115
+        "register": 17
       }
     },
     "./node_modules/@umijs/plugins/dist/model": {
@@ -2602,26 +2507,26 @@
             0
           ],
           "onGenerateFiles": [
-            74,
-            56,
-            38,
-            49,
             45,
-            37,
-            38,
-            41,
+            65,
+            40,
+            32,
+            46,
+            30,
+            40,
+            30,
             36,
-            35,
-            37,
-            33,
-            41,
-            37
+            31,
+            36,
+            52,
+            38,
+            30
           ],
           "addTmpGenerateWatcherPaths": [
-            1
+            0
           ]
         },
-        "register": 72
+        "register": 12
       },
       "enableBy": "config"
     },
@@ -2669,7 +2574,7 @@
             0,
             0,
             0,
-            1,
+            0,
             0,
             0,
             0,
@@ -2697,26 +2602,26 @@
             0
           ],
           "onGenerateFiles": [
-            36,
-            30,
-            18,
-            21,
-            21,
+            31,
+            81,
             17,
-            18,
+            15,
             16,
-            19,
-            18,
+            14,
+            29,
+            15,
+            16,
             17,
-            17,
-            17,
-            18
+            16,
+            28,
+            20,
+            16
           ],
           "addTmpGenerateWatcherPaths": [
-            20
+            12
           ]
         },
-        "register": 46
+        "register": 5
       },
       "enableBy": "config"
     }
@@ -4136,7 +4041,7 @@
       "parentId": "3",
       "id": "13",
       "absPath": "/runtime",
-      "__content": "import { useEffect, useState, useCallback } from 'react';\nimport { Card, Table, Switch, Select, Typography, message, Tooltip, Tag } from 'antd';\nimport { ThunderboltOutlined } from '@ant-design/icons';\nimport client from '@/services/client';\n\nconst { Title } = Typography;\n\ninterface StrategyRuntime {\n  id: string;\n  strategyId: string;\n  webhookId: string | null;\n  enableWebhook: boolean;\n  enableSimulation: boolean;\n  enableLiveTrading: boolean;\n}\n\ninterface Strategy {\n  id: string;\n  name: string;\n  description: string | null;\n  enabled: boolean;\n  directionMode: string;\n  minScore: string;\n  maxScore: string | null;\n  holdPeriod: number;\n  stopLossPct: string | null;\n  takeProfitPct: string | null;\n  runtime: StrategyRuntime | null;\n}\n\ninterface Webhook {\n  id: string;\n  name: string;\n  enabled: boolean;\n}\n\nconst directionModeMap: Record<string, string> = {\n  long_only: '仅做多',\n  short_only: '仅做空',\n  both: '双向',\n};\n\nconst RuntimePage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [strategies, setStrategies] = useState<Strategy[]>([]);\n  const [webhooks, setWebhooks] = useState<Webhook[]>([]);\n\n  const fetchData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const response = await client.get('/strategies', { params: { enabled: true, pageSize: 100 } });\n      const data = response.data || [];\n      setStrategies(Array.isArray(data) ? data : []);\n    } catch (error) {\n      console.error('获取策略列表失败:', error);\n      message.error('获取策略列表失败');\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  const fetchWebhooks = useCallback(async () => {\n    try {\n      const response = await client.get('/webhooks');\n      const data = response.data || response;\n      setWebhooks((Array.isArray(data) ? data : []).filter((w: Webhook) => w.enabled));\n    } catch (error) {\n      console.error('获取 Webhook 列表失败:', error);\n    }\n  }, []);\n\n  useEffect(() => {\n    fetchData();\n    fetchWebhooks();\n  }, [fetchData, fetchWebhooks]);\n\n  const handleRuntimeUpdate = async (strategyId: string, field: string, value: boolean | string | null) => {\n    try {\n      await client.put(`/strategies/${strategyId}/runtime`, { [field]: value });\n      message.success('更新成功');\n      fetchData();\n    } catch (error) {\n      console.error('更新运行时配置失败:', error);\n      message.error('更新失败');\n    }\n  };\n\n  const columns = [\n    {\n      title: '策略名称',\n      dataIndex: 'name',\n      key: 'name',\n      width: 120,\n    },\n    {\n      title: '方向模式',\n      dataIndex: 'directionMode',\n      key: 'directionMode',\n      width: 100,\n      render: (mode: string) => <Tag color=\"blue\">{directionModeMap[mode] || mode}</Tag>,\n    },\n    {\n      title: 'Webhook 通知',\n      key: 'enableWebhook',\n      width: 120,\n      align: 'center' as const,\n      render: (_: unknown, record: Strategy) => (\n        <Switch\n          checked={record.runtime?.enableWebhook ?? true}\n          onChange={(checked) => handleRuntimeUpdate(record.id, 'enableWebhook', checked)}\n        />\n      ),\n    },\n    {\n      title: '模拟交易',\n      key: 'enableSimulation',\n      width: 120,\n      align: 'center' as const,\n      render: (_: unknown, record: Strategy) => (\n        <Switch\n          checked={record.runtime?.enableSimulation ?? false}\n          onChange={(checked) => handleRuntimeUpdate(record.id, 'enableSimulation', checked)}\n        />\n      ),\n    },\n    {\n      title: '实盘交易',\n      key: 'enableLiveTrading',\n      width: 120,\n      align: 'center' as const,\n      render: (_: unknown, record: Strategy) => (\n        <Tooltip title=\"暂未开放\">\n          <Switch\n            checked={record.runtime?.enableLiveTrading ?? false}\n            disabled\n          />\n        </Tooltip>\n      ),\n    },\n    {\n      title: '绑定 Webhook',\n      key: 'webhookId',\n      width: 180,\n      render: (_: unknown, record: Strategy) => (\n        <Select\n          value={record.runtime?.webhookId || undefined}\n          placeholder=\"选择 Webhook\"\n          allowClear\n          style={{ width: '100%' }}\n          options={webhooks.map((w) => ({ label: w.name, value: w.id }))}\n          onChange={(value) => handleRuntimeUpdate(record.id, 'webhookId', value || null)}\n        />\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}><ThunderboltOutlined /> 运行管理</Title>\n      <Card>\n        <Table\n          columns={columns}\n          dataSource={strategies}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={false}\n          locale={{ emptyText: '暂无已启用的策略' }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default RuntimePage;\n",
+      "__content": "import { useEffect, useState, useCallback } from 'react';\nimport { Card, Table, Switch, Select, Typography, message, Tooltip, Tag, Space } from 'antd';\nimport { ThunderboltOutlined, WarningOutlined } from '@ant-design/icons';\nimport client from '@/services/client';\n\nconst { Title } = Typography;\n\ninterface StrategyRuntime {\n  id: string;\n  strategyId: string;\n  webhookId: string | null;\n  accountId: string | null;\n  enableWebhook: boolean;\n  enableSimulation: boolean;\n  enableLiveTrading: boolean;\n}\n\ninterface Strategy {\n  id: string;\n  name: string;\n  description: string | null;\n  enabled: boolean;\n  directionMode: string;\n  minScore: string;\n  maxScore: string | null;\n  holdPeriod: number;\n  stopLossPct: string | null;\n  takeProfitPct: string | null;\n  runtime: StrategyRuntime | null;\n}\n\ninterface Webhook {\n  id: string;\n  name: string;\n  enabled: boolean;\n}\n\ninterface SimulationAccount {\n  id: string;\n  name: string | null;\n  initialCapital: string;\n  currentCapital: string;\n  availableCash: string;\n  totalProfit: string;\n  totalReturn: string;\n}\n\nconst directionModeMap: Record<string, string> = {\n  long_only: '仅做多',\n  short_only: '仅做空',\n  both: '双向',\n};\n\nconst RuntimePage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [strategies, setStrategies] = useState<Strategy[]>([]);\n  const [webhooks, setWebhooks] = useState<Webhook[]>([]);\n  const [simulationAccounts, setSimulationAccounts] = useState<SimulationAccount[]>([]);\n\n  const fetchData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const response = await client.get('/strategies', { params: { enabled: true, pageSize: 100 } });\n      const data = response.data || [];\n      setStrategies(Array.isArray(data) ? data : []);\n    } catch (error) {\n      console.error('获取策略列表失败:', error);\n      message.error('获取策略列表失败');\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  const fetchWebhooks = useCallback(async () => {\n    try {\n      const response = await client.get('/webhooks');\n      const data = response.data || response;\n      setWebhooks((Array.isArray(data) ? data : []).filter((w: Webhook) => w.enabled));\n    } catch (error) {\n      console.error('获取 Webhook 列表失败:', error);\n    }\n  }, []);\n\n  const fetchSimulationAccounts = useCallback(async () => {\n    try {\n      const response = await client.get('/simulation/accounts');\n      const data = response.data || [];\n      setSimulationAccounts(Array.isArray(data) ? data : []);\n    } catch (error) {\n      console.error('获取模拟账户列表失败:', error);\n    }\n  }, []);\n\n  useEffect(() => {\n    fetchData();\n    fetchWebhooks();\n    fetchSimulationAccounts();\n  }, [fetchData, fetchWebhooks, fetchSimulationAccounts]);\n\n  const handleRuntimeUpdate = async (strategyId: string, field: string, value: boolean | string | null) => {\n    try {\n      await client.put(`/strategies/${strategyId}/runtime`, { [field]: value });\n      message.success('更新成功');\n      fetchData();\n    } catch (error) {\n      console.error('更新运行时配置失败:', error);\n      message.error('更新失败');\n    }\n  };\n\n  const columns = [\n    {\n      title: '策略名称',\n      dataIndex: 'name',\n      key: 'name',\n      width: 120,\n    },\n    {\n      title: '方向模式',\n      dataIndex: 'directionMode',\n      key: 'directionMode',\n      width: 100,\n      render: (mode: string) => <Tag color=\"blue\">{directionModeMap[mode] || mode}</Tag>,\n    },\n    {\n      title: 'Webhook 通知',\n      key: 'enableWebhook',\n      width: 120,\n      align: 'center' as const,\n      render: (_: unknown, record: Strategy) => (\n        <Switch\n          checked={record.runtime?.enableWebhook ?? true}\n          onChange={(checked) => handleRuntimeUpdate(record.id, 'enableWebhook', checked)}\n        />\n      ),\n    },\n    {\n      title: '模拟交易',\n      key: 'enableSimulation',\n      width: 120,\n      align: 'center' as const,\n      render: (_: unknown, record: Strategy) => (\n        <Switch\n          checked={record.runtime?.enableSimulation ?? false}\n          onChange={(checked) => handleRuntimeUpdate(record.id, 'enableSimulation', checked)}\n        />\n      ),\n    },\n    {\n      title: '实盘交易',\n      key: 'enableLiveTrading',\n      width: 120,\n      align: 'center' as const,\n      render: (_: unknown, record: Strategy) => (\n        <Tooltip title=\"暂未开放\">\n          <Switch\n            checked={record.runtime?.enableLiveTrading ?? false}\n            disabled\n          />\n        </Tooltip>\n      ),\n    },\n    {\n      title: '绑定 Webhook',\n      key: 'webhookId',\n      width: 180,\n      render: (_: unknown, record: Strategy) => (\n        <Select\n          value={record.runtime?.webhookId || undefined}\n          placeholder=\"选择 Webhook\"\n          allowClear\n          style={{ width: '100%' }}\n          options={webhooks.map((w) => ({ label: w.name, value: w.id }))}\n          onChange={(value) => handleRuntimeUpdate(record.id, 'webhookId', value || null)}\n        />\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}><ThunderboltOutlined /> 运行管理</Title>\n      <Card>\n        <Table\n          columns={columns}\n          dataSource={strategies}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={false}\n          locale={{ emptyText: '暂无已启用的策略' }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default RuntimePage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/runtime/index.tsx"
     },
@@ -4191,7 +4096,7 @@
       "parentId": "3",
       "id": "18",
       "absPath": "/simulation",
-      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  Table,\n  Form,\n  InputNumber,\n  Input,\n  Select,\n  message,\n  Modal,\n  Statistic,\n  Row,\n  Col,\n  Empty,\n  Popconfirm,\n  Spin,\n} from 'antd';\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  WalletOutlined,\n  ShoppingCartOutlined,\n  HistoryOutlined,\n  EditOutlined,\n  DeleteOutlined,\n  LineChartOutlined,\n} from '@ant-design/icons';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { IChartApi, Time } from 'lightweight-charts';\nimport client from '@/services/client';\nimport { klinesApi } from '@/services/klines';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface SimulationAccount {\n  id: string;\n  initialCapital: number;\n  currentCapital: number;\n  availableCash: number;\n  totalProfit: number;\n  totalReturn: number;\n}\n\ninterface SimulationPosition {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  quantity: number;\n  avgCost: number;\n  currentPrice?: number;\n  marketValue?: number;\n  profit: number;\n  return: number;\n  takeProfitPrice?: number;\n  stopLossPrice?: number;\n  tradeSource?: string;\n  strategyId?: string;\n}\n\ninterface SimulationTrade {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  type: 'buy' | 'sell';\n  quantity: number;\n  price: number;\n  totalAmount: number;\n  profit?: number;\n  closeReason?: string;\n  tradeSource?: string;\n  strategyId?: string;\n  tradeTime: string;\n}\n\ninterface StockOption {\n  value: string;\n  label: string;\n  code: string;\n  name: string;\n}\n\ninterface EquityCurvePoint {\n  id: string;\n  accountId: string;\n  totalEquity: string;\n  availableCash: string;\n  positionValue: string;\n  totalProfit: string;\n  totalReturn: string;\n  recordedAt: string;\n  createdAt: string;\n}\n\ninterface StrategyInfo {\n  id: string;\n  name: string;\n}\n\nconst SimulationPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [refreshLoading, setRefreshLoading] = useState(false);\n  const [account, setAccount] = useState<SimulationAccount | null>(null);\n  const [positions, setPositions] = useState<SimulationPosition[]>([]);\n  const [trades, setTrades] = useState<SimulationTrade[]>([]);\n  const [equityCurveData, setEquityCurveData] = useState<EquityCurvePoint[]>([]);\n  const [isTradeModalVisible, setIsTradeModalVisible] = useState(false);\n  const [isBalanceModalVisible, setIsBalanceModalVisible] = useState(false);\n  const [isPositionModalVisible, setIsPositionModalVisible] = useState(false);\n  const [tradeForm] = Form.useForm();\n  const [balanceForm] = Form.useForm();\n  const [positionForm] = Form.useForm();\n  const [activeTab, setActiveTab] = useState<'positions' | 'trades' | 'equity-curve'>('positions');\n\n  const [tradeStockOptions, setTradeStockOptions] = useState<StockOption[]>([]);\n  const [tradeSearchLoading, setTradeSearchLoading] = useState(false);\n  const tradeDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  const [positionStockOptions, setPositionStockOptions] = useState<StockOption[]>([]);\n  const [positionSearchLoading, setPositionSearchLoading] = useState(false);\n  const positionDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n  const [strategies, setStrategies] = useState<StrategyInfo[]>([]);\n\n  const [tradePrice, setTradePrice] = useState<number | null>(null);\n  const [tradePriceLoading, setTradePriceLoading] = useState(false);\n\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n\n  const fetchAccount = async () => {\n    try {\n      const response = await client.get('/simulation/account');\n      setAccount(response.data);\n    } catch (error) {\n      console.error('Fetch account error:', error);\n      setAccount(null);\n    }\n  };\n\n  const fetchPositions = async () => {\n    try {\n      const response = await client.get('/simulation/positions');\n      setPositions(response.data || []);\n    } catch (error) {\n      console.error('Fetch positions error:', error);\n      setPositions([]);\n    }\n  };\n\n  const fetchTrades = async () => {\n    try {\n      const response = await client.get('/simulation/trades');\n      setTrades(response.data || []);\n    } catch (error) {\n      console.error('Fetch trades error:', error);\n      setTrades([]);\n    }\n  };\n\n  const fetchEquityCurve = async () => {\n    try {\n      const response = await client.get('/simulation/equity-curve');\n      setEquityCurveData(response.data || []);\n    } catch (error) {\n      console.error('Fetch equity curve error:', error);\n      setEquityCurveData([]);\n    }\n  };\n\n  const fetchStrategies = async () => {\n    try {\n      const response = await client.get('/strategies', { params: { pageSize: 100 } });\n      const data = response.data || [];\n      setStrategies(Array.isArray(data) ? data.map((s: StrategyInfo) => ({ id: s.id, name: s.name })) : []);\n    } catch (error) {\n      console.error('Fetch strategies error:', error);\n      setStrategies([]);\n    }\n  };\n\n  const refreshPositions = async () => {\n    setRefreshLoading(true);\n    try {\n      const response = await client.get('/simulation/refresh');\n      const { account: refreshedAccount, positions: refreshedPositions } = response.data;\n      if (refreshedAccount) setAccount(refreshedAccount);\n      if (refreshedPositions) setPositions(refreshedPositions);\n    } catch (error) {\n      console.error('Refresh positions error:', error);\n    } finally {\n      setRefreshLoading(false);\n    }\n  };\n\n  const fetchAllData = async () => {\n    setLoading(true);\n    await Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]);\n    setLoading(false);\n  };\n\n  useEffect(() => {\n    refreshPositions();\n    fetchAllData();\n    fetchStrategies();\n  }, []);\n\n  useEffect(() => {\n    if (activeTab === 'equity-curve') {\n      fetchEquityCurve();\n    }\n  }, [activeTab]);\n\n  useEffect(() => {\n    if (!chartContainerRef.current || equityCurveData.length === 0) return;\n\n    if (chartRef.current) {\n      chartRef.current.remove();\n      chartRef.current = null;\n    }\n\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: {\n        mode: 1,\n      },\n      rightPriceScale: {\n        borderColor: '#d9d9d9',\n      },\n      timeScale: {\n        borderColor: '#d9d9d9',\n        timeVisible: true,\n      },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    const lineSeries = chart.addSeries(LightweightCharts.LineSeries, {\n      color: '#1890ff',\n      lineWidth: 2,\n    });\n\n    const sortedData = [...equityCurveData].sort(\n      (a, b) => new Date(a.recordedAt).getTime() - new Date(b.recordedAt).getTime()\n    );\n\n    const chartData = sortedData.map((point) => ({\n      time: (Math.floor(new Date(point.recordedAt).getTime() / 1000)) as Time,\n      value: parseFloat(point.totalEquity),\n    }));\n\n    lineSeries.setData(chartData);\n\n    chart.timeScale().fitContent();\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({\n          width: chartContainerRef.current.clientWidth,\n        });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n      chartRef.current = null;\n    };\n  }, [equityCurveData]);\n\n  useEffect(() => {\n    return () => {\n      if (tradeDebounceTimerRef.current) {\n        clearTimeout(tradeDebounceTimerRef.current);\n      }\n      if (positionDebounceTimerRef.current) {\n        clearTimeout(positionDebounceTimerRef.current);\n      }\n    };\n  }, []);\n\n  const searchStocks = async (keyword: string, type: 'trade' | 'position') => {\n    if (!keyword || keyword.trim().length === 0) {\n      if (type === 'trade') setTradeStockOptions([]);\n      else setPositionStockOptions([]);\n      return;\n    }\n    if (type === 'trade') setTradeSearchLoading(true);\n    else setPositionSearchLoading(true);\n    try {\n      const response = await client.get('/stock/search', {\n        params: { keyword: keyword.trim() },\n      });\n      const stocks = response.data || [];\n      const options: StockOption[] = stocks.map((stock: { code: string; name: string }) => ({\n        value: stock.code,\n        label: `${stock.code} - ${stock.name}`,\n        code: stock.code,\n        name: stock.name,\n      }));\n      if (type === 'trade') setTradeStockOptions(options);\n      else setPositionStockOptions(options);\n    } catch (error) {\n      console.error('Search stocks error:', error);\n      if (type === 'trade') setTradeStockOptions([]);\n      else setPositionStockOptions([]);\n    } finally {\n      if (type === 'trade') setTradeSearchLoading(false);\n      else setPositionSearchLoading(false);\n    }\n  };\n\n  const handleTradeStockSearch = (value: string) => {\n    if (tradeDebounceTimerRef.current) {\n      clearTimeout(tradeDebounceTimerRef.current);\n    }\n    tradeDebounceTimerRef.current = setTimeout(() => {\n      searchStocks(value, 'trade');\n    }, 300);\n  };\n\n  const handlePositionStockSearch = (value: string) => {\n    if (positionDebounceTimerRef.current) {\n      clearTimeout(positionDebounceTimerRef.current);\n    }\n    positionDebounceTimerRef.current = setTimeout(() => {\n      searchStocks(value, 'position');\n    }, 300);\n  };\n\n  const handleTradeStockChange = async (value: string) => {\n    const selectedOption = tradeStockOptions.find(opt => opt.value === value);\n    if (selectedOption) {\n      tradeForm.setFieldsValue({\n        stockCode: selectedOption.code,\n        stockName: selectedOption.name,\n      });\n      setTradePrice(null);\n      setTradePriceLoading(true);\n      try {\n        await klinesApi.checkAndUpdate(selectedOption.code, '4h');\n        const klineResponse = await client.get(`/klines/${selectedOption.code}`, {\n          params: { period: '4h' },\n        });\n        const klineData = klineResponse.data?.data || klineResponse.data || [];\n        if (Array.isArray(klineData) && klineData.length > 0) {\n          const lastItem = klineData[klineData.length - 1];\n          const closePrice = lastItem.close || lastItem.c;\n          if (closePrice) {\n            setTradePrice(parseFloat(String(closePrice)));\n          }\n        }\n      } catch (error) {\n        console.error('Fetch trade price error:', error);\n      } finally {\n        setTradePriceLoading(false);\n      }\n    }\n  };\n\n  const handlePositionStockChange = (value: string) => {\n    const selectedOption = positionStockOptions.find(opt => opt.value === value);\n    if (selectedOption) {\n      positionForm.setFieldsValue({\n        stockCode: selectedOption.code,\n        stockName: selectedOption.name,\n      });\n    }\n  };\n\n  const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {\n    try {\n      await client.put('/simulation/account', values);\n      message.success('余额更新成功');\n      setIsBalanceModalVisible(false);\n      balanceForm.resetFields();\n      fetchAccount();\n    } catch (error) {\n      message.error('余额更新失败');\n      console.error('Update balance error:', error);\n    }\n  };\n\n  const handleAddPosition = async (values: {\n    stockCode: string;\n    stockName: string;\n    quantity: number;\n    avgCost: number;\n    takeProfitPrice?: number;\n    stopLossPrice?: number;\n  }) => {\n    try {\n      await client.post('/simulation/position', values);\n      message.success('持仓添加成功');\n      setIsPositionModalVisible(false);\n      positionForm.resetFields();\n      setPositionStockOptions([]);\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓添加失败');\n      console.error('Add position error:', error);\n    }\n  };\n\n  const handleDeletePosition = async (positionId: string) => {\n    try {\n      await client.delete(`/simulation/position/${positionId}`);\n      message.success('持仓删除成功');\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓删除失败');\n      console.error('Delete position error:', error);\n    }\n  };\n\n  const handleTrade = async (values: {\n    stockCode: string;\n    stockName: string;\n    type: 'buy' | 'sell';\n    quantity: number;\n    takeProfitPrice?: number;\n    stopLossPrice?: number;\n  }) => {\n    try {\n      const payload: Record<string, unknown> = {\n        stockCode: values.stockCode,\n        stockName: values.stockName,\n        type: values.type,\n        quantity: values.quantity,\n      };\n      if (values.type === 'buy') {\n        if (values.takeProfitPrice !== undefined && values.takeProfitPrice !== null) {\n          payload.takeProfitPrice = values.takeProfitPrice;\n        }\n        if (values.stopLossPrice !== undefined && values.stopLossPrice !== null) {\n          payload.stopLossPrice = values.stopLossPrice;\n        }\n      }\n      await client.post('/simulation/trade', payload);\n      message.success('交易成功');\n      setIsTradeModalVisible(false);\n      tradeForm.resetFields();\n      setTradeStockOptions([]);\n      setTradePrice(null);\n      fetchAllData();\n    } catch (error) {\n      message.error('交易失败');\n      console.error('Trade error:', error);\n    }\n  };\n\n  const formatMoney = (amount: number | string | null | undefined) => {\n    if (amount === null || amount === undefined) return '¥0.00';\n    const num = typeof amount === 'string' ? parseFloat(amount) : amount;\n    if (isNaN(num)) return '¥0.00';\n    return `¥${num.toFixed(2)}`;\n  };\n\n  const closeReasonMap: Record<string, { text: string; color: string }> = {\n    manual: { text: '手动平仓', color: 'blue' },\n    take_profit: { text: '止盈平仓', color: 'green' },\n    stop_loss: { text: '止损平仓', color: 'red' },\n    agent: { text: 'Agent平仓', color: 'purple' },\n  };\n\n  const tradeType = Form.useWatch('type', tradeForm);\n\n  const positionColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '持仓数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '平均成本',\n      dataIndex: 'avgCost',\n      key: 'avgCost',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '当前市值',\n      dataIndex: 'marketValue',\n      key: 'marketValue',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value: number) => (\n        <Tag color={value >= 0 ? 'success' : 'error'}>\n          {value >= 0 ? '+' : ''}{formatMoney(value)}\n        </Tag>\n      ),\n    },\n    {\n      title: '止盈价',\n      dataIndex: 'takeProfitPrice',\n      key: 'takeProfitPrice',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '止损价',\n      dataIndex: 'stopLossPrice',\n      key: 'stopLossPrice',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '来源',\n      dataIndex: 'tradeSource',\n      key: 'tradeSource',\n      width: 100,\n      render: (value?: string, record?: SimulationPosition) => {\n        if (value === 'strategy' && record?.strategyId) {\n          const strategy = strategies.find(s => s.id === record.strategyId);\n          return <Tag color=\"purple\">{strategy?.name || '策略'}</Tag>;\n        }\n        if (value === 'system') return <Tag color=\"orange\">系统</Tag>;\n        return <Tag>手动</Tag>;\n      },\n    },\n    {\n      title: '操作',\n      key: 'action',\n      render: (_: unknown, record: SimulationPosition) => (\n        <Popconfirm\n          title=\"确认删除\"\n          description=\"确定要删除这条持仓吗？\"\n          onConfirm={() => handleDeletePosition(record.id)}\n          okText=\"确认\"\n          cancelText=\"取消\"\n        >\n          <Button danger icon={<DeleteOutlined />} size=\"small\">\n            删除\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      render: (type: string) => (\n        <Tag color={type === 'buy' ? 'success' : 'error'}>\n          {type === 'buy' ? '买入' : '卖出'}\n        </Tag>\n      ),\n    },\n    {\n      title: '数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '价格',\n      dataIndex: 'price',\n      key: 'price',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '总金额',\n      dataIndex: 'totalAmount',\n      key: 'totalAmount',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value?: number) =>\n        value !== undefined ? (\n          <Tag color={value >= 0 ? 'success' : 'error'}>\n            {value >= 0 ? '+' : ''}{formatMoney(value)}\n          </Tag>\n        ) : '-',\n    },\n    {\n      title: '平仓理由',\n      dataIndex: 'closeReason',\n      key: 'closeReason',\n      render: (value?: string, record?: SimulationTrade) => {\n        if (record?.type !== 'sell' || !value) return '-';\n        const mapping = closeReasonMap[value];\n        if (!mapping) return '-';\n        return <Tag color={mapping.color}>{mapping.text}</Tag>;\n      },\n    },\n    {\n      title: '来源',\n      dataIndex: 'tradeSource',\n      key: 'tradeSource',\n      width: 100,\n      render: (value?: string, record?: SimulationTrade) => {\n        if (value === 'strategy' && record?.strategyId) {\n          const strategy = strategies.find(s => s.id === record.strategyId);\n          return <Tag color=\"purple\">{strategy?.name || '策略'}</Tag>;\n        }\n        if (value === 'system') return <Tag color=\"orange\">系统</Tag>;\n        return <Tag>手动</Tag>;\n      },\n    },\n    {\n      title: '时间',\n      dataIndex: 'tradeTime',\n      key: 'tradeTime',\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n  ];\n\n  if (!account) {\n    return (\n      <div>\n        <Title level={2}>账户模拟</Title>\n        <Card>\n          <Empty description=\"加载中...\" />\n        </Card>\n      </div>\n    );\n  }\n\n  return (\n    <div>\n      <Title level={2}>账户模拟</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"初始资金\"\n              value={account.initialCapital}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"当前资金\"\n              value={account.currentCapital}\n              precision={2}\n              prefix=\"¥\"\n              valueStyle={{ color: account.currentCapital >= account.initialCapital ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"可用现金\"\n              value={account.availableCash}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"总收益率\"\n              value={account.totalReturn * 100}\n              precision={2}\n              suffix=\"%\"\n              valueStyle={{ color: account.totalReturn >= 0 ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n            刷新\n          </Button>\n          <Button icon={<ReloadOutlined />} onClick={refreshPositions} loading={refreshLoading}>\n            更新行情\n          </Button>\n          <Button\n            icon={<EditOutlined />}\n            onClick={() => {\n              balanceForm.setFieldsValue({\n                currentCapital: account.currentCapital,\n                availableCash: account.availableCash,\n              });\n              setIsBalanceModalVisible(true);\n            }}\n          >\n            修改余额\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={() => setIsPositionModalVisible(true)}\n          >\n            添加持仓\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<ShoppingCartOutlined />}\n            onClick={() => {\n              setTradePrice(null);\n              setIsTradeModalVisible(true);\n            }}\n          >\n            模拟交易\n          </Button>\n        </Space>\n      </Card>\n\n      <Card\n        tabList={[\n          { key: 'positions', tab: <><WalletOutlined /> 持仓</> },\n          { key: 'trades', tab: <><HistoryOutlined /> 交易记录</> },\n          { key: 'equity-curve', tab: <><LineChartOutlined /> 资金曲线</> },\n        ]}\n        activeTabKey={activeTab}\n        onTabChange={(key) => setActiveTab(key as 'positions' | 'trades' | 'equity-curve')}\n      >\n        {activeTab === 'positions' && (\n          <Table\n            columns={positionColumns}\n            dataSource={positions}\n            rowKey=\"id\"\n            pagination={false}\n            locale={{ emptyText: '暂无持仓' }}\n          />\n        )}\n        {activeTab === 'trades' && (\n          <Table\n            columns={tradeColumns}\n            dataSource={trades}\n            rowKey=\"id\"\n            pagination={{ pageSize: 10 }}\n          />\n        )}\n        {activeTab === 'equity-curve' && (\n          equityCurveData.length > 0 ? (\n            <div ref={chartContainerRef} />\n          ) : (\n            <Empty description=\"暂无资金曲线数据\" />\n          )\n        )}\n      </Card>\n\n      <Modal\n        title=\"修改余额\"\n        open={isBalanceModalVisible}\n        onCancel={() => setIsBalanceModalVisible(false)}\n        onOk={() => balanceForm.submit()}\n        width={400}\n      >\n        <Form form={balanceForm} onFinish={handleUpdateBalance} layout=\"vertical\">\n          <Form.Item\n            name=\"currentCapital\"\n            label=\"当前资金\"\n            rules={[{ required: true, message: '请输入当前资金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"availableCash\"\n            label=\"可用现金\"\n            rules={[{ required: true, message: '请输入可用现金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"添加持仓\"\n        open={isPositionModalVisible}\n        onCancel={() => {\n          setIsPositionModalVisible(false);\n          setPositionStockOptions([]);\n        }}\n        onOk={() => positionForm.submit()}\n        width={400}\n      >\n        <Form form={positionForm} onFinish={handleAddPosition} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Select\n              showSearch\n              placeholder=\"输入股票代码或名称搜索\"\n              filterOption={false}\n              onSearch={handlePositionStockSearch}\n              onChange={handlePositionStockChange}\n              loading={positionSearchLoading}\n              options={positionStockOptions}\n              allowClear\n              notFoundContent={positionSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Input disabled placeholder=\"选择股票后自动填充\" />\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"持仓数量（股）\"\n            rules={[{ required: true, message: '请输入持仓数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入股数\" />\n          </Form.Item>\n          <Form.Item\n            name=\"avgCost\"\n            label=\"平均成本\"\n            rules={[{ required: true, message: '请输入平均成本' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入平均成本\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"takeProfitPrice\"\n            label=\"止盈价（可选）\"\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入止盈价\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stopLossPrice\"\n            label=\"止损价（可选）\"\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入止损价\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"模拟交易\"\n        open={isTradeModalVisible}\n        onCancel={() => {\n          setIsTradeModalVisible(false);\n          setTradeStockOptions([]);\n          setTradePrice(null);\n        }}\n        onOk={() => tradeForm.submit()}\n        width={500}\n      >\n        <Form form={tradeForm} onFinish={handleTrade} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Select\n              showSearch\n              placeholder=\"输入股票代码或名称搜索\"\n              filterOption={false}\n              onSearch={handleTradeStockSearch}\n              onChange={handleTradeStockChange}\n              loading={tradeSearchLoading}\n              options={tradeStockOptions}\n              allowClear\n              notFoundContent={tradeSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Input disabled placeholder=\"选择股票后自动填充\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"交易类型\"\n            rules={[{ required: true, message: '请选择交易类型' }]}\n            initialValue=\"buy\"\n          >\n            <Select>\n              <Option value=\"buy\">买入</Option>\n              <Option value=\"sell\">卖出</Option>\n            </Select>\n          </Form.Item>\n          <Form.Item label=\"当前价格\">\n            {tradePriceLoading ? (\n              <Spin size=\"small\" />\n            ) : tradePrice !== null ? (\n              <InputNumber\n                style={{ width: '100%' }}\n                value={tradePrice}\n                disabled\n                precision={2}\n                formatter={(value) => `¥ ${value}`}\n              />\n            ) : (\n              <Text type=\"secondary\">选择股票后自动获取4H行情价格</Text>\n            )}\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"数量（股）\"\n            rules={[{ required: true, message: '请输入数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入股数\" />\n          </Form.Item>\n          {tradeType === 'buy' && (\n            <>\n              <Form.Item\n                name=\"takeProfitPrice\"\n                label=\"止盈价（可选）\"\n              >\n                <InputNumber\n                  style={{ width: '100%' }}\n                  min={0.01}\n                  step={0.01}\n                  precision={2}\n                  placeholder=\"请输入止盈价\"\n                />\n              </Form.Item>\n              <Form.Item\n                name=\"stopLossPrice\"\n                label=\"止损价（可选）\"\n              >\n                <InputNumber\n                  style={{ width: '100%' }}\n                  min={0.01}\n                  step={0.01}\n                  precision={2}\n                  placeholder=\"请输入止损价\"\n                />\n              </Form.Item>\n            </>\n          )}\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default SimulationPage;\n",
+      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  Table,\n  Form,\n  InputNumber,\n  Input,\n  Select,\n  message,\n  Modal,\n  Statistic,\n  Row,\n  Col,\n  Empty,\n  Popconfirm,\n  Spin,\n} from 'antd';\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  WalletOutlined,\n  ShoppingCartOutlined,\n  HistoryOutlined,\n  EditOutlined,\n  DeleteOutlined,\n  LineChartOutlined,\n} from '@ant-design/icons';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { IChartApi, Time } from 'lightweight-charts';\nimport client from '@/services/client';\nimport { klinesApi } from '@/services/klines';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface SimulationAccount {\n  id: string;\n  name?: string;\n  initialCapital: number;\n  currentCapital: number;\n  availableCash: number;\n  totalProfit: number;\n  totalReturn: number;\n}\n\ninterface SimulationPosition {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  quantity: number;\n  avgCost: number;\n  currentPrice?: number;\n  marketValue?: number;\n  profit: number;\n  return: number;\n  takeProfitPrice?: number;\n  stopLossPrice?: number;\n  tradeSource?: string;\n  strategyId?: string;\n}\n\ninterface SimulationTrade {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  type: 'buy' | 'sell';\n  quantity: number;\n  price: number;\n  totalAmount: number;\n  profit?: number;\n  closeReason?: string;\n  tradeSource?: string;\n  strategyId?: string;\n  tradeTime: string;\n}\n\ninterface StockOption {\n  value: string;\n  label: string;\n  code: string;\n  name: string;\n}\n\ninterface EquityCurvePoint {\n  id: string;\n  accountId: string;\n  totalEquity: string;\n  availableCash: string;\n  positionValue: string;\n  totalProfit: string;\n  totalReturn: string;\n  recordedAt: string;\n  createdAt: string;\n}\n\ninterface StrategyInfo {\n  id: string;\n  name: string;\n}\n\nconst SimulationPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [refreshLoading, setRefreshLoading] = useState(false);\n  const [accounts, setAccounts] = useState<SimulationAccount[]>([]);\n  const [selectedAccountId, setSelectedAccountId] = useState<string | null>(null);\n  const [account, setAccount] = useState<SimulationAccount | null>(null);\n  const [positions, setPositions] = useState<SimulationPosition[]>([]);\n  const [trades, setTrades] = useState<SimulationTrade[]>([]);\n  const [equityCurveData, setEquityCurveData] = useState<EquityCurvePoint[]>([]);\n  const [isTradeModalVisible, setIsTradeModalVisible] = useState(false);\n  const [isBalanceModalVisible, setIsBalanceModalVisible] = useState(false);\n  const [isPositionModalVisible, setIsPositionModalVisible] = useState(false);\n  const [isCreateAccountModalVisible, setIsCreateAccountModalVisible] = useState(false);\n  const [tradeForm] = Form.useForm();\n  const [balanceForm] = Form.useForm();\n  const [positionForm] = Form.useForm();\n  const [createAccountForm] = Form.useForm();\n  const [activeTab, setActiveTab] = useState<'positions' | 'trades' | 'equity-curve'>('positions');\n\n  const [tradeStockOptions, setTradeStockOptions] = useState<StockOption[]>([]);\n  const [tradeSearchLoading, setTradeSearchLoading] = useState(false);\n  const tradeDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  const [positionStockOptions, setPositionStockOptions] = useState<StockOption[]>([]);\n  const [positionSearchLoading, setPositionSearchLoading] = useState(false);\n  const positionDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n  const [strategies, setStrategies] = useState<StrategyInfo[]>([]);\n\n  const [tradePrice, setTradePrice] = useState<number | null>(null);\n  const [tradePriceLoading, setTradePriceLoading] = useState(false);\n\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n\n  const fetchAccounts = async () => {\n    try {\n      const response = await client.get('/simulation/accounts');\n      setAccounts(response.data || []);\n      return response.data || [];\n    } catch (error) {\n      console.error('Fetch accounts error:', error);\n      setAccounts([]);\n      return [];\n    }\n  };\n\n  const fetchAccount = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/account', {\n        params: { accountId: selectedAccountId },\n      });\n      setAccount(response.data);\n    } catch (error) {\n      console.error('Fetch account error:', error);\n      setAccount(null);\n    }\n  };\n\n  const fetchPositions = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/positions', {\n        params: { accountId: selectedAccountId },\n      });\n      setPositions(response.data || []);\n    } catch (error) {\n      console.error('Fetch positions error:', error);\n      setPositions([]);\n    }\n  };\n\n  const fetchTrades = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/trades', {\n        params: { accountId: selectedAccountId },\n      });\n      setTrades(response.data || []);\n    } catch (error) {\n      console.error('Fetch trades error:', error);\n      setTrades([]);\n    }\n  };\n\n  const fetchEquityCurve = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/equity-curve', {\n        params: { accountId: selectedAccountId },\n      });\n      setEquityCurveData(response.data || []);\n    } catch (error) {\n      console.error('Fetch equity curve error:', error);\n      setEquityCurveData([]);\n    }\n  };\n\n  const fetchStrategies = async () => {\n    try {\n      const response = await client.get('/strategies', { params: { pageSize: 100 } });\n      const data = response.data || [];\n      setStrategies(Array.isArray(data) ? data.map((s: StrategyInfo) => ({ id: s.id, name: s.name })) : []);\n    } catch (error) {\n      console.error('Fetch strategies error:', error);\n      setStrategies([]);\n    }\n  };\n\n  const refreshPositions = async () => {\n    if (!selectedAccountId) return;\n    setRefreshLoading(true);\n    try {\n      const response = await client.get('/simulation/refresh', {\n        params: { accountId: selectedAccountId },\n      });\n      const { account: refreshedAccount, positions: refreshedPositions } = response.data;\n      if (refreshedAccount) setAccount(refreshedAccount);\n      if (refreshedPositions) setPositions(refreshedPositions);\n    } catch (error) {\n      console.error('Refresh positions error:', error);\n    } finally {\n      setRefreshLoading(false);\n    }\n  };\n\n  const fetchAllData = async () => {\n    setLoading(true);\n    await Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]);\n    setLoading(false);\n  };\n\n  useEffect(() => {\n    const init = async () => {\n      const accountList = await fetchAccounts();\n      if (accountList.length > 0) {\n        setSelectedAccountId(accountList[0].id);\n      }\n    };\n    init();\n    fetchStrategies();\n  }, []);\n\n  useEffect(() => {\n    if (!selectedAccountId) return;\n    setLoading(true);\n    Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]).finally(() => {\n      setLoading(false);\n    });\n  }, [selectedAccountId]);\n\n  useEffect(() => {\n    if (selectedAccountId && activeTab === 'equity-curve') {\n      fetchEquityCurve();\n    }\n  }, [activeTab, selectedAccountId]);\n\n  useEffect(() => {\n    if (!chartContainerRef.current || equityCurveData.length === 0) return;\n\n    if (chartRef.current) {\n      chartRef.current.remove();\n      chartRef.current = null;\n    }\n\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: {\n        mode: 1,\n      },\n      rightPriceScale: {\n        borderColor: '#d9d9d9',\n      },\n      timeScale: {\n        borderColor: '#d9d9d9',\n        timeVisible: true,\n      },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    const lineSeries = chart.addSeries(LightweightCharts.LineSeries, {\n      color: '#1890ff',\n      lineWidth: 2,\n    });\n\n    const sortedData = [...equityCurveData].sort(\n      (a, b) => new Date(a.recordedAt).getTime() - new Date(b.recordedAt).getTime()\n    );\n\n    const seen = new Map<number, number>();\n    for (const point of sortedData) {\n      const timeKey = Math.floor(new Date(point.recordedAt).getTime() / 1000);\n      seen.set(timeKey, parseFloat(point.totalEquity));\n    }\n\n    const chartData = Array.from(seen.entries())\n      .sort((a, b) => a[0] - b[0])\n      .map(([time, value]) => ({\n        time: time as Time,\n        value,\n      }));\n\n    lineSeries.setData(chartData);\n\n    chart.timeScale().fitContent();\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({\n          width: chartContainerRef.current.clientWidth,\n        });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n      chartRef.current = null;\n    };\n  }, [equityCurveData]);\n\n  useEffect(() => {\n    return () => {\n      if (tradeDebounceTimerRef.current) {\n        clearTimeout(tradeDebounceTimerRef.current);\n      }\n      if (positionDebounceTimerRef.current) {\n        clearTimeout(positionDebounceTimerRef.current);\n      }\n    };\n  }, []);\n\n  const searchStocks = async (keyword: string, type: 'trade' | 'position') => {\n    if (!keyword || keyword.trim().length === 0) {\n      if (type === 'trade') setTradeStockOptions([]);\n      else setPositionStockOptions([]);\n      return;\n    }\n    if (type === 'trade') setTradeSearchLoading(true);\n    else setPositionSearchLoading(true);\n    try {\n      const response = await client.get('/stock/search', {\n        params: { keyword: keyword.trim() },\n      });\n      const stocks = response.data || [];\n      const options: StockOption[] = stocks.map((stock: { code: string; name: string }) => ({\n        value: stock.code,\n        label: `${stock.code} - ${stock.name}`,\n        code: stock.code,\n        name: stock.name,\n      }));\n      if (type === 'trade') setTradeStockOptions(options);\n      else setPositionStockOptions(options);\n    } catch (error) {\n      console.error('Search stocks error:', error);\n      if (type === 'trade') setTradeStockOptions([]);\n      else setPositionStockOptions([]);\n    } finally {\n      if (type === 'trade') setTradeSearchLoading(false);\n      else setPositionSearchLoading(false);\n    }\n  };\n\n  const handleTradeStockSearch = (value: string) => {\n    if (tradeDebounceTimerRef.current) {\n      clearTimeout(tradeDebounceTimerRef.current);\n    }\n    tradeDebounceTimerRef.current = setTimeout(() => {\n      searchStocks(value, 'trade');\n    }, 300);\n  };\n\n  const handlePositionStockSearch = (value: string) => {\n    if (positionDebounceTimerRef.current) {\n      clearTimeout(positionDebounceTimerRef.current);\n    }\n    positionDebounceTimerRef.current = setTimeout(() => {\n      searchStocks(value, 'position');\n    }, 300);\n  };\n\n  const handleTradeStockChange = async (value: string) => {\n    const selectedOption = tradeStockOptions.find(opt => opt.value === value);\n    if (selectedOption) {\n      tradeForm.setFieldsValue({\n        stockCode: selectedOption.code,\n        stockName: selectedOption.name,\n      });\n      setTradePrice(null);\n      setTradePriceLoading(true);\n      try {\n        await klinesApi.checkAndUpdate(selectedOption.code, '4h');\n        const klineResponse = await client.get(`/klines/${selectedOption.code}`, {\n          params: { period: '4h' },\n        });\n        const klineData = klineResponse.data?.data || klineResponse.data || [];\n        if (Array.isArray(klineData) && klineData.length > 0) {\n          const lastItem = klineData[klineData.length - 1];\n          const closePrice = lastItem.close || lastItem.c;\n          if (closePrice) {\n            setTradePrice(parseFloat(String(closePrice)));\n          }\n        }\n      } catch (error) {\n        console.error('Fetch trade price error:', error);\n      } finally {\n        setTradePriceLoading(false);\n      }\n    }\n  };\n\n  const handlePositionStockChange = (value: string) => {\n    const selectedOption = positionStockOptions.find(opt => opt.value === value);\n    if (selectedOption) {\n      positionForm.setFieldsValue({\n        stockCode: selectedOption.code,\n        stockName: selectedOption.name,\n      });\n    }\n  };\n\n  const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {\n    try {\n      await client.put('/simulation/account', values);\n      message.success('余额更新成功');\n      setIsBalanceModalVisible(false);\n      balanceForm.resetFields();\n      fetchAccount();\n    } catch (error) {\n      message.error('余额更新失败');\n      console.error('Update balance error:', error);\n    }\n  };\n\n  const handleCreateAccount = async (values: { name: string; initialCapital: number }) => {\n    try {\n      const response = await client.post('/simulation/account', values);\n      message.success('账户创建成功');\n      setIsCreateAccountModalVisible(false);\n      createAccountForm.resetFields();\n      const accountList = await fetchAccounts();\n      const newAccountId = response.data?.id;\n      if (newAccountId) {\n        setSelectedAccountId(newAccountId);\n      } else if (accountList.length > 0) {\n        setSelectedAccountId(accountList[accountList.length - 1].id);\n      }\n    } catch (error) {\n      message.error('账户创建失败');\n      console.error('Create account error:', error);\n    }\n  };\n\n  const handleAddPosition = async (values: {\n    stockCode: string;\n    stockName: string;\n    quantity: number;\n    avgCost: number;\n    takeProfitPrice?: number;\n    stopLossPrice?: number;\n  }) => {\n    try {\n      await client.post('/simulation/position', { ...values, accountId: selectedAccountId });\n      message.success('持仓添加成功');\n      setIsPositionModalVisible(false);\n      positionForm.resetFields();\n      setPositionStockOptions([]);\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓添加失败');\n      console.error('Add position error:', error);\n    }\n  };\n\n  const handleDeletePosition = async (positionId: string) => {\n    try {\n      await client.delete(`/simulation/position/${positionId}`);\n      message.success('持仓删除成功');\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓删除失败');\n      console.error('Delete position error:', error);\n    }\n  };\n\n  const handleTrade = async (values: {\n    stockCode: string;\n    stockName: string;\n    type: 'buy' | 'sell';\n    quantity: number;\n    takeProfitPrice?: number;\n    stopLossPrice?: number;\n  }) => {\n    try {\n      const payload: Record<string, unknown> = {\n        stockCode: values.stockCode,\n        stockName: values.stockName,\n        type: values.type,\n        quantity: values.quantity,\n        accountId: selectedAccountId,\n      };\n      if (values.type === 'buy') {\n        if (values.takeProfitPrice !== undefined && values.takeProfitPrice !== null) {\n          payload.takeProfitPrice = values.takeProfitPrice;\n        }\n        if (values.stopLossPrice !== undefined && values.stopLossPrice !== null) {\n          payload.stopLossPrice = values.stopLossPrice;\n        }\n      }\n      await client.post('/simulation/trade', payload);\n      message.success('交易成功');\n      setIsTradeModalVisible(false);\n      tradeForm.resetFields();\n      setTradeStockOptions([]);\n      setTradePrice(null);\n      fetchAllData();\n    } catch (error) {\n      message.error('交易失败');\n      console.error('Trade error:', error);\n    }\n  };\n\n  const formatMoney = (amount: number | string | null | undefined) => {\n    if (amount === null || amount === undefined) return '¥0.00';\n    const num = typeof amount === 'string' ? parseFloat(amount) : amount;\n    if (isNaN(num)) return '¥0.00';\n    return `¥${num.toFixed(2)}`;\n  };\n\n  const closeReasonMap: Record<string, { text: string; color: string }> = {\n    manual: { text: '手动平仓', color: 'blue' },\n    take_profit: { text: '止盈平仓', color: 'green' },\n    stop_loss: { text: '止损平仓', color: 'red' },\n    agent: { text: 'Agent平仓', color: 'purple' },\n  };\n\n  const tradeType = Form.useWatch('type', tradeForm);\n\n  const positionColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '持仓数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '平均成本',\n      dataIndex: 'avgCost',\n      key: 'avgCost',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '当前市值',\n      dataIndex: 'marketValue',\n      key: 'marketValue',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value: number) => (\n        <Tag color={value >= 0 ? 'success' : 'error'}>\n          {value >= 0 ? '+' : ''}{formatMoney(value)}\n        </Tag>\n      ),\n    },\n    {\n      title: '止盈价',\n      dataIndex: 'takeProfitPrice',\n      key: 'takeProfitPrice',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '止损价',\n      dataIndex: 'stopLossPrice',\n      key: 'stopLossPrice',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '来源',\n      dataIndex: 'tradeSource',\n      key: 'tradeSource',\n      width: 100,\n      render: (value?: string, record?: SimulationPosition) => {\n        if (value === 'strategy' && record?.strategyId) {\n          const strategy = strategies.find(s => s.id === record.strategyId);\n          return <Tag color=\"purple\">{strategy?.name || '策略'}</Tag>;\n        }\n        if (value === 'system') return <Tag color=\"orange\">系统</Tag>;\n        return <Tag>手动</Tag>;\n      },\n    },\n    {\n      title: '操作',\n      key: 'action',\n      render: (_: unknown, record: SimulationPosition) => (\n        <Popconfirm\n          title=\"确认删除\"\n          description=\"确定要删除这条持仓吗？\"\n          onConfirm={() => handleDeletePosition(record.id)}\n          okText=\"确认\"\n          cancelText=\"取消\"\n        >\n          <Button danger icon={<DeleteOutlined />} size=\"small\">\n            删除\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      render: (type: string) => (\n        <Tag color={type === 'buy' ? 'success' : 'error'}>\n          {type === 'buy' ? '买入' : '卖出'}\n        </Tag>\n      ),\n    },\n    {\n      title: '数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '价格',\n      dataIndex: 'price',\n      key: 'price',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '总金额',\n      dataIndex: 'totalAmount',\n      key: 'totalAmount',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value?: number) =>\n        value !== undefined ? (\n          <Tag color={value >= 0 ? 'success' : 'error'}>\n            {value >= 0 ? '+' : ''}{formatMoney(value)}\n          </Tag>\n        ) : '-',\n    },\n    {\n      title: '平仓理由',\n      dataIndex: 'closeReason',\n      key: 'closeReason',\n      render: (value?: string, record?: SimulationTrade) => {\n        if (record?.type !== 'sell' || !value) return '-';\n        const mapping = closeReasonMap[value];\n        if (!mapping) return '-';\n        return <Tag color={mapping.color}>{mapping.text}</Tag>;\n      },\n    },\n    {\n      title: '来源',\n      dataIndex: 'tradeSource',\n      key: 'tradeSource',\n      width: 100,\n      render: (value?: string, record?: SimulationTrade) => {\n        if (value === 'strategy' && record?.strategyId) {\n          const strategy = strategies.find(s => s.id === record.strategyId);\n          return <Tag color=\"purple\">{strategy?.name || '策略'}</Tag>;\n        }\n        if (value === 'system') return <Tag color=\"orange\">系统</Tag>;\n        return <Tag>手动</Tag>;\n      },\n    },\n    {\n      title: '时间',\n      dataIndex: 'tradeTime',\n      key: 'tradeTime',\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n  ];\n\n  if (!account) {\n    return (\n      <div>\n        <Title level={2}>账户模拟</Title>\n        <Card>\n          <Empty description=\"加载中...\" />\n        </Card>\n      </div>\n    );\n  }\n\n  return (\n    <div>\n      <Title level={2}>账户模拟</Title>\n\n      {accounts.length >= 2 && (\n        <Row style={{ marginBottom: 16 }} align=\"middle\" gutter={16}>\n          <Col>\n            <Select\n              value={selectedAccountId || undefined}\n              onChange={(value: string) => setSelectedAccountId(value)}\n              style={{ minWidth: 240 }}\n              placeholder=\"选择账户\"\n            >\n              {accounts.map((acc) => (\n                <Option key={acc.id} value={acc.id}>\n                  {acc.name || acc.id} — {formatMoney(acc.currentCapital)}\n                </Option>\n              ))}\n            </Select>\n          </Col>\n          <Col>\n            <Button\n              icon={<PlusOutlined />}\n              onClick={() => {\n                createAccountForm.resetFields();\n                setIsCreateAccountModalVisible(true);\n              }}\n            >\n              创建账户\n            </Button>\n          </Col>\n        </Row>\n      )}\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"初始资金\"\n              value={account.initialCapital}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"当前资金\"\n              value={account.currentCapital}\n              precision={2}\n              prefix=\"¥\"\n              valueStyle={{ color: account.currentCapital >= account.initialCapital ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"可用现金\"\n              value={account.availableCash}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"总收益率\"\n              value={account.totalReturn * 100}\n              precision={2}\n              suffix=\"%\"\n              valueStyle={{ color: account.totalReturn >= 0 ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n            刷新\n          </Button>\n          <Button icon={<ReloadOutlined />} onClick={refreshPositions} loading={refreshLoading}>\n            更新行情\n          </Button>\n          <Button\n            icon={<EditOutlined />}\n            onClick={() => {\n              balanceForm.setFieldsValue({\n                currentCapital: account.currentCapital,\n                availableCash: account.availableCash,\n              });\n              setIsBalanceModalVisible(true);\n            }}\n          >\n            修改余额\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={() => setIsPositionModalVisible(true)}\n          >\n            添加持仓\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<ShoppingCartOutlined />}\n            onClick={() => {\n              setTradePrice(null);\n              setIsTradeModalVisible(true);\n            }}\n          >\n            模拟交易\n          </Button>\n        </Space>\n      </Card>\n\n      <Card\n        tabList={[\n          { key: 'positions', tab: <><WalletOutlined /> 持仓</> },\n          { key: 'trades', tab: <><HistoryOutlined /> 交易记录</> },\n          { key: 'equity-curve', tab: <><LineChartOutlined /> 资金曲线</> },\n        ]}\n        activeTabKey={activeTab}\n        onTabChange={(key) => setActiveTab(key as 'positions' | 'trades' | 'equity-curve')}\n      >\n        {activeTab === 'positions' && (\n          <Table\n            columns={positionColumns}\n            dataSource={positions}\n            rowKey=\"id\"\n            pagination={false}\n            locale={{ emptyText: '暂无持仓' }}\n          />\n        )}\n        {activeTab === 'trades' && (\n          <Table\n            columns={tradeColumns}\n            dataSource={trades}\n            rowKey=\"id\"\n            pagination={{ pageSize: 10 }}\n          />\n        )}\n        {activeTab === 'equity-curve' && (\n          equityCurveData.length > 0 ? (\n            <div ref={chartContainerRef} />\n          ) : (\n            <Empty description=\"暂无资金曲线数据\" />\n          )\n        )}\n      </Card>\n\n      <Modal\n        title=\"修改余额\"\n        open={isBalanceModalVisible}\n        onCancel={() => setIsBalanceModalVisible(false)}\n        onOk={() => balanceForm.submit()}\n        width={400}\n      >\n        <Form form={balanceForm} onFinish={handleUpdateBalance} layout=\"vertical\">\n          <Form.Item\n            name=\"currentCapital\"\n            label=\"当前资金\"\n            rules={[{ required: true, message: '请输入当前资金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"availableCash\"\n            label=\"可用现金\"\n            rules={[{ required: true, message: '请输入可用现金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"添加持仓\"\n        open={isPositionModalVisible}\n        onCancel={() => {\n          setIsPositionModalVisible(false);\n          setPositionStockOptions([]);\n        }}\n        onOk={() => positionForm.submit()}\n        width={400}\n      >\n        <Form form={positionForm} onFinish={handleAddPosition} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Select\n              showSearch\n              placeholder=\"输入股票代码或名称搜索\"\n              filterOption={false}\n              onSearch={handlePositionStockSearch}\n              onChange={handlePositionStockChange}\n              loading={positionSearchLoading}\n              options={positionStockOptions}\n              allowClear\n              notFoundContent={positionSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Input disabled placeholder=\"选择股票后自动填充\" />\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"持仓数量（股）\"\n            rules={[{ required: true, message: '请输入持仓数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入股数\" />\n          </Form.Item>\n          <Form.Item\n            name=\"avgCost\"\n            label=\"平均成本\"\n            rules={[{ required: true, message: '请输入平均成本' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入平均成本\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"takeProfitPrice\"\n            label=\"止盈价（可选）\"\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入止盈价\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stopLossPrice\"\n            label=\"止损价（可选）\"\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入止损价\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"模拟交易\"\n        open={isTradeModalVisible}\n        onCancel={() => {\n          setIsTradeModalVisible(false);\n          setTradeStockOptions([]);\n          setTradePrice(null);\n        }}\n        onOk={() => tradeForm.submit()}\n        width={500}\n      >\n        <Form form={tradeForm} onFinish={handleTrade} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Select\n              showSearch\n              placeholder=\"输入股票代码或名称搜索\"\n              filterOption={false}\n              onSearch={handleTradeStockSearch}\n              onChange={handleTradeStockChange}\n              loading={tradeSearchLoading}\n              options={tradeStockOptions}\n              allowClear\n              notFoundContent={tradeSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Input disabled placeholder=\"选择股票后自动填充\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"交易类型\"\n            rules={[{ required: true, message: '请选择交易类型' }]}\n            initialValue=\"buy\"\n          >\n            <Select>\n              <Option value=\"buy\">买入</Option>\n              <Option value=\"sell\">卖出</Option>\n            </Select>\n          </Form.Item>\n          <Form.Item label=\"当前价格\">\n            {tradePriceLoading ? (\n              <Spin size=\"small\" />\n            ) : tradePrice !== null ? (\n              <InputNumber\n                style={{ width: '100%' }}\n                value={tradePrice}\n                disabled\n                precision={2}\n                formatter={(value) => `¥ ${value}`}\n              />\n            ) : (\n              <Text type=\"secondary\">选择股票后自动获取4H行情价格</Text>\n            )}\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"数量（股）\"\n            rules={[{ required: true, message: '请输入数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入股数\" />\n          </Form.Item>\n          {tradeType === 'buy' && (\n            <>\n              <Form.Item\n                name=\"takeProfitPrice\"\n                label=\"止盈价（可选）\"\n              >\n                <InputNumber\n                  style={{ width: '100%' }}\n                  min={0.01}\n                  step={0.01}\n                  precision={2}\n                  placeholder=\"请输入止盈价\"\n                />\n              </Form.Item>\n              <Form.Item\n                name=\"stopLossPrice\"\n                label=\"止损价（可选）\"\n              >\n                <InputNumber\n                  style={{ width: '100%' }}\n                  min={0.01}\n                  step={0.01}\n                  precision={2}\n                  placeholder=\"请输入止损价\"\n                />\n              </Form.Item>\n            </>\n          )}\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"创建账户\"\n        open={isCreateAccountModalVisible}\n        onCancel={() => setIsCreateAccountModalVisible(false)}\n        onOk={() => createAccountForm.submit()}\n        width={400}\n      >\n        <Form form={createAccountForm} onFinish={handleCreateAccount} layout=\"vertical\">\n          <Form.Item\n            name=\"name\"\n            label=\"账户名称\"\n            rules={[{ required: true, message: '请输入账户名称' }]}\n          >\n            <Input placeholder=\"请输入账户名称\" />\n          </Form.Item>\n          <Form.Item\n            name=\"initialCapital\"\n            label=\"初始资金\"\n            initialValue={100000}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={1}\n              step={10000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default SimulationPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/simulation/index.tsx"
     },
@@ -4331,7 +4236,7 @@
   "typescript": {
     "tsVersion": "5.9.3"
   },
-  "port": 8001,
+  "port": 8192,
   "host": "0.0.0.0",
   "ip": "192.168.31.7",
   "antd": {
@@ -6532,7 +6437,7 @@
             "format": "esm"
           },
           "src/pages/runtime/index.tsx": {
-            "bytes": 4752,
+            "bytes": 6636,
             "imports": [
               {
                 "path": "react",
@@ -6738,7 +6643,7 @@
             "format": "esm"
           },
           "src/pages/simulation/index.tsx": {
-            "bytes": 29844,
+            "bytes": 34087,
             "imports": [
               {
                 "path": "react",
@@ -9308,10 +9213,10 @@
                 "bytesInOutput": 15234
               },
               "src/pages/runtime/index.tsx": {
-                "bytesInOutput": 5548
+                "bytesInOutput": 7556
               },
               "src/pages/stocks/index.tsx": {
-                "bytesInOutput": 7143
+                "bytesInOutput": 7146
               },
               "src/services/klines.ts": {
                 "bytesInOutput": 819
@@ -9326,7 +9231,7 @@
                 "bytesInOutput": 32787
               },
               "src/pages/simulation/index.tsx": {
-                "bytesInOutput": 37027
+                "bytesInOutput": 42234
               },
               "src/pages/blacklist/index.tsx": {
                 "bytesInOutput": 10302
@@ -9371,7 +9276,7 @@
                 "bytesInOutput": 2095
               }
             },
-            "bytes": 501997
+            "bytes": 509215
           }
         }
       }
@@ -15451,7 +15356,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 145,
+          "end": 152,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -15494,13 +15399,18 @@
               "imported": "Tag",
               "local": "Tag",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Space",
+              "local": "Space",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 59,
           "type": "ImportDeclaration"
         },
         {
-          "end": 202,
+          "end": 226,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -15508,13 +15418,18 @@
               "imported": "ThunderboltOutlined",
               "local": "ThunderboltOutlined",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "WarningOutlined",
+              "local": "WarningOutlined",
+              "type": "ImportSpecifier"
             }
           ],
-          "start": 146,
+          "start": 153,
           "type": "ImportDeclaration"
         },
         {
-          "end": 242,
+          "end": 266,
           "importKind": "value",
           "source": "@/services/client",
           "specifiers": [
@@ -15523,7 +15438,7 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 203,
+          "start": 227,
           "type": "ImportDeclaration"
         }
       ],
