@@ -717,7 +717,7 @@ const SimulationPage: React.FC = () => {
     },
   ];
 
-  if (!account) {
+  if (!account && accounts.length > 0) {
     return (
       <div>
         <Title level={2}>账户模拟</Title>
@@ -728,28 +728,14 @@ const SimulationPage: React.FC = () => {
     );
   }
 
-  return (
-    <div>
-      <Title level={2}>账户模拟</Title>
-
-      {accounts.length >= 2 && (
-        <Row style={{ marginBottom: 16 }} align="middle" gutter={16}>
-          <Col>
-            <Select
-              value={selectedAccountId || undefined}
-              onChange={(value: string) => setSelectedAccountId(value)}
-              style={{ minWidth: 240 }}
-              placeholder="选择账户"
-            >
-              {accounts.map((acc) => (
-                <Option key={acc.id} value={acc.id}>
-                  {acc.name || acc.id} — {formatMoney(acc.currentCapital)}
-                </Option>
-              ))}
-            </Select>
-          </Col>
-          <Col>
+  if (!account && accounts.length === 0) {
+    return (
+      <div>
+        <Title level={2}>账户模拟</Title>
+        <Card>
+          <Empty description="暂无模拟账户">
             <Button
+              type="primary"
               icon={<PlusOutlined />}
               onClick={() => {
                 createAccountForm.resetFields();
@@ -758,9 +744,76 @@ const SimulationPage: React.FC = () => {
             >
               创建账户
             </Button>
-          </Col>
-        </Row>
-      )}
+          </Empty>
+        </Card>
+
+        <Modal
+          title="创建账户"
+          open={isCreateAccountModalVisible}
+          onCancel={() => setIsCreateAccountModalVisible(false)}
+          onOk={() => createAccountForm.submit()}
+          width={400}
+        >
+          <Form form={createAccountForm} onFinish={handleCreateAccount} layout="vertical">
+            <Form.Item
+              name="name"
+              label="账户名称"
+              rules={[{ required: true, message: '请输入账户名称' }]}
+            >
+              <Input placeholder="请输入账户名称" />
+            </Form.Item>
+            <Form.Item
+              name="initialCapital"
+              label="初始资金"
+              initialValue={100000}
+            >
+              <InputNumber
+                style={{ width: '100%' }}
+                min={1}
+                step={10000}
+                precision={2}
+                formatter={(value) => `¥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              />
+            </Form.Item>
+          </Form>
+        </Modal>
+      </div>
+    );
+  }
+
+  return (
+    <div>
+      <Title level={2}>账户模拟</Title>
+
+      {account && (
+        <>
+          <Row style={{ marginBottom: 16 }} align="middle" gutter={16}>
+            <Col>
+              <Select
+                value={selectedAccountId || undefined}
+                onChange={(value: string) => setSelectedAccountId(value)}
+                style={{ minWidth: 240 }}
+                placeholder="选择账户"
+              >
+                {accounts.map((acc) => (
+                  <Option key={acc.id} value={acc.id}>
+                    {acc.name || acc.id} — {formatMoney(acc.currentCapital)}
+                  </Option>
+                ))}
+              </Select>
+            </Col>
+            <Col>
+              <Button
+                icon={<PlusOutlined />}
+                onClick={() => {
+                  createAccountForm.resetFields();
+                  setIsCreateAccountModalVisible(true);
+                }}
+              >
+                创建账户
+              </Button>
+            </Col>
+          </Row>
 
       <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
         <Col xs={24} sm={12} lg={6}>
@@ -881,6 +934,8 @@ const SimulationPage: React.FC = () => {
           )
         )}
       </Card>
+      </>
+      )}
 
       <Modal
         title="修改余额"

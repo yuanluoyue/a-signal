@@ -14,7 +14,6 @@ import {
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiQuery } from '@nestjs/swagger';
 import { SimulationService } from '../../../modules/simulation/simulation.service.js';
 import { CreateAccountDto, UpdateAccountDto, ExecuteTradeDto, AddPositionDto } from './dto/index.js';
-import { Public } from '../../../common/decorators/public.decorator.js';
 import type { SimulationAccount } from '../../../core/db/schema.js';
 
 @ApiTags('Simulation')
