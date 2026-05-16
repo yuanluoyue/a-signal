@@ -2,10 +2,11 @@ import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { WebhooksService, Webhook } from './webhooks.service.js';
-import { Signal } from '../../core/db/schema.js';
+import { Signal, Strategy } from '../../core/db/schema.js';
 import { BlacklistService } from '../blacklist/blacklist.service.js';
 import { StrategyService } from '../strategy/strategy.service.js';
 import { SimulationService } from '../simulation/simulation.service.js';
+import { KlinesService } from '../klines/klines.service.js';
 
 export interface WechatMessage {
   msgtype: 'markdown';
@@ -32,6 +33,7 @@ export class NotificationsService {
     private readonly blacklistService: BlacklistService,
     private readonly strategyService: StrategyService,
     private readonly simulationService: SimulationService,
+    private readonly klinesService: KlinesService,
   ) {}
 
   async sendWechatNotification(
@@ -39,10 +41,24 @@ export class NotificationsService {
     signal: Signal,
     stockName: string,
     stockCode: string,
-    strategyName: string,
+    strategy: Strategy,
   ): Promise<boolean> {
     try {
-      const message = this.buildWechatMessage(signal, stockName, stockCode, strategyName);
+      const entryPrice = await this.getLatestPrice(stockCode);
+      const takeProfitPct = strategy.takeProfitPct ? parseFloat(strategy.takeProfitPct) : null;
+      const stopLossPct = strategy.stopLossPct ? parseFloat(strategy.stopLossPct) : null;
+      const takeProfitPrice = entryPrice && takeProfitPct ? entryPrice * (1 + takeProfitPct) : null;
+      const stopLossPrice = entryPrice && stopLossPct ? entryPrice * (1 - stopLossPct) : null;
+
+      const message = this.buildWechatMessage(
+        signal,
+        stockName,
+        stockCode,
+        strategy.name,
+        entryPrice,
+        takeProfitPrice,
+        stopLossPrice,
+      );
 
       const response = await firstValueFrom(
         this.httpService.post(webhookUrl, message, {
@@ -71,11 +87,33 @@ export class NotificationsService {
     }
   }
 
+  private async getLatestPrice(stockCode: string): Promise<number | null> {
+    try {
+      const cleanCode = stockCode.trim().toLowerCase();
+      
+      await this.klinesService.checkAndUpdateKlines(cleanCode, '4h');
+
+      const result = await this.klinesService.getKlines(cleanCode, '4h');
+      if (!result || result.length === 0) {
+        this.logger.warn(`getLatestPrice: no 4h kline found for ${stockCode}`);
+        return null;
+      }
+      const latestKline = result[result.length - 1];
+      return parseFloat(latestKline.close);
+    } catch (error) {
+      this.logger.error(`getLatestPrice: failed to get price for ${stockCode}: ${error instanceof Error ? error.message : String(error)}`);
+      return null;
+    }
+  }
+
   private buildWechatMessage(
     signal: Signal,
     stockName: string,
     stockCode: string,
     strategyName: string,
+    entryPrice: number | null,
+    takeProfitPrice: number | null,
+    stopLossPrice: number | null,
   ): WechatMessage {
     const direction = (signal.action || signal.direction || '').toLowerCase();
     const directionEmoji = this.getDirectionEmoji(direction);
@@ -92,11 +130,22 @@ export class NotificationsService {
     const score = parseFloat(signal.score || '0');
     const time = signal.generatedAt || signal.signalTime || signal.createdAt;
 
-    const content = `**${directionEmoji} 新交易信号 [策略: ${strategyName}]**\n` +
+    let content = `**${directionEmoji} 新交易信号 [策略: ${strategyName}]**\n` +
       `>股票: ${stockName}(${stockCode})\n` +
       `>方向: ${directionText}\n` +
-      `>分数: ${score.toFixed(2)}\n` +
-      `>理由: ${signal.reason ?? signal.reasoning ?? ''}\n` +
+      `>分数: ${score.toFixed(2)}\n`;
+
+    if (entryPrice !== null) {
+      content += `>开仓价: ${entryPrice.toFixed(2)}\n`;
+    }
+    if (takeProfitPrice !== null) {
+      content += `>止盈价: ${takeProfitPrice.toFixed(2)}\n`;
+    }
+    if (stopLossPrice !== null) {
+      content += `>止损价: ${stopLossPrice.toFixed(2)}\n`;
+    }
+
+    content += `>理由: ${signal.reason ?? signal.reasoning ?? ''}\n` +
       `>时间: ${time ? new Date(time).toLocaleString('zh-CN') : '-'}`;
 
     return {
@@ -168,7 +217,7 @@ export class NotificationsService {
                 context.signal,
                 context.stockName,
                 context.stockCode,
-                strategy.name,
+                strategy,
               );
               break;
             default:
@@ -189,6 +238,7 @@ export class NotificationsService {
               const takeProfitPct = strategy.takeProfitPct ? parseFloat(strategy.takeProfitPct) : undefined;
               await this.simulationService.executeStrategyTrade({
                 strategyId: strategy.id,
+                accountId: strategy.runtime.accountId || undefined,
                 stockCode: context.stockCode,
                 stockName: context.stockName,
                 quantity: 100,
@@ -229,9 +279,9 @@ export class NotificationsService {
     return diffMs <= this.TWO_DAYS_MS;
   }
 
-  async sendTestNotification(webhookId: string): Promise<boolean> {
+  async sendTestNotification(webhookId: string, userId: string): Promise<boolean> {
     try {
-      const webhook = await this.webhooksService.findById(webhookId);
+      const webhook = await this.webhooksService.findById(webhookId, userId);
       if (!webhook) {
         this.logger.error(`Webhook ${webhookId} not found`);
         return false;

@@ -7,9 +7,10 @@ import { BlacklistModule } from '../blacklist/blacklist.module.js';
 import { StockModule } from '../stock/stock.module.js';
 import { StrategyModule } from '../strategy/strategy.module.js';
 import { SimulationModule } from '../simulation/simulation.module.js';
+import { KlinesModule } from '../klines/klines.module.js';
 
 @Module({
-  imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule, SimulationModule],
+  imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule, SimulationModule, KlinesModule],
   providers: [NotificationsService, WebhooksService],
   exports: [NotificationsService, WebhooksService],
 })

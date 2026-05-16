@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Card, Table, Switch, Select, Typography, message, Tooltip, Tag } from 'antd';
-import { ThunderboltOutlined } from '@ant-design/icons';
+import { Card, Table, Switch, Select, Typography, message, Tooltip, Tag, Space } from 'antd';
+import { ThunderboltOutlined, WarningOutlined } from '@ant-design/icons';
 import client from '@/services/client';
 
 const { Title } = Typography;
@@ -9,6 +9,7 @@ interface StrategyRuntime {
   id: string;
   strategyId: string;
   webhookId: string | null;
+  accountId: string | null;
   enableWebhook: boolean;
   enableSimulation: boolean;
   enableLiveTrading: boolean;
@@ -34,6 +35,16 @@ interface Webhook {
   enabled: boolean;
 }
 
+interface SimulationAccount {
+  id: string;
+  name: string | null;
+  initialCapital: string;
+  currentCapital: string;
+  availableCash: string;
+  totalProfit: string;
+  totalReturn: string;
+}
+
 const directionModeMap: Record<string, string> = {
   long_only: '仅做多',
   short_only: '仅做空',
@@ -44,6 +55,7 @@ const RuntimePage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [strategies, setStrategies] = useState<Strategy[]>([]);
   const [webhooks, setWebhooks] = useState<Webhook[]>([]);
+  const [simulationAccounts, setSimulationAccounts] = useState<SimulationAccount[]>([]);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -69,10 +81,21 @@ const RuntimePage: React.FC = () => {
     }
   }, []);
 
+  const fetchSimulationAccounts = useCallback(async () => {
+    try {
+      const response = await client.get('/simulation/accounts');
+      const data = response.data || [];
+      setSimulationAccounts(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error('获取模拟账户列表失败:', error);
+    }
+  }, []);
+
   useEffect(() => {
     fetchData();
     fetchWebhooks();
-  }, [fetchData, fetchWebhooks]);
+    fetchSimulationAccounts();
+  }, [fetchData, fetchWebhooks, fetchSimulationAccounts]);
 
   const handleRuntimeUpdate = async (strategyId: string, field: string, value: boolean | string | null) => {
     try {
@@ -114,14 +137,42 @@ const RuntimePage: React.FC = () => {
     {
       title: '模拟交易',
       key: 'enableSimulation',
-      width: 120,
+      width: 280,
       align: 'center' as const,
-      render: (_: unknown, record: Strategy) => (
-        <Switch
-          checked={record.runtime?.enableSimulation ?? false}
-          onChange={(checked) => handleRuntimeUpdate(record.id, 'enableSimulation', checked)}
-        />
-      ),
+      render: (_: unknown, record: Strategy) => {
+        const enableSimulation = record.runtime?.enableSimulation ?? false;
+        const accountId = record.runtime?.accountId || undefined;
+        const showWarning = enableSimulation && !accountId;
+
+        return (
+          <Space direction="vertical" size={4} style={{ width: '100%' }}>
+            <Space size={8}>
+              <Switch
+                checked={enableSimulation}
+                onChange={(checked) => handleRuntimeUpdate(record.id, 'enableSimulation', checked)}
+              />
+              {enableSimulation && (
+                <Select
+                  value={accountId}
+                  placeholder="选择模拟账户"
+                  allowClear
+                  style={{ width: 160 }}
+                  options={simulationAccounts.map((a) => ({
+                    label: `${a.name || '未命名'} (¥${Number(a.availableCash).toLocaleString()})`,
+                    value: a.id,
+                  }))}
+                  onChange={(value) => handleRuntimeUpdate(record.id, 'accountId', value || null)}
+                />
+              )}
+            </Space>
+            {showWarning && (
+              <Tooltip title="请选择模拟账户">
+                <Tag color="warning" icon={<WarningOutlined />}>未选择账户</Tag>
+              </Tooltip>
+            )}
+          </Space>
+        );
+      },
     },
     {
       title: '实盘交易',

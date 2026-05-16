@@ -28,7 +28,9 @@ async function seed() {
       .where(eq(schema.users.email, adminEmail))
       .limit(1);
 
-    if (existingAdmin.length === 0) {
+    let adminUser = existingAdmin[0] || null;
+
+    if (!adminUser) {
       const hashedPassword = await bcrypt.hash(adminPassword, 10);
 
       await db.insert(schema.users).values({
@@ -36,6 +38,13 @@ async function seed() {
         email: adminEmail,
         password: hashedPassword,
       });
+
+      const [created] = await db
+        .select()
+        .from(schema.users)
+        .where(eq(schema.users.email, adminEmail))
+        .limit(1);
+      adminUser = created;
 
       console.log('Admin user created successfully');
       console.log(`Email: ${adminEmail}`);
@@ -226,7 +235,10 @@ async function seed() {
         .from(schema.strategies)
         .where(eq(schema.strategies.name, strategy.name));
       if (existing.length === 0) {
-        await db.insert(schema.strategies).values(strategy);
+        await db.insert(schema.strategies).values({
+          ...strategy,
+          userId: adminUser!.id,
+        });
         console.log(`Created strategy: ${strategy.name}`);
       } else {
         console.log(`Strategy already exists: ${strategy.name}`);
@@ -280,6 +292,7 @@ async function seed() {
             enableWebhook: runtime.enableWebhook,
             enableSimulation: runtime.enableSimulation,
             enableLiveTrading: runtime.enableLiveTrading,
+            accountId: null,
           });
           console.log(`Created runtime for strategy: ${runtime.strategyName}`);
         } else {

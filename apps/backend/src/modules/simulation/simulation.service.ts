@@ -1,4 +1,4 @@
-import { Injectable, Logger, NotFoundException } from '@nestjs/common';
+import { Injectable, Logger, NotFoundException, ConflictException } from '@nestjs/common';
 import { eq, and, desc } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { KlinesService } from '../../modules/klines/klines.service.js';
@@ -6,6 +6,7 @@ import { CacheService } from '../../core/cache/cache.service.js';
 import {
   users,
   klines,
+  strategies,
   simulationAccounts,
   simulationPositions,
   simulationTrades,
@@ -22,6 +23,7 @@ import {
 export interface CreateAccountDto {
   userId: string;
   initialCapital: number;
+  name?: string;
 }
 
 export interface UpdateAccountDto {
@@ -65,8 +67,26 @@ export class SimulationService {
   async createAccount(dto: CreateAccountDto): Promise<SimulationAccount> {
     await this.ensureUserExists(dto.userId);
 
+    if (dto.name) {
+      const [existing] = await this.dbService.db
+        .select()
+        .from(simulationAccounts)
+        .where(
+          and(
+            eq(simulationAccounts.userId, dto.userId),
+            eq(simulationAccounts.name, dto.name),
+          ),
+        )
+        .limit(1);
+
+      if (existing) {
+        throw new ConflictException(`Account with name "${dto.name}" already exists for this user`);
+      }
+    }
+
     const newAccount: NewSimulationAccount = {
       userId: dto.userId,
+      name: dto.name || null,
       initialCapital: dto.initialCapital.toString(),
       currentCapital: dto.initialCapital.toString(),
       availableCash: dto.initialCapital.toString(),
@@ -104,6 +124,17 @@ export class SimulationService {
     this.logger.log(`Default user created`);
   }
 
+  private async verifyAccountOwnership(accountId: string, userId: string): Promise<SimulationAccount> {
+    const account = await this.getAccountById(accountId);
+    if (!account) {
+      throw new NotFoundException('Account not found');
+    }
+    if (account.userId !== userId) {
+      throw new NotFoundException('Account not found');
+    }
+    return account;
+  }
+
   async getAccountByUserId(userId: string): Promise<SimulationAccount | null> {
     const [account] = await this.dbService.db
       .select()
@@ -112,6 +143,14 @@ export class SimulationService {
       .limit(1);
 
     return account || null;
+  }
+
+  async getAccountsByUserId(userId: string): Promise<SimulationAccount[]> {
+    return this.dbService.db
+      .select()
+      .from(simulationAccounts)
+      .where(eq(simulationAccounts.userId, userId))
+      .orderBy(simulationAccounts.createdAt);
   }
 
   async getAccountById(id: string): Promise<SimulationAccount | null> {
@@ -560,20 +599,47 @@ export class SimulationService {
 
   async executeStrategyTrade(dto: {
     strategyId: string;
+    accountId?: string;
     stockCode: string;
     stockName: string;
     quantity: number;
     stopLossPct?: number;
     takeProfitPct?: number;
   }): Promise<SimulationTrade | null> {
-    const [account] = await this.dbService.db
-      .select()
-      .from(simulationAccounts)
-      .limit(1);
+    let account: SimulationAccount | null;
+
+    if (dto.accountId) {
+      account = await this.getAccountById(dto.accountId);
+      if (!account) {
+        this.logger.error(`executeStrategyTrade: account ${dto.accountId} not found`);
+        return null;
+      }
+    } else {
+      this.logger.warn(`executeStrategyTrade: no accountId specified for strategy ${dto.strategyId}, falling back to first account for strategy owner`);
+      const [strategyRow] = await this.dbService.db
+        .select({ userId: strategies.userId })
+        .from(strategies)
+        .where(eq(strategies.id, dto.strategyId))
+        .limit(1);
+
+      if (!strategyRow?.userId) {
+        this.logger.error(`executeStrategyTrade: strategy ${dto.strategyId} not found or has no userId`);
+        return null;
+      }
+
+      const [firstAccount] = await this.dbService.db
+        .select()
+        .from(simulationAccounts)
+        .where(eq(simulationAccounts.userId, strategyRow.userId))
+        .limit(1);
+      account = firstAccount || null;
+    }
+
     if (!account) {
       this.logger.error('executeStrategyTrade: no simulation account found');
       return null;
     }
+
     const price = await this.getLatestPrice(dto.stockCode);
     const totalAmount = price * dto.quantity;
     const availableCash = parseFloat(account.availableCash);

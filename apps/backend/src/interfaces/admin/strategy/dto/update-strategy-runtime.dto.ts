@@ -21,4 +21,9 @@ export class UpdateStrategyRuntimeDto {
   @IsOptional()
   @IsBoolean()
   enableLiveTrading?: boolean;
+
+  @ApiPropertyOptional({ description: '绑定的模拟账户 ID' })
+  @IsOptional()
+  @IsString()
+  accountId?: string;
 }

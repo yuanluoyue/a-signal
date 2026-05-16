@@ -40,6 +40,7 @@ export class QueryBacktestTool {
 
     try {
       const records = await this.backtestService.findAllRecords(
+        '',
         args.stockCode as string | undefined,
         args.strategyId as string | undefined,
         typeof args.limit === 'number' ? args.limit : 10,

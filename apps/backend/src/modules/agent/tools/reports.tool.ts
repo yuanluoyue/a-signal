@@ -34,7 +34,7 @@ export class GetReportsByStockTool extends BaseTool<GetReportsByStockInput, Repo
     try {
       this.logger.debug(`[GetReportsByStockTool] Executing for stock: ${input.stockCode}`);
 
-      const tracking = await this.stockTrackingService.findByStockCode(input.stockCode);
+      const tracking = await this.stockTrackingService.findByStockCode(input.stockCode, '');
 
       if (!tracking) {
         return {
@@ -47,7 +47,7 @@ export class GetReportsByStockTool extends BaseTool<GetReportsByStockInput, Repo
         };
       }
 
-      const report = await this.stockTrackingService.getResearchReport(tracking.id);
+      const report = await this.stockTrackingService.getResearchReport(tracking.id, '');
 
       return {
         stockCode: tracking.stockCode,

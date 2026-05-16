@@ -1,0 +1,34 @@
+- [x] 数据库迁移文件已生成，包含所有新增字段（userId/accountId/name）和索引变更
+- [x] strategies 表有 userId 字段，(userId, name) 联合唯一索引已创建
+- [x] webhooks 表有 userId 字段，userId 索引已创建
+- [x] backtest_records 表有 userId 字段，userId 索引已创建
+- [x] backtest_trades 表有 userId 字段，userId 索引已创建
+- [x] simulation_accounts 表有 name 字段，(userId, name) 联合唯一索引已创建
+- [x] strategies_runtime 表有 accountId 字段，accountId 索引已创建
+- [x] stock_trackings 表有 userId 字段，(userId, stockCode) 联合唯一索引已创建
+- [x] api_keys 表有 userId 字段，userId 索引已创建
+- [x] StrategyService 所有查询方法按 userId 过滤，创建时写入 userId
+- [x] StrategyService 策略名称唯一性校验为用户内唯一
+- [x] SimulationService 支持 getAccountsByUserId 返回多账户
+- [x] SimulationService.createAccount 支持 name 参数
+- [x] SimulationService.executeStrategyTrade 使用 runtime 指定的 accountId，fallback 按策略所属用户 userId 过滤并记录警告日志
+- [x] WebhooksService 所有查询方法按 userId 过滤，创建时写入 userId
+- [x] BacktestService 所有查询方法按 userId 过滤，创建时写入 userId
+- [x] StockTrackingService 所有查询方法按 userId 过滤，创建时写入 userId
+- [x] ApiKeyService 所有查询方法按 userId 过滤，创建时写入 userId
+- [x] NotificationsService.notifySignalAnalyzed 使用策略所属用户的 Webhook 和账户
+- [x] StrategyController 从 req.user 获取 userId 传入 Service，所有端点均传 userId（含 getStrategyById、getStrategyRuntime、updateStrategyRuntime）
+- [x] SimulationController 适配多账户，新增账户列表接口
+- [x] WebhooksController 从 req.user 获取 userId 传入 Service，移除不必要的 @Public()
+- [x] BacktestController 从 req.user 获取 userId 传入 Service，移除不必要的 @Public()
+- [x] 前端模拟交易页面支持多账户切换（Select 组件）
+- [x] 前端模拟交易页面支持创建新账户（名称 + 初始资金）
+- [x] 前端运行管理页面策略模拟交易旁有账户选择下拉框
+- [x] 前端策略管理页面只展示当前用户策略
+- [x] 前端通知设置页面只展示当前用户 Webhook
+- [x] 前端回测页面只展示当前用户记录，策略选择器只展示当前用户策略
+- [x] Seed 文件中策略、runtime 种子数据包含 userId 和 accountId
+- [x] Seed 文件中模拟账户种子数据包含 name 字段（当前无模拟账户种子，运行时自动创建默认账户）
+- [x] 不同用户的资源完全隔离，A 用户无法访问 B 用户的策略/Webhook/账户/回测等
+- [x] 策略触发模拟交易时使用 runtime.accountId 指定的账户
+- [x] runtime.accountId 为空时兼容处理（使用策略所属用户的第一个账户 + 警告日志）

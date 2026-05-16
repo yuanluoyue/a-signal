@@ -9,6 +9,8 @@ import {
   NotFoundException,
   HttpCode,
   HttpStatus,
+  Request,
+  BadRequestException,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
 import { WebhooksService } from '../../../modules/notifications/webhooks.service.js';
@@ -26,12 +28,20 @@ export class WebhooksController {
     private readonly notificationsService: NotificationsService,
   ) {}
 
+  private extractUserId(req: { user?: { userId: string; sub?: string } }): string {
+    const userId = req.user?.userId || req.user?.sub;
+    if (!userId) {
+      throw new BadRequestException('无法获取用户ID');
+    }
+    return userId;
+  }
+
   @Get()
-  @Public()
   @ApiOperation({ summary: '获取 Webhook 列表' })
   @ApiResponse({ status: 200, description: '成功获取 Webhook 列表' })
-  async getWebhooks() {
-    const webhooks = await this.webhooksService.findAll();
+  async getWebhooks(@Request() req: { user?: { userId: string; sub?: string } }) {
+    const userId = this.extractUserId(req);
+    const webhooks = await this.webhooksService.findAll(userId);
     return {
       data: webhooks,
       total: webhooks.length,
@@ -41,8 +51,12 @@ export class WebhooksController {
   @Post()
   @ApiOperation({ summary: '创建 Webhook' })
   @ApiResponse({ status: 201, description: 'Webhook 创建成功' })
-  async createWebhook(@Body() dto: CreateWebhookDto) {
-    const webhook = await this.webhooksService.create(dto);
+  async createWebhook(
+    @Body() dto: CreateWebhookDto,
+    @Request() req: { user?: { userId: string; sub?: string } },
+  ) {
+    const userId = this.extractUserId(req);
+    const webhook = await this.webhooksService.create(dto, userId);
     return {
       data: webhook,
       message: 'Webhook 创建成功',
@@ -54,13 +68,17 @@ export class WebhooksController {
   @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
   @ApiResponse({ status: 200, description: '成功获取信号列表' })
   @ApiResponse({ status: 404, description: 'Webhook 不存在' })
-  async getRecentSignals(@Param('id') id: string) {
-    const webhook = await this.webhooksService.findById(id);
+  async getRecentSignals(
+    @Param('id') id: string,
+    @Request() req: { user?: { userId: string; sub?: string } },
+  ) {
+    const userId = this.extractUserId(req);
+    const webhook = await this.webhooksService.findById(id, userId);
     if (!webhook) {
       throw new NotFoundException('Webhook 不存在');
     }
 
-    const signals = await this.webhooksService.getRecentSignals(20);
+    const signals = await this.webhooksService.getRecentSignals(userId, 20);
     return {
       data: signals,
       total: signals.length,
@@ -68,15 +86,18 @@ export class WebhooksController {
   }
 
   @Get(':id/strategies')
-  @Public()
   @ApiOperation({ summary: '获取绑定到 Webhook 的策略列表' })
   @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
-  async getWebhookStrategies(@Param('id') id: string) {
-    const webhook = await this.webhooksService.findById(id);
+  async getWebhookStrategies(
+    @Param('id') id: string,
+    @Request() req: { user?: { userId: string; sub?: string } },
+  ) {
+    const userId = this.extractUserId(req);
+    const webhook = await this.webhooksService.findById(id, userId);
     if (!webhook) {
       throw new NotFoundException('Webhook 不存在');
     }
-    const strategies = await this.webhooksService.findStrategiesByWebhookId(id);
+    const strategies = await this.webhooksService.findStrategiesByWebhookId(id, userId);
     return { data: strategies };
   }
 
@@ -86,8 +107,12 @@ export class WebhooksController {
   @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
   @ApiResponse({ status: 200, description: 'Webhook 测试成功' })
   @ApiResponse({ status: 404, description: 'Webhook 不存在' })
-  async testWebhook(@Param('id') id: string) {
-    const webhook = await this.webhooksService.findById(id);
+  async testWebhook(
+    @Param('id') id: string,
+    @Request() req: { user?: { userId: string; sub?: string } },
+  ) {
+    const userId = this.extractUserId(req);
+    const webhook = await this.webhooksService.findById(id, userId);
     if (!webhook) {
       throw new NotFoundException('Webhook 不存在');
     }
@@ -116,8 +141,10 @@ export class WebhooksController {
   async testWebhookWithSignal(
     @Param('id') id: string,
     @Param('signalId') signalId: string,
+    @Request() req: { user?: { userId: string; sub?: string } },
   ) {
-    await this.webhooksService.sendSignalTestNotification(id, signalId);
+    const userId = this.extractUserId(req);
+    await this.webhooksService.sendSignalTestNotification(id, signalId, userId);
     return {
       message: '测试消息已发送',
       webhookId: id,
@@ -133,8 +160,10 @@ export class WebhooksController {
   async updateWebhook(
     @Param('id') id: string,
     @Body() dto: UpdateWebhookDto,
+    @Request() req: { user?: { userId: string; sub?: string } },
   ) {
-    const webhook = await this.webhooksService.update(id, dto);
+    const userId = this.extractUserId(req);
+    const webhook = await this.webhooksService.update(id, dto, userId);
     return {
       data: webhook,
       message: 'Webhook 更新成功',
@@ -146,8 +175,12 @@ export class WebhooksController {
   @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
   @ApiResponse({ status: 200, description: 'Webhook 删除成功' })
   @ApiResponse({ status: 404, description: 'Webhook 不存在' })
-  async deleteWebhook(@Param('id') id: string) {
-    await this.webhooksService.delete(id);
+  async deleteWebhook(
+    @Param('id') id: string,
+    @Request() req: { user?: { userId: string; sub?: string } },
+  ) {
+    const userId = this.extractUserId(req);
+    await this.webhooksService.delete(id, userId);
     return {
       message: 'Webhook 删除成功',
     };
@@ -158,8 +191,12 @@ export class WebhooksController {
   @ApiParam({ name: 'id', description: 'Webhook ID', type: String })
   @ApiResponse({ status: 200, description: 'Webhook 状态切换成功' })
   @ApiResponse({ status: 404, description: 'Webhook 不存在' })
-  async toggleWebhook(@Param('id') id: string) {
-    const webhook = await this.webhooksService.toggleEnabled(id);
+  async toggleWebhook(
+    @Param('id') id: string,
+    @Request() req: { user?: { userId: string; sub?: string } },
+  ) {
+    const userId = this.extractUserId(req);
+    const webhook = await this.webhooksService.toggleEnabled(id, userId);
     return {
       data: webhook,
       message: webhook.enabled ? 'Webhook 已启用' : 'Webhook 已禁用',
