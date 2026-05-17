@@ -111,6 +111,11 @@ export default defineConfig({
           title: 'AI 投研助手',
         },
         {
+          path: '/trading-memory',
+          component: '@/pages/trading-memory/index',
+          title: '交易经验',
+        },
+        {
           path: '/settings/notifications',
           component: '@/pages/settings/notifications',
           title: '通知设置',

@@ -868,3 +868,61 @@ export const auditLogs = pgTable(
 
 export type AuditLog = typeof auditLogs.$inferSelect;
 export type NewAuditLog = typeof auditLogs.$inferInsert;
+
+export interface TradingMemoryPattern {
+  eventType?: string;
+  eventSubcategory?: string;
+  marketRegime?: string;
+  strategyId?: string;
+  signalDirection?: 'long' | 'short';
+  scoreRange?: [number, number];
+}
+
+export interface TradingMemoryStats {
+  sampleSize: number;
+  avgReturn: number;
+  expectancy?: number;
+  winRate: number;
+  sharpeRatio?: number;
+  maxDrawdown?: number;
+  avgHoldDays?: number;
+  profitFactor?: number;
+  pnlStdDev?: number;
+}
+
+export const tradingMemories = pgTable(
+  'trading_memories',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    type: varchar('type', { length: 50 }),
+    title: varchar('title', { length: 500 }),
+    summary: text('summary'),
+    rationale: text('rationale'),
+    tags: jsonb('tags').$type<string[]>(),
+    pattern: jsonb('pattern').$type<TradingMemoryPattern>(),
+    stats: jsonb('stats').$type<TradingMemoryStats>(),
+    confidence: decimal('confidence', { precision: 5, scale: 4 }),
+    status: varchar('status', { length: 20 }),
+    firstObservedAt: timestamp('first_observed_at', { withTimezone: true }),
+    lastValidatedAt: timestamp('last_validated_at', { withTimezone: true }),
+    invalidatedAt: timestamp('invalidated_at', { withTimezone: true }),
+    lastComputedAt: timestamp('last_computed_at', { withTimezone: true }),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    index('trading_memories_type_idx').on(table.type),
+    index('trading_memories_status_idx').on(table.status),
+    index('trading_memories_confidence_idx').on(table.confidence),
+    index('trading_memories_created_at_idx').on(table.createdAt),
+    index('trading_memories_last_validated_at_idx').on(table.lastValidatedAt),
+  ],
+);
+
+export type TradingMemory = typeof tradingMemories.$inferSelect;
+export type NewTradingMemory = typeof tradingMemories.$inferInsert;

@@ -676,3 +676,63 @@ export interface UpdateStrategyParams {
   maxPositions?: number;
   webhookId?: string;
 }
+
+// ==================== 交易经验相关类型 ====================
+
+export type TradingMemoryType = 'event_pattern' | 'signal_pattern' | 'strategy_pattern' | 'market_regime_pattern' | 'risk_pattern';
+export type TradingMemoryStatus = 'testing' | 'active' | 'dormant' | 'invalidated';
+
+export interface TradingMemoryPattern {
+  eventType?: string;
+  eventSubcategory?: string;
+  marketRegime?: string;
+  strategyId?: string;
+  signalDirection?: 'long' | 'short';
+  scoreRange?: [number, number];
+}
+
+export interface TradingMemoryStats {
+  sampleSize: number;
+  avgReturn: number;
+  expectancy?: number;
+  winRate: number;
+  sharpeRatio?: number;
+  maxDrawdown?: number;
+  avgHoldDays?: number;
+  profitFactor?: number;
+  pnlStdDev?: number;
+}
+
+export interface TradingMemory {
+  id: string;
+  type: TradingMemoryType;
+  title: string;
+  summary: string;
+  rationale?: string;
+  tags: string[];
+  pattern: TradingMemoryPattern;
+  stats: TradingMemoryStats;
+  confidence: string;
+  status: TradingMemoryStatus;
+  firstObservedAt: string;
+  lastValidatedAt: string | null;
+  invalidatedAt: string | null;
+  lastComputedAt: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface TradingMemoriesListQueryParams extends PaginationParams {
+  type?: TradingMemoryType;
+  status?: TradingMemoryStatus;
+  keyword?: string;
+}
+
+export interface TradingMemoriesListResponse extends PaginationResponse<TradingMemory> {}
+
+export interface TradingMemoryStatsResponse {
+  total: number;
+  highConfidence: number;
+  active: number;
+  invalidated: number;
+}

@@ -29,8 +29,10 @@ import { SignalRuleModule } from './modules/signal-rule/signal-rule.module.js';
 import { SignalGeneratorModule } from './modules/signal-generator/signal-generator.module.js';
 import { StrategyModule } from './modules/strategy/strategy.module.js';
 import { AuditLogModule } from './modules/audit-log/audit-log.module.js';
+import { TradingMemoryModule } from './modules/trading-memory/trading-memory.module.js';
 import { AuthController } from './interfaces/admin/auth/auth.controller.js';
 import { AuditLogController } from './interfaces/admin/audit-log/audit-log.controller.js';
+import { TradingMemoryController } from './interfaces/admin/trading-memory/trading-memory.controller.js';
 import { NewsController } from './interfaces/admin/news/news.controller.js';
 import { SignalsController } from './interfaces/admin/signals/signals.controller.js';
 import { SignalRulesController } from './interfaces/admin/signal-rules/signal-rules.controller.js';
@@ -97,6 +99,7 @@ const jwtAuthGuardProvider: Provider = {
     SignalGeneratorModule,
     StrategyModule,
     AuditLogModule,
+    TradingMemoryModule,
   ],
   controllers: [
     AuthController,
@@ -120,6 +123,7 @@ const jwtAuthGuardProvider: Provider = {
     McpController,
     HealthController,
     AuditLogController,
+    TradingMemoryController,
   ],
   providers: [
     jwtAuthGuardProvider,

@@ -26,6 +26,7 @@ import {
   MessageOutlined,
   BarChartOutlined,
   PieChartOutlined,
+  BulbOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -76,6 +77,7 @@ const MENU_ITEMS = [
     label: 'AI 智能体',
     children: [
       { key: '/agent-chat', icon: <MessageOutlined />, label: 'AI 助手' },
+      { key: '/trading-memory', icon: <BulbOutlined />, label: '交易经验' },
     ],
   },
   {
@@ -142,6 +144,7 @@ const getSelectedKey = (pathname: string): string => {
     '/runtime',
     '/simulation',
     '/agent-chat',
+    '/trading-memory',
     '/analysis/overview',
     '/analysis/strategies',
     '/blacklist',
@@ -168,6 +171,7 @@ const getOpenKeys = (pathname: string): string[] => {
     '/runtime': '/trading',
     '/simulation': '/trading',
     '/agent-chat': '/agent',
+    '/trading-memory': '/agent',
     '/analysis/overview': '/analysis',
     '/analysis/strategies': '/analysis',
     '/settings/notifications': '/settings',
