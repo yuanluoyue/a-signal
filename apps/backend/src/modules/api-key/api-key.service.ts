@@ -2,6 +2,7 @@ import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { eq, and } from 'drizzle-orm';
 import { randomBytes } from 'crypto';
 import { DbService } from '../../core/db/db.service.js';
+import { AuditLogService } from '../audit-log/audit-log.service.js';
 import { apiKeys, mcpLogs, type NewApiKey, type ApiKey } from '../../core/db/schema.js';
 import { CreateApiKeyDto, ApiKeyResponseDto, ApiKeyWithKeyResponseDto } from '../../interfaces/admin/api-key/dto/api-key.dto.js';
 
@@ -9,7 +10,10 @@ import { CreateApiKeyDto, ApiKeyResponseDto, ApiKeyWithKeyResponseDto } from '..
 export class ApiKeyService {
   private readonly logger = new Logger(ApiKeyService.name);
 
-  constructor(private readonly dbService: DbService) {}
+  constructor(
+    private readonly dbService: DbService,
+    private readonly auditLogService: AuditLogService,
+  ) {}
 
   private generateApiKey(): string {
     return `ak_${randomBytes(32).toString('hex')}`;
@@ -32,6 +36,15 @@ export class ApiKeyService {
       .returning();
 
     this.logger.log(`Created API Key: ${result.id} - ${result.name}`);
+
+    await this.auditLogService.log({
+      userId,
+      action: 'api_key.create',
+      resource: 'api_key',
+      resourceId: result.id,
+      detail: { name: result.name, rateLimit: result.rateLimit },
+      status: 'success',
+    });
 
     return {
       id: result.id,
@@ -94,6 +107,15 @@ export class ApiKeyService {
       .where(eq(apiKeys.id, id));
 
     this.logger.log(`Deleted API Key: ${id}`);
+
+    await this.auditLogService.log({
+      userId,
+      action: 'api_key.delete',
+      resource: 'api_key',
+      resourceId: id,
+      detail: { name: apiKey.name },
+      status: 'success',
+    });
   }
 
   async validateKey(key: string): Promise<ApiKey | null> {

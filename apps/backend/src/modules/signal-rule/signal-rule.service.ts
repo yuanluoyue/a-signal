@@ -2,6 +2,7 @@ import { Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { eq, and, sql, desc } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { signalRules, SignalRule, NewSignalRule } from '../../core/db/schema.js';
+import { AuditLogService } from '../audit-log/audit-log.service.js';
 
 export interface CreateSignalRuleDto {
   name: string;
@@ -43,7 +44,10 @@ export interface SignalRulesListQueryDto {
 export class SignalRuleService {
   private readonly logger = new Logger(SignalRuleService.name);
 
-  constructor(private readonly dbService: DbService) {}
+  constructor(
+    private readonly dbService: DbService,
+    private readonly auditLogService: AuditLogService,
+  ) {}
 
   async create(dto: CreateSignalRuleDto): Promise<SignalRule> {
     try {
@@ -65,6 +69,13 @@ export class SignalRuleService {
         .returning();
 
       this.logger.log(`Created signal rule ${result.id} [${dto.name}]`);
+      await this.auditLogService.log({
+        action: 'signal_rule.create',
+        resource: 'signal_rule',
+        resourceId: result.id,
+        detail: { name: dto.name, type: dto.type },
+        status: 'success',
+      });
       return result;
     } catch (error) {
       this.logger.error(
@@ -171,6 +182,13 @@ export class SignalRuleService {
       }
 
       this.logger.log(`Updated signal rule ${id}`);
+      await this.auditLogService.log({
+        action: 'signal_rule.update',
+        resource: 'signal_rule',
+        resourceId: id,
+        detail: { updatedFields: Object.keys(dto) },
+        status: 'success',
+      });
       return result;
     } catch (error) {
       this.logger.error(
@@ -242,6 +260,13 @@ export class SignalRuleService {
         .returning();
 
       this.logger.log(`Updated global signal rule ${globalRule.id}`);
+      await this.auditLogService.log({
+        action: 'signal_rule.update',
+        resource: 'signal_rule',
+        resourceId: globalRule.id,
+        detail: { updatedFields: Object.keys(dto), isGlobal: true },
+        status: 'success',
+      });
       return result;
     } catch (error) {
       this.logger.error(

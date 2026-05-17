@@ -9,6 +9,7 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from '../users/users.service.js';
+import { AuditLogService } from '../audit-log/audit-log.service.js';
 import { User } from '../../core/db/schema.js';
 
 export interface RegisterInput {
@@ -38,6 +39,11 @@ export interface AuthResponse {
   accessToken: string;
 }
 
+export interface RequestContext {
+  ipAddress?: string;
+  userAgent?: string;
+}
+
 @Injectable()
 export class AuthService {
   private readonly logger = new Logger(AuthService.name);
@@ -45,14 +51,23 @@ export class AuthService {
   constructor(
     private usersService: UsersService,
     private jwtService: JwtService,
+    private auditLogService: AuditLogService,
   ) {}
 
-  async register(input: RegisterInput): Promise<AuthResponse> {
+  async register(input: RegisterInput, ctx?: RequestContext): Promise<AuthResponse> {
     try {
       this.logger.log(`Registering user with email: ${input.email}`);
 
       const existingUser = await this.usersService.findByEmail(input.email);
       if (existingUser) {
+        await this.auditLogService.log({
+          action: 'user.register',
+          resource: 'user',
+          detail: { email: input.email, reason: 'email_already_registered' },
+          ipAddress: ctx?.ipAddress,
+          userAgent: ctx?.userAgent,
+          status: 'failure',
+        });
         throw new ConflictException('Email already registered');
       }
 
@@ -71,19 +86,48 @@ export class AuthService {
       const accessToken = this.generateToken(user);
       const { password, ...userWithoutPassword } = user;
 
+      await this.auditLogService.log({
+        userId: user.id,
+        action: 'user.register',
+        resource: 'user',
+        resourceId: user.id,
+        detail: { email: input.email, nickname: input.nickname },
+        ipAddress: ctx?.ipAddress,
+        userAgent: ctx?.userAgent,
+        status: 'success',
+      });
+
       return {
         user: userWithoutPassword as Omit<User, 'password'>,
         accessToken,
       };
     } catch (error) {
+      if (!(error instanceof ConflictException)) {
+        await this.auditLogService.log({
+          action: 'user.register',
+          resource: 'user',
+          detail: { email: input.email, reason: error.message },
+          ipAddress: ctx?.ipAddress,
+          userAgent: ctx?.userAgent,
+          status: 'failure',
+        });
+      }
       this.logger.error(`Register failed: ${error.message}`, error.stack);
       throw error;
     }
   }
 
-  async login(input: LoginInput): Promise<AuthResponse> {
+  async login(input: LoginInput, ctx?: RequestContext): Promise<AuthResponse> {
     const user = await this.usersService.findByEmail(input.email);
     if (!user) {
+      await this.auditLogService.log({
+        action: 'user.login',
+        resource: 'user',
+        detail: { email: input.email, reason: 'user_not_found' },
+        ipAddress: ctx?.ipAddress,
+        userAgent: ctx?.userAgent,
+        status: 'failure',
+      });
       throw new UnauthorizedException('Invalid credentials');
     }
 
@@ -92,11 +136,32 @@ export class AuthService {
       user.password,
     );
     if (!isPasswordValid) {
+      await this.auditLogService.log({
+        userId: user.id,
+        action: 'user.login',
+        resource: 'user',
+        resourceId: user.id,
+        detail: { email: input.email, reason: 'invalid_password' },
+        ipAddress: ctx?.ipAddress,
+        userAgent: ctx?.userAgent,
+        status: 'failure',
+      });
       throw new UnauthorizedException('Invalid credentials');
     }
 
     const accessToken = this.generateToken(user);
     const { password, ...userWithoutPassword } = user;
+
+    await this.auditLogService.log({
+      userId: user.id,
+      action: 'user.login',
+      resource: 'user',
+      resourceId: user.id,
+      detail: { email: input.email },
+      ipAddress: ctx?.ipAddress,
+      userAgent: ctx?.userAgent,
+      status: 'success',
+    });
 
     return {
       user: userWithoutPassword as Omit<User, 'password'>,
@@ -123,6 +188,15 @@ export class AuthService {
       throw new NotFoundException('User not found');
     }
 
+    await this.auditLogService.log({
+      userId,
+      action: 'user.update_profile',
+      resource: 'user',
+      resourceId: userId,
+      detail: { updatedFields: Object.keys(input) },
+      status: 'success',
+    });
+
     const { password, ...userWithoutPassword } = user;
     return userWithoutPassword as Omit<User, 'password'>;
   }
@@ -141,11 +215,27 @@ export class AuthService {
       user.password,
     );
     if (!isPasswordValid) {
+      await this.auditLogService.log({
+        userId,
+        action: 'user.change_password',
+        resource: 'user',
+        resourceId: userId,
+        detail: { reason: 'current_password_incorrect' },
+        status: 'failure',
+      });
       throw new BadRequestException('Current password is incorrect');
     }
 
     const hashedPassword = await bcrypt.hash(input.newPassword, 10);
     await this.usersService.updatePassword(userId, { password: hashedPassword });
+
+    await this.auditLogService.log({
+      userId,
+      action: 'user.change_password',
+      resource: 'user',
+      resourceId: userId,
+      status: 'success',
+    });
 
     return { message: 'Password changed successfully' };
   }

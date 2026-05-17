@@ -8,9 +8,10 @@ import { StockModule } from '../stock/stock.module.js';
 import { StrategyModule } from '../strategy/strategy.module.js';
 import { SimulationModule } from '../simulation/simulation.module.js';
 import { KlinesModule } from '../klines/klines.module.js';
+import { AuditLogModule } from '../audit-log/audit-log.module.js';
 
 @Module({
-  imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule, SimulationModule, KlinesModule],
+  imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule, SimulationModule, KlinesModule, AuditLogModule],
   providers: [NotificationsService, WebhooksService],
   exports: [NotificationsService, WebhooksService],
 })

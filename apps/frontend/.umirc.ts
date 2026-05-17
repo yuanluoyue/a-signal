@@ -111,6 +111,11 @@ export default defineConfig({
           title: 'AI 投研助手',
         },
         {
+          path: '/trading-memory',
+          component: '@/pages/trading-memory/index',
+          title: '交易经验',
+        },
+        {
           path: '/settings/notifications',
           component: '@/pages/settings/notifications',
           title: '通知设置',
@@ -124,6 +129,26 @@ export default defineConfig({
           path: '/settings/api-keys',
           component: '@/pages/settings/api-keys',
           title: 'API Key 管理',
+        },
+        {
+          path: '/audit-logs',
+          component: '@/pages/audit-logs/index',
+          title: '审计日志',
+        },
+        {
+          path: '/analysis/overview',
+          component: '@/pages/analysis/overview',
+          title: '综合分析',
+        },
+        {
+          path: '/analysis/strategies',
+          component: '@/pages/analysis/strategies/index',
+          title: '策略总览',
+        },
+        {
+          path: '/analysis/strategies/:id',
+          component: '@/pages/analysis/strategies/[id]',
+          title: '策略详情',
         },
         {
           path: '/profile',

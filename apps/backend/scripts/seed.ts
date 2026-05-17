@@ -300,6 +300,174 @@ async function seed() {
         }
       }
     }
+    // ==================== 交易经验数据 ====================
+    console.log('Seeding trading memories...');
+
+    const initialTradingMemories = [
+      {
+        type: 'event_pattern',
+        title: '并购事件短期做多模式',
+        summary: '并购类事件发生后，标的公司股价在3-5个交易日内平均上涨2.3%，胜率68%',
+        rationale: '基于过去200次并购事件的历史回测，市场对并购消息的反应通常在短期内偏正面，尤其是被收购方',
+        tags: ['并购', '短期', '做多'],
+        pattern: {
+          eventType: 'm_a',
+          signalDirection: 'long' as const,
+        },
+        stats: {
+          sampleSize: 200,
+          avgReturn: 0.023,
+          winRate: 0.68,
+          sharpeRatio: 1.45,
+          maxDrawdown: -0.08,
+          avgHoldDays: 4,
+          profitFactor: 2.1,
+        },
+        confidence: '0.8500',
+        status: 'active',
+        firstObservedAt: new Date('2024-01-15'),
+        lastValidatedAt: new Date('2025-05-01'),
+        lastComputedAt: new Date('2025-05-10'),
+      },
+      {
+        type: 'signal_pattern',
+        title: '高分信号跟随策略',
+        summary: '信号分数大于0.5时跟随做多，平均收益1.8%，胜率62%',
+        tags: ['高分信号', '做多'],
+        pattern: {
+          scoreRange: [0.5, 1.0] as [number, number],
+          signalDirection: 'long' as const,
+        },
+        stats: {
+          sampleSize: 350,
+          avgReturn: 0.018,
+          winRate: 0.62,
+          sharpeRatio: 1.2,
+          maxDrawdown: -0.12,
+          avgHoldDays: 3,
+          profitFactor: 1.8,
+        },
+        confidence: '0.7800',
+        status: 'active',
+        firstObservedAt: new Date('2024-03-01'),
+        lastValidatedAt: new Date('2025-04-28'),
+        lastComputedAt: new Date('2025-05-08'),
+      },
+      {
+        type: 'strategy_pattern',
+        title: '保守多头低波动策略',
+        summary: '低波动环境下保守多头策略表现稳定，夏普比率1.8',
+        tags: ['保守', '多头', '低波动'],
+        pattern: {
+          marketRegime: 'low_volatility',
+          strategyId: 'conservative_long',
+        },
+        stats: {
+          sampleSize: 120,
+          avgReturn: 0.012,
+          expectancy: 0.008,
+          winRate: 0.72,
+          sharpeRatio: 1.8,
+          maxDrawdown: -0.05,
+          avgHoldDays: 5,
+          profitFactor: 2.5,
+          pnlStdDev: 0.015,
+        },
+        confidence: '0.9200',
+        status: 'active',
+        firstObservedAt: new Date('2024-02-01'),
+        lastValidatedAt: new Date('2025-05-05'),
+        lastComputedAt: new Date('2025-05-12'),
+      },
+      {
+        type: 'market_regime_pattern',
+        title: '高波动环境做空优势',
+        summary: '高波动环境下做空策略胜率提升至58%，但需注意止损',
+        tags: ['高波动', '做空', '风险控制'],
+        pattern: {
+          marketRegime: 'high_volatility',
+          signalDirection: 'short' as const,
+        },
+        stats: {
+          sampleSize: 85,
+          avgReturn: 0.015,
+          winRate: 0.58,
+          sharpeRatio: 0.9,
+          maxDrawdown: -0.15,
+          avgHoldDays: 2,
+          profitFactor: 1.4,
+        },
+        confidence: '0.6500',
+        status: 'testing',
+        firstObservedAt: new Date('2024-06-01'),
+        lastValidatedAt: new Date('2025-03-15'),
+        lastComputedAt: new Date('2025-04-20'),
+      },
+      {
+        type: 'risk_pattern',
+        title: '盈利超预期后追高风险',
+        summary: '盈利超预期事件后追高买入风险较大，3日内回撤概率45%',
+        rationale: '市场对盈利超预期的反应往往已经price-in，追高容易遭遇获利回吐',
+        tags: ['盈利超预期', '追高', '风险'],
+        pattern: {
+          eventType: 'earnings_actual',
+          eventSubcategory: 'earnings_beat',
+          signalDirection: 'long' as const,
+        },
+        stats: {
+          sampleSize: 150,
+          avgReturn: -0.005,
+          winRate: 0.45,
+          sharpeRatio: -0.3,
+          maxDrawdown: -0.2,
+          avgHoldDays: 3,
+          profitFactor: 0.8,
+        },
+        confidence: '0.7100',
+        status: 'invalidated',
+        firstObservedAt: new Date('2024-01-20'),
+        lastValidatedAt: new Date('2025-01-10'),
+        invalidatedAt: new Date('2025-02-01'),
+        lastComputedAt: new Date('2025-02-01'),
+      },
+      {
+        type: 'event_pattern',
+        title: '政策利好短期效应',
+        summary: '政策利好事件短期效应明显，但持续时间有限',
+        tags: ['政策', '短期'],
+        pattern: {
+          eventType: 'policy',
+        },
+        stats: {
+          sampleSize: 60,
+          avgReturn: 0.01,
+          winRate: 0.55,
+          sharpeRatio: 0.7,
+          maxDrawdown: -0.1,
+          avgHoldDays: 2,
+          profitFactor: 1.2,
+        },
+        confidence: '0.5200',
+        status: 'dormant',
+        firstObservedAt: new Date('2024-04-01'),
+        lastValidatedAt: new Date('2024-12-01'),
+        lastComputedAt: new Date('2025-01-15'),
+      },
+    ];
+
+    for (const memory of initialTradingMemories) {
+      const existing = await db
+        .select()
+        .from(schema.tradingMemories)
+        .where(eq(schema.tradingMemories.title, memory.title));
+      if (existing.length === 0) {
+        await db.insert(schema.tradingMemories).values(memory);
+        console.log(`Created trading memory: ${memory.title}`);
+      } else {
+        console.log(`Trading memory already exists: ${memory.title}`);
+      }
+    }
+
   } catch (error) {
     console.error('Seed failed:', error);
     throw error;

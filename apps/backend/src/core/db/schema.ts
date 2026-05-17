@@ -836,3 +836,93 @@ export const strategiesRuntime = pgTable(
 
 export type StrategyRuntime = typeof strategiesRuntime.$inferSelect;
 export type NewStrategyRuntime = typeof strategiesRuntime.$inferInsert;
+
+export const auditLogs = pgTable(
+  'audit_logs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id'),
+    action: varchar('action', { length: 100 }),
+    resource: varchar('resource', { length: 50 }),
+    resourceId: varchar('resource_id', { length: 255 }),
+    detail: jsonb('detail').$type<Record<string, unknown>>(),
+    ipAddress: varchar('ip_address', { length: 45 }),
+    userAgent: text('user_agent'),
+    status: varchar('status', { length: 20 }),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'audit_logs_user_id_fk',
+    }),
+    index('audit_logs_user_id_idx').on(table.userId),
+    index('audit_logs_action_idx').on(table.action),
+    index('audit_logs_resource_idx').on(table.resource),
+    index('audit_logs_created_at_idx').on(table.createdAt),
+  ],
+);
+
+export type AuditLog = typeof auditLogs.$inferSelect;
+export type NewAuditLog = typeof auditLogs.$inferInsert;
+
+export interface TradingMemoryPattern {
+  eventType?: string;
+  eventSubcategory?: string;
+  marketRegime?: string;
+  strategyId?: string;
+  signalDirection?: 'long' | 'short';
+  scoreRange?: [number, number];
+}
+
+export interface TradingMemoryStats {
+  sampleSize: number;
+  avgReturn: number;
+  expectancy?: number;
+  winRate: number;
+  sharpeRatio?: number;
+  maxDrawdown?: number;
+  avgHoldDays?: number;
+  profitFactor?: number;
+  pnlStdDev?: number;
+}
+
+export const tradingMemories = pgTable(
+  'trading_memories',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    type: varchar('type', { length: 50 }),
+    title: varchar('title', { length: 500 }),
+    summary: text('summary'),
+    rationale: text('rationale'),
+    tags: jsonb('tags').$type<string[]>(),
+    pattern: jsonb('pattern').$type<TradingMemoryPattern>(),
+    stats: jsonb('stats').$type<TradingMemoryStats>(),
+    confidence: decimal('confidence', { precision: 5, scale: 4 }),
+    status: varchar('status', { length: 20 }),
+    firstObservedAt: timestamp('first_observed_at', { withTimezone: true }),
+    lastValidatedAt: timestamp('last_validated_at', { withTimezone: true }),
+    invalidatedAt: timestamp('invalidated_at', { withTimezone: true }),
+    lastComputedAt: timestamp('last_computed_at', { withTimezone: true }),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    index('trading_memories_type_idx').on(table.type),
+    index('trading_memories_status_idx').on(table.status),
+    index('trading_memories_confidence_idx').on(table.confidence),
+    index('trading_memories_created_at_idx').on(table.createdAt),
+    index('trading_memories_last_validated_at_idx').on(table.lastValidatedAt),
+  ],
+);
+
+export type TradingMemory = typeof tradingMemories.$inferSelect;
+export type NewTradingMemory = typeof tradingMemories.$inferInsert;

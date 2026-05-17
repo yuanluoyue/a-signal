@@ -46,6 +46,16 @@ export class StrategyController {
     return await this.strategyService.findList(query, userId);
   }
 
+  @Get('analytics')
+  @ApiOperation({ summary: '获取当前用户所有策略的分析数据' })
+  @ApiResponse({ status: 200, description: '成功获取策略分析数据' })
+  async getStrategyAnalytics(
+    @Request() req: { user?: { userId: string; sub?: string } },
+  ) {
+    const userId = this.extractUserId(req);
+    return await this.strategyService.getStrategyAnalytics(userId);
+  }
+
   @Get(':id')
   @ApiOperation({ summary: '根据 ID 获取策略详情' })
   @ApiParam({ name: 'id', description: '策略 ID', type: String })
@@ -61,6 +71,18 @@ export class StrategyController {
       throw new NotFoundException('策略不存在');
     }
     return { data: strategy };
+  }
+
+  @Get(':id/analytics')
+  @ApiOperation({ summary: '获取单个策略的详细分析数据' })
+  @ApiParam({ name: 'id', description: '策略 ID', type: String })
+  @ApiResponse({ status: 200, description: '成功获取策略详细分析数据' })
+  async getStrategyDetailAnalytics(
+    @Param('id') id: string,
+    @Request() req: { user?: { userId: string; sub?: string } },
+  ) {
+    const userId = this.extractUserId(req);
+    return await this.strategyService.getStrategyDetailAnalytics(id, userId);
   }
 
   @Get(':id/runtime')
