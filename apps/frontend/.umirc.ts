@@ -136,6 +136,16 @@ export default defineConfig({
           title: '综合分析',
         },
         {
+          path: '/analysis/strategies',
+          component: '@/pages/analysis/strategies/index',
+          title: '策略总览',
+        },
+        {
+          path: '/analysis/strategies/:id',
+          component: '@/pages/analysis/strategies/[id]',
+          title: '策略详情',
+        },
+        {
           path: '/profile',
           component: '@/pages/profile',
           title: '个人资料',

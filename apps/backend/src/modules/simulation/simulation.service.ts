@@ -432,7 +432,8 @@ export class SimulationService {
       totalAmount: totalAmount.toString(),
       profit: profit.toString(),
       closeReason,
-      tradeSource,
+      tradeSource: position.tradeSource || tradeSource,
+      strategyId: position.strategyId || null,
       tradeTime: new Date(),
     };
 

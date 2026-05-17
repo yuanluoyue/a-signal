@@ -25,6 +25,7 @@ import {
   ControlOutlined,
   MessageOutlined,
   BarChartOutlined,
+  PieChartOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -83,6 +84,7 @@ const MENU_ITEMS = [
     label: '分析中心',
     children: [
       { key: '/analysis/overview', icon: <BarChartOutlined />, label: '综合分析' },
+      { key: '/analysis/strategies', icon: <PieChartOutlined />, label: '策略总览' },
     ],
   },
   {
@@ -114,11 +116,17 @@ const getSelectedKey = (pathname: string): string => {
       '/settings/notifications',
       '/settings/scheduler',
       '/settings/api-keys',
+      '/analysis/overview',
+      '/analysis/strategies',
     ];
     
     if (knownSecondLevelPaths.includes(secondLevelPath)) {
       return secondLevelPath;
     }
+
+  if (pathParts.length >= 3 && pathParts[0] === 'analysis' && pathParts[1] === 'strategies') {
+    return '/analysis/strategies';
+  }
   }
   
   const knownFirstLevelPaths = [
@@ -135,6 +143,7 @@ const getSelectedKey = (pathname: string): string => {
     '/simulation',
     '/agent-chat',
     '/analysis/overview',
+    '/analysis/strategies',
     '/blacklist',
     '/audit-logs',
   ];
@@ -160,6 +169,7 @@ const getOpenKeys = (pathname: string): string[] => {
     '/simulation': '/trading',
     '/agent-chat': '/agent',
     '/analysis/overview': '/analysis',
+    '/analysis/strategies': '/analysis',
     '/settings/notifications': '/settings',
     '/settings/scheduler': '/settings',
     '/settings/api-keys': '/settings',
