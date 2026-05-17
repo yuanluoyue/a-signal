@@ -19,6 +19,12 @@ import {
   FundOutlined,
   ThunderboltOutlined,
   AuditOutlined,
+  ExperimentOutlined,
+  CodeOutlined,
+  DollarOutlined,
+  ControlOutlined,
+  MessageOutlined,
+  BarChartOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -35,23 +41,40 @@ const MENU_ITEMS = [
   {
     key: '/data',
     icon: <DatabaseOutlined />,
-    label: '数据管理',
+    label: '数据中心',
     children: [
-      {
-        key: '/news',
-        icon: <ReadOutlined />,
-        label: '新闻管理',
-      },
-      {
-        key: '/stocks',
-        icon: <SearchOutlined />,
-        label: '股票查询',
-      },
-      {
-        key: '/stock-trackings',
-        icon: <EyeOutlined />,
-        label: '股票追踪',
-      },
+      { key: '/news', icon: <ReadOutlined />, label: '新闻管理' },
+      { key: '/stocks', icon: <SearchOutlined />, label: '股票查询' },
+      { key: '/stock-trackings', icon: <EyeOutlined />, label: '股票追踪' },
+    ],
+  },
+  {
+    key: '/strategy',
+    icon: <ExperimentOutlined />,
+    label: '策略中心',
+    children: [
+      { key: '/signal-rules', icon: <SettingOutlined />, label: '信号规则' },
+      { key: '/signals', icon: <BellOutlined />, label: '信号管理' },
+      { key: '/events', icon: <ThunderboltOutlined />, label: '事件管理' },
+      { key: '/strategies', icon: <CodeOutlined />, label: '策略管理' },
+      { key: '/backtest', icon: <LineChartOutlined />, label: '回测记录' },
+    ],
+  },
+  {
+    key: '/trading',
+    icon: <WalletOutlined />,
+    label: '交易中心',
+    children: [
+      { key: '/runtime', icon: <ControlOutlined />, label: '运行管理' },
+      { key: '/simulation', icon: <DollarOutlined />, label: '账户模拟' },
+    ],
+  },
+  {
+    key: '/agent',
+    icon: <RobotOutlined />,
+    label: 'AI 智能体',
+    children: [
+      { key: '/agent-chat', icon: <MessageOutlined />, label: 'AI 助手' },
     ],
   },
   {
@@ -59,46 +82,7 @@ const MENU_ITEMS = [
     icon: <FundOutlined />,
     label: '分析中心',
     children: [
-      {
-        key: '/signals',
-        icon: <BellOutlined />,
-        label: '信号管理',
-      },
-      {
-        key: '/events',
-        icon: <ThunderboltOutlined />,
-        label: '事件管理',
-      },
-      {
-        key: '/signal-rules',
-        icon: <SettingOutlined />,
-        label: '信号规则',
-      },
-      {
-        key: '/strategies',
-        icon: <FundOutlined />,
-        label: '策略管理',
-      },
-      {
-        key: '/runtime',
-        icon: <ThunderboltOutlined />,
-        label: '运行管理',
-      },
-      {
-        key: '/simulation',
-        icon: <WalletOutlined />,
-        label: '账户模拟',
-      },
-      {
-        key: '/backtest',
-        icon: <LineChartOutlined />,
-        label: '回测记录',
-      },
-      {
-        key: '/agent-chat',
-        icon: <RobotOutlined />,
-        label: 'AI 助手',
-      },
+      { key: '/analysis/overview', icon: <BarChartOutlined />, label: '综合分析' },
     ],
   },
   {
@@ -106,31 +90,11 @@ const MENU_ITEMS = [
     icon: <SettingOutlined />,
     label: '系统设置',
     children: [
-      {
-        key: '/settings/notifications',
-        icon: <NotificationOutlined />,
-        label: '通知设置',
-      },
-      {
-        key: '/settings/scheduler',
-        icon: <ClockCircleOutlined />,
-        label: '定时任务',
-      },
-      {
-        key: '/settings/api-keys',
-        icon: <KeyOutlined />,
-        label: 'API Key',
-      },
-      {
-        key: '/blacklist',
-        icon: <BlockOutlined />,
-        label: '黑名单',
-      },
-      {
-        key: '/audit-logs',
-        icon: <AuditOutlined />,
-        label: '审计日志',
-      },
+      { key: '/settings/notifications', icon: <NotificationOutlined />, label: '通知设置' },
+      { key: '/settings/scheduler', icon: <ClockCircleOutlined />, label: '定时任务' },
+      { key: '/settings/api-keys', icon: <KeyOutlined />, label: 'API Key' },
+      { key: '/blacklist', icon: <BlockOutlined />, label: '黑名单' },
+      { key: '/audit-logs', icon: <AuditOutlined />, label: '审计日志' },
     ],
   },
 ];
@@ -162,14 +126,15 @@ const getSelectedKey = (pathname: string): string => {
     '/news',
     '/stocks',
     '/stock-trackings',
+    '/signal-rules',
     '/signals',
     '/events',
-    '/signal-rules',
     '/strategies',
+    '/backtest',
     '/runtime',
     '/simulation',
-    '/backtest',
     '/agent-chat',
+    '/analysis/overview',
     '/blacklist',
     '/audit-logs',
   ];
@@ -186,13 +151,15 @@ const getOpenKeys = (pathname: string): string[] => {
     '/news': '/data',
     '/stocks': '/data',
     '/stock-trackings': '/data',
-    '/signals': '/analysis',
-    '/events': '/analysis',
-    '/signal-rules': '/analysis',
-    '/strategies': '/analysis',
-    '/simulation': '/analysis',
-    '/backtest': '/analysis',
-    '/agent-chat': '/analysis',
+    '/signal-rules': '/strategy',
+    '/signals': '/strategy',
+    '/events': '/strategy',
+    '/strategies': '/strategy',
+    '/backtest': '/strategy',
+    '/runtime': '/trading',
+    '/simulation': '/trading',
+    '/agent-chat': '/agent',
+    '/analysis/overview': '/analysis',
     '/settings/notifications': '/settings',
     '/settings/scheduler': '/settings',
     '/settings/api-keys': '/settings',

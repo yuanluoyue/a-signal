@@ -131,6 +131,11 @@ export default defineConfig({
           title: '审计日志',
         },
         {
+          path: '/analysis/overview',
+          component: '@/pages/analysis/overview',
+          title: '综合分析',
+        },
+        {
           path: '/profile',
           component: '@/pages/profile',
           title: '个人资料',
