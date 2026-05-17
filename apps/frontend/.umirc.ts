@@ -126,6 +126,11 @@ export default defineConfig({
           title: 'API Key 管理',
         },
         {
+          path: '/audit-logs',
+          component: '@/pages/audit-logs/index',
+          title: '审计日志',
+        },
+        {
           path: '/profile',
           component: '@/pages/profile',
           title: '个人资料',

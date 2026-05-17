@@ -4,6 +4,7 @@ import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { DbService } from '../../core/db/db.service.js';
 import { StockService } from '../stock/stock.service.js';
+import { AuditLogService } from '../audit-log/audit-log.service.js';
 import * as schema from '../../core/db/schema.js';
 
 export type Webhook = schema.Webhook;
@@ -44,6 +45,7 @@ export class WebhooksService {
     private readonly dbService: DbService,
     private readonly httpService: HttpService,
     private readonly stockService: StockService,
+    private readonly auditLogService: AuditLogService,
   ) {}
 
   async findAll(userId: string): Promise<Webhook[]> {
@@ -90,6 +92,15 @@ export class WebhooksService {
       })
       .returning();
 
+    await this.auditLogService.log({
+      userId,
+      action: 'webhook.create',
+      resource: 'webhook',
+      resourceId: result[0].id,
+      detail: { name: input.name, type: input.type },
+      status: 'success',
+    });
+
     this.logger.log(`Created webhook: ${result[0].name} (${result[0].id})`);
     return result[0];
   }
@@ -113,6 +124,15 @@ export class WebhooksService {
       .where(eq(schema.webhooks.id, id))
       .returning();
 
+    await this.auditLogService.log({
+      userId,
+      action: 'webhook.update',
+      resource: 'webhook',
+      resourceId: id,
+      detail: { name: result[0].name, updatedFields: Object.keys(input) },
+      status: 'success',
+    });
+
     this.logger.log(`Updated webhook: ${result[0].name} (${result[0].id})`);
     return result[0];
   }
@@ -124,6 +144,15 @@ export class WebhooksService {
     }
 
     await this.dbService.db.delete(schema.webhooks).where(eq(schema.webhooks.id, id));
+    await this.auditLogService.log({
+      userId,
+      action: 'webhook.delete',
+      resource: 'webhook',
+      resourceId: id,
+      detail: { name: existing.name },
+      status: 'success',
+    });
+
     this.logger.log(`Deleted webhook: ${existing.name} (${id})`);
   }
 

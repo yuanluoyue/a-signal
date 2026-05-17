@@ -3,6 +3,7 @@ import { eq, inArray } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { StockService } from '../stock/stock.service.js';
 import { stockBlacklist, type NewStockBlacklist, type StockBlacklist } from '../../core/db/schema.js';
+import { AuditLogService } from '../audit-log/audit-log.service.js';
 
 export interface CreateBlacklistDto {
   stockCode: string;
@@ -21,6 +22,7 @@ export class BlacklistService {
   constructor(
     private readonly dbService: DbService,
     private readonly stockService: StockService,
+    private readonly auditLogService: AuditLogService,
   ) {}
 
   async findAll(): Promise<BlacklistWithStockName[]> {
@@ -99,6 +101,13 @@ export class BlacklistService {
       .returning();
 
     this.logger.log(`Added ${dto.stockCode} to blacklist`);
+    await this.auditLogService.log({
+      action: 'blacklist.create',
+      resource: 'blacklist',
+      resourceId: result.id,
+      detail: { stockCode: dto.stockCode, stockName: dto.stockName },
+      status: 'success',
+    });
     return result;
   }
 
@@ -108,6 +117,12 @@ export class BlacklistService {
       .where(eq(stockBlacklist.id, id));
 
     this.logger.log(`Removed blacklist record ${id}`);
+    await this.auditLogService.log({
+      action: 'blacklist.delete',
+      resource: 'blacklist',
+      resourceId: id,
+      status: 'success',
+    });
   }
 
   async getAllBlacklistedStockCodes(): Promise<string[]> {

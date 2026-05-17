@@ -2,12 +2,16 @@ import { Injectable, Logger, NotFoundException, OnModuleInit } from '@nestjs/com
 import { eq } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { schedulerTasks, SchedulerTask } from '../../core/db/schema.js';
+import { AuditLogService } from '../audit-log/audit-log.service.js';
 
 @Injectable()
 export class SchedulerService implements OnModuleInit {
   private readonly logger = new Logger(SchedulerService.name);
 
-  constructor(private readonly dbService: DbService) {}
+  constructor(
+    private readonly dbService: DbService,
+    private readonly auditLogService: AuditLogService,
+  ) {}
 
   async onModuleInit(): Promise<void> {
     await this.initializeDefaultTasks();
@@ -95,6 +99,13 @@ export class SchedulerService implements OnModuleInit {
     this.logger.log(
       `${result[0].enabled ? 'Enabled' : 'Disabled'} scheduler task: ${result[0].name} (${result[0].id})`,
     );
+    await this.auditLogService.log({
+      action: 'scheduler.update',
+      resource: 'scheduler_task',
+      resourceId: result[0].id,
+      detail: { name: result[0].name, enabled: result[0].enabled },
+      status: 'success',
+    });
     return result[0];
   }
 

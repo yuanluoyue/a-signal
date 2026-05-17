@@ -1,6 +1,7 @@
 import { ConflictException, Injectable, Logger, NotFoundException } from '@nestjs/common';
 import { eq, and, sql, desc } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
+import { AuditLogService } from '../audit-log/audit-log.service.js';
 import { strategies, Strategy, NewStrategy, webhooks, Webhook, strategiesRuntime, StrategyRuntime, NewStrategyRuntime, events, Signal } from '../../core/db/schema.js';
 
 export interface CreateStrategyDto {
@@ -58,7 +59,7 @@ export interface StrategyListQueryDto {
 export class StrategyService {
   private readonly logger = new Logger(StrategyService.name);
 
-  constructor(private readonly dbService: DbService) {}
+  constructor(private readonly dbService: DbService, private readonly auditLogService: AuditLogService) {}
 
   async create(dto: CreateStrategyDto, userId: string): Promise<Strategy> {
     try {
@@ -106,6 +107,14 @@ export class StrategyService {
         });
 
       this.logger.log(`Created strategy ${result.id} [${dto.name}] with runtime record`);
+      await this.auditLogService.log({
+        userId,
+        action: 'strategy.create',
+        resource: 'strategy',
+        resourceId: result.id,
+        detail: { name: dto.name, directionMode: dto.directionMode },
+        status: 'success',
+      });
       return result;
     } catch (error) {
       this.logger.error(
@@ -257,6 +266,14 @@ export class StrategyService {
       }
 
       this.logger.log(`Updated strategy ${id}`);
+      await this.auditLogService.log({
+        userId,
+        action: 'strategy.update',
+        resource: 'strategy',
+        resourceId: id,
+        detail: { updatedFields: Object.keys(dto) },
+        status: 'success',
+      });
       return result;
     } catch (error) {
       this.logger.error(

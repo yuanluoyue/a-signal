@@ -5,6 +5,7 @@ import { NewsModule } from '../news/news.module.js';
 import { SignalsModule } from '../signals/signals.module.js';
 import { KlinesModule } from '../klines/klines.module.js';
 import { QueueModule } from '../../core/queue/queue.module.js';
+import { AuditLogModule } from '../audit-log/audit-log.module.js';
 import { SchedulerService } from './scheduler.service.js';
 
 @Module({
@@ -15,6 +16,7 @@ import { SchedulerService } from './scheduler.service.js';
     SignalsModule,
     KlinesModule,
     QueueModule,
+    AuditLogModule,
   ],
   providers: [SchedulerService],
   exports: [SchedulerService],

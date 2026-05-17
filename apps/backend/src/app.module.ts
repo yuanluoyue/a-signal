@@ -28,7 +28,9 @@ import { McpModule } from './modules/mcp/mcp.module.js';
 import { SignalRuleModule } from './modules/signal-rule/signal-rule.module.js';
 import { SignalGeneratorModule } from './modules/signal-generator/signal-generator.module.js';
 import { StrategyModule } from './modules/strategy/strategy.module.js';
+import { AuditLogModule } from './modules/audit-log/audit-log.module.js';
 import { AuthController } from './interfaces/admin/auth/auth.controller.js';
+import { AuditLogController } from './interfaces/admin/audit-log/audit-log.controller.js';
 import { NewsController } from './interfaces/admin/news/news.controller.js';
 import { SignalsController } from './interfaces/admin/signals/signals.controller.js';
 import { SignalRulesController } from './interfaces/admin/signal-rules/signal-rules.controller.js';
@@ -94,6 +96,7 @@ const jwtAuthGuardProvider: Provider = {
     SignalRuleModule,
     SignalGeneratorModule,
     StrategyModule,
+    AuditLogModule,
   ],
   controllers: [
     AuthController,
@@ -116,6 +119,7 @@ const jwtAuthGuardProvider: Provider = {
     StockController,
     McpController,
     HealthController,
+    AuditLogController,
   ],
   providers: [
     jwtAuthGuardProvider,

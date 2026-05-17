@@ -836,3 +836,35 @@ export const strategiesRuntime = pgTable(
 
 export type StrategyRuntime = typeof strategiesRuntime.$inferSelect;
 export type NewStrategyRuntime = typeof strategiesRuntime.$inferInsert;
+
+export const auditLogs = pgTable(
+  'audit_logs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id'),
+    action: varchar('action', { length: 100 }),
+    resource: varchar('resource', { length: 50 }),
+    resourceId: varchar('resource_id', { length: 255 }),
+    detail: jsonb('detail').$type<Record<string, unknown>>(),
+    ipAddress: varchar('ip_address', { length: 45 }),
+    userAgent: text('user_agent'),
+    status: varchar('status', { length: 20 }),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'audit_logs_user_id_fk',
+    }),
+    index('audit_logs_user_id_idx').on(table.userId),
+    index('audit_logs_action_idx').on(table.action),
+    index('audit_logs_resource_idx').on(table.resource),
+    index('audit_logs_created_at_idx').on(table.createdAt),
+  ],
+);
+
+export type AuditLog = typeof auditLogs.$inferSelect;
+export type NewAuditLog = typeof auditLogs.$inferInsert;

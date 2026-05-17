@@ -109,6 +109,12 @@
           "modifyRoutes": [
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -131,7 +137,12 @@
             10,
             4,
             4,
-            5
+            5,
+            7,
+            4,
+            7,
+            2,
+            6
           ]
         },
         "register": 2
@@ -153,7 +164,13 @@
           "onGenerateFiles": [
             6,
             14,
-            16
+            16,
+            16,
+            53,
+            13,
+            15,
+            13,
+            15
           ]
         },
         "register": 35
@@ -170,6 +187,12 @@
       "time": {
         "hooks": {
           "addEntryCode": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
             0,
             0,
             0
@@ -189,12 +212,18 @@
       "time": {
         "hooks": {
           "onCheckConfig": [
+            0,
             0
           ],
           "onCheck": [
             0
           ],
           "onPrepareBuildSuccess": [
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -266,6 +295,13 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
             0
           ]
         },
@@ -313,6 +349,7 @@
       "time": {
         "hooks": {
           "modifyConfig": [
+            0,
             0
           ]
         },
@@ -1277,6 +1314,23 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1296,9 +1350,21 @@
           "onGenerateFiles": [
             6,
             1,
+            1,
+            2,
+            22,
+            1,
+            1,
+            1,
             1
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0
@@ -1377,9 +1443,27 @@
           "onGenerateFiles": [
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addEntryImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1415,14 +1499,33 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            2
+            2,
+            0
           ],
           "onGenerateFiles": [
             124,
             28,
-            32
+            32,
+            33,
+            82,
+            31,
+            41,
+            27,
+            26
           ],
           "addPolyfillImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1449,6 +1552,18 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1467,6 +1582,12 @@
         "hooks": {
           "onGenerateFiles": [
             184,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0
           ]
@@ -1513,6 +1634,12 @@
           "onGenerateFiles": [
             3,
             0,
+            0,
+            0,
+            12,
+            0,
+            0,
+            0,
             0
           ],
           "addBeforeMiddlewares": [
@@ -1538,6 +1665,18 @@
             45,
             6,
             28,
+            4,
+            33,
+            5,
+            385,
+            51,
+            30,
+            4,
+            31,
+            4,
+            26,
+            5,
+            29,
             4
           ]
         },
@@ -1595,7 +1734,13 @@
           "onGenerateFiles": [
             659,
             8,
-            9
+            9,
+            12,
+            41,
+            8,
+            11,
+            7,
+            6
           ]
         },
         "register": 7
@@ -1682,6 +1827,12 @@
           "onGenerateFiles": [
             12,
             2,
+            2,
+            2,
+            31,
+            2,
+            2,
+            1,
             2
           ]
         },
@@ -1823,6 +1974,23 @@
             5,
             4,
             3,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2205,7 +2373,8 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            4
+            4,
+            0
           ],
           "modifyAppData": [
             0
@@ -2219,9 +2388,27 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0
@@ -2229,11 +2416,23 @@
           "addRuntimePluginKey": [
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
             8,
             3,
+            1,
+            1,
+            46,
+            2,
+            2,
+            2,
             1
           ],
           "addExtraBabelPlugins": [
@@ -2258,12 +2457,24 @@
           "addRuntimePlugin": [
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
             55,
             34,
-            34
+            34,
+            37,
+            86,
+            38,
+            35,
+            39,
+            39
           ],
           "addTmpGenerateWatcherPaths": [
             0
@@ -2288,9 +2499,27 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0
@@ -2298,11 +2527,23 @@
           "addRuntimePluginKey": [
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
             43,
             20,
+            17,
+            19,
+            107,
+            16,
+            19,
+            16,
             17
           ],
           "addTmpGenerateWatcherPaths": [
@@ -3619,7 +3860,7 @@
       "file": "@/layouts/MainLayout.tsx",
       "id": "3",
       "absPath": "/",
-      "__content": "import React, { useState, useMemo, useCallback, Suspense } from 'react';\nimport { Layout, Menu, theme } from 'antd';\nimport {\n  DashboardOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n  KeyOutlined,\n  DatabaseOutlined,\n  FundOutlined,\n  ThunderboltOutlined,\n} from '@ant-design/icons';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\nimport PageLoading from '@/components/PageLoading';\n\nconst { Sider, Content } = Layout;\n\nconst MENU_ITEMS = [\n  {\n    key: '/dashboard',\n    icon: <DashboardOutlined />,\n    label: '仪表盘',\n  },\n  {\n    key: '/data',\n    icon: <DatabaseOutlined />,\n    label: '数据管理',\n    children: [\n      {\n        key: '/news',\n        icon: <ReadOutlined />,\n        label: '新闻管理',\n      },\n      {\n        key: '/stocks',\n        icon: <SearchOutlined />,\n        label: '股票查询',\n      },\n      {\n        key: '/stock-trackings',\n        icon: <EyeOutlined />,\n        label: '股票追踪',\n      },\n    ],\n  },\n  {\n    key: '/analysis',\n    icon: <FundOutlined />,\n    label: '分析中心',\n    children: [\n      {\n        key: '/signals',\n        icon: <BellOutlined />,\n        label: '信号管理',\n      },\n      {\n        key: '/events',\n        icon: <ThunderboltOutlined />,\n        label: '事件管理',\n      },\n      {\n        key: '/signal-rules',\n        icon: <SettingOutlined />,\n        label: '信号规则',\n      },\n      {\n        key: '/strategies',\n        icon: <FundOutlined />,\n        label: '策略管理',\n      },\n      {\n        key: '/runtime',\n        icon: <ThunderboltOutlined />,\n        label: '运行管理',\n      },\n      {\n        key: '/simulation',\n        icon: <WalletOutlined />,\n        label: '账户模拟',\n      },\n      {\n        key: '/backtest',\n        icon: <LineChartOutlined />,\n        label: '回测记录',\n      },\n      {\n        key: '/agent-chat',\n        icon: <RobotOutlined />,\n        label: 'AI 助手',\n      },\n    ],\n  },\n  {\n    key: '/settings',\n    icon: <SettingOutlined />,\n    label: '系统设置',\n    children: [\n      {\n        key: '/settings/notifications',\n        icon: <NotificationOutlined />,\n        label: '通知设置',\n      },\n      {\n        key: '/settings/scheduler',\n        icon: <ClockCircleOutlined />,\n        label: '定时任务',\n      },\n      {\n        key: '/settings/api-keys',\n        icon: <KeyOutlined />,\n        label: 'API Key',\n      },\n      {\n        key: '/blacklist',\n        icon: <BlockOutlined />,\n        label: '黑名单',\n      },\n    ],\n  },\n];\n\nconst getSelectedKey = (pathname: string): string => {\n  const pathParts = pathname.split('/').filter(Boolean);\n  \n  if (pathParts.length === 0) {\n    return '/dashboard';\n  }\n  \n  const basePath = `/${pathParts[0]}`;\n  \n  if (pathParts.length >= 2) {\n    const secondLevelPath = `/${pathParts[0]}/${pathParts[1]}`;\n    const knownSecondLevelPaths = [\n      '/settings/notifications',\n      '/settings/scheduler',\n      '/settings/api-keys',\n    ];\n    \n    if (knownSecondLevelPaths.includes(secondLevelPath)) {\n      return secondLevelPath;\n    }\n  }\n  \n  const knownFirstLevelPaths = [\n    '/dashboard',\n    '/news',\n    '/stocks',\n    '/stock-trackings',\n    '/signals',\n    '/events',\n    '/signal-rules',\n    '/strategies',\n    '/runtime',\n    '/simulation',\n    '/backtest',\n    '/agent-chat',\n    '/blacklist',\n  ];\n  \n  if (knownFirstLevelPaths.includes(basePath)) {\n    return basePath;\n  }\n  \n  return pathname;\n};\n\nconst getOpenKeys = (pathname: string): string[] => {\n  const pathToParentMap: Record<string, string> = {\n    '/news': '/data',\n    '/stocks': '/data',\n    '/stock-trackings': '/data',\n    '/signals': '/analysis',\n    '/events': '/analysis',\n    '/signal-rules': '/analysis',\n    '/strategies': '/analysis',\n    '/simulation': '/analysis',\n    '/backtest': '/analysis',\n    '/agent-chat': '/analysis',\n    '/settings/notifications': '/settings',\n    '/settings/scheduler': '/settings',\n    '/settings/api-keys': '/settings',\n    '/blacklist': '/settings',\n  };\n  \n  const openKeys: string[] = [];\n  const selectedKey = getSelectedKey(pathname);\n  const parentKey = pathToParentMap[selectedKey];\n  if (parentKey) {\n    openKeys.push(parentKey);\n  }\n  return openKeys;\n};\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  const handleMenuClick = useCallback(({ key }: { key: string }) => {\n    navigate(key);\n  }, [navigate]);\n\n  const handleToggle = useCallback(() => {\n    setCollapsed(prev => !prev);\n  }, []);\n\n  const handleLogoClick = useCallback(() => {\n    navigate('/dashboard');\n  }, [navigate]);\n\n  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname)], [location.pathname]);\n  const defaultOpenKeys = useMemo(() => getOpenKeys(location.pathname), [location.pathname]);\n\n  const siderStyle = useMemo(() => ({\n    height: '100vh',\n    position: 'fixed' as const,\n    left: 0,\n    top: 0,\n    bottom: 0,\n    zIndex: 100,\n  }), []);\n\n  const logoStyle = useMemo(() => ({\n    height: 64,\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: collapsed ? 'center' : 'flex-start',\n    padding: collapsed ? 0 : '0 20px',\n    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n    cursor: 'pointer',\n    gap: 10,\n    whiteSpace: 'nowrap' as const,\n  }), [collapsed]);\n\n  const menuContainerStyle = useMemo(() => ({\n    height: 'calc(100vh - 64px)',\n    overflow: 'auto' as const,\n    overflowX: 'hidden' as const,\n  }), []);\n\n  const layoutStyle = useMemo(() => ({\n    marginLeft: collapsed ? 80 : 200,\n    transition: 'margin-left 0.2s',\n  }), [collapsed]);\n\n  const contentStyle = useMemo(() => ({\n    margin: '88px 16px 24px',\n    padding: 24,\n    minHeight: 280,\n    background: colorBgContainer,\n    borderRadius: borderRadiusLG,\n    overflow: location.pathname === '/agent-chat' ? 'hidden' as const : 'auto' as const,\n  }), [colorBgContainer, borderRadiusLG, location.pathname]);\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={siderStyle}\n      >\n        <div onClick={handleLogoClick} style={logoStyle}>\n          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          {!collapsed && (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <div style={menuContainerStyle} className=\"custom-scrollbar\">\n          <Menu\n            theme=\"dark\"\n            mode=\"inline\"\n            selectedKeys={selectedKeys}\n            defaultOpenKeys={defaultOpenKeys}\n            items={MENU_ITEMS}\n            onClick={handleMenuClick}\n            style={{ borderRight: 0 }}\n          />\n        </div>\n      </Sider>\n      <Layout style={layoutStyle}>\n        <Header collapsed={collapsed} onToggle={handleToggle} />\n        <Content style={contentStyle}>\n          <Suspense fallback={<PageLoading />}>\n            <Outlet />\n          </Suspense>\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
+      "__content": "import React, { useState, useMemo, useCallback, Suspense } from 'react';\nimport { Layout, Menu, theme } from 'antd';\nimport {\n  DashboardOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n  KeyOutlined,\n  DatabaseOutlined,\n  FundOutlined,\n  ThunderboltOutlined,\n  AuditOutlined,\n} from '@ant-design/icons';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\nimport PageLoading from '@/components/PageLoading';\n\nconst { Sider, Content } = Layout;\n\nconst MENU_ITEMS = [\n  {\n    key: '/dashboard',\n    icon: <DashboardOutlined />,\n    label: '仪表盘',\n  },\n  {\n    key: '/data',\n    icon: <DatabaseOutlined />,\n    label: '数据管理',\n    children: [\n      {\n        key: '/news',\n        icon: <ReadOutlined />,\n        label: '新闻管理',\n      },\n      {\n        key: '/stocks',\n        icon: <SearchOutlined />,\n        label: '股票查询',\n      },\n      {\n        key: '/stock-trackings',\n        icon: <EyeOutlined />,\n        label: '股票追踪',\n      },\n    ],\n  },\n  {\n    key: '/analysis',\n    icon: <FundOutlined />,\n    label: '分析中心',\n    children: [\n      {\n        key: '/signals',\n        icon: <BellOutlined />,\n        label: '信号管理',\n      },\n      {\n        key: '/events',\n        icon: <ThunderboltOutlined />,\n        label: '事件管理',\n      },\n      {\n        key: '/signal-rules',\n        icon: <SettingOutlined />,\n        label: '信号规则',\n      },\n      {\n        key: '/strategies',\n        icon: <FundOutlined />,\n        label: '策略管理',\n      },\n      {\n        key: '/runtime',\n        icon: <ThunderboltOutlined />,\n        label: '运行管理',\n      },\n      {\n        key: '/simulation',\n        icon: <WalletOutlined />,\n        label: '账户模拟',\n      },\n      {\n        key: '/backtest',\n        icon: <LineChartOutlined />,\n        label: '回测记录',\n      },\n      {\n        key: '/agent-chat',\n        icon: <RobotOutlined />,\n        label: 'AI 助手',\n      },\n    ],\n  },\n  {\n    key: '/settings',\n    icon: <SettingOutlined />,\n    label: '系统设置',\n    children: [\n      {\n        key: '/settings/notifications',\n        icon: <NotificationOutlined />,\n        label: '通知设置',\n      },\n      {\n        key: '/settings/scheduler',\n        icon: <ClockCircleOutlined />,\n        label: '定时任务',\n      },\n      {\n        key: '/settings/api-keys',\n        icon: <KeyOutlined />,\n        label: 'API Key',\n      },\n      {\n        key: '/blacklist',\n        icon: <BlockOutlined />,\n        label: '黑名单',\n      },\n      {\n        key: '/audit-logs',\n        icon: <AuditOutlined />,\n        label: '审计日志',\n      },\n    ],\n  },\n];\n\nconst getSelectedKey = (pathname: string): string => {\n  const pathParts = pathname.split('/').filter(Boolean);\n  \n  if (pathParts.length === 0) {\n    return '/dashboard';\n  }\n  \n  const basePath = `/${pathParts[0]}`;\n  \n  if (pathParts.length >= 2) {\n    const secondLevelPath = `/${pathParts[0]}/${pathParts[1]}`;\n    const knownSecondLevelPaths = [\n      '/settings/notifications',\n      '/settings/scheduler',\n      '/settings/api-keys',\n    ];\n    \n    if (knownSecondLevelPaths.includes(secondLevelPath)) {\n      return secondLevelPath;\n    }\n  }\n  \n  const knownFirstLevelPaths = [\n    '/dashboard',\n    '/news',\n    '/stocks',\n    '/stock-trackings',\n    '/signals',\n    '/events',\n    '/signal-rules',\n    '/strategies',\n    '/runtime',\n    '/simulation',\n    '/backtest',\n    '/agent-chat',\n    '/blacklist',\n    '/audit-logs',\n  ];\n  \n  if (knownFirstLevelPaths.includes(basePath)) {\n    return basePath;\n  }\n  \n  return pathname;\n};\n\nconst getOpenKeys = (pathname: string): string[] => {\n  const pathToParentMap: Record<string, string> = {\n    '/news': '/data',\n    '/stocks': '/data',\n    '/stock-trackings': '/data',\n    '/signals': '/analysis',\n    '/events': '/analysis',\n    '/signal-rules': '/analysis',\n    '/strategies': '/analysis',\n    '/simulation': '/analysis',\n    '/backtest': '/analysis',\n    '/agent-chat': '/analysis',\n    '/settings/notifications': '/settings',\n    '/settings/scheduler': '/settings',\n    '/settings/api-keys': '/settings',\n    '/blacklist': '/settings',\n  };\n  \n  const openKeys: string[] = [];\n  const selectedKey = getSelectedKey(pathname);\n  const parentKey = pathToParentMap[selectedKey];\n  if (parentKey) {\n    openKeys.push(parentKey);\n  }\n  return openKeys;\n};\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  const handleMenuClick = useCallback(({ key }: { key: string }) => {\n    navigate(key);\n  }, [navigate]);\n\n  const handleToggle = useCallback(() => {\n    setCollapsed(prev => !prev);\n  }, []);\n\n  const handleLogoClick = useCallback(() => {\n    navigate('/dashboard');\n  }, [navigate]);\n\n  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname)], [location.pathname]);\n  const defaultOpenKeys = useMemo(() => getOpenKeys(location.pathname), [location.pathname]);\n\n  const siderStyle = useMemo(() => ({\n    height: '100vh',\n    position: 'fixed' as const,\n    left: 0,\n    top: 0,\n    bottom: 0,\n    zIndex: 100,\n  }), []);\n\n  const logoStyle = useMemo(() => ({\n    height: 64,\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: collapsed ? 'center' : 'flex-start',\n    padding: collapsed ? 0 : '0 20px',\n    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n    cursor: 'pointer',\n    gap: 10,\n    whiteSpace: 'nowrap' as const,\n  }), [collapsed]);\n\n  const menuContainerStyle = useMemo(() => ({\n    height: 'calc(100vh - 64px)',\n    overflow: 'auto' as const,\n    overflowX: 'hidden' as const,\n  }), []);\n\n  const layoutStyle = useMemo(() => ({\n    marginLeft: collapsed ? 80 : 200,\n    transition: 'margin-left 0.2s',\n  }), [collapsed]);\n\n  const contentStyle = useMemo(() => ({\n    margin: '88px 16px 24px',\n    padding: 24,\n    minHeight: 280,\n    background: colorBgContainer,\n    borderRadius: borderRadiusLG,\n    overflow: location.pathname === '/agent-chat' ? 'hidden' as const : 'auto' as const,\n  }), [colorBgContainer, borderRadiusLG, location.pathname]);\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={siderStyle}\n      >\n        <div onClick={handleLogoClick} style={logoStyle}>\n          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          {!collapsed && (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <div style={menuContainerStyle} className=\"custom-scrollbar\">\n          <Menu\n            theme=\"dark\"\n            mode=\"inline\"\n            selectedKeys={selectedKeys}\n            defaultOpenKeys={defaultOpenKeys}\n            items={MENU_ITEMS}\n            onClick={handleMenuClick}\n            style={{ borderRight: 0 }}\n          />\n        </div>\n      </Sider>\n      <Layout style={layoutStyle}>\n        <Header collapsed={collapsed} onToggle={handleToggle} />\n        <Content style={contentStyle}>\n          <Suspense fallback={<PageLoading />}>\n            <Outlet />\n          </Suspense>\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/layouts/MainLayout.tsx"
     },
@@ -3784,7 +4025,7 @@
       "parentId": "3",
       "id": "18",
       "absPath": "/simulation",
-      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  Table,\n  Form,\n  InputNumber,\n  Input,\n  Select,\n  message,\n  Modal,\n  Statistic,\n  Row,\n  Col,\n  Empty,\n  Popconfirm,\n  Spin,\n} from 'antd';\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  WalletOutlined,\n  ShoppingCartOutlined,\n  HistoryOutlined,\n  EditOutlined,\n  DeleteOutlined,\n  LineChartOutlined,\n} from '@ant-design/icons';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { IChartApi, Time } from 'lightweight-charts';\nimport client from '@/services/client';\nimport { klinesApi } from '@/services/klines';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface SimulationAccount {\n  id: string;\n  name?: string;\n  initialCapital: number;\n  currentCapital: number;\n  availableCash: number;\n  totalProfit: number;\n  totalReturn: number;\n}\n\ninterface SimulationPosition {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  quantity: number;\n  avgCost: number;\n  currentPrice?: number;\n  marketValue?: number;\n  profit: number;\n  return: number;\n  takeProfitPrice?: number;\n  stopLossPrice?: number;\n  tradeSource?: string;\n  strategyId?: string;\n}\n\ninterface SimulationTrade {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  type: 'buy' | 'sell';\n  quantity: number;\n  price: number;\n  totalAmount: number;\n  profit?: number;\n  closeReason?: string;\n  tradeSource?: string;\n  strategyId?: string;\n  tradeTime: string;\n}\n\ninterface StockOption {\n  value: string;\n  label: string;\n  code: string;\n  name: string;\n}\n\ninterface EquityCurvePoint {\n  id: string;\n  accountId: string;\n  totalEquity: string;\n  availableCash: string;\n  positionValue: string;\n  totalProfit: string;\n  totalReturn: string;\n  recordedAt: string;\n  createdAt: string;\n}\n\ninterface StrategyInfo {\n  id: string;\n  name: string;\n}\n\nconst SimulationPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [refreshLoading, setRefreshLoading] = useState(false);\n  const [accounts, setAccounts] = useState<SimulationAccount[]>([]);\n  const [selectedAccountId, setSelectedAccountId] = useState<string | null>(null);\n  const [account, setAccount] = useState<SimulationAccount | null>(null);\n  const [positions, setPositions] = useState<SimulationPosition[]>([]);\n  const [trades, setTrades] = useState<SimulationTrade[]>([]);\n  const [equityCurveData, setEquityCurveData] = useState<EquityCurvePoint[]>([]);\n  const [isTradeModalVisible, setIsTradeModalVisible] = useState(false);\n  const [isBalanceModalVisible, setIsBalanceModalVisible] = useState(false);\n  const [isPositionModalVisible, setIsPositionModalVisible] = useState(false);\n  const [isCreateAccountModalVisible, setIsCreateAccountModalVisible] = useState(false);\n  const [tradeForm] = Form.useForm();\n  const [balanceForm] = Form.useForm();\n  const [positionForm] = Form.useForm();\n  const [createAccountForm] = Form.useForm();\n  const [activeTab, setActiveTab] = useState<'positions' | 'trades' | 'equity-curve'>('positions');\n\n  const [tradeStockOptions, setTradeStockOptions] = useState<StockOption[]>([]);\n  const [tradeSearchLoading, setTradeSearchLoading] = useState(false);\n  const tradeDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  const [positionStockOptions, setPositionStockOptions] = useState<StockOption[]>([]);\n  const [positionSearchLoading, setPositionSearchLoading] = useState(false);\n  const positionDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n  const [strategies, setStrategies] = useState<StrategyInfo[]>([]);\n\n  const [tradePrice, setTradePrice] = useState<number | null>(null);\n  const [tradePriceLoading, setTradePriceLoading] = useState(false);\n\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n\n  const fetchAccounts = async () => {\n    try {\n      const response = await client.get('/simulation/accounts');\n      setAccounts(response.data || []);\n      return response.data || [];\n    } catch (error) {\n      console.error('Fetch accounts error:', error);\n      setAccounts([]);\n      return [];\n    }\n  };\n\n  const fetchAccount = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/account', {\n        params: { accountId: selectedAccountId },\n      });\n      setAccount(response.data);\n    } catch (error) {\n      console.error('Fetch account error:', error);\n      setAccount(null);\n    }\n  };\n\n  const fetchPositions = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/positions', {\n        params: { accountId: selectedAccountId },\n      });\n      setPositions(response.data || []);\n    } catch (error) {\n      console.error('Fetch positions error:', error);\n      setPositions([]);\n    }\n  };\n\n  const fetchTrades = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/trades', {\n        params: { accountId: selectedAccountId },\n      });\n      setTrades(response.data || []);\n    } catch (error) {\n      console.error('Fetch trades error:', error);\n      setTrades([]);\n    }\n  };\n\n  const fetchEquityCurve = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/equity-curve', {\n        params: { accountId: selectedAccountId },\n      });\n      setEquityCurveData(response.data || []);\n    } catch (error) {\n      console.error('Fetch equity curve error:', error);\n      setEquityCurveData([]);\n    }\n  };\n\n  const fetchStrategies = async () => {\n    try {\n      const response = await client.get('/strategies', { params: { pageSize: 100 } });\n      const data = response.data || [];\n      setStrategies(Array.isArray(data) ? data.map((s: StrategyInfo) => ({ id: s.id, name: s.name })) : []);\n    } catch (error) {\n      console.error('Fetch strategies error:', error);\n      setStrategies([]);\n    }\n  };\n\n  const refreshPositions = async () => {\n    if (!selectedAccountId) return;\n    setRefreshLoading(true);\n    try {\n      const response = await client.get('/simulation/refresh', {\n        params: { accountId: selectedAccountId },\n      });\n      const { account: refreshedAccount, positions: refreshedPositions } = response.data;\n      if (refreshedAccount) setAccount(refreshedAccount);\n      if (refreshedPositions) setPositions(refreshedPositions);\n    } catch (error) {\n      console.error('Refresh positions error:', error);\n    } finally {\n      setRefreshLoading(false);\n    }\n  };\n\n  const fetchAllData = async () => {\n    setLoading(true);\n    await Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]);\n    setLoading(false);\n  };\n\n  useEffect(() => {\n    const init = async () => {\n      const accountList = await fetchAccounts();\n      if (accountList.length > 0) {\n        setSelectedAccountId(accountList[0].id);\n      }\n    };\n    init();\n    fetchStrategies();\n  }, []);\n\n  useEffect(() => {\n    if (!selectedAccountId) return;\n    setLoading(true);\n    Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]).finally(() => {\n      setLoading(false);\n    });\n  }, [selectedAccountId]);\n\n  useEffect(() => {\n    if (selectedAccountId && activeTab === 'equity-curve') {\n      fetchEquityCurve();\n    }\n  }, [activeTab, selectedAccountId]);\n\n  useEffect(() => {\n    if (!chartContainerRef.current || equityCurveData.length === 0) return;\n\n    if (chartRef.current) {\n      chartRef.current.remove();\n      chartRef.current = null;\n    }\n\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: {\n        mode: 1,\n      },\n      rightPriceScale: {\n        borderColor: '#d9d9d9',\n      },\n      timeScale: {\n        borderColor: '#d9d9d9',\n        timeVisible: true,\n      },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    const lineSeries = chart.addSeries(LightweightCharts.LineSeries, {\n      color: '#1890ff',\n      lineWidth: 2,\n    });\n\n    const sortedData = [...equityCurveData].sort(\n      (a, b) => new Date(a.recordedAt).getTime() - new Date(b.recordedAt).getTime()\n    );\n\n    const seen = new Map<number, number>();\n    for (const point of sortedData) {\n      const timeKey = Math.floor(new Date(point.recordedAt).getTime() / 1000);\n      seen.set(timeKey, parseFloat(point.totalEquity));\n    }\n\n    const chartData = Array.from(seen.entries())\n      .sort((a, b) => a[0] - b[0])\n      .map(([time, value]) => ({\n        time: time as Time,\n        value,\n      }));\n\n    lineSeries.setData(chartData);\n\n    chart.timeScale().fitContent();\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({\n          width: chartContainerRef.current.clientWidth,\n        });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n      chartRef.current = null;\n    };\n  }, [equityCurveData]);\n\n  useEffect(() => {\n    return () => {\n      if (tradeDebounceTimerRef.current) {\n        clearTimeout(tradeDebounceTimerRef.current);\n      }\n      if (positionDebounceTimerRef.current) {\n        clearTimeout(positionDebounceTimerRef.current);\n      }\n    };\n  }, []);\n\n  const searchStocks = async (keyword: string, type: 'trade' | 'position') => {\n    if (!keyword || keyword.trim().length === 0) {\n      if (type === 'trade') setTradeStockOptions([]);\n      else setPositionStockOptions([]);\n      return;\n    }\n    if (type === 'trade') setTradeSearchLoading(true);\n    else setPositionSearchLoading(true);\n    try {\n      const response = await client.get('/stock/search', {\n        params: { keyword: keyword.trim() },\n      });\n      const stocks = response.data || [];\n      const options: StockOption[] = stocks.map((stock: { code: string; name: string }) => ({\n        value: stock.code,\n        label: `${stock.code} - ${stock.name}`,\n        code: stock.code,\n        name: stock.name,\n      }));\n      if (type === 'trade') setTradeStockOptions(options);\n      else setPositionStockOptions(options);\n    } catch (error) {\n      console.error('Search stocks error:', error);\n      if (type === 'trade') setTradeStockOptions([]);\n      else setPositionStockOptions([]);\n    } finally {\n      if (type === 'trade') setTradeSearchLoading(false);\n      else setPositionSearchLoading(false);\n    }\n  };\n\n  const handleTradeStockSearch = (value: string) => {\n    if (tradeDebounceTimerRef.current) {\n      clearTimeout(tradeDebounceTimerRef.current);\n    }\n    tradeDebounceTimerRef.current = setTimeout(() => {\n      searchStocks(value, 'trade');\n    }, 300);\n  };\n\n  const handlePositionStockSearch = (value: string) => {\n    if (positionDebounceTimerRef.current) {\n      clearTimeout(positionDebounceTimerRef.current);\n    }\n    positionDebounceTimerRef.current = setTimeout(() => {\n      searchStocks(value, 'position');\n    }, 300);\n  };\n\n  const handleTradeStockChange = async (value: string) => {\n    const selectedOption = tradeStockOptions.find(opt => opt.value === value);\n    if (selectedOption) {\n      tradeForm.setFieldsValue({\n        stockCode: selectedOption.code,\n        stockName: selectedOption.name,\n      });\n      setTradePrice(null);\n      setTradePriceLoading(true);\n      try {\n        await klinesApi.checkAndUpdate(selectedOption.code, '4h');\n        const klineResponse = await client.get(`/klines/${selectedOption.code}`, {\n          params: { period: '4h' },\n        });\n        const klineData = klineResponse.data?.data || klineResponse.data || [];\n        if (Array.isArray(klineData) && klineData.length > 0) {\n          const lastItem = klineData[klineData.length - 1];\n          const closePrice = lastItem.close || lastItem.c;\n          if (closePrice) {\n            setTradePrice(parseFloat(String(closePrice)));\n          }\n        }\n      } catch (error) {\n        console.error('Fetch trade price error:', error);\n      } finally {\n        setTradePriceLoading(false);\n      }\n    }\n  };\n\n  const handlePositionStockChange = (value: string) => {\n    const selectedOption = positionStockOptions.find(opt => opt.value === value);\n    if (selectedOption) {\n      positionForm.setFieldsValue({\n        stockCode: selectedOption.code,\n        stockName: selectedOption.name,\n      });\n    }\n  };\n\n  const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {\n    try {\n      await client.put('/simulation/account', values);\n      message.success('余额更新成功');\n      setIsBalanceModalVisible(false);\n      balanceForm.resetFields();\n      fetchAccount();\n    } catch (error) {\n      message.error('余额更新失败');\n      console.error('Update balance error:', error);\n    }\n  };\n\n  const handleCreateAccount = async (values: { name: string; initialCapital: number }) => {\n    try {\n      const response = await client.post('/simulation/account', values);\n      message.success('账户创建成功');\n      setIsCreateAccountModalVisible(false);\n      createAccountForm.resetFields();\n      const accountList = await fetchAccounts();\n      const newAccountId = response.data?.id;\n      if (newAccountId) {\n        setSelectedAccountId(newAccountId);\n      } else if (accountList.length > 0) {\n        setSelectedAccountId(accountList[accountList.length - 1].id);\n      }\n    } catch (error) {\n      message.error('账户创建失败');\n      console.error('Create account error:', error);\n    }\n  };\n\n  const handleAddPosition = async (values: {\n    stockCode: string;\n    stockName: string;\n    quantity: number;\n    avgCost: number;\n    takeProfitPrice?: number;\n    stopLossPrice?: number;\n  }) => {\n    try {\n      await client.post('/simulation/position', { ...values, accountId: selectedAccountId });\n      message.success('持仓添加成功');\n      setIsPositionModalVisible(false);\n      positionForm.resetFields();\n      setPositionStockOptions([]);\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓添加失败');\n      console.error('Add position error:', error);\n    }\n  };\n\n  const handleDeletePosition = async (positionId: string) => {\n    try {\n      await client.delete(`/simulation/position/${positionId}`);\n      message.success('持仓删除成功');\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓删除失败');\n      console.error('Delete position error:', error);\n    }\n  };\n\n  const handleTrade = async (values: {\n    stockCode: string;\n    stockName: string;\n    type: 'buy' | 'sell';\n    quantity: number;\n    takeProfitPrice?: number;\n    stopLossPrice?: number;\n  }) => {\n    try {\n      const payload: Record<string, unknown> = {\n        stockCode: values.stockCode,\n        stockName: values.stockName,\n        type: values.type,\n        quantity: values.quantity,\n        accountId: selectedAccountId,\n      };\n      if (values.type === 'buy') {\n        if (values.takeProfitPrice !== undefined && values.takeProfitPrice !== null) {\n          payload.takeProfitPrice = values.takeProfitPrice;\n        }\n        if (values.stopLossPrice !== undefined && values.stopLossPrice !== null) {\n          payload.stopLossPrice = values.stopLossPrice;\n        }\n      }\n      await client.post('/simulation/trade', payload);\n      message.success('交易成功');\n      setIsTradeModalVisible(false);\n      tradeForm.resetFields();\n      setTradeStockOptions([]);\n      setTradePrice(null);\n      fetchAllData();\n    } catch (error) {\n      message.error('交易失败');\n      console.error('Trade error:', error);\n    }\n  };\n\n  const formatMoney = (amount: number | string | null | undefined) => {\n    if (amount === null || amount === undefined) return '¥0.00';\n    const num = typeof amount === 'string' ? parseFloat(amount) : amount;\n    if (isNaN(num)) return '¥0.00';\n    return `¥${num.toFixed(2)}`;\n  };\n\n  const closeReasonMap: Record<string, { text: string; color: string }> = {\n    manual: { text: '手动平仓', color: 'blue' },\n    take_profit: { text: '止盈平仓', color: 'green' },\n    stop_loss: { text: '止损平仓', color: 'red' },\n    agent: { text: 'Agent平仓', color: 'purple' },\n  };\n\n  const tradeType = Form.useWatch('type', tradeForm);\n\n  const positionColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '持仓数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '平均成本',\n      dataIndex: 'avgCost',\n      key: 'avgCost',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '当前市值',\n      dataIndex: 'marketValue',\n      key: 'marketValue',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value: number) => (\n        <Tag color={value >= 0 ? 'success' : 'error'}>\n          {value >= 0 ? '+' : ''}{formatMoney(value)}\n        </Tag>\n      ),\n    },\n    {\n      title: '止盈价',\n      dataIndex: 'takeProfitPrice',\n      key: 'takeProfitPrice',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '止损价',\n      dataIndex: 'stopLossPrice',\n      key: 'stopLossPrice',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '来源',\n      dataIndex: 'tradeSource',\n      key: 'tradeSource',\n      width: 100,\n      render: (value?: string, record?: SimulationPosition) => {\n        if (value === 'strategy' && record?.strategyId) {\n          const strategy = strategies.find(s => s.id === record.strategyId);\n          return <Tag color=\"purple\">{strategy?.name || '策略'}</Tag>;\n        }\n        if (value === 'system') return <Tag color=\"orange\">系统</Tag>;\n        return <Tag>手动</Tag>;\n      },\n    },\n    {\n      title: '操作',\n      key: 'action',\n      render: (_: unknown, record: SimulationPosition) => (\n        <Popconfirm\n          title=\"确认删除\"\n          description=\"确定要删除这条持仓吗？\"\n          onConfirm={() => handleDeletePosition(record.id)}\n          okText=\"确认\"\n          cancelText=\"取消\"\n        >\n          <Button danger icon={<DeleteOutlined />} size=\"small\">\n            删除\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      render: (type: string) => (\n        <Tag color={type === 'buy' ? 'success' : 'error'}>\n          {type === 'buy' ? '买入' : '卖出'}\n        </Tag>\n      ),\n    },\n    {\n      title: '数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '价格',\n      dataIndex: 'price',\n      key: 'price',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '总金额',\n      dataIndex: 'totalAmount',\n      key: 'totalAmount',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value?: number) =>\n        value !== undefined ? (\n          <Tag color={value >= 0 ? 'success' : 'error'}>\n            {value >= 0 ? '+' : ''}{formatMoney(value)}\n          </Tag>\n        ) : '-',\n    },\n    {\n      title: '平仓理由',\n      dataIndex: 'closeReason',\n      key: 'closeReason',\n      render: (value?: string, record?: SimulationTrade) => {\n        if (record?.type !== 'sell' || !value) return '-';\n        const mapping = closeReasonMap[value];\n        if (!mapping) return '-';\n        return <Tag color={mapping.color}>{mapping.text}</Tag>;\n      },\n    },\n    {\n      title: '来源',\n      dataIndex: 'tradeSource',\n      key: 'tradeSource',\n      width: 100,\n      render: (value?: string, record?: SimulationTrade) => {\n        if (value === 'strategy' && record?.strategyId) {\n          const strategy = strategies.find(s => s.id === record.strategyId);\n          return <Tag color=\"purple\">{strategy?.name || '策略'}</Tag>;\n        }\n        if (value === 'system') return <Tag color=\"orange\">系统</Tag>;\n        return <Tag>手动</Tag>;\n      },\n    },\n    {\n      title: '时间',\n      dataIndex: 'tradeTime',\n      key: 'tradeTime',\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n  ];\n\n  if (!account && accounts.length > 0) {\n    return (\n      <div>\n        <Title level={2}>账户模拟</Title>\n        <Card>\n          <Empty description=\"加载中...\" />\n        </Card>\n      </div>\n    );\n  }\n\n  if (!account && accounts.length === 0) {\n    return (\n      <div>\n        <Title level={2}>账户模拟</Title>\n        <Card>\n          <Empty description=\"暂无模拟账户\">\n            <Button\n              type=\"primary\"\n              icon={<PlusOutlined />}\n              onClick={() => {\n                createAccountForm.resetFields();\n                setIsCreateAccountModalVisible(true);\n              }}\n            >\n              创建账户\n            </Button>\n          </Empty>\n        </Card>\n\n        <Modal\n          title=\"创建账户\"\n          open={isCreateAccountModalVisible}\n          onCancel={() => setIsCreateAccountModalVisible(false)}\n          onOk={() => createAccountForm.submit()}\n          width={400}\n        >\n          <Form form={createAccountForm} onFinish={handleCreateAccount} layout=\"vertical\">\n            <Form.Item\n              name=\"name\"\n              label=\"账户名称\"\n              rules={[{ required: true, message: '请输入账户名称' }]}\n            >\n              <Input placeholder=\"请输入账户名称\" />\n            </Form.Item>\n            <Form.Item\n              name=\"initialCapital\"\n              label=\"初始资金\"\n              initialValue={100000}\n            >\n              <InputNumber\n                style={{ width: '100%' }}\n                min={1}\n                step={10000}\n                precision={2}\n                formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n              />\n            </Form.Item>\n          </Form>\n        </Modal>\n      </div>\n    );\n  }\n\n  return (\n    <div>\n      <Title level={2}>账户模拟</Title>\n\n      {account && (\n        <>\n          <Row style={{ marginBottom: 16 }} align=\"middle\" gutter={16}>\n            <Col>\n              <Select\n                value={selectedAccountId || undefined}\n                onChange={(value: string) => setSelectedAccountId(value)}\n                style={{ minWidth: 240 }}\n                placeholder=\"选择账户\"\n              >\n                {accounts.map((acc) => (\n                  <Option key={acc.id} value={acc.id}>\n                    {acc.name || acc.id} — {formatMoney(acc.currentCapital)}\n                  </Option>\n                ))}\n              </Select>\n            </Col>\n            <Col>\n              <Button\n                icon={<PlusOutlined />}\n                onClick={() => {\n                  createAccountForm.resetFields();\n                  setIsCreateAccountModalVisible(true);\n                }}\n              >\n                创建账户\n              </Button>\n            </Col>\n          </Row>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"初始资金\"\n              value={account.initialCapital}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"当前资金\"\n              value={account.currentCapital}\n              precision={2}\n              prefix=\"¥\"\n              valueStyle={{ color: account.currentCapital >= account.initialCapital ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"可用现金\"\n              value={account.availableCash}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"总收益率\"\n              value={account.totalReturn * 100}\n              precision={2}\n              suffix=\"%\"\n              valueStyle={{ color: account.totalReturn >= 0 ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n            刷新\n          </Button>\n          <Button icon={<ReloadOutlined />} onClick={refreshPositions} loading={refreshLoading}>\n            更新行情\n          </Button>\n          <Button\n            icon={<EditOutlined />}\n            onClick={() => {\n              balanceForm.setFieldsValue({\n                currentCapital: account.currentCapital,\n                availableCash: account.availableCash,\n              });\n              setIsBalanceModalVisible(true);\n            }}\n          >\n            修改余额\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={() => setIsPositionModalVisible(true)}\n          >\n            添加持仓\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<ShoppingCartOutlined />}\n            onClick={() => {\n              setTradePrice(null);\n              setIsTradeModalVisible(true);\n            }}\n          >\n            模拟交易\n          </Button>\n        </Space>\n      </Card>\n\n      <Card\n        tabList={[\n          { key: 'positions', tab: <><WalletOutlined /> 持仓</> },\n          { key: 'trades', tab: <><HistoryOutlined /> 交易记录</> },\n          { key: 'equity-curve', tab: <><LineChartOutlined /> 资金曲线</> },\n        ]}\n        activeTabKey={activeTab}\n        onTabChange={(key) => setActiveTab(key as 'positions' | 'trades' | 'equity-curve')}\n      >\n        {activeTab === 'positions' && (\n          <Table\n            columns={positionColumns}\n            dataSource={positions}\n            rowKey=\"id\"\n            pagination={false}\n            locale={{ emptyText: '暂无持仓' }}\n          />\n        )}\n        {activeTab === 'trades' && (\n          <Table\n            columns={tradeColumns}\n            dataSource={trades}\n            rowKey=\"id\"\n            pagination={{ pageSize: 10 }}\n          />\n        )}\n        {activeTab === 'equity-curve' && (\n          equityCurveData.length > 0 ? (\n            <div ref={chartContainerRef} />\n          ) : (\n            <Empty description=\"暂无资金曲线数据\" />\n          )\n        )}\n      </Card>\n      </>\n      ) : (\n        <Card>\n          <Empty description=\"暂无模拟账户\">\n            <Button\n              type=\"primary\"\n              icon={<PlusOutlined />}\n              onClick={() => {\n                createAccountForm.resetFields();\n                setIsCreateAccountModalVisible(true);\n              }}\n            >\n              创建账户\n            </Button>\n          </Empty>\n        </Card>\n      )}\n\n      <Modal\n        title=\"修改余额\"\n        open={isBalanceModalVisible}\n        onCancel={() => setIsBalanceModalVisible(false)}\n        onOk={() => balanceForm.submit()}\n        width={400}\n      >\n        <Form form={balanceForm} onFinish={handleUpdateBalance} layout=\"vertical\">\n          <Form.Item\n            name=\"currentCapital\"\n            label=\"当前资金\"\n            rules={[{ required: true, message: '请输入当前资金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"availableCash\"\n            label=\"可用现金\"\n            rules={[{ required: true, message: '请输入可用现金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"添加持仓\"\n        open={isPositionModalVisible}\n        onCancel={() => {\n          setIsPositionModalVisible(false);\n          setPositionStockOptions([]);\n        }}\n        onOk={() => positionForm.submit()}\n        width={400}\n      >\n        <Form form={positionForm} onFinish={handleAddPosition} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Select\n              showSearch\n              placeholder=\"输入股票代码或名称搜索\"\n              filterOption={false}\n              onSearch={handlePositionStockSearch}\n              onChange={handlePositionStockChange}\n              loading={positionSearchLoading}\n              options={positionStockOptions}\n              allowClear\n              notFoundContent={positionSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Input disabled placeholder=\"选择股票后自动填充\" />\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"持仓数量（股）\"\n            rules={[{ required: true, message: '请输入持仓数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入股数\" />\n          </Form.Item>\n          <Form.Item\n            name=\"avgCost\"\n            label=\"平均成本\"\n            rules={[{ required: true, message: '请输入平均成本' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入平均成本\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"takeProfitPrice\"\n            label=\"止盈价（可选）\"\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入止盈价\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stopLossPrice\"\n            label=\"止损价（可选）\"\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入止损价\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"模拟交易\"\n        open={isTradeModalVisible}\n        onCancel={() => {\n          setIsTradeModalVisible(false);\n          setTradeStockOptions([]);\n          setTradePrice(null);\n        }}\n        onOk={() => tradeForm.submit()}\n        width={500}\n      >\n        <Form form={tradeForm} onFinish={handleTrade} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Select\n              showSearch\n              placeholder=\"输入股票代码或名称搜索\"\n              filterOption={false}\n              onSearch={handleTradeStockSearch}\n              onChange={handleTradeStockChange}\n              loading={tradeSearchLoading}\n              options={tradeStockOptions}\n              allowClear\n              notFoundContent={tradeSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Input disabled placeholder=\"选择股票后自动填充\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"交易类型\"\n            rules={[{ required: true, message: '请选择交易类型' }]}\n            initialValue=\"buy\"\n          >\n            <Select>\n              <Option value=\"buy\">买入</Option>\n              <Option value=\"sell\">卖出</Option>\n            </Select>\n          </Form.Item>\n          <Form.Item label=\"当前价格\">\n            {tradePriceLoading ? (\n              <Spin size=\"small\" />\n            ) : tradePrice !== null ? (\n              <InputNumber\n                style={{ width: '100%' }}\n                value={tradePrice}\n                disabled\n                precision={2}\n                formatter={(value) => `¥ ${value}`}\n              />\n            ) : (\n              <Text type=\"secondary\">选择股票后自动获取4H行情价格</Text>\n            )}\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"数量（股）\"\n            rules={[{ required: true, message: '请输入数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入股数\" />\n          </Form.Item>\n          {tradeType === 'buy' && (\n            <>\n              <Form.Item\n                name=\"takeProfitPrice\"\n                label=\"止盈价（可选）\"\n              >\n                <InputNumber\n                  style={{ width: '100%' }}\n                  min={0.01}\n                  step={0.01}\n                  precision={2}\n                  placeholder=\"请输入止盈价\"\n                />\n              </Form.Item>\n              <Form.Item\n                name=\"stopLossPrice\"\n                label=\"止损价（可选）\"\n              >\n                <InputNumber\n                  style={{ width: '100%' }}\n                  min={0.01}\n                  step={0.01}\n                  precision={2}\n                  placeholder=\"请输入止损价\"\n                />\n              </Form.Item>\n            </>\n          )}\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"创建账户\"\n        open={isCreateAccountModalVisible}\n        onCancel={() => setIsCreateAccountModalVisible(false)}\n        onOk={() => createAccountForm.submit()}\n        width={400}\n      >\n        <Form form={createAccountForm} onFinish={handleCreateAccount} layout=\"vertical\">\n          <Form.Item\n            name=\"name\"\n            label=\"账户名称\"\n            rules={[{ required: true, message: '请输入账户名称' }]}\n          >\n            <Input placeholder=\"请输入账户名称\" />\n          </Form.Item>\n          <Form.Item\n            name=\"initialCapital\"\n            label=\"初始资金\"\n            initialValue={100000}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={1}\n              step={10000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default SimulationPage;\n",
+      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  Table,\n  Form,\n  InputNumber,\n  Input,\n  Select,\n  message,\n  Modal,\n  Statistic,\n  Row,\n  Col,\n  Empty,\n  Popconfirm,\n  Spin,\n} from 'antd';\nimport {\n  ReloadOutlined,\n  PlusOutlined,\n  WalletOutlined,\n  ShoppingCartOutlined,\n  HistoryOutlined,\n  EditOutlined,\n  DeleteOutlined,\n  LineChartOutlined,\n} from '@ant-design/icons';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { IChartApi, Time } from 'lightweight-charts';\nimport client from '@/services/client';\nimport { klinesApi } from '@/services/klines';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface SimulationAccount {\n  id: string;\n  name?: string;\n  initialCapital: number;\n  currentCapital: number;\n  availableCash: number;\n  totalProfit: number;\n  totalReturn: number;\n}\n\ninterface SimulationPosition {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  quantity: number;\n  avgCost: number;\n  currentPrice?: number;\n  marketValue?: number;\n  profit: number;\n  return: number;\n  takeProfitPrice?: number;\n  stopLossPrice?: number;\n  tradeSource?: string;\n  strategyId?: string;\n}\n\ninterface SimulationTrade {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  type: 'buy' | 'sell';\n  quantity: number;\n  price: number;\n  totalAmount: number;\n  profit?: number;\n  closeReason?: string;\n  tradeSource?: string;\n  strategyId?: string;\n  tradeTime: string;\n}\n\ninterface StockOption {\n  value: string;\n  label: string;\n  code: string;\n  name: string;\n}\n\ninterface EquityCurvePoint {\n  id: string;\n  accountId: string;\n  totalEquity: string;\n  availableCash: string;\n  positionValue: string;\n  totalProfit: string;\n  totalReturn: string;\n  recordedAt: string;\n  createdAt: string;\n}\n\ninterface StrategyInfo {\n  id: string;\n  name: string;\n}\n\nconst SimulationPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [refreshLoading, setRefreshLoading] = useState(false);\n  const [accounts, setAccounts] = useState<SimulationAccount[]>([]);\n  const [selectedAccountId, setSelectedAccountId] = useState<string | null>(null);\n  const [account, setAccount] = useState<SimulationAccount | null>(null);\n  const [positions, setPositions] = useState<SimulationPosition[]>([]);\n  const [trades, setTrades] = useState<SimulationTrade[]>([]);\n  const [equityCurveData, setEquityCurveData] = useState<EquityCurvePoint[]>([]);\n  const [isTradeModalVisible, setIsTradeModalVisible] = useState(false);\n  const [isBalanceModalVisible, setIsBalanceModalVisible] = useState(false);\n  const [isPositionModalVisible, setIsPositionModalVisible] = useState(false);\n  const [isCreateAccountModalVisible, setIsCreateAccountModalVisible] = useState(false);\n  const [tradeForm] = Form.useForm();\n  const [balanceForm] = Form.useForm();\n  const [positionForm] = Form.useForm();\n  const [createAccountForm] = Form.useForm();\n  const [activeTab, setActiveTab] = useState<'positions' | 'trades' | 'equity-curve'>('positions');\n\n  const [tradeStockOptions, setTradeStockOptions] = useState<StockOption[]>([]);\n  const [tradeSearchLoading, setTradeSearchLoading] = useState(false);\n  const tradeDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  const [positionStockOptions, setPositionStockOptions] = useState<StockOption[]>([]);\n  const [positionSearchLoading, setPositionSearchLoading] = useState(false);\n  const positionDebounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n  const [strategies, setStrategies] = useState<StrategyInfo[]>([]);\n\n  const [tradePrice, setTradePrice] = useState<number | null>(null);\n  const [tradePriceLoading, setTradePriceLoading] = useState(false);\n\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n\n  const fetchAccounts = async () => {\n    try {\n      const response = await client.get('/simulation/accounts');\n      setAccounts(response.data || []);\n      return response.data || [];\n    } catch (error) {\n      console.error('Fetch accounts error:', error);\n      setAccounts([]);\n      return [];\n    }\n  };\n\n  const fetchAccount = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/account', {\n        params: { accountId: selectedAccountId },\n      });\n      setAccount(response.data);\n    } catch (error) {\n      console.error('Fetch account error:', error);\n      setAccount(null);\n    }\n  };\n\n  const fetchPositions = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/positions', {\n        params: { accountId: selectedAccountId },\n      });\n      setPositions(response.data || []);\n    } catch (error) {\n      console.error('Fetch positions error:', error);\n      setPositions([]);\n    }\n  };\n\n  const fetchTrades = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/trades', {\n        params: { accountId: selectedAccountId },\n      });\n      setTrades(response.data || []);\n    } catch (error) {\n      console.error('Fetch trades error:', error);\n      setTrades([]);\n    }\n  };\n\n  const fetchEquityCurve = async () => {\n    if (!selectedAccountId) return;\n    try {\n      const response = await client.get('/simulation/equity-curve', {\n        params: { accountId: selectedAccountId },\n      });\n      setEquityCurveData(response.data || []);\n    } catch (error) {\n      console.error('Fetch equity curve error:', error);\n      setEquityCurveData([]);\n    }\n  };\n\n  const fetchStrategies = async () => {\n    try {\n      const response = await client.get('/strategies', { params: { pageSize: 100 } });\n      const data = response.data || [];\n      setStrategies(Array.isArray(data) ? data.map((s: StrategyInfo) => ({ id: s.id, name: s.name })) : []);\n    } catch (error) {\n      console.error('Fetch strategies error:', error);\n      setStrategies([]);\n    }\n  };\n\n  const refreshPositions = async () => {\n    if (!selectedAccountId) return;\n    setRefreshLoading(true);\n    try {\n      const response = await client.get('/simulation/refresh', {\n        params: { accountId: selectedAccountId },\n      });\n      const { account: refreshedAccount, positions: refreshedPositions } = response.data;\n      if (refreshedAccount) setAccount(refreshedAccount);\n      if (refreshedPositions) setPositions(refreshedPositions);\n    } catch (error) {\n      console.error('Refresh positions error:', error);\n    } finally {\n      setRefreshLoading(false);\n    }\n  };\n\n  const fetchAllData = async () => {\n    setLoading(true);\n    await Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]);\n    setLoading(false);\n  };\n\n  useEffect(() => {\n    const init = async () => {\n      const accountList = await fetchAccounts();\n      if (accountList.length > 0) {\n        setSelectedAccountId(accountList[0].id);\n      }\n    };\n    init();\n    fetchStrategies();\n  }, []);\n\n  useEffect(() => {\n    if (!selectedAccountId) return;\n    setLoading(true);\n    Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]).finally(() => {\n      setLoading(false);\n    });\n  }, [selectedAccountId]);\n\n  useEffect(() => {\n    if (selectedAccountId && activeTab === 'equity-curve') {\n      fetchEquityCurve();\n    }\n  }, [activeTab, selectedAccountId]);\n\n  useEffect(() => {\n    if (!chartContainerRef.current || equityCurveData.length === 0) return;\n\n    if (chartRef.current) {\n      chartRef.current.remove();\n      chartRef.current = null;\n    }\n\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: {\n        mode: 1,\n      },\n      rightPriceScale: {\n        borderColor: '#d9d9d9',\n      },\n      timeScale: {\n        borderColor: '#d9d9d9',\n        timeVisible: true,\n      },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    const lineSeries = chart.addSeries(LightweightCharts.LineSeries, {\n      color: '#1890ff',\n      lineWidth: 2,\n    });\n\n    const sortedData = [...equityCurveData].sort(\n      (a, b) => new Date(a.recordedAt).getTime() - new Date(b.recordedAt).getTime()\n    );\n\n    const seen = new Map<number, number>();\n    for (const point of sortedData) {\n      const timeKey = Math.floor(new Date(point.recordedAt).getTime() / 1000);\n      seen.set(timeKey, parseFloat(point.totalEquity));\n    }\n\n    const chartData = Array.from(seen.entries())\n      .sort((a, b) => a[0] - b[0])\n      .map(([time, value]) => ({\n        time: time as Time,\n        value,\n      }));\n\n    lineSeries.setData(chartData);\n\n    chart.timeScale().fitContent();\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({\n          width: chartContainerRef.current.clientWidth,\n        });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n      chartRef.current = null;\n    };\n  }, [equityCurveData]);\n\n  useEffect(() => {\n    return () => {\n      if (tradeDebounceTimerRef.current) {\n        clearTimeout(tradeDebounceTimerRef.current);\n      }\n      if (positionDebounceTimerRef.current) {\n        clearTimeout(positionDebounceTimerRef.current);\n      }\n    };\n  }, []);\n\n  const searchStocks = async (keyword: string, type: 'trade' | 'position') => {\n    if (!keyword || keyword.trim().length === 0) {\n      if (type === 'trade') setTradeStockOptions([]);\n      else setPositionStockOptions([]);\n      return;\n    }\n    if (type === 'trade') setTradeSearchLoading(true);\n    else setPositionSearchLoading(true);\n    try {\n      const response = await client.get('/stock/search', {\n        params: { keyword: keyword.trim() },\n      });\n      const stocks = response.data || [];\n      const options: StockOption[] = stocks.map((stock: { code: string; name: string }) => ({\n        value: stock.code,\n        label: `${stock.code} - ${stock.name}`,\n        code: stock.code,\n        name: stock.name,\n      }));\n      if (type === 'trade') setTradeStockOptions(options);\n      else setPositionStockOptions(options);\n    } catch (error) {\n      console.error('Search stocks error:', error);\n      if (type === 'trade') setTradeStockOptions([]);\n      else setPositionStockOptions([]);\n    } finally {\n      if (type === 'trade') setTradeSearchLoading(false);\n      else setPositionSearchLoading(false);\n    }\n  };\n\n  const handleTradeStockSearch = (value: string) => {\n    if (tradeDebounceTimerRef.current) {\n      clearTimeout(tradeDebounceTimerRef.current);\n    }\n    tradeDebounceTimerRef.current = setTimeout(() => {\n      searchStocks(value, 'trade');\n    }, 300);\n  };\n\n  const handlePositionStockSearch = (value: string) => {\n    if (positionDebounceTimerRef.current) {\n      clearTimeout(positionDebounceTimerRef.current);\n    }\n    positionDebounceTimerRef.current = setTimeout(() => {\n      searchStocks(value, 'position');\n    }, 300);\n  };\n\n  const handleTradeStockChange = async (value: string) => {\n    const selectedOption = tradeStockOptions.find(opt => opt.value === value);\n    if (selectedOption) {\n      tradeForm.setFieldsValue({\n        stockCode: selectedOption.code,\n        stockName: selectedOption.name,\n      });\n      setTradePrice(null);\n      setTradePriceLoading(true);\n      try {\n        await klinesApi.checkAndUpdate(selectedOption.code, '4h');\n        const klineResponse = await client.get(`/klines/${selectedOption.code}`, {\n          params: { period: '4h' },\n        });\n        const klineData = klineResponse.data?.data || klineResponse.data || [];\n        if (Array.isArray(klineData) && klineData.length > 0) {\n          const lastItem = klineData[klineData.length - 1];\n          const closePrice = lastItem.close || lastItem.c;\n          if (closePrice) {\n            setTradePrice(parseFloat(String(closePrice)));\n          }\n        }\n      } catch (error) {\n        console.error('Fetch trade price error:', error);\n      } finally {\n        setTradePriceLoading(false);\n      }\n    }\n  };\n\n  const handlePositionStockChange = (value: string) => {\n    const selectedOption = positionStockOptions.find(opt => opt.value === value);\n    if (selectedOption) {\n      positionForm.setFieldsValue({\n        stockCode: selectedOption.code,\n        stockName: selectedOption.name,\n      });\n    }\n  };\n\n  const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {\n    try {\n      await client.put('/simulation/account', values);\n      message.success('余额更新成功');\n      setIsBalanceModalVisible(false);\n      balanceForm.resetFields();\n      fetchAccount();\n    } catch (error) {\n      message.error('余额更新失败');\n      console.error('Update balance error:', error);\n    }\n  };\n\n  const handleCreateAccount = async (values: { name: string; initialCapital: number }) => {\n    try {\n      const response = await client.post('/simulation/account', values);\n      message.success('账户创建成功');\n      setIsCreateAccountModalVisible(false);\n      createAccountForm.resetFields();\n      const accountList = await fetchAccounts();\n      const newAccountId = response.data?.id;\n      if (newAccountId) {\n        setSelectedAccountId(newAccountId);\n      } else if (accountList.length > 0) {\n        setSelectedAccountId(accountList[accountList.length - 1].id);\n      }\n    } catch (error) {\n      message.error('账户创建失败');\n      console.error('Create account error:', error);\n    }\n  };\n\n  const handleAddPosition = async (values: {\n    stockCode: string;\n    stockName: string;\n    quantity: number;\n    avgCost: number;\n    takeProfitPrice?: number;\n    stopLossPrice?: number;\n  }) => {\n    try {\n      await client.post('/simulation/position', { ...values, accountId: selectedAccountId });\n      message.success('持仓添加成功');\n      setIsPositionModalVisible(false);\n      positionForm.resetFields();\n      setPositionStockOptions([]);\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓添加失败');\n      console.error('Add position error:', error);\n    }\n  };\n\n  const handleDeletePosition = async (positionId: string) => {\n    try {\n      await client.delete(`/simulation/position/${positionId}`);\n      message.success('持仓删除成功');\n      fetchPositions();\n    } catch (error) {\n      message.error('持仓删除失败');\n      console.error('Delete position error:', error);\n    }\n  };\n\n  const handleTrade = async (values: {\n    stockCode: string;\n    stockName: string;\n    type: 'buy' | 'sell';\n    quantity: number;\n    takeProfitPrice?: number;\n    stopLossPrice?: number;\n  }) => {\n    try {\n      const payload: Record<string, unknown> = {\n        stockCode: values.stockCode,\n        stockName: values.stockName,\n        type: values.type,\n        quantity: values.quantity,\n        accountId: selectedAccountId,\n      };\n      if (values.type === 'buy') {\n        if (values.takeProfitPrice !== undefined && values.takeProfitPrice !== null) {\n          payload.takeProfitPrice = values.takeProfitPrice;\n        }\n        if (values.stopLossPrice !== undefined && values.stopLossPrice !== null) {\n          payload.stopLossPrice = values.stopLossPrice;\n        }\n      }\n      await client.post('/simulation/trade', payload);\n      message.success('交易成功');\n      setIsTradeModalVisible(false);\n      tradeForm.resetFields();\n      setTradeStockOptions([]);\n      setTradePrice(null);\n      fetchAllData();\n    } catch (error) {\n      message.error('交易失败');\n      console.error('Trade error:', error);\n    }\n  };\n\n  const formatMoney = (amount: number | string | null | undefined) => {\n    if (amount === null || amount === undefined) return '¥0.00';\n    const num = typeof amount === 'string' ? parseFloat(amount) : amount;\n    if (isNaN(num)) return '¥0.00';\n    return `¥${num.toFixed(2)}`;\n  };\n\n  const closeReasonMap: Record<string, { text: string; color: string }> = {\n    manual: { text: '手动平仓', color: 'blue' },\n    take_profit: { text: '止盈平仓', color: 'green' },\n    stop_loss: { text: '止损平仓', color: 'red' },\n    agent: { text: 'Agent平仓', color: 'purple' },\n  };\n\n  const tradeType = Form.useWatch('type', tradeForm);\n\n  const positionColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '持仓数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '平均成本',\n      dataIndex: 'avgCost',\n      key: 'avgCost',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '当前市值',\n      dataIndex: 'marketValue',\n      key: 'marketValue',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value: number) => (\n        <Tag color={value >= 0 ? 'success' : 'error'}>\n          {value >= 0 ? '+' : ''}{formatMoney(value)}\n        </Tag>\n      ),\n    },\n    {\n      title: '止盈价',\n      dataIndex: 'takeProfitPrice',\n      key: 'takeProfitPrice',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '止损价',\n      dataIndex: 'stopLossPrice',\n      key: 'stopLossPrice',\n      render: (value?: number) => (value ? formatMoney(value) : '-'),\n    },\n    {\n      title: '来源',\n      dataIndex: 'tradeSource',\n      key: 'tradeSource',\n      width: 100,\n      render: (value?: string, record?: SimulationPosition) => {\n        if (value === 'strategy' && record?.strategyId) {\n          const strategy = strategies.find(s => s.id === record.strategyId);\n          return <Tag color=\"purple\">{strategy?.name || '策略'}</Tag>;\n        }\n        if (value === 'system') return <Tag color=\"orange\">系统</Tag>;\n        return <Tag>手动</Tag>;\n      },\n    },\n    {\n      title: '操作',\n      key: 'action',\n      render: (_: unknown, record: SimulationPosition) => (\n        <Popconfirm\n          title=\"确认删除\"\n          description=\"确定要删除这条持仓吗？\"\n          onConfirm={() => handleDeletePosition(record.id)}\n          okText=\"确认\"\n          cancelText=\"取消\"\n        >\n          <Button danger icon={<DeleteOutlined />} size=\"small\">\n            删除\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: '股票代码',\n      dataIndex: 'stockCode',\n      key: 'stockCode',\n    },\n    {\n      title: '股票名称',\n      dataIndex: 'stockName',\n      key: 'stockName',\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      render: (type: string) => (\n        <Tag color={type === 'buy' ? 'success' : 'error'}>\n          {type === 'buy' ? '买入' : '卖出'}\n        </Tag>\n      ),\n    },\n    {\n      title: '数量（股）',\n      dataIndex: 'quantity',\n      key: 'quantity',\n    },\n    {\n      title: '价格',\n      dataIndex: 'price',\n      key: 'price',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '总金额',\n      dataIndex: 'totalAmount',\n      key: 'totalAmount',\n      render: (value: number) => formatMoney(value),\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      render: (value?: number) =>\n        value !== undefined ? (\n          <Tag color={value >= 0 ? 'success' : 'error'}>\n            {value >= 0 ? '+' : ''}{formatMoney(value)}\n          </Tag>\n        ) : '-',\n    },\n    {\n      title: '平仓理由',\n      dataIndex: 'closeReason',\n      key: 'closeReason',\n      render: (value?: string, record?: SimulationTrade) => {\n        if (record?.type !== 'sell' || !value) return '-';\n        const mapping = closeReasonMap[value];\n        if (!mapping) return '-';\n        return <Tag color={mapping.color}>{mapping.text}</Tag>;\n      },\n    },\n    {\n      title: '来源',\n      dataIndex: 'tradeSource',\n      key: 'tradeSource',\n      width: 100,\n      render: (value?: string, record?: SimulationTrade) => {\n        if (value === 'strategy' && record?.strategyId) {\n          const strategy = strategies.find(s => s.id === record.strategyId);\n          return <Tag color=\"purple\">{strategy?.name || '策略'}</Tag>;\n        }\n        if (value === 'system') return <Tag color=\"orange\">系统</Tag>;\n        return <Tag>手动</Tag>;\n      },\n    },\n    {\n      title: '时间',\n      dataIndex: 'tradeTime',\n      key: 'tradeTime',\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n  ];\n\n  if (!account && accounts.length > 0) {\n    return (\n      <div>\n        <Title level={2}>账户模拟</Title>\n        <Card>\n          <Empty description=\"加载中...\" />\n        </Card>\n      </div>\n    );\n  }\n\n  if (!account && accounts.length === 0) {\n    return (\n      <div>\n        <Title level={2}>账户模拟</Title>\n        <Card>\n          <Empty description=\"暂无模拟账户\">\n            <Button\n              type=\"primary\"\n              icon={<PlusOutlined />}\n              onClick={() => {\n                createAccountForm.resetFields();\n                setIsCreateAccountModalVisible(true);\n              }}\n            >\n              创建账户\n            </Button>\n          </Empty>\n        </Card>\n\n        <Modal\n          title=\"创建账户\"\n          open={isCreateAccountModalVisible}\n          onCancel={() => setIsCreateAccountModalVisible(false)}\n          onOk={() => createAccountForm.submit()}\n          width={400}\n        >\n          <Form form={createAccountForm} onFinish={handleCreateAccount} layout=\"vertical\">\n            <Form.Item\n              name=\"name\"\n              label=\"账户名称\"\n              rules={[{ required: true, message: '请输入账户名称' }]}\n            >\n              <Input placeholder=\"请输入账户名称\" />\n            </Form.Item>\n            <Form.Item\n              name=\"initialCapital\"\n              label=\"初始资金\"\n              initialValue={100000}\n            >\n              <InputNumber\n                style={{ width: '100%' }}\n                min={1}\n                step={10000}\n                precision={2}\n                formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n              />\n            </Form.Item>\n          </Form>\n        </Modal>\n      </div>\n    );\n  }\n\n  return (\n    <div>\n      <Title level={2}>账户模拟</Title>\n\n      {account && (\n        <>\n          <Row style={{ marginBottom: 16 }} align=\"middle\" gutter={16}>\n            <Col>\n              <Select\n                value={selectedAccountId || undefined}\n                onChange={(value: string) => setSelectedAccountId(value)}\n                style={{ minWidth: 240 }}\n                placeholder=\"选择账户\"\n              >\n                {accounts.map((acc) => (\n                  <Option key={acc.id} value={acc.id}>\n                    {acc.name || acc.id} — {formatMoney(acc.currentCapital)}\n                  </Option>\n                ))}\n              </Select>\n            </Col>\n            <Col>\n              <Button\n                icon={<PlusOutlined />}\n                onClick={() => {\n                  createAccountForm.resetFields();\n                  setIsCreateAccountModalVisible(true);\n                }}\n              >\n                创建账户\n              </Button>\n            </Col>\n          </Row>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"初始资金\"\n              value={account.initialCapital}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"当前资金\"\n              value={account.currentCapital}\n              precision={2}\n              prefix=\"¥\"\n              valueStyle={{ color: account.currentCapital >= account.initialCapital ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"可用现金\"\n              value={account.availableCash}\n              precision={2}\n              prefix=\"¥\"\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"总收益率\"\n              value={account.totalReturn * 100}\n              precision={2}\n              suffix=\"%\"\n              valueStyle={{ color: account.totalReturn >= 0 ? '#52c41a' : '#f5222d' }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space>\n          <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n            刷新\n          </Button>\n          <Button icon={<ReloadOutlined />} onClick={refreshPositions} loading={refreshLoading}>\n            更新行情\n          </Button>\n          <Button\n            icon={<EditOutlined />}\n            onClick={() => {\n              balanceForm.setFieldsValue({\n                currentCapital: account.currentCapital,\n                availableCash: account.availableCash,\n              });\n              setIsBalanceModalVisible(true);\n            }}\n          >\n            修改余额\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={() => setIsPositionModalVisible(true)}\n          >\n            添加持仓\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<ShoppingCartOutlined />}\n            onClick={() => {\n              setTradePrice(null);\n              setIsTradeModalVisible(true);\n            }}\n          >\n            模拟交易\n          </Button>\n        </Space>\n      </Card>\n\n      <Card\n        tabList={[\n          { key: 'positions', tab: <><WalletOutlined /> 持仓</> },\n          { key: 'trades', tab: <><HistoryOutlined /> 交易记录</> },\n          { key: 'equity-curve', tab: <><LineChartOutlined /> 资金曲线</> },\n        ]}\n        activeTabKey={activeTab}\n        onTabChange={(key) => setActiveTab(key as 'positions' | 'trades' | 'equity-curve')}\n      >\n        {activeTab === 'positions' && (\n          <Table\n            columns={positionColumns}\n            dataSource={positions}\n            rowKey=\"id\"\n            pagination={false}\n            locale={{ emptyText: '暂无持仓' }}\n          />\n        )}\n        {activeTab === 'trades' && (\n          <Table\n            columns={tradeColumns}\n            dataSource={trades}\n            rowKey=\"id\"\n            pagination={{ pageSize: 10 }}\n          />\n        )}\n        {activeTab === 'equity-curve' && (\n          equityCurveData.length > 0 ? (\n            <div ref={chartContainerRef} />\n          ) : (\n            <Empty description=\"暂无资金曲线数据\" />\n          )\n        )}\n      </Card>\n      </>\n      )}\n\n      <Modal\n        title=\"修改余额\"\n        open={isBalanceModalVisible}\n        onCancel={() => setIsBalanceModalVisible(false)}\n        onOk={() => balanceForm.submit()}\n        width={400}\n      >\n        <Form form={balanceForm} onFinish={handleUpdateBalance} layout=\"vertical\">\n          <Form.Item\n            name=\"currentCapital\"\n            label=\"当前资金\"\n            rules={[{ required: true, message: '请输入当前资金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"availableCash\"\n            label=\"可用现金\"\n            rules={[{ required: true, message: '请输入可用现金' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0}\n              step={1000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"添加持仓\"\n        open={isPositionModalVisible}\n        onCancel={() => {\n          setIsPositionModalVisible(false);\n          setPositionStockOptions([]);\n        }}\n        onOk={() => positionForm.submit()}\n        width={400}\n      >\n        <Form form={positionForm} onFinish={handleAddPosition} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Select\n              showSearch\n              placeholder=\"输入股票代码或名称搜索\"\n              filterOption={false}\n              onSearch={handlePositionStockSearch}\n              onChange={handlePositionStockChange}\n              loading={positionSearchLoading}\n              options={positionStockOptions}\n              allowClear\n              notFoundContent={positionSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Input disabled placeholder=\"选择股票后自动填充\" />\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"持仓数量（股）\"\n            rules={[{ required: true, message: '请输入持仓数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入股数\" />\n          </Form.Item>\n          <Form.Item\n            name=\"avgCost\"\n            label=\"平均成本\"\n            rules={[{ required: true, message: '请输入平均成本' }]}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入平均成本\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"takeProfitPrice\"\n            label=\"止盈价（可选）\"\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入止盈价\"\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stopLossPrice\"\n            label=\"止损价（可选）\"\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={0.01}\n              step={0.01}\n              precision={2}\n              placeholder=\"请输入止损价\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"模拟交易\"\n        open={isTradeModalVisible}\n        onCancel={() => {\n          setIsTradeModalVisible(false);\n          setTradeStockOptions([]);\n          setTradePrice(null);\n        }}\n        onOk={() => tradeForm.submit()}\n        width={500}\n      >\n        <Form form={tradeForm} onFinish={handleTrade} layout=\"vertical\">\n          <Form.Item\n            name=\"stockCode\"\n            label=\"股票代码\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Select\n              showSearch\n              placeholder=\"输入股票代码或名称搜索\"\n              filterOption={false}\n              onSearch={handleTradeStockSearch}\n              onChange={handleTradeStockChange}\n              loading={tradeSearchLoading}\n              options={tradeStockOptions}\n              allowClear\n              notFoundContent={tradeSearchLoading ? '搜索中...' : '请输入股票代码或名称搜索'}\n            />\n          </Form.Item>\n          <Form.Item\n            name=\"stockName\"\n            label=\"股票名称\"\n            rules={[{ required: true, message: '请选择股票' }]}\n          >\n            <Input disabled placeholder=\"选择股票后自动填充\" />\n          </Form.Item>\n          <Form.Item\n            name=\"type\"\n            label=\"交易类型\"\n            rules={[{ required: true, message: '请选择交易类型' }]}\n            initialValue=\"buy\"\n          >\n            <Select>\n              <Option value=\"buy\">买入</Option>\n              <Option value=\"sell\">卖出</Option>\n            </Select>\n          </Form.Item>\n          <Form.Item label=\"当前价格\">\n            {tradePriceLoading ? (\n              <Spin size=\"small\" />\n            ) : tradePrice !== null ? (\n              <InputNumber\n                style={{ width: '100%' }}\n                value={tradePrice}\n                disabled\n                precision={2}\n                formatter={(value) => `¥ ${value}`}\n              />\n            ) : (\n              <Text type=\"secondary\">选择股票后自动获取4H行情价格</Text>\n            )}\n          </Form.Item>\n          <Form.Item\n            name=\"quantity\"\n            label=\"数量（股）\"\n            rules={[{ required: true, message: '请输入数量' }]}\n          >\n            <InputNumber style={{ width: '100%' }} min={1} placeholder=\"请输入股数\" />\n          </Form.Item>\n          {tradeType === 'buy' && (\n            <>\n              <Form.Item\n                name=\"takeProfitPrice\"\n                label=\"止盈价（可选）\"\n              >\n                <InputNumber\n                  style={{ width: '100%' }}\n                  min={0.01}\n                  step={0.01}\n                  precision={2}\n                  placeholder=\"请输入止盈价\"\n                />\n              </Form.Item>\n              <Form.Item\n                name=\"stopLossPrice\"\n                label=\"止损价（可选）\"\n              >\n                <InputNumber\n                  style={{ width: '100%' }}\n                  min={0.01}\n                  step={0.01}\n                  precision={2}\n                  placeholder=\"请输入止损价\"\n                />\n              </Form.Item>\n            </>\n          )}\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"创建账户\"\n        open={isCreateAccountModalVisible}\n        onCancel={() => setIsCreateAccountModalVisible(false)}\n        onOk={() => createAccountForm.submit()}\n        width={400}\n      >\n        <Form form={createAccountForm} onFinish={handleCreateAccount} layout=\"vertical\">\n          <Form.Item\n            name=\"name\"\n            label=\"账户名称\"\n            rules={[{ required: true, message: '请输入账户名称' }]}\n          >\n            <Input placeholder=\"请输入账户名称\" />\n          </Form.Item>\n          <Form.Item\n            name=\"initialCapital\"\n            label=\"初始资金\"\n            initialValue={100000}\n          >\n            <InputNumber\n              style={{ width: '100%' }}\n              min={1}\n              step={10000}\n              precision={2}\n              formatter={(value) => `¥ ${value}`.replace(/\\B(?=(\\d{3})+(?!\\d))/g, ',')}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default SimulationPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/simulation/index.tsx"
     },
@@ -3855,21 +4096,32 @@
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/settings/api-keys.tsx"
     },
     "25": {
+      "path": "/audit-logs",
+      "title": "审计日志",
+      "file": "@/pages/audit-logs/index.tsx",
+      "parentId": "3",
+      "id": "25",
+      "absPath": "/audit-logs",
+      "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Table, Card, Tag, Typography, Space, Select, Button } from 'antd';\nimport { ReloadOutlined, AuditOutlined } from '@ant-design/icons';\nimport { getAuditLogs, type AuditLog, type AuditLogQueryParams } from '@/services/audit-log';\n\nconst { Title } = Typography;\n\nconst ACTION_OPTIONS = [\n  { label: '全部操作', value: '' },\n  { label: '用户登录', value: 'user.login' },\n  { label: '用户注册', value: 'user.register' },\n  { label: '修改密码', value: 'user.change_password' },\n  { label: '修改资料', value: 'user.update_profile' },\n  { label: 'API Key 创建', value: 'api_key.create' },\n  { label: 'API Key 删除', value: 'api_key.delete' },\n  { label: '策略创建', value: 'strategy.create' },\n  { label: '策略更新', value: 'strategy.update' },\n  { label: 'Webhook 创建', value: 'webhook.create' },\n  { label: 'Webhook 更新', value: 'webhook.update' },\n  { label: 'Webhook 删除', value: 'webhook.delete' },\n  { label: '模拟账户创建', value: 'simulation.account_create' },\n  { label: '模拟交易执行', value: 'simulation.trade_execute' },\n  { label: '信号规则更新', value: 'signal_rule' },\n  { label: '黑名单操作', value: 'blacklist' },\n  { label: '定时任务更新', value: 'scheduler' },\n];\n\nconst RESOURCE_OPTIONS = [\n  { label: '全部资源', value: '' },\n  { label: '用户', value: 'user' },\n  { label: 'API Key', value: 'api_key' },\n  { label: '策略', value: 'strategy' },\n  { label: 'Webhook', value: 'webhook' },\n  { label: '模拟账户', value: 'simulation_account' },\n  { label: '模拟交易', value: 'simulation_trade' },\n  { label: '信号规则', value: 'signal_rule' },\n  { label: '黑名单', value: 'blacklist' },\n  { label: '定时任务', value: 'scheduler_task' },\n];\n\nconst ACTION_LABEL_MAP: Record<string, string> = {\n  'user.login': '用户登录',\n  'user.register': '用户注册',\n  'user.change_password': '修改密码',\n  'user.update_profile': '修改资料',\n  'api_key.create': 'API Key 创建',\n  'api_key.delete': 'API Key 删除',\n  'strategy.create': '策略创建',\n  'strategy.update': '策略更新',\n  'webhook.create': 'Webhook 创建',\n  'webhook.update': 'Webhook 更新',\n  'webhook.delete': 'Webhook 删除',\n  'simulation.account_create': '模拟账户创建',\n  'simulation.trade_execute': '模拟交易执行',\n  'signal_rule.create': '信号规则创建',\n  'signal_rule.update': '信号规则更新',\n  'blacklist.create': '黑名单添加',\n  'blacklist.delete': '黑名单删除',\n  'scheduler.update': '定时任务更新',\n};\n\nconst AuditLogsPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<AuditLog[]>([]);\n  const [total, setTotal] = useState(0);\n  const [pagination, setPagination] = useState({ current: 1, pageSize: 20 });\n  const [filters, setFilters] = useState<AuditLogQueryParams>({});\n\n  const fetchData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const result = await getAuditLogs({\n        ...filters,\n        page: pagination.current,\n        pageSize: pagination.pageSize,\n      });\n      setData(result.data || []);\n      setTotal(result.total || 0);\n    } catch (error) {\n      console.error('Failed to fetch audit logs:', error);\n    } finally {\n      setLoading(false);\n    }\n  }, [filters, pagination]);\n\n  useEffect(() => {\n    fetchData();\n  }, [fetchData]);\n\n  const handleFilterChange = (key: string, value: string) => {\n    setFilters((prev) => ({ ...prev, [key]: value || undefined }));\n    setPagination((prev) => ({ ...prev, current: 1 }));\n  };\n\n  const handleTableChange = (pag: any) => {\n    setPagination({\n      current: pag.current,\n      pageSize: pag.pageSize,\n    });\n  };\n\n  const columns = [\n    {\n      title: '时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 180,\n      render: (text: string) => new Date(text).toLocaleString('zh-CN'),\n    },\n    {\n      title: '操作类型',\n      dataIndex: 'action',\n      key: 'action',\n      width: 160,\n      render: (action: string) => (\n        <Tag color=\"blue\">{ACTION_LABEL_MAP[action] || action}</Tag>\n      ),\n    },\n    {\n      title: '资源类型',\n      dataIndex: 'resource',\n      key: 'resource',\n      width: 120,\n      render: (resource: string) => {\n        const colorMap: Record<string, string> = {\n          user: 'geekblue',\n          api_key: 'orange',\n          strategy: 'green',\n          webhook: 'purple',\n          simulation_account: 'cyan',\n          simulation_trade: 'cyan',\n          signal_rule: 'gold',\n          blacklist: 'red',\n          scheduler_task: 'magenta',\n        };\n        const labelMap: Record<string, string> = {\n          user: '用户',\n          api_key: 'API Key',\n          strategy: '策略',\n          webhook: 'Webhook',\n          simulation_account: '模拟账户',\n          simulation_trade: '模拟交易',\n          signal_rule: '信号规则',\n          blacklist: '黑名单',\n          scheduler_task: '定时任务',\n        };\n        return <Tag color={colorMap[resource] || 'default'}>{labelMap[resource] || resource}</Tag>;\n      },\n    },\n    {\n      title: '资源ID',\n      dataIndex: 'resourceId',\n      key: 'resourceId',\n      width: 160,\n      ellipsis: true,\n      render: (text: string | null) => text || '-',\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 80,\n      render: (status: string) => (\n        <Tag color={status === 'success' ? 'success' : 'error'}>\n          {status === 'success' ? '成功' : '失败'}\n        </Tag>\n      ),\n    },\n    {\n      title: 'IP 地址',\n      dataIndex: 'ipAddress',\n      key: 'ipAddress',\n      width: 140,\n      render: (text: string | null) => text || '-',\n    },\n    {\n      title: '详情',\n      dataIndex: 'detail',\n      key: 'detail',\n      width: 200,\n      ellipsis: true,\n      render: (detail: Record<string, unknown> | null) => {\n        if (!detail) return '-';\n        const entries = Object.entries(detail);\n        if (entries.length === 0) return '-';\n        return (\n          <span style={{ fontSize: 12, color: '#666' }}>\n            {entries.map(([k, v]) => `${k}: ${String(v)}`).join(', ')}\n          </span>\n        );\n      },\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>\n        <AuditOutlined style={{ marginRight: 8 }} />\n        审计日志\n      </Title>\n      <Card>\n        <Space style={{ marginBottom: 16 }} wrap>\n          <Select\n            style={{ width: 160 }}\n            placeholder=\"操作类型\"\n            options={ACTION_OPTIONS}\n            value={filters.action || ''}\n            onChange={(value) => handleFilterChange('action', value)}\n          />\n          <Select\n            style={{ width: 140 }}\n            placeholder=\"资源类型\"\n            options={RESOURCE_OPTIONS}\n            value={filters.resource || ''}\n            onChange={(value) => handleFilterChange('resource', value)}\n          />\n          <Button icon={<ReloadOutlined />} onClick={fetchData}>\n            刷新\n          </Button>\n        </Space>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={{\n            current: pagination.current,\n            pageSize: pagination.pageSize,\n            total,\n            showSizeChanger: true,\n            showTotal: (t) => `共 ${t} 条`,\n          }}\n          onChange={handleTableChange}\n          scroll={{ x: 1000 }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default AuditLogsPage;\n",
+      "__isJSFile": true,
+      "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/audit-logs/index.tsx"
+    },
+    "26": {
       "path": "/profile",
       "title": "个人资料",
       "file": "@/pages/profile.tsx",
       "parentId": "3",
-      "id": "25",
+      "id": "26",
       "absPath": "/profile",
       "__content": "import React, { useEffect, useState } from 'react';\nimport { \n  Card, \n  Form, \n  Input, \n  Button, \n  Avatar, \n  Row, \n  Col, \n  Divider, \n  Typography, \n  message,\n  Space,\n  Tooltip,\n  Popover\n} from 'antd';\nimport { \n  UserOutlined, \n  MailOutlined, \n  LockOutlined,\n  SyncOutlined,\n  SaveOutlined,\n  KeyOutlined,\n  EditOutlined,\n  CopyOutlined,\n  CheckOutlined\n} from '@ant-design/icons';\nimport { useUser } from '@/contexts/UserContext';\nimport { authApi } from '@/services/auth';\nimport { generateAvatarDataUrl, generateRandomSeed } from '@/utils/avatar';\n\nconst { Title, Text } = Typography;\n\nconst ProfilePage: React.FC = () => {\n  const { user, setUser, refreshUser } = useUser();\n  const [profileForm] = Form.useForm();\n  const [passwordForm] = Form.useForm();\n  const [profileLoading, setProfileLoading] = useState(false);\n  const [passwordLoading, setPasswordLoading] = useState(false);\n  const [avatarSeed, setAvatarSeed] = useState<string>('');\n\n  useEffect(() => {\n    if (user) {\n      profileForm.setFieldsValue({\n        nickname: user.nickname,\n        email: user.email,\n      });\n      // 使用用户的 avatarSeed，如果没有则使用昵称作为种子（保持一致性）\n      const seed = user.avatarSeed || user.nickname || 'default';\n      setAvatarSeed(seed);\n    }\n  }, [user, profileForm]);\n\n  const handleUpdateProfile = async (values: { nickname: string }) => {\n    setProfileLoading(true);\n    try {\n      const updatedUser = await authApi.updateProfile({\n        nickname: values.nickname,\n        avatarSeed,\n      });\n      setUser(updatedUser);\n      message.success('个人资料更新成功');\n    } catch (error) {\n      console.error('Update profile error:', error);\n    } finally {\n      setProfileLoading(false);\n    }\n  };\n\n  const handleChangePassword = async (values: { \n    currentPassword: string; \n    newPassword: string;\n    confirmPassword: string;\n  }) => {\n    if (values.newPassword !== values.confirmPassword) {\n      message.error('两次输入的新密码不一致');\n      return;\n    }\n\n    setPasswordLoading(true);\n    try {\n      await authApi.changePassword({\n        currentPassword: values.currentPassword,\n        newPassword: values.newPassword,\n      });\n      message.success('密码修改成功');\n      passwordForm.resetFields();\n    } catch (error) {\n      console.error('Change password error:', error);\n    } finally {\n      setPasswordLoading(false);\n    }\n  };\n\n  const handleRegenerateAvatar = () => {\n    const newSeed = generateRandomSeed();\n    setAvatarSeed(newSeed);\n  };\n\n  const handleCopySeed = () => {\n    navigator.clipboard.writeText(avatarSeed);\n    message.success('头像种子已复制到剪贴板');\n  };\n\n  const avatarSrc = generateAvatarDataUrl(avatarSeed);\n\n  return (\n    <div>\n      <Title level={2}>个人资料</Title>\n      <Text type=\"secondary\">管理您的账户信息和安全设置</Text>\n\n      <Row gutter={[24, 24]} style={{ marginTop: 24 }}>\n        <Col xs={24} md={8}>\n          <Card>\n            <div style={{ textAlign: 'center' }}>\n              <Avatar \n                src={avatarSrc} \n                size={120}\n                icon={<UserOutlined />}\n                style={{ marginBottom: 16 }}\n              />\n              <Title level={4} style={{ margin: 0 }}>\n                {user?.nickname || '用户'}\n              </Title>\n              <Text type=\"secondary\">{user?.email}</Text>\n            </div>\n            <Divider />\n            <div style={{ textAlign: 'center' }}>\n              <Text type=\"secondary\" style={{ display: 'block', marginBottom: 8 }}>\n                头像预览\n              </Text>\n              <Text type=\"secondary\" style={{ fontSize: 12 }}>\n                在右侧表单中修改种子\n              </Text>\n            </div>\n          </Card>\n        </Col>\n\n        <Col xs={24} md={16}>\n          <Card title=\"基本信息\">\n            <Form\n              form={profileForm}\n              layout=\"vertical\"\n              onFinish={handleUpdateProfile}\n            >\n              <Form.Item\n                name=\"nickname\"\n                label=\"昵称\"\n                rules={[\n                  { required: true, message: '请输入昵称' },\n                  { min: 2, message: '昵称至少2个字符' },\n                  { max: 20, message: '昵称最多20个字符' },\n                ]}\n              >\n                <Input \n                  prefix={<UserOutlined />} \n                  placeholder=\"请输入昵称\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"email\"\n                label=\"邮箱\"\n              >\n                <Input \n                  prefix={<MailOutlined />} \n                  disabled \n                />\n              </Form.Item>\n\n              <Form.Item\n                label=\"头像种子\"\n                extra=\"修改种子可以生成不同的头像，或使用随机生成\"\n              >\n                <Space.Compact style={{ width: '100%' }}>\n                  <Input\n                    value={avatarSeed}\n                    onChange={(e) => setAvatarSeed(e.target.value)}\n                    placeholder=\"输入头像种子\"\n                    prefix={<EditOutlined />}\n                  />\n                  <Tooltip title=\"复制种子\">\n                    <Button \n                      icon={<CopyOutlined />} \n                      onClick={handleCopySeed}\n                    />\n                  </Tooltip>\n                  <Tooltip title=\"随机生成\">\n                    <Button \n                      icon={<SyncOutlined />} \n                      onClick={handleRegenerateAvatar}\n                    />\n                  </Tooltip>\n                </Space.Compact>\n              </Form.Item>\n\n              <Form.Item>\n                <Button \n                  type=\"primary\" \n                  htmlType=\"submit\" \n                  loading={profileLoading}\n                  icon={<SaveOutlined />}\n                >\n                  保存修改\n                </Button>\n              </Form.Item>\n            </Form>\n          </Card>\n\n          <Card title=\"修改密码\" style={{ marginTop: 24 }}>\n            <Form\n              form={passwordForm}\n              layout=\"vertical\"\n              onFinish={handleChangePassword}\n            >\n              <Form.Item\n                name=\"currentPassword\"\n                label=\"当前密码\"\n                rules={[\n                  { required: true, message: '请输入当前密码' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<LockOutlined />} \n                  placeholder=\"请输入当前密码\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"newPassword\"\n                label=\"新密码\"\n                rules={[\n                  { required: true, message: '请输入新密码' },\n                  { min: 6, message: '密码至少6位' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<KeyOutlined />} \n                  placeholder=\"请输入新密码\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"confirmPassword\"\n                label=\"确认新密码\"\n                rules={[\n                  { required: true, message: '请确认新密码' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<KeyOutlined />} \n                  placeholder=\"请再次输入新密码\" \n                />\n              </Form.Item>\n\n              <Form.Item>\n                <Button \n                  type=\"primary\" \n                  htmlType=\"submit\" \n                  loading={passwordLoading}\n                  icon={<SaveOutlined />}\n                >\n                  修改密码\n                </Button>\n              </Form.Item>\n            </Form>\n          </Card>\n        </Col>\n      </Row>\n    </div>\n  );\n};\n\nexport default ProfilePage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/profile.tsx"
     },
-    "26": {
+    "27": {
       "path": "/",
       "redirect": "/dashboard",
       "parentId": "3",
-      "id": "26",
+      "id": "27",
       "absPath": "/"
     }
   },
@@ -5722,7 +5974,7 @@
             "format": "esm"
           },
           "src/layouts/MainLayout.tsx": {
-            "bytes": 7497,
+            "bytes": 7674,
             "imports": [
               {
                 "path": "react",
@@ -6625,6 +6877,48 @@
             ],
             "format": "esm"
           },
+          "src/services/audit-log.ts": {
+            "bytes": 1021,
+            "imports": [
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "./client"
+              }
+            ],
+            "format": "esm"
+          },
+          "src/pages/audit-logs/index.tsx": {
+            "bytes": 7634,
+            "imports": [
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "src/services/audit-log.ts",
+                "kind": "import-statement",
+                "original": "@/services/audit-log"
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm"
+          },
           "src/pages/profile.tsx": {
             "bytes": 8060,
             "imports": [
@@ -6688,7 +6982,7 @@
             "format": "esm"
           },
           "src/.umi/core/route.tsx": {
-            "bytes": 4757,
+            "bytes": 4943,
             "imports": [
               {
                 "path": "react",
@@ -6814,6 +7108,11 @@
                 "path": "src/pages/settings/api-keys.tsx",
                 "kind": "dynamic-import",
                 "original": "@/pages/settings/api-keys.tsx"
+              },
+              {
+                "path": "src/pages/audit-logs/index.tsx",
+                "kind": "dynamic-import",
+                "original": "@/pages/audit-logs/index.tsx"
               },
               {
                 "path": "src/pages/profile.tsx",
@@ -7586,6 +7885,26 @@
               {
                 "path": "remark-gfm",
                 "kind": "dynamic-import",
+                "external": true
+              },
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
                 "external": true
               },
               {
@@ -8862,7 +9181,7 @@
                 "bytesInOutput": 1894
               },
               "src/layouts/MainLayout.tsx": {
-                "bytesInOutput": 9520
+                "bytesInOutput": 9759
               },
               "src/pages/dashboard.tsx": {
                 "bytesInOutput": 9011
@@ -8948,6 +9267,12 @@
               "src/pages/settings/api-keys.tsx": {
                 "bytesInOutput": 11298
               },
+              "src/services/audit-log.ts": {
+                "bytesInOutput": 572
+              },
+              "src/pages/audit-logs/index.tsx": {
+                "bytesInOutput": 9733
+              },
               "src/pages/profile.tsx": {
                 "bytesInOutput": 12022
               },
@@ -8955,7 +9280,7 @@
                 "bytesInOutput": 383
               },
               "src/.umi/core/route.tsx": {
-                "bytesInOutput": 5161
+                "bytesInOutput": 5363
               },
               "src/.umi/core/polyfill.ts": {
                 "bytesInOutput": 30238
@@ -8964,7 +9289,7 @@
                 "bytesInOutput": 2095
               }
             },
-            "bytes": 511974
+            "bytes": 522785
           }
         }
       }
@@ -12753,7 +13078,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 470,
+          "end": 487,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -12841,13 +13166,18 @@
               "imported": "ThunderboltOutlined",
               "local": "ThunderboltOutlined",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "AuditOutlined",
+              "local": "AuditOutlined",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 118,
           "type": "ImportDeclaration"
         },
         {
-          "end": 526,
+          "end": 543,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -12867,11 +13197,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 471,
+          "start": 488,
           "type": "ImportDeclaration"
         },
         {
-          "end": 568,
+          "end": 585,
           "importKind": "value",
           "source": "@/components/Header",
           "specifiers": [
@@ -12880,11 +13210,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 527,
+          "start": 544,
           "type": "ImportDeclaration"
         },
         {
-          "end": 620,
+          "end": 637,
           "importKind": "value",
           "source": "@/components/PageLoading",
           "specifiers": [
@@ -12893,7 +13223,7 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 569,
+          "start": 586,
           "type": "ImportDeclaration"
         }
       ],
@@ -13115,6 +13445,123 @@
             }
           ],
           "start": 571,
+          "type": "ImportDeclaration"
+        }
+      ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\audit-logs\\index.tsx": [
+        {
+          "end": 65,
+          "importKind": "value",
+          "source": "react",
+          "specifiers": [
+            {
+              "local": "React",
+              "type": "ImportDefaultSpecifier"
+            },
+            {
+              "imported": "useState",
+              "local": "useState",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useEffect",
+              "local": "useEffect",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useCallback",
+              "local": "useCallback",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 141,
+          "importKind": "value",
+          "source": "antd",
+          "specifiers": [
+            {
+              "imported": "Table",
+              "local": "Table",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Card",
+              "local": "Card",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Tag",
+              "local": "Tag",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Typography",
+              "local": "Typography",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Space",
+              "local": "Space",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Select",
+              "local": "Select",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Button",
+              "local": "Button",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 66,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 208,
+          "importKind": "value",
+          "source": "@ant-design/icons",
+          "specifiers": [
+            {
+              "imported": "ReloadOutlined",
+              "local": "ReloadOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "AuditOutlined",
+              "local": "AuditOutlined",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 142,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 302,
+          "importKind": "value",
+          "source": "@/services/audit-log",
+          "specifiers": [
+            {
+              "imported": "getAuditLogs",
+              "local": "getAuditLogs",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "AuditLog",
+              "local": "AuditLog",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "AuditLogQueryParams",
+              "local": "AuditLogQueryParams",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 209,
           "type": "ImportDeclaration"
         }
       ],
@@ -17486,6 +17933,21 @@
             }
           ],
           "start": 32,
+          "type": "ImportDeclaration"
+        }
+      ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\audit-log.ts": [
+        {
+          "end": 31,
+          "importKind": "value",
+          "source": "./client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
           "type": "ImportDeclaration"
         }
       ],

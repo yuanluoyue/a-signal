@@ -18,6 +18,7 @@ import {
   DatabaseOutlined,
   FundOutlined,
   ThunderboltOutlined,
+  AuditOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -125,6 +126,11 @@ const MENU_ITEMS = [
         icon: <BlockOutlined />,
         label: '黑名单',
       },
+      {
+        key: '/audit-logs',
+        icon: <AuditOutlined />,
+        label: '审计日志',
+      },
     ],
   },
 ];
@@ -165,6 +171,7 @@ const getSelectedKey = (pathname: string): string => {
     '/backtest',
     '/agent-chat',
     '/blacklist',
+    '/audit-logs',
   ];
   
   if (knownFirstLevelPaths.includes(basePath)) {
@@ -190,6 +197,7 @@ const getOpenKeys = (pathname: string): string[] => {
     '/settings/scheduler': '/settings',
     '/settings/api-keys': '/settings',
     '/blacklist': '/settings',
+    '/audit-logs': '/settings',
   };
   
   const openKeys: string[] = [];
