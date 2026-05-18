@@ -22,6 +22,11 @@ export class UpdateStrategyRuntimeDto {
   @IsBoolean()
   enableLiveTrading?: boolean;
 
+  @ApiPropertyOptional({ description: '是否触发交易 Agent' })
+  @IsOptional()
+  @IsBoolean()
+  enableAgent?: boolean;
+
   @ApiPropertyOptional({ description: '绑定的模拟账户 ID' })
   @IsOptional()
   @IsString()

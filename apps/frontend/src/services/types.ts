@@ -736,3 +736,51 @@ export interface TradingMemoryStatsResponse {
   active: number;
   invalidated: number;
 }
+
+// ==================== 交易 Agent 相关类型 ====================
+
+export interface TradingAgentDecision {
+  id: string;
+  userId: string;
+  accountId: string;
+  signalId: string;
+  decisionType: 'execute' | 'reject' | 'adjust_position' | 'close_position' | 'modify_holding';
+  decision: 'approved' | 'rejected';
+  rationale: string;
+  confidence: number;
+  riskLevel: 'low' | 'medium' | 'high' | 'critical';
+  positionAction: {
+    action: 'buy' | 'sell';
+    stockCode: string;
+    stockName: string;
+    quantity: number;
+    price?: number;
+    takeProfitPrice?: number;
+    stopLossPrice?: number;
+  } | null;
+  contextSnapshot: {
+    accountInfo?: Record<string, unknown>;
+    signalInfo?: Record<string, unknown>;
+    relevantMemories?: Record<string, unknown>[];
+    currentPositions?: Record<string, unknown>[];
+  } | null;
+  memoryCreated: boolean;
+  createdAt: string;
+}
+
+export interface TradingAgentStats {
+  totalToday: number;
+  approvedToday: number;
+  rejectedToday: number;
+  highRiskRejectedToday: number;
+}
+
+export interface TradingAgentRuntime {
+  id: string;
+  userId: string;
+  accountId: string | null;
+  status: 'running' | 'stopped';
+  lastRunAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}

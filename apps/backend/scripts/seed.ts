@@ -468,6 +468,25 @@ async function seed() {
       }
     }
 
+    // ==================== 交易代理运行时数据 ====================
+    console.log('Seeding trading agent runtimes...');
+
+    const existingAgentRuntime = await db
+      .select()
+      .from(schema.tradingAgentRuntimes)
+      .where(eq(schema.tradingAgentRuntimes.userId, adminUser!.id))
+      .limit(1);
+
+    if (existingAgentRuntime.length === 0) {
+      await db.insert(schema.tradingAgentRuntimes).values({
+        userId: adminUser!.id,
+        status: 'stopped',
+      });
+      console.log('Created trading agent runtime for admin user');
+    } else {
+      console.log('Trading agent runtime already exists for admin user');
+    }
+
   } catch (error) {
     console.error('Seed failed:', error);
     throw error;

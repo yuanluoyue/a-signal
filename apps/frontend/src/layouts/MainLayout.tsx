@@ -76,8 +76,9 @@ const MENU_ITEMS = [
     icon: <RobotOutlined />,
     label: 'AI 智能体',
     children: [
-      { key: '/agent-chat', icon: <MessageOutlined />, label: 'AI 助手' },
+      { key: '/agent-chat', icon: <MessageOutlined />, label: '研究员 Agent' },
       { key: '/trading-memory', icon: <BulbOutlined />, label: '交易经验' },
+      { key: '/trading-agent', icon: <ThunderboltOutlined />, label: '交易 Agent' },
     ],
   },
   {
@@ -172,6 +173,7 @@ const getOpenKeys = (pathname: string): string[] => {
     '/simulation': '/trading',
     '/agent-chat': '/agent',
     '/trading-memory': '/agent',
+    '/trading-agent': '/agent',
     '/analysis/overview': '/analysis',
     '/analysis/strategies': '/analysis',
     '/settings/notifications': '/settings',

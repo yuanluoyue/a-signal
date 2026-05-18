@@ -24,6 +24,8 @@ import {
   EditOutlined,
 } from '@ant-design/icons';
 import { useUser } from '@/contexts/UserContext';
+import { getToken } from '@/utils/auth';
+import client from '@/services/client';
 import { Bubble } from '@ant-design/x';
 import ReactMarkdown from 'react-markdown';
 import type { PluggableList } from 'unified';
@@ -119,8 +121,7 @@ interface SseEvent {
 }
 
 const AgentChatPage: React.FC = () => {
-  const { user, loading } = useUser();
-  const userId = user?.id;
+  const { loading } = useUser();
 
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [currentConversationId, setCurrentConversationId] = useState<string>('');
@@ -147,34 +148,26 @@ const AgentChatPage: React.FC = () => {
 
   // 加载历史对话
   useEffect(() => {
-    console.log('[AgentChat] loading:', loading, 'userId:', userId);
-    if (!loading && userId) {
+    console.log('[AgentChat] loading:', loading);
+    if (!loading) {
       loadConversations();
     }
-  }, [loading, userId]);
+  }, [loading]);
 
   const loadConversations = async () => {
-    console.log('[AgentChat] Loading conversations for userId:', userId);
-    if (!userId) {
-      console.log('[AgentChat] Skip loading - no userId');
-      return;
-    }
-
+    console.log('[AgentChat] Loading conversations');
     setIsLoadingHistory(true);
     try {
-      const response = await fetch(`/api/v1/agent/sessions?userId=${userId}`);
-      const result = await response.json();
+      const result: any = await client.get('/agent/sessions');
       console.log('[AgentChat] Sessions response:', result);
 
       const sessions = result.sessions || result.data?.sessions || [];
       console.log('[AgentChat] Sessions to load:', sessions);
       if (sessions.length > 0) {
-        // 加载每个会话的历史消息
         const loadedConversations: Conversation[] = [];
         for (const sessionId of sessions) {
           console.log('[AgentChat] Loading history for session:', sessionId);
-          const historyResponse = await fetch(`/api/v1/agent/history?userId=${userId}&sessionId=${sessionId}`);
-          const historyData = await historyResponse.json();
+          const historyData = await client.get('/agent/history', { params: { sessionId } });
           console.log('[AgentChat] History data for session', sessionId, ':', historyData);
 
           const messages = historyData.data || historyData || [];
@@ -224,18 +217,10 @@ const AgentChatPage: React.FC = () => {
   // 删除对话
   const deleteConversation = async (id: string) => {
     try {
-      // 调用 API 删除对话
-      const response = await fetch(`/api/v1/agent/session?userId=${userId}&sessionId=${id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        setConversations((prev) => prev.filter((c) => c.id !== id));
-        if (currentConversationId === id) {
-          setCurrentConversationId('');
-        }
-      } else {
-        console.error('Failed to delete session');
+      await client.delete('/agent/session', { params: { sessionId: id } });
+      setConversations((prev) => prev.filter((c) => c.id !== id));
+      if (currentConversationId === id) {
+        setCurrentConversationId('');
       }
     } catch (error) {
       console.error('Error deleting session:', error);
@@ -252,28 +237,15 @@ const AgentChatPage: React.FC = () => {
   const saveTitle = async () => {
     if (editingConversation && newTitle.trim()) {
       try {
-        // 调用 API 更新对话标题
-        const response = await fetch('/api/v1/agent/session/title', {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            userId,
-            sessionId: editingConversation.id,
-            title: newTitle.trim(),
-          }),
+        await client.put('/agent/session/title', {
+          sessionId: editingConversation.id,
+          title: newTitle.trim(),
         });
-
-        if (response.ok) {
-          setConversations((prev) =>
-            prev.map((conv) =>
-              conv.id === editingConversation.id ? { ...conv, title: newTitle.trim() } : conv
-            )
-          );
-        } else {
-          console.error('Failed to update session title');
-        }
+        setConversations((prev) =>
+          prev.map((conv) =>
+            conv.id === editingConversation.id ? { ...conv, title: newTitle.trim() } : conv
+          )
+        );
       } catch (error) {
         console.error('Error updating session title:', error);
       }
@@ -336,14 +308,15 @@ const AgentChatPage: React.FC = () => {
     setThinkingStatus('思考中...');
 
     try {
-      console.log('[AgentChat] Sending message with userId:', userId, 'sessionId:', conversationId);
+      console.log('[AgentChat] Sending message with sessionId:', conversationId);
+      const token = getToken();
       const response = await fetch('/api/v1/agent/chat/stream', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          ...(token ? { Authorization: `Bearer ${token}` } : {}),
         },
         body: JSON.stringify({
-          userId,
           sessionId: conversationId,
           message,
         }),
@@ -432,7 +405,7 @@ const AgentChatPage: React.FC = () => {
       setIsLoading(false);
       setThinkingStatus('');
     }
-  }, [inputValue, isLoading, currentConversationId, userId]);
+  }, [inputValue, isLoading, currentConversationId]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && !e.shiftKey) {

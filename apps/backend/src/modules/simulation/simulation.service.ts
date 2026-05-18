@@ -8,6 +8,7 @@ import {
   users,
   klines,
   strategies,
+  stocks,
   simulationAccounts,
   simulationPositions,
   simulationTrades,
@@ -196,7 +197,7 @@ export class SimulationService {
       .select()
       .from(simulationPositions)
       .where(eq(simulationPositions.accountId, accountId))
-      .orderBy(desc(simulationPositions.updatedAt));
+      .orderBy(desc(simulationPositions.updatedAt), desc(simulationPositions.createdAt));
     
     return positions.map(p => ({
       ...p,
@@ -244,6 +245,21 @@ export class SimulationService {
     const price = parseFloat(result[0].close);
     await this.cacheService.set(cacheKey, price, 5 * 60 * 1000);
     return price;
+  }
+
+  private async resolveStockName(stockCode: string, providedName?: string): Promise<string> {
+    try {
+      const [row] = await this.dbService.db
+        .select({ name: stocks.name })
+        .from(stocks)
+        .where(eq(stocks.code, stockCode.trim().toLowerCase()))
+        .limit(1);
+      if (row?.name) return row.name;
+    } catch (error) {
+      this.logger.error(`resolveStockName: failed to lookup stock name for ${stockCode}: ${error instanceof Error ? error.message : String(error)}`);
+    }
+    if (providedName && providedName.trim()) return providedName;
+    return stockCode;
   }
 
   async refreshPositionPrices(accountId: string): Promise<void> {
@@ -458,6 +474,7 @@ export class SimulationService {
       throw new NotFoundException('Account not found');
     }
 
+    const stockName = await this.resolveStockName(dto.stockCode, dto.stockName);
     const price = await this.getLatestPrice(dto.stockCode);
     const totalAmount = price * dto.quantity;
     const availableCash = parseFloat(account.availableCash);
@@ -501,7 +518,7 @@ export class SimulationService {
         const newPosition: NewSimulationPosition = {
           accountId: dto.accountId,
           stockCode: dto.stockCode,
-          stockName: dto.stockName,
+          stockName,
           quantity: dto.quantity,
           avgCost: price.toString(),
           currentPrice: price.toString(),
@@ -519,7 +536,7 @@ export class SimulationService {
       const trade: NewSimulationTrade = {
         accountId: dto.accountId,
         stockCode: dto.stockCode,
-        stockName: dto.stockName,
+        stockName,
         type: dto.type,
         quantity: dto.quantity,
         price: price.toString(),
@@ -534,6 +551,7 @@ export class SimulationService {
         .values(trade)
         .returning();
 
+      await this.refreshAccountEquity(dto.accountId);
       await this.recordEquityCurve(dto.accountId);
       this.logger.log(`Executed buy trade for ${dto.stockCode}`);
       await this.auditLogService.log({
@@ -583,13 +601,13 @@ export class SimulationService {
       const trade: NewSimulationTrade = {
         accountId: dto.accountId,
         stockCode: dto.stockCode,
-        stockName: dto.stockName,
+        stockName,
         type: dto.type,
         quantity: dto.quantity,
         price: price.toString(),
         totalAmount: totalAmount.toString(),
         profit: profit.toString(),
-        closeReason: 'manual',
+        closeReason: dto.tradeSource === 'agent' ? 'agent' : 'manual',
         tradeSource: dto.tradeSource || 'manual',
         strategyId: dto.strategyId || null,
         tradeTime: new Date(),
@@ -700,7 +718,7 @@ export class SimulationService {
       .select()
       .from(simulationTrades)
       .where(eq(simulationTrades.accountId, accountId))
-      .orderBy(desc(simulationTrades.tradeTime))
+      .orderBy(desc(simulationTrades.tradeTime), desc(simulationTrades.createdAt))
       .limit(limit);
     
     return trades.map(t => ({

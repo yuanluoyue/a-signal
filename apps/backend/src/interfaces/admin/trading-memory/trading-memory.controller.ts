@@ -1,6 +1,7 @@
 import {
   Controller,
   Get,
+  Patch,
   Param,
   Query,
   NotFoundException,
@@ -43,6 +44,17 @@ export class TradingMemoryController {
     if (!memory) {
       throw new NotFoundException('交易经验不存在');
     }
+    return { data: memory };
+  }
+
+  @Patch(':id/invalidate')
+  @Public()
+  @ApiOperation({ summary: '将交易经验设为失效' })
+  @ApiParam({ name: 'id', description: '经验 ID', type: String })
+  @ApiResponse({ status: 200, description: '成功设为失效' })
+  @ApiResponse({ status: 404, description: '经验不存在' })
+  async invalidate(@Param('id') id: string) {
+    const memory = await this.tradingMemoryService.invalidate(id);
     return { data: memory };
   }
 }

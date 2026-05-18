@@ -1,0 +1,26 @@
+- [x] trading_agent_decisions 表已创建，字段和索引符合 spec 定义
+- [x] trading_agent_runtimes 表已创建，userId 唯一索引已建立
+- [x] 迁移文件已生成，seed 文件已更新
+- [x] 交易经验"设为失效"接口 PATCH /trading-memory/:id/invalidate 可正常调用
+- [x] 交易经验前端列表"设为失效"按钮可点击，确认后状态更新为 invalidated
+- [x] 已失效经验不显示"设为失效"按钮
+- [x] 研究员 Agent Controller 已移除 @Public()，使用 @CurrentUser() 获取 userId
+- [x] ChatRequestDto 已移除 userId 字段
+- [x] 研究员 Agent 会话列表按用户隔离
+- [x] 研究员 Agent 聊天历史按用户隔离
+- [x] 前端 agent-chat 页面 API 调用不再传 userId
+- [x] 交易 Agent LangGraph 工作流 6 个节点均已实现
+- [x] 交易 Agent processSignal 方法可正确处理信号并记录决策日志
+- [x] Agent 批准交易时调用 SimulationService.executeTrade，tradeSource='agent'
+- [x] Agent 拒绝交易时不执行交易，记录拒绝原因
+- [x] Agent 高风险自动拒绝
+- [x] Agent 交易后可沉淀交易经验（memoryCreated=true 时已创建记录）
+- [x] 交易 Agent API 端点均可正常调用（stats/decisions/runtime）
+- [x] 决策日志按用户隔离
+- [x] 信号通知流程中交易 Agent 调用已集成
+- [x] Agent 执行异常不影响原有通知流程
+- [x] 交易 Agent 前端页面统计卡片正确展示今日数据
+- [x] 交易 Agent 前端决策日志列表可筛选、分页
+- [x] 交易 Agent 前端决策详情弹窗展示完整信息
+- [x] 运行管理页面交易 Agent 配置区域可正常操作（开关 + 账户选择）
+- [x] MainLayout AI 智能体菜单下新增"交易 Agent"子菜单

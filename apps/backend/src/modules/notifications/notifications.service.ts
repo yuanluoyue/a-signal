@@ -7,6 +7,7 @@ import { BlacklistService } from '../blacklist/blacklist.service.js';
 import { StrategyService } from '../strategy/strategy.service.js';
 import { SimulationService } from '../simulation/simulation.service.js';
 import { KlinesService } from '../klines/klines.service.js';
+import { TradingAgentService } from '../agent/trading/trading-agent.service.js';
 
 export interface WechatMessage {
   msgtype: 'markdown';
@@ -34,6 +35,7 @@ export class NotificationsService {
     private readonly strategyService: StrategyService,
     private readonly simulationService: SimulationService,
     private readonly klinesService: KlinesService,
+    private readonly tradingAgentService: TradingAgentService,
   ) {}
 
   async sendWechatNotification(
@@ -197,6 +199,7 @@ export class NotificationsService {
       }
 
       let matchedCount = 0;
+      const agentTriggerStrategies: { strategyId: string; userId: string }[] = [];
       const notificationPromises = strategiesWithRuntime.map(async (strategy) => {
         const matched = await this.strategyService.filterSignalByStrategy(strategy, context.signal);
         if (!matched) {
@@ -256,9 +259,42 @@ export class NotificationsService {
             );
           }
         }
+
+        if (strategy.runtime?.enableAgent && strategy.userId) {
+          agentTriggerStrategies.push({
+            strategyId: strategy.id,
+            userId: strategy.userId,
+          });
+        }
       });
 
       await Promise.all(notificationPromises);
+
+      try {
+        const runningRuntimes = await this.tradingAgentService.getRunningRuntimes();
+
+        for (const trigger of agentTriggerStrategies) {
+          const userRuntime = runningRuntimes.find(r => r.userId === trigger.userId);
+          if (!userRuntime?.accountId) continue;
+          this.logger.log(
+            `NotificationsService.notifySignalAnalyzed: strategy [${trigger.strategyId}] enableAgent=true, triggering trading agent for signal ${context.signal.id} with agent account ${userRuntime.accountId}`,
+          );
+          this.tradingAgentService.processSignal(
+            trigger.userId,
+            userRuntime.accountId,
+            context.signal.id,
+            trigger.strategyId,
+          ).catch(err => {
+            this.logger.error(
+              `NotificationsService.notifySignalAnalyzed: trading agent error for strategy [${trigger.strategyId}]: ${err instanceof Error ? err.message : String(err)}`,
+            );
+          });
+        }
+      } catch (agentError) {
+        this.logger.error(
+          `NotificationsService.notifySignalAnalyzed: trading agent check failed: ${agentError instanceof Error ? agentError.message : String(agentError)}`,
+        );
+      }
 
       if (matchedCount === 0) {
         this.logger.debug(

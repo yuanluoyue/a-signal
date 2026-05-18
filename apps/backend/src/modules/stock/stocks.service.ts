@@ -5,7 +5,7 @@ import { signals, klines, stocks, events, type Signal, type Kline } from '../../
 import { KlinesService } from '../klines/klines.service.js';
 import { BlacklistService } from '../blacklist/blacklist.service.js';
 import { QueueService } from '../../core/queue/queue.service.js';
-import { StockService } from '../stock/stock.service.js';
+import { StockService } from './stock.service.js';
 
 export interface StockWithSignals {
   stockCode: string;
@@ -38,7 +38,7 @@ export class StocksService {
     const blacklistedCodes = await this.blacklistService.getAllBlacklistedStockCodes();
 
     const results = await this.dbService.db.execute(sql`
-      SELECT 
+      SELECT
         COALESCE(s.symbol, s.stock_code) as "stockCode",
         COUNT(*) as "signalCount",
         MAX(COALESCE(s.generated_at, s.signal_time, s.created_at)) as "latestSignalTime"
@@ -53,7 +53,7 @@ export class StocksService {
       signalCount: number;
       latestSignalTime: Date | null;
     }>;
-    
+
     if (blacklistedCodes.length > 0) {
       filteredResults = filteredResults.filter(r => !blacklistedCodes.includes(r.stockCode));
     }

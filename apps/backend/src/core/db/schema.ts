@@ -804,6 +804,7 @@ export const strategiesRuntime = pgTable(
     enableWebhook: boolean('enable_webhook').notNull().default(true),
     enableSimulation: boolean('enable_simulation').notNull().default(false),
     enableLiveTrading: boolean('enable_live_trading').notNull().default(false),
+    enableAgent: boolean('enable_agent').notNull().default(false),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -926,3 +927,83 @@ export const tradingMemories = pgTable(
 
 export type TradingMemory = typeof tradingMemories.$inferSelect;
 export type NewTradingMemory = typeof tradingMemories.$inferInsert;
+
+export const tradingAgentDecisions = pgTable(
+  'trading_agent_decisions',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id'),
+    accountId: uuid('account_id'),
+    signalId: uuid('signal_id'),
+    strategyId: uuid('strategy_id'),
+    decisionType: varchar('decision_type', { length: 30 }),
+    decision: varchar('decision', { length: 20 }),
+    rationale: text('rationale'),
+    confidence: decimal('confidence', { precision: 3, scale: 2 }),
+    riskLevel: varchar('risk_level', { length: 20 }),
+    positionAction: jsonb('position_action'),
+    contextSnapshot: jsonb('context_snapshot'),
+    memoryCreated: boolean('memory_created').default(false),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'trading_agent_decisions_user_id_fk',
+    }),
+    foreignKey({
+      columns: [table.accountId],
+      foreignColumns: [simulationAccounts.id],
+      name: 'trading_agent_decisions_account_id_fk',
+    }),
+    foreignKey({
+      columns: [table.signalId],
+      foreignColumns: [signals.id],
+      name: 'trading_agent_decisions_signal_id_fk',
+    }),
+    foreignKey({
+      columns: [table.strategyId],
+      foreignColumns: [strategies.id],
+      name: 'trading_agent_decisions_strategy_id_fk',
+    }),
+    index('trading_agent_decisions_user_created_at_idx').on(table.userId, table.createdAt),
+    index('trading_agent_decisions_signal_id_idx').on(table.signalId),
+    index('trading_agent_decisions_strategy_id_idx').on(table.strategyId),
+  ],
+);
+
+export type TradingAgentDecision = typeof tradingAgentDecisions.$inferSelect;
+export type NewTradingAgentDecision = typeof tradingAgentDecisions.$inferInsert;
+
+export const tradingAgentRuntimes = pgTable(
+  'trading_agent_runtimes',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    userId: uuid('user_id'),
+    accountId: uuid('account_id'),
+    status: varchar('status', { length: 20 }).default('stopped'),
+    lastRunAt: timestamp('last_run_at', { withTimezone: true }),
+    createdAt: timestamp('created_at', { withTimezone: true }).defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'trading_agent_runtimes_user_id_fk',
+    }),
+    foreignKey({
+      columns: [table.accountId],
+      foreignColumns: [simulationAccounts.id],
+      name: 'trading_agent_runtimes_account_id_fk',
+    }),
+    uniqueIndex('trading_agent_runtimes_user_id_unique_idx').on(table.userId),
+    index('trading_agent_runtimes_account_id_idx').on(table.accountId),
+  ],
+);
+
+export type TradingAgentRuntime = typeof tradingAgentRuntimes.$inferSelect;
+export type NewTradingAgentRuntime = typeof tradingAgentRuntimes.$inferInsert;

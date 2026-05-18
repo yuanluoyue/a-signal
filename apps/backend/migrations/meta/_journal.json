@@ -148,6 +148,20 @@
       "when": 1779018971479,
       "tag": "0020_previous_runaways",
       "breakpoints": true
+    },
+    {
+      "idx": 21,
+      "version": "7",
+      "when": 1779083481855,
+      "tag": "0021_smart_fantastic_four",
+      "breakpoints": true
+    },
+    {
+      "idx": 22,
+      "version": "7",
+      "when": 1779090424262,
+      "tag": "0022_flippant_human_cannonball",
+      "breakpoints": true
     }
   ]
 }

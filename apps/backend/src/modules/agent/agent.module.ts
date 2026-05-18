@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { DbModule } from '../../core/db/db.module.js';
 import { VectorModule } from '../../core/vector/vector.module.js';
 import { VolcengineModule } from '../../core/volcengine/volcengine.module.js';
@@ -7,6 +7,7 @@ import { SimulationModule } from '../simulation/simulation.module.js';
 import { SignalsModule } from '../signals/signals.module.js';
 import { StockTrackingModule } from '../stock-tracking/stock-tracking.module.js';
 import { BacktestModule } from '../backtest/backtest.module.js';
+import { TradingMemoryModule } from '../trading-memory/trading-memory.module.js';
 
 import { ResearchAgentService } from './research-agent.service.js';
 import { AgentGraph } from './graph/agent-graph.js';
@@ -25,16 +26,20 @@ import {
   GetBacktestByStockTool,
 } from './tools/index.js';
 
+import { TradingAgentService } from './trading/trading-agent.service.js';
+import { TradingAgentGraph } from './trading/graph.js';
+
 @Module({
   imports: [
     DbModule,
     VectorModule,
     VolcengineModule,
-    NewsModule,
+    forwardRef(() => NewsModule),
     SimulationModule,
-    SignalsModule,
-    StockTrackingModule,
+    forwardRef(() => SignalsModule),
+    forwardRef(() => StockTrackingModule),
     BacktestModule,
+    TradingMemoryModule,
   ],
   providers: [
     ResearchAgentService,
@@ -51,7 +56,10 @@ import {
     GetSignalsByDateRangeTool,
     GetReportsByStockTool,
     GetBacktestByStockTool,
+
+    TradingAgentService,
+    TradingAgentGraph,
   ],
-  exports: [ResearchAgentService],
+  exports: [ResearchAgentService, TradingAgentService],
 })
 export class AgentModule {}

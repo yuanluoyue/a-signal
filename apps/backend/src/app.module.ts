@@ -17,7 +17,6 @@ import { NotificationsModule } from './modules/notifications/notifications.modul
 import { DashboardModule } from './modules/dashboard/dashboard.module.js';
 import { BacktestModule } from './modules/backtest/backtest.module.js';
 import { BlacklistModule } from './modules/blacklist/blacklist.module.js';
-import { StocksModule } from './modules/stocks/stocks.module.js';
 import { StockModule } from './modules/stock/stock.module.js';
 import { SimulationModule } from './modules/simulation/simulation.module.js';
 import { StockTrackingModule } from './modules/stock-tracking/stock-tracking.module.js';
@@ -33,11 +32,12 @@ import { TradingMemoryModule } from './modules/trading-memory/trading-memory.mod
 import { AuthController } from './interfaces/admin/auth/auth.controller.js';
 import { AuditLogController } from './interfaces/admin/audit-log/audit-log.controller.js';
 import { TradingMemoryController } from './interfaces/admin/trading-memory/trading-memory.controller.js';
+import { TradingAgentController } from './interfaces/admin/trading-agent/trading-agent.controller.js';
 import { NewsController } from './interfaces/admin/news/news.controller.js';
 import { SignalsController } from './interfaces/admin/signals/signals.controller.js';
 import { SignalRulesController } from './interfaces/admin/signal-rules/signal-rules.controller.js';
 import { BacktestController } from './interfaces/admin/backtest/backtest.controller.js';
-import { StocksController } from './interfaces/admin/stocks/stocks.controller.js';
+import { StocksController } from './interfaces/admin/stock/stocks.controller.js';
 import { KlinesController } from './interfaces/admin/klines/klines.controller.js';
 import { DashboardController } from './interfaces/admin/dashboard/dashboard.controller.js';
 import { BlacklistController } from './interfaces/admin/blacklist/blacklist.controller.js';
@@ -87,7 +87,6 @@ const jwtAuthGuardProvider: Provider = {
     DashboardModule,
     BacktestModule,
     BlacklistModule,
-    StocksModule,
     StockModule,
     SimulationModule,
     StockTrackingModule,
@@ -124,6 +123,7 @@ const jwtAuthGuardProvider: Provider = {
     HealthController,
     AuditLogController,
     TradingMemoryController,
+    TradingAgentController,
   ],
   providers: [
     jwtAuthGuardProvider,

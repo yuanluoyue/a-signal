@@ -24,6 +24,7 @@ import {
   CloseCircleOutlined,
   EyeOutlined,
   SearchOutlined,
+  StopOutlined,
 } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import { tradingMemoryApi } from '@/services/trading-memory';
@@ -142,6 +143,25 @@ const TradingMemoryPage: React.FC = () => {
     }
   };
 
+  const handleInvalidate = (record: TradingMemory) => {
+    Modal.confirm({
+      title: '确认操作',
+      content: '确定要将此经验设为失效吗？',
+      okText: '确定',
+      cancelText: '取消',
+      onOk: async () => {
+        try {
+          await tradingMemoryApi.invalidate(record.id);
+          message.success('已设为失效');
+          fetchData();
+          fetchStats();
+        } catch {
+          message.error('操作失败');
+        }
+      },
+    });
+  };
+
   const columns: ColumnsType<TradingMemory> = [
     {
       title: '标题',
@@ -219,12 +239,24 @@ const TradingMemoryPage: React.FC = () => {
     {
       title: '操作',
       key: 'action',
-      width: 90,
+      width: 150,
       fixed: 'right',
       render: (_: unknown, record: TradingMemory) => (
-        <Button type="link" icon={<EyeOutlined />} onClick={() => handleViewDetail(record)}>
-          详情
-        </Button>
+        <Space>
+          <Button type="link" icon={<EyeOutlined />} onClick={() => handleViewDetail(record)}>
+            详情
+          </Button>
+          {record.status !== 'invalidated' && (
+            <Button
+              type="link"
+              danger
+              icon={<StopOutlined />}
+              onClick={() => handleInvalidate(record)}
+            >
+              设为失效
+            </Button>
+          )}
+        </Space>
       ),
     },
   ];

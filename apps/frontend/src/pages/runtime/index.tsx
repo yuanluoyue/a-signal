@@ -1,7 +1,10 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Card, Table, Switch, Select, Typography, message, Tooltip, Tag, Space } from 'antd';
-import { ThunderboltOutlined, WarningOutlined } from '@ant-design/icons';
+import { Card, Table, Switch, Select, Typography, message, Tooltip, Tag, Space, Alert } from 'antd';
+import { ThunderboltOutlined, WarningOutlined, RobotOutlined } from '@ant-design/icons';
+import dayjs from 'dayjs';
 import client from '@/services/client';
+import { tradingAgentApi } from '@/services/trading-agent';
+import type { TradingAgentRuntime } from '@/services/trading-agent';
 
 const { Title } = Typography;
 
@@ -13,6 +16,7 @@ interface StrategyRuntime {
   enableWebhook: boolean;
   enableSimulation: boolean;
   enableLiveTrading: boolean;
+  enableAgent: boolean;
 }
 
 interface Strategy {
@@ -51,11 +55,20 @@ const directionModeMap: Record<string, string> = {
   both: '双向',
 };
 
+const formatMoney = (amount: number | string | null | undefined) => {
+  if (amount === null || amount === undefined) return '¥0.00';
+  const num = typeof amount === 'string' ? parseFloat(amount) : amount;
+  if (isNaN(num)) return '¥0.00';
+  return `¥${num.toLocaleString('zh-CN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+};
+
 const RuntimePage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [strategies, setStrategies] = useState<Strategy[]>([]);
   const [webhooks, setWebhooks] = useState<Webhook[]>([]);
   const [simulationAccounts, setSimulationAccounts] = useState<SimulationAccount[]>([]);
+  const [agentRuntime, setAgentRuntime] = useState<TradingAgentRuntime | null>(null);
+  const [agentLoading, setAgentLoading] = useState(false);
 
   const fetchData = useCallback(async () => {
     setLoading(true);
@@ -91,11 +104,55 @@ const RuntimePage: React.FC = () => {
     }
   }, []);
 
+  const fetchAgentRuntime = useCallback(async () => {
+    setAgentLoading(true);
+    try {
+      const data = await tradingAgentApi.getRuntime();
+      setAgentRuntime(data);
+    } catch (error) {
+      console.error('获取交易 Agent 运行时配置失败:', error);
+    } finally {
+      setAgentLoading(false);
+    }
+  }, []);
+
+  const handleAgentSwitchChange = async (checked: boolean) => {
+    setAgentLoading(true);
+    try {
+      const data = await tradingAgentApi.updateRuntime({
+        status: checked ? 'running' : 'stopped',
+        accountId: agentRuntime?.accountId,
+      });
+      setAgentRuntime(data);
+      message.success(checked ? '交易 Agent 已启动' : '交易 Agent 已停止');
+    } catch (error) {
+      console.error('更新交易 Agent 状态失败:', error);
+      message.error('更新交易 Agent 状态失败');
+    } finally {
+      setAgentLoading(false);
+    }
+  };
+
+  const handleAgentAccountChange = async (accountId: string | null) => {
+    setAgentLoading(true);
+    try {
+      const data = await tradingAgentApi.updateRuntime({ accountId });
+      setAgentRuntime(data);
+      message.success('模拟账户已更新');
+    } catch (error) {
+      console.error('更新交易 Agent 账户失败:', error);
+      message.error('更新模拟账户失败');
+    } finally {
+      setAgentLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchData();
     fetchWebhooks();
     fetchSimulationAccounts();
-  }, [fetchData, fetchWebhooks, fetchSimulationAccounts]);
+    fetchAgentRuntime();
+  }, [fetchData, fetchWebhooks, fetchSimulationAccounts, fetchAgentRuntime]);
 
   const handleRuntimeUpdate = async (strategyId: string, field: string, value: boolean | string | null) => {
     try {
@@ -158,7 +215,7 @@ const RuntimePage: React.FC = () => {
                   allowClear
                   style={{ width: 160 }}
                   options={simulationAccounts.map((a) => ({
-                    label: `${a.name || '未命名'} (¥${Number(a.availableCash).toLocaleString()})`,
+                    label: `${a.name || '未命名'} (${formatMoney(a.currentCapital)})`,
                     value: a.id,
                   }))}
                   onChange={(value) => handleRuntimeUpdate(record.id, 'accountId', value || null)}
@@ -189,6 +246,21 @@ const RuntimePage: React.FC = () => {
       ),
     },
     {
+      title: '触发 Agent',
+      key: 'enableAgent',
+      width: 120,
+      align: 'center' as const,
+      render: (_: unknown, record: Strategy) => (
+        <Tooltip title={agentEnabled ? '信号匹配此策略时触发交易 Agent' : '请先启用交易 Agent'}>
+          <Switch
+            checked={record.runtime?.enableAgent ?? false}
+            disabled={!agentEnabled}
+            onChange={(checked) => handleRuntimeUpdate(record.id, 'enableAgent', checked)}
+          />
+        </Tooltip>
+      ),
+    },
+    {
       title: '绑定 Webhook',
       key: 'webhookId',
       width: 180,
@@ -205,9 +277,54 @@ const RuntimePage: React.FC = () => {
     },
   ];
 
+  const agentEnabled = agentRuntime?.status === 'running';
+  const agentNoAccount = agentEnabled && !agentRuntime?.accountId;
+
   return (
     <div>
       <Title level={2}><ThunderboltOutlined /> 运行管理</Title>
+      <Card
+        title={<Space><RobotOutlined />交易 Agent</Space>}
+        style={{ marginBottom: 24 }}
+        loading={agentLoading && !agentRuntime}
+      >
+        <Space direction="vertical" size={12} style={{ width: '100%' }}>
+          <Space size={16} align="center">
+            <span>运行状态：</span>
+            <Switch
+              checked={agentEnabled}
+              onChange={handleAgentSwitchChange}
+              loading={agentLoading}
+              checkedChildren="运行中"
+              unCheckedChildren="已停止"
+            />
+            <span>模拟账户：</span>
+            <Select
+              value={agentRuntime?.accountId || undefined}
+              placeholder="选择模拟账户"
+              allowClear
+              style={{ width: 240 }}
+              options={simulationAccounts.map((a) => ({
+                label: `${a.name || '未命名'} (${formatMoney(a.currentCapital)})`,
+                value: a.id,
+              }))}
+              onChange={handleAgentAccountChange}
+              loading={agentLoading}
+            />
+          </Space>
+          <Space size={16} align="center">
+            <span>上次运行时间：</span>
+            <span>{agentRuntime?.lastRunAt ? dayjs(agentRuntime.lastRunAt).format('YYYY-MM-DD HH:mm:ss') : '暂无'}</span>
+          </Space>
+          {agentNoAccount && (
+            <Alert
+              message="交易 Agent 已启用但未选择模拟账户，请选择一个模拟账户后再运行"
+              type="warning"
+              showIcon
+            />
+          )}
+        </Space>
+      </Card>
       <Card>
         <Table
           columns={columns}

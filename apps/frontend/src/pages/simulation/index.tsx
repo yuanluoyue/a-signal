@@ -247,6 +247,9 @@ const SimulationPage: React.FC = () => {
 
   useEffect(() => {
     if (!selectedAccountId) return;
+    setAccount(null);
+    setPositions([]);
+    setTrades([]);
     setLoading(true);
     Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]).finally(() => {
       setLoading(false);
@@ -490,12 +493,31 @@ const SimulationPage: React.FC = () => {
 
   const handleDeletePosition = async (positionId: string) => {
     try {
-      await client.delete(`/simulation/position/${positionId}`);
+      await client.delete(`/simulation/position/${positionId}`, {
+        params: { accountId: selectedAccountId },
+      });
       message.success('持仓删除成功');
       fetchPositions();
     } catch (error) {
       message.error('持仓删除失败');
       console.error('Delete position error:', error);
+    }
+  };
+
+  const handleClosePosition = async (position: SimulationPosition) => {
+    try {
+      await client.post('/simulation/trade', {
+        accountId: selectedAccountId,
+        stockCode: position.stockCode,
+        stockName: position.stockName,
+        type: 'sell',
+        quantity: position.quantity,
+      });
+      message.success('平仓成功');
+      fetchAllData();
+    } catch (error) {
+      message.error('平仓失败');
+      console.error('Close position error:', error);
     }
   };
 
@@ -612,6 +634,7 @@ const SimulationPage: React.FC = () => {
           const strategy = strategies.find(s => s.id === record.strategyId);
           return <Tag color="purple">{strategy?.name || '策略'}</Tag>;
         }
+        if (value === 'agent') return <Tag color="geekblue">Agent</Tag>;
         if (value === 'system') return <Tag color="orange">系统</Tag>;
         return <Tag>手动</Tag>;
       },
@@ -619,18 +642,32 @@ const SimulationPage: React.FC = () => {
     {
       title: '操作',
       key: 'action',
+      width: 140,
       render: (_: unknown, record: SimulationPosition) => (
-        <Popconfirm
-          title="确认删除"
-          description="确定要删除这条持仓吗？"
-          onConfirm={() => handleDeletePosition(record.id)}
-          okText="确认"
-          cancelText="取消"
-        >
-          <Button danger icon={<DeleteOutlined />} size="small">
-            删除
-          </Button>
-        </Popconfirm>
+        <Space>
+          <Popconfirm
+            title="确认平仓"
+            description={`确定要以市价平仓 ${record.stockName || record.stockCode} 的 ${record.quantity} 股吗？`}
+            onConfirm={() => handleClosePosition(record)}
+            okText="确认平仓"
+            cancelText="取消"
+          >
+            <Button type="primary" size="small" danger>
+              平仓
+            </Button>
+          </Popconfirm>
+          <Popconfirm
+            title="确认删除"
+            description="确定要删除这条持仓吗？（不计入交易记录）"
+            onConfirm={() => handleDeletePosition(record.id)}
+            okText="确认"
+            cancelText="取消"
+          >
+            <Button danger icon={<DeleteOutlined />} size="small">
+              删除
+            </Button>
+          </Popconfirm>
+        </Space>
       ),
     },
   ];
@@ -705,6 +742,7 @@ const SimulationPage: React.FC = () => {
           const strategy = strategies.find(s => s.id === record.strategyId);
           return <Tag color="purple">{strategy?.name || '策略'}</Tag>;
         }
+        if (value === 'agent') return <Tag color="geekblue">Agent</Tag>;
         if (value === 'system') return <Tag color="orange">系统</Tag>;
         return <Tag>手动</Tag>;
       },

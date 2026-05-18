@@ -46,6 +46,7 @@ export interface UpdateStrategyRuntimeDto {
   enableWebhook?: boolean;
   enableSimulation?: boolean;
   enableLiveTrading?: boolean;
+  enableAgent?: boolean;
 }
 
 export interface StrategyListQueryDto {
@@ -399,6 +400,9 @@ export class StrategyService {
       if (dto.enableLiveTrading !== undefined) {
         updateData.enableLiveTrading = dto.enableLiveTrading;
       }
+      if (dto.enableAgent !== undefined) {
+        updateData.enableAgent = dto.enableAgent;
+      }
       if (dto.accountId !== undefined) {
         updateData.accountId = dto.accountId || null;
       }
@@ -449,6 +453,7 @@ export class StrategyService {
           enableWebhook: true,
           enableSimulation: false,
           enableLiveTrading: false,
+          enableAgent: false,
         })
         .returning();
 

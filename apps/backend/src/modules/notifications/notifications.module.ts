@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, forwardRef } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { DbModule } from '../../core/db/db.module.js';
 import { NotificationsService } from './notifications.service.js';
@@ -9,9 +9,10 @@ import { StrategyModule } from '../strategy/strategy.module.js';
 import { SimulationModule } from '../simulation/simulation.module.js';
 import { KlinesModule } from '../klines/klines.module.js';
 import { AuditLogModule } from '../audit-log/audit-log.module.js';
+import { AgentModule } from '../agent/agent.module.js';
 
 @Module({
-  imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule, SimulationModule, KlinesModule, AuditLogModule],
+  imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule, SimulationModule, KlinesModule, AuditLogModule, forwardRef(() => AgentModule)],
   providers: [NotificationsService, WebhooksService],
   exports: [NotificationsService, WebhooksService],
 })
