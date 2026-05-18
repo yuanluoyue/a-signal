@@ -18,7 +18,7 @@ import { map } from 'rxjs/operators';
 import { ResearchAgentService } from '../../../modules/agent/research-agent.service.js';
 import { ChatRequestDto } from './dto/chat-request.dto.js';
 import type { SseEventDto } from './dto/chat-response.dto.js';
-import { Public } from '../../../common/decorators/public.decorator.js';
+import { CurrentUser } from '../../../common/decorators/current-user.decorator.js';
 
 @Controller('agent')
 export class AgentController {
@@ -26,11 +26,13 @@ export class AgentController {
 
   constructor(private readonly researchAgentService: ResearchAgentService) {}
 
-  @Public()
   @Post('chat')
   @Sse()
-  async chat(@Body() dto: ChatRequestDto): Promise<Observable<string>> {
-    const stream = this.researchAgentService.chat(dto);
+  async chat(
+    @CurrentUser('sub') userId: string,
+    @Body() dto: ChatRequestDto,
+  ): Promise<Observable<string>> {
+    const stream = this.researchAgentService.chat({ ...dto, userId });
 
     const events = await this.streamToObservable(stream);
     return from(events).pipe(
@@ -38,22 +40,27 @@ export class AgentController {
     );
   }
 
-  @Public()
   @Post('chat/sync')
   @HttpCode(HttpStatus.OK)
-  async chatSync(@Body() dto: ChatRequestDto) {
-    return this.researchAgentService.chatSync(dto);
+  async chatSync(
+    @CurrentUser('sub') userId: string,
+    @Body() dto: ChatRequestDto,
+  ) {
+    return this.researchAgentService.chatSync({ ...dto, userId });
   }
 
-  @Public()
   @Post('chat/stream')
-  async chatStream(@Body() dto: ChatRequestDto, @Res() res: Response) {
+  async chatStream(
+    @CurrentUser('sub') userId: string,
+    @Body() dto: ChatRequestDto,
+    @Res() res: Response,
+  ) {
     res.setHeader('Content-Type', 'text/event-stream');
     res.setHeader('Cache-Control', 'no-cache');
     res.setHeader('Connection', 'keep-alive');
 
     try {
-      const stream = this.researchAgentService.chat(dto);
+      const stream = this.researchAgentService.chat({ ...dto, userId });
 
       for await (const event of stream) {
         const sseEvent: SseEventDto = {
@@ -74,10 +81,9 @@ export class AgentController {
     }
   }
 
-  @Public()
   @Get('history')
   async getHistory(
-    @Query('userId') userId: string,
+    @CurrentUser('sub') userId: string,
     @Query('sessionId') sessionId: string,
   ) {
     this.logger.log(`[AgentController] Get history - userId: ${userId}, sessionId: ${sessionId}`);
@@ -86,31 +92,29 @@ export class AgentController {
     return result;
   }
 
-  @Public()
   @Get('sessions')
-  async getSessions(@Query('userId') userId: string) {
+  async getSessions(@CurrentUser('sub') userId: string) {
     this.logger.log(`[AgentController] Get sessions - userId: ${userId}`);
     const sessions = await this.researchAgentService.getUserSessions(userId);
     this.logger.log(`[AgentController] Returning ${sessions.length} sessions`);
     return { sessions };
   }
 
-  @Public()
   @Put('session/title')
   @HttpCode(HttpStatus.OK)
   async updateSessionTitle(
-    @Body() dto: { userId: string; sessionId: string; title: string },
+    @CurrentUser('sub') userId: string,
+    @Body() dto: { sessionId: string; title: string },
   ) {
     this.logger.log(`[AgentController] Update session title - sessionId: ${dto.sessionId}, title: ${dto.title}`);
-    await this.researchAgentService.updateSessionTitle(dto.userId, dto.sessionId, dto.title);
+    await this.researchAgentService.updateSessionTitle(userId, dto.sessionId, dto.title);
     return { success: true, message: '标题更新成功' };
   }
 
-  @Public()
   @Delete('session')
   @HttpCode(HttpStatus.OK)
   async deleteSession(
-    @Query('userId') userId: string,
+    @CurrentUser('sub') userId: string,
     @Query('sessionId') sessionId: string,
   ) {
     this.logger.log(`[AgentController] Delete session - userId: ${userId}, sessionId: ${sessionId}`);

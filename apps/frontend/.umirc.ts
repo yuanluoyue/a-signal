@@ -116,6 +116,11 @@ export default defineConfig({
           title: '交易经验',
         },
         {
+          path: '/trading-agent',
+          component: '@/pages/trading-agent/index',
+          title: '交易 Agent',
+        },
+        {
           path: '/settings/notifications',
           component: '@/pages/settings/notifications',
           title: '通知设置',

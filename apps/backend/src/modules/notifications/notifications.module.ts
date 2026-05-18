@@ -9,9 +9,10 @@ import { StrategyModule } from '../strategy/strategy.module.js';
 import { SimulationModule } from '../simulation/simulation.module.js';
 import { KlinesModule } from '../klines/klines.module.js';
 import { AuditLogModule } from '../audit-log/audit-log.module.js';
+import { TradingAgentModule } from '../trading-agent/trading-agent.module.js';
 
 @Module({
-  imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule, SimulationModule, KlinesModule, AuditLogModule],
+  imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule, SimulationModule, KlinesModule, AuditLogModule, TradingAgentModule],
   providers: [NotificationsService, WebhooksService],
   exports: [NotificationsService, WebhooksService],
 })

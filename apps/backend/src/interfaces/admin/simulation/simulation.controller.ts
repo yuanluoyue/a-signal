@@ -61,7 +61,23 @@ export class SimulationController {
   @Get('account')
   @ApiOperation({ summary: '获取模拟账户信息（不存在则自动创建）' })
   @ApiResponse({ status: 200, description: '成功获取账户信息' })
-  async getAccount(@Request() req: { user?: { userId: string; sub?: string } }) {
+  @ApiQuery({ name: 'accountId', required: false })
+  async getAccount(
+    @Request() req: { user?: { userId: string; sub?: string } },
+    @Query('accountId') accountId?: string,
+  ) {
+    if (accountId) {
+      const userId = req.user?.userId || req.user?.sub;
+      if (!userId) {
+        throw new BadRequestException('无法获取用户ID');
+      }
+      const account = await this.simulationService.getAccountById(accountId);
+      if (!account || account.userId !== userId) {
+        throw new NotFoundException('账户不存在');
+      }
+      return { data: account };
+    }
+
     const userId = req.user?.userId || req.user?.sub;
     if (!userId) {
       throw new BadRequestException('无法获取用户ID');

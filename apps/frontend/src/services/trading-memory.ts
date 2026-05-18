@@ -21,4 +21,9 @@ export const tradingMemoryApi = {
     const response = await client.get<{ data: TradingMemory }>(`/trading-memory/${id}`);
     return (response as unknown as { data: TradingMemory }).data;
   },
+
+  invalidate: async (id: string): Promise<TradingMemory> => {
+    const response = await client.patch<{ data: TradingMemory }>(`/trading-memory/${id}/invalidate`);
+    return (response as unknown as { data: TradingMemory }).data;
+  },
 };

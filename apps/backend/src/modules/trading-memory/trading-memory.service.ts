@@ -92,6 +92,30 @@ export class TradingMemoryService {
     }
   }
 
+  async invalidate(id: string): Promise<TradingMemory> {
+    try {
+      const [result] = await this.dbService.db
+        .update(tradingMemories)
+        .set({
+          status: 'invalidated',
+          invalidatedAt: new Date(),
+        })
+        .where(eq(tradingMemories.id, id))
+        .returning();
+
+      if (!result) {
+        throw new NotFoundException(`Trading memory ${id} not found`);
+      }
+
+      return result;
+    } catch (error) {
+      this.logger.error(
+        `Failed to invalidate trading memory ${id}: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
   async getStats(): Promise<TradingMemoryStatsResult> {
     try {
       const [totalResult] = await this.dbService.db

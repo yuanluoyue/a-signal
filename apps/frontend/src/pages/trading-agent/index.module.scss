@@ -1,0 +1,11 @@
+.container {
+  padding: 0;
+}
+
+.detailContent {
+  :global {
+    .ant-descriptions {
+      margin-bottom: 0;
+    }
+  }
+}
