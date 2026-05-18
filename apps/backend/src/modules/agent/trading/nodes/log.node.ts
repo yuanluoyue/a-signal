@@ -1,7 +1,7 @@
 import { Logger } from '@nestjs/common';
 import { TradingAgentState } from '../types/trading-agent-state.js';
-import { DbService } from '../../../core/db/db.service.js';
-import { tradingAgentDecisions } from '../../../core/db/schema.js';
+import { DbService } from '../../../../core/db/db.service.js';
+import { tradingAgentDecisions } from '../../../../core/db/schema.js';
 
 const logger = new Logger('logNode');
 

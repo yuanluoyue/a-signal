@@ -10,7 +10,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
-import { TradingAgentService } from '../../../modules/trading-agent/trading-agent.service.js';
+import { TradingAgentService } from '../../../modules/agent/trading/trading-agent.service.js';
 import { CurrentUser } from '../../../common/decorators/current-user.decorator.js';
 import { TradingAgentDecisionsQueryDto, TradingAgentRuntimeUpdateDto } from './dto/index.js';
 

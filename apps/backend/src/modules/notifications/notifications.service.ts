@@ -7,7 +7,7 @@ import { BlacklistService } from '../blacklist/blacklist.service.js';
 import { StrategyService } from '../strategy/strategy.service.js';
 import { SimulationService } from '../simulation/simulation.service.js';
 import { KlinesService } from '../klines/klines.service.js';
-import { TradingAgentService } from '../trading-agent/trading-agent.service.js';
+import { TradingAgentService } from '../agent/trading/trading-agent.service.js';
 
 export interface WechatMessage {
   msgtype: 'markdown';

@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { eq, and, desc, sql, gte } from 'drizzle-orm';
-import { DbService } from '../../core/db/db.service.js';
-import { tradingAgentDecisions, tradingAgentRuntimes, type TradingAgentRuntime, type NewTradingAgentRuntime } from '../../core/db/schema.js';
-import { TradingAgentGraph } from './trading-agent-graph.js';
+import { DbService } from '../../../core/db/db.service.js';
+import { tradingAgentDecisions, tradingAgentRuntimes, type TradingAgentRuntime, type NewTradingAgentRuntime } from '../../../core/db/schema.js';
+import { TradingAgentGraph } from './graph.js';
 import { TradingAgentState } from './types/trading-agent-state.js';
 
 @Injectable()

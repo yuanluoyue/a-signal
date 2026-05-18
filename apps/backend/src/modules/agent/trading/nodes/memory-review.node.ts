@@ -1,9 +1,9 @@
 import { Logger } from '@nestjs/common';
 import { TradingAgentState } from '../types/trading-agent-state.js';
-import { VolcengineService } from '../../../core/volcengine/volcengine.service.js';
-import { TradingMemoryService } from '../../trading-memory/trading-memory.service.js';
-import { DbService } from '../../../core/db/db.service.js';
-import { tradingMemories } from '../../../core/db/schema.js';
+import { VolcengineService } from '../../../../core/volcengine/volcengine.service.js';
+import { TradingMemoryService } from '../../../trading-memory/trading-memory.service.js';
+import { DbService } from '../../../../core/db/db.service.js';
+import { tradingMemories } from '../../../../core/db/schema.js';
 
 const logger = new Logger('memoryReviewNode');
 

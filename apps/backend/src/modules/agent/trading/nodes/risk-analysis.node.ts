@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { TradingAgentState, TradingAgentRiskLevel } from '../types/trading-agent-state.js';
-import { VolcengineService } from '../../../core/volcengine/volcengine.service.js';
+import { VolcengineService } from '../../../../core/volcengine/volcengine.service.js';
 
 const logger = new Logger('riskAnalysisNode');
 

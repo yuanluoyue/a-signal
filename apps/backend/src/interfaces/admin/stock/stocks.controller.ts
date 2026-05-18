@@ -10,7 +10,7 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam } from '@nestjs/swagger';
-import { StocksService } from '../../../modules/stocks/stocks.service.js';
+import { StocksService } from '../../../modules/stock/stocks.service.js';
 
 @ApiTags('Stocks')
 @Controller('stocks')

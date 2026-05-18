@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { TradingAgentState, initialTradingAgentState } from './types/trading-agent-state.js';
-import { SimulationService } from '../simulation/simulation.service.js';
-import { TradingMemoryService } from '../trading-memory/trading-memory.service.js';
-import { VolcengineService } from '../../core/volcengine/volcengine.service.js';
-import { DbService } from '../../core/db/db.service.js';
+import { SimulationService } from '../../simulation/simulation.service.js';
+import { TradingMemoryService } from '../../trading-memory/trading-memory.service.js';
+import { VolcengineService } from '../../../core/volcengine/volcengine.service.js';
+import { DbService } from '../../../core/db/db.service.js';
 import {
   contextLoadNode,
   riskAnalysisNode,

@@ -5,7 +5,7 @@ import {
   TradingAgentDecisionType,
   PositionAction,
 } from '../types/trading-agent-state.js';
-import { VolcengineService } from '../../../core/volcengine/volcengine.service.js';
+import { VolcengineService } from '../../../../core/volcengine/volcengine.service.js';
 
 const logger = new Logger('decisionNode');
 
