@@ -1,6 +1,6 @@
 # A Signal - AI 驱动的量化交易信号系统
 
-A Signal 是一个基于 AI 的智能股票分析平台，通过新闻事件提取、情绪分析、信号生成、策略过滤、Webhook 通知的完整链路，将非结构化新闻信息转化为可执行的交易机会。同时内置 AI 投研助手、交易经验管理、量化回测、模拟交易等功能模块。
+A Signal 是一个基于 AI 的智能股票分析平台，通过新闻事件提取、情绪分析、信号生成、策略过滤、Webhook 通知的完整链路，将非结构化新闻信息转化为可执行的交易机会。同时内置 AI 投研助手、交易 Agent、交易经验管理、量化回测、模拟交易等功能模块。
 
 ## 核心流程
 
@@ -34,7 +34,7 @@ A Signal 是一个基于 AI 的智能股票分析平台，通过新闻事件提�
 | 模块 | 说明 |
 |------|------|
 | 量化回测 | 选择策略 + 时间范围回测，生成交易记录和绩效指标 |
-| 模拟交易 | 虚拟账户、持仓管理、交易记录、权益曲线 |
+| 模拟交易 | 虚拟账户、持仓管理、交易记录、权益曲线、止盈止损 |
 | 运行管理 | 策略运行时配置（Webhook / 模拟 / 实盘开关） |
 | 综合分析 | 仪表盘统计、综合分析、策略总览 |
 | 交易经验 | 经验统计与列表，支持类型/状态/关键词筛选，详情弹窗查看模式匹配与统计数据 |
@@ -43,7 +43,8 @@ A Signal 是一个基于 AI 的智能股票分析平台，通过新闻事件提�
 
 | 模块 | 说明 |
 |------|------|
-| AI 投研助手 | 基于 LangGraph 的多轮对话，支持工具调用和记忆系统 |
+| 投研助手 | 基于 LangGraph 的多轮对话，支持工具调用和记忆系统 |
+| 交易 Agent | 基于 LangGraph 的自动交易决策引擎，含风险评估、记忆回顾、执行节点 |
 | 交易经验 | 管理 Agent 积累的交易经验模式（事件/信号/策略/市场环境/风险），为交易 Agent 提供决策依据 |
 | MCP 服务 | 符合 Model Context Protocol 的外部 API 接入 |
 
@@ -92,9 +93,11 @@ A Signal 是一个基于 AI 的智能股票分析平台，通过新闻事件提�
 │                                                                          │
 │  AI 智能体            数据中心                                           │
 │  ┌──────────┐       ┌──────────┐                                       │
-│  │Agent     │       │Stocks    │                                       │
-│  │TradingMem│       │StockTrack│                                       │
-│  │MCP       │       │Klines    │                                       │
+│  │Agent     │       │Stock     │                                       │
+│  │ ├Research│       │StockTrack│                                       │
+│  │ └Trading │       │Klines    │                                       │
+│  │TradingMem│       │          │                                       │
+│  │MCP       │       │          │                                       │
 │  └──────────┘       └──────────┘                                       │
 │                                                                          │
 │  队列消费者                                                               │
@@ -251,7 +254,8 @@ src/
 │   ├── filters/                  # 异常过滤器
 │   ├── guards/                   # JwtAuthGuard
 │   ├── interceptors/             # 响应拦截器
-│   └── middleware/               # TraceIdMiddleware
+│   ├── middleware/               # TraceIdMiddleware
+│   └── utils/                    # 工具函数
 │
 ├── core/                         # 核心基础设施
 │   ├── auth/                     # JWT/API Key 认证策略
@@ -280,15 +284,27 @@ src/
 │   │   ├── signal-rules/         # 信号规则
 │   │   ├── signals/              # 信号
 │   │   ├── simulation/           # 模拟交易
+│   │   ├── stock/                # 股票信息 + 股票列表
 │   │   ├── stock-tracking/       # 股票追踪
-│   │   ├── stock/                # 股票信息
-│   │   ├── stocks/               # 股票列表
 │   │   ├── strategy/             # 策略
+│   │   ├── trading-agent/        # 交易 Agent
 │   │   └── trading-memory/       # 交易经验
 │   └── mcp/                      # MCP 对外接口（/mcp/）
 │
 ├── modules/                      # 业务模块（Service 层）
-│   ├── agent/                    # Agent 服务（graph/memory/nodes/tools）
+│   ├── agent/                    # Agent 模块（多 Agent 架构）
+│   │   ├── graph/                # 投研 Agent 图引擎
+│   │   ├── memory/               # 投研 Agent 记忆系统
+│   │   ├── nodes/                # 投研 Agent 节点
+│   │   ├── tools/                # 投研 Agent 工具
+│   │   ├── trading/              # 交易 Agent
+│   │   │   ├── nodes/            # 交易 Agent 节点（6 个）
+│   │   │   ├── types/            # 交易 Agent 状态
+│   │   │   ├── graph.ts          # 交易 Agent 图引擎
+│   │   │   └── trading-agent.service.ts
+│   │   ├── types/                # 投研 Agent 状态
+│   │   ├── research-agent.service.ts
+│   │   └── agent.module.ts
 │   ├── api-key/                  # API Key 服务
 │   ├── audit-log/                # 审计日志服务
 │   ├── auth/                     # 认证服务
@@ -305,9 +321,8 @@ src/
 │   ├── signal-rule/              # 信号规则服务
 │   ├── signals/                  # 信号服务
 │   ├── simulation/               # 模拟交易服务
-│   ├── stock/                    # 股票信息服务
+│   ├── stock/                    # 股票服务（基础 + 聚合）
 │   ├── stock-tracking/           # 股票追踪服务
-│   ├── stocks/                   # 股票列表服务
 │   ├── strategy/                 # 策略服务
 │   ├── trading-memory/           # 交易经验服务
 │   └── users/                    # 用户服务
@@ -407,7 +422,9 @@ pnpm run build
 
 ### Agent 模块
 
-基于 LangGraph 的投研助手，包含 7 个核心节点：
+采用多 Agent 架构，投研助手和交易 Agent 统一管理：
+
+**投研助手** — 基于 LangGraph 的多轮对话，包含 7 个核心节点：
 
 | 节点 | 职责 |
 |------|------|
@@ -431,6 +448,17 @@ pnpm run build
 - 短期记忆：当前会话上下文
 - 长期记忆：PostgreSQL 持久化 + ChromaDB 向量检索
 - 记忆加载/保存节点自动管理
+
+**交易 Agent** — 基于 LangGraph 的自动交易决策引擎，包含 6 个核心节点：
+
+| 节点 | 职责 |
+|------|------|
+| `contextLoadNode` | 加载账户持仓、最新行情、相关信号 |
+| `memoryReviewNode` | 回顾交易经验，提取相关模式 |
+| `riskAnalysisNode` | 评估当前持仓风险和账户状态 |
+| `decisionNode` | 基于综合分析生成交易决策 |
+| `executionNode` | 执行交易（开仓/平仓/调整） |
+| `logNode` | 记录决策过程和结果 |
 
 ### 交易经验模块
 
@@ -506,6 +534,7 @@ pnpm run build
 | `mcp_logs` | MCP 调用日志表 |
 | `audit_logs` | 审计日志表 |
 | `trading_memories` | 交易经验表 |
+| `trading_agent_decisions` | 交易 Agent 决策记录表 |
 
 ## 技术栈
 
