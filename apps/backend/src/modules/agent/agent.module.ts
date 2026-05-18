@@ -1,7 +1,7 @@
 import { Module, forwardRef } from '@nestjs/common';
 import { DbModule } from '../../core/db/db.module.js';
 import { VectorModule } from '../../core/vector/vector.module.js';
-import { VolcengineModule } from '../../core/volcengine/volcengine.module.js';
+import { LlmModule } from '../llm/llm.module.js';
 import { NewsModule } from '../news/news.module.js';
 import { SimulationModule } from '../simulation/simulation.module.js';
 import { SignalsModule } from '../signals/signals.module.js';
@@ -33,7 +33,7 @@ import { TradingAgentGraph } from './trading/graph.js';
   imports: [
     DbModule,
     VectorModule,
-    VolcengineModule,
+    LlmModule,
     forwardRef(() => NewsModule),
     SimulationModule,
     forwardRef(() => SignalsModule),

@@ -487,6 +487,57 @@ async function seed() {
       console.log('Trading agent runtime already exists for admin user');
     }
 
+    // ==================== LLM 供应商配置数据 ====================
+    console.log('Seeding LLM provider configs...');
+
+    const providerConfigs = [
+      {
+        provider: 'volcengine',
+        enabled: true,
+        baseUrl: 'https://ark.cn-beijing.volces.com/api/v3',
+        defaultModel: 'deepseek-v3-2-251201',
+        rpmLimit: 60,
+        dailyBudget: 1000000,
+      },
+      {
+        provider: 'deepseek',
+        enabled: false,
+        baseUrl: 'https://api.deepseek.com/v1',
+        defaultModel: 'deepseek-chat',
+        rpmLimit: 60,
+        dailyBudget: 1000000,
+      },
+      {
+        provider: 'openrouter',
+        enabled: false,
+        baseUrl: 'https://openrouter.ai/api/v1',
+        defaultModel: 'deepseek/deepseek-chat',
+        rpmLimit: 60,
+        dailyBudget: 1000000,
+      },
+      {
+        provider: 'ollama',
+        enabled: false,
+        baseUrl: 'http://localhost:11434',
+        defaultModel: 'deepseek-r1:8b',
+        rpmLimit: 120,
+        dailyBudget: null,
+      },
+    ];
+
+    for (const config of providerConfigs) {
+      const existing = await db
+        .select()
+        .from(schema.llmProviderConfigs)
+        .where(eq(schema.llmProviderConfigs.provider, config.provider));
+      if (existing.length === 0) {
+        await db.insert(schema.llmProviderConfigs).values(config);
+        console.log(`Created LLM provider config: ${config.provider}`);
+      } else {
+        console.log(`LLM provider config already exists: ${config.provider}`);
+      }
+    }
+
   } catch (error) {
     console.error('Seed failed:', error);
     throw error;

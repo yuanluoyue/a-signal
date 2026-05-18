@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { AgentState, initialAgentState } from '../types/agent-state.js';
 import { MemoryService } from '../memory/memory.service.js';
-import { VolcengineService } from '../../../core/volcengine/volcengine.service.js';
+import { LlmService } from '../../llm/gateway/llm.service.js';
 import { ToolRegistryService } from '../tools/index.js';
 import {
   memoryLoadNode,
@@ -29,7 +29,7 @@ export class AgentGraph {
 
   constructor(
     private readonly memoryService: MemoryService,
-    private readonly volcengineService: VolcengineService,
+    private readonly llmService: LlmService,
     private readonly toolRegistryService: ToolRegistryService,
   ) {}
 
@@ -50,12 +50,12 @@ export class AgentGraph {
       events.push({ type: 'thinking', data: { node: 'memoryLoad', message: '记忆加载完成' } });
 
       this.logger.debug('[Graph] Executing intent node');
-      const intentResult = await intentNode(state, this.volcengineService);
+      const intentResult = await intentNode(state, this.llmService);
       state = { ...state, ...intentResult };
       events.push({ type: 'thinking', data: { node: 'intent', intent: state.intent } });
 
       this.logger.debug('[Graph] Executing planner node');
-      const plannerResult = await plannerNode(state, this.volcengineService, this.toolRegistryService);
+      const plannerResult = await plannerNode(state, this.llmService, this.toolRegistryService);
       state = { ...state, ...plannerResult };
       events.push({ type: 'thinking', data: { node: 'planner', plan: state.plan } });
 
@@ -95,7 +95,7 @@ export class AgentGraph {
       events.push({ type: 'thinking', data: { node: 'aggregator', message: '数据整合完成' } });
 
       this.logger.debug('[Graph] Executing final node');
-      const finalResult = await finalNode(state, this.volcengineService);
+      const finalResult = await finalNode(state, this.llmService);
       state = { ...state, ...finalResult };
 
       this.logger.debug('[Graph] Executing memorySave node');
@@ -129,12 +129,12 @@ export class AgentGraph {
       state = { ...state, ...memoryResult };
 
       yield { type: 'thinking', data: { node: 'intent', message: '分析意图中...' } };
-      const intentResult = await intentNode(state, this.volcengineService);
+      const intentResult = await intentNode(state, this.llmService);
       state = { ...state, ...intentResult };
       yield { type: 'thinking', data: { node: 'intent', intent: state.intent } };
 
       yield { type: 'thinking', data: { node: 'planner', message: '制定计划中...' } };
-      const plannerResult = await plannerNode(state, this.volcengineService, this.toolRegistryService);
+      const plannerResult = await plannerNode(state, this.llmService, this.toolRegistryService);
       state = { ...state, ...plannerResult };
       yield { type: 'thinking', data: { node: 'planner', plan: state.plan } };
 
@@ -172,7 +172,7 @@ export class AgentGraph {
       state = { ...state, ...aggregatorResult };
 
       yield { type: 'thinking', data: { node: 'final', message: '生成回答中...' } };
-      const finalResult = await finalNode(state, this.volcengineService);
+      const finalResult = await finalNode(state, this.llmService);
       state = { ...state, ...finalResult };
 
       if (state.finalAnswer) {

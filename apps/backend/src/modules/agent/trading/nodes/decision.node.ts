@@ -5,7 +5,7 @@ import {
   TradingAgentDecisionType,
   PositionAction,
 } from '../types/trading-agent-state.js';
-import { VolcengineService } from '../../../../core/volcengine/volcengine.service.js';
+import { LlmService } from '../../../llm/gateway/llm.service.js';
 
 const logger = new Logger('decisionNode');
 
@@ -67,7 +67,7 @@ const DECISION_PROMPT = `你是一个专业的交易决策Agent。请根据以�
 
 export async function decisionNode(
   state: TradingAgentState,
-  volcengineService: VolcengineService,
+  llmService: LlmService,
 ): Promise<Partial<TradingAgentState>> {
   logger.log(`[decisionNode] Making decision for signal: ${state.signalId}, riskLevel: ${state.riskLevel}`);
 
@@ -128,13 +128,17 @@ export async function decisionNode(
       .replace('{{positions}}', positionsText)
       .replace('{{memories}}', memoriesText);
 
-    const response = await volcengineService.chatCompletion(
-      [
+    const response = await llmService.chatCompletion({
+      module: 'agent-trading',
+      task: 'decision',
+      messages: [
         { role: 'system', content: '你是一个交易决策Agent，只返回JSON格式的决策结果。' },
         { role: 'user', content: prompt },
       ],
-      { temperature: 0.2, maxTokens: 800, responseFormat: { type: 'json_object' } },
-    );
+      temperature: 0.2,
+      maxTokens: 800,
+      responseFormat: { type: 'json_object' },
+    });
 
     let parsed: {
       decision: string;
