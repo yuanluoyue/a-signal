@@ -3,7 +3,6 @@ import { eq, and, desc } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { KlinesService } from '../../modules/klines/klines.service.js';
 import { CacheService } from '../../core/cache/cache.service.js';
-import { AuditLogService } from '../audit-log/audit-log.service.js';
 import {
   users,
   klines,
@@ -64,7 +63,6 @@ export class SimulationService {
     private readonly dbService: DbService,
     private readonly klinesService: KlinesService,
     private readonly cacheService: CacheService,
-    private readonly auditLogService: AuditLogService,
   ) {}
 
   async createAccount(dto: CreateAccountDto): Promise<SimulationAccount> {
@@ -103,14 +101,6 @@ export class SimulationService {
       .returning();
 
     this.logger.log(`Created simulation account ${account.id} for user ${dto.userId}`);
-    await this.auditLogService.log({
-      userId: dto.userId,
-      action: 'simulation.account_create',
-      resource: 'simulation_account',
-      resourceId: account.id,
-      detail: { name: dto.name, initialCapital: dto.initialCapital },
-      status: 'success',
-    });
     return account;
   }
 
@@ -554,14 +544,6 @@ export class SimulationService {
       await this.refreshAccountEquity(dto.accountId);
       await this.recordEquityCurve(dto.accountId);
       this.logger.log(`Executed buy trade for ${dto.stockCode}`);
-      await this.auditLogService.log({
-        userId: account.userId,
-        action: 'simulation.trade_execute',
-        resource: 'simulation_trade',
-        resourceId: result.id,
-        detail: { accountId: dto.accountId, stockCode: dto.stockCode, type: dto.type, quantity: dto.quantity },
-        status: 'success',
-      });
       return result;
     } else {
       const existingPosition = await this.getPositionByStock(dto.accountId, dto.stockCode);
@@ -630,14 +612,6 @@ export class SimulationService {
 
       await this.recordEquityCurve(dto.accountId);
       this.logger.log(`Executed sell trade for ${dto.stockCode}, profit: ${profit}`);
-      await this.auditLogService.log({
-        userId: account.userId,
-        action: 'simulation.trade_execute',
-        resource: 'simulation_trade',
-        resourceId: result.id,
-        detail: { accountId: dto.accountId, stockCode: dto.stockCode, type: dto.type, quantity: dto.quantity, profit },
-        status: 'success',
-      });
       return result;
     }
   }
