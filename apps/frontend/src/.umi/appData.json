@@ -9,7 +9,8 @@
       "build": "umi build",
       "postinstall": "umi setup",
       "setup": "umi setup",
-      "start": "npm run dev"
+      "start": "npm run dev",
+      "serve:dist": "serve dist -l 8002"
     },
     "dependencies": {
       "@ant-design/icons": "^5.3.0",
@@ -32,6 +33,7 @@
       "@types/react": "^18.3.28",
       "@types/react-dom": "^18.3.7",
       "@umijs/bundler-utils": "^4.6.33",
+      "serve": "^14.2.6",
       "typescript": "^5.3.3"
     }
   },
@@ -46,7 +48,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 19
       },
       "enableBy": "register"
     },
@@ -59,7 +61,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 36
+        "register": 100
       },
       "enableBy": "register"
     },
@@ -76,7 +78,7 @@
             0
           ]
         },
-        "register": 7
+        "register": 68
       },
       "enableBy": "register"
     },
@@ -93,7 +95,7 @@
             3
           ]
         },
-        "register": 5
+        "register": 123
       },
       "enableBy": "register"
     },
@@ -107,18 +109,10 @@
       "time": {
         "hooks": {
           "modifyRoutes": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 20
       },
       "enableBy": "register"
     },
@@ -132,22 +126,13 @@
       "time": {
         "hooks": {
           "onDevCompileDone": [
-            78,
-            8,
-            10,
-            5,
-            3,
-            3,
-            2,
-            3,
-            3,
+            71,
             6,
-            4,
             5,
-            4
+            7
           ]
         },
-        "register": 2
+        "register": 30
       },
       "enableBy": "register"
     },
@@ -161,21 +146,13 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            49
+            112
           ],
           "onGenerateFiles": [
-            5,
-            14,
-            15,
-            20,
-            17,
-            15,
-            20,
-            20,
-            19
+            6
           ]
         },
-        "register": 33
+        "register": 887
       },
       "enableBy": "register"
     },
@@ -189,18 +166,10 @@
       "time": {
         "hooks": {
           "addEntryCode": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 16
       },
       "enableBy": "register"
     },
@@ -217,32 +186,16 @@
             0
           ],
           "onCheck": [
-            1
+            0
           ],
           "onPrepareBuildSuccess": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0
           ],
           "onCheckCode": [
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            1,
             0,
             0,
             0,
@@ -324,7 +277,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 24
       },
       "enableBy": "register"
     },
@@ -341,7 +294,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 23
       },
       "enableBy": "register"
     },
@@ -354,7 +307,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 29
       },
       "enableBy": "config"
     },
@@ -371,7 +324,7 @@
             0
           ]
         },
-        "register": 17
+        "register": 183
       },
       "enableBy": "register"
     },
@@ -1223,7 +1176,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 19
       },
       "enableBy": "config"
     },
@@ -1237,10 +1190,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            1
+            0
           ]
         },
-        "register": 2
+        "register": 26
       },
       "enableBy": "register"
     },
@@ -1254,10 +1207,10 @@
       "time": {
         "hooks": {
           "addBeforeMiddlewares": [
-            10
+            48
           ]
         },
-        "register": 1
+        "register": 29
       },
       "enableBy": "register"
     },
@@ -1270,7 +1223,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 98
+        "register": 625
       },
       "enableBy": "register"
     },
@@ -1283,7 +1236,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 81
+        "register": 1717
       },
       "enableBy": "config"
     },
@@ -1296,7 +1249,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 29
+        "register": 362
       },
       "enableBy": "config"
     },
@@ -1320,10 +1273,12 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ]
         },
-        "register": 1
+        "register": 22
       },
       "enableBy": "register"
     },
@@ -1337,29 +1292,13 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            4,
-            1,
-            2,
-            1,
-            2,
-            1,
-            1,
-            1,
-            1
+            7
           ],
           "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 33
       },
       "enableBy": "register"
     },
@@ -1372,7 +1311,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 49
       },
       "enableBy": "config"
     },
@@ -1392,7 +1331,7 @@
             1
           ]
         },
-        "register": 42
+        "register": 847
       }
     },
     "@umijs/preset-umi/dist/features/mpa/mpa": {
@@ -1404,7 +1343,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 34
       },
       "enableBy": "config"
     },
@@ -1417,7 +1356,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 20
       }
     },
     "@umijs/preset-umi/dist/features/overrides/overrides": {
@@ -1430,38 +1369,14 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addEntryImports": [
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 0
+        "register": 1
       },
       "enableBy": "register"
     },
@@ -1474,7 +1389,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 19
       },
       "enableBy": "config"
     },
@@ -1488,41 +1403,17 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            2
+            13
           ],
           "onGenerateFiles": [
-            102,
-            33,
-            30,
-            36,
-            29,
-            27,
-            25,
-            31,
-            27
+            244
           ],
           "addPolyfillImports": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0
           ]
         },
-        "register": 4
+        "register": 34
       }
     },
     "@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill": {
@@ -1536,26 +1427,10 @@
         "hooks": {
           "addPolyfillImports": [
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 1
+        "register": 15
       },
       "enableBy": "register"
     },
@@ -1569,18 +1444,10 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            138,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0
+            372
           ]
         },
-        "register": 4
+        "register": 27
       },
       "enableBy": "register"
     },
@@ -1593,7 +1460,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 14
       },
       "enableBy": "config"
     },
@@ -1606,7 +1473,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 17
       },
       "enableBy": "config"
     },
@@ -1620,21 +1487,13 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            1,
-            1,
-            0,
-            0,
-            1,
-            0,
-            1,
-            0,
-            1
+            0
           ],
           "addBeforeMiddlewares": [
             0
           ]
         },
-        "register": 2
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -1649,26 +1508,10 @@
         "hooks": {
           "onGenerateFiles": [
             32,
-            14,
-            37,
-            5,
-            39,
-            6,
-            44,
-            6,
-            37,
-            7,
-            32,
-            4,
-            32,
-            4,
-            38,
-            5,
-            34,
-            4
+            16
           ]
         },
-        "register": 10
+        "register": 88
       },
       "enableBy": "register"
     },
@@ -1681,7 +1524,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 34
       },
       "enableBy": "config"
     },
@@ -1694,7 +1537,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 15
       }
     },
     "@umijs/preset-umi/dist/features/ssr/ssr": {
@@ -1706,7 +1549,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 7
+        "register": 39
       },
       "enableBy": "config"
     },
@@ -1720,18 +1563,10 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            476,
-            11,
-            14,
-            12,
-            7,
-            10,
-            8,
-            8,
-            9
+            1295
           ]
         },
-        "register": 6
+        "register": 65
       },
       "enableBy": "register"
     },
@@ -1748,7 +1583,7 @@
             0
           ]
         },
-        "register": 6
+        "register": 56
       },
       "enableBy": "register"
     },
@@ -1761,7 +1596,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 51
       },
       "enableBy": "config"
     },
@@ -1774,7 +1609,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 21
       },
       "enableBy": "config"
     },
@@ -1787,7 +1622,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 14
+        "register": 121
       }
     },
     "@umijs/preset-umi/dist/features/monorepo/redirect": {
@@ -1799,7 +1634,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 26
+        "register": 427
       },
       "enableBy": "config"
     },
@@ -1813,18 +1648,10 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            7,
-            2,
-            1,
-            1,
-            2,
-            1,
-            1,
-            2,
-            1
+            4
           ]
         },
-        "register": 3
+        "register": 21
       }
     },
     "@umijs/preset-umi/dist/features/clickToComponent/clickToComponent": {
@@ -1836,7 +1663,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 19
       },
       "enableBy": "config"
     },
@@ -1849,7 +1676,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 27
       },
       "enableBy": "config"
     },
@@ -1862,7 +1689,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 19
       },
       "enableBy": "config"
     },
@@ -1875,7 +1702,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 36
       }
     },
     "@umijs/preset-umi/dist/features/swc/swc": {
@@ -1891,7 +1718,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 14
       },
       "enableBy": "register"
     },
@@ -1904,7 +1731,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 6
+        "register": 60
       }
     },
     "@umijs/preset-umi/dist/features/mako/mako": {
@@ -1916,7 +1743,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 19
       },
       "enableBy": "config"
     },
@@ -1929,7 +1756,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 21
       }
     },
     "@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
@@ -1941,7 +1768,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 37
       }
     },
     "@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
@@ -1954,14 +1781,16 @@
       "time": {
         "hooks": {
           "addHTMLHeadScripts": [
-            72,
-            71,
-            6,
-            8,
+            65,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 43
+        "register": 188
       }
     },
     "@umijs/preset-umi/dist/features/forget/forget": {
@@ -1973,7 +1802,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 28
       },
       "enableBy": "config"
     },
@@ -1987,10 +1816,10 @@
       "time": {
         "hooks": {
           "modifyUniBundler": [
-            1146
+            8395
           ]
         },
-        "register": 4
+        "register": 29
       },
       "enableBy": "register"
     },
@@ -2003,7 +1832,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 10
+        "register": 92
       },
       "enableBy": "register"
     },
@@ -2016,7 +1845,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 53
+        "register": 289
       },
       "enableBy": "register"
     },
@@ -2030,10 +1859,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            17
+            18
           ]
         },
-        "register": 83
+        "register": 1048
       }
     },
     "@umijs/preset-umi/dist/commands/help": {
@@ -2045,7 +1874,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 25
       },
       "enableBy": "register"
     },
@@ -2058,7 +1887,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 28
       },
       "enableBy": "register"
     },
@@ -2071,7 +1900,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 25
       },
       "enableBy": "register"
     },
@@ -2084,7 +1913,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 31
       },
       "enableBy": "register"
     },
@@ -2097,7 +1926,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -2110,7 +1939,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 8
+        "register": 67
       },
       "enableBy": "register"
     },
@@ -2123,7 +1952,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 25
       },
       "enableBy": "register"
     },
@@ -2136,7 +1965,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 23
       },
       "enableBy": "register"
     },
@@ -2149,7 +1978,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 27
       },
       "enableBy": "register"
     },
@@ -2162,7 +1991,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 23
       },
       "enableBy": "register"
     },
@@ -2175,7 +2004,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 23
       },
       "enableBy": "register"
     },
@@ -2188,7 +2017,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 27
       },
       "enableBy": "register"
     },
@@ -2201,7 +2030,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 23
       },
       "enableBy": "register"
     },
@@ -2214,7 +2043,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 28
       },
       "enableBy": "register"
     },
@@ -2227,7 +2056,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 31
       },
       "enableBy": "register"
     },
@@ -2240,7 +2069,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 34
       },
       "enableBy": "register"
     },
@@ -2253,7 +2082,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 24
       },
       "enableBy": "register"
     },
@@ -2266,7 +2095,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 49
       },
       "enableBy": "register"
     },
@@ -2279,7 +2108,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 25
+        "register": 163
       },
       "enableBy": "register"
     },
@@ -2292,7 +2121,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 24
       },
       "enableBy": "register"
     },
@@ -2305,7 +2134,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 6
+        "register": 77
       },
       "enableBy": "register"
     },
@@ -2318,7 +2147,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 31
       },
       "enableBy": "register"
     },
@@ -2332,66 +2161,26 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            3
+            35
           ],
           "modifyAppData": [
-            0
+            1
           ],
           "onCheck": [
             0
           ],
           "addEntryImportsAhead": [
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addRuntimePluginKey": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "onGenerateFiles": [
-            5,
-            1,
-            2,
-            1,
-            1,
-            1,
-            1,
-            1,
-            1
+            5
           ],
           "addExtraBabelPlugins": [
             0
@@ -2400,7 +2189,7 @@
             0
           ]
         },
-        "register": 13
+        "register": 149
       }
     },
     "./node_modules/@umijs/plugins/dist/model": {
@@ -2413,32 +2202,16 @@
       "time": {
         "hooks": {
           "addRuntimePlugin": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "onGenerateFiles": [
-            45,
-            44,
-            42,
-            44,
-            43,
-            45,
-            46,
-            42,
-            46
+            58
           ],
           "addTmpGenerateWatcherPaths": [
             0
           ]
         },
-        "register": 9
+        "register": 92
       },
       "enableBy": "config"
     },
@@ -2453,62 +2226,22 @@
         "hooks": {
           "addEntryImportsAhead": [
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addRuntimePlugin": [
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "addRuntimePluginKey": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ],
           "onGenerateFiles": [
-            35,
-            19,
-            21,
-            23,
-            19,
-            21,
-            22,
-            19,
-            19
+            37
           ],
           "addTmpGenerateWatcherPaths": [
-            17
+            15
           ]
         },
-        "register": 4
+        "register": 73
       },
       "enableBy": "config"
     }
@@ -2639,6 +2372,11 @@
             "path": "/trading-agent",
             "component": "@/pages/trading-agent/index",
             "title": "交易 Agent"
+          },
+          {
+            "path": "/news-filter-agent",
+            "component": "@/pages/news-filter-agent/index",
+            "title": "新闻过滤 Agent"
           },
           {
             "path": "/llm-center",
@@ -2880,6 +2618,11 @@
             "path": "/trading-agent",
             "component": "@/pages/trading-agent/index",
             "title": "交易 Agent"
+          },
+          {
+            "path": "/news-filter-agent",
+            "component": "@/pages/news-filter-agent/index",
+            "title": "新闻过滤 Agent"
           },
           {
             "path": "/llm-center",
@@ -3898,7 +3641,7 @@
       "file": "@/layouts/MainLayout.tsx",
       "id": "3",
       "absPath": "/",
-      "__content": "import React, { useState, useMemo, useCallback, Suspense } from 'react';\nimport { Layout, Menu, theme } from 'antd';\nimport {\n  DashboardOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n  KeyOutlined,\n  DatabaseOutlined,\n  FundOutlined,\n  ThunderboltOutlined,\n  AuditOutlined,\n  ExperimentOutlined,\n  CodeOutlined,\n  DollarOutlined,\n  ControlOutlined,\n  MessageOutlined,\n  BarChartOutlined,\n  PieChartOutlined,\n  CloudServerOutlined,\n  FileTextOutlined,\n  BulbOutlined,\n} from '@ant-design/icons';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\nimport PageLoading from '@/components/PageLoading';\n\nconst { Sider, Content } = Layout;\n\nconst MENU_ITEMS = [\n  {\n    key: '/dashboard',\n    icon: <DashboardOutlined />,\n    label: '仪表盘',\n  },\n  {\n    key: '/data',\n    icon: <DatabaseOutlined />,\n    label: '数据中心',\n    children: [\n      { key: '/news', icon: <ReadOutlined />, label: '新闻管理' },\n      { key: '/stocks', icon: <SearchOutlined />, label: '股票查询' },\n      { key: '/stock-trackings', icon: <EyeOutlined />, label: '股票追踪' },\n    ],\n  },\n  {\n    key: '/strategy',\n    icon: <ExperimentOutlined />,\n    label: '策略中心',\n    children: [\n      { key: '/signal-rules', icon: <SettingOutlined />, label: '信号规则' },\n      { key: '/signals', icon: <BellOutlined />, label: '信号管理' },\n      { key: '/events', icon: <ThunderboltOutlined />, label: '事件管理' },\n      { key: '/strategies', icon: <CodeOutlined />, label: '策略管理' },\n      { key: '/backtest', icon: <LineChartOutlined />, label: '回测记录' },\n    ],\n  },\n  {\n    key: '/trading',\n    icon: <WalletOutlined />,\n    label: '交易中心',\n    children: [\n      { key: '/runtime', icon: <ControlOutlined />, label: '运行管理' },\n      { key: '/simulation', icon: <DollarOutlined />, label: '账户模拟' },\n    ],\n  },\n  {\n    key: '/agent',\n    icon: <RobotOutlined />,\n    label: 'AI 智能体',\n    children: [\n      { key: '/agent-chat', icon: <MessageOutlined />, label: '研究员 Agent' },\n      { key: '/trading-memory', icon: <BulbOutlined />, label: '交易经验' },\n      { key: '/trading-agent', icon: <ThunderboltOutlined />, label: '交易 Agent' },\n      { key: '/llm-center', icon: <CloudServerOutlined />, label: 'AI 运行中心' },\n      { key: '/llm-logs', icon: <FileTextOutlined />, label: 'LLM 日志' },\n    ],\n  },\n  {\n    key: '/analysis',\n    icon: <FundOutlined />,\n    label: '分析中心',\n    children: [\n      { key: '/analysis/overview', icon: <BarChartOutlined />, label: '综合分析' },\n      { key: '/analysis/strategies', icon: <PieChartOutlined />, label: '策略总览' },\n    ],\n  },\n  {\n    key: '/settings',\n    icon: <SettingOutlined />,\n    label: '系统设置',\n    children: [\n      { key: '/settings/notifications', icon: <NotificationOutlined />, label: '通知设置' },\n      { key: '/settings/scheduler', icon: <ClockCircleOutlined />, label: '定时任务' },\n      { key: '/settings/api-keys', icon: <KeyOutlined />, label: 'API Key' },\n      { key: '/blacklist', icon: <BlockOutlined />, label: '黑名单' },\n      { key: '/audit-logs', icon: <AuditOutlined />, label: '审计日志' },\n    ],\n  },\n];\n\nconst getSelectedKey = (pathname: string): string => {\n  const pathParts = pathname.split('/').filter(Boolean);\n  \n  if (pathParts.length === 0) {\n    return '/dashboard';\n  }\n  \n  const basePath = `/${pathParts[0]}`;\n  \n  if (pathParts.length >= 2) {\n    const secondLevelPath = `/${pathParts[0]}/${pathParts[1]}`;\n    const knownSecondLevelPaths = [\n      '/settings/notifications',\n      '/settings/scheduler',\n      '/settings/api-keys',\n      '/analysis/overview',\n      '/analysis/strategies',\n    ];\n    \n    if (knownSecondLevelPaths.includes(secondLevelPath)) {\n      return secondLevelPath;\n    }\n\n  if (pathParts.length >= 3 && pathParts[0] === 'analysis' && pathParts[1] === 'strategies') {\n    return '/analysis/strategies';\n  }\n  }\n  \n  const knownFirstLevelPaths = [\n    '/dashboard',\n    '/news',\n    '/stocks',\n    '/stock-trackings',\n    '/signal-rules',\n    '/signals',\n    '/events',\n    '/strategies',\n    '/backtest',\n    '/runtime',\n    '/simulation',\n    '/agent-chat',\n    '/trading-memory',\n    '/llm-center',\n    '/llm-logs',\n    '/analysis/overview',\n    '/analysis/strategies',\n    '/blacklist',\n    '/audit-logs',\n  ];\n  \n  if (knownFirstLevelPaths.includes(basePath)) {\n    return basePath;\n  }\n  \n  return pathname;\n};\n\nconst getOpenKeys = (pathname: string): string[] => {\n  const pathToParentMap: Record<string, string> = {\n    '/news': '/data',\n    '/stocks': '/data',\n    '/stock-trackings': '/data',\n    '/signal-rules': '/strategy',\n    '/signals': '/strategy',\n    '/events': '/strategy',\n    '/strategies': '/strategy',\n    '/backtest': '/strategy',\n    '/runtime': '/trading',\n    '/simulation': '/trading',\n    '/agent-chat': '/agent',\n    '/trading-memory': '/agent',\n    '/trading-agent': '/agent',\n    '/llm-center': '/agent',\n    '/llm-logs': '/agent',\n    '/analysis/overview': '/analysis',\n    '/analysis/strategies': '/analysis',\n    '/settings/notifications': '/settings',\n    '/settings/scheduler': '/settings',\n    '/settings/api-keys': '/settings',\n    '/blacklist': '/settings',\n    '/audit-logs': '/settings',\n  };\n  \n  const openKeys: string[] = [];\n  const selectedKey = getSelectedKey(pathname);\n  const parentKey = pathToParentMap[selectedKey];\n  if (parentKey) {\n    openKeys.push(parentKey);\n  }\n  return openKeys;\n};\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  const handleMenuClick = useCallback(({ key }: { key: string }) => {\n    navigate(key);\n  }, [navigate]);\n\n  const handleToggle = useCallback(() => {\n    setCollapsed(prev => !prev);\n  }, []);\n\n  const handleLogoClick = useCallback(() => {\n    navigate('/dashboard');\n  }, [navigate]);\n\n  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname)], [location.pathname]);\n  const defaultOpenKeys = useMemo(() => getOpenKeys(location.pathname), [location.pathname]);\n\n  const siderStyle = useMemo(() => ({\n    height: '100vh',\n    position: 'fixed' as const,\n    left: 0,\n    top: 0,\n    bottom: 0,\n    zIndex: 100,\n  }), []);\n\n  const logoStyle = useMemo(() => ({\n    height: 64,\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: collapsed ? 'center' : 'flex-start',\n    padding: collapsed ? 0 : '0 20px',\n    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n    cursor: 'pointer',\n    gap: 10,\n    whiteSpace: 'nowrap' as const,\n  }), [collapsed]);\n\n  const menuContainerStyle = useMemo(() => ({\n    height: 'calc(100vh - 64px)',\n    overflow: 'auto' as const,\n    overflowX: 'hidden' as const,\n  }), []);\n\n  const layoutStyle = useMemo(() => ({\n    marginLeft: collapsed ? 80 : 200,\n    transition: 'margin-left 0.2s',\n  }), [collapsed]);\n\n  const contentStyle = useMemo(() => ({\n    margin: '88px 16px 24px',\n    padding: 24,\n    minHeight: 280,\n    background: colorBgContainer,\n    borderRadius: borderRadiusLG,\n    overflow: location.pathname === '/agent-chat' ? 'hidden' as const : 'auto' as const,\n  }), [colorBgContainer, borderRadiusLG, location.pathname]);\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={siderStyle}\n      >\n        <div onClick={handleLogoClick} style={logoStyle}>\n          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          {!collapsed && (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <div style={menuContainerStyle} className=\"custom-scrollbar\">\n          <Menu\n            theme=\"dark\"\n            mode=\"inline\"\n            selectedKeys={selectedKeys}\n            defaultOpenKeys={defaultOpenKeys}\n            items={MENU_ITEMS}\n            onClick={handleMenuClick}\n            style={{ borderRight: 0 }}\n          />\n        </div>\n      </Sider>\n      <Layout style={layoutStyle}>\n        <Header collapsed={collapsed} onToggle={handleToggle} />\n        <Content style={contentStyle}>\n          <Suspense fallback={<PageLoading />}>\n            <Outlet />\n          </Suspense>\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
+      "__content": "import React, { useState, useMemo, useCallback, Suspense } from 'react';\nimport { Layout, Menu, theme } from 'antd';\nimport {\n  DashboardOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n  KeyOutlined,\n  DatabaseOutlined,\n  FundOutlined,\n  ThunderboltOutlined,\n  AuditOutlined,\n  ExperimentOutlined,\n  CodeOutlined,\n  DollarOutlined,\n  ControlOutlined,\n  MessageOutlined,\n  BarChartOutlined,\n  PieChartOutlined,\n  CloudServerOutlined,\n  FileTextOutlined,\n  BulbOutlined,\n  FilterOutlined,\n} from '@ant-design/icons';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\nimport PageLoading from '@/components/PageLoading';\n\nconst { Sider, Content } = Layout;\n\nconst MENU_ITEMS = [\n  {\n    key: '/dashboard',\n    icon: <DashboardOutlined />,\n    label: '仪表盘',\n  },\n  {\n    key: '/data',\n    icon: <DatabaseOutlined />,\n    label: '数据中心',\n    children: [\n      { key: '/news', icon: <ReadOutlined />, label: '新闻管理' },\n      { key: '/stocks', icon: <SearchOutlined />, label: '股票查询' },\n      { key: '/stock-trackings', icon: <EyeOutlined />, label: '股票追踪' },\n    ],\n  },\n  {\n    key: '/strategy',\n    icon: <ExperimentOutlined />,\n    label: '策略中心',\n    children: [\n      { key: '/signal-rules', icon: <SettingOutlined />, label: '信号规则' },\n      { key: '/signals', icon: <BellOutlined />, label: '信号管理' },\n      { key: '/events', icon: <ThunderboltOutlined />, label: '事件管理' },\n      { key: '/strategies', icon: <CodeOutlined />, label: '策略管理' },\n      { key: '/backtest', icon: <LineChartOutlined />, label: '回测记录' },\n    ],\n  },\n  {\n    key: '/trading',\n    icon: <WalletOutlined />,\n    label: '交易中心',\n    children: [\n      { key: '/runtime', icon: <ControlOutlined />, label: '运行管理' },\n      { key: '/simulation', icon: <DollarOutlined />, label: '账户模拟' },\n    ],\n  },\n  {\n    key: '/agent',\n    icon: <RobotOutlined />,\n    label: 'AI 智能体',\n    children: [\n      { key: '/agent-chat', icon: <MessageOutlined />, label: '研究员 Agent' },\n      { key: '/trading-agent', icon: <ThunderboltOutlined />, label: '交易 Agent' },\n      { key: '/news-filter-agent', icon: <FilterOutlined />, label: '新闻过滤 Agent' },\n      { key: '/trading-memory', icon: <BulbOutlined />, label: '交易经验' },\n      { key: '/llm-center', icon: <CloudServerOutlined />, label: 'AI 运行中心' },\n      { key: '/llm-logs', icon: <FileTextOutlined />, label: 'LLM 日志' },\n    ],\n  },\n  {\n    key: '/analysis',\n    icon: <FundOutlined />,\n    label: '分析中心',\n    children: [\n      { key: '/analysis/overview', icon: <BarChartOutlined />, label: '综合分析' },\n      { key: '/analysis/strategies', icon: <PieChartOutlined />, label: '策略总览' },\n    ],\n  },\n  {\n    key: '/settings',\n    icon: <SettingOutlined />,\n    label: '系统设置',\n    children: [\n      { key: '/settings/notifications', icon: <NotificationOutlined />, label: '通知设置' },\n      { key: '/settings/scheduler', icon: <ClockCircleOutlined />, label: '定时任务' },\n      { key: '/settings/api-keys', icon: <KeyOutlined />, label: 'API Key' },\n      { key: '/blacklist', icon: <BlockOutlined />, label: '黑名单' },\n      { key: '/audit-logs', icon: <AuditOutlined />, label: '审计日志' },\n    ],\n  },\n];\n\nconst getSelectedKey = (pathname: string): string => {\n  const pathParts = pathname.split('/').filter(Boolean);\n  \n  if (pathParts.length === 0) {\n    return '/dashboard';\n  }\n  \n  const basePath = `/${pathParts[0]}`;\n  \n  if (pathParts.length >= 2) {\n    const secondLevelPath = `/${pathParts[0]}/${pathParts[1]}`;\n    const knownSecondLevelPaths = [\n      '/settings/notifications',\n      '/settings/scheduler',\n      '/settings/api-keys',\n      '/analysis/overview',\n      '/analysis/strategies',\n    ];\n    \n    if (knownSecondLevelPaths.includes(secondLevelPath)) {\n      return secondLevelPath;\n    }\n\n  if (pathParts.length >= 3 && pathParts[0] === 'analysis' && pathParts[1] === 'strategies') {\n    return '/analysis/strategies';\n  }\n  }\n  \n  const knownFirstLevelPaths = [\n    '/dashboard',\n    '/news',\n    '/stocks',\n    '/stock-trackings',\n    '/signal-rules',\n    '/signals',\n    '/events',\n    '/strategies',\n    '/backtest',\n    '/runtime',\n    '/simulation',\n    '/agent-chat',\n    '/trading-memory',\n    '/trading-agent',\n    '/news-filter-agent',\n    '/llm-center',\n    '/llm-logs',\n    '/analysis/overview',\n    '/analysis/strategies',\n    '/blacklist',\n    '/audit-logs',\n  ];\n  \n  if (knownFirstLevelPaths.includes(basePath)) {\n    return basePath;\n  }\n  \n  return pathname;\n};\n\nconst getOpenKeys = (pathname: string): string[] => {\n  const pathToParentMap: Record<string, string> = {\n    '/news': '/data',\n    '/stocks': '/data',\n    '/stock-trackings': '/data',\n    '/signal-rules': '/strategy',\n    '/signals': '/strategy',\n    '/events': '/strategy',\n    '/strategies': '/strategy',\n    '/backtest': '/strategy',\n    '/runtime': '/trading',\n    '/simulation': '/trading',\n    '/agent-chat': '/agent',\n    '/trading-memory': '/agent',\n    '/trading-agent': '/agent',\n    '/news-filter-agent': '/agent',\n    '/llm-center': '/agent',\n    '/llm-logs': '/agent',\n    '/analysis/overview': '/analysis',\n    '/analysis/strategies': '/analysis',\n    '/settings/notifications': '/settings',\n    '/settings/scheduler': '/settings',\n    '/settings/api-keys': '/settings',\n    '/blacklist': '/settings',\n    '/audit-logs': '/settings',\n  };\n  \n  const openKeys: string[] = [];\n  const selectedKey = getSelectedKey(pathname);\n  const parentKey = pathToParentMap[selectedKey];\n  if (parentKey) {\n    openKeys.push(parentKey);\n  }\n  return openKeys;\n};\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  const handleMenuClick = useCallback(({ key }: { key: string }) => {\n    navigate(key);\n  }, [navigate]);\n\n  const handleToggle = useCallback(() => {\n    setCollapsed(prev => !prev);\n  }, []);\n\n  const handleLogoClick = useCallback(() => {\n    navigate('/dashboard');\n  }, [navigate]);\n\n  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname)], [location.pathname]);\n  const defaultOpenKeys = useMemo(() => getOpenKeys(location.pathname), [location.pathname]);\n\n  const siderStyle = useMemo(() => ({\n    height: '100vh',\n    position: 'fixed' as const,\n    left: 0,\n    top: 0,\n    bottom: 0,\n    zIndex: 100,\n  }), []);\n\n  const logoStyle = useMemo(() => ({\n    height: 64,\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: collapsed ? 'center' : 'flex-start',\n    padding: collapsed ? 0 : '0 20px',\n    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n    cursor: 'pointer',\n    gap: 10,\n    whiteSpace: 'nowrap' as const,\n  }), [collapsed]);\n\n  const menuContainerStyle = useMemo(() => ({\n    height: 'calc(100vh - 64px)',\n    overflow: 'auto' as const,\n    overflowX: 'hidden' as const,\n  }), []);\n\n  const layoutStyle = useMemo(() => ({\n    marginLeft: collapsed ? 80 : 200,\n    transition: 'margin-left 0.2s',\n  }), [collapsed]);\n\n  const contentStyle = useMemo(() => ({\n    margin: '88px 16px 24px',\n    padding: 24,\n    minHeight: 280,\n    background: colorBgContainer,\n    borderRadius: borderRadiusLG,\n    overflow: location.pathname === '/agent-chat' ? 'hidden' as const : 'auto' as const,\n  }), [colorBgContainer, borderRadiusLG, location.pathname]);\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={siderStyle}\n      >\n        <div onClick={handleLogoClick} style={logoStyle}>\n          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          {!collapsed && (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <div style={menuContainerStyle} className=\"custom-scrollbar\">\n          <Menu\n            theme=\"dark\"\n            mode=\"inline\"\n            selectedKeys={selectedKeys}\n            defaultOpenKeys={defaultOpenKeys}\n            items={MENU_ITEMS}\n            onClick={handleMenuClick}\n            style={{ borderRight: 0 }}\n          />\n        </div>\n      </Sider>\n      <Layout style={layoutStyle}>\n        <Header collapsed={collapsed} onToggle={handleToggle} />\n        <Content style={contentStyle}>\n          <Suspense fallback={<PageLoading />}>\n            <Outlet />\n          </Suspense>\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/layouts/MainLayout.tsx"
     },
@@ -3920,7 +3663,7 @@
       "parentId": "3",
       "id": "5",
       "absPath": "/news",
-      "__content": "import React, { useState, useEffect, useCallback, useRef } from 'react';\nimport {\n  Table,\n  Card,\n  Button,\n  Tag,\n  Tooltip,\n  Space,\n  Select,\n  Input,\n  Typography,\n  message,\n  Progress,\n  Row,\n  Col,\n} from 'antd';\nimport {\n  EyeOutlined,\n  PlayCircleOutlined,\n  ReloadOutlined,\n  SearchOutlined,\n  DatabaseOutlined,\n} from '@ant-design/icons';\nimport { useNavigate, useSearchParams } from 'umi';\nimport client from '@/services/client';\nimport type { NewsItem, NewsFilter, AnalysisStatus, VectorizedStatus } from '@/services/types';\n\nconst { Title } = Typography;\nconst { Option } = Select;\n\nconst getAnalysisStatusColor = (status: AnalysisStatus): string => {\n  const colorMap: Record<AnalysisStatus, string> = {\n    pending: 'default',\n    analyzing: 'processing',\n    analyzed: 'success',\n    failed: 'error',\n  };\n  return colorMap[status];\n};\n\nconst getAnalysisStatusText = (status: AnalysisStatus): string => {\n  const textMap: Record<AnalysisStatus, string> = {\n    pending: '待分析',\n    analyzing: '分析中',\n    analyzed: '已分析',\n    failed: '失败',\n  };\n  return textMap[status];\n};\n\nconst getVectorizedStatusColor = (status: VectorizedStatus | 'vectorizing'): string => {\n  const colorMap: Record<VectorizedStatus | 'vectorizing', string> = {\n    pending: 'default',\n    vectorizing: 'processing',\n    vectorized: 'success',\n    failed: 'error',\n  };\n  return colorMap[status];\n};\n\nconst getVectorizedStatusText = (status: VectorizedStatus | 'vectorizing'): string => {\n  const textMap: Record<VectorizedStatus | 'vectorizing', string> = {\n    pending: '待处理',\n    vectorizing: '向量化中',\n    vectorized: '已向量化',\n    failed: '失败',\n  };\n  return textMap[status];\n};\n\nconst truncateTitle = (title: string, maxLength: number = 10): string => {\n  if (title.length <= maxLength) return title;\n  return title.slice(0, maxLength) + '...';\n};\n\nconst formatDate = (dateString: string): string => {\n  const date = new Date(dateString);\n  return date.toLocaleString('zh-CN', {\n    year: 'numeric',\n    month: '2-digit',\n    day: '2-digit',\n    hour: '2-digit',\n    minute: '2-digit',\n  });\n};\n\nconst NewsListPage: React.FC = () => {\n  const navigate = useNavigate();\n  const [searchParams, setSearchParams] = useSearchParams();\n\n  // 从 URL 读取初始参数\n  const getInitialPage = () => parseInt(searchParams.get('page') || '1', 10);\n  const getInitialPageSize = () => parseInt(searchParams.get('pageSize') || '10', 10);\n  const getInitialFilters = (): NewsFilter => ({\n    keyword: searchParams.get('keyword') || undefined,\n    source: searchParams.get('source') || undefined,\n    analysisStatus: (searchParams.get('analysisStatus') as AnalysisStatus) || undefined,\n  });\n\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<NewsItem[]>([]);\n  const [pagination, setPagination] = useState({\n    current: getInitialPage(),\n    pageSize: getInitialPageSize(),\n    total: 0,\n  });\n  const [filters, setFilters] = useState<NewsFilter>(getInitialFilters());\n  const [vectorizeProgress, setVectorizeProgress] = useState({\n    pending: 0,\n    vectorizing: 0,\n    vectorized: 0,\n    failed: 0,\n    total: 0,\n  });\n\n  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  // 更新 URL 参数\n  const updateUrlParams = useCallback((page: number, pageSize: number, currentFilters: NewsFilter) => {\n    const params: Record<string, string> = {\n      page: page.toString(),\n      pageSize: pageSize.toString(),\n    };\n    if (currentFilters.keyword) params.keyword = currentFilters.keyword;\n    if (currentFilters.source) params.source = currentFilters.source;\n    if (currentFilters.analysisStatus) params.analysisStatus = currentFilters.analysisStatus;\n    setSearchParams(params);\n  }, [setSearchParams]);\n\n  const fetchData = useCallback(async (page?: number, pageSize?: number, currentFilters?: NewsFilter) => {\n    const targetPage = page ?? pagination.current;\n    const targetPageSize = pageSize ?? pagination.pageSize;\n    const targetFilters = currentFilters ?? filters;\n\n    setLoading(true);\n    try {\n      const params: Record<string, unknown> = {\n        page: targetPage,\n        pageSize: targetPageSize,\n      };\n\n      if (targetFilters.source) {\n        params.source = targetFilters.source;\n      }\n      if (targetFilters.analysisStatus) {\n        params.analyzeStatus = targetFilters.analysisStatus;\n      }\n      if (targetFilters.keyword) {\n        params.keyword = targetFilters.keyword;\n      }\n\n      const response = await client.get('/news', { params });\n      const responseData = response;\n\n      // 转换后端数据格式到前端格式\n      const newsList: NewsItem[] = (responseData.data || []).map((item: Record<string, unknown>) => ({\n        id: item.id,\n        title: item.title,\n        content: item.content,\n        source: item.source,\n        url: item.originalUrl,\n        analysisStatus: item.analyzeStatus,\n        vectorizedStatus: item.vectorizeStatus,\n        eventCount: item.eventCount || 0,\n        publishedAt: item.publishTime,\n        createdAt: item.createdAt,\n        updatedAt: item.updatedAt,\n      }));\n\n      setData(newsList);\n      const newTotal = responseData.total ?? newsList.length;\n      setPagination({\n        current: targetPage,\n        pageSize: targetPageSize,\n        total: newTotal,\n      });\n\n      // 更新 URL 参数\n      updateUrlParams(targetPage, targetPageSize, targetFilters);\n    } catch (error) {\n      message.error('获取新闻列表失败');\n      console.error('Fetch news error:', error);\n    } finally {\n      setLoading(false);\n    }\n  }, [pagination.current, pagination.pageSize, filters, updateUrlParams]);\n\n  const fetchVectorizeProgress = async () => {\n    try {\n      const response = await client.get('/news/vectorize-progress');\n      const { pending, vectorizing, vectorized, failed } = response.data;\n      setVectorizeProgress({\n        pending,\n        vectorizing,\n        vectorized,\n        failed,\n        total: pending + vectorizing + vectorized + failed,\n      });\n    } catch (error) {\n      console.error('Fetch vectorize progress error:', error);\n    }\n  };\n\n  // 初始加载\n  useEffect(() => {\n    fetchData();\n    fetchVectorizeProgress();\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, []);\n\n  // 5秒轮询刷新 - 使用当前的 pagination 和 filters\n  useEffect(() => {\n    const interval = setInterval(() => {\n      fetchData(pagination.current, pagination.pageSize, filters);\n      fetchVectorizeProgress();\n    }, 5000);\n    return () => clearInterval(interval);\n  }, [fetchData, pagination.current, pagination.pageSize, filters]);\n\n  const handleView = (id: string) => {\n    navigate(`/news/${id}`);\n  };\n\n  const handleAnalyze = async (newsId: string) => {\n    try {\n      await client.post(`/news/${newsId}/analyze`);\n      message.success(`新闻 ${newsId} 分析任务已提交`);\n      fetchData();\n    } catch {\n      message.error('分析失败');\n    }\n  };\n\n  const handleVectorize = async (newsId: string) => {\n    try {\n      await client.post(`/news/${newsId}/vectorize`);\n      message.success(`新闻 ${newsId} 向量化任务已提交`);\n      fetchData();\n      fetchVectorizeProgress();\n    } catch {\n      message.error('向量化失败');\n    }\n  };\n\n  const handleBatchVectorize = async () => {\n    try {\n      const response = await client.post('/news/batch-vectorize');\n      message.success(`批量向量化任务已启动，共 ${response.count} 条新闻`);\n      fetchData();\n      fetchVectorizeProgress();\n    } catch {\n      message.error('批量向量化失败');\n    }\n  };\n\n  const handleRefresh = () => {\n    fetchData();\n    fetchVectorizeProgress();\n  };\n\n  const handleFilterChange = (key: keyof NewsFilter, value: string | undefined) => {\n    const newFilters = { ...filters, [key]: value };\n    setFilters(newFilters);\n\n    if (key === 'keyword') {\n      if (debounceTimerRef.current) {\n        clearTimeout(debounceTimerRef.current);\n      }\n\n      debounceTimerRef.current = setTimeout(() => {\n        fetchData(1, pagination.pageSize, newFilters);\n      }, 500);\n    } else {\n      fetchData(1, pagination.pageSize, newFilters);\n    }\n  };\n\n  useEffect(() => {\n    return () => {\n      if (debounceTimerRef.current) {\n        clearTimeout(debounceTimerRef.current);\n      }\n    };\n  }, []);\n\n  // 处理分页变化\n  const handlePageChange = (page: number, pageSize?: number) => {\n    const newPageSize = pageSize || pagination.pageSize;\n    fetchData(page, newPageSize);\n  };\n\n  const columns = [\n    {\n      title: '标题',\n      dataIndex: 'title',\n      key: 'title',\n      width: 180,\n      render: (title: string) => (\n        <Tooltip title={title} placement=\"topLeft\">\n          <span style={{ cursor: 'pointer' }}>{truncateTitle(title, 8)}</span>\n        </Tooltip>\n      ),\n    },\n    {\n      title: '来源',\n      dataIndex: 'source',\n      key: 'source',\n      width: 120,\n    },\n    {\n      title: '分析状态',\n      dataIndex: 'analysisStatus',\n      key: 'analysisStatus',\n      width: 100,\n      render: (status: AnalysisStatus) => (\n        <Tag color={getAnalysisStatusColor(status)}>{getAnalysisStatusText(status)}</Tag>\n      ),\n    },\n    {\n      title: '向量化状态',\n      dataIndex: 'vectorizedStatus',\n      key: 'vectorizedStatus',\n      width: 100,\n      render: (status: VectorizedStatus | 'vectorizing') => (\n        <Tag color={getVectorizedStatusColor(status)}>{getVectorizedStatusText(status)}</Tag>\n      ),\n    },\n    {\n      title: '关联事件',\n      dataIndex: 'eventCount',\n      key: 'eventCount',\n      width: 100,\n      render: (count: number) => (\n        <Tag color={count > 0 ? 'blue' : 'default'}>\n          {count} 个\n        </Tag>\n      ),\n    },\n    {\n      title: '发布时间',\n      dataIndex: 'publishedAt',\n      key: 'publishedAt',\n      width: 160,\n      render: (date: string) => formatDate(date),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 200,\n      fixed: 'right' as const,\n      render: (_: unknown, record: NewsItem) => (\n        <Space size=\"small\">\n          <Tooltip title=\"查看详情\">\n            <Button\n              type=\"primary\"\n              icon={<EyeOutlined />}\n              size=\"small\"\n              onClick={() => handleView(record.id)}\n            >\n              查看\n            </Button>\n          </Tooltip>\n          <Tooltip title=\"分析\">\n            <Button\n              icon={<PlayCircleOutlined />}\n              size=\"small\"\n              disabled={record.analysisStatus === 'analyzing'}\n              onClick={() => handleAnalyze(record.id)}\n            >\n              分析\n            </Button>\n          </Tooltip>\n          <Tooltip title=\"向量化\">\n            <Button\n              icon={<DatabaseOutlined />}\n              size=\"small\"\n              disabled={record.vectorizedStatus === 'vectorizing' || record.vectorizedStatus === 'vectorized'}\n              onClick={() => handleVectorize(record.id)}\n            >\n              向量化\n            </Button>\n          </Tooltip>\n        </Space>\n      ),\n    },\n  ];\n\n  const uniqueSources = Array.from(new Set(data.map((item) => item.source)));\n\n  const vectorizePercent = vectorizeProgress.total > 0\n    ? Math.round((vectorizeProgress.vectorized / vectorizeProgress.total) * 100)\n    : 0;\n\n  return (\n    <div>\n      <Title level={2}>新闻管理</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col span={24}>\n          <Card title=\"向量化进度\" size=\"small\">\n            <Row gutter={[16, 16]} align=\"middle\">\n              <Col xs={24} lg={12} xl={14}>\n                <Progress\n                  percent={vectorizePercent}\n                  status={vectorizeProgress.vectorizing > 0 ? 'active' : 'normal'}\n                  format={() => `${vectorizeProgress.vectorized}/${vectorizeProgress.total}`}\n                />\n              </Col>\n              <Col xs={24} lg={12} xl={10}>\n                <Space size=\"small\" wrap style={{ width: '100%' }}>\n                  <Tag>待处理: {vectorizeProgress.pending}</Tag>\n                  <Tag color=\"processing\">向量化中: {vectorizeProgress.vectorizing}</Tag>\n                  <Tag color=\"success\">已完成: {vectorizeProgress.vectorized}</Tag>\n                  <Tag color=\"error\">失败: {vectorizeProgress.failed}</Tag>\n                </Space>\n              </Col>\n            </Row>\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space size=\"middle\" wrap>\n          <Input\n            placeholder=\"搜索标题\"\n            prefix={<SearchOutlined />}\n            style={{ width: 200 }}\n            value={filters.keyword || ''}\n            onChange={(e) => handleFilterChange('keyword', e.target.value || undefined)}\n            allowClear\n          />\n          <Select\n            placeholder=\"选择来源\"\n            style={{ width: 150 }}\n            allowClear\n            value={filters.source}\n            onChange={(value) => handleFilterChange('source', value)}\n          >\n            {uniqueSources.map((source) => (\n              <Option key={source} value={source}>\n                {source}\n              </Option>\n            ))}\n          </Select>\n          <Select\n            placeholder=\"分析状态\"\n            style={{ width: 150 }}\n            allowClear\n            value={filters.analysisStatus}\n            onChange={(value) => handleFilterChange('analysisStatus', value)}\n          >\n            <Option value=\"pending\">待分析</Option>\n            <Option value=\"analyzing\">分析中</Option>\n            <Option value=\"analyzed\">已分析</Option>\n            <Option value=\"failed\">失败</Option>\n          </Select>\n          <Button icon={<ReloadOutlined />} onClick={handleRefresh}>\n            刷新\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<DatabaseOutlined />}\n            onClick={handleBatchVectorize}\n            disabled={vectorizeProgress.pending === 0}\n          >\n            一键向量化 ({vectorizeProgress.pending})\n          </Button>\n        </Space>\n      </Card>\n\n      <Card>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={{\n            current: pagination.current,\n            pageSize: pagination.pageSize,\n            total: pagination.total,\n            showSizeChanger: true,\n            showQuickJumper: true,\n            showTotal: (total) => `共 ${total} 条`,\n            onChange: handlePageChange,\n          }}\n          scroll={{ x: 1200 }}\n          style={{ zIndex: 1 }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default NewsListPage;\n",
+      "__content": "import React, { useState, useEffect, useCallback, useRef } from 'react';\nimport {\n  Table,\n  Card,\n  Button,\n  Tag,\n  Tooltip,\n  Space,\n  Select,\n  Input,\n  Typography,\n  message,\n  Progress,\n  Row,\n  Col,\n  Switch,\n} from 'antd';\nimport {\n  EyeOutlined,\n  PlayCircleOutlined,\n  ReloadOutlined,\n  SearchOutlined,\n  DatabaseOutlined,\n  FilterOutlined,\n} from '@ant-design/icons';\nimport { useNavigate, useSearchParams } from 'umi';\nimport client from '@/services/client';\nimport { newsFilterAgentApi } from '@/services/news-filter-agent';\nimport type { NewsItem, NewsFilter, AnalysisStatus, VectorizedStatus } from '@/services/types';\n\nconst { Title } = Typography;\nconst { Option } = Select;\n\nconst getAnalysisStatusColor = (status: AnalysisStatus | 'filtered'): string => {\n  const colorMap: Record<AnalysisStatus | 'filtered', string> = {\n    pending: 'default',\n    analyzing: 'processing',\n    analyzed: 'success',\n    failed: 'error',\n    filtered: 'warning',\n  };\n  return colorMap[status];\n};\n\nconst getAnalysisStatusText = (status: AnalysisStatus | 'filtered'): string => {\n  const textMap: Record<AnalysisStatus | 'filtered', string> = {\n    pending: '待分析',\n    analyzing: '分析中',\n    analyzed: '已分析',\n    failed: '失败',\n    filtered: '已过滤',\n  };\n  return textMap[status];\n};\n\nconst getVectorizedStatusColor = (status: VectorizedStatus | 'vectorizing'): string => {\n  const colorMap: Record<VectorizedStatus | 'vectorizing', string> = {\n    pending: 'default',\n    vectorizing: 'processing',\n    vectorized: 'success',\n    failed: 'error',\n  };\n  return colorMap[status];\n};\n\nconst getVectorizedStatusText = (status: VectorizedStatus | 'vectorizing'): string => {\n  const textMap: Record<VectorizedStatus | 'vectorizing', string> = {\n    pending: '待处理',\n    vectorizing: '向量化中',\n    vectorized: '已向量化',\n    failed: '失败',\n  };\n  return textMap[status];\n};\n\nconst truncateTitle = (title: string, maxLength: number = 10): string => {\n  if (title.length <= maxLength) return title;\n  return title.slice(0, maxLength) + '...';\n};\n\nconst formatDate = (dateString: string): string => {\n  const date = new Date(dateString);\n  return date.toLocaleString('zh-CN', {\n    year: 'numeric',\n    month: '2-digit',\n    day: '2-digit',\n    hour: '2-digit',\n    minute: '2-digit',\n  });\n};\n\nconst NewsListPage: React.FC = () => {\n  const navigate = useNavigate();\n  const [searchParams, setSearchParams] = useSearchParams();\n\n  // 从 URL 读取初始参数\n  const getInitialPage = () => parseInt(searchParams.get('page') || '1', 10);\n  const getInitialPageSize = () => parseInt(searchParams.get('pageSize') || '10', 10);\n  const getInitialFilters = (): NewsFilter => ({\n    keyword: searchParams.get('keyword') || undefined,\n    source: searchParams.get('source') || undefined,\n    analysisStatus: (searchParams.get('analysisStatus') as AnalysisStatus) || undefined,\n  });\n\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<NewsItem[]>([]);\n  const [pagination, setPagination] = useState({\n    current: getInitialPage(),\n    pageSize: getInitialPageSize(),\n    total: 0,\n  });\n  const [filters, setFilters] = useState<NewsFilter>(getInitialFilters());\n  const [vectorizeProgress, setVectorizeProgress] = useState({\n    pending: 0,\n    vectorizing: 0,\n    vectorized: 0,\n    failed: 0,\n    total: 0,\n  });\n  const [filterAgentEnabled, setFilterAgentEnabled] = useState(false);\n  const [filterAgentLoading, setFilterAgentLoading] = useState(false);\n\n  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  // 更新 URL 参数\n  const updateUrlParams = useCallback((page: number, pageSize: number, currentFilters: NewsFilter) => {\n    const params: Record<string, string> = {\n      page: page.toString(),\n      pageSize: pageSize.toString(),\n    };\n    if (currentFilters.keyword) params.keyword = currentFilters.keyword;\n    if (currentFilters.source) params.source = currentFilters.source;\n    if (currentFilters.analysisStatus) params.analysisStatus = currentFilters.analysisStatus;\n    setSearchParams(params);\n  }, [setSearchParams]);\n\n  const fetchData = useCallback(async (page?: number, pageSize?: number, currentFilters?: NewsFilter) => {\n    const targetPage = page ?? pagination.current;\n    const targetPageSize = pageSize ?? pagination.pageSize;\n    const targetFilters = currentFilters ?? filters;\n\n    setLoading(true);\n    try {\n      const params: Record<string, unknown> = {\n        page: targetPage,\n        pageSize: targetPageSize,\n      };\n\n      if (targetFilters.source) {\n        params.source = targetFilters.source;\n      }\n      if (targetFilters.analysisStatus) {\n        params.analyzeStatus = targetFilters.analysisStatus;\n      }\n      if (targetFilters.keyword) {\n        params.keyword = targetFilters.keyword;\n      }\n\n      const response = await client.get('/news', { params });\n      const responseData = response;\n\n      // 转换后端数据格式到前端格式\n      const newsList: NewsItem[] = (responseData.data || []).map((item: Record<string, unknown>) => ({\n        id: item.id,\n        title: item.title,\n        content: item.content,\n        source: item.source,\n        url: item.originalUrl,\n        analysisStatus: item.analyzeStatus,\n        vectorizedStatus: item.vectorizeStatus,\n        eventCount: item.eventCount || 0,\n        publishedAt: item.publishTime,\n        createdAt: item.createdAt,\n        updatedAt: item.updatedAt,\n      }));\n\n      setData(newsList);\n      const newTotal = responseData.total ?? newsList.length;\n      setPagination({\n        current: targetPage,\n        pageSize: targetPageSize,\n        total: newTotal,\n      });\n\n      // 更新 URL 参数\n      updateUrlParams(targetPage, targetPageSize, targetFilters);\n    } catch (error) {\n      message.error('获取新闻列表失败');\n      console.error('Fetch news error:', error);\n    } finally {\n      setLoading(false);\n    }\n  }, [pagination.current, pagination.pageSize, filters, updateUrlParams]);\n\n  const fetchVectorizeProgress = async () => {\n    try {\n      const response = await client.get('/news/vectorize-progress');\n      const { pending, vectorizing, vectorized, failed } = response.data;\n      setVectorizeProgress({\n        pending,\n        vectorizing,\n        vectorized,\n        failed,\n        total: pending + vectorizing + vectorized + failed,\n      });\n    } catch (error) {\n      console.error('Fetch vectorize progress error:', error);\n    }\n  };\n\n  const fetchFilterAgentConfig = async () => {\n    try {\n      const config = await newsFilterAgentApi.getConfig();\n      setFilterAgentEnabled(config.enabled);\n    } catch (error) {\n      console.error('Fetch filter agent config error:', error);\n    }\n  };\n\n  const handleFilterAgentToggle = async (checked: boolean) => {\n    setFilterAgentLoading(true);\n    try {\n      await newsFilterAgentApi.updateConfig({ enabled: checked });\n      setFilterAgentEnabled(checked);\n      message.success(checked ? '新闻过滤 Agent 已启用' : '新闻过滤 Agent 已禁用');\n    } catch {\n      message.error('更新过滤 Agent 状态失败');\n    } finally {\n      setFilterAgentLoading(false);\n    }\n  };\n\n  // 初始加载\n  useEffect(() => {\n    fetchData();\n    fetchVectorizeProgress();\n    fetchFilterAgentConfig();\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, []);\n\n  // 5秒轮询刷新 - 使用当前的 pagination 和 filters\n  useEffect(() => {\n    const interval = setInterval(() => {\n      fetchData(pagination.current, pagination.pageSize, filters);\n      fetchVectorizeProgress();\n    }, 5000);\n    return () => clearInterval(interval);\n  }, [fetchData, pagination.current, pagination.pageSize, filters]);\n\n  const handleView = (id: string) => {\n    navigate(`/news/${id}`);\n  };\n\n  const handleAnalyze = async (newsId: string) => {\n    try {\n      await client.post(`/news/${newsId}/analyze`);\n      message.success(`新闻 ${newsId} 分析任务已提交`);\n      fetchData();\n    } catch {\n      message.error('分析失败');\n    }\n  };\n\n  const handleVectorize = async (newsId: string) => {\n    try {\n      await client.post(`/news/${newsId}/vectorize`);\n      message.success(`新闻 ${newsId} 向量化任务已提交`);\n      fetchData();\n      fetchVectorizeProgress();\n    } catch {\n      message.error('向量化失败');\n    }\n  };\n\n  const handleBatchVectorize = async () => {\n    try {\n      const response = await client.post('/news/batch-vectorize');\n      message.success(`批量向量化任务已启动，共 ${response.count} 条新闻`);\n      fetchData();\n      fetchVectorizeProgress();\n    } catch {\n      message.error('批量向量化失败');\n    }\n  };\n\n  const handleRefresh = () => {\n    fetchData();\n    fetchVectorizeProgress();\n  };\n\n  const handleFilterChange = (key: keyof NewsFilter, value: string | undefined) => {\n    const newFilters = { ...filters, [key]: value };\n    setFilters(newFilters);\n\n    if (key === 'keyword') {\n      if (debounceTimerRef.current) {\n        clearTimeout(debounceTimerRef.current);\n      }\n\n      debounceTimerRef.current = setTimeout(() => {\n        fetchData(1, pagination.pageSize, newFilters);\n      }, 500);\n    } else {\n      fetchData(1, pagination.pageSize, newFilters);\n    }\n  };\n\n  useEffect(() => {\n    return () => {\n      if (debounceTimerRef.current) {\n        clearTimeout(debounceTimerRef.current);\n      }\n    };\n  }, []);\n\n  // 处理分页变化\n  const handlePageChange = (page: number, pageSize?: number) => {\n    const newPageSize = pageSize || pagination.pageSize;\n    fetchData(page, newPageSize);\n  };\n\n  const columns = [\n    {\n      title: '标题',\n      dataIndex: 'title',\n      key: 'title',\n      width: 180,\n      render: (title: string) => (\n        <Tooltip title={title} placement=\"topLeft\">\n          <span style={{ cursor: 'pointer' }}>{truncateTitle(title, 8)}</span>\n        </Tooltip>\n      ),\n    },\n    {\n      title: '来源',\n      dataIndex: 'source',\n      key: 'source',\n      width: 120,\n    },\n    {\n      title: '分析状态',\n      dataIndex: 'analysisStatus',\n      key: 'analysisStatus',\n      width: 100,\n      render: (status: AnalysisStatus) => (\n        <Tag color={getAnalysisStatusColor(status)}>{getAnalysisStatusText(status)}</Tag>\n      ),\n    },\n    {\n      title: '向量化状态',\n      dataIndex: 'vectorizedStatus',\n      key: 'vectorizedStatus',\n      width: 100,\n      render: (status: VectorizedStatus | 'vectorizing') => (\n        <Tag color={getVectorizedStatusColor(status)}>{getVectorizedStatusText(status)}</Tag>\n      ),\n    },\n    {\n      title: '关联事件',\n      dataIndex: 'eventCount',\n      key: 'eventCount',\n      width: 100,\n      render: (count: number) => (\n        <Tag color={count > 0 ? 'blue' : 'default'}>\n          {count} 个\n        </Tag>\n      ),\n    },\n    {\n      title: '发布时间',\n      dataIndex: 'publishedAt',\n      key: 'publishedAt',\n      width: 160,\n      render: (date: string) => formatDate(date),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 200,\n      fixed: 'right' as const,\n      render: (_: unknown, record: NewsItem) => (\n        <Space size=\"small\">\n          <Tooltip title=\"查看详情\">\n            <Button\n              type=\"primary\"\n              icon={<EyeOutlined />}\n              size=\"small\"\n              onClick={() => handleView(record.id)}\n            >\n              查看\n            </Button>\n          </Tooltip>\n          <Tooltip title=\"分析\">\n            <Button\n              icon={<PlayCircleOutlined />}\n              size=\"small\"\n              disabled={record.analysisStatus === 'analyzing'}\n              onClick={() => handleAnalyze(record.id)}\n            >\n              分析\n            </Button>\n          </Tooltip>\n          <Tooltip title=\"向量化\">\n            <Button\n              icon={<DatabaseOutlined />}\n              size=\"small\"\n              disabled={record.vectorizedStatus === 'vectorizing' || record.vectorizedStatus === 'vectorized'}\n              onClick={() => handleVectorize(record.id)}\n            >\n              向量化\n            </Button>\n          </Tooltip>\n        </Space>\n      ),\n    },\n  ];\n\n  const uniqueSources = Array.from(new Set(data.map((item) => item.source)));\n\n  const vectorizePercent = vectorizeProgress.total > 0\n    ? Math.round((vectorizeProgress.vectorized / vectorizeProgress.total) * 100)\n    : 0;\n\n  return (\n    <div>\n      <Title level={2}>新闻管理</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} lg={12}>\n          <Card title=\"向量化进度\" size=\"small\">\n            <Row gutter={[16, 16]} align=\"middle\">\n              <Col xs={24} lg={12} xl={14}>\n                <Progress\n                  percent={vectorizePercent}\n                  status={vectorizeProgress.vectorizing > 0 ? 'active' : 'normal'}\n                  format={() => `${vectorizeProgress.vectorized}/${vectorizeProgress.total}`}\n                />\n              </Col>\n              <Col xs={24} lg={12} xl={10}>\n                <Space size=\"small\" wrap style={{ width: '100%' }}>\n                  <Tag>待处理: {vectorizeProgress.pending}</Tag>\n                  <Tag color=\"processing\">向量化中: {vectorizeProgress.vectorizing}</Tag>\n                  <Tag color=\"success\">已完成: {vectorizeProgress.vectorized}</Tag>\n                  <Tag color=\"error\">失败: {vectorizeProgress.failed}</Tag>\n                </Space>\n              </Col>\n            </Row>\n          </Card>\n        </Col>\n        <Col xs={24} lg={12}>\n          <Card title=\"新闻过滤 Agent\" size=\"small\">\n            <Row gutter={[16, 16]} align=\"middle\">\n              <Col flex=\"auto\">\n                <Space>\n                  <Switch\n                    checked={filterAgentEnabled}\n                    onChange={handleFilterAgentToggle}\n                    loading={filterAgentLoading}\n                  />\n                  <span>{filterAgentEnabled ? '已启用，新闻将先经过 Agent 过滤' : '已禁用'}</span>\n                </Space>\n              </Col>\n            </Row>\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space size=\"middle\" wrap>\n          <Input\n            placeholder=\"搜索标题\"\n            prefix={<SearchOutlined />}\n            style={{ width: 200 }}\n            value={filters.keyword || ''}\n            onChange={(e) => handleFilterChange('keyword', e.target.value || undefined)}\n            allowClear\n          />\n          <Select\n            placeholder=\"选择来源\"\n            style={{ width: 150 }}\n            allowClear\n            value={filters.source}\n            onChange={(value) => handleFilterChange('source', value)}\n          >\n            {uniqueSources.map((source) => (\n              <Option key={source} value={source}>\n                {source}\n              </Option>\n            ))}\n          </Select>\n          <Select\n            placeholder=\"分析状态\"\n            style={{ width: 150 }}\n            allowClear\n            value={filters.analysisStatus}\n            onChange={(value) => handleFilterChange('analysisStatus', value)}\n          >\n            <Option value=\"pending\">待分析</Option>\n            <Option value=\"analyzing\">分析中</Option>\n            <Option value=\"analyzed\">已分析</Option>\n            <Option value=\"failed\">失败</Option>\n            <Option value=\"filtered\">已过滤</Option>\n          </Select>\n          <Button icon={<ReloadOutlined />} onClick={handleRefresh}>\n            刷新\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<DatabaseOutlined />}\n            onClick={handleBatchVectorize}\n            disabled={vectorizeProgress.pending === 0}\n          >\n            一键向量化 ({vectorizeProgress.pending})\n          </Button>\n        </Space>\n      </Card>\n\n      <Card>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={{\n            current: pagination.current,\n            pageSize: pagination.pageSize,\n            total: pagination.total,\n            showSizeChanger: true,\n            showQuickJumper: true,\n            showTotal: (total) => `共 ${total} 条`,\n            onChange: handlePageChange,\n          }}\n          scroll={{ x: 1200 }}\n          style={{ zIndex: 1 }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default NewsListPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/news/index.tsx"
     },
@@ -4123,120 +3866,131 @@
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/trading-agent/index.tsx"
     },
     "24": {
+      "path": "/news-filter-agent",
+      "title": "新闻过滤 Agent",
+      "file": "@/pages/news-filter-agent/index.tsx",
+      "parentId": "3",
+      "id": "24",
+      "absPath": "/news-filter-agent",
+      "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport {\n  Card,\n  Table,\n  Tag,\n  Statistic,\n  Row,\n  Col,\n  Select,\n  Button,\n  Input,\n  Space,\n  Typography,\n  message,\n  Modal,\n} from 'antd';\nimport {\n  FilterOutlined,\n  CheckCircleOutlined,\n  CloseCircleOutlined,\n  SaveOutlined,\n  UndoOutlined,\n} from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { useNavigate } from 'umi';\nimport { newsFilterAgentApi } from '@/services/news-filter-agent';\nimport type {\n  NewsFilterAgentLog,\n  NewsFilterAgentStats,\n} from '@/services/news-filter-agent';\n\nconst { Title } = Typography;\nconst { TextArea } = Input;\n\nconst DEFAULT_PROMPT = `你是一个金融新闻过滤器。你的任务是根据新闻标题判断这条新闻是否值得进行深度金融事件分析。\n\n判断标准：\n1. 新闻是否与金融市场、股票、经济政策相关\n2. 新闻是否可能包含影响交易决策的信息\n3. 新闻是否涉及上市公司、行业政策、宏观经济等\n\n应该跳过（skip）的新闻类型：\n- 纯娱乐、体育新闻\n- 与金融市场无关的社会新闻\n- 重复或无实质内容的新闻\n- 广告或推广内容\n\n应该通过（analyze）的新闻类型：\n- 上市公司相关新闻（业绩、并购、重组等）\n- 宏观经济政策新闻（利率、GDP、通胀等）\n- 行业政策变化新闻\n- 市场行情相关新闻\n- 国际贸易、地缘政治对市场有影响的新闻\n\n请根据新闻标题做出判断，返回 JSON 格式结果。\n\n新闻标题：{newsTitle}`;\n\nconst DECISION_MAP: Record<string, { label: string; color: string }> = {\n  analyze: { label: '通过', color: 'green' },\n  skip: { label: '跳过', color: 'orange' },\n};\n\nconst DECISION_FILTER_OPTIONS = [\n  { value: 'analyze', label: '通过' },\n  { value: 'skip', label: '跳过' },\n];\n\nconst formatDate = (dateStr: string | null | undefined) => {\n  if (!dateStr) return '-';\n  return new Date(dateStr).toLocaleString('zh-CN');\n};\n\nconst NewsFilterAgentPage: React.FC = () => {\n  const navigate = useNavigate();\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<NewsFilterAgentLog[]>([]);\n  const [total, setTotal] = useState(0);\n  const [current, setCurrent] = useState(1);\n  const [pageSize, setPageSize] = useState(20);\n  const [stats, setStats] = useState<NewsFilterAgentStats | null>(null);\n  const [filterDecision, setFilterDecision] = useState<string | undefined>();\n  const [prompt, setPrompt] = useState(DEFAULT_PROMPT);\n  const [promptSaving, setPromptSaving] = useState(false);\n\n  const fetchStats = useCallback(async () => {\n    try {\n      const res = await newsFilterAgentApi.getStats();\n      setStats(res);\n    } catch {\n      message.error('获取统计数据失败');\n    }\n  }, []);\n\n  const fetchConfig = useCallback(async () => {\n    try {\n      const config = await newsFilterAgentApi.getConfig();\n      if (config.prompt) {\n        setPrompt(config.prompt);\n      }\n    } catch {\n      message.error('获取配置失败');\n    }\n  }, []);\n\n  const fetchData = useCallback(\n    async (page = current, size = pageSize) => {\n      setLoading(true);\n      try {\n        const res = await newsFilterAgentApi.getLogs({\n          page,\n          pageSize: size,\n          decision: filterDecision,\n        });\n        setData(res.data);\n        setTotal(res.total);\n        setCurrent(page);\n        setPageSize(size);\n      } catch {\n        message.error('获取日志列表失败');\n      } finally {\n        setLoading(false);\n      }\n    },\n    [current, pageSize, filterDecision],\n  );\n\n  useEffect(() => {\n    fetchStats();\n    fetchConfig();\n  }, [fetchStats, fetchConfig]);\n\n  useEffect(() => {\n    fetchData(1);\n  }, [filterDecision]);\n\n  const handleSavePrompt = async () => {\n    if (!prompt.includes('{newsTitle}')) {\n      message.error('Prompt 必须包含 {newsTitle} 占位符');\n      return;\n    }\n    setPromptSaving(true);\n    try {\n      await newsFilterAgentApi.updateConfig({ prompt });\n      message.success('Prompt 保存成功');\n    } catch {\n      message.error('保存 Prompt 失败');\n    } finally {\n      setPromptSaving(false);\n    }\n  };\n\n  const handleResetPrompt = () => {\n    Modal.confirm({\n      title: '确定要恢复默认 Prompt 吗？',\n      onOk: async () => {\n        setPrompt(DEFAULT_PROMPT);\n        try {\n          await newsFilterAgentApi.updateConfig({ prompt: DEFAULT_PROMPT });\n          message.success('已恢复默认 Prompt');\n        } catch {\n          message.error('恢复默认 Prompt 失败');\n        }\n      },\n    });\n  };\n\n  const columns: ColumnsType<NewsFilterAgentLog> = [\n    {\n      title: '时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 170,\n      render: (val: string) => formatDate(val),\n    },\n    {\n      title: '新闻标题',\n      dataIndex: 'newsTitle',\n      key: 'newsTitle',\n      width: 300,\n      render: (title: string, record: NewsFilterAgentLog) =>\n        title ? (\n          <a onClick={() => record.newsId && navigate(`/news/${record.newsId}`)}>{title.length > 40 ? title.slice(0, 40) + '...' : title}</a>\n        ) : '-',\n    },\n    {\n      title: '判断结果',\n      dataIndex: 'decision',\n      key: 'decision',\n      width: 100,\n      render: (val: string) => {\n        const opt = DECISION_MAP[val] || { label: val, color: 'default' };\n        return <Tag color={opt.color}>{opt.label}</Tag>;\n      },\n    },\n    {\n      title: '置信度',\n      dataIndex: 'confidence',\n      key: 'confidence',\n      width: 100,\n      render: (val: string | null) => {\n        if (val === null || val === undefined) return '-';\n        const percent = Math.round(Number(val) * 100);\n        return `${percent}%`;\n      },\n    },\n    {\n      title: '推理理由',\n      dataIndex: 'reasoning',\n      key: 'reasoning',\n      ellipsis: true,\n      render: (val: string | null) => val || '-',\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>新闻过滤 Agent</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"今日过滤总数\"\n              value={stats?.total ?? 0}\n              valueStyle={{ color: '#1890ff' }}\n              prefix={<FilterOutlined />}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"通过数\"\n              value={stats?.analyzed ?? 0}\n              valueStyle={{ color: '#52c41a' }}\n              prefix={<CheckCircleOutlined />}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"跳过数\"\n              value={stats?.skipped ?? 0}\n              valueStyle={{ color: '#faad14' }}\n              prefix={<CloseCircleOutlined />}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"跳过率\"\n              value={stats?.skipRate ?? 0}\n              suffix=\"%\"\n              valueStyle={{ color: '#722ed1' }}\n              prefix={<FilterOutlined />}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card title=\"过滤 Prompt\" style={{ marginBottom: 16 }}>\n        <TextArea\n          rows={8}\n          value={prompt}\n          onChange={(e) => setPrompt(e.target.value)}\n          style={{ marginBottom: 12 }}\n        />\n        <Space>\n          <Button\n            type=\"primary\"\n            icon={<SaveOutlined />}\n            onClick={handleSavePrompt}\n            loading={promptSaving}\n          >\n            保存\n          </Button>\n          <Button\n            icon={<UndoOutlined />}\n            onClick={handleResetPrompt}\n          >\n            恢复默认\n          </Button>\n        </Space>\n      </Card>\n\n      <Card style={{ marginBottom: 16 }}>\n        <Space wrap>\n          <Select\n            placeholder=\"判断结果\"\n            allowClear\n            style={{ width: 150 }}\n            value={filterDecision}\n            onChange={(val) => setFilterDecision(val)}\n            options={DECISION_FILTER_OPTIONS}\n          />\n        </Space>\n      </Card>\n\n      <Card>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          scroll={{ x: 800 }}\n          pagination={{\n            current,\n            pageSize,\n            total,\n            showSizeChanger: true,\n            showTotal: (t) => `共 ${t} 条`,\n          }}\n          onChange={(pagination) => {\n            fetchData(pagination.current || 1, pagination.pageSize || 20);\n          }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default NewsFilterAgentPage;\n",
+      "__isJSFile": true,
+      "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/news-filter-agent/index.tsx"
+    },
+    "25": {
       "path": "/llm-center",
       "title": "AI 运行中心",
       "file": "@/pages/llm-center/index.tsx",
       "parentId": "3",
-      "id": "24",
+      "id": "25",
       "absPath": "/llm-center",
       "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Card, Row, Col, Statistic, Table, Switch, Button, Modal, Form, InputNumber, Input, message, Tag, Spin, Typography } from 'antd';\nimport { NumberOutlined, ApiOutlined, WarningOutlined, DollarOutlined, ThunderboltOutlined, ReloadOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { llmApi } from '@/services/llm';\nimport type { LlmTodayStats, LlmModuleUsage, LlmProviderUsage, LlmLatencyStats, LlmProviderConfig } from '@/services/types';\nimport styles from './index.module.scss';\n\nconst { Title } = Typography;\n\nconst formatCost = (val: number) => `¥${val.toFixed(4)}`;\n\nconst formatPercent = (val: number) => `${(val * 100).toFixed(2)}%`;\n\nconst LlmCenterPage: React.FC = () => {\n  const [todayStats, setTodayStats] = useState<LlmTodayStats | null>(null);\n  const [moduleUsage, setModuleUsage] = useState<LlmModuleUsage[]>([]);\n  const [providerUsage, setProviderUsage] = useState<LlmProviderUsage[]>([]);\n  const [latencyStats, setLatencyStats] = useState<LlmLatencyStats | null>(null);\n  const [providerConfigs, setProviderConfigs] = useState<LlmProviderConfig[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [editModalVisible, setEditModalVisible] = useState(false);\n  const [editingConfig, setEditingConfig] = useState<LlmProviderConfig | null>(null);\n  const [editLoading, setEditLoading] = useState(false);\n  const [createModalVisible, setCreateModalVisible] = useState(false);\n  const [createLoading, setCreateLoading] = useState(false);\n  const [createForm] = Form.useForm();\n  const [form] = Form.useForm();\n\n  const fetchAllData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const [stats, modules, providers, latency, configs] = await Promise.all([\n        llmApi.getTodayStats(),\n        llmApi.getModuleUsage(),\n        llmApi.getProviderUsage(),\n        llmApi.getLatencyStats(),\n        llmApi.getProviderConfigs(),\n      ]);\n      setTodayStats(stats as unknown as LlmTodayStats);\n      setModuleUsage((modules as unknown as LlmModuleUsage[]) || []);\n      setProviderUsage((providers as unknown as LlmProviderUsage[]) || []);\n      setLatencyStats(latency as unknown as LlmLatencyStats);\n      setProviderConfigs((configs as unknown as LlmProviderConfig[]) || []);\n    } catch {\n      message.error('获取数据失败');\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  useEffect(() => {\n    fetchAllData();\n  }, [fetchAllData]);\n\n  const handleToggleEnabled = useCallback(async (record: LlmProviderConfig, checked: boolean) => {\n    try {\n      await llmApi.updateProviderConfig(record.provider, { enabled: checked });\n      setProviderConfigs(prev =>\n        prev.map(c => (c.provider === record.provider ? { ...c, enabled: checked } : c)),\n      );\n      message.success('状态更新成功');\n    } catch {\n      message.error('状态更新失败');\n    }\n  }, []);\n\n  const handleEdit = useCallback((record: LlmProviderConfig) => {\n    setEditingConfig(record);\n    form.setFieldsValue({\n      enabled: record.enabled,\n      defaultModel: record.defaultModel,\n      rpmLimit: record.rpmLimit,\n      dailyBudget: record.dailyBudget,\n    });\n    setEditModalVisible(true);\n  }, [form]);\n\n  const handleSave = useCallback(async () => {\n    if (!editingConfig) return;\n    try {\n      const values = await form.validateFields();\n      setEditLoading(true);\n      await llmApi.updateProviderConfig(editingConfig.provider, values);\n      setProviderConfigs(prev =>\n        prev.map(c => (c.provider === editingConfig.provider ? { ...c, ...values } : c)),\n      );\n      message.success('配置更新成功');\n      setEditModalVisible(false);\n      setEditingConfig(null);\n    } catch {\n      message.error('配置更新失败');\n    } finally {\n      setEditLoading(false);\n    }\n  }, [editingConfig, form]);\n\n  const handleCreate = useCallback(async () => {\n    try {\n      const values = await createForm.validateFields();\n      setCreateLoading(true);\n      await llmApi.createProviderConfig(values);\n      message.success('配置创建成功');\n      setCreateModalVisible(false);\n      createForm.resetFields();\n      fetchAllData();\n    } catch {\n      message.error('配置创建失败');\n    } finally {\n      setCreateLoading(false);\n    }\n  }, [createForm, fetchAllData]);\n\n  const moduleColumns: ColumnsType<LlmModuleUsage> = [\n    { title: '模块', dataIndex: 'module', key: 'module' },\n    { title: 'Token 消耗', dataIndex: 'totalTokens', key: 'totalTokens', render: (v: number) => v?.toLocaleString() },\n    { title: '请求数', dataIndex: 'totalRequests', key: 'totalRequests', render: (v: number) => v?.toLocaleString() },\n    { title: '花费', dataIndex: 'totalCost', key: 'totalCost', render: (v: number) => formatCost(v) },\n  ];\n\n  const providerUsageColumns: ColumnsType<LlmProviderUsage> = [\n    { title: 'Provider', dataIndex: 'provider', key: 'provider' },\n    { title: '模型', dataIndex: 'model', key: 'model', render: (v: string) => <Tag>{v}</Tag> },\n    { title: 'Token 消耗', dataIndex: 'totalTokens', key: 'totalTokens', render: (v: number) => v?.toLocaleString() },\n    { title: '请求数', dataIndex: 'totalRequests', key: 'totalRequests', render: (v: number) => v?.toLocaleString() },\n    { title: '花费', dataIndex: 'totalCost', key: 'totalCost', render: (v: number) => formatCost(v) },\n  ];\n\n  const configColumns: ColumnsType<LlmProviderConfig> = [\n    { title: 'Provider', dataIndex: 'provider', key: 'provider' },\n    {\n      title: '启用状态',\n      dataIndex: 'enabled',\n      key: 'enabled',\n      render: (v: boolean, record: LlmProviderConfig) => (\n        <Switch checked={v} onChange={(checked) => handleToggleEnabled(record, checked)} />\n      ),\n    },\n    { title: '默认模型', dataIndex: 'defaultModel', key: 'defaultModel', render: (v: string | null) => v || '-' },\n    { title: 'RPM 限制', dataIndex: 'rpmLimit', key: 'rpmLimit', render: (v: number | null) => v?.toLocaleString() || '-' },\n    { title: '每日 Token 预算', dataIndex: 'dailyBudget', key: 'dailyBudget', render: (v: number | null) => v?.toLocaleString() || '-' },\n    {\n      title: '操作',\n      key: 'action',\n      width: 80,\n      render: (_: unknown, record: LlmProviderConfig) => (\n        <Button type=\"link\" icon={<EditOutlined />} onClick={() => handleEdit(record)}>\n          编辑\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div className={styles.container}>\n      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>\n        <Title level={2} style={{ margin: 0 }}>AI 运行中心</Title>\n        <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n          刷新\n        </Button>\n      </div>\n\n      <Spin spinning={loading}>\n        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日 Token 消耗\"\n                value={todayStats?.totalTokens ?? 0}\n                valueStyle={{ color: '#1890ff' }}\n                prefix={<NumberOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日请求数\"\n                value={todayStats?.totalRequests ?? 0}\n                valueStyle={{ color: '#52c41a' }}\n                prefix={<ApiOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日错误数\"\n                value={todayStats?.totalErrors ?? 0}\n                valueStyle={{ color: '#ff4d4f' }}\n                prefix={<WarningOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日花费\"\n                value={todayStats?.totalCost ?? 0}\n                precision={6}\n                prefix={<DollarOutlined />}\n                suffix=\"CNY\"\n                valueStyle={{ color: '#722ed1' }}\n              />\n            </Card>\n          </Col>\n        </Row>\n\n        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n          <Col span={12}>\n            <Card title=\"模块使用统计\">\n              <Table\n                columns={moduleColumns}\n                dataSource={moduleUsage}\n                rowKey=\"module\"\n                pagination={false}\n                size=\"small\"\n              />\n            </Card>\n          </Col>\n          <Col span={12}>\n            <Card title=\"Provider 使用统计\">\n              <Table\n                columns={providerUsageColumns}\n                dataSource={providerUsage}\n                rowKey={(r) => `${r.provider}-${r.model}`}\n                pagination={false}\n                size=\"small\"\n              />\n            </Card>\n          </Col>\n        </Row>\n\n        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n          <Col span={8}>\n            <Card>\n              <Statistic\n                title=\"平均响应时间\"\n                value={latencyStats?.avgLatencyMs ?? 0}\n                suffix=\"ms\"\n                valueStyle={{ color: '#1890ff' }}\n                prefix={<ThunderboltOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={8}>\n            <Card>\n              <Statistic\n                title=\"重试率\"\n                value={latencyStats ? formatPercent(latencyStats.retryRate) : '0.00%'}\n                valueStyle={{ color: '#faad14' }}\n              />\n            </Card>\n          </Col>\n          <Col span={8}>\n            <Card>\n              <Statistic\n                title=\"超时率\"\n                value={latencyStats ? formatPercent(latencyStats.timeoutRate) : '0.00%'}\n                valueStyle={{ color: '#ff4d4f' }}\n              />\n            </Card>\n          </Col>\n        </Row>\n\n        <Card title=\"Provider 预算配置\" extra={<Button type=\"primary\" icon={<PlusOutlined />} onClick={() => setCreateModalVisible(true)}>新增配置</Button>}>\n          <Table\n            columns={configColumns}\n            dataSource={providerConfigs}\n            rowKey=\"id\"\n            pagination={false}\n            size=\"small\"\n          />\n        </Card>\n      </Spin>\n\n      <Modal\n        title=\"编辑 Provider 配置\"\n        open={editModalVisible}\n        onOk={handleSave}\n        onCancel={() => {\n          setEditModalVisible(false);\n          setEditingConfig(null);\n        }}\n        confirmLoading={editLoading}\n        destroyOnClose\n      >\n        <Form form={form} layout=\"vertical\">\n          <Form.Item name=\"enabled\" label=\"启用状态\" valuePropName=\"checked\">\n            <Switch />\n          </Form.Item>\n          <Form.Item name=\"defaultModel\" label=\"默认模型\">\n            <Input placeholder=\"请输入默认模型\" />\n          </Form.Item>\n          <Form.Item name=\"rpmLimit\" label=\"RPM 限制\">\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"请输入 RPM 限制\" />\n          </Form.Item>\n          <Form.Item name=\"dailyBudget\" label=\"每日 Token 预算\">\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"请输入每日 Token 预算\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"新增 Provider 配置\"\n        open={createModalVisible}\n        onOk={handleCreate}\n        onCancel={() => {\n          setCreateModalVisible(false);\n          createForm.resetFields();\n        }}\n        confirmLoading={createLoading}\n        destroyOnClose\n      >\n        <Form form={createForm} layout=\"vertical\">\n          <Form.Item name=\"provider\" label=\"Provider 名称\" rules={[{ required: true, message: '请输入 Provider 名称' }]}>\n            <Input placeholder=\"如：volcengine、deepseek、openrouter、ollama\" />\n          </Form.Item>\n          <Form.Item name=\"enabled\" label=\"启用状态\" valuePropName=\"checked\" initialValue={true}>\n            <Switch />\n          </Form.Item>\n          <Form.Item name=\"apiKey\" label=\"API Key\">\n            <Input.Password placeholder=\"请输入 API Key\" />\n          </Form.Item>\n          <Form.Item name=\"baseUrl\" label=\"API 基础 URL\" rules={[{ required: true, message: '请输入 API 基础 URL' }]}>\n            <Input placeholder=\"如：https://api.deepseek.com/v1\" />\n          </Form.Item>\n          <Form.Item name=\"defaultModel\" label=\"默认模型\" rules={[{ required: true, message: '请输入默认模型' }]}>\n            <Input placeholder=\"如：deepseek-chat\" />\n          </Form.Item>\n          <Form.Item name=\"rpmLimit\" label=\"RPM 限制\" initialValue={60}>\n            <InputNumber min={1} style={{ width: '100%' }} placeholder=\"请输入 RPM 限制\" />\n          </Form.Item>\n          <Form.Item name=\"dailyBudget\" label=\"每日 Token 预算\" initialValue={1000000}>\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"请输入每日 Token 预算\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default LlmCenterPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/llm-center/index.tsx"
     },
-    "25": {
+    "26": {
       "path": "/llm-logs",
       "title": "LLM 日志",
       "file": "@/pages/llm-logs/index.tsx",
       "parentId": "3",
-      "id": "25",
+      "id": "26",
       "absPath": "/llm-logs",
       "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Table, Card, Row, Col, Select, Button, Tag, Drawer, Descriptions, DatePicker, Space, message } from 'antd';\nimport { SearchOutlined, ReloadOutlined, EyeOutlined } from '@ant-design/icons';\nimport { llmApi } from '@/services/llm';\nimport type { LlmLogQueryDto, LlmLog } from '@/services/llm';\n\nconst { RangePicker } = DatePicker;\n\nconst MODULE_OPTIONS = [\n  { label: '全部模块', value: '' },\n  { label: '研究 Agent', value: 'agent-research' },\n  { label: '交易 Agent', value: 'agent-trading' },\n  { label: '新闻分析', value: 'news-analysis' },\n];\n\nconst PROVIDER_OPTIONS = [\n  { label: '全部 Provider', value: '' },\n  { label: 'Volcengine', value: 'volcengine' },\n  { label: 'DeepSeek', value: 'deepseek' },\n  { label: 'OpenRouter', value: 'openrouter' },\n  { label: 'Ollama', value: 'ollama' },\n];\n\nconst SUCCESS_OPTIONS = [\n  { label: '全部状态', value: '' },\n  { label: '成功', value: 'true' },\n  { label: '失败', value: 'false' },\n];\n\nconst MODULE_DISPLAY_MAP: Record<string, string> = {\n  'agent-research': '研究 Agent',\n  'agent-trading': '交易 Agent',\n  'news-analysis': '新闻分析',\n};\n\nconst MODULE_COLOR_MAP: Record<string, string> = {\n  'agent-research': 'blue',\n  'agent-trading': 'orange',\n  'news-analysis': 'green',\n};\n\nconst PROVIDER_COLOR_MAP: Record<string, string> = {\n  volcengine: 'purple',\n  deepseek: 'cyan',\n  openrouter: 'geekblue',\n  ollama: 'lime',\n};\n\nconst formatDateTime = (text: string) => {\n  if (!text) return '-';\n  const d = new Date(text);\n  const pad = (n: number) => String(n).padStart(2, '0');\n  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;\n};\n\nconst LlmLogsPage: React.FC = () => {\n  const [logs, setLogs] = useState<LlmLog[]>([]);\n  const [total, setTotal] = useState(0);\n  const [loading, setLoading] = useState(false);\n  const [filters, setFilters] = useState<LlmLogQueryDto>({});\n  const [pagination, setPagination] = useState({ current: 1, pageSize: 20 });\n  const [drawerVisible, setDrawerVisible] = useState(false);\n  const [selectedLog, setSelectedLog] = useState<LlmLog | null>(null);\n  const [detailLoading, setDetailLoading] = useState(false);\n\n  const fetchLogs = useCallback(async () => {\n    setLoading(true);\n    try {\n      const result = await llmApi.getLogList({\n        ...filters,\n        page: pagination.current,\n        pageSize: pagination.pageSize,\n      });\n      setLogs(result.data || []);\n      setTotal(result.total || 0);\n    } catch (error) {\n      console.error('[LlmLogsPage] Failed to fetch logs:', error);\n      message.error('获取日志列表失败');\n    } finally {\n      setLoading(false);\n    }\n  }, [filters, pagination]);\n\n  useEffect(() => {\n    fetchLogs();\n  }, [fetchLogs]);\n\n  const handleFilterChange = (key: string, value: string) => {\n    setFilters((prev) => ({ ...prev, [key]: value || undefined }));\n    setPagination((prev) => ({ ...prev, current: 1 }));\n  };\n\n  const handleDateRangeChange = (_: any, dateStrings: [string, string]) => {\n    setFilters((prev) => ({\n      ...prev,\n      startDate: dateStrings[0] || undefined,\n      endDate: dateStrings[1] || undefined,\n    }));\n    setPagination((prev) => ({ ...prev, current: 1 }));\n  };\n\n  const handleReset = () => {\n    setFilters({});\n    setPagination({ current: 1, pageSize: 20 });\n  };\n\n  const handleTableChange = (pag: any) => {\n    setPagination({\n      current: pag.current,\n      pageSize: pag.pageSize,\n    });\n  };\n\n  const handleViewDetail = async (id: string) => {\n    setDrawerVisible(true);\n    setDetailLoading(true);\n    try {\n      const detail = await llmApi.getLogDetail(id);\n      setSelectedLog(detail);\n    } catch (error) {\n      console.error('[LlmLogsPage] Failed to fetch log detail:', error);\n      message.error('获取日志详情失败');\n    } finally {\n      setDetailLoading(false);\n    }\n  };\n\n  const columns = [\n    {\n      title: '时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 180,\n      render: (text: string) => formatDateTime(text),\n    },\n    {\n      title: '模块',\n      dataIndex: 'module',\n      key: 'module',\n      width: 120,\n      render: (module: string) => (\n        <Tag color={MODULE_COLOR_MAP[module] || 'default'}>\n          {MODULE_DISPLAY_MAP[module] || module}\n        </Tag>\n      ),\n    },\n    {\n      title: '任务',\n      dataIndex: 'task',\n      key: 'task',\n      width: 150,\n      ellipsis: true,\n    },\n    {\n      title: 'Provider',\n      dataIndex: 'provider',\n      key: 'provider',\n      width: 120,\n      render: (provider: string) => (\n        <Tag color={PROVIDER_COLOR_MAP[provider] || 'default'}>{provider}</Tag>\n      ),\n    },\n    {\n      title: '模型',\n      dataIndex: 'model',\n      key: 'model',\n      width: 160,\n      ellipsis: true,\n    },\n    {\n      title: 'Token 用量',\n      dataIndex: 'totalTokens',\n      key: 'totalTokens',\n      width: 120,\n      render: (val: number) => val?.toLocaleString() ?? '-',\n    },\n    {\n      title: '耗时',\n      dataIndex: 'latencyMs',\n      key: 'latencyMs',\n      width: 100,\n      render: (val: number) => (val != null ? `${val}ms` : '-'),\n    },\n    {\n      title: '状态',\n      dataIndex: 'success',\n      key: 'success',\n      width: 80,\n      render: (success: boolean) => (\n        <Tag color={success ? 'success' : 'error'}>{success ? '成功' : '失败'}</Tag>\n      ),\n    },\n    {\n      title: '缓存',\n      dataIndex: 'cacheHit',\n      key: 'cacheHit',\n      width: 80,\n      render: (cacheHit: boolean) => (\n        <Tag color={cacheHit ? 'blue' : 'default'}>{cacheHit ? '命中' : '未命中'}</Tag>\n      ),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 80,\n      render: (_: unknown, record: LlmLog) => (\n        <Button\n          type=\"link\"\n          icon={<EyeOutlined />}\n          onClick={() => handleViewDetail(record.id)}\n        >\n          详情\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Card>\n        <Row gutter={16} style={{ marginBottom: 16 }}>\n          <Col>\n            <Select\n              style={{ width: 140 }}\n              placeholder=\"模块\"\n              options={MODULE_OPTIONS}\n              value={filters.module || ''}\n              onChange={(value) => handleFilterChange('module', value)}\n            />\n          </Col>\n          <Col>\n            <Select\n              style={{ width: 150 }}\n              placeholder=\"Provider\"\n              options={PROVIDER_OPTIONS}\n              value={filters.provider || ''}\n              onChange={(value) => handleFilterChange('provider', value)}\n            />\n          </Col>\n          <Col>\n            <Select\n              style={{ width: 120 }}\n              placeholder=\"状态\"\n              options={SUCCESS_OPTIONS}\n              value={filters.success || ''}\n              onChange={(value) => handleFilterChange('success', value)}\n            />\n          </Col>\n          <Col>\n            <RangePicker onChange={handleDateRangeChange} />\n          </Col>\n          <Col>\n            <Space>\n              <Button type=\"primary\" icon={<SearchOutlined />} onClick={fetchLogs}>\n                搜索\n              </Button>\n              <Button icon={<ReloadOutlined />} onClick={handleReset}>\n                重置\n              </Button>\n            </Space>\n          </Col>\n        </Row>\n\n        <Table\n          columns={columns}\n          dataSource={logs}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={{\n            current: pagination.current,\n            pageSize: pagination.pageSize,\n            total,\n            showSizeChanger: true,\n            showTotal: (t) => `共 ${t} 条`,\n          }}\n          onChange={handleTableChange}\n          scroll={{ x: 1200 }}\n        />\n      </Card>\n\n      <Drawer\n        title=\"LLM 请求详情\"\n        width={640}\n        open={drawerVisible}\n        onClose={() => {\n          setDrawerVisible(false);\n          setSelectedLog(null);\n        }}\n        loading={detailLoading}\n      >\n        {selectedLog && (\n          <Descriptions column={1} bordered size=\"small\">\n            <Descriptions.Item label=\"模块\">\n              <Tag color={MODULE_COLOR_MAP[selectedLog.module] || 'default'}>\n                {MODULE_DISPLAY_MAP[selectedLog.module] || selectedLog.module}\n              </Tag>\n            </Descriptions.Item>\n            <Descriptions.Item label=\"任务\">{selectedLog.task}</Descriptions.Item>\n            <Descriptions.Item label=\"Provider\">\n              <Tag color={PROVIDER_COLOR_MAP[selectedLog.provider] || 'default'}>\n                {selectedLog.provider}\n              </Tag>\n            </Descriptions.Item>\n            <Descriptions.Item label=\"模型\">{selectedLog.model}</Descriptions.Item>\n            <Descriptions.Item label=\"Request ID\">{selectedLog.requestId}</Descriptions.Item>\n            <Descriptions.Item label=\"Trace ID\">{selectedLog.traceId}</Descriptions.Item>\n            <Descriptions.Item label=\"Prompt Tokens\">\n              {selectedLog.promptTokens?.toLocaleString() ?? '-'}\n            </Descriptions.Item>\n            <Descriptions.Item label=\"Completion Tokens\">\n              {selectedLog.completionTokens?.toLocaleString() ?? '-'}\n            </Descriptions.Item>\n            <Descriptions.Item label=\"Total Tokens\">\n              {selectedLog.totalTokens?.toLocaleString() ?? '-'}\n            </Descriptions.Item>\n            <Descriptions.Item label=\"预估成本\">\n              {selectedLog.estimatedCost ? `¥${selectedLog.estimatedCost}` : '-'}\n            </Descriptions.Item>\n            <Descriptions.Item label=\"耗时\">\n              {selectedLog.latencyMs != null ? `${selectedLog.latencyMs}ms` : '-'}\n            </Descriptions.Item>\n            <Descriptions.Item label=\"重试次数\">{selectedLog.retryCount ?? 0}</Descriptions.Item>\n            <Descriptions.Item label=\"缓存命中\">\n              <Tag color={selectedLog.cacheHit ? 'blue' : 'default'}>\n                {selectedLog.cacheHit ? '命中' : '未命中'}\n              </Tag>\n            </Descriptions.Item>\n            <Descriptions.Item label=\"状态\">\n              <Tag color={selectedLog.success ? 'success' : 'error'}>\n                {selectedLog.success ? '成功' : '失败'}\n              </Tag>\n            </Descriptions.Item>\n            {!selectedLog.success && selectedLog.errorMessage && (\n              <Descriptions.Item label=\"错误信息\">\n                <span style={{ color: '#ff4d4f' }}>{selectedLog.errorMessage}</span>\n              </Descriptions.Item>\n            )}\n            <Descriptions.Item label=\"时间\">{formatDateTime(selectedLog.createdAt)}</Descriptions.Item>\n            {selectedLog.metadata && Object.keys(selectedLog.metadata).length > 0 && (\n              <Descriptions.Item label=\"Metadata\">\n                <pre style={{ margin: 0, fontSize: 12, maxHeight: 300, overflow: 'auto' }}>\n                  <code>{JSON.stringify(selectedLog.metadata, null, 2)}</code>\n                </pre>\n              </Descriptions.Item>\n            )}\n          </Descriptions>\n        )}\n      </Drawer>\n    </div>\n  );\n};\n\nexport default LlmLogsPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/llm-logs/index.tsx"
     },
-    "26": {
+    "27": {
       "path": "/settings/notifications",
       "title": "通知设置",
       "file": "@/pages/settings/notifications.tsx",
       "parentId": "3",
-      "id": "26",
+      "id": "27",
       "absPath": "/settings/notifications",
       "__content": "import { useEffect, useState } from 'react';\nimport {\n  Card,\n  Table,\n  Button,\n  Space,\n  Tag,\n  Switch,\n  Modal,\n  Form,\n  Input,\n  Select,\n  Typography,\n  message,\n  Popconfirm,\n  Tooltip,\n  Radio,\n} from 'antd';\nimport {\n  PlusOutlined,\n  EditOutlined,\n  DeleteOutlined,\n  SendOutlined,\n  BellOutlined,\n  LinkOutlined,\n  CheckCircleOutlined,\n  CloseCircleOutlined,\n} from '@ant-design/icons';\nimport client from '@/services/client';\nimport type { Signal } from '@/services/types';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface Webhook {\n  id: string;\n  name: string;\n  url: string;\n  type: 'wechat' | 'dingtalk' | 'slack' | 'custom';\n  enabled: boolean;\n  strategies?: Array<{ id: string; name: string }>;\n  createdAt: string;\n  updatedAt: string;\n}\n\ninterface WebhookFormData {\n  name: string;\n  url: string;\n  type: 'wechat' | 'dingtalk' | 'slack' | 'custom';\n  enabled?: boolean;\n}\n\nconst NotificationsPage: React.FC = () => {\n  const [webhooks, setWebhooks] = useState<Webhook[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [modalVisible, setModalVisible] = useState(false);\n  const [editingWebhook, setEditingWebhook] = useState<Webhook | null>(null);\n  const [form] = Form.useForm();\n  const [testingWebhookId, setTestingWebhookId] = useState<string | null>(null);\n  const [testModalVisible, setTestModalVisible] = useState(false);\n  const [testingWebhook, setTestingWebhook] = useState<Webhook | null>(null);\n  const [recentSignals, setRecentSignals] = useState<Signal[]>([]);\n  const [selectedSignalId, setSelectedSignalId] = useState<string | null>(null);\n  const [loadingSignals, setLoadingSignals] = useState(false);\n\n  // 获取 Webhook 列表\n  const fetchWebhooks = async () => {\n    setLoading(true);\n    try {\n      const response = await client.get<{ data: Webhook[]; total: number }>('/webhooks');\n      console.log('[Notifications] Webhooks response:', response);\n      const webhooksData = response.data?.data || response.data || [];\n      console.log('[Notifications] Webhooks data:', webhooksData);\n\n      const webhooksWithStrategies = await Promise.all(\n        (webhooksData as Webhook[]).map(async (wh: Webhook) => {\n          try {\n            const strategiesRes = await client.get<{ data: Array<{ id: string; name: string }> }>(`/webhooks/${wh.id}/strategies`);\n            const strategies = strategiesRes.data?.data || strategiesRes.data || [];\n            return { ...wh, strategies: Array.isArray(strategies) ? strategies : [] };\n          } catch {\n            return { ...wh, strategies: [] };\n          }\n        })\n      );\n\n      setWebhooks(webhooksWithStrategies);\n    } catch (error) {\n      console.error('获取 Webhook 列表失败:', error);\n      message.error('获取 Webhook 列表失败');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  useEffect(() => {\n    fetchWebhooks();\n  }, []);\n\n  // 打开添加 Modal\n  const handleAdd = () => {\n    setEditingWebhook(null);\n    form.resetFields();\n    form.setFieldsValue({\n      type: 'wechat',\n      enabled: true,\n    });\n    setModalVisible(true);\n  };\n\n  // 打开编辑 Modal\n  const handleEdit = (record: Webhook) => {\n    setEditingWebhook(record);\n    form.setFieldsValue({\n      name: record.name,\n      url: record.url,\n      type: record.type,\n      enabled: record.enabled,\n    });\n    setModalVisible(true);\n  };\n\n  // 提交表单\n  const handleSubmit = async (values: WebhookFormData) => {\n    try {\n      const payload = {\n        name: values.name,\n        url: values.url,\n        type: values.type,\n        enabled: values.enabled,\n      };\n\n      if (editingWebhook) {\n        await client.put(`/webhooks/${editingWebhook.id}`, payload);\n        message.success('Webhook 更新成功');\n      } else {\n        await client.post('/webhooks', payload);\n        message.success('Webhook 创建成功');\n      }\n      setModalVisible(false);\n      fetchWebhooks();\n    } catch (error) {\n      console.error('保存 Webhook 失败:', error);\n      message.error('保存 Webhook 失败');\n    }\n  };\n\n  // 删除 Webhook\n  const handleDelete = async (id: string) => {\n    try {\n      await client.delete(`/webhooks/${id}`);\n      message.success('Webhook 删除成功');\n      fetchWebhooks();\n    } catch (error) {\n      console.error('删除 Webhook 失败:', error);\n      message.error('删除 Webhook 失败');\n    }\n  };\n\n  // 测试 Webhook - 打开测试弹窗\n  const handleTest = async (webhook: Webhook) => {\n    try {\n      setTestingWebhook(webhook);\n      setLoadingSignals(true);\n      setSelectedSignalId(null);\n      setTestModalVisible(true);\n      \n      const response = await client.get<{ data: Signal[] }>(`/webhooks/${webhook.id}/signals`);\n      console.log('[Notifications] Signals response:', response);\n      const signalsData = response.data?.data || response.data || [];\n      console.log('[Notifications] Signals data:', signalsData);\n      setRecentSignals(Array.isArray(signalsData) ? signalsData : []);\n    } catch (error) {\n      console.error('获取信号列表失败:', error);\n      message.error('获取信号列表失败');\n      setTestModalVisible(false);\n    } finally {\n      setLoadingSignals(false);\n    }\n  };\n\n  // 发送测试通知\n  const handleTestSignal = async () => {\n    if (!testingWebhook || !selectedSignalId) {\n      message.warning('请选择一个信号进行测试');\n      return;\n    }\n\n    try {\n      setTestingWebhookId(testingWebhook.id);\n      await client.post(`/webhooks/${testingWebhook.id}/test-signal/${selectedSignalId}`);\n      message.success('测试消息已发送');\n      setTestModalVisible(false);\n    } catch (error) {\n      console.error('测试 Webhook 失败:', error);\n      message.error('测试 Webhook 失败');\n    } finally {\n      setTestingWebhookId(null);\n    }\n  };\n\n  // 切换启用状态\n  const handleToggleEnabled = async (id: string) => {\n    try {\n      const response = await client.put(`/webhooks/${id}/toggle`);\n      message.success(response.data.message);\n      fetchWebhooks();\n    } catch (error) {\n      console.error('切换 Webhook 状态失败:', error);\n      message.error('切换 Webhook 状态失败');\n    }\n  };\n\n  // 获取 Webhook 类型标签\n  const getTypeTag = (type: string) => {\n    const typeMap: Record<string, { color: string; label: string }> = {\n      wechat: { color: 'green', label: '企业微信' },\n      dingtalk: { color: 'blue', label: '钉钉' },\n      slack: { color: 'purple', label: 'Slack' },\n      custom: { color: 'default', label: '自定义' },\n    };\n    const config = typeMap[type] || { color: 'default', label: type };\n    return <Tag color={config.color}>{config.label}</Tag>;\n  };\n\n  // 格式化分数范围显示\n  const columns = [\n    {\n      title: '名称',\n      dataIndex: 'name',\n      key: 'name',\n      width: 180,\n      render: (name: string) => (\n        <Space>\n          <BellOutlined />\n          <span style={{ fontWeight: 500, whiteSpace: 'nowrap' }}>{name}</span>\n        </Space>\n      ),\n    },\n    {\n      title: 'URL',\n      dataIndex: 'url',\n      key: 'url',\n      width: 300,\n      ellipsis: true,\n      render: (url: string) => (\n        <Tooltip title={url}>\n          <Space>\n            <LinkOutlined />\n            <span style={{ whiteSpace: 'nowrap' }}>{url}</span>\n          </Space>\n        </Tooltip>\n      ),\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      width: 120,\n      render: (type: string) => getTypeTag(type),\n    },\n    {\n      title: '绑定策略',\n      key: 'strategies',\n      width: 200,\n      render: (_: any, record: Webhook) => {\n        if (!record.strategies || record.strategies.length === 0) {\n          return <Text type=\"secondary\">未绑定</Text>;\n        }\n        return (\n          <Space wrap>\n            {record.strategies.map((s) => (\n              <Tag key={s.id} color=\"blue\">{s.name}</Tag>\n            ))}\n          </Space>\n        );\n      },\n    },\n    {\n      title: '状态',\n      dataIndex: 'enabled',\n      key: 'enabled',\n      width: 100,\n      align: 'center' as const,\n      render: (enabled: boolean, record: Webhook) => (\n        <Switch\n          checked={enabled}\n          onChange={() => handleToggleEnabled(record.id)}\n          checkedChildren={<CheckCircleOutlined />}\n          unCheckedChildren={<CloseCircleOutlined />}\n        />\n      ),\n    },\n    {\n      title: '更新时间',\n      dataIndex: 'updatedAt',\n      key: 'updatedAt',\n      width: 180,\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 250,\n      align: 'center' as const,\n      fixed: 'right' as const,\n      render: (_: any, record: Webhook) => (\n        <Space size=\"small\">\n          <Button\n            type=\"primary\"\n            size=\"small\"\n            icon={<SendOutlined />}\n            onClick={() => handleTest(record)}\n          >\n            测试\n          </Button>\n          <Button\n            size=\"small\"\n            icon={<EditOutlined />}\n            onClick={() => handleEdit(record)}\n          >\n            编辑\n          </Button>\n          <Popconfirm\n            title=\"确认删除\"\n            description=\"确定要删除这个 Webhook 吗？\"\n            onConfirm={() => handleDelete(record.id)}\n            okText=\"删除\"\n            cancelText=\"取消\"\n            okButtonProps={{ danger: true }}\n          >\n            <Button size=\"small\" danger icon={<DeleteOutlined />}>\n              删除\n            </Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>通知设置</Title>\n\n      <Card\n        title=\"Webhook 管理\"\n        extra={\n          <Button type=\"primary\" icon={<PlusOutlined />} onClick={handleAdd}>\n            添加 Webhook\n          </Button>\n        }\n      >\n        <Table\n          columns={columns}\n          dataSource={webhooks}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={false}\n          scroll={{ x: 1100 }}\n          style={{ zIndex: 1 }}\n        />\n      </Card>\n\n      <Modal\n        title={editingWebhook ? '编辑 Webhook' : '添加 Webhook'}\n        open={modalVisible}\n        onCancel={() => setModalVisible(false)}\n        onOk={() => form.submit()}\n        width={600}\n        destroyOnHidden\n      >\n        <Form\n          form={form}\n          layout=\"vertical\"\n          onFinish={handleSubmit}\n          style={{ marginTop: 16 }}\n        >\n          <Form.Item\n            name=\"name\"\n            label=\"名称\"\n            rules={[\n              { required: true, message: '请输入 Webhook 名称' },\n              { max: 100, message: '名称最多 100 个字符' },\n            ]}\n          >\n            <Input placeholder=\"例如：企业微信通知\" prefix={<BellOutlined />} />\n          </Form.Item>\n\n          <Form.Item\n            name=\"url\"\n            label=\"Webhook URL\"\n            rules={[\n              { required: true, message: '请输入 Webhook URL' },\n              { type: 'url', message: '请输入有效的 URL' },\n            ]}\n          >\n            <Input.TextArea\n              placeholder=\"https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx\"\n              rows={2}\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"type\"\n            label=\"类型\"\n            rules={[{ required: true, message: '请选择 Webhook 类型' }]}\n          >\n            <Select placeholder=\"选择 Webhook 类型\">\n              <Option value=\"wechat\">企业微信</Option>\n              <Option value=\"dingtalk\">钉钉</Option>\n              <Option value=\"slack\">Slack</Option>\n              <Option value=\"custom\">自定义</Option>\n            </Select>\n          </Form.Item>\n\n          <Form.Item\n            name=\"enabled\"\n            label=\"启用状态\"\n            valuePropName=\"checked\"\n          >\n            <Switch\n              checkedChildren=\"启用\"\n              unCheckedChildren=\"禁用\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title={`测试 Webhook - ${testingWebhook?.name || ''}`}\n        open={testModalVisible}\n        onCancel={() => setTestModalVisible(false)}\n        onOk={handleTestSignal}\n        okText=\"发送测试\"\n        cancelText=\"取消\"\n        okButtonProps={{ \n          disabled: !selectedSignalId,\n          loading: testingWebhookId === testingWebhook?.id,\n        }}\n        width={800}\n      >\n        <div style={{ marginBottom: 16 }}>\n          <Text type=\"secondary\">选择一个信号进行测试，测试消息将发送到配置的 Webhook URL</Text>\n        </div>\n        \n        {loadingSignals ? (\n          <div style={{ textAlign: 'center', padding: '40px 0' }}>\n            <Text>加载信号列表中...</Text>\n          </div>\n        ) : recentSignals.length === 0 ? (\n          <div style={{ textAlign: 'center', padding: '40px 0' }}>\n            <Text type=\"secondary\">暂无信号数据</Text>\n          </div>\n        ) : (\n          <Radio.Group\n            value={selectedSignalId}\n            onChange={(e) => setSelectedSignalId(e.target.value)}\n            style={{ width: '100%' }}\n          >\n            <div style={{ maxHeight: 400, overflow: 'auto' }}>\n              {recentSignals.map((signal) => {\n                const action = signal.action || (signal.direction === 'bullish' ? 'long' : signal.direction === 'bearish' ? 'short' : 'hold');\n                const score = signal.score ? parseFloat(signal.score) : (signal.confidence ? signal.confidence / 100 : 0);\n                const time = signal.generatedAt || signal.signalTime || signal.createdAt;\n                \n                return (\n                  <Radio\n                    key={signal.id}\n                    value={signal.id}\n                    style={{ \n                      width: '100%', \n                      padding: '12px',\n                      marginBottom: '8px',\n                      border: selectedSignalId === signal.id ? '2px solid #1890ff' : '1px solid #f0f0f0',\n                      borderRadius: '4px',\n                      display: 'block',\n                    }}\n                  >\n                    <div style={{ marginLeft: 8 }}>\n                      <Space direction=\"vertical\" size=\"small\" style={{ width: '100%' }}>\n                        <Space>\n                          <Tag color={action === 'long' ? 'green' : action === 'short' ? 'red' : 'default'}>\n                            {action === 'long' ? '买入' : action === 'short' ? '卖出' : '观望'}\n                          </Tag>\n                          <Text strong>{signal.stockName || signal.stockCode || signal.symbol}</Text>\n                          <Text type=\"secondary\">({signal.stockCode || signal.symbol})</Text>\n                        </Space>\n                        <Space>\n                          <Text type=\"secondary\">分数: {score.toFixed(2)}</Text>\n                          <Text type=\"secondary\">|</Text>\n                          <Text type=\"secondary\">\n                            {time ? new Date(time).toLocaleString('zh-CN') : '-'}\n                          </Text>\n                        </Space>\n                        {signal.reason && (\n                          <Text type=\"secondary\" ellipsis style={{ maxWidth: 600 }}>\n                            理由: {signal.reason}\n                          </Text>\n                        )}\n                      </Space>\n                    </div>\n                  </Radio>\n                );\n              })}\n            </div>\n          </Radio.Group>\n        )}\n      </Modal>\n    </div>\n  );\n};\n\nexport default NotificationsPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/settings/notifications.tsx"
     },
-    "27": {
+    "28": {
       "path": "/settings/scheduler",
       "title": "定时任务",
       "file": "@/pages/settings/scheduler.tsx",
       "parentId": "3",
-      "id": "27",
+      "id": "28",
       "absPath": "/settings/scheduler",
       "__content": "import { useEffect, useState } from 'react';\nimport {\n  Card,\n  Table,\n  Button,\n  Space,\n  Tag,\n  Switch,\n  Typography,\n  message,\n  Tooltip,\n  Badge,\n  Popconfirm,\n} from 'antd';\nimport {\n  PlayCircleOutlined,\n  ClockCircleOutlined,\n  CheckCircleOutlined,\n  CloseCircleOutlined,\n  ReloadOutlined,\n  ScheduleOutlined,\n  InfoCircleOutlined,\n} from '@ant-design/icons';\nimport client from '@/services/client';\n\nconst { Title, Text } = Typography;\n\ninterface SchedulerTask {\n  id: string;\n  name: string;\n  cronExpression: string;\n  enabled: boolean;\n  lastExecutedAt: string | null;\n  createdAt: string;\n  updatedAt: string;\n}\n\nconst SchedulerPage: React.FC = () => {\n  const [tasks, setTasks] = useState<SchedulerTask[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [triggeringTaskId, setTriggeringTaskId] = useState<string | null>(null);\n\n  // 获取定时任务列表\n  const fetchTasks = async () => {\n    setLoading(true);\n    try {\n      const response = await client.get('/scheduler-tasks');\n      console.log('[SchedulerPage.fetchTasks] API Response:', response);\n      console.log('[SchedulerPage.fetchTasks] Response data:', response.data);\n      \n      // 处理后端返回的数据结构\n      // 后端返回: { data: { data: [...], total: 3 } }\n      // 经过 axios 拦截器处理后，response.data 可能是 { data: [...], total: 3 } 或者直接是数组\n      let taskData: SchedulerTask[] = [];\n      \n      if (Array.isArray(response.data)) {\n        // 直接返回数组\n        taskData = response.data;\n      } else if (response.data?.data && Array.isArray(response.data.data)) {\n        // 返回 { data: [...], total: 3 }\n        taskData = response.data.data;\n      } else if (response.data?.data?.data && Array.isArray(response.data.data.data)) {\n        // 返回 { data: { data: [...], total: 3 } }\n        taskData = response.data.data.data;\n      }\n      \n      console.log('[SchedulerPage.fetchTasks] Extracted taskData:', taskData);\n      setTasks(taskData);\n    } catch (error) {\n      console.error('[SchedulerPage.fetchTasks] 获取定时任务列表失败:', error);\n      message.error('获取定时任务列表失败');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  useEffect(() => {\n    fetchTasks();\n  }, []);\n\n  // 切换启用状态\n  const handleToggleEnabled = async (id: string) => {\n    try {\n      const response = await client.put(`/scheduler-tasks/${id}/toggle`);\n      const task = tasks.find(t => t.id === id);\n      const newStatus = !task?.enabled;\n      message.success(newStatus ? '任务已启用' : '任务已停止');\n      fetchTasks();\n    } catch (error) {\n      console.error('切换任务状态失败:', error);\n      message.error('切换任务状态失败');\n    }\n  };\n\n  // 手动触发任务\n  const handleTrigger = async (id: string) => {\n    try {\n      setTriggeringTaskId(id);\n      const response = await client.post(`/scheduler-tasks/${id}/trigger`);\n      message.success('任务已触发执行');\n      fetchTasks();\n    } catch (error) {\n      console.error('触发任务失败:', error);\n      message.error('触发任务失败');\n    } finally {\n      setTriggeringTaskId(null);\n    }\n  };\n\n  // 解析 Cron 表达式为人类可读格式\n  const parseCronExpression = (cron: string): string => {\n    const parts = cron.split(' ');\n    if (parts.length !== 5 && parts.length !== 6) {\n      return cron;\n    }\n\n    // 简化解析，实际项目中可以使用 cron-parser 库\n    const [minute, hour, dayOfMonth, month, dayOfWeek] = parts;\n\n    if (minute === '0' && hour === '0' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {\n      return '每天 00:00';\n    }\n    if (minute === '0' && hour === '*/4' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {\n      return '每4小时';\n    }\n    if (minute === '0' && hour === '*' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {\n      return '每小时';\n    }\n    if (minute === '*/30' && hour === '*' && dayOfMonth === '*' && month === '*' && dayOfWeek === '*') {\n      return '每30分钟';\n    }\n    if (minute === '0' && hour === '9' && dayOfMonth === '*' && month === '*' && dayOfWeek === '1-5') {\n      return '工作日 09:00';\n    }\n\n    return cron;\n  };\n\n  // 获取任务状态标签\n  const getStatusTag = (enabled: boolean) => {\n    if (enabled) {\n      return (\n        <Tag color=\"success\" icon={<CheckCircleOutlined />}>\n          运行中\n        </Tag>\n      );\n    }\n    return (\n      <Tag color=\"default\" icon={<CloseCircleOutlined />}>\n        已停止\n      </Tag>\n    );\n  };\n\n  // 获取任务名称显示\n  const getTaskNameDisplay = (name: string) => {\n    const nameMap: Record<string, { icon: React.ReactNode; label: string; desc: string }> = {\n      'news-crawl': {\n        icon: <ReloadOutlined />,\n        label: '新闻采集',\n        desc: '每天晚上7点抓取东方财富新闻',\n      },\n      'news-analyze': {\n        icon: <ScheduleOutlined />,\n        label: '新闻分析',\n        desc: '每天晚上8点分析未分析的新闻',\n      },\n      'kline-update': {\n        icon: <ClockCircleOutlined />,\n        label: 'K线数据更新',\n        desc: '每天早上8点更新K线数据',\n      },\n      'cleanup-old-data': {\n        icon: <InfoCircleOutlined />,\n        label: '数据清理',\n        desc: '清理过期历史数据',\n      },\n    };\n\n    const config = nameMap[name] || { icon: <ScheduleOutlined />, label: name, desc: '' };\n\n    return (\n      <Space align=\"center\" style={{ whiteSpace: 'nowrap' }}>\n        {config.icon}\n        <Text strong>{config.label}</Text>\n      </Space>\n    );\n  };\n\n  const columns = [\n    {\n      title: '任务名称',\n      dataIndex: 'name',\n      key: 'name',\n      width: 140,\n      render: (name: string) => getTaskNameDisplay(name),\n    },\n    {\n      title: '执行时间',\n      dataIndex: 'cronExpression',\n      key: 'cronExpression',\n      width: 120,\n      render: (cron: string) => (\n        <Tooltip title={cron}>\n          <Tag color=\"blue\" style={{ whiteSpace: 'nowrap' }}>{parseCronExpression(cron)}</Tag>\n        </Tooltip>\n      ),\n    },\n    {\n      title: '状态',\n      dataIndex: 'enabled',\n      key: 'enabled',\n      width: 90,\n      align: 'center' as const,\n      render: (enabled: boolean) => getStatusTag(enabled),\n    },\n    {\n      title: '开关',\n      dataIndex: 'enabled',\n      key: 'toggle',\n      width: 80,\n      align: 'center' as const,\n      render: (enabled: boolean, record: SchedulerTask) => (\n        <Switch\n          checked={enabled}\n          onChange={() => handleToggleEnabled(record.id)}\n          size=\"small\"\n        />\n      ),\n    },\n    {\n      title: '最后执行',\n      dataIndex: 'lastExecutedAt',\n      key: 'lastExecutedAt',\n      width: 140,\n      render: (time: string | null) => {\n        if (!time) {\n          return <Text type=\"secondary\" style={{ fontSize: 12 }}>从未执行</Text>;\n        }\n        const executedTime = new Date(time);\n        return (\n          <Tooltip title={executedTime.toLocaleString('zh-CN')}>\n            <Text style={{ fontSize: 12, whiteSpace: 'nowrap' }}>\n              {executedTime.toLocaleString('zh-CN', { month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' })}\n            </Text>\n          </Tooltip>\n        );\n      },\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 100,\n      align: 'center' as const,\n      render: (_: any, record: SchedulerTask) => (\n        <Popconfirm\n          title=\"确认执行\"\n          description={`确定要立即执行 \"${record.name}\" 任务吗？`}\n          onConfirm={() => handleTrigger(record.id)}\n          okText=\"执行\"\n          cancelText=\"取消\"\n        >\n          <Button\n            type=\"primary\"\n            size=\"small\"\n            icon={<PlayCircleOutlined />}\n            loading={triggeringTaskId === record.id}\n            disabled={!record.enabled}\n          >\n            执行\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>定时任务管理</Title>\n\n      <Card\n        title=\"任务列表\"\n        extra={\n          <Button icon={<ReloadOutlined />} onClick={fetchTasks}>\n            刷新\n          </Button>\n        }\n      >\n        <Table\n          columns={columns}\n          dataSource={tasks}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={false}\n          size=\"small\"\n        />\n      </Card>\n\n      <Card title=\"说明\" style={{ marginTop: 16 }}>\n        <Space direction=\"vertical\">\n          <Text>\n            <ClockCircleOutlined style={{ marginRight: 8, color: '#1890ff' }} />\n            <strong>Cron 表达式：</strong>用于定义任务的执行时间规则\n          </Text>\n          <Text>\n            <CheckCircleOutlined style={{ marginRight: 8, color: '#52c41a' }} />\n            <strong>运行中：</strong>任务已启用，将按照 Cron 规则自动执行\n          </Text>\n          <Text>\n            <CloseCircleOutlined style={{ marginRight: 8, color: '#999' }} />\n            <strong>已停止：</strong>任务已禁用，不会自动执行\n          </Text>\n          <Text>\n            <PlayCircleOutlined style={{ marginRight: 8, color: '#faad14' }} />\n            <strong>立即执行：</strong>手动触发任务执行（仅对启用状态的任务有效）\n          </Text>\n        </Space>\n      </Card>\n    </div>\n  );\n};\n\nexport default SchedulerPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/settings/scheduler.tsx"
     },
-    "28": {
+    "29": {
       "path": "/settings/api-keys",
       "title": "API Key 管理",
       "file": "@/pages/settings/api-keys.tsx",
       "parentId": "3",
-      "id": "28",
+      "id": "29",
       "absPath": "/settings/api-keys",
       "__content": "import { useEffect, useState } from 'react';\nimport {\n  Card,\n  Table,\n  Button,\n  Space,\n  Tag,\n  Modal,\n  Form,\n  Input,\n  InputNumber,\n  Typography,\n  message,\n  Popconfirm,\n  Tooltip,\n  Alert,\n} from 'antd';\nimport {\n  PlusOutlined,\n  DeleteOutlined,\n  KeyOutlined,\n  CopyOutlined,\n  ClockCircleOutlined,\n} from '@ant-design/icons';\nimport {\n  getApiKeys,\n  createApiKey,\n  deleteApiKey,\n  type ApiKeyResponse,\n  type ApiKeyWithKeyResponse,\n} from '@/services/api-key';\n\nconst { Title, Text } = Typography;\n\nconst ApiKeysPage: React.FC = () => {\n  const [apiKeys, setApiKeys] = useState<ApiKeyResponse[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [modalVisible, setModalVisible] = useState(false);\n  const [createdKey, setCreatedKey] = useState<ApiKeyWithKeyResponse | null>(null);\n  const [form] = Form.useForm();\n\n  // 获取 API Key 列表\n  const fetchApiKeys = async () => {\n    setLoading(true);\n    try {\n      const data = await getApiKeys();\n      setApiKeys(data);\n    } catch (error) {\n      console.error('获取 API Key 列表失败:', error);\n      message.error('获取 API Key 列表失败');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  useEffect(() => {\n    fetchApiKeys();\n  }, []);\n\n  // 打开创建 Modal\n  const handleAdd = () => {\n    form.resetFields();\n    form.setFieldsValue({\n      rateLimit: 60,\n    });\n    setModalVisible(true);\n  };\n\n  // 提交表单\n  const handleSubmit = async (values: { name: string; rateLimit: number }) => {\n    try {\n      const data = await createApiKey({\n        name: values.name,\n        rateLimit: values.rateLimit,\n      });\n      setCreatedKey(data);\n      setModalVisible(false);\n      fetchApiKeys();\n    } catch (error) {\n      console.error('创建 API Key 失败:', error);\n      message.error('创建 API Key 失败');\n    }\n  };\n\n  // 删除 API Key\n  const handleDelete = async (id: string) => {\n    try {\n      await deleteApiKey(id);\n      message.success('API Key 删除成功');\n      fetchApiKeys();\n    } catch (error) {\n      console.error('删除 API Key 失败:', error);\n      message.error('删除 API Key 失败');\n    }\n  };\n\n  // 复制到剪贴板\n  const handleCopy = (text: string) => {\n    navigator.clipboard.writeText(text);\n    message.success('已复制到剪贴板');\n  };\n\n  // 获取状态标签\n  const getStatusTag = (status: string) => {\n    const statusMap: Record<string, { color: string; label: string }> = {\n      active: { color: 'green', label: '启用' },\n      disabled: { color: 'red', label: '禁用' },\n    };\n    const config = statusMap[status] || { color: 'default', label: status };\n    return <Tag color={config.color}>{config.label}</Tag>;\n  };\n\n  const columns = [\n    {\n      title: '名称',\n      dataIndex: 'name',\n      key: 'name',\n      width: 200,\n      render: (name: string) => (\n        <Space>\n          <KeyOutlined />\n          <span style={{ fontWeight: 500 }}>{name}</span>\n        </Space>\n      ),\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 100,\n      render: (status: string) => getStatusTag(status),\n    },\n    {\n      title: '限流（次/分钟）',\n      dataIndex: 'rateLimit',\n      key: 'rateLimit',\n      width: 150,\n      render: (rateLimit: number) => (\n        <Space>\n          <ClockCircleOutlined />\n          <span>{rateLimit}</span>\n        </Space>\n      ),\n    },\n    {\n      title: '创建时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 180,\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 100,\n      align: 'center' as const,\n      render: (_: any, record: ApiKeyResponse) => (\n        <Popconfirm\n          title=\"确认删除\"\n          description=\"确定要删除这个 API Key 吗？删除后将无法恢复。\"\n          onConfirm={() => handleDelete(record.id)}\n          okText=\"删除\"\n          cancelText=\"取消\"\n          okButtonProps={{ danger: true }}\n        >\n          <Button size=\"small\" danger icon={<DeleteOutlined />}>\n            删除\n          </Button>\n        </Popconfirm>\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>API Key 管理</Title>\n\n      <Alert\n        message=\"使用说明\"\n        description={\n          <div>\n            <p>API Key 用于外部系统调用 MCP 服务。创建后请妥善保管，key 值仅在创建时显示一次。</p>\n            <p>调用 MCP 接口时，请在请求头中添加：x-api-key: YOUR_API_KEY</p>\n          </div>\n        }\n        type=\"info\"\n        showIcon\n        style={{ marginBottom: 24 }}\n      />\n\n      <Card\n        title=\"API Key 列表\"\n        extra={\n          <Button type=\"primary\" icon={<PlusOutlined />} onClick={handleAdd}>\n            创建 API Key\n          </Button>\n        }\n      >\n        <Table\n          columns={columns}\n          dataSource={apiKeys}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={false}\n        />\n      </Card>\n\n      {/* 创建 API Key Modal */}\n      <Modal\n        title=\"创建 API Key\"\n        open={modalVisible}\n        onCancel={() => setModalVisible(false)}\n        onOk={() => form.submit()}\n        width={500}\n        destroyOnHidden\n      >\n        <Form\n          form={form}\n          layout=\"vertical\"\n          onFinish={handleSubmit}\n          style={{ marginTop: 16 }}\n        >\n          <Form.Item\n            name=\"name\"\n            label=\"名称\"\n            rules={[\n              { required: true, message: '请输入 API Key 名称' },\n              { max: 100, message: '名称最多 100 个字符' },\n            ]}\n          >\n            <Input placeholder=\"例如：MCP Demo 调用\" prefix={<KeyOutlined />} />\n          </Form.Item>\n\n          <Form.Item\n            name=\"rateLimit\"\n            label=\"限流（次/分钟）\"\n            rules={[{ required: true, message: '请设置限流值' }]}\n            tooltip=\"每分钟允许的最大请求数\"\n          >\n            <InputNumber\n              min={1}\n              max={10000}\n              style={{ width: '100%' }}\n              placeholder=\"60\"\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      {/* 显示创建的 API Key Modal */}\n      <Modal\n        title=\"API Key 创建成功\"\n        open={!!createdKey}\n        onCancel={() => setCreatedKey(null)}\n        footer={[\n          <Button key=\"ok\" type=\"primary\" onClick={() => setCreatedKey(null)}>\n            确定\n          </Button>,\n        ]}\n        width={600}\n        closable={false}\n        maskClosable={false}\n      >\n        <Alert\n          message=\"请妥善保管您的 API Key\"\n          description=\"此 key 值仅在创建时显示一次，关闭后将无法再次查看。\"\n          type=\"warning\"\n          showIcon\n          style={{ marginBottom: 16 }}\n        />\n        <div style={{ background: '#f5f5f5', padding: 16, borderRadius: 4 }}>\n          <Text strong>名称：</Text>\n          <Text>{createdKey?.name}</Text>\n          <br />\n          <Text strong>限流：</Text>\n          <Text>{createdKey?.rateLimit} 次/分钟</Text>\n          <br />\n          <Text strong>API Key：</Text>\n          <div style={{ marginTop: 8, display: 'flex', gap: 8 }}>\n            <Input\n              value={createdKey?.key}\n              readOnly\n              style={{ flex: 1 }}\n            />\n            <Button\n              icon={<CopyOutlined />}\n              onClick={() => createdKey?.key && handleCopy(createdKey.key)}\n            >\n              复制\n            </Button>\n          </div>\n        </div>\n      </Modal>\n    </div>\n  );\n};\n\nexport default ApiKeysPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/settings/api-keys.tsx"
     },
-    "29": {
+    "30": {
       "path": "/audit-logs",
       "title": "审计日志",
       "file": "@/pages/audit-logs/index.tsx",
       "parentId": "3",
-      "id": "29",
+      "id": "30",
       "absPath": "/audit-logs",
       "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Table, Card, Tag, Typography, Space, Select, Button } from 'antd';\nimport { ReloadOutlined, AuditOutlined } from '@ant-design/icons';\nimport { getAuditLogs, type AuditLog, type AuditLogQueryParams } from '@/services/audit-log';\n\nconst { Title } = Typography;\n\nconst ACTION_OPTIONS = [\n  { label: '全部操作', value: '' },\n  { label: '用户登录', value: 'user.login' },\n  { label: '用户注册', value: 'user.register' },\n  { label: '修改密码', value: 'user.change_password' },\n  { label: '修改资料', value: 'user.update_profile' },\n  { label: 'API Key 创建', value: 'api_key.create' },\n  { label: 'API Key 删除', value: 'api_key.delete' },\n  { label: '策略创建', value: 'strategy.create' },\n  { label: '策略更新', value: 'strategy.update' },\n  { label: 'Webhook 创建', value: 'webhook.create' },\n  { label: 'Webhook 更新', value: 'webhook.update' },\n  { label: 'Webhook 删除', value: 'webhook.delete' },\n  { label: '模拟账户创建', value: 'simulation.account_create' },\n  { label: '模拟交易执行', value: 'simulation.trade_execute' },\n  { label: '信号规则更新', value: 'signal_rule' },\n  { label: '黑名单操作', value: 'blacklist' },\n  { label: '定时任务更新', value: 'scheduler' },\n];\n\nconst RESOURCE_OPTIONS = [\n  { label: '全部资源', value: '' },\n  { label: '用户', value: 'user' },\n  { label: 'API Key', value: 'api_key' },\n  { label: '策略', value: 'strategy' },\n  { label: 'Webhook', value: 'webhook' },\n  { label: '模拟账户', value: 'simulation_account' },\n  { label: '模拟交易', value: 'simulation_trade' },\n  { label: '信号规则', value: 'signal_rule' },\n  { label: '黑名单', value: 'blacklist' },\n  { label: '定时任务', value: 'scheduler_task' },\n];\n\nconst ACTION_LABEL_MAP: Record<string, string> = {\n  'user.login': '用户登录',\n  'user.register': '用户注册',\n  'user.change_password': '修改密码',\n  'user.update_profile': '修改资料',\n  'api_key.create': 'API Key 创建',\n  'api_key.delete': 'API Key 删除',\n  'strategy.create': '策略创建',\n  'strategy.update': '策略更新',\n  'webhook.create': 'Webhook 创建',\n  'webhook.update': 'Webhook 更新',\n  'webhook.delete': 'Webhook 删除',\n  'simulation.account_create': '模拟账户创建',\n  'simulation.trade_execute': '模拟交易执行',\n  'signal_rule.create': '信号规则创建',\n  'signal_rule.update': '信号规则更新',\n  'blacklist.create': '黑名单添加',\n  'blacklist.delete': '黑名单删除',\n  'scheduler.update': '定时任务更新',\n};\n\nconst AuditLogsPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<AuditLog[]>([]);\n  const [total, setTotal] = useState(0);\n  const [pagination, setPagination] = useState({ current: 1, pageSize: 20 });\n  const [filters, setFilters] = useState<AuditLogQueryParams>({});\n\n  const fetchData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const result = await getAuditLogs({\n        ...filters,\n        page: pagination.current,\n        pageSize: pagination.pageSize,\n      });\n      setData(result.data || []);\n      setTotal(result.total || 0);\n    } catch (error) {\n      console.error('Failed to fetch audit logs:', error);\n    } finally {\n      setLoading(false);\n    }\n  }, [filters, pagination]);\n\n  useEffect(() => {\n    fetchData();\n  }, [fetchData]);\n\n  const handleFilterChange = (key: string, value: string) => {\n    setFilters((prev) => ({ ...prev, [key]: value || undefined }));\n    setPagination((prev) => ({ ...prev, current: 1 }));\n  };\n\n  const handleTableChange = (pag: any) => {\n    setPagination({\n      current: pag.current,\n      pageSize: pag.pageSize,\n    });\n  };\n\n  const columns = [\n    {\n      title: '时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 180,\n      render: (text: string) => new Date(text).toLocaleString('zh-CN'),\n    },\n    {\n      title: '操作类型',\n      dataIndex: 'action',\n      key: 'action',\n      width: 160,\n      render: (action: string) => (\n        <Tag color=\"blue\">{ACTION_LABEL_MAP[action] || action}</Tag>\n      ),\n    },\n    {\n      title: '资源类型',\n      dataIndex: 'resource',\n      key: 'resource',\n      width: 120,\n      render: (resource: string) => {\n        const colorMap: Record<string, string> = {\n          user: 'geekblue',\n          api_key: 'orange',\n          strategy: 'green',\n          webhook: 'purple',\n          simulation_account: 'cyan',\n          simulation_trade: 'cyan',\n          signal_rule: 'gold',\n          blacklist: 'red',\n          scheduler_task: 'magenta',\n        };\n        const labelMap: Record<string, string> = {\n          user: '用户',\n          api_key: 'API Key',\n          strategy: '策略',\n          webhook: 'Webhook',\n          simulation_account: '模拟账户',\n          simulation_trade: '模拟交易',\n          signal_rule: '信号规则',\n          blacklist: '黑名单',\n          scheduler_task: '定时任务',\n        };\n        return <Tag color={colorMap[resource] || 'default'}>{labelMap[resource] || resource}</Tag>;\n      },\n    },\n    {\n      title: '资源ID',\n      dataIndex: 'resourceId',\n      key: 'resourceId',\n      width: 160,\n      ellipsis: true,\n      render: (text: string | null) => text || '-',\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 80,\n      render: (status: string) => (\n        <Tag color={status === 'success' ? 'success' : 'error'}>\n          {status === 'success' ? '成功' : '失败'}\n        </Tag>\n      ),\n    },\n    {\n      title: 'IP 地址',\n      dataIndex: 'ipAddress',\n      key: 'ipAddress',\n      width: 140,\n      render: (text: string | null) => text || '-',\n    },\n    {\n      title: '详情',\n      dataIndex: 'detail',\n      key: 'detail',\n      width: 200,\n      ellipsis: true,\n      render: (detail: Record<string, unknown> | null) => {\n        if (!detail) return '-';\n        const entries = Object.entries(detail);\n        if (entries.length === 0) return '-';\n        return (\n          <span style={{ fontSize: 12, color: '#666' }}>\n            {entries.map(([k, v]) => `${k}: ${String(v)}`).join(', ')}\n          </span>\n        );\n      },\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>\n        <AuditOutlined style={{ marginRight: 8 }} />\n        审计日志\n      </Title>\n      <Card>\n        <Space style={{ marginBottom: 16 }} wrap>\n          <Select\n            style={{ width: 160 }}\n            placeholder=\"操作类型\"\n            options={ACTION_OPTIONS}\n            value={filters.action || ''}\n            onChange={(value) => handleFilterChange('action', value)}\n          />\n          <Select\n            style={{ width: 140 }}\n            placeholder=\"资源类型\"\n            options={RESOURCE_OPTIONS}\n            value={filters.resource || ''}\n            onChange={(value) => handleFilterChange('resource', value)}\n          />\n          <Button icon={<ReloadOutlined />} onClick={fetchData}>\n            刷新\n          </Button>\n        </Space>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={{\n            current: pagination.current,\n            pageSize: pagination.pageSize,\n            total,\n            showSizeChanger: true,\n            showTotal: (t) => `共 ${t} 条`,\n          }}\n          onChange={handleTableChange}\n          scroll={{ x: 1000 }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default AuditLogsPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/audit-logs/index.tsx"
     },
-    "30": {
+    "31": {
       "path": "/analysis/overview",
       "title": "综合分析",
       "file": "@/pages/analysis/overview.tsx",
       "parentId": "3",
-      "id": "30",
+      "id": "31",
       "absPath": "/analysis/overview",
       "__content": "import React from 'react';\nimport { Card, Typography, Empty } from 'antd';\nimport { FundOutlined } from '@ant-design/icons';\n\nconst { Title } = Typography;\n\nconst AnalysisOverviewPage: React.FC = () => {\n  return (\n    <div>\n      <Title level={2}>\n        <FundOutlined style={{ marginRight: 8 }} />\n        综合分析\n      </Title>\n      <Card>\n        <Empty description=\"综合分析功能开发中，敬请期待\" />\n      </Card>\n    </div>\n  );\n};\n\nexport default AnalysisOverviewPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/analysis/overview.tsx"
     },
-    "31": {
+    "32": {
       "path": "/analysis/strategies",
       "title": "策略总览",
       "file": "@/pages/analysis/strategies/index.tsx",
       "parentId": "3",
-      "id": "31",
+      "id": "32",
       "absPath": "/analysis/strategies",
       "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Table, Card, Typography, Tag, Statistic, Row, Col, Empty, Button, Space } from 'antd';\nimport { ArrowUpOutlined, ArrowDownOutlined, PieChartOutlined, ReloadOutlined } from '@ant-design/icons';\nimport { useNavigate } from 'umi';\nimport { getStrategiesAnalytics, type StrategyAnalytics } from '@/services/strategy-analytics';\n\nconst { Title } = Typography;\n\nconst DIRECTION_MAP: Record<string, { label: string; color: string }> = {\n  long_only: { label: '仅做多', color: 'green' },\n  short_only: { label: '仅做空', color: 'red' },\n  both: { label: '双向', color: 'blue' },\n};\n\nconst formatHoldingTime = (hours: number | null): string => {\n  if (hours === null) return '-';\n  if (hours < 24) return `${hours.toFixed(1)}h`;\n  const days = hours / 24;\n  if (days < 30) return `${days.toFixed(1)}d`;\n  const months = days / 30;\n  return `${months.toFixed(1)}m`;\n};\n\nconst StrategyAnalyticsPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<StrategyAnalytics[]>([]);\n  const navigate = useNavigate();\n\n  const fetchData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const result = await getStrategiesAnalytics();\n      setData(result || []);\n    } catch (error) {\n      console.error('Failed to fetch strategy analytics:', error);\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  useEffect(() => {\n    fetchData();\n  }, [fetchData]);\n\n  const columns = [\n    {\n      title: '策略名称',\n      dataIndex: 'strategyName',\n      key: 'strategyName',\n      width: 160,\n      fixed: 'left' as const,\n      render: (name: string, record: StrategyAnalytics) => (\n        <Space>\n          <span style={{ fontWeight: 500 }}>{name}</span>\n          <Tag color={record.enabled ? 'success' : 'default'}>{record.enabled ? '启用' : '禁用'}</Tag>\n        </Space>\n      ),\n    },\n    {\n      title: '方向',\n      dataIndex: 'directionMode',\n      key: 'directionMode',\n      width: 90,\n      render: (mode: string) => {\n        const info = DIRECTION_MAP[mode] || { label: mode, color: 'default' };\n        return <Tag color={info.color}>{info.label}</Tag>;\n      },\n    },\n    {\n      title: '交易次数',\n      dataIndex: 'totalTrades',\n      key: 'totalTrades',\n      width: 90,\n      sorter: (a: StrategyAnalytics, b: StrategyAnalytics) => a.totalTrades - b.totalTrades,\n    },\n    {\n      title: '总收益',\n      dataIndex: 'totalProfit',\n      key: 'totalProfit',\n      width: 130,\n      sorter: (a: StrategyAnalytics, b: StrategyAnalytics) => a.totalProfit - b.totalProfit,\n      render: (val: number) => (\n        <Statistic\n          value={val}\n          precision={2}\n          prefix={val >= 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}\n          suffix=\"¥\"\n          valueStyle={{ color: val >= 0 ? '#3f8600' : '#cf1322', fontSize: 14 }}\n        />\n      ),\n    },\n    {\n      title: '总收益率',\n      dataIndex: 'totalReturn',\n      key: 'totalReturn',\n      width: 110,\n      sorter: (a: StrategyAnalytics, b: StrategyAnalytics) => a.totalReturn - b.totalReturn,\n      render: (val: number) => (\n        <span style={{ color: val >= 0 ? '#3f8600' : '#cf1322', fontWeight: 500 }}>\n          {val >= 0 ? '+' : ''}{val.toFixed(2)}%\n        </span>\n      ),\n    },\n    {\n      title: '胜率',\n      dataIndex: 'winRate',\n      key: 'winRate',\n      width: 90,\n      sorter: (a: StrategyAnalytics, b: StrategyAnalytics) => a.winRate - b.winRate,\n      render: (val: number) => (\n        <span style={{ color: val >= 50 ? '#3f8600' : '#cf1322' }}>\n          {val.toFixed(1)}%\n        </span>\n      ),\n    },\n    {\n      title: '最大回撤',\n      dataIndex: 'maxDrawdown',\n      key: 'maxDrawdown',\n      width: 100,\n      sorter: (a: StrategyAnalytics, b: StrategyAnalytics) => a.maxDrawdown - b.maxDrawdown,\n      render: (val: number) => (\n        <span style={{ color: '#cf1322' }}>-{val.toFixed(2)}%</span>\n      ),\n    },\n    {\n      title: '夏普比率',\n      dataIndex: 'sharpeRatio',\n      key: 'sharpeRatio',\n      width: 100,\n      sorter: (a: StrategyAnalytics, b: StrategyAnalytics) => a.sharpeRatio - b.sharpeRatio,\n      render: (val: number) => (\n        <span style={{ color: val >= 1 ? '#3f8600' : val >= 0 ? '#faad14' : '#cf1322' }}>\n          {val.toFixed(2)}\n        </span>\n      ),\n    },\n    {\n      title: '平均收益率',\n      dataIndex: 'avgReturn',\n      key: 'avgReturn',\n      width: 110,\n      sorter: (a: StrategyAnalytics, b: StrategyAnalytics) => a.avgReturn - b.avgReturn,\n      render: (val: number) => (\n        <span style={{ color: val >= 0 ? '#3f8600' : '#cf1322' }}>\n          {val >= 0 ? '+' : ''}{val.toFixed(2)}%\n        </span>\n      ),\n    },\n    {\n      title: '平均持仓',\n      dataIndex: 'avgHoldingTime',\n      key: 'avgHoldingTime',\n      width: 100,\n      render: (val: number | null) => formatHoldingTime(val),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 100,\n      fixed: 'right' as const,\n      render: (_: unknown, record: StrategyAnalytics) => (\n        <Button type=\"link\" onClick={() => navigate(`/analysis/strategies/${record.strategyId}`)}>\n          详情\n        </Button>\n      ),\n    },\n  ];\n\n  const summaryCards = () => {\n    if (data.length === 0) return null;\n    const totalProfit = data.reduce((sum, s) => sum + s.totalProfit, 0);\n    const avgWinRate = data.reduce((sum, s) => sum + s.winRate, 0) / data.length;\n    const bestStrategy = data.reduce((best, s) => s.totalReturn > best.totalReturn ? s : best, data[0]);\n    const totalTradeCount = data.reduce((sum, s) => sum + s.totalTrades, 0);\n\n    return (\n      <Row gutter={16} style={{ marginBottom: 16 }}>\n        <Col span={6}>\n          <Card size=\"small\">\n            <Statistic title=\"策略总数\" value={data.length} suffix=\"个\" />\n          </Card>\n        </Col>\n        <Col span={6}>\n          <Card size=\"small\">\n            <Statistic\n              title=\"总收益\"\n              value={totalProfit}\n              precision={2}\n              prefix={totalProfit >= 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}\n              suffix=\"¥\"\n              valueStyle={{ color: totalProfit >= 0 ? '#3f8600' : '#cf1322' }}\n            />\n          </Card>\n        </Col>\n        <Col span={6}>\n          <Card size=\"small\">\n            <Statistic title=\"平均胜率\" value={avgWinRate} precision={1} suffix=\"%\" />\n          </Card>\n        </Col>\n        <Col span={6}>\n          <Card size=\"small\">\n            <Statistic\n              title=\"最佳策略\"\n              value={bestStrategy.strategyName}\n              valueStyle={{ fontSize: 16 }}\n            />\n            <span style={{ fontSize: 12, color: bestStrategy.totalReturn >= 0 ? '#3f8600' : '#cf1322' }}>\n              收益率 {bestStrategy.totalReturn >= 0 ? '+' : ''}{bestStrategy.totalReturn.toFixed(2)}% · {totalTradeCount} 笔交易\n            </span>\n          </Card>\n        </Col>\n      </Row>\n    );\n  };\n\n  return (\n    <div>\n      <Title level={2}>\n        <PieChartOutlined style={{ marginRight: 8 }} />\n        策略总览\n      </Title>\n      <Card>\n        <div style={{ marginBottom: 16 }}>\n          <Button icon={<ReloadOutlined />} onClick={fetchData} loading={loading}>\n            刷新\n          </Button>\n        </div>\n        {summaryCards()}\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"strategyId\"\n          loading={loading}\n          pagination={false}\n          scroll={{ x: 1200 }}\n          locale={{\n            emptyText: (\n              <Empty description=\"暂无策略分析数据\">\n                <Button type=\"primary\" onClick={() => navigate('/strategies')}>\n                  前往创建策略\n                </Button>\n              </Empty>\n            ),\n          }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default StrategyAnalyticsPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/analysis/strategies/index.tsx"
     },
-    "32": {
+    "33": {
       "path": "/analysis/strategies/:id",
       "title": "策略详情",
       "file": "@/pages/analysis/strategies/[id].tsx",
       "parentId": "3",
-      "id": "32",
+      "id": "33",
       "absPath": "/analysis/strategies/:id",
       "__content": "import React, { useState, useEffect, useCallback, useRef } from 'react';\nimport { Card, Typography, Tag, Statistic, Row, Col, Table, Descriptions, Empty, Button, Spin, Space } from 'antd';\nimport { ArrowUpOutlined, ArrowDownOutlined, ArrowLeftOutlined, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';\nimport { useParams, useNavigate } from 'umi';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { IChartApi, Time } from 'lightweight-charts';\nimport { getStrategyDetailAnalytics, type StrategyDetailAnalytics } from '@/services/strategy-analytics';\n\nconst { Title } = Typography;\n\nconst DIRECTION_MAP: Record<string, { label: string; color: string }> = {\n  long_only: { label: '仅做多', color: 'green' },\n  short_only: { label: '仅做空', color: 'red' },\n  both: { label: '双向', color: 'blue' },\n};\n\nconst formatHoldingTime = (hours: number | null): string => {\n  if (hours === null) return '-';\n  if (hours < 24) return `${hours.toFixed(1)}h`;\n  const days = hours / 24;\n  if (days < 30) return `${days.toFixed(1)}d`;\n  const months = days / 30;\n  return `${months.toFixed(1)}m`;\n};\n\nconst StrategyDetailPage: React.FC = () => {\n  const { id } = useParams<{ id: string }>();\n  const navigate = useNavigate();\n  const [loading, setLoading] = useState(true);\n  const [data, setData] = useState<StrategyDetailAnalytics | null>(null);\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n\n  const fetchData = useCallback(async () => {\n    if (!id) return;\n    setLoading(true);\n    try {\n      const result = await getStrategyDetailAnalytics(id);\n      setData(result);\n    } catch (error) {\n      console.error('Failed to fetch strategy detail analytics:', error);\n    } finally {\n      setLoading(false);\n    }\n  }, [id]);\n\n  useEffect(() => {\n    fetchData();\n  }, [fetchData]);\n\n  useEffect(() => {\n    if (!chartContainerRef.current || !data || data.equityCurve.length === 0) return;\n\n    if (chartRef.current) {\n      chartRef.current.remove();\n      chartRef.current = null;\n    }\n\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: { mode: 1 },\n      rightPriceScale: { borderColor: '#d9d9d9' },\n      timeScale: {\n        borderColor: '#d9d9d9',\n        timeVisible: true,\n      },\n      width: chartContainerRef.current.clientWidth,\n      height: 350,\n    });\n\n    chartRef.current = chart;\n\n    const lineSeries = chart.addSeries(LightweightCharts.LineSeries, {\n      color: '#1890ff',\n      lineWidth: 2,\n    });\n\n    const chartData = data.equityCurve\n      .map((point) => ({\n        time: Math.floor(new Date(point.time).getTime() / 1000) as Time,\n        value: point.cumulativeProfit,\n      }))\n      .sort((a, b) => (a.time as number) - (b.time as number));\n\n    const seen = new Map<number, number>();\n    for (const point of chartData) {\n      seen.set(point.time as number, point.value);\n    }\n\n    lineSeries.setData(\n      Array.from(seen.entries())\n        .sort((a, b) => a[0] - b[0])\n        .map(([time, value]) => ({ time: time as Time, value })),\n    );\n\n    chart.timeScale().fitContent();\n\n    const handleResize = () => {\n      if (chartContainerRef.current) {\n        chart.applyOptions({ width: chartContainerRef.current.clientWidth });\n      }\n    };\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      if (chartRef.current) {\n        chartRef.current.remove();\n        chartRef.current = null;\n      }\n    };\n  }, [data]);\n\n  if (loading) {\n    return (\n      <div style={{ textAlign: 'center', padding: 100 }}>\n        <Spin size=\"large\" />\n      </div>\n    );\n  }\n\n  if (!data) {\n    return (\n      <div>\n        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/analysis/strategies')} style={{ marginBottom: 16 }}>\n          返回策略总览\n        </Button>\n        <Empty description=\"策略分析数据不存在\" />\n      </div>\n    );\n  }\n\n  const { strategy, runtime, metrics, recentTrades, recentPositions } = data;\n\n  const tradeColumns = [\n    { title: '股票代码', dataIndex: 'stockCode', key: 'stockCode', width: 100 },\n    { title: '股票名称', dataIndex: 'stockName', key: 'stockName', width: 100 },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      width: 70,\n      render: (type: string) => (\n        <Tag color={type === 'buy' ? 'green' : 'red'}>{type === 'buy' ? '买入' : '卖出'}</Tag>\n      ),\n    },\n    { title: '数量', dataIndex: 'quantity', key: 'quantity', width: 70 },\n    {\n      title: '价格',\n      dataIndex: 'price',\n      key: 'price',\n      width: 90,\n      render: (v: string) => `¥${Number(v).toFixed(2)}`,\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      width: 100,\n      render: (v: string | null) => {\n        if (v === null) return '-';\n        const val = Number(v);\n        return (\n          <span style={{ color: val >= 0 ? '#3f8600' : '#cf1322' }}>\n            {val >= 0 ? '+' : ''}{val.toFixed(2)}\n          </span>\n        );\n      },\n    },\n    {\n      title: '时间',\n      dataIndex: 'tradeTime',\n      key: 'tradeTime',\n      width: 160,\n      render: (v: string) => new Date(v).toLocaleString('zh-CN'),\n    },\n  ];\n\n  const positionColumns = [\n    { title: '股票代码', dataIndex: 'stockCode', key: 'stockCode', width: 100 },\n    { title: '股票名称', dataIndex: 'stockName', key: 'stockName', width: 100 },\n    { title: '数量', dataIndex: 'quantity', key: 'quantity', width: 70 },\n    {\n      title: '成本',\n      dataIndex: 'avgCost',\n      key: 'avgCost',\n      width: 90,\n      render: (v: string) => `¥${Number(v).toFixed(2)}`,\n    },\n    {\n      title: '市值',\n      dataIndex: 'marketValue',\n      key: 'marketValue',\n      width: 100,\n      render: (v: string | null) => v ? `¥${Number(v).toFixed(2)}` : '-',\n    },\n    {\n      title: '盈亏',\n      dataIndex: 'profit',\n      key: 'profit',\n      width: 100,\n      render: (v: string) => {\n        const val = Number(v);\n        return (\n          <span style={{ color: val >= 0 ? '#3f8600' : '#cf1322' }}>\n            {val >= 0 ? '+' : ''}{val.toFixed(2)}\n          </span>\n        );\n      },\n    },\n    {\n      title: '收益率',\n      dataIndex: 'return',\n      key: 'return',\n      width: 90,\n      render: (v: string) => {\n        const val = Number(v);\n        return (\n          <span style={{ color: val >= 0 ? '#3f8600' : '#cf1322' }}>\n            {val >= 0 ? '+' : ''}{val.toFixed(2)}%\n          </span>\n        );\n      },\n    },\n  ];\n\n  return (\n    <div>\n      <Space style={{ marginBottom: 16 }}>\n        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/analysis/strategies')}>\n          返回策略总览\n        </Button>\n      </Space>\n\n      <Title level={2} style={{ marginTop: 0 }}>\n        {strategy.name}\n        <Tag color={strategy.enabled ? 'success' : 'default'} style={{ marginLeft: 12 }}>\n          {strategy.enabled ? '启用' : '禁用'}\n        </Tag>\n        <Tag color={DIRECTION_MAP[strategy.directionMode]?.color || 'default'}>\n          {DIRECTION_MAP[strategy.directionMode]?.label || strategy.directionMode}\n        </Tag>\n      </Title>\n\n      <Card title=\"策略参数\" style={{ marginBottom: 16 }} size=\"small\">\n        <Descriptions column={4} size=\"small\">\n          <Descriptions.Item label=\"最低分数\">{Number(strategy.minScore).toFixed(2)}</Descriptions.Item>\n          <Descriptions.Item label=\"最高分数\">{strategy.maxScore ? Number(strategy.maxScore).toFixed(2) : '-'}</Descriptions.Item>\n          <Descriptions.Item label=\"持仓周期\">{strategy.holdPeriod} 根K线</Descriptions.Item>\n          <Descriptions.Item label=\"止损\">{strategy.stopLossPct ? `${Number(strategy.stopLossPct).toFixed(2)}%` : '-'}</Descriptions.Item>\n          <Descriptions.Item label=\"止盈\">{strategy.takeProfitPct ? `${Number(strategy.takeProfitPct).toFixed(2)}%` : '-'}</Descriptions.Item>\n          <Descriptions.Item label=\"每日最大信号\">{strategy.maxSignalsPerDay || '-'}</Descriptions.Item>\n          <Descriptions.Item label=\"最大持仓\">{strategy.maxPositions || '-'}</Descriptions.Item>\n          <Descriptions.Item label=\"描述\">{strategy.description || '-'}</Descriptions.Item>\n        </Descriptions>\n      </Card>\n\n      {runtime && (\n        <Card title=\"Runtime 配置\" style={{ marginBottom: 16 }} size=\"small\">\n          <Descriptions column={4} size=\"small\">\n            <Descriptions.Item label=\"关联账户\">\n              {runtime.accountName || runtime.accountId || '-'}\n            </Descriptions.Item>\n            <Descriptions.Item label=\"Webhook\">\n              {runtime.webhookName || runtime.webhookId || '-'}\n            </Descriptions.Item>\n            <Descriptions.Item label=\"Webhook通知\">\n              {runtime.enableWebhook ? <CheckCircleOutlined style={{ color: '#52c41a' }} /> : <CloseCircleOutlined style={{ color: '#d9d9d9' }} />}\n            </Descriptions.Item>\n            <Descriptions.Item label=\"模拟交易\">\n              {runtime.enableSimulation ? <CheckCircleOutlined style={{ color: '#52c41a' }} /> : <CloseCircleOutlined style={{ color: '#d9d9d9' }} />}\n            </Descriptions.Item>\n          </Descriptions>\n        </Card>\n      )}\n\n      <Row gutter={16} style={{ marginBottom: 16 }}>\n        <Col span={4}>\n          <Card size=\"small\">\n            <Statistic\n              title=\"总收益\"\n              value={metrics.totalProfit}\n              precision={2}\n              prefix={metrics.totalProfit >= 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}\n              suffix=\"¥\"\n              valueStyle={{ color: metrics.totalProfit >= 0 ? '#3f8600' : '#cf1322', fontSize: 18 }}\n            />\n          </Card>\n        </Col>\n        <Col span={4}>\n          <Card size=\"small\">\n            <Statistic\n              title=\"总收益率\"\n              value={metrics.totalReturn}\n              precision={2}\n              suffix=\"%\"\n              valueStyle={{ color: metrics.totalReturn >= 0 ? '#3f8600' : '#cf1322', fontSize: 18 }}\n              prefix={metrics.totalReturn >= 0 ? '+' : ''}\n            />\n          </Card>\n        </Col>\n        <Col span={4}>\n          <Card size=\"small\">\n            <Statistic\n              title=\"胜率\"\n              value={metrics.winRate}\n              precision={1}\n              suffix=\"%\"\n              valueStyle={{ color: metrics.winRate >= 50 ? '#3f8600' : '#cf1322', fontSize: 18 }}\n            />\n          </Card>\n        </Col>\n        <Col span={4}>\n          <Card size=\"small\">\n            <Statistic\n              title=\"最大回撤\"\n              value={metrics.maxDrawdown}\n              precision={2}\n              suffix=\"%\"\n              prefix=\"-\"\n              valueStyle={{ color: '#cf1322', fontSize: 18 }}\n            />\n          </Card>\n        </Col>\n        <Col span={4}>\n          <Card size=\"small\">\n            <Statistic\n              title=\"夏普比率\"\n              value={metrics.sharpeRatio}\n              precision={2}\n              valueStyle={{ color: metrics.sharpeRatio >= 1 ? '#3f8600' : metrics.sharpeRatio >= 0 ? '#faad14' : '#cf1322', fontSize: 18 }}\n            />\n          </Card>\n        </Col>\n        <Col span={4}>\n          <Card size=\"small\">\n            <Statistic\n              title=\"平均持仓\"\n              value={formatHoldingTime(metrics.avgHoldingTime)}\n              valueStyle={{ fontSize: 18 }}\n            />\n          </Card>\n        </Col>\n      </Row>\n\n      <Card title=\"资金曲线\" style={{ marginBottom: 16 }}>\n        {data.equityCurve.length > 0 ? (\n          <div ref={chartContainerRef} />\n        ) : (\n          <Empty description=\"暂无资金曲线数据\" />\n        )}\n      </Card>\n\n      <Card title={`最近交易 (${recentTrades.length})`} style={{ marginBottom: 16 }}>\n        <Table\n          columns={tradeColumns}\n          dataSource={recentTrades}\n          rowKey=\"id\"\n          pagination={false}\n          size=\"small\"\n          scroll={{ x: 700 }}\n          locale={{ emptyText: <Empty description=\"暂无交易记录\" /> }}\n        />\n      </Card>\n\n      <Card title={`当前持仓 (${recentPositions.length})`}>\n        <Table\n          columns={positionColumns}\n          dataSource={recentPositions}\n          rowKey=\"id\"\n          pagination={false}\n          size=\"small\"\n          scroll={{ x: 700 }}\n          locale={{ emptyText: <Empty description=\"暂无持仓\" /> }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default StrategyDetailPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/analysis/strategies/[id].tsx"
     },
-    "33": {
+    "34": {
       "path": "/profile",
       "title": "个人资料",
       "file": "@/pages/profile.tsx",
       "parentId": "3",
-      "id": "33",
+      "id": "34",
       "absPath": "/profile",
       "__content": "import React, { useEffect, useState } from 'react';\nimport { \n  Card, \n  Form, \n  Input, \n  Button, \n  Avatar, \n  Row, \n  Col, \n  Divider, \n  Typography, \n  message,\n  Space,\n  Tooltip,\n  Popover\n} from 'antd';\nimport { \n  UserOutlined, \n  MailOutlined, \n  LockOutlined,\n  SyncOutlined,\n  SaveOutlined,\n  KeyOutlined,\n  EditOutlined,\n  CopyOutlined,\n  CheckOutlined\n} from '@ant-design/icons';\nimport { useUser } from '@/contexts/UserContext';\nimport { authApi } from '@/services/auth';\nimport { generateAvatarDataUrl, generateRandomSeed } from '@/utils/avatar';\n\nconst { Title, Text } = Typography;\n\nconst ProfilePage: React.FC = () => {\n  const { user, setUser, refreshUser } = useUser();\n  const [profileForm] = Form.useForm();\n  const [passwordForm] = Form.useForm();\n  const [profileLoading, setProfileLoading] = useState(false);\n  const [passwordLoading, setPasswordLoading] = useState(false);\n  const [avatarSeed, setAvatarSeed] = useState<string>('');\n\n  useEffect(() => {\n    if (user) {\n      profileForm.setFieldsValue({\n        nickname: user.nickname,\n        email: user.email,\n      });\n      // 使用用户的 avatarSeed，如果没有则使用昵称作为种子（保持一致性）\n      const seed = user.avatarSeed || user.nickname || 'default';\n      setAvatarSeed(seed);\n    }\n  }, [user, profileForm]);\n\n  const handleUpdateProfile = async (values: { nickname: string }) => {\n    setProfileLoading(true);\n    try {\n      const updatedUser = await authApi.updateProfile({\n        nickname: values.nickname,\n        avatarSeed,\n      });\n      setUser(updatedUser);\n      message.success('个人资料更新成功');\n    } catch (error) {\n      console.error('Update profile error:', error);\n    } finally {\n      setProfileLoading(false);\n    }\n  };\n\n  const handleChangePassword = async (values: { \n    currentPassword: string; \n    newPassword: string;\n    confirmPassword: string;\n  }) => {\n    if (values.newPassword !== values.confirmPassword) {\n      message.error('两次输入的新密码不一致');\n      return;\n    }\n\n    setPasswordLoading(true);\n    try {\n      await authApi.changePassword({\n        currentPassword: values.currentPassword,\n        newPassword: values.newPassword,\n      });\n      message.success('密码修改成功');\n      passwordForm.resetFields();\n    } catch (error) {\n      console.error('Change password error:', error);\n    } finally {\n      setPasswordLoading(false);\n    }\n  };\n\n  const handleRegenerateAvatar = () => {\n    const newSeed = generateRandomSeed();\n    setAvatarSeed(newSeed);\n  };\n\n  const handleCopySeed = () => {\n    navigator.clipboard.writeText(avatarSeed);\n    message.success('头像种子已复制到剪贴板');\n  };\n\n  const avatarSrc = generateAvatarDataUrl(avatarSeed);\n\n  return (\n    <div>\n      <Title level={2}>个人资料</Title>\n      <Text type=\"secondary\">管理您的账户信息和安全设置</Text>\n\n      <Row gutter={[24, 24]} style={{ marginTop: 24 }}>\n        <Col xs={24} md={8}>\n          <Card>\n            <div style={{ textAlign: 'center' }}>\n              <Avatar \n                src={avatarSrc} \n                size={120}\n                icon={<UserOutlined />}\n                style={{ marginBottom: 16 }}\n              />\n              <Title level={4} style={{ margin: 0 }}>\n                {user?.nickname || '用户'}\n              </Title>\n              <Text type=\"secondary\">{user?.email}</Text>\n            </div>\n            <Divider />\n            <div style={{ textAlign: 'center' }}>\n              <Text type=\"secondary\" style={{ display: 'block', marginBottom: 8 }}>\n                头像预览\n              </Text>\n              <Text type=\"secondary\" style={{ fontSize: 12 }}>\n                在右侧表单中修改种子\n              </Text>\n            </div>\n          </Card>\n        </Col>\n\n        <Col xs={24} md={16}>\n          <Card title=\"基本信息\">\n            <Form\n              form={profileForm}\n              layout=\"vertical\"\n              onFinish={handleUpdateProfile}\n            >\n              <Form.Item\n                name=\"nickname\"\n                label=\"昵称\"\n                rules={[\n                  { required: true, message: '请输入昵称' },\n                  { min: 2, message: '昵称至少2个字符' },\n                  { max: 20, message: '昵称最多20个字符' },\n                ]}\n              >\n                <Input \n                  prefix={<UserOutlined />} \n                  placeholder=\"请输入昵称\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"email\"\n                label=\"邮箱\"\n              >\n                <Input \n                  prefix={<MailOutlined />} \n                  disabled \n                />\n              </Form.Item>\n\n              <Form.Item\n                label=\"头像种子\"\n                extra=\"修改种子可以生成不同的头像，或使用随机生成\"\n              >\n                <Space.Compact style={{ width: '100%' }}>\n                  <Input\n                    value={avatarSeed}\n                    onChange={(e) => setAvatarSeed(e.target.value)}\n                    placeholder=\"输入头像种子\"\n                    prefix={<EditOutlined />}\n                  />\n                  <Tooltip title=\"复制种子\">\n                    <Button \n                      icon={<CopyOutlined />} \n                      onClick={handleCopySeed}\n                    />\n                  </Tooltip>\n                  <Tooltip title=\"随机生成\">\n                    <Button \n                      icon={<SyncOutlined />} \n                      onClick={handleRegenerateAvatar}\n                    />\n                  </Tooltip>\n                </Space.Compact>\n              </Form.Item>\n\n              <Form.Item>\n                <Button \n                  type=\"primary\" \n                  htmlType=\"submit\" \n                  loading={profileLoading}\n                  icon={<SaveOutlined />}\n                >\n                  保存修改\n                </Button>\n              </Form.Item>\n            </Form>\n          </Card>\n\n          <Card title=\"修改密码\" style={{ marginTop: 24 }}>\n            <Form\n              form={passwordForm}\n              layout=\"vertical\"\n              onFinish={handleChangePassword}\n            >\n              <Form.Item\n                name=\"currentPassword\"\n                label=\"当前密码\"\n                rules={[\n                  { required: true, message: '请输入当前密码' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<LockOutlined />} \n                  placeholder=\"请输入当前密码\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"newPassword\"\n                label=\"新密码\"\n                rules={[\n                  { required: true, message: '请输入新密码' },\n                  { min: 6, message: '密码至少6位' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<KeyOutlined />} \n                  placeholder=\"请输入新密码\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"confirmPassword\"\n                label=\"确认新密码\"\n                rules={[\n                  { required: true, message: '请确认新密码' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<KeyOutlined />} \n                  placeholder=\"请再次输入新密码\" \n                />\n              </Form.Item>\n\n              <Form.Item>\n                <Button \n                  type=\"primary\" \n                  htmlType=\"submit\" \n                  loading={passwordLoading}\n                  icon={<SaveOutlined />}\n                >\n                  修改密码\n                </Button>\n              </Form.Item>\n            </Form>\n          </Card>\n        </Col>\n      </Row>\n    </div>\n  );\n};\n\nexport default ProfilePage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/profile.tsx"
     },
-    "34": {
+    "35": {
       "path": "/",
       "redirect": "/dashboard",
       "parentId": "3",
-      "id": "34",
+      "id": "35",
       "absPath": "/"
     }
   },
@@ -6089,7 +5843,7 @@
             "format": "esm"
           },
           "src/layouts/MainLayout.tsx": {
-            "bytes": 8748,
+            "bytes": 8942,
             "imports": [
               {
                 "path": "react",
@@ -6165,8 +5919,19 @@
             ],
             "format": "esm"
           },
+          "src/services/news-filter-agent.ts": {
+            "bytes": 1750,
+            "imports": [
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "./client"
+              }
+            ],
+            "format": "esm"
+          },
           "src/pages/news/index.tsx": {
-            "bytes": 14793,
+            "bytes": 16665,
             "imports": [
               {
                 "path": "react",
@@ -6192,6 +5957,11 @@
                 "path": "src/services/client.ts",
                 "kind": "import-statement",
                 "original": "@/services/client"
+              },
+              {
+                "path": "src/services/news-filter-agent.ts",
+                "kind": "import-statement",
+                "original": "@/services/news-filter-agent"
               },
               {
                 "path": "react/jsx-runtime",
@@ -7002,6 +6772,42 @@
             ],
             "format": "esm"
           },
+          "src/pages/news-filter-agent/index.tsx": {
+            "bytes": 8811,
+            "imports": [
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "src/.umi/exports.ts",
+                "kind": "import-statement",
+                "original": "umi"
+              },
+              {
+                "path": "src/services/news-filter-agent.ts",
+                "kind": "import-statement",
+                "original": "@/services/news-filter-agent"
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm"
+          },
           "src/services/llm.ts": {
             "bytes": 2466,
             "imports": [
@@ -7403,7 +7209,7 @@
             "format": "esm"
           },
           "src/.umi/core/route.tsx": {
-            "bytes": 6326,
+            "bytes": 6539,
             "imports": [
               {
                 "path": "react",
@@ -7524,6 +7330,11 @@
                 "path": "src/pages/trading-agent/index.tsx",
                 "kind": "dynamic-import",
                 "original": "@/pages/trading-agent/index.tsx"
+              },
+              {
+                "path": "src/pages/news-filter-agent/index.tsx",
+                "kind": "dynamic-import",
+                "original": "@/pages/news-filter-agent/index.tsx"
               },
               {
                 "path": "src/pages/llm-center/index.tsx",
@@ -8390,6 +8201,26 @@
               },
               {
                 "path": "./index.module.scss",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
                 "kind": "import-statement",
                 "external": true
               },
@@ -9797,13 +9628,16 @@
                 "bytesInOutput": 1894
               },
               "src/layouts/MainLayout.tsx": {
-                "bytesInOutput": 11071
+                "bytesInOutput": 11316
               },
               "src/pages/dashboard.tsx": {
                 "bytesInOutput": 9055
               },
+              "src/services/news-filter-agent.ts": {
+                "bytesInOutput": 790
+              },
               "src/pages/news/index.tsx": {
-                "bytesInOutput": 17417
+                "bytesInOutput": 19666
               },
               "src/pages/news/[id].tsx": {
                 "bytesInOutput": 19226
@@ -9827,7 +9661,7 @@
                 "bytesInOutput": 1097
               },
               "src/pages/signal-rules/index.tsx": {
-                "bytesInOutput": 26850
+                "bytesInOutput": 26865
               },
               "src/services/strategy.ts": {
                 "bytesInOutput": 777
@@ -9883,6 +9717,9 @@
               "src/pages/trading-agent/index.tsx": {
                 "bytesInOutput": 17505
               },
+              "src/pages/news-filter-agent/index.tsx": {
+                "bytesInOutput": 11923
+              },
               "src/services/llm.ts": {
                 "bytesInOutput": 1699
               },
@@ -9923,13 +9760,13 @@
                 "bytesInOutput": 15754
               },
               "src/pages/profile.tsx": {
-                "bytesInOutput": 12022
+                "bytesInOutput": 12041
               },
               "src/.umi/core/EmptyRoute.tsx": {
                 "bytesInOutput": 383
               },
               "src/.umi/core/route.tsx": {
-                "bytesInOutput": 6794
+                "bytesInOutput": 7024
               },
               "src/.umi/core/polyfill.ts": {
                 "bytesInOutput": 30238
@@ -9938,7 +9775,7 @@
                 "bytesInOutput": 2095
               }
             },
-            "bytes": 629660
+            "bytes": 645211
           }
         }
       }
@@ -13727,7 +13564,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 680,
+          "end": 698,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -13870,13 +13707,18 @@
               "imported": "BulbOutlined",
               "local": "BulbOutlined",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "FilterOutlined",
+              "local": "FilterOutlined",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 118,
           "type": "ImportDeclaration"
         },
         {
-          "end": 736,
+          "end": 754,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -13896,11 +13738,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 681,
+          "start": 699,
           "type": "ImportDeclaration"
         },
         {
-          "end": 778,
+          "end": 796,
           "importKind": "value",
           "source": "@/components/Header",
           "specifiers": [
@@ -13909,11 +13751,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 737,
+          "start": 755,
           "type": "ImportDeclaration"
         },
         {
-          "end": 830,
+          "end": 848,
           "importKind": "value",
           "source": "@/components/PageLoading",
           "specifiers": [
@@ -13922,7 +13764,7 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 779,
+          "start": 797,
           "type": "ImportDeclaration"
         }
       ],
@@ -16200,6 +16042,205 @@
           "type": "ImportDeclaration"
         }
       ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\news-filter-agent\\index.tsx": [
+        {
+          "end": 65,
+          "importKind": "value",
+          "source": "react",
+          "specifiers": [
+            {
+              "local": "React",
+              "type": "ImportDefaultSpecifier"
+            },
+            {
+              "imported": "useState",
+              "local": "useState",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useEffect",
+              "local": "useEffect",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useCallback",
+              "local": "useCallback",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 212,
+          "importKind": "value",
+          "source": "antd",
+          "specifiers": [
+            {
+              "imported": "Card",
+              "local": "Card",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Table",
+              "local": "Table",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Tag",
+              "local": "Tag",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Statistic",
+              "local": "Statistic",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Row",
+              "local": "Row",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Col",
+              "local": "Col",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Select",
+              "local": "Select",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Button",
+              "local": "Button",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Input",
+              "local": "Input",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Space",
+              "local": "Space",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Typography",
+              "local": "Typography",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "message",
+              "local": "message",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Modal",
+              "local": "Modal",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 66,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 345,
+          "importKind": "value",
+          "source": "@ant-design/icons",
+          "specifiers": [
+            {
+              "imported": "FilterOutlined",
+              "local": "FilterOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "CheckCircleOutlined",
+              "local": "CheckCircleOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "CloseCircleOutlined",
+              "local": "CloseCircleOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "SaveOutlined",
+              "local": "SaveOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "UndoOutlined",
+              "local": "UndoOutlined",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 213,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 395,
+          "importKind": "type",
+          "source": "antd/es/table",
+          "specifiers": [
+            {
+              "imported": "ColumnsType",
+              "local": "ColumnsType",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 346,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 430,
+          "importKind": "value",
+          "source": "umi",
+          "specifiers": [
+            {
+              "imported": "useNavigate",
+              "local": "useNavigate",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 396,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 497,
+          "importKind": "value",
+          "source": "@/services/news-filter-agent",
+          "specifiers": [
+            {
+              "imported": "newsFilterAgentApi",
+              "local": "newsFilterAgentApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 431,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 596,
+          "importKind": "type",
+          "source": "@/services/news-filter-agent",
+          "specifiers": [
+            {
+              "imported": "NewsFilterAgentLog",
+              "local": "NewsFilterAgentLog",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "NewsFilterAgentStats",
+              "local": "NewsFilterAgentStats",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 498,
+          "type": "ImportDeclaration"
+        }
+      ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\news\\[id].tsx": [
         {
           "end": 52,
@@ -16483,7 +16524,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 221,
+          "end": 231,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -16551,13 +16592,18 @@
               "imported": "Col",
               "local": "Col",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Switch",
+              "local": "Switch",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 74,
           "type": "ImportDeclaration"
         },
         {
-          "end": 351,
+          "end": 379,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -16585,13 +16631,18 @@
               "imported": "DatabaseOutlined",
               "local": "DatabaseOutlined",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "FilterOutlined",
+              "local": "FilterOutlined",
+              "type": "ImportSpecifier"
             }
           ],
-          "start": 222,
+          "start": 232,
           "type": "ImportDeclaration"
         },
         {
-          "end": 403,
+          "end": 431,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -16606,11 +16657,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 352,
+          "start": 380,
           "type": "ImportDeclaration"
         },
         {
-          "end": 443,
+          "end": 471,
           "importKind": "value",
           "source": "@/services/client",
           "specifiers": [
@@ -16619,11 +16670,25 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 404,
+          "start": 432,
           "type": "ImportDeclaration"
         },
         {
-          "end": 539,
+          "end": 538,
+          "importKind": "value",
+          "source": "@/services/news-filter-agent",
+          "specifiers": [
+            {
+              "imported": "newsFilterAgentApi",
+              "local": "newsFilterAgentApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 472,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 634,
           "importKind": "type",
           "source": "@/services/types",
           "specifiers": [
@@ -16648,7 +16713,7 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 444,
+          "start": 539,
           "type": "ImportDeclaration"
         }
       ],
@@ -20219,6 +20284,21 @@
         }
       ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\llm.ts": [
+        {
+          "end": 31,
+          "importKind": "value",
+          "source": "./client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        }
+      ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\news-filter-agent.ts": [
         {
           "end": 31,
           "importKind": "value",

@@ -9,6 +9,7 @@ import { EventOutput, EventOutputSchema, NewsEventAnalysisSchema, NewsAnalysisIn
 import { DbService } from '../core/db/db.service.js';
 import { EventService, CreateEventDto } from '../modules/event/event.service.js';
 import { SignalGeneratorService } from '../modules/signal-generator/signal-generator.service.js';
+import { NewsFilterAgentService } from '../modules/news-filter-agent/news-filter-agent.service.js';
 import { news, News } from '../core/db/schema.js';
 import { filterAStockSubjects } from '../common/utils/stock.utils.js';
 import { SensitiveContentError } from '../common/errors/index.js';
@@ -28,6 +29,7 @@ export class EventAnalyzeConsumer extends QueueConsumer {
     private readonly dbService: DbService,
     private readonly eventService: EventService,
     private readonly signalGeneratorService: SignalGeneratorService,
+    private readonly newsFilterAgentService: NewsFilterAgentService,
   ) {
     super(configService, {
       queueName: QUEUE_NAMES.EVENT_ANALYZE,
@@ -52,6 +54,20 @@ export class EventAnalyzeConsumer extends QueueConsumer {
       if (newsItem.analyzeStatus === 'analyzed') {
         this.logger.log(`[EventAnalyzeConsumer] News ${newsId} already analyzed, skipping`);
         return;
+      }
+
+      if (newsItem.analyzeStatus === 'filtered') {
+        this.logger.log(`[EventAnalyzeConsumer] News ${newsId} already filtered, skipping`);
+        return;
+      }
+
+      if (newsItem.analyzeStatus !== 'analyzing') {
+        const filterResult = await this.newsFilterAgentService.filterNews(newsId, newsItem.title);
+        if (filterResult.decision === 'skip') {
+          await this.updateNewsAnalyzeStatus(newsId, 'filtered');
+          this.logger.log(`[EventAnalyzeConsumer] News ${newsId} filtered out by agent`);
+          return;
+        }
       }
 
       this.logger.log(`[EventAnalyzeConsumer] Starting event extraction for news ${newsId}`);
@@ -254,7 +270,7 @@ ${publishTime ? `发布时间：${publishTime}` : ''}
     }
   }
 
-  private async updateNewsAnalyzeStatus(newsId: string, status: 'analyzed' | 'failed'): Promise<void> {
+  private async updateNewsAnalyzeStatus(newsId: string, status: 'analyzed' | 'failed' | 'filtered'): Promise<void> {
     try {
       await this.dbService.db
         .update(news)

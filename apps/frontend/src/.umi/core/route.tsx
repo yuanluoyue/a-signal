@@ -4,7 +4,7 @@
 import React from 'react';
 
 export async function getRoutes() {
-  const routes = {"1":{"path":"/login","layout":false,"id":"1"},"2":{"path":"/register","layout":false,"id":"2"},"3":{"path":"/","id":"3"},"4":{"path":"/dashboard","title":"仪表盘","parentId":"3","id":"4"},"5":{"path":"/news","title":"新闻列表","parentId":"3","id":"5"},"6":{"path":"/news/:id","title":"新闻详情","parentId":"3","id":"6"},"7":{"path":"/signals","title":"信号列表","parentId":"3","id":"7"},"8":{"path":"/signals/:id","title":"信号详情","parentId":"3","id":"8"},"9":{"path":"/events","title":"事件列表","parentId":"3","id":"9"},"10":{"path":"/events/:id","title":"事件详情","parentId":"3","id":"10"},"11":{"path":"/signal-rules","title":"信号规则","parentId":"3","id":"11"},"12":{"path":"/strategies","title":"策略管理","parentId":"3","id":"12"},"13":{"path":"/runtime","title":"运行管理","parentId":"3","id":"13"},"14":{"path":"/stocks","title":"股票查询","parentId":"3","id":"14"},"15":{"path":"/stocks/:code","title":"股票详情","parentId":"3","id":"15"},"16":{"path":"/stock-trackings","title":"股票追踪","parentId":"3","id":"16"},"17":{"path":"/stock-trackings/:id","title":"追踪详情","parentId":"3","id":"17"},"18":{"path":"/simulation","title":"账户模拟","parentId":"3","id":"18"},"19":{"path":"/blacklist","title":"黑名单","parentId":"3","id":"19"},"20":{"path":"/backtest","title":"回测分析","parentId":"3","id":"20"},"21":{"path":"/agent-chat","title":"AI 投研助手","parentId":"3","id":"21"},"22":{"path":"/trading-memory","title":"交易经验","parentId":"3","id":"22"},"23":{"path":"/trading-agent","title":"交易 Agent","parentId":"3","id":"23"},"24":{"path":"/llm-center","title":"AI 运行中心","parentId":"3","id":"24"},"25":{"path":"/llm-logs","title":"LLM 日志","parentId":"3","id":"25"},"26":{"path":"/settings/notifications","title":"通知设置","parentId":"3","id":"26"},"27":{"path":"/settings/scheduler","title":"定时任务","parentId":"3","id":"27"},"28":{"path":"/settings/api-keys","title":"API Key 管理","parentId":"3","id":"28"},"29":{"path":"/audit-logs","title":"审计日志","parentId":"3","id":"29"},"30":{"path":"/analysis/overview","title":"综合分析","parentId":"3","id":"30"},"31":{"path":"/analysis/strategies","title":"策略总览","parentId":"3","id":"31"},"32":{"path":"/analysis/strategies/:id","title":"策略详情","parentId":"3","id":"32"},"33":{"path":"/profile","title":"个人资料","parentId":"3","id":"33"},"34":{"path":"/","redirect":"/dashboard","parentId":"3","id":"34"}} as const;
+  const routes = {"1":{"path":"/login","layout":false,"id":"1"},"2":{"path":"/register","layout":false,"id":"2"},"3":{"path":"/","id":"3"},"4":{"path":"/dashboard","title":"仪表盘","parentId":"3","id":"4"},"5":{"path":"/news","title":"新闻列表","parentId":"3","id":"5"},"6":{"path":"/news/:id","title":"新闻详情","parentId":"3","id":"6"},"7":{"path":"/signals","title":"信号列表","parentId":"3","id":"7"},"8":{"path":"/signals/:id","title":"信号详情","parentId":"3","id":"8"},"9":{"path":"/events","title":"事件列表","parentId":"3","id":"9"},"10":{"path":"/events/:id","title":"事件详情","parentId":"3","id":"10"},"11":{"path":"/signal-rules","title":"信号规则","parentId":"3","id":"11"},"12":{"path":"/strategies","title":"策略管理","parentId":"3","id":"12"},"13":{"path":"/runtime","title":"运行管理","parentId":"3","id":"13"},"14":{"path":"/stocks","title":"股票查询","parentId":"3","id":"14"},"15":{"path":"/stocks/:code","title":"股票详情","parentId":"3","id":"15"},"16":{"path":"/stock-trackings","title":"股票追踪","parentId":"3","id":"16"},"17":{"path":"/stock-trackings/:id","title":"追踪详情","parentId":"3","id":"17"},"18":{"path":"/simulation","title":"账户模拟","parentId":"3","id":"18"},"19":{"path":"/blacklist","title":"黑名单","parentId":"3","id":"19"},"20":{"path":"/backtest","title":"回测分析","parentId":"3","id":"20"},"21":{"path":"/agent-chat","title":"AI 投研助手","parentId":"3","id":"21"},"22":{"path":"/trading-memory","title":"交易经验","parentId":"3","id":"22"},"23":{"path":"/trading-agent","title":"交易 Agent","parentId":"3","id":"23"},"24":{"path":"/news-filter-agent","title":"新闻过滤 Agent","parentId":"3","id":"24"},"25":{"path":"/llm-center","title":"AI 运行中心","parentId":"3","id":"25"},"26":{"path":"/llm-logs","title":"LLM 日志","parentId":"3","id":"26"},"27":{"path":"/settings/notifications","title":"通知设置","parentId":"3","id":"27"},"28":{"path":"/settings/scheduler","title":"定时任务","parentId":"3","id":"28"},"29":{"path":"/settings/api-keys","title":"API Key 管理","parentId":"3","id":"29"},"30":{"path":"/audit-logs","title":"审计日志","parentId":"3","id":"30"},"31":{"path":"/analysis/overview","title":"综合分析","parentId":"3","id":"31"},"32":{"path":"/analysis/strategies","title":"策略总览","parentId":"3","id":"32"},"33":{"path":"/analysis/strategies/:id","title":"策略详情","parentId":"3","id":"33"},"34":{"path":"/profile","title":"个人资料","parentId":"3","id":"34"},"35":{"path":"/","redirect":"/dashboard","parentId":"3","id":"35"}} as const;
   return {
     routes,
     routeComponents: {
@@ -31,17 +31,18 @@ export async function getRoutes() {
 '21': React.lazy(() => import(/* webpackChunkName: "p__agent-chat__index" */'@/pages/agent-chat/index.tsx')),
 '22': React.lazy(() => import(/* webpackChunkName: "p__trading-memory__index" */'@/pages/trading-memory/index.tsx')),
 '23': React.lazy(() => import(/* webpackChunkName: "p__trading-agent__index" */'@/pages/trading-agent/index.tsx')),
-'24': React.lazy(() => import(/* webpackChunkName: "p__llm-center__index" */'@/pages/llm-center/index.tsx')),
-'25': React.lazy(() => import(/* webpackChunkName: "p__llm-logs__index" */'@/pages/llm-logs/index.tsx')),
-'26': React.lazy(() => import(/* webpackChunkName: "p__settings__notifications" */'@/pages/settings/notifications.tsx')),
-'27': React.lazy(() => import(/* webpackChunkName: "p__settings__scheduler" */'@/pages/settings/scheduler.tsx')),
-'28': React.lazy(() => import(/* webpackChunkName: "p__settings__api-keys" */'@/pages/settings/api-keys.tsx')),
-'29': React.lazy(() => import(/* webpackChunkName: "p__audit-logs__index" */'@/pages/audit-logs/index.tsx')),
-'30': React.lazy(() => import(/* webpackChunkName: "p__analysis__overview" */'@/pages/analysis/overview.tsx')),
-'31': React.lazy(() => import(/* webpackChunkName: "p__analysis__strategies__index" */'@/pages/analysis/strategies/index.tsx')),
-'32': React.lazy(() => import(/* webpackChunkName: "p__analysis__strategies__id" */'@/pages/analysis/strategies/[id].tsx')),
-'33': React.lazy(() => import(/* webpackChunkName: "p__profile" */'@/pages/profile.tsx')),
-'34': React.lazy(() => import('./EmptyRoute')),
+'24': React.lazy(() => import(/* webpackChunkName: "p__news-filter-agent__index" */'@/pages/news-filter-agent/index.tsx')),
+'25': React.lazy(() => import(/* webpackChunkName: "p__llm-center__index" */'@/pages/llm-center/index.tsx')),
+'26': React.lazy(() => import(/* webpackChunkName: "p__llm-logs__index" */'@/pages/llm-logs/index.tsx')),
+'27': React.lazy(() => import(/* webpackChunkName: "p__settings__notifications" */'@/pages/settings/notifications.tsx')),
+'28': React.lazy(() => import(/* webpackChunkName: "p__settings__scheduler" */'@/pages/settings/scheduler.tsx')),
+'29': React.lazy(() => import(/* webpackChunkName: "p__settings__api-keys" */'@/pages/settings/api-keys.tsx')),
+'30': React.lazy(() => import(/* webpackChunkName: "p__audit-logs__index" */'@/pages/audit-logs/index.tsx')),
+'31': React.lazy(() => import(/* webpackChunkName: "p__analysis__overview" */'@/pages/analysis/overview.tsx')),
+'32': React.lazy(() => import(/* webpackChunkName: "p__analysis__strategies__index" */'@/pages/analysis/strategies/index.tsx')),
+'33': React.lazy(() => import(/* webpackChunkName: "p__analysis__strategies__id" */'@/pages/analysis/strategies/[id].tsx')),
+'34': React.lazy(() => import(/* webpackChunkName: "p__profile" */'@/pages/profile.tsx')),
+'35': React.lazy(() => import('./EmptyRoute')),
 },
   };
 }

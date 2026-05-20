@@ -30,11 +30,13 @@ import { StrategyModule } from './modules/strategy/strategy.module.js';
 import { AuditLogModule } from './modules/audit-log/audit-log.module.js';
 import { TradingMemoryModule } from './modules/trading-memory/trading-memory.module.js';
 import { LlmModule } from './modules/llm/llm.module.js';
+import { NewsFilterAgentModule } from './modules/news-filter-agent/news-filter-agent.module.js';
 import { AuthController } from './interfaces/admin/auth/auth.controller.js';
 import { AuditLogController } from './interfaces/admin/audit-log/audit-log.controller.js';
 import { TradingMemoryController } from './interfaces/admin/trading-memory/trading-memory.controller.js';
 import { TradingAgentController } from './interfaces/admin/trading-agent/trading-agent.controller.js';
 import { LlmController } from './interfaces/admin/llm/llm.controller.js';
+import { NewsFilterAgentController } from './interfaces/admin/news-filter-agent/news-filter-agent.controller.js';
 import { NewsController } from './interfaces/admin/news/news.controller.js';
 import { SignalsController } from './interfaces/admin/signals/signals.controller.js';
 import { SignalRulesController } from './interfaces/admin/signal-rules/signal-rules.controller.js';
@@ -102,6 +104,7 @@ const jwtAuthGuardProvider: Provider = {
     AuditLogModule,
     TradingMemoryModule,
     LlmModule,
+    NewsFilterAgentModule,
   ],
   controllers: [
     AuthController,
@@ -128,6 +131,7 @@ const jwtAuthGuardProvider: Provider = {
     TradingMemoryController,
     TradingAgentController,
     LlmController,
+    NewsFilterAgentController,
   ],
   providers: [
     jwtAuthGuardProvider,

@@ -1111,3 +1111,49 @@ export const llmProviderConfigs = pgTable(
 
 export type LlmProviderConfig = typeof llmProviderConfigs.$inferSelect;
 export type NewLlmProviderConfig = typeof llmProviderConfigs.$inferInsert;
+
+export const newsFilterAgentConfigs = pgTable(
+  'news_filter_agent_configs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    enabled: boolean('enabled').default(false),
+    prompt: text('prompt'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+);
+
+export type NewsFilterAgentConfig = typeof newsFilterAgentConfigs.$inferSelect;
+export type NewNewsFilterAgentConfig = typeof newsFilterAgentConfigs.$inferInsert;
+
+export const newsFilterAgentLogs = pgTable(
+  'news_filter_agent_logs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    newsId: uuid('news_id'),
+    newsTitle: text('news_title'),
+    decision: varchar('decision', { length: 20 }),
+    reasoning: text('reasoning'),
+    confidence: decimal('confidence', { precision: 3, scale: 2 }),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.newsId],
+      foreignColumns: [news.id],
+      name: 'news_filter_agent_logs_news_id_fk',
+    }),
+    index('news_filter_agent_logs_news_id_idx').on(table.newsId),
+    index('news_filter_agent_logs_created_at_idx').on(table.createdAt),
+  ],
+);
+
+export type NewsFilterAgentLog = typeof newsFilterAgentLogs.$inferSelect;
+export type NewNewsFilterAgentLog = typeof newsFilterAgentLogs.$inferInsert;

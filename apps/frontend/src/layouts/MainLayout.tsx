@@ -29,6 +29,7 @@ import {
   CloudServerOutlined,
   FileTextOutlined,
   BulbOutlined,
+  FilterOutlined,
 } from '@ant-design/icons';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
@@ -80,6 +81,7 @@ const MENU_ITEMS = [
     children: [
       { key: '/agent-chat', icon: <MessageOutlined />, label: '研究员 Agent' },
       { key: '/trading-agent', icon: <ThunderboltOutlined />, label: '交易 Agent' },
+      { key: '/news-filter-agent', icon: <FilterOutlined />, label: '新闻过滤 Agent' },
       { key: '/trading-memory', icon: <BulbOutlined />, label: '交易经验' },
       { key: '/llm-center', icon: <CloudServerOutlined />, label: 'AI 运行中心' },
       { key: '/llm-logs', icon: <FileTextOutlined />, label: 'LLM 日志' },
@@ -150,6 +152,8 @@ const getSelectedKey = (pathname: string): string => {
     '/simulation',
     '/agent-chat',
     '/trading-memory',
+    '/trading-agent',
+    '/news-filter-agent',
     '/llm-center',
     '/llm-logs',
     '/analysis/overview',
@@ -180,6 +184,7 @@ const getOpenKeys = (pathname: string): string[] => {
     '/agent-chat': '/agent',
     '/trading-memory': '/agent',
     '/trading-agent': '/agent',
+    '/news-filter-agent': '/agent',
     '/llm-center': '/agent',
     '/llm-logs': '/agent',
     '/analysis/overview': '/analysis',

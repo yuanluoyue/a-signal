@@ -169,6 +169,13 @@
       "when": 1779108622440,
       "tag": "0023_mighty_the_fallen",
       "breakpoints": true
+    },
+    {
+      "idx": 24,
+      "version": "7",
+      "when": 1779268239551,
+      "tag": "0024_typical_psylocke",
+      "breakpoints": true
     }
   ]
 }

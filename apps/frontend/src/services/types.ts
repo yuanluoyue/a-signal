@@ -73,7 +73,7 @@ export interface CreateApiKeyRequest {
 
 export type AnalyzeStatus = 'pending' | 'processing' | 'completed' | 'failed';
 export type VectorizeStatus = 'pending' | 'processing' | 'completed' | 'failed';
-export type AnalysisStatus = 'pending' | 'analyzing' | 'analyzed' | 'failed';
+export type AnalysisStatus = 'pending' | 'analyzing' | 'analyzed' | 'failed' | 'filtered';
 export type VectorizedStatus = 'pending' | 'vectorizing' | 'vectorized' | 'failed';
 
 export interface News {

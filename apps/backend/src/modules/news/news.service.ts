@@ -6,6 +6,7 @@ import { createHash } from 'crypto';
 import { DbService } from '../../core/db/db.service.js';
 import { QueueService } from '../../core/queue/queue.service.js';
 import { VectorService } from '../../core/vector/vector.service.js';
+import { NewsFilterAgentService } from '../news-filter-agent/news-filter-agent.service.js';
 import { news, signals, events, type NewNews } from '../../core/db/schema.js';
 import { QUEUE_NAMES } from '../../core/queue/queue.constants.js';
 import { NewsListQueryDto } from '../../interfaces/admin/news/dto/news-list-query.dto.js';
@@ -41,6 +42,7 @@ export class NewsService {
     private readonly dbService: DbService,
     private readonly queueService: QueueService,
     private readonly vectorService: VectorService,
+    private readonly newsFilterAgentService: NewsFilterAgentService,
   ) {
     this.httpClient = axios.create({
       timeout: 30000,
@@ -409,7 +411,7 @@ export class NewsService {
     };
   }
 
-  async updateAnalyzeStatus(id: string, status: 'pending' | 'analyzing' | 'analyzed' | 'failed'): Promise<void> {
+  async updateAnalyzeStatus(id: string, status: 'pending' | 'analyzing' | 'analyzed' | 'failed' | 'filtered'): Promise<void> {
     await this.dbService.db
       .update(news)
       .set({ analyzeStatus: status })
