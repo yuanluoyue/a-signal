@@ -1,0 +1,27 @@
+- [x] `llm_requests`、`llm_usage_daily`、`llm_provider_configs` 三张表在 schema.ts 中定义，字段符合规范（默认 nullable、uuid 主键、timestamp with timezone）
+- [x] 迁移文件通过 `drizzle-kit generate` 生成，无 DROP/DELETE/TRUNCATE/RENAME 语句
+- [x] seed.ts 中新增 `llm_provider_configs` 种子数据（volcengine 默认配置），幂等插入
+- [x] `ILlmProvider` 接口定义完整，所有 Provider 实现该接口
+- [x] `LlmService.chatCompletion()` 作为唯一入口，编排完整调用链路
+- [x] 缓存功能正常：相同请求在缓存有效期内命中缓存，返回 cacheHit: true
+- [x] 重试策略正常：仅对超时/5xx/429 错误重试，最多 3 次，指数退避
+- [x] 降级功能正常：主 Provider 失败后自动切换到备选 Provider
+- [x] 预算限流正常：超过 dailyBudget 时拒绝请求并记录日志
+- [x] RPM 限流正常：超过 rpmLimit 时拒绝请求并记录日志
+- [x] 每次请求记录到 `llm_requests` 表，包含完整字段
+- [x] 每日用量聚合到 `llm_usage_daily` 表
+- [x] 成本计算正确：根据 model 单价和 token 用量计算 estimatedCost
+- [x] 所有现有 Agent 节点（intent、planner、final、risk-analysis、memory-review、decision）改为通过 LlmService 调用
+- [x] `event-analyze.consumer.ts` 改为通过 LlmService 调用
+- [x] `AgentModule` 不再直接依赖 `VolcengineModule`，改为依赖 `LlmModule`
+- [x] AI 运行中心页面：今日统计（花费 Token、请求数、错误数）正确展示
+- [x] AI 运行中心页面：使用分析按 module 维度展示 Token 消耗
+- [x] AI 运行中心页面：Provider Usage 按 provider/model 维度展示 Token 消耗
+- [x] AI 运行中心页面：Latency Analytics 展示平均响应时间、retry rate、timeout rate
+- [x] AI 运行中心页面：预算配置支持修改各 Provider 的 dailyBudget
+- [x] LLM 日志页面：列表展示模型、prompt 摘要、耗时等，支持分页和筛选
+- [x] LLM 日志页面：点击日志弹出 Drawer 显示完整详情
+- [x] 前端侧边栏菜单新增"AI 运行中心"和"LLM 日志"入口
+- [x] 前端路由配置正确，页面可正常访问
+- [x] `app.module.ts` 正确注册 LlmModule 和 LlmController
+- [x] 现有功能（新闻分析、Agent 对话、交易 Agent）通过网关调用后行为不变

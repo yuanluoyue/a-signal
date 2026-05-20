@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { TradingAgentState, TradingAgentRiskLevel } from '../types/trading-agent-state.js';
-import { VolcengineService } from '../../../../core/volcengine/volcengine.service.js';
+import { LlmService } from '../../../llm/gateway/llm.service.js';
 
 const logger = new Logger('riskAnalysisNode');
 
@@ -38,7 +38,7 @@ const RISK_ANALYSIS_PROMPT = `你是一个专业的交易风险管理分析师�
 
 export async function riskAnalysisNode(
   state: TradingAgentState,
-  volcengineService: VolcengineService,
+  llmService: LlmService,
 ): Promise<Partial<TradingAgentState>> {
   logger.log(`[riskAnalysisNode] Analyzing risk for signal: ${state.signalId}`);
 
@@ -78,13 +78,17 @@ export async function riskAnalysisNode(
       .replace('{{score}}', String(signalInfo.score))
       .replace('{{reason}}', signalInfo.reason);
 
-    const response = await volcengineService.chatCompletion(
-      [
+    const response = await llmService.chatCompletion({
+      module: 'agent-trading',
+      task: 'risk-analysis',
+      messages: [
         { role: 'system', content: '你是一个交易风险管理分析师，只返回JSON格式的风险分析结果。' },
         { role: 'user', content: prompt },
       ],
-      { temperature: 0.1, maxTokens: 500, responseFormat: { type: 'json_object' } },
-    );
+      temperature: 0.1,
+      maxTokens: 500,
+      responseFormat: { type: 'json_object' },
+    });
 
     let parsed: { riskLevel: string; conflictInfo: string; concentrationInfo: string };
     try {

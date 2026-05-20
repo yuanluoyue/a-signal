@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { AgentState } from '../types/agent-state.js';
-import { VolcengineService } from '../../../core/volcengine/volcengine.service.js';
+import { LlmService } from '../../llm/gateway/llm.service.js';
 import { ToolRegistryService } from '../tools/index.js';
 
 const logger = new Logger('plannerNode');
@@ -22,7 +22,7 @@ const PLANNER_PROMPT = `你是专业的投资分析规划助手，负责制定�
 
 export async function plannerNode(
   state: AgentState,
-  volcengineService: VolcengineService,
+  llmService: LlmService,
   toolRegistryService: ToolRegistryService,
 ): Promise<Partial<AgentState>> {
   logger.log(`[plannerNode] Creating plan for intent: ${state.intent}`);
@@ -45,13 +45,16 @@ export async function plannerNode(
       .replace('{{userInput}}', state.userInput)
       .replace('{{chatHistory}}', chatHistoryText || '无');
 
-    const response = await volcengineService.chatCompletion(
-      [
+    const response = await llmService.chatCompletion({
+      module: 'agent-research',
+      task: 'planner',
+      messages: [
         { role: 'system', content: '你是一个规划助手，只返回 JSON 数组格式的工具列表。' },
         { role: 'user', content: prompt },
       ],
-      { temperature: 0.2, maxTokens: 200 },
-    );
+      temperature: 0.2,
+      maxTokens: 200,
+    });
 
     let plan: string[] = [];
     try {

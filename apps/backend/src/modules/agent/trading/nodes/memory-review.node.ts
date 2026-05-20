@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { TradingAgentState } from '../types/trading-agent-state.js';
-import { VolcengineService } from '../../../../core/volcengine/volcengine.service.js';
+import { LlmService } from '../../../llm/gateway/llm.service.js';
 import { TradingMemoryService } from '../../../trading-memory/trading-memory.service.js';
 import { DbService } from '../../../../core/db/db.service.js';
 import { tradingMemories } from '../../../../core/db/schema.js';
@@ -43,7 +43,7 @@ const MEMORY_REVIEW_PROMPT = `你是一个交易经验总结分析师。请根�
 
 export async function memoryReviewNode(
   state: TradingAgentState,
-  volcengineService: VolcengineService,
+  llmService: LlmService,
   tradingMemoryService: TradingMemoryService,
   dbService: DbService,
 ): Promise<Partial<TradingAgentState>> {
@@ -78,13 +78,17 @@ export async function memoryReviewNode(
       .replace('{{executionResult}}', state.executionResult?.success ? '成功' : `失败: ${state.executionResult?.error || ''}`)
       .replace('{{existingMemories}}', existingMemoriesText);
 
-    const response = await volcengineService.chatCompletion(
-      [
+    const response = await llmService.chatCompletion({
+      module: 'agent-trading',
+      task: 'memory-review',
+      messages: [
         { role: 'system', content: '你是一个交易经验总结分析师，只返回JSON格式的分析结果。' },
         { role: 'user', content: prompt },
       ],
-      { temperature: 0.2, maxTokens: 500, responseFormat: { type: 'json_object' } },
-    );
+      temperature: 0.2,
+      maxTokens: 500,
+      responseFormat: { type: 'json_object' },
+    });
 
     let parsed: { shouldCreate: boolean; type?: string; title?: string; summary?: string; confidence?: number };
     try {

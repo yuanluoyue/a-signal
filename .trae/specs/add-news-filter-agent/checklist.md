@@ -1,0 +1,18 @@
+- [x] `news_filter_agent_configs` 表和 `news_filter_agent_logs` 表已在 schema.ts 中定义，字段和索引符合规格
+- [x] 迁移文件已通过 `drizzle-kit generate` 生成，无 DROP/DELETE/TRUNCATE 语句
+- [x] NewsFilterAgentService.filterNews() 正确调用 LLM 并使用 Zod Schema 验证输出
+- [x] NewsFilterAgentService.filterNews() 在 LLM 失败时返回兜底结果（decision: analyze）
+- [x] NewsFilterAgentService 包含默认 Prompt 模板，模板中有 `{newsTitle}` 占位符
+- [x] NewsFilterAgentController 4 个端点均可正常访问（GET/PUT config, GET logs, GET stats）
+- [x] EventAnalyzeConsumer 在 extractEventsFromNews() 前正确调用过滤 Agent
+- [x] 过滤 Agent 判定为 skip 时，新闻 analyzeStatus 更新为 'filtered'
+- [x] 过滤 Agent 未启用时，事件分析流程不受影响
+- [x] NewsController.analyzeNews() 手动分析时同样经过过滤 Agent 判断
+- [x] 新闻管理页面显示过滤 Agent 开关卡片，Switch 状态与后端配置同步
+- [x] 新闻管理页面分析状态筛选包含 'filtered' 选项，状态列 Tag 正确显示
+- [x] 新闻过滤 Agent 页面统计卡片正确展示今日数据
+- [x] Prompt 编辑器支持编辑、保存、恢复默认，保存时校验 `{newsTitle}` 占位符
+- [x] 判断日志列表支持分页、按 decision 筛选，新闻标题可点击跳转
+- [x] MainLayout AI 智能体菜单下新增"新闻过滤 Agent"菜单项
+- [x] .umirc.ts 新增 `/news-filter-agent` 路由
+- [x] seed.ts 新增 `news_filter_agent_configs` 默认配置数据

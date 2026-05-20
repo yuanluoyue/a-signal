@@ -487,6 +487,97 @@ async function seed() {
       console.log('Trading agent runtime already exists for admin user');
     }
 
+    // ==================== LLM 供应商配置数据 ====================
+    console.log('Seeding LLM provider configs...');
+
+    const providerConfigs = [
+      {
+        provider: 'volcengine',
+        enabled: true,
+        baseUrl: 'https://ark.cn-beijing.volces.com/api/v3',
+        defaultModel: 'deepseek-v3-2-251201',
+        rpmLimit: 60,
+        dailyBudget: 1000000,
+      },
+      {
+        provider: 'deepseek',
+        enabled: false,
+        baseUrl: 'https://api.deepseek.com/v1',
+        defaultModel: 'deepseek-chat',
+        rpmLimit: 60,
+        dailyBudget: 1000000,
+      },
+      {
+        provider: 'openrouter',
+        enabled: false,
+        baseUrl: 'https://openrouter.ai/api/v1',
+        defaultModel: 'deepseek/deepseek-chat',
+        rpmLimit: 60,
+        dailyBudget: 1000000,
+      },
+      {
+        provider: 'ollama',
+        enabled: false,
+        baseUrl: 'http://localhost:11434',
+        defaultModel: 'deepseek-r1:8b',
+        rpmLimit: 120,
+        dailyBudget: null,
+      },
+    ];
+
+    for (const config of providerConfigs) {
+      const existing = await db
+        .select()
+        .from(schema.llmProviderConfigs)
+        .where(eq(schema.llmProviderConfigs.provider, config.provider));
+      if (existing.length === 0) {
+        await db.insert(schema.llmProviderConfigs).values(config);
+        console.log(`Created LLM provider config: ${config.provider}`);
+      } else {
+        console.log(`LLM provider config already exists: ${config.provider}`);
+      }
+    }
+
+    // ==================== 新闻过滤 Agent 配置数据 ====================
+    console.log('Seeding news filter agent configs...');
+
+    const existingFilterConfig = await db
+      .select()
+      .from(schema.newsFilterAgentConfigs)
+      .limit(1);
+
+    if (existingFilterConfig.length === 0) {
+      await db.insert(schema.newsFilterAgentConfigs).values({
+        enabled: false,
+        prompt: `你是一个金融新闻过滤器。你的任务是根据新闻标题判断这条新闻是否值得进行深度金融事件分析。
+
+判断标准：
+1. 新闻是否与金融市场、股票、经济政策相关
+2. 新闻是否可能包含影响交易决策的信息
+3. 新闻是否涉及上市公司、行业政策、宏观经济等
+
+应该跳过（skip）的新闻类型：
+- 纯娱乐、体育新闻
+- 与金融市场无关的社会新闻
+- 重复或无实质内容的新闻
+- 广告或推广内容
+
+应该通过（analyze）的新闻类型：
+- 上市公司相关新闻（业绩、并购、重组等）
+- 宏观经济政策新闻（利率、GDP、通胀等）
+- 行业政策变化新闻
+- 市场行情相关新闻
+- 国际贸易、地缘政治对市场有影响的新闻
+
+请根据新闻标题做出判断，返回 JSON 格式结果。
+
+新闻标题：{newsTitle}`,
+      });
+      console.log('Created default news filter agent config');
+    } else {
+      console.log('News filter agent config already exists');
+    }
+
   } catch (error) {
     console.error('Seed failed:', error);
     throw error;

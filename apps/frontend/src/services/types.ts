@@ -73,7 +73,7 @@ export interface CreateApiKeyRequest {
 
 export type AnalyzeStatus = 'pending' | 'processing' | 'completed' | 'failed';
 export type VectorizeStatus = 'pending' | 'processing' | 'completed' | 'failed';
-export type AnalysisStatus = 'pending' | 'analyzing' | 'analyzed' | 'failed';
+export type AnalysisStatus = 'pending' | 'analyzing' | 'analyzed' | 'failed' | 'filtered';
 export type VectorizedStatus = 'pending' | 'vectorizing' | 'vectorized' | 'failed';
 
 export interface News {
@@ -781,6 +781,49 @@ export interface TradingAgentRuntime {
   accountId: string | null;
   status: 'running' | 'stopped';
   lastRunAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+// ==================== LLM 运行中心相关类型 ====================
+
+export interface LlmTodayStats {
+  totalTokens: number;
+  totalRequests: number;
+  totalErrors: number;
+  totalCost: number;
+}
+
+export interface LlmModuleUsage {
+  module: string;
+  totalTokens: number;
+  totalRequests: number;
+  totalCost: number;
+}
+
+export interface LlmProviderUsage {
+  provider: string;
+  model: string;
+  totalTokens: number;
+  totalRequests: number;
+  totalCost: number;
+}
+
+export interface LlmLatencyStats {
+  avgLatencyMs: number;
+  retryRate: number;
+  timeoutRate: number;
+}
+
+export interface LlmProviderConfig {
+  id: string;
+  provider: string;
+  enabled: boolean;
+  apiKey: string | null;
+  baseUrl: string | null;
+  defaultModel: string | null;
+  rpmLimit: number | null;
+  dailyBudget: number | null;
   createdAt: string;
   updatedAt: string;
 }

@@ -121,6 +121,21 @@ export default defineConfig({
           title: '交易 Agent',
         },
         {
+          path: '/news-filter-agent',
+          component: '@/pages/news-filter-agent/index',
+          title: '新闻过滤 Agent',
+        },
+        {
+          path: '/llm-center',
+          component: '@/pages/llm-center/index',
+          title: 'AI 运行中心',
+        },
+        {
+          path: '/llm-logs',
+          component: '@/pages/llm-logs/index',
+          title: 'LLM 日志',
+        },
+        {
           path: '/settings/notifications',
           component: '@/pages/settings/notifications',
           title: '通知设置',

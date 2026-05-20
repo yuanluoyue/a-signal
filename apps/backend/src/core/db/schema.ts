@@ -1007,3 +1007,153 @@ export const tradingAgentRuntimes = pgTable(
 
 export type TradingAgentRuntime = typeof tradingAgentRuntimes.$inferSelect;
 export type NewTradingAgentRuntime = typeof tradingAgentRuntimes.$inferInsert;
+
+export const llmRequests = pgTable(
+  'llm_requests',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    module: varchar('module', { length: 50 }),
+    task: varchar('task', { length: 50 }),
+    provider: varchar('provider', { length: 50 }),
+    model: varchar('model', { length: 100 }),
+    userId: uuid('user_id'),
+    requestId: varchar('request_id', { length: 100 }),
+    traceId: varchar('trace_id', { length: 100 }),
+    promptTokens: integer('prompt_tokens'),
+    completionTokens: integer('completion_tokens'),
+    totalTokens: integer('total_tokens'),
+    estimatedCost: decimal('estimated_cost', { precision: 18, scale: 8 }),
+    latencyMs: integer('latency_ms'),
+    success: boolean('success').default(false),
+    errorMessage: text('error_message'),
+    retryCount: integer('retry_count'),
+    cacheHit: boolean('cache_hit').default(false),
+    metadata: jsonb('metadata'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.userId],
+      foreignColumns: [users.id],
+      name: 'llm_requests_user_id_fk',
+    }),
+    index('llm_requests_module_idx').on(table.module),
+    index('llm_requests_provider_idx').on(table.provider),
+    index('llm_requests_model_idx').on(table.model),
+    index('llm_requests_user_id_idx').on(table.userId),
+    index('llm_requests_success_idx').on(table.success),
+    index('llm_requests_created_at_idx').on(table.createdAt),
+  ],
+);
+
+export type LlmRequest = typeof llmRequests.$inferSelect;
+export type NewLlmRequest = typeof llmRequests.$inferInsert;
+
+export const llmUsageDaily = pgTable(
+  'llm_usage_daily',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    date: timestamp('date', { withTimezone: true }),
+    module: varchar('module', { length: 50 }),
+    provider: varchar('provider', { length: 50 }),
+    totalRequests: integer('total_requests'),
+    totalTokens: integer('total_tokens'),
+    totalCost: decimal('total_cost', { precision: 18, scale: 8 }),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    index('llm_usage_daily_date_idx').on(table.date),
+    index('llm_usage_daily_module_idx').on(table.module),
+    index('llm_usage_daily_provider_idx').on(table.provider),
+    uniqueIndex('llm_usage_daily_date_module_provider_unique_idx').on(
+      table.date,
+      table.module,
+      table.provider,
+    ),
+  ],
+);
+
+export type LlmUsageDaily = typeof llmUsageDaily.$inferSelect;
+export type NewLlmUsageDaily = typeof llmUsageDaily.$inferInsert;
+
+export const llmProviderConfigs = pgTable(
+  'llm_provider_configs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    provider: varchar('provider', { length: 50 }).unique(),
+    enabled: boolean('enabled').default(true),
+    apiKey: varchar('api_key', { length: 500 }),
+    baseUrl: varchar('base_url', { length: 500 }),
+    defaultModel: varchar('default_model', { length: 100 }),
+    rpmLimit: integer('rpm_limit'),
+    dailyBudget: integer('daily_budget'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    uniqueIndex('llm_provider_configs_provider_unique_idx').on(table.provider),
+    index('llm_provider_configs_enabled_idx').on(table.enabled),
+  ],
+);
+
+export type LlmProviderConfig = typeof llmProviderConfigs.$inferSelect;
+export type NewLlmProviderConfig = typeof llmProviderConfigs.$inferInsert;
+
+export const newsFilterAgentConfigs = pgTable(
+  'news_filter_agent_configs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    enabled: boolean('enabled').default(false),
+    prompt: text('prompt'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+);
+
+export type NewsFilterAgentConfig = typeof newsFilterAgentConfigs.$inferSelect;
+export type NewNewsFilterAgentConfig = typeof newsFilterAgentConfigs.$inferInsert;
+
+export const newsFilterAgentLogs = pgTable(
+  'news_filter_agent_logs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    newsId: uuid('news_id'),
+    newsTitle: text('news_title'),
+    decision: varchar('decision', { length: 20 }),
+    reasoning: text('reasoning'),
+    confidence: decimal('confidence', { precision: 3, scale: 2 }),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.newsId],
+      foreignColumns: [news.id],
+      name: 'news_filter_agent_logs_news_id_fk',
+    }),
+    index('news_filter_agent_logs_news_id_idx').on(table.newsId),
+    index('news_filter_agent_logs_created_at_idx').on(table.createdAt),
+  ],
+);
+
+export type NewsFilterAgentLog = typeof newsFilterAgentLogs.$inferSelect;
+export type NewNewsFilterAgentLog = typeof newsFilterAgentLogs.$inferInsert;

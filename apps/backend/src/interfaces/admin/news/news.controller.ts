@@ -16,6 +16,7 @@ import { NewsService } from '../../../modules/news/news.service.js';
 import { SignalsService } from '../../../modules/signals/signals.service.js';
 import { EventService } from '../../../modules/event/event.service.js';
 import { QueueService } from '../../../core/queue/queue.service.js';
+import { NewsFilterAgentService } from '../../../modules/news-filter-agent/news-filter-agent.service.js';
 import { Public } from '../../../common/decorators/public.decorator.js';
 import { NewsListQueryDto } from './dto/news-list-query.dto.js';
 import { QUEUE_NAMES } from '../../../core/queue/queue.constants.js';
@@ -29,6 +30,7 @@ export class NewsController {
     private readonly signalsService: SignalsService,
     private readonly eventService: EventService,
     private readonly queueService: QueueService,
+    private readonly newsFilterAgentService: NewsFilterAgentService,
   ) {}
 
   @Get()
@@ -173,6 +175,16 @@ export class NewsController {
         message: '新闻正在分析中，请稍后再试',
         newsId: id,
         status: news.analyzeStatus,
+      };
+    }
+
+    const filterResult = await this.newsFilterAgentService.filterNews(id, news.title);
+    if (filterResult.decision === 'skip') {
+      await this.newsService.updateAnalyzeStatus(id, 'filtered');
+      return {
+        message: '该新闻被过滤 Agent 判定为无需分析',
+        newsId: id,
+        filterReason: filterResult.reasoning,
       };
     }
 

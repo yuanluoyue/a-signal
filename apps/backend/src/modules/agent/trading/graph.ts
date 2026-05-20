@@ -2,7 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { TradingAgentState, initialTradingAgentState } from './types/trading-agent-state.js';
 import { SimulationService } from '../../simulation/simulation.service.js';
 import { TradingMemoryService } from '../../trading-memory/trading-memory.service.js';
-import { VolcengineService } from '../../../core/volcengine/volcengine.service.js';
+import { LlmService } from '../../llm/gateway/llm.service.js';
 import { DbService } from '../../../core/db/db.service.js';
 import {
   contextLoadNode,
@@ -20,7 +20,7 @@ export class TradingAgentGraph {
   constructor(
     private readonly simulationService: SimulationService,
     private readonly tradingMemoryService: TradingMemoryService,
-    private readonly volcengineService: VolcengineService,
+    private readonly llmService: LlmService,
     private readonly dbService: DbService,
   ) {}
 
@@ -45,11 +45,11 @@ export class TradingAgentGraph {
       state = { ...state, ...contextResult };
 
       this.logger.debug('[TradingAgentGraph] Executing riskAnalysis node');
-      const riskResult = await riskAnalysisNode(state, this.volcengineService);
+      const riskResult = await riskAnalysisNode(state, this.llmService);
       state = { ...state, ...riskResult };
 
       this.logger.debug('[TradingAgentGraph] Executing decision node');
-      const decisionResult = await decisionNode(state, this.volcengineService);
+      const decisionResult = await decisionNode(state, this.llmService);
       state = { ...state, ...decisionResult };
 
       if (state.decision === 'approved' && state.positionAction) {
@@ -63,7 +63,7 @@ export class TradingAgentGraph {
       this.logger.debug('[TradingAgentGraph] Executing memoryReview node');
       const memoryResult = await memoryReviewNode(
         state,
-        this.volcengineService,
+        this.llmService,
         this.tradingMemoryService,
         this.dbService,
       );

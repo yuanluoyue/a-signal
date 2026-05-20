@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { AgentState, AgentIntent } from '../types/agent-state.js';
-import { VolcengineService } from '../../../core/volcengine/volcengine.service.js';
+import { LlmService } from '../../llm/gateway/llm.service.js';
 
 const logger = new Logger('intentNode');
 
@@ -25,7 +25,7 @@ const INTENT_PROMPT = `你是专业的投资分析助手，负责识别用户的
 
 export async function intentNode(
   state: AgentState,
-  volcengineService: VolcengineService,
+  llmService: LlmService,
 ): Promise<Partial<AgentState>> {
   logger.log(`[intentNode] Analyzing intent for: ${state.userInput.slice(0, 50)}...`);
 
@@ -38,13 +38,16 @@ export async function intentNode(
       .replace('{{chatHistory}}', chatHistoryText || '无')
       .replace('{{userInput}}', state.userInput);
 
-    const response = await volcengineService.chatCompletion(
-      [
+    const response = await llmService.chatCompletion({
+      module: 'agent-research',
+      task: 'intent',
+      messages: [
         { role: 'system', content: '你是一个意图识别助手，只返回意图名称。' },
         { role: 'user', content: prompt },
       ],
-      { temperature: 0.1, maxTokens: 50 },
-    );
+      temperature: 0.1,
+      maxTokens: 50,
+    });
 
     const intent = response.trim().toLowerCase() as AgentIntent;
     const validIntents: AgentIntent[] = [

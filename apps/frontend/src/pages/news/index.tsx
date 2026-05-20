@@ -13,6 +13,7 @@ import {
   Progress,
   Row,
   Col,
+  Switch,
 } from 'antd';
 import {
   EyeOutlined,
@@ -20,30 +21,34 @@ import {
   ReloadOutlined,
   SearchOutlined,
   DatabaseOutlined,
+  FilterOutlined,
 } from '@ant-design/icons';
 import { useNavigate, useSearchParams } from 'umi';
 import client from '@/services/client';
+import { newsFilterAgentApi } from '@/services/news-filter-agent';
 import type { NewsItem, NewsFilter, AnalysisStatus, VectorizedStatus } from '@/services/types';
 
 const { Title } = Typography;
 const { Option } = Select;
 
-const getAnalysisStatusColor = (status: AnalysisStatus): string => {
-  const colorMap: Record<AnalysisStatus, string> = {
+const getAnalysisStatusColor = (status: AnalysisStatus | 'filtered'): string => {
+  const colorMap: Record<AnalysisStatus | 'filtered', string> = {
     pending: 'default',
     analyzing: 'processing',
     analyzed: 'success',
     failed: 'error',
+    filtered: 'warning',
   };
   return colorMap[status];
 };
 
-const getAnalysisStatusText = (status: AnalysisStatus): string => {
-  const textMap: Record<AnalysisStatus, string> = {
+const getAnalysisStatusText = (status: AnalysisStatus | 'filtered'): string => {
+  const textMap: Record<AnalysisStatus | 'filtered', string> = {
     pending: '待分析',
     analyzing: '分析中',
     analyzed: '已分析',
     failed: '失败',
+    filtered: '已过滤',
   };
   return textMap[status];
 };
@@ -112,6 +117,8 @@ const NewsListPage: React.FC = () => {
     failed: 0,
     total: 0,
   });
+  const [filterAgentEnabled, setFilterAgentEnabled] = useState(false);
+  const [filterAgentLoading, setFilterAgentLoading] = useState(false);
 
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -201,10 +208,33 @@ const NewsListPage: React.FC = () => {
     }
   };
 
+  const fetchFilterAgentConfig = async () => {
+    try {
+      const config = await newsFilterAgentApi.getConfig();
+      setFilterAgentEnabled(config.enabled);
+    } catch (error) {
+      console.error('Fetch filter agent config error:', error);
+    }
+  };
+
+  const handleFilterAgentToggle = async (checked: boolean) => {
+    setFilterAgentLoading(true);
+    try {
+      await newsFilterAgentApi.updateConfig({ enabled: checked });
+      setFilterAgentEnabled(checked);
+      message.success(checked ? '新闻过滤 Agent 已启用' : '新闻过滤 Agent 已禁用');
+    } catch {
+      message.error('更新过滤 Agent 状态失败');
+    } finally {
+      setFilterAgentLoading(false);
+    }
+  };
+
   // 初始加载
   useEffect(() => {
     fetchData();
     fetchVectorizeProgress();
+    fetchFilterAgentConfig();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -222,12 +252,15 @@ const NewsListPage: React.FC = () => {
   };
 
   const handleAnalyze = async (newsId: string) => {
+    setData(prev => prev.map(item => 
+      item.id === newsId ? { ...item, analysisStatus: 'analyzing' as const } : item
+    ));
     try {
       await client.post(`/news/${newsId}/analyze`);
       message.success(`新闻 ${newsId} 分析任务已提交`);
-      fetchData();
     } catch {
       message.error('分析失败');
+      fetchData();
     }
   };
 
@@ -396,7 +429,7 @@ const NewsListPage: React.FC = () => {
       <Title level={2}>新闻管理</Title>
 
       <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
-        <Col span={24}>
+        <Col xs={24} lg={12}>
           <Card title="向量化进度" size="small">
             <Row gutter={[16, 16]} align="middle">
               <Col xs={24} lg={12} xl={14}>
@@ -412,6 +445,22 @@ const NewsListPage: React.FC = () => {
                   <Tag color="processing">向量化中: {vectorizeProgress.vectorizing}</Tag>
                   <Tag color="success">已完成: {vectorizeProgress.vectorized}</Tag>
                   <Tag color="error">失败: {vectorizeProgress.failed}</Tag>
+                </Space>
+              </Col>
+            </Row>
+          </Card>
+        </Col>
+        <Col xs={24} lg={12}>
+          <Card title="新闻过滤 Agent" size="small">
+            <Row gutter={[16, 16]} align="middle">
+              <Col flex="auto">
+                <Space>
+                  <Switch
+                    checked={filterAgentEnabled}
+                    onChange={handleFilterAgentToggle}
+                    loading={filterAgentLoading}
+                  />
+                  <span>{filterAgentEnabled ? '已启用，新闻将先经过 Agent 过滤' : '已禁用'}</span>
                 </Space>
               </Col>
             </Row>
@@ -453,6 +502,7 @@ const NewsListPage: React.FC = () => {
             <Option value="analyzing">分析中</Option>
             <Option value="analyzed">已分析</Option>
             <Option value="failed">失败</Option>
+            <Option value="filtered">已过滤</Option>
           </Select>
           <Button icon={<ReloadOutlined />} onClick={handleRefresh}>
             刷新

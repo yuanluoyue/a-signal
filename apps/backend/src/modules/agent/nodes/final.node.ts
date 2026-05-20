@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { AgentState } from '../types/agent-state.js';
-import { VolcengineService } from '../../../core/volcengine/volcengine.service.js';
+import { LlmService } from '../../llm/gateway/llm.service.js';
 
 const logger = new Logger('finalNode');
 
@@ -41,7 +41,7 @@ const FINAL_PROMPT = `用户意图：{{intent}}
 
 export async function finalNode(
   state: AgentState,
-  volcengineService: VolcengineService,
+  llmService: LlmService,
 ): Promise<Partial<AgentState>> {
   logger.debug(`[finalNode] Generating final answer`);
 
@@ -67,13 +67,16 @@ export async function finalNode(
       .replace('{{relevantMemories}}', relevantMemoriesText)
       .replace('{{observations}}', observationsText);
 
-    const response = await volcengineService.chatCompletion(
-      [
+    const response = await llmService.chatCompletion({
+      module: 'agent-research',
+      task: 'final',
+      messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: prompt },
       ],
-      { temperature: 0.7, maxTokens: 2000 },
-    );
+      temperature: 0.7,
+      maxTokens: 2000,
+    });
 
     logger.debug(`[finalNode] Generated answer length: ${response.length}`);
 
