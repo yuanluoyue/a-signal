@@ -48,7 +48,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 12
       },
       "enableBy": "register"
     },
@@ -61,7 +61,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 100
+        "register": 80
       },
       "enableBy": "register"
     },
@@ -78,7 +78,7 @@
             0
           ]
         },
-        "register": 68
+        "register": 62
       },
       "enableBy": "register"
     },
@@ -92,10 +92,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            3
+            4
           ]
         },
-        "register": 123
+        "register": 63
       },
       "enableBy": "register"
     },
@@ -109,10 +109,20 @@
       "time": {
         "hooks": {
           "modifyRoutes": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 20
+        "register": 15
       },
       "enableBy": "register"
     },
@@ -126,13 +136,22 @@
       "time": {
         "hooks": {
           "onDevCompileDone": [
-            71,
+            48,
+            4,
+            3,
+            4,
+            4,
             6,
             5,
-            7
+            3,
+            5,
+            3,
+            5,
+            4,
+            4
           ]
         },
-        "register": 30
+        "register": 23
       },
       "enableBy": "register"
     },
@@ -146,13 +165,23 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            112
+            114
           ],
           "onGenerateFiles": [
-            6
+            6,
+            20,
+            20,
+            22,
+            15,
+            21,
+            18,
+            19,
+            15,
+            18,
+            15
           ]
         },
-        "register": 887
+        "register": 201
       },
       "enableBy": "register"
     },
@@ -166,10 +195,20 @@
       "time": {
         "hooks": {
           "addEntryCode": [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 16
+        "register": 13
       },
       "enableBy": "register"
     },
@@ -183,6 +222,7 @@
       "time": {
         "hooks": {
           "onCheckConfig": [
+            0,
             0
           ],
           "onCheck": [
@@ -191,10 +231,18 @@
           "onPrepareBuildSuccess": [
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onCheckCode": [
-            0,
             1,
             0,
             0,
@@ -235,49 +283,10 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 24
+        "register": 21
       },
       "enableBy": "register"
     },
@@ -294,7 +303,7 @@
             0
           ]
         },
-        "register": 23
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -307,7 +316,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 29
+        "register": 25
       },
       "enableBy": "config"
     },
@@ -321,10 +330,11 @@
       "time": {
         "hooks": {
           "modifyConfig": [
+            1,
             0
           ]
         },
-        "register": 183
+        "register": 167
       },
       "enableBy": "register"
     },
@@ -1176,7 +1186,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 14
       },
       "enableBy": "config"
     },
@@ -1193,7 +1203,7 @@
             0
           ]
         },
-        "register": 26
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -1207,10 +1217,10 @@
       "time": {
         "hooks": {
           "addBeforeMiddlewares": [
-            48
+            41
           ]
         },
-        "register": 29
+        "register": 17
       },
       "enableBy": "register"
     },
@@ -1223,7 +1233,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 625
+        "register": 390
       },
       "enableBy": "register"
     },
@@ -1236,7 +1246,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1717
+        "register": 1042
       },
       "enableBy": "config"
     },
@@ -1249,7 +1259,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 362
+        "register": 306
       },
       "enableBy": "config"
     },
@@ -1275,10 +1285,108 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 22
+        "register": 17
       },
       "enableBy": "register"
     },
@@ -1292,13 +1400,33 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            7
+            13,
+            2,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            2
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 33
+        "register": 17
       },
       "enableBy": "register"
     },
@@ -1311,7 +1439,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 49
+        "register": 24
       },
       "enableBy": "config"
     },
@@ -1325,13 +1453,13 @@
       "time": {
         "hooks": {
           "onStart": [
-            1
+            2
           ],
           "addBeforeMiddlewares": [
             1
           ]
         },
-        "register": 847
+        "register": 238
       }
     },
     "@umijs/preset-umi/dist/features/mpa/mpa": {
@@ -1343,7 +1471,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 34
+        "register": 23
       },
       "enableBy": "config"
     },
@@ -1356,7 +1484,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 20
+        "register": 16
       }
     },
     "@umijs/preset-umi/dist/features/overrides/overrides": {
@@ -1369,14 +1497,44 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addEntryImports": [
             0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 1
+        "register": 0
       },
       "enableBy": "register"
     },
@@ -1389,7 +1547,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 25
       },
       "enableBy": "config"
     },
@@ -1403,17 +1561,48 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            13
+            8,
+            0
           ],
           "onGenerateFiles": [
-            244
+            185,
+            54,
+            29,
+            27,
+            31,
+            33,
+            36,
+            34,
+            28,
+            28,
+            26
           ],
           "addPolyfillImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0
           ]
         },
-        "register": 34
+        "register": 40
       }
     },
     "@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill": {
@@ -1427,10 +1616,30 @@
         "hooks": {
           "addPolyfillImports": [
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
-        "register": 15
+        "register": 19
       },
       "enableBy": "register"
     },
@@ -1444,10 +1653,20 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            372
+            338,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
           ]
         },
-        "register": 27
+        "register": 35
       },
       "enableBy": "register"
     },
@@ -1460,7 +1679,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 14
+        "register": 12
       },
       "enableBy": "config"
     },
@@ -1473,7 +1692,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 17
+        "register": 16
       },
       "enableBy": "config"
     },
@@ -1487,13 +1706,23 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            0
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
           ],
           "addBeforeMiddlewares": [
             0
           ]
         },
-        "register": 18
+        "register": 17
       },
       "enableBy": "register"
     },
@@ -1507,11 +1736,31 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            32,
-            16
+            79,
+            46,
+            48,
+            7,
+            37,
+            5,
+            37,
+            4,
+            38,
+            4,
+            41,
+            7,
+            43,
+            7,
+            45,
+            4,
+            38,
+            4,
+            38,
+            4,
+            38,
+            4
           ]
         },
-        "register": 88
+        "register": 85
       },
       "enableBy": "register"
     },
@@ -1537,7 +1786,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 15
+        "register": 13
       }
     },
     "@umijs/preset-umi/dist/features/ssr/ssr": {
@@ -1549,7 +1798,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 39
+        "register": 36
       },
       "enableBy": "config"
     },
@@ -1563,10 +1812,20 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            1295
+            946,
+            21,
+            9,
+            7,
+            7,
+            15,
+            13,
+            9,
+            8,
+            10,
+            9
           ]
         },
-        "register": 65
+        "register": 58
       },
       "enableBy": "register"
     },
@@ -1583,7 +1842,7 @@
             0
           ]
         },
-        "register": 56
+        "register": 46
       },
       "enableBy": "register"
     },
@@ -1596,7 +1855,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 51
+        "register": 60
       },
       "enableBy": "config"
     },
@@ -1609,7 +1868,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 21
+        "register": 23
       },
       "enableBy": "config"
     },
@@ -1622,7 +1881,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 121
+        "register": 144
       }
     },
     "@umijs/preset-umi/dist/features/monorepo/redirect": {
@@ -1634,7 +1893,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 427
+        "register": 368
       },
       "enableBy": "config"
     },
@@ -1648,7 +1907,17 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            4
+            17,
+            2,
+            1,
+            2,
+            1,
+            2,
+            2,
+            1,
+            1,
+            1,
+            1
           ]
         },
         "register": 21
@@ -1663,7 +1932,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 16
       },
       "enableBy": "config"
     },
@@ -1676,7 +1945,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 27
+        "register": 19
       },
       "enableBy": "config"
     },
@@ -1689,7 +1958,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 13
       },
       "enableBy": "config"
     },
@@ -1702,7 +1971,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 36
+        "register": 30
       }
     },
     "@umijs/preset-umi/dist/features/swc/swc": {
@@ -1718,7 +1987,7 @@
             0
           ]
         },
-        "register": 14
+        "register": 16
       },
       "enableBy": "register"
     },
@@ -1731,7 +2000,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 60
+        "register": 64
       }
     },
     "@umijs/preset-umi/dist/features/mako/mako": {
@@ -1743,7 +2012,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 19
+        "register": 18
       },
       "enableBy": "config"
     },
@@ -1756,7 +2025,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 21
+        "register": 19
       }
     },
     "@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
@@ -1768,7 +2037,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 37
+        "register": 34
       }
     },
     "@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
@@ -1781,7 +2050,105 @@
       "time": {
         "hooks": {
           "addHTMLHeadScripts": [
-            65,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1790,7 +2157,7 @@
             0
           ]
         },
-        "register": 188
+        "register": 171
       }
     },
     "@umijs/preset-umi/dist/features/forget/forget": {
@@ -1802,7 +2169,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 28
+        "register": 25
       },
       "enableBy": "config"
     },
@@ -1816,10 +2183,10 @@
       "time": {
         "hooks": {
           "modifyUniBundler": [
-            8395
+            8128
           ]
         },
-        "register": 29
+        "register": 32
       },
       "enableBy": "register"
     },
@@ -1832,7 +2199,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 92
+        "register": 86
       },
       "enableBy": "register"
     },
@@ -1845,7 +2212,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 289
+        "register": 301
       },
       "enableBy": "register"
     },
@@ -1862,7 +2229,7 @@
             18
           ]
         },
-        "register": 1048
+        "register": 1018
       }
     },
     "@umijs/preset-umi/dist/commands/help": {
@@ -1874,7 +2241,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 25
+        "register": 28
       },
       "enableBy": "register"
     },
@@ -1887,7 +2254,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 28
+        "register": 22
       },
       "enableBy": "register"
     },
@@ -1900,7 +2267,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 25
+        "register": 31
       },
       "enableBy": "register"
     },
@@ -1913,7 +2280,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 31
+        "register": 25
       },
       "enableBy": "register"
     },
@@ -1939,7 +2306,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 67
+        "register": 49
       },
       "enableBy": "register"
     },
@@ -1952,7 +2319,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 25
+        "register": 17
       },
       "enableBy": "register"
     },
@@ -1965,7 +2332,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 23
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -1978,7 +2345,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 27
+        "register": 19
       },
       "enableBy": "register"
     },
@@ -1991,7 +2358,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 23
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -2004,7 +2371,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 23
+        "register": 21
       },
       "enableBy": "register"
     },
@@ -2017,7 +2384,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 27
+        "register": 24
       },
       "enableBy": "register"
     },
@@ -2030,7 +2397,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 23
+        "register": 21
       },
       "enableBy": "register"
     },
@@ -2043,7 +2410,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 28
+        "register": 25
       },
       "enableBy": "register"
     },
@@ -2056,7 +2423,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 31
+        "register": 23
       },
       "enableBy": "register"
     },
@@ -2069,7 +2436,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 34
+        "register": 20
       },
       "enableBy": "register"
     },
@@ -2082,7 +2449,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 24
+        "register": 20
       },
       "enableBy": "register"
     },
@@ -2095,7 +2462,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 49
+        "register": 36
       },
       "enableBy": "register"
     },
@@ -2108,7 +2475,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 163
+        "register": 162
       },
       "enableBy": "register"
     },
@@ -2121,7 +2488,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 24
+        "register": 23
       },
       "enableBy": "register"
     },
@@ -2134,7 +2501,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 77
+        "register": 57
       },
       "enableBy": "register"
     },
@@ -2147,7 +2514,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 31
+        "register": 19
       },
       "enableBy": "register"
     },
@@ -2161,35 +2528,86 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            35
+            22,
+            0
           ],
           "modifyAppData": [
-            1
+            0
           ],
           "onCheck": [
             0
           ],
           "addEntryImportsAhead": [
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePluginKey": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
-            5
+            21,
+            3,
+            2,
+            1,
+            1,
+            4,
+            2,
+            2,
+            4,
+            2,
+            1
           ],
           "addExtraBabelPlugins": [
             0
           ],
           "chainWebpack": [
-            0
+            1
           ]
         },
-        "register": 149
+        "register": 115
       }
     },
     "./node_modules/@umijs/plugins/dist/model": {
@@ -2202,16 +2620,36 @@
       "time": {
         "hooks": {
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
-            58
+            65,
+            57,
+            45,
+            52,
+            53,
+            52,
+            92,
+            71,
+            55,
+            56,
+            53
           ],
           "addTmpGenerateWatcherPaths": [
-            0
+            1
           ]
         },
-        "register": 92
+        "register": 58
       },
       "enableBy": "config"
     },
@@ -2226,22 +2664,72 @@
         "hooks": {
           "addEntryImportsAhead": [
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
             0
           ],
           "addRuntimePluginKey": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
-            37
+            113,
+            29,
+            24,
+            28,
+            30,
+            27,
+            34,
+            29,
+            26,
+            24,
+            25
           ],
           "addTmpGenerateWatcherPaths": [
             15
           ]
         },
-        "register": 73
+        "register": 48
       },
       "enableBy": "config"
     }
@@ -3632,7 +4120,7 @@
       "file": "@/pages/register.tsx",
       "id": "2",
       "absPath": "/register",
-      "__content": "import React, { useEffect, useState } from 'react';\nimport { Form, Input, Button, Card, Typography, message } from 'antd';\nimport { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';\nimport { useNavigate, Link } from 'umi';\nimport { authApi } from '@/services/auth';\nimport { setToken, setUser, isAuthenticated } from '@/utils/auth';\n\nconst { Title } = Typography;\n\nconst RegisterPage: React.FC = () => {\n  const navigate = useNavigate();\n  const [loading, setLoading] = useState(false);\n\n  useEffect(() => {\n    if (isAuthenticated()) {\n      navigate('/dashboard');\n    }\n  }, [navigate]);\n\n  const handleSubmit = async (values: { \n    nickname: string; \n    email: string; \n    password: string;\n    confirmPassword: string;\n  }) => {\n    if (values.password !== values.confirmPassword) {\n      message.error('两次输入的密码不一致');\n      return;\n    }\n\n    setLoading(true);\n    try {\n      const response = await authApi.register({\n        nickname: values.nickname,\n        email: values.email,\n        password: values.password,\n      });\n      \n      setToken(response.access_token, false);\n      setUser(response.user, false);\n      \n      message.success('注册成功');\n      navigate('/dashboard');\n    } catch (error) {\n      console.error('Register error:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  return (\n    <div\n      style={{\n        minHeight: '100vh',\n        display: 'flex',\n        alignItems: 'center',\n        justifyContent: 'center',\n        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n        padding: '20px',\n      }}\n    >\n      <Card\n        style={{\n          width: '100%',\n          maxWidth: 420,\n          borderRadius: 16,\n          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',\n        }}\n      >\n        <div style={{ textAlign: 'center', marginBottom: 32 }}>\n          <Title level={2} style={{ margin: 0, color: '#1890ff' }}>\n            注册账号\n          </Title>\n          <p style={{ color: '#666', marginTop: 8 }}>创建您的 A Signal 账户</p>\n        </div>\n\n        <Form\n          name=\"register\"\n          onFinish={handleSubmit}\n          autoComplete=\"off\"\n          size=\"large\"\n        >\n          <Form.Item\n            name=\"nickname\"\n            rules={[\n              { required: true, message: '请输入昵称' },\n              { min: 2, message: '昵称至少2个字符' },\n              { max: 20, message: '昵称最多20个字符' },\n            ]}\n          >\n            <Input\n              prefix={<UserOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"昵称\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"email\"\n            rules={[\n              { required: true, message: '请输入邮箱' },\n              { type: 'email', message: '请输入有效的邮箱地址' },\n            ]}\n          >\n            <Input\n              prefix={<MailOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"邮箱\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"password\"\n            rules={[\n              { required: true, message: '请输入密码' },\n              { min: 6, message: '密码至少6位' },\n            ]}\n          >\n            <Input.Password\n              prefix={<LockOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"密码\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"confirmPassword\"\n            rules={[\n              { required: true, message: '请确认密码' },\n            ]}\n          >\n            <Input.Password\n              prefix={<LockOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"确认密码\"\n            />\n          </Form.Item>\n\n          <Form.Item>\n            <Button\n              type=\"primary\"\n              htmlType=\"submit\"\n              loading={loading}\n              block\n              size=\"large\"\n              style={{ borderRadius: 8 }}\n            >\n              注册\n            </Button>\n          </Form.Item>\n\n          <div style={{ textAlign: 'center' }}>\n            <span style={{ color: '#666' }}>已有账号？</span>\n            <Link to=\"/login\" style={{ marginLeft: 8 }}>\n              立即登录\n            </Link>\n          </div>\n        </Form>\n      </Card>\n    </div>\n  );\n};\n\nexport default RegisterPage;\n",
+      "__content": "import React, { useEffect, useState } from 'react';\nimport { Form, Input, Button, Card, Typography, message } from 'antd';\nimport { UserOutlined, LockOutlined, MailOutlined, SafetyCertificateOutlined } from '@ant-design/icons';\nimport { useNavigate, Link } from 'umi';\nimport { authApi } from '@/services/auth';\nimport { setToken, setUser, isAuthenticated } from '@/utils/auth';\n\nconst { Title } = Typography;\n\nconst RegisterPage: React.FC = () => {\n  const navigate = useNavigate();\n  const [loading, setLoading] = useState(false);\n\n  useEffect(() => {\n    if (isAuthenticated()) {\n      navigate('/dashboard');\n    }\n  }, [navigate]);\n\n  const handleSubmit = async (values: { \n    nickname: string; \n    email: string; \n    password: string;\n    confirmPassword: string;\n    inviteCode?: string;\n  }) => {\n    if (values.password !== values.confirmPassword) {\n      message.error('两次输入的密码不一致');\n      return;\n    }\n\n    setLoading(true);\n    try {\n      const response = await authApi.register({\n        nickname: values.nickname,\n        email: values.email,\n        password: values.password,\n        inviteCode: values.inviteCode,\n      });\n      \n      setToken(response.access_token, false);\n      setUser(response.user, false);\n      \n      message.success('注册成功');\n      navigate('/dashboard');\n    } catch (error) {\n      console.error('Register error:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  return (\n    <div\n      style={{\n        minHeight: '100vh',\n        display: 'flex',\n        alignItems: 'center',\n        justifyContent: 'center',\n        background: '#fff',\n        padding: '20px',\n      }}\n    >\n      <Card\n        style={{\n          width: '100%',\n          maxWidth: 420,\n          borderRadius: 16,\n          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',\n        }}\n      >\n        <div style={{ textAlign: 'center', marginBottom: 32 }}>\n          <Title level={2} style={{ margin: 0, color: '#1890ff' }}>\n            注册账号\n          </Title>\n          <p style={{ color: '#666', marginTop: 8 }}>创建您的 A Signal 账户</p>\n        </div>\n\n        <Form\n          name=\"register\"\n          onFinish={handleSubmit}\n          autoComplete=\"off\"\n          size=\"large\"\n        >\n          <Form.Item\n            name=\"nickname\"\n            rules={[\n              { required: true, message: '请输入昵称' },\n              { min: 2, message: '昵称至少2个字符' },\n              { max: 20, message: '昵称最多20个字符' },\n            ]}\n          >\n            <Input\n              prefix={<UserOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"昵称\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"email\"\n            rules={[\n              { required: true, message: '请输入邮箱' },\n              { type: 'email', message: '请输入有效的邮箱地址' },\n            ]}\n          >\n            <Input\n              prefix={<MailOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"邮箱\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"password\"\n            rules={[\n              { required: true, message: '请输入密码' },\n              { min: 6, message: '密码至少6位' },\n            ]}\n          >\n            <Input.Password\n              prefix={<LockOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"密码\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"confirmPassword\"\n            rules={[\n              { required: true, message: '请确认密码' },\n            ]}\n          >\n            <Input.Password\n              prefix={<LockOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"确认密码\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"inviteCode\"\n          >\n            <Input\n              prefix={<SafetyCertificateOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"邀请码\"\n            />\n          </Form.Item>\n\n          <Form.Item>\n            <Button\n              type=\"primary\"\n              htmlType=\"submit\"\n              loading={loading}\n              block\n              size=\"large\"\n              style={{ borderRadius: 8 }}\n            >\n              注册\n            </Button>\n          </Form.Item>\n\n          <div style={{ textAlign: 'center' }}>\n            <span style={{ color: '#666' }}>已有账号？</span>\n            <Link to=\"/login\" style={{ marginLeft: 8 }}>\n              立即登录\n            </Link>\n          </div>\n        </Form>\n      </Card>\n    </div>\n  );\n};\n\nexport default RegisterPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/register.tsx"
     },
@@ -3641,7 +4129,7 @@
       "file": "@/layouts/MainLayout.tsx",
       "id": "3",
       "absPath": "/",
-      "__content": "import React, { useState, useMemo, useCallback, Suspense } from 'react';\nimport { Layout, Menu, theme } from 'antd';\nimport {\n  DashboardOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n  KeyOutlined,\n  DatabaseOutlined,\n  FundOutlined,\n  ThunderboltOutlined,\n  AuditOutlined,\n  ExperimentOutlined,\n  CodeOutlined,\n  DollarOutlined,\n  ControlOutlined,\n  MessageOutlined,\n  BarChartOutlined,\n  PieChartOutlined,\n  CloudServerOutlined,\n  FileTextOutlined,\n  BulbOutlined,\n  FilterOutlined,\n} from '@ant-design/icons';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\nimport PageLoading from '@/components/PageLoading';\n\nconst { Sider, Content } = Layout;\n\nconst MENU_ITEMS = [\n  {\n    key: '/dashboard',\n    icon: <DashboardOutlined />,\n    label: '仪表盘',\n  },\n  {\n    key: '/data',\n    icon: <DatabaseOutlined />,\n    label: '数据中心',\n    children: [\n      { key: '/news', icon: <ReadOutlined />, label: '新闻管理' },\n      { key: '/stocks', icon: <SearchOutlined />, label: '股票查询' },\n      { key: '/stock-trackings', icon: <EyeOutlined />, label: '股票追踪' },\n    ],\n  },\n  {\n    key: '/strategy',\n    icon: <ExperimentOutlined />,\n    label: '策略中心',\n    children: [\n      { key: '/signal-rules', icon: <SettingOutlined />, label: '信号规则' },\n      { key: '/signals', icon: <BellOutlined />, label: '信号管理' },\n      { key: '/events', icon: <ThunderboltOutlined />, label: '事件管理' },\n      { key: '/strategies', icon: <CodeOutlined />, label: '策略管理' },\n      { key: '/backtest', icon: <LineChartOutlined />, label: '回测记录' },\n    ],\n  },\n  {\n    key: '/trading',\n    icon: <WalletOutlined />,\n    label: '交易中心',\n    children: [\n      { key: '/runtime', icon: <ControlOutlined />, label: '运行管理' },\n      { key: '/simulation', icon: <DollarOutlined />, label: '账户模拟' },\n    ],\n  },\n  {\n    key: '/agent',\n    icon: <RobotOutlined />,\n    label: 'AI 智能体',\n    children: [\n      { key: '/agent-chat', icon: <MessageOutlined />, label: '研究员 Agent' },\n      { key: '/trading-agent', icon: <ThunderboltOutlined />, label: '交易 Agent' },\n      { key: '/news-filter-agent', icon: <FilterOutlined />, label: '新闻过滤 Agent' },\n      { key: '/trading-memory', icon: <BulbOutlined />, label: '交易经验' },\n      { key: '/llm-center', icon: <CloudServerOutlined />, label: 'AI 运行中心' },\n      { key: '/llm-logs', icon: <FileTextOutlined />, label: 'LLM 日志' },\n    ],\n  },\n  {\n    key: '/analysis',\n    icon: <FundOutlined />,\n    label: '分析中心',\n    children: [\n      { key: '/analysis/overview', icon: <BarChartOutlined />, label: '综合分析' },\n      { key: '/analysis/strategies', icon: <PieChartOutlined />, label: '策略总览' },\n    ],\n  },\n  {\n    key: '/settings',\n    icon: <SettingOutlined />,\n    label: '系统设置',\n    children: [\n      { key: '/settings/notifications', icon: <NotificationOutlined />, label: '通知设置' },\n      { key: '/settings/scheduler', icon: <ClockCircleOutlined />, label: '定时任务' },\n      { key: '/settings/api-keys', icon: <KeyOutlined />, label: 'API Key' },\n      { key: '/blacklist', icon: <BlockOutlined />, label: '黑名单' },\n      { key: '/audit-logs', icon: <AuditOutlined />, label: '审计日志' },\n    ],\n  },\n];\n\nconst getSelectedKey = (pathname: string): string => {\n  const pathParts = pathname.split('/').filter(Boolean);\n  \n  if (pathParts.length === 0) {\n    return '/dashboard';\n  }\n  \n  const basePath = `/${pathParts[0]}`;\n  \n  if (pathParts.length >= 2) {\n    const secondLevelPath = `/${pathParts[0]}/${pathParts[1]}`;\n    const knownSecondLevelPaths = [\n      '/settings/notifications',\n      '/settings/scheduler',\n      '/settings/api-keys',\n      '/analysis/overview',\n      '/analysis/strategies',\n    ];\n    \n    if (knownSecondLevelPaths.includes(secondLevelPath)) {\n      return secondLevelPath;\n    }\n\n  if (pathParts.length >= 3 && pathParts[0] === 'analysis' && pathParts[1] === 'strategies') {\n    return '/analysis/strategies';\n  }\n  }\n  \n  const knownFirstLevelPaths = [\n    '/dashboard',\n    '/news',\n    '/stocks',\n    '/stock-trackings',\n    '/signal-rules',\n    '/signals',\n    '/events',\n    '/strategies',\n    '/backtest',\n    '/runtime',\n    '/simulation',\n    '/agent-chat',\n    '/trading-memory',\n    '/trading-agent',\n    '/news-filter-agent',\n    '/llm-center',\n    '/llm-logs',\n    '/analysis/overview',\n    '/analysis/strategies',\n    '/blacklist',\n    '/audit-logs',\n  ];\n  \n  if (knownFirstLevelPaths.includes(basePath)) {\n    return basePath;\n  }\n  \n  return pathname;\n};\n\nconst getOpenKeys = (pathname: string): string[] => {\n  const pathToParentMap: Record<string, string> = {\n    '/news': '/data',\n    '/stocks': '/data',\n    '/stock-trackings': '/data',\n    '/signal-rules': '/strategy',\n    '/signals': '/strategy',\n    '/events': '/strategy',\n    '/strategies': '/strategy',\n    '/backtest': '/strategy',\n    '/runtime': '/trading',\n    '/simulation': '/trading',\n    '/agent-chat': '/agent',\n    '/trading-memory': '/agent',\n    '/trading-agent': '/agent',\n    '/news-filter-agent': '/agent',\n    '/llm-center': '/agent',\n    '/llm-logs': '/agent',\n    '/analysis/overview': '/analysis',\n    '/analysis/strategies': '/analysis',\n    '/settings/notifications': '/settings',\n    '/settings/scheduler': '/settings',\n    '/settings/api-keys': '/settings',\n    '/blacklist': '/settings',\n    '/audit-logs': '/settings',\n  };\n  \n  const openKeys: string[] = [];\n  const selectedKey = getSelectedKey(pathname);\n  const parentKey = pathToParentMap[selectedKey];\n  if (parentKey) {\n    openKeys.push(parentKey);\n  }\n  return openKeys;\n};\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  const handleMenuClick = useCallback(({ key }: { key: string }) => {\n    navigate(key);\n  }, [navigate]);\n\n  const handleToggle = useCallback(() => {\n    setCollapsed(prev => !prev);\n  }, []);\n\n  const handleLogoClick = useCallback(() => {\n    navigate('/dashboard');\n  }, [navigate]);\n\n  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname)], [location.pathname]);\n  const defaultOpenKeys = useMemo(() => getOpenKeys(location.pathname), [location.pathname]);\n\n  const siderStyle = useMemo(() => ({\n    height: '100vh',\n    position: 'fixed' as const,\n    left: 0,\n    top: 0,\n    bottom: 0,\n    zIndex: 100,\n  }), []);\n\n  const logoStyle = useMemo(() => ({\n    height: 64,\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: collapsed ? 'center' : 'flex-start',\n    padding: collapsed ? 0 : '0 20px',\n    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n    cursor: 'pointer',\n    gap: 10,\n    whiteSpace: 'nowrap' as const,\n  }), [collapsed]);\n\n  const menuContainerStyle = useMemo(() => ({\n    height: 'calc(100vh - 64px)',\n    overflow: 'auto' as const,\n    overflowX: 'hidden' as const,\n  }), []);\n\n  const layoutStyle = useMemo(() => ({\n    marginLeft: collapsed ? 80 : 200,\n    transition: 'margin-left 0.2s',\n  }), [collapsed]);\n\n  const contentStyle = useMemo(() => ({\n    margin: '88px 16px 24px',\n    padding: 24,\n    minHeight: 280,\n    background: colorBgContainer,\n    borderRadius: borderRadiusLG,\n    overflow: location.pathname === '/agent-chat' ? 'hidden' as const : 'auto' as const,\n  }), [colorBgContainer, borderRadiusLG, location.pathname]);\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={siderStyle}\n      >\n        <div onClick={handleLogoClick} style={logoStyle}>\n          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          {!collapsed && (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <div style={menuContainerStyle} className=\"custom-scrollbar\">\n          <Menu\n            theme=\"dark\"\n            mode=\"inline\"\n            selectedKeys={selectedKeys}\n            defaultOpenKeys={defaultOpenKeys}\n            items={MENU_ITEMS}\n            onClick={handleMenuClick}\n            style={{ borderRight: 0 }}\n          />\n        </div>\n      </Sider>\n      <Layout style={layoutStyle}>\n        <Header collapsed={collapsed} onToggle={handleToggle} />\n        <Content style={contentStyle}>\n          <Suspense fallback={<PageLoading />}>\n            <Outlet />\n          </Suspense>\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
+      "__content": "import React, { useState, useMemo, useCallback, Suspense, useEffect } from 'react';\nimport { Layout, Menu, theme, Spin } from 'antd';\nimport {\n  DashboardOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n  KeyOutlined,\n  DatabaseOutlined,\n  FundOutlined,\n  ThunderboltOutlined,\n  AuditOutlined,\n  ExperimentOutlined,\n  CodeOutlined,\n  DollarOutlined,\n  ControlOutlined,\n  MessageOutlined,\n  BarChartOutlined,\n  PieChartOutlined,\n  CloudServerOutlined,\n  FileTextOutlined,\n  BulbOutlined,\n  FilterOutlined,\n  UserOutlined,\n  MenuOutlined,\n} from '@ant-design/icons';\nimport type { MenuProps } from 'antd';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\nimport PageLoading from '@/components/PageLoading';\nimport { menuApi } from '@/services/menu';\nimport type { MenuItem } from '@/services/types';\nimport { useUser } from '@/contexts/UserContext';\n\nconst { Sider, Content } = Layout;\n\nconst iconMap: Record<string, React.ReactNode> = {\n  DashboardOutlined: <DashboardOutlined />,\n  DatabaseOutlined: <DatabaseOutlined />,\n  ReadOutlined: <ReadOutlined />,\n  SearchOutlined: <SearchOutlined />,\n  EyeOutlined: <EyeOutlined />,\n  ExperimentOutlined: <ExperimentOutlined />,\n  SettingOutlined: <SettingOutlined />,\n  BellOutlined: <BellOutlined />,\n  ThunderboltOutlined: <ThunderboltOutlined />,\n  CodeOutlined: <CodeOutlined />,\n  LineChartOutlined: <LineChartOutlined />,\n  WalletOutlined: <WalletOutlined />,\n  ControlOutlined: <ControlOutlined />,\n  DollarOutlined: <DollarOutlined />,\n  RobotOutlined: <RobotOutlined />,\n  MessageOutlined: <MessageOutlined />,\n  FilterOutlined: <FilterOutlined />,\n  BulbOutlined: <BulbOutlined />,\n  CloudServerOutlined: <CloudServerOutlined />,\n  FileTextOutlined: <FileTextOutlined />,\n  FundOutlined: <FundOutlined />,\n  BarChartOutlined: <BarChartOutlined />,\n  PieChartOutlined: <PieChartOutlined />,\n  NotificationOutlined: <NotificationOutlined />,\n  ClockCircleOutlined: <ClockCircleOutlined />,\n  KeyOutlined: <KeyOutlined />,\n  BlockOutlined: <BlockOutlined />,\n  AuditOutlined: <AuditOutlined />,\n  UserOutlined: <UserOutlined />,\n  MenuOutlined: <MenuOutlined />,\n};\n\nconst buildMenuItems = (menus: MenuItem[]): MenuProps['items'] => {\n  const topMenus = menus.filter(m => !m.parentId);\n  const childMenus = menus.filter(m => m.parentId);\n\n  return topMenus\n    .sort((a, b) => a.sort - b.sort)\n    .map(menu => {\n      const children = childMenus\n        .filter(c => c.parentId === menu.id)\n        .sort((a, b) => a.sort - b.sort);\n\n      if (children.length > 0) {\n        return {\n          key: menu.path || menu.id,\n          icon: menu.icon ? iconMap[menu.icon] : undefined,\n          label: menu.name,\n          children: children.map(child => ({\n            key: child.path || child.id,\n            icon: child.icon ? iconMap[child.icon] : undefined,\n            label: child.name,\n          })),\n        };\n      }\n\n      return {\n        key: menu.path || menu.id,\n        icon: menu.icon ? iconMap[menu.icon] : undefined,\n        label: menu.name,\n      };\n    });\n};\n\nconst buildPathToParentMap = (menus: MenuItem[]): Record<string, string> => {\n  const map: Record<string, string> = {};\n  const topMenus = menus.filter(m => !m.parentId);\n  const childMenus = menus.filter(m => m.parentId);\n\n  for (const parent of topMenus) {\n    const children = childMenus.filter(c => c.parentId === parent.id);\n    for (const child of children) {\n      if (child.path) {\n        map[child.path] = parent.path || parent.id;\n      }\n    }\n  }\n\n  return map;\n};\n\nconst getSelectedKey = (pathname: string, allPaths: string[]): string => {\n  if (allPaths.includes(pathname)) {\n    return pathname;\n  }\n\n  const pathParts = pathname.split('/').filter(Boolean);\n  if (pathParts.length >= 3 && pathParts[0] === 'analysis' && pathParts[1] === 'strategies') {\n    return '/analysis/strategies';\n  }\n\n  if (pathParts.length >= 2) {\n    const parentPath = `/${pathParts[0]}/${pathParts[1]}`;\n    if (allPaths.includes(parentPath)) {\n      return parentPath;\n    }\n  }\n\n  if (pathParts.length >= 1) {\n    const basePath = `/${pathParts[0]}`;\n    if (allPaths.includes(basePath)) {\n      return basePath;\n    }\n  }\n\n  return pathname;\n};\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);\n  const [menuLoading, setMenuLoading] = useState(true);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const { user } = useUser();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  useEffect(() => {\n    const fetchMenus = async () => {\n      try {\n        setMenuLoading(true);\n        const menus = await menuApi.getMyMenus();\n        console.log('[MainLayout] Fetched menus:', menus.length, menus.map(m => m.name));\n        setMenuItems(menus);\n      } catch (error) {\n        console.error('[MainLayout] Failed to fetch menus:', error);\n      } finally {\n        setMenuLoading(false);\n      }\n    };\n\n    fetchMenus();\n  }, [user?.role]);\n\n  const antdMenuItems = useMemo(() => buildMenuItems(menuItems), [menuItems]);\n\n  const allPaths = useMemo(() => {\n    const paths: string[] = [];\n    for (const menu of menuItems) {\n      if (menu.path) paths.push(menu.path);\n    }\n    return paths;\n  }, [menuItems]);\n\n  const pathToParentMap = useMemo(() => buildPathToParentMap(menuItems), [menuItems]);\n\n  const handleMenuClick = useCallback(({ key }: { key: string }) => {\n    if (key.startsWith('/')) {\n      navigate(key);\n    }\n  }, [navigate]);\n\n  const handleToggle = useCallback(() => {\n    setCollapsed(prev => !prev);\n  }, []);\n\n  const handleLogoClick = useCallback(() => {\n    navigate('/dashboard');\n  }, [navigate]);\n\n  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname, allPaths)], [location.pathname, allPaths]);\n  const defaultOpenKeys = useMemo(() => {\n    const selectedKey = getSelectedKey(location.pathname, allPaths);\n    const parentKey = pathToParentMap[selectedKey];\n    return parentKey ? [parentKey] : [];\n  }, [location.pathname, allPaths, pathToParentMap]);\n\n  const siderStyle = useMemo(() => ({\n    height: '100vh',\n    position: 'fixed' as const,\n    left: 0,\n    top: 0,\n    bottom: 0,\n    zIndex: 100,\n  }), []);\n\n  const logoStyle = useMemo(() => ({\n    height: 64,\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: collapsed ? 'center' : 'flex-start',\n    padding: collapsed ? 0 : '0 20px',\n    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n    cursor: 'pointer',\n    gap: 10,\n    whiteSpace: 'nowrap' as const,\n  }), [collapsed]);\n\n  const menuContainerStyle = useMemo(() => ({\n    height: 'calc(100vh - 64px)',\n    overflow: 'auto' as const,\n    overflowX: 'hidden' as const,\n  }), []);\n\n  const layoutStyle = useMemo(() => ({\n    marginLeft: collapsed ? 80 : 200,\n    transition: 'margin-left 0.2s',\n  }), [collapsed]);\n\n  const contentStyle = useMemo(() => ({\n    margin: '88px 16px 24px',\n    padding: 24,\n    minHeight: 280,\n    background: colorBgContainer,\n    borderRadius: borderRadiusLG,\n    overflow: location.pathname === '/agent-chat' ? 'hidden' as const : 'auto' as const,\n  }), [colorBgContainer, borderRadiusLG, location.pathname]);\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={siderStyle}\n      >\n        <div onClick={handleLogoClick} style={logoStyle}>\n          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          {!collapsed && (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <div style={menuContainerStyle} className=\"custom-scrollbar\">\n          {menuLoading ? (\n            <div style={{ display: 'flex', justifyContent: 'center', padding: '20px 0' }}>\n              <Spin />\n            </div>\n          ) : (\n            <Menu\n              theme=\"dark\"\n              mode=\"inline\"\n              selectedKeys={selectedKeys}\n              defaultOpenKeys={defaultOpenKeys}\n              items={antdMenuItems}\n              onClick={handleMenuClick}\n              style={{ borderRight: 0 }}\n            />\n          )}\n        </div>\n      </Sider>\n      <Layout style={layoutStyle}>\n        <Header collapsed={collapsed} onToggle={handleToggle} />\n        <Content style={contentStyle}>\n          <Suspense fallback={<PageLoading />}>\n            <Outlet />\n          </Suspense>\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/layouts/MainLayout.tsx"
     },
@@ -3663,7 +4151,7 @@
       "parentId": "3",
       "id": "5",
       "absPath": "/news",
-      "__content": "import React, { useState, useEffect, useCallback, useRef } from 'react';\nimport {\n  Table,\n  Card,\n  Button,\n  Tag,\n  Tooltip,\n  Space,\n  Select,\n  Input,\n  Typography,\n  message,\n  Progress,\n  Row,\n  Col,\n  Switch,\n} from 'antd';\nimport {\n  EyeOutlined,\n  PlayCircleOutlined,\n  ReloadOutlined,\n  SearchOutlined,\n  DatabaseOutlined,\n  FilterOutlined,\n} from '@ant-design/icons';\nimport { useNavigate, useSearchParams } from 'umi';\nimport client from '@/services/client';\nimport { newsFilterAgentApi } from '@/services/news-filter-agent';\nimport type { NewsItem, NewsFilter, AnalysisStatus, VectorizedStatus } from '@/services/types';\n\nconst { Title } = Typography;\nconst { Option } = Select;\n\nconst getAnalysisStatusColor = (status: AnalysisStatus | 'filtered'): string => {\n  const colorMap: Record<AnalysisStatus | 'filtered', string> = {\n    pending: 'default',\n    analyzing: 'processing',\n    analyzed: 'success',\n    failed: 'error',\n    filtered: 'warning',\n  };\n  return colorMap[status];\n};\n\nconst getAnalysisStatusText = (status: AnalysisStatus | 'filtered'): string => {\n  const textMap: Record<AnalysisStatus | 'filtered', string> = {\n    pending: '待分析',\n    analyzing: '分析中',\n    analyzed: '已分析',\n    failed: '失败',\n    filtered: '已过滤',\n  };\n  return textMap[status];\n};\n\nconst getVectorizedStatusColor = (status: VectorizedStatus | 'vectorizing'): string => {\n  const colorMap: Record<VectorizedStatus | 'vectorizing', string> = {\n    pending: 'default',\n    vectorizing: 'processing',\n    vectorized: 'success',\n    failed: 'error',\n  };\n  return colorMap[status];\n};\n\nconst getVectorizedStatusText = (status: VectorizedStatus | 'vectorizing'): string => {\n  const textMap: Record<VectorizedStatus | 'vectorizing', string> = {\n    pending: '待处理',\n    vectorizing: '向量化中',\n    vectorized: '已向量化',\n    failed: '失败',\n  };\n  return textMap[status];\n};\n\nconst truncateTitle = (title: string, maxLength: number = 10): string => {\n  if (title.length <= maxLength) return title;\n  return title.slice(0, maxLength) + '...';\n};\n\nconst formatDate = (dateString: string): string => {\n  const date = new Date(dateString);\n  return date.toLocaleString('zh-CN', {\n    year: 'numeric',\n    month: '2-digit',\n    day: '2-digit',\n    hour: '2-digit',\n    minute: '2-digit',\n  });\n};\n\nconst NewsListPage: React.FC = () => {\n  const navigate = useNavigate();\n  const [searchParams, setSearchParams] = useSearchParams();\n\n  // 从 URL 读取初始参数\n  const getInitialPage = () => parseInt(searchParams.get('page') || '1', 10);\n  const getInitialPageSize = () => parseInt(searchParams.get('pageSize') || '10', 10);\n  const getInitialFilters = (): NewsFilter => ({\n    keyword: searchParams.get('keyword') || undefined,\n    source: searchParams.get('source') || undefined,\n    analysisStatus: (searchParams.get('analysisStatus') as AnalysisStatus) || undefined,\n  });\n\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<NewsItem[]>([]);\n  const [pagination, setPagination] = useState({\n    current: getInitialPage(),\n    pageSize: getInitialPageSize(),\n    total: 0,\n  });\n  const [filters, setFilters] = useState<NewsFilter>(getInitialFilters());\n  const [vectorizeProgress, setVectorizeProgress] = useState({\n    pending: 0,\n    vectorizing: 0,\n    vectorized: 0,\n    failed: 0,\n    total: 0,\n  });\n  const [filterAgentEnabled, setFilterAgentEnabled] = useState(false);\n  const [filterAgentLoading, setFilterAgentLoading] = useState(false);\n\n  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  // 更新 URL 参数\n  const updateUrlParams = useCallback((page: number, pageSize: number, currentFilters: NewsFilter) => {\n    const params: Record<string, string> = {\n      page: page.toString(),\n      pageSize: pageSize.toString(),\n    };\n    if (currentFilters.keyword) params.keyword = currentFilters.keyword;\n    if (currentFilters.source) params.source = currentFilters.source;\n    if (currentFilters.analysisStatus) params.analysisStatus = currentFilters.analysisStatus;\n    setSearchParams(params);\n  }, [setSearchParams]);\n\n  const fetchData = useCallback(async (page?: number, pageSize?: number, currentFilters?: NewsFilter) => {\n    const targetPage = page ?? pagination.current;\n    const targetPageSize = pageSize ?? pagination.pageSize;\n    const targetFilters = currentFilters ?? filters;\n\n    setLoading(true);\n    try {\n      const params: Record<string, unknown> = {\n        page: targetPage,\n        pageSize: targetPageSize,\n      };\n\n      if (targetFilters.source) {\n        params.source = targetFilters.source;\n      }\n      if (targetFilters.analysisStatus) {\n        params.analyzeStatus = targetFilters.analysisStatus;\n      }\n      if (targetFilters.keyword) {\n        params.keyword = targetFilters.keyword;\n      }\n\n      const response = await client.get('/news', { params });\n      const responseData = response;\n\n      // 转换后端数据格式到前端格式\n      const newsList: NewsItem[] = (responseData.data || []).map((item: Record<string, unknown>) => ({\n        id: item.id,\n        title: item.title,\n        content: item.content,\n        source: item.source,\n        url: item.originalUrl,\n        analysisStatus: item.analyzeStatus,\n        vectorizedStatus: item.vectorizeStatus,\n        eventCount: item.eventCount || 0,\n        publishedAt: item.publishTime,\n        createdAt: item.createdAt,\n        updatedAt: item.updatedAt,\n      }));\n\n      setData(newsList);\n      const newTotal = responseData.total ?? newsList.length;\n      setPagination({\n        current: targetPage,\n        pageSize: targetPageSize,\n        total: newTotal,\n      });\n\n      // 更新 URL 参数\n      updateUrlParams(targetPage, targetPageSize, targetFilters);\n    } catch (error) {\n      message.error('获取新闻列表失败');\n      console.error('Fetch news error:', error);\n    } finally {\n      setLoading(false);\n    }\n  }, [pagination.current, pagination.pageSize, filters, updateUrlParams]);\n\n  const fetchVectorizeProgress = async () => {\n    try {\n      const response = await client.get('/news/vectorize-progress');\n      const { pending, vectorizing, vectorized, failed } = response.data;\n      setVectorizeProgress({\n        pending,\n        vectorizing,\n        vectorized,\n        failed,\n        total: pending + vectorizing + vectorized + failed,\n      });\n    } catch (error) {\n      console.error('Fetch vectorize progress error:', error);\n    }\n  };\n\n  const fetchFilterAgentConfig = async () => {\n    try {\n      const config = await newsFilterAgentApi.getConfig();\n      setFilterAgentEnabled(config.enabled);\n    } catch (error) {\n      console.error('Fetch filter agent config error:', error);\n    }\n  };\n\n  const handleFilterAgentToggle = async (checked: boolean) => {\n    setFilterAgentLoading(true);\n    try {\n      await newsFilterAgentApi.updateConfig({ enabled: checked });\n      setFilterAgentEnabled(checked);\n      message.success(checked ? '新闻过滤 Agent 已启用' : '新闻过滤 Agent 已禁用');\n    } catch {\n      message.error('更新过滤 Agent 状态失败');\n    } finally {\n      setFilterAgentLoading(false);\n    }\n  };\n\n  // 初始加载\n  useEffect(() => {\n    fetchData();\n    fetchVectorizeProgress();\n    fetchFilterAgentConfig();\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, []);\n\n  // 5秒轮询刷新 - 使用当前的 pagination 和 filters\n  useEffect(() => {\n    const interval = setInterval(() => {\n      fetchData(pagination.current, pagination.pageSize, filters);\n      fetchVectorizeProgress();\n    }, 5000);\n    return () => clearInterval(interval);\n  }, [fetchData, pagination.current, pagination.pageSize, filters]);\n\n  const handleView = (id: string) => {\n    navigate(`/news/${id}`);\n  };\n\n  const handleAnalyze = async (newsId: string) => {\n    try {\n      await client.post(`/news/${newsId}/analyze`);\n      message.success(`新闻 ${newsId} 分析任务已提交`);\n      fetchData();\n    } catch {\n      message.error('分析失败');\n    }\n  };\n\n  const handleVectorize = async (newsId: string) => {\n    try {\n      await client.post(`/news/${newsId}/vectorize`);\n      message.success(`新闻 ${newsId} 向量化任务已提交`);\n      fetchData();\n      fetchVectorizeProgress();\n    } catch {\n      message.error('向量化失败');\n    }\n  };\n\n  const handleBatchVectorize = async () => {\n    try {\n      const response = await client.post('/news/batch-vectorize');\n      message.success(`批量向量化任务已启动，共 ${response.count} 条新闻`);\n      fetchData();\n      fetchVectorizeProgress();\n    } catch {\n      message.error('批量向量化失败');\n    }\n  };\n\n  const handleRefresh = () => {\n    fetchData();\n    fetchVectorizeProgress();\n  };\n\n  const handleFilterChange = (key: keyof NewsFilter, value: string | undefined) => {\n    const newFilters = { ...filters, [key]: value };\n    setFilters(newFilters);\n\n    if (key === 'keyword') {\n      if (debounceTimerRef.current) {\n        clearTimeout(debounceTimerRef.current);\n      }\n\n      debounceTimerRef.current = setTimeout(() => {\n        fetchData(1, pagination.pageSize, newFilters);\n      }, 500);\n    } else {\n      fetchData(1, pagination.pageSize, newFilters);\n    }\n  };\n\n  useEffect(() => {\n    return () => {\n      if (debounceTimerRef.current) {\n        clearTimeout(debounceTimerRef.current);\n      }\n    };\n  }, []);\n\n  // 处理分页变化\n  const handlePageChange = (page: number, pageSize?: number) => {\n    const newPageSize = pageSize || pagination.pageSize;\n    fetchData(page, newPageSize);\n  };\n\n  const columns = [\n    {\n      title: '标题',\n      dataIndex: 'title',\n      key: 'title',\n      width: 180,\n      render: (title: string) => (\n        <Tooltip title={title} placement=\"topLeft\">\n          <span style={{ cursor: 'pointer' }}>{truncateTitle(title, 8)}</span>\n        </Tooltip>\n      ),\n    },\n    {\n      title: '来源',\n      dataIndex: 'source',\n      key: 'source',\n      width: 120,\n    },\n    {\n      title: '分析状态',\n      dataIndex: 'analysisStatus',\n      key: 'analysisStatus',\n      width: 100,\n      render: (status: AnalysisStatus) => (\n        <Tag color={getAnalysisStatusColor(status)}>{getAnalysisStatusText(status)}</Tag>\n      ),\n    },\n    {\n      title: '向量化状态',\n      dataIndex: 'vectorizedStatus',\n      key: 'vectorizedStatus',\n      width: 100,\n      render: (status: VectorizedStatus | 'vectorizing') => (\n        <Tag color={getVectorizedStatusColor(status)}>{getVectorizedStatusText(status)}</Tag>\n      ),\n    },\n    {\n      title: '关联事件',\n      dataIndex: 'eventCount',\n      key: 'eventCount',\n      width: 100,\n      render: (count: number) => (\n        <Tag color={count > 0 ? 'blue' : 'default'}>\n          {count} 个\n        </Tag>\n      ),\n    },\n    {\n      title: '发布时间',\n      dataIndex: 'publishedAt',\n      key: 'publishedAt',\n      width: 160,\n      render: (date: string) => formatDate(date),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 200,\n      fixed: 'right' as const,\n      render: (_: unknown, record: NewsItem) => (\n        <Space size=\"small\">\n          <Tooltip title=\"查看详情\">\n            <Button\n              type=\"primary\"\n              icon={<EyeOutlined />}\n              size=\"small\"\n              onClick={() => handleView(record.id)}\n            >\n              查看\n            </Button>\n          </Tooltip>\n          <Tooltip title=\"分析\">\n            <Button\n              icon={<PlayCircleOutlined />}\n              size=\"small\"\n              disabled={record.analysisStatus === 'analyzing'}\n              onClick={() => handleAnalyze(record.id)}\n            >\n              分析\n            </Button>\n          </Tooltip>\n          <Tooltip title=\"向量化\">\n            <Button\n              icon={<DatabaseOutlined />}\n              size=\"small\"\n              disabled={record.vectorizedStatus === 'vectorizing' || record.vectorizedStatus === 'vectorized'}\n              onClick={() => handleVectorize(record.id)}\n            >\n              向量化\n            </Button>\n          </Tooltip>\n        </Space>\n      ),\n    },\n  ];\n\n  const uniqueSources = Array.from(new Set(data.map((item) => item.source)));\n\n  const vectorizePercent = vectorizeProgress.total > 0\n    ? Math.round((vectorizeProgress.vectorized / vectorizeProgress.total) * 100)\n    : 0;\n\n  return (\n    <div>\n      <Title level={2}>新闻管理</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} lg={12}>\n          <Card title=\"向量化进度\" size=\"small\">\n            <Row gutter={[16, 16]} align=\"middle\">\n              <Col xs={24} lg={12} xl={14}>\n                <Progress\n                  percent={vectorizePercent}\n                  status={vectorizeProgress.vectorizing > 0 ? 'active' : 'normal'}\n                  format={() => `${vectorizeProgress.vectorized}/${vectorizeProgress.total}`}\n                />\n              </Col>\n              <Col xs={24} lg={12} xl={10}>\n                <Space size=\"small\" wrap style={{ width: '100%' }}>\n                  <Tag>待处理: {vectorizeProgress.pending}</Tag>\n                  <Tag color=\"processing\">向量化中: {vectorizeProgress.vectorizing}</Tag>\n                  <Tag color=\"success\">已完成: {vectorizeProgress.vectorized}</Tag>\n                  <Tag color=\"error\">失败: {vectorizeProgress.failed}</Tag>\n                </Space>\n              </Col>\n            </Row>\n          </Card>\n        </Col>\n        <Col xs={24} lg={12}>\n          <Card title=\"新闻过滤 Agent\" size=\"small\">\n            <Row gutter={[16, 16]} align=\"middle\">\n              <Col flex=\"auto\">\n                <Space>\n                  <Switch\n                    checked={filterAgentEnabled}\n                    onChange={handleFilterAgentToggle}\n                    loading={filterAgentLoading}\n                  />\n                  <span>{filterAgentEnabled ? '已启用，新闻将先经过 Agent 过滤' : '已禁用'}</span>\n                </Space>\n              </Col>\n            </Row>\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space size=\"middle\" wrap>\n          <Input\n            placeholder=\"搜索标题\"\n            prefix={<SearchOutlined />}\n            style={{ width: 200 }}\n            value={filters.keyword || ''}\n            onChange={(e) => handleFilterChange('keyword', e.target.value || undefined)}\n            allowClear\n          />\n          <Select\n            placeholder=\"选择来源\"\n            style={{ width: 150 }}\n            allowClear\n            value={filters.source}\n            onChange={(value) => handleFilterChange('source', value)}\n          >\n            {uniqueSources.map((source) => (\n              <Option key={source} value={source}>\n                {source}\n              </Option>\n            ))}\n          </Select>\n          <Select\n            placeholder=\"分析状态\"\n            style={{ width: 150 }}\n            allowClear\n            value={filters.analysisStatus}\n            onChange={(value) => handleFilterChange('analysisStatus', value)}\n          >\n            <Option value=\"pending\">待分析</Option>\n            <Option value=\"analyzing\">分析中</Option>\n            <Option value=\"analyzed\">已分析</Option>\n            <Option value=\"failed\">失败</Option>\n            <Option value=\"filtered\">已过滤</Option>\n          </Select>\n          <Button icon={<ReloadOutlined />} onClick={handleRefresh}>\n            刷新\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<DatabaseOutlined />}\n            onClick={handleBatchVectorize}\n            disabled={vectorizeProgress.pending === 0}\n          >\n            一键向量化 ({vectorizeProgress.pending})\n          </Button>\n        </Space>\n      </Card>\n\n      <Card>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={{\n            current: pagination.current,\n            pageSize: pagination.pageSize,\n            total: pagination.total,\n            showSizeChanger: true,\n            showQuickJumper: true,\n            showTotal: (total) => `共 ${total} 条`,\n            onChange: handlePageChange,\n          }}\n          scroll={{ x: 1200 }}\n          style={{ zIndex: 1 }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default NewsListPage;\n",
+      "__content": "import React, { useState, useEffect, useCallback, useRef } from 'react';\nimport {\n  Table,\n  Card,\n  Button,\n  Tag,\n  Tooltip,\n  Space,\n  Select,\n  Input,\n  Typography,\n  message,\n  Progress,\n  Row,\n  Col,\n  Switch,\n} from 'antd';\nimport {\n  EyeOutlined,\n  PlayCircleOutlined,\n  ReloadOutlined,\n  SearchOutlined,\n  DatabaseOutlined,\n  FilterOutlined,\n} from '@ant-design/icons';\nimport { useNavigate, useSearchParams } from 'umi';\nimport client from '@/services/client';\nimport { newsFilterAgentApi } from '@/services/news-filter-agent';\nimport type { NewsItem, NewsFilter, AnalysisStatus, VectorizedStatus } from '@/services/types';\n\nconst { Title } = Typography;\nconst { Option } = Select;\n\nconst getAnalysisStatusColor = (status: AnalysisStatus | 'filtered'): string => {\n  const colorMap: Record<AnalysisStatus | 'filtered', string> = {\n    pending: 'default',\n    analyzing: 'processing',\n    analyzed: 'success',\n    failed: 'error',\n    filtered: 'warning',\n  };\n  return colorMap[status];\n};\n\nconst getAnalysisStatusText = (status: AnalysisStatus | 'filtered'): string => {\n  const textMap: Record<AnalysisStatus | 'filtered', string> = {\n    pending: '待分析',\n    analyzing: '分析中',\n    analyzed: '已分析',\n    failed: '失败',\n    filtered: '已过滤',\n  };\n  return textMap[status];\n};\n\nconst getVectorizedStatusColor = (status: VectorizedStatus | 'vectorizing'): string => {\n  const colorMap: Record<VectorizedStatus | 'vectorizing', string> = {\n    pending: 'default',\n    vectorizing: 'processing',\n    vectorized: 'success',\n    failed: 'error',\n  };\n  return colorMap[status];\n};\n\nconst getVectorizedStatusText = (status: VectorizedStatus | 'vectorizing'): string => {\n  const textMap: Record<VectorizedStatus | 'vectorizing', string> = {\n    pending: '待处理',\n    vectorizing: '向量化中',\n    vectorized: '已向量化',\n    failed: '失败',\n  };\n  return textMap[status];\n};\n\nconst truncateTitle = (title: string, maxLength: number = 10): string => {\n  if (title.length <= maxLength) return title;\n  return title.slice(0, maxLength) + '...';\n};\n\nconst formatDate = (dateString: string): string => {\n  const date = new Date(dateString);\n  return date.toLocaleString('zh-CN', {\n    year: 'numeric',\n    month: '2-digit',\n    day: '2-digit',\n    hour: '2-digit',\n    minute: '2-digit',\n  });\n};\n\nconst NewsListPage: React.FC = () => {\n  const navigate = useNavigate();\n  const [searchParams, setSearchParams] = useSearchParams();\n\n  // 从 URL 读取初始参数\n  const getInitialPage = () => parseInt(searchParams.get('page') || '1', 10);\n  const getInitialPageSize = () => parseInt(searchParams.get('pageSize') || '10', 10);\n  const getInitialFilters = (): NewsFilter => ({\n    keyword: searchParams.get('keyword') || undefined,\n    source: searchParams.get('source') || undefined,\n    analysisStatus: (searchParams.get('analysisStatus') as AnalysisStatus) || undefined,\n  });\n\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<NewsItem[]>([]);\n  const [pagination, setPagination] = useState({\n    current: getInitialPage(),\n    pageSize: getInitialPageSize(),\n    total: 0,\n  });\n  const [filters, setFilters] = useState<NewsFilter>(getInitialFilters());\n  const [vectorizeProgress, setVectorizeProgress] = useState({\n    pending: 0,\n    vectorizing: 0,\n    vectorized: 0,\n    failed: 0,\n    total: 0,\n  });\n  const [filterAgentEnabled, setFilterAgentEnabled] = useState(false);\n  const [filterAgentLoading, setFilterAgentLoading] = useState(false);\n\n  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);\n\n  // 更新 URL 参数\n  const updateUrlParams = useCallback((page: number, pageSize: number, currentFilters: NewsFilter) => {\n    const params: Record<string, string> = {\n      page: page.toString(),\n      pageSize: pageSize.toString(),\n    };\n    if (currentFilters.keyword) params.keyword = currentFilters.keyword;\n    if (currentFilters.source) params.source = currentFilters.source;\n    if (currentFilters.analysisStatus) params.analysisStatus = currentFilters.analysisStatus;\n    setSearchParams(params);\n  }, [setSearchParams]);\n\n  const fetchData = useCallback(async (page?: number, pageSize?: number, currentFilters?: NewsFilter) => {\n    const targetPage = page ?? pagination.current;\n    const targetPageSize = pageSize ?? pagination.pageSize;\n    const targetFilters = currentFilters ?? filters;\n\n    setLoading(true);\n    try {\n      const params: Record<string, unknown> = {\n        page: targetPage,\n        pageSize: targetPageSize,\n      };\n\n      if (targetFilters.source) {\n        params.source = targetFilters.source;\n      }\n      if (targetFilters.analysisStatus) {\n        params.analyzeStatus = targetFilters.analysisStatus;\n      }\n      if (targetFilters.keyword) {\n        params.keyword = targetFilters.keyword;\n      }\n\n      const response = await client.get('/news', { params });\n      const responseData = response;\n\n      // 转换后端数据格式到前端格式\n      const newsList: NewsItem[] = (responseData.data || []).map((item: Record<string, unknown>) => ({\n        id: item.id,\n        title: item.title,\n        content: item.content,\n        source: item.source,\n        url: item.originalUrl,\n        analysisStatus: item.analyzeStatus,\n        vectorizedStatus: item.vectorizeStatus,\n        eventCount: item.eventCount || 0,\n        publishedAt: item.publishTime,\n        createdAt: item.createdAt,\n        updatedAt: item.updatedAt,\n      }));\n\n      setData(newsList);\n      const newTotal = responseData.total ?? newsList.length;\n      setPagination({\n        current: targetPage,\n        pageSize: targetPageSize,\n        total: newTotal,\n      });\n\n      // 更新 URL 参数\n      updateUrlParams(targetPage, targetPageSize, targetFilters);\n    } catch (error) {\n      message.error('获取新闻列表失败');\n      console.error('Fetch news error:', error);\n    } finally {\n      setLoading(false);\n    }\n  }, [pagination.current, pagination.pageSize, filters, updateUrlParams]);\n\n  const fetchVectorizeProgress = async () => {\n    try {\n      const response = await client.get('/news/vectorize-progress');\n      const { pending, vectorizing, vectorized, failed } = response.data;\n      setVectorizeProgress({\n        pending,\n        vectorizing,\n        vectorized,\n        failed,\n        total: pending + vectorizing + vectorized + failed,\n      });\n    } catch (error) {\n      console.error('Fetch vectorize progress error:', error);\n    }\n  };\n\n  const fetchFilterAgentConfig = async () => {\n    try {\n      const config = await newsFilterAgentApi.getConfig();\n      setFilterAgentEnabled(config.enabled);\n    } catch (error) {\n      console.error('Fetch filter agent config error:', error);\n    }\n  };\n\n  const handleFilterAgentToggle = async (checked: boolean) => {\n    setFilterAgentLoading(true);\n    try {\n      await newsFilterAgentApi.updateConfig({ enabled: checked });\n      setFilterAgentEnabled(checked);\n      message.success(checked ? '新闻过滤 Agent 已启用' : '新闻过滤 Agent 已禁用');\n    } catch {\n      message.error('更新过滤 Agent 状态失败');\n    } finally {\n      setFilterAgentLoading(false);\n    }\n  };\n\n  // 初始加载\n  useEffect(() => {\n    fetchData();\n    fetchVectorizeProgress();\n    fetchFilterAgentConfig();\n    // eslint-disable-next-line react-hooks/exhaustive-deps\n  }, []);\n\n  // 5秒轮询刷新 - 使用当前的 pagination 和 filters\n  useEffect(() => {\n    const interval = setInterval(() => {\n      fetchData(pagination.current, pagination.pageSize, filters);\n      fetchVectorizeProgress();\n    }, 5000);\n    return () => clearInterval(interval);\n  }, [fetchData, pagination.current, pagination.pageSize, filters]);\n\n  const handleView = (id: string) => {\n    navigate(`/news/${id}`);\n  };\n\n  const handleAnalyze = async (newsId: string) => {\n    setData(prev => prev.map(item => \n      item.id === newsId ? { ...item, analysisStatus: 'analyzing' as const } : item\n    ));\n    try {\n      await client.post(`/news/${newsId}/analyze`);\n      message.success(`新闻 ${newsId} 分析任务已提交`);\n    } catch {\n      message.error('分析失败');\n      fetchData();\n    }\n  };\n\n  const handleVectorize = async (newsId: string) => {\n    try {\n      await client.post(`/news/${newsId}/vectorize`);\n      message.success(`新闻 ${newsId} 向量化任务已提交`);\n      fetchData();\n      fetchVectorizeProgress();\n    } catch {\n      message.error('向量化失败');\n    }\n  };\n\n  const handleBatchVectorize = async () => {\n    try {\n      const response = await client.post('/news/batch-vectorize');\n      message.success(`批量向量化任务已启动，共 ${response.count} 条新闻`);\n      fetchData();\n      fetchVectorizeProgress();\n    } catch {\n      message.error('批量向量化失败');\n    }\n  };\n\n  const handleRefresh = () => {\n    fetchData();\n    fetchVectorizeProgress();\n  };\n\n  const handleFilterChange = (key: keyof NewsFilter, value: string | undefined) => {\n    const newFilters = { ...filters, [key]: value };\n    setFilters(newFilters);\n\n    if (key === 'keyword') {\n      if (debounceTimerRef.current) {\n        clearTimeout(debounceTimerRef.current);\n      }\n\n      debounceTimerRef.current = setTimeout(() => {\n        fetchData(1, pagination.pageSize, newFilters);\n      }, 500);\n    } else {\n      fetchData(1, pagination.pageSize, newFilters);\n    }\n  };\n\n  useEffect(() => {\n    return () => {\n      if (debounceTimerRef.current) {\n        clearTimeout(debounceTimerRef.current);\n      }\n    };\n  }, []);\n\n  // 处理分页变化\n  const handlePageChange = (page: number, pageSize?: number) => {\n    const newPageSize = pageSize || pagination.pageSize;\n    fetchData(page, newPageSize);\n  };\n\n  const columns = [\n    {\n      title: '标题',\n      dataIndex: 'title',\n      key: 'title',\n      width: 180,\n      render: (title: string) => (\n        <Tooltip title={title} placement=\"topLeft\">\n          <span style={{ cursor: 'pointer' }}>{truncateTitle(title, 8)}</span>\n        </Tooltip>\n      ),\n    },\n    {\n      title: '来源',\n      dataIndex: 'source',\n      key: 'source',\n      width: 120,\n    },\n    {\n      title: '分析状态',\n      dataIndex: 'analysisStatus',\n      key: 'analysisStatus',\n      width: 100,\n      render: (status: AnalysisStatus) => (\n        <Tag color={getAnalysisStatusColor(status)}>{getAnalysisStatusText(status)}</Tag>\n      ),\n    },\n    {\n      title: '向量化状态',\n      dataIndex: 'vectorizedStatus',\n      key: 'vectorizedStatus',\n      width: 100,\n      render: (status: VectorizedStatus | 'vectorizing') => (\n        <Tag color={getVectorizedStatusColor(status)}>{getVectorizedStatusText(status)}</Tag>\n      ),\n    },\n    {\n      title: '关联事件',\n      dataIndex: 'eventCount',\n      key: 'eventCount',\n      width: 100,\n      render: (count: number) => (\n        <Tag color={count > 0 ? 'blue' : 'default'}>\n          {count} 个\n        </Tag>\n      ),\n    },\n    {\n      title: '发布时间',\n      dataIndex: 'publishedAt',\n      key: 'publishedAt',\n      width: 160,\n      render: (date: string) => formatDate(date),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 200,\n      fixed: 'right' as const,\n      render: (_: unknown, record: NewsItem) => (\n        <Space size=\"small\">\n          <Tooltip title=\"查看详情\">\n            <Button\n              type=\"primary\"\n              icon={<EyeOutlined />}\n              size=\"small\"\n              onClick={() => handleView(record.id)}\n            >\n              查看\n            </Button>\n          </Tooltip>\n          <Tooltip title=\"分析\">\n            <Button\n              icon={<PlayCircleOutlined />}\n              size=\"small\"\n              disabled={record.analysisStatus === 'analyzing'}\n              onClick={() => handleAnalyze(record.id)}\n            >\n              分析\n            </Button>\n          </Tooltip>\n          <Tooltip title=\"向量化\">\n            <Button\n              icon={<DatabaseOutlined />}\n              size=\"small\"\n              disabled={record.vectorizedStatus === 'vectorizing' || record.vectorizedStatus === 'vectorized'}\n              onClick={() => handleVectorize(record.id)}\n            >\n              向量化\n            </Button>\n          </Tooltip>\n        </Space>\n      ),\n    },\n  ];\n\n  const uniqueSources = Array.from(new Set(data.map((item) => item.source)));\n\n  const vectorizePercent = vectorizeProgress.total > 0\n    ? Math.round((vectorizeProgress.vectorized / vectorizeProgress.total) * 100)\n    : 0;\n\n  return (\n    <div>\n      <Title level={2}>新闻管理</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} lg={12}>\n          <Card title=\"向量化进度\" size=\"small\">\n            <Row gutter={[16, 16]} align=\"middle\">\n              <Col xs={24} lg={12} xl={14}>\n                <Progress\n                  percent={vectorizePercent}\n                  status={vectorizeProgress.vectorizing > 0 ? 'active' : 'normal'}\n                  format={() => `${vectorizeProgress.vectorized}/${vectorizeProgress.total}`}\n                />\n              </Col>\n              <Col xs={24} lg={12} xl={10}>\n                <Space size=\"small\" wrap style={{ width: '100%' }}>\n                  <Tag>待处理: {vectorizeProgress.pending}</Tag>\n                  <Tag color=\"processing\">向量化中: {vectorizeProgress.vectorizing}</Tag>\n                  <Tag color=\"success\">已完成: {vectorizeProgress.vectorized}</Tag>\n                  <Tag color=\"error\">失败: {vectorizeProgress.failed}</Tag>\n                </Space>\n              </Col>\n            </Row>\n          </Card>\n        </Col>\n        <Col xs={24} lg={12}>\n          <Card title=\"新闻过滤 Agent\" size=\"small\">\n            <Row gutter={[16, 16]} align=\"middle\">\n              <Col flex=\"auto\">\n                <Space>\n                  <Switch\n                    checked={filterAgentEnabled}\n                    onChange={handleFilterAgentToggle}\n                    loading={filterAgentLoading}\n                  />\n                  <span>{filterAgentEnabled ? '已启用，新闻将先经过 Agent 过滤' : '已禁用'}</span>\n                </Space>\n              </Col>\n            </Row>\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 24 }}>\n        <Space size=\"middle\" wrap>\n          <Input\n            placeholder=\"搜索标题\"\n            prefix={<SearchOutlined />}\n            style={{ width: 200 }}\n            value={filters.keyword || ''}\n            onChange={(e) => handleFilterChange('keyword', e.target.value || undefined)}\n            allowClear\n          />\n          <Select\n            placeholder=\"选择来源\"\n            style={{ width: 150 }}\n            allowClear\n            value={filters.source}\n            onChange={(value) => handleFilterChange('source', value)}\n          >\n            {uniqueSources.map((source) => (\n              <Option key={source} value={source}>\n                {source}\n              </Option>\n            ))}\n          </Select>\n          <Select\n            placeholder=\"分析状态\"\n            style={{ width: 150 }}\n            allowClear\n            value={filters.analysisStatus}\n            onChange={(value) => handleFilterChange('analysisStatus', value)}\n          >\n            <Option value=\"pending\">待分析</Option>\n            <Option value=\"analyzing\">分析中</Option>\n            <Option value=\"analyzed\">已分析</Option>\n            <Option value=\"failed\">失败</Option>\n            <Option value=\"filtered\">已过滤</Option>\n          </Select>\n          <Button icon={<ReloadOutlined />} onClick={handleRefresh}>\n            刷新\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<DatabaseOutlined />}\n            onClick={handleBatchVectorize}\n            disabled={vectorizeProgress.pending === 0}\n          >\n            一键向量化 ({vectorizeProgress.pending})\n          </Button>\n        </Space>\n      </Card>\n\n      <Card>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={{\n            current: pagination.current,\n            pageSize: pagination.pageSize,\n            total: pagination.total,\n            showSizeChanger: true,\n            showQuickJumper: true,\n            showTotal: (total) => `共 ${total} 条`,\n            onChange: handlePageChange,\n          }}\n          scroll={{ x: 1200 }}\n          style={{ zIndex: 1 }}\n        />\n      </Card>\n    </div>\n  );\n};\n\nexport default NewsListPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/news/index.tsx"
     },
@@ -3987,10 +4475,32 @@
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/profile.tsx"
     },
     "35": {
+      "path": "/settings/users",
+      "title": "用户管理",
+      "file": "@/pages/users/index.tsx",
+      "parentId": "3",
+      "id": "35",
+      "absPath": "/settings/users",
+      "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Table, Tag, Select, message, Card, Input, Space, Button, Modal, Typography } from 'antd';\nimport { PlusOutlined, CopyOutlined, GiftOutlined } from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { usersApi } from '@/services/users';\nimport { inviteCodeApi } from '@/services/invite-code';\nimport type { UserListItem, InviteCode } from '@/services/types';\n\nconst { Text } = Typography;\n\nconst UsersPage: React.FC = () => {\n  const [users, setUsers] = useState<UserListItem[]>([]);\n  const [total, setTotal] = useState(0);\n  const [loading, setLoading] = useState(false);\n  const [page, setPage] = useState(1);\n  const [pageSize, setPageSize] = useState(20);\n  const [keyword, setKeyword] = useState<string>();\n  const [roleFilter, setRoleFilter] = useState<string>();\n\n  const [inviteCodes, setInviteCodes] = useState<InviteCode[]>([]);\n  const [inviteTotal, setInviteTotal] = useState(0);\n  const [inviteLoading, setInviteLoading] = useState(false);\n  const [invitePage, setInvitePage] = useState(1);\n  const [inviteModalVisible, setInviteModalVisible] = useState(false);\n  const [generatedCode, setGeneratedCode] = useState<string | null>(null);\n\n  const fetchUsers = useCallback(async () => {\n    setLoading(true);\n    try {\n      const result = await usersApi.getUsers({\n        keyword,\n        role: roleFilter,\n        page,\n        pageSize,\n      });\n      setUsers(result.data);\n      setTotal(result.total);\n    } catch (error) {\n      console.error('Failed to fetch users:', error);\n      message.error('获取用户列表失败');\n    } finally {\n      setLoading(false);\n    }\n  }, [keyword, roleFilter, page, pageSize]);\n\n  const fetchInviteCodes = useCallback(async () => {\n    setInviteLoading(true);\n    try {\n      const result = await inviteCodeApi.getList({ page: invitePage, pageSize: 20 });\n      setInviteCodes(result.data);\n      setInviteTotal(result.total);\n    } catch (error) {\n      console.error('Failed to fetch invite codes:', error);\n      message.error('获取邀请码列表失败');\n    } finally {\n      setInviteLoading(false);\n    }\n  }, [invitePage]);\n\n  useEffect(() => {\n    fetchUsers();\n  }, [fetchUsers]);\n\n  useEffect(() => {\n    if (inviteModalVisible) {\n      fetchInviteCodes();\n    }\n  }, [inviteModalVisible, fetchInviteCodes]);\n\n  const handleRoleChange = async (userId: string, newRole: string) => {\n    try {\n      await usersApi.updateRole(userId, { role: newRole as 'admin' | 'normal' });\n      message.success('角色更新成功');\n      fetchUsers();\n    } catch (error) {\n      console.error('Failed to update role:', error);\n      message.error('角色更新失败');\n    }\n  };\n\n  const handleGenerateCode = async () => {\n    try {\n      const result = await inviteCodeApi.generate({ expiresInHours: 72 });\n      setGeneratedCode(result.code);\n      fetchInviteCodes();\n      message.success('邀请码生成成功');\n    } catch (error) {\n      console.error('Failed to generate invite code:', error);\n      message.error('邀请码生成失败');\n    }\n  };\n\n  const handleCopyCode = (code: string) => {\n    navigator.clipboard.writeText(code).then(() => {\n      message.success('已复制到剪贴板');\n    }).catch(() => {\n      message.error('复制失败');\n    });\n  };\n\n  const handleOpenInviteModal = () => {\n    setGeneratedCode(null);\n    setInvitePage(1);\n    setInviteModalVisible(true);\n  };\n\n  const userColumns: ColumnsType<UserListItem> = [\n    {\n      title: '昵称',\n      dataIndex: 'nickname',\n      key: 'nickname',\n      width: 150,\n    },\n    {\n      title: '邮箱',\n      dataIndex: 'email',\n      key: 'email',\n      width: 250,\n    },\n    {\n      title: '角色',\n      dataIndex: 'role',\n      key: 'role',\n      width: 150,\n      render: (role: string | null, record: UserListItem) => {\n        const currentRole = role || 'normal';\n        return (\n          <Select\n            value={currentRole}\n            size=\"small\"\n            style={{ width: 120 }}\n            onChange={(value) => handleRoleChange(record.id, value)}\n            options={[\n              { value: 'admin', label: '管理员' },\n              { value: 'normal', label: '普通用户' },\n            ]}\n          />\n        );\n      },\n    },\n    {\n      title: '角色标签',\n      key: 'roleTag',\n      width: 120,\n      render: (_: unknown, record: UserListItem) => {\n        const role = record.role || 'normal';\n        return role === 'admin' ? (\n          <Tag color=\"red\">管理员</Tag>\n        ) : (\n          <Tag color=\"blue\">普通用户</Tag>\n        );\n      },\n    },\n    {\n      title: '注册时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 200,\n      render: (date: string) => new Date(date).toLocaleString('zh-CN'),\n    },\n  ];\n\n  const inviteColumns: ColumnsType<InviteCode> = [\n    {\n      title: '邀请码',\n      dataIndex: 'code',\n      key: 'code',\n      width: 200,\n      render: (code: string) => (\n        <Space>\n          <Text code>{code}</Text>\n          <Button\n            type=\"link\"\n            size=\"small\"\n            icon={<CopyOutlined />}\n            onClick={() => handleCopyCode(code)}\n          />\n        </Space>\n      ),\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 100,\n      render: (status: string | null) => {\n        const s = status || 'active';\n        if (s === 'active') return <Tag color=\"green\">未使用</Tag>;\n        if (s === 'used') return <Tag color=\"blue\">已使用</Tag>;\n        if (s === 'expired') return <Tag color=\"default\">已过期</Tag>;\n        return <Tag>{s}</Tag>;\n      },\n    },\n    {\n      title: '使用人',\n      key: 'usedBy',\n      width: 150,\n      render: (_: unknown, record: InviteCode) => {\n        if (!record.usedBy) return <span style={{ color: '#ccc' }}>-</span>;\n        return record.usedByNickname || record.usedByEmail || record.usedBy.slice(0, 8);\n      },\n    },\n    {\n      title: '过期时间',\n      dataIndex: 'expiresAt',\n      key: 'expiresAt',\n      width: 180,\n      render: (date: string) => new Date(date).toLocaleString('zh-CN'),\n    },\n    {\n      title: '创建时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 180,\n      render: (date: string) => new Date(date).toLocaleString('zh-CN'),\n    },\n  ];\n\n  return (\n    <Card\n      title=\"用户管理\"\n      extra={\n        <Button icon={<GiftOutlined />} onClick={handleOpenInviteModal}>\n          邀请码管理\n        </Button>\n      }\n    >\n      <Space style={{ marginBottom: 16 }}>\n        <Input.Search\n          placeholder=\"搜索用户昵称\"\n          allowClear\n          style={{ width: 250 }}\n          onSearch={(value) => {\n            setKeyword(value || undefined);\n            setPage(1);\n          }}\n        />\n        <Select\n          placeholder=\"角色筛选\"\n          allowClear\n          style={{ width: 150 }}\n          value={roleFilter}\n          onChange={(value) => {\n            setRoleFilter(value);\n            setPage(1);\n          }}\n          options={[\n            { value: 'admin', label: '管理员' },\n            { value: 'normal', label: '普通用户' },\n          ]}\n        />\n      </Space>\n\n      <Table<UserListItem>\n        columns={userColumns}\n        dataSource={users}\n        rowKey=\"id\"\n        loading={loading}\n        pagination={{\n          current: page,\n          pageSize,\n          total,\n          showSizeChanger: true,\n          showTotal: (t) => `共 ${t} 条`,\n          onChange: (p, ps) => {\n            setPage(p);\n            setPageSize(ps);\n          },\n        }}\n      />\n\n      <Modal\n        title=\"邀请码管理\"\n        open={inviteModalVisible}\n        onCancel={() => setInviteModalVisible(false)}\n        footer={null}\n        width={700}\n      >\n        <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>\n          <span style={{ color: '#666' }}>邀请码有效期 3 天，每人只能查看自己创建的邀请码</span>\n          <Button type=\"primary\" icon={<PlusOutlined />} onClick={handleGenerateCode}>\n            生成邀请码\n          </Button>\n        </div>\n\n        {generatedCode && (\n          <div style={{\n            textAlign: 'center',\n            padding: '16px',\n            marginBottom: 16,\n            background: '#f6ffed',\n            borderRadius: 8,\n            border: '1px solid #b7eb8f',\n          }}>\n            <p style={{ margin: '0 0 8px 0' }}>邀请码生成成功：</p>\n            <Text\n              code\n              style={{ fontSize: 24, padding: '8px 16px', letterSpacing: 2 }}\n            >\n              {generatedCode}\n            </Text>\n            <div style={{ marginTop: 12 }}>\n              <Button\n                type=\"primary\"\n                icon={<CopyOutlined />}\n                onClick={() => handleCopyCode(generatedCode)}\n              >\n                复制邀请码\n              </Button>\n            </div>\n          </div>\n        )}\n\n        <Table<InviteCode>\n          columns={inviteColumns}\n          dataSource={inviteCodes}\n          rowKey=\"id\"\n          loading={inviteLoading}\n          size=\"small\"\n          pagination={{\n            current: invitePage,\n            pageSize: 20,\n            total: inviteTotal,\n            showTotal: (t) => `共 ${t} 条`,\n            onChange: (p) => setInvitePage(p),\n          }}\n        />\n      </Modal>\n    </Card>\n  );\n};\n\nexport default UsersPage;\n",
+      "__isJSFile": true,
+      "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/users/index.tsx"
+    },
+    "36": {
+      "path": "/settings/menu-management",
+      "title": "菜单管理",
+      "file": "@/pages/menu-management/index.tsx",
+      "parentId": "3",
+      "id": "36",
+      "absPath": "/settings/menu-management",
+      "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Table, Button, Modal, Form, Input, InputNumber, Select, Tag, Space, message, Card, Checkbox } from 'antd';\nimport { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { menuApi } from '@/services/menu';\nimport type { MenuItem, CreateMenuRequest, UpdateMenuRequest } from '@/services/types';\n\nconst ICON_OPTIONS = [\n  'DashboardOutlined', 'DatabaseOutlined', 'ReadOutlined', 'SearchOutlined',\n  'EyeOutlined', 'ExperimentOutlined', 'SettingOutlined', 'BellOutlined',\n  'ThunderboltOutlined', 'CodeOutlined', 'LineChartOutlined', 'WalletOutlined',\n  'ControlOutlined', 'DollarOutlined', 'RobotOutlined', 'MessageOutlined',\n  'FilterOutlined', 'BulbOutlined', 'CloudServerOutlined', 'FileTextOutlined',\n  'FundOutlined', 'BarChartOutlined', 'PieChartOutlined', 'NotificationOutlined',\n  'ClockCircleOutlined', 'KeyOutlined', 'BlockOutlined', 'AuditOutlined',\n  'UserOutlined', 'MenuOutlined',\n];\n\nconst MenuManagementPage: React.FC = () => {\n  const [menus, setMenus] = useState<MenuItem[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [modalVisible, setModalVisible] = useState(false);\n  const [editingMenu, setEditingMenu] = useState<MenuItem | null>(null);\n  const [form] = Form.useForm();\n\n  const fetchMenus = useCallback(async () => {\n    setLoading(true);\n    try {\n      const data = await menuApi.getAllMenus();\n      setMenus(data);\n    } catch (error) {\n      console.error('Failed to fetch menus:', error);\n      message.error('获取菜单列表失败');\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  useEffect(() => {\n    fetchMenus();\n  }, [fetchMenus]);\n\n  const buildTreeData = (menus: MenuItem[]): MenuItem[] => {\n    const topMenus = menus.filter(m => !m.parentId);\n    const childMenus = menus.filter(m => m.parentId);\n\n    return topMenus\n      .sort((a, b) => a.sort - b.sort)\n      .map(menu => {\n        const children = childMenus\n          .filter(c => c.parentId === menu.id)\n          .sort((a, b) => a.sort - b.sort);\n        return { ...menu, children };\n      });\n  };\n\n  const handleCreate = () => {\n    setEditingMenu(null);\n    form.resetFields();\n    form.setFieldsValue({\n      sort: 0,\n      visibleRoles: ['admin', 'normal'],\n    });\n    setModalVisible(true);\n  };\n\n  const handleEdit = (record: MenuItem) => {\n    setEditingMenu(record);\n    form.setFieldsValue({\n      parentId: record.parentId || undefined,\n      name: record.name,\n      path: record.path || undefined,\n      icon: record.icon || undefined,\n      sort: record.sort,\n      visibleRoles: record.visibleRoles || ['admin', 'normal'],\n    });\n    setModalVisible(true);\n  };\n\n  const handleDelete = async (record: MenuItem) => {\n    Modal.confirm({\n      title: '确认删除',\n      content: `确定要删除菜单「${record.name}」吗？`,\n      okText: '确定',\n      cancelText: '取消',\n      onOk: async () => {\n        try {\n          await menuApi.delete(record.id);\n          message.success('删除成功');\n          fetchMenus();\n        } catch (error) {\n          console.error('Failed to delete menu:', error);\n          message.error('删除失败');\n        }\n      },\n    });\n  };\n\n  const handleSubmit = async () => {\n    try {\n      const values = await form.validateFields();\n\n      if (editingMenu) {\n        const updateData: UpdateMenuRequest = {\n          name: values.name,\n          path: values.path || null,\n          icon: values.icon || null,\n          sort: values.sort,\n          visibleRoles: values.visibleRoles,\n        };\n        await menuApi.update(editingMenu.id, updateData);\n        message.success('更新成功');\n      } else {\n        const createData: CreateMenuRequest = {\n          parentId: values.parentId || undefined,\n          name: values.name,\n          path: values.path || undefined,\n          icon: values.icon || undefined,\n          sort: values.sort,\n          visibleRoles: values.visibleRoles,\n        };\n        await menuApi.create(createData);\n        message.success('创建成功');\n      }\n\n      setModalVisible(false);\n      fetchMenus();\n    } catch (error) {\n      console.error('Failed to save menu:', error);\n      message.error('保存失败');\n    }\n  };\n\n  const topMenus = menus.filter(m => !m.parentId);\n\n  const columns: ColumnsType<MenuItem> = [\n    {\n      title: '菜单名称',\n      dataIndex: 'name',\n      key: 'name',\n      width: 200,\n    },\n    {\n      title: '路由路径',\n      dataIndex: 'path',\n      key: 'path',\n      width: 200,\n      render: (path: string | null) => path || <Tag>分组</Tag>,\n    },\n    {\n      title: '图标',\n      dataIndex: 'icon',\n      key: 'icon',\n      width: 180,\n      render: (icon: string | null) => icon || '-',\n    },\n    {\n      title: '排序',\n      dataIndex: 'sort',\n      key: 'sort',\n      width: 80,\n    },\n    {\n      title: '可见角色',\n      dataIndex: 'visibleRoles',\n      key: 'visibleRoles',\n      width: 200,\n      render: (roles: string[] | null) => {\n        const currentRoles = roles || ['admin', 'normal'];\n        return (\n          <Space>\n            {currentRoles.map(role => (\n              <Tag key={role} color={role === 'admin' ? 'red' : 'blue'}>\n                {role === 'admin' ? '管理员' : '普通用户'}\n              </Tag>\n            ))}\n          </Space>\n        );\n      },\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 100,\n      render: (status: string | null) => (\n        <Tag color={status === 'active' ? 'green' : 'default'}>\n          {status === 'active' ? '启用' : '禁用'}\n        </Tag>\n      ),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 150,\n      render: (_: unknown, record: MenuItem) => (\n        <Space>\n          <Button\n            type=\"link\"\n            size=\"small\"\n            icon={<EditOutlined />}\n            onClick={() => handleEdit(record)}\n          />\n          <Button\n            type=\"link\"\n            size=\"small\"\n            danger\n            icon={<DeleteOutlined />}\n            onClick={() => handleDelete(record)}\n          />\n        </Space>\n      ),\n    },\n  ];\n\n  return (\n    <Card title=\"菜单管理\">\n      <Space style={{ marginBottom: 16 }}>\n        <Button type=\"primary\" icon={<PlusOutlined />} onClick={handleCreate}>\n          新增菜单\n        </Button>\n      </Space>\n\n      <Table<MenuItem>\n        columns={columns}\n        dataSource={buildTreeData(menus)}\n        rowKey=\"id\"\n        loading={loading}\n        pagination={false}\n        expandable={{\n          defaultExpandAllRows: true,\n        }}\n      />\n\n      <Modal\n        title={editingMenu ? '编辑菜单' : '新增菜单'}\n        open={modalVisible}\n        onOk={handleSubmit}\n        onCancel={() => setModalVisible(false)}\n        okText=\"保存\"\n        cancelText=\"取消\"\n        width={600}\n      >\n        <Form form={form} layout=\"vertical\">\n          <Form.Item name=\"parentId\" label=\"父菜单\">\n            <Select\n              placeholder=\"无（顶级菜单）\"\n              allowClear\n              options={topMenus.map(m => ({\n                value: m.id,\n                label: m.name,\n              }))}\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"name\"\n            label=\"菜单名称\"\n            rules={[{ required: true, message: '请输入菜单名称' }]}\n          >\n            <Input placeholder=\"请输入菜单名称\" />\n          </Form.Item>\n\n          <Form.Item name=\"path\" label=\"路由路径\">\n            <Input placeholder=\"如 /dashboard，分组菜单留空\" />\n          </Form.Item>\n\n          <Form.Item name=\"icon\" label=\"图标\">\n            <Select\n              placeholder=\"选择图标\"\n              allowClear\n              showSearch\n              options={ICON_OPTIONS.map(icon => ({\n                value: icon,\n                label: icon,\n              }))}\n            />\n          </Form.Item>\n\n          <Form.Item name=\"sort\" label=\"排序权重\">\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"越小越靠前\" />\n          </Form.Item>\n\n          <Form.Item name=\"visibleRoles\" label=\"可见角色\">\n            <Checkbox.Group\n              options={[\n                { label: '管理员', value: 'admin' },\n                { label: '普通用户', value: 'normal' },\n              ]}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </Card>\n  );\n};\n\nexport default MenuManagementPage;\n",
+      "__isJSFile": true,
+      "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/menu-management/index.tsx"
+    },
+    "37": {
       "path": "/",
       "redirect": "/dashboard",
       "parentId": "3",
-      "id": "35",
+      "id": "37",
       "absPath": "/"
     }
   },
@@ -5150,7 +5660,7 @@
             "format": "esm"
           },
           "src/utils/auth.ts": {
-            "bytes": 2347,
+            "bytes": 2364,
             "imports": [],
             "format": "esm"
           },
@@ -5693,7 +6203,7 @@
             "format": "esm"
           },
           "src/pages/register.tsx": {
-            "bytes": 4409,
+            "bytes": 4696,
             "imports": [
               {
                 "path": "react",
@@ -5842,8 +6352,19 @@
             ],
             "format": "esm"
           },
+          "src/services/menu.ts": {
+            "bytes": 1219,
+            "imports": [
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "./client"
+              }
+            ],
+            "format": "esm"
+          },
           "src/layouts/MainLayout.tsx": {
-            "bytes": 8942,
+            "bytes": 8849,
             "imports": [
               {
                 "path": "react",
@@ -5874,6 +6395,16 @@
                 "path": "src/components/PageLoading.tsx",
                 "kind": "import-statement",
                 "original": "@/components/PageLoading"
+              },
+              {
+                "path": "src/services/menu.ts",
+                "kind": "import-statement",
+                "original": "@/services/menu"
+              },
+              {
+                "path": "src/contexts/UserContext.tsx",
+                "kind": "import-statement",
+                "original": "@/contexts/UserContext"
               },
               {
                 "path": "react/jsx-runtime",
@@ -7187,6 +7718,95 @@
             ],
             "format": "esm"
           },
+          "src/services/users.ts": {
+            "bytes": 1094,
+            "imports": [
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "./client"
+              }
+            ],
+            "format": "esm"
+          },
+          "src/services/invite-code.ts": {
+            "bytes": 915,
+            "imports": [
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "./client"
+              }
+            ],
+            "format": "esm"
+          },
+          "src/pages/users/index.tsx": {
+            "bytes": 9572,
+            "imports": [
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "src/services/users.ts",
+                "kind": "import-statement",
+                "original": "@/services/users"
+              },
+              {
+                "path": "src/services/invite-code.ts",
+                "kind": "import-statement",
+                "original": "@/services/invite-code"
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm"
+          },
+          "src/pages/menu-management/index.tsx": {
+            "bytes": 8614,
+            "imports": [
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "src/services/menu.ts",
+                "kind": "import-statement",
+                "original": "@/services/menu"
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm"
+          },
           "src/.umi/core/EmptyRoute.tsx": {
             "bytes": 285,
             "imports": [
@@ -7209,7 +7829,7 @@
             "format": "esm"
           },
           "src/.umi/core/route.tsx": {
-            "bytes": 6539,
+            "bytes": 6929,
             "imports": [
               {
                 "path": "react",
@@ -7385,6 +8005,16 @@
                 "path": "src/pages/profile.tsx",
                 "kind": "dynamic-import",
                 "original": "@/pages/profile.tsx"
+              },
+              {
+                "path": "src/pages/users/index.tsx",
+                "kind": "dynamic-import",
+                "original": "@/pages/users/index.tsx"
+              },
+              {
+                "path": "src/pages/menu-management/index.tsx",
+                "kind": "dynamic-import",
+                "original": "@/pages/menu-management/index.tsx"
               },
               {
                 "path": "src/.umi/core/EmptyRoute.tsx",
@@ -8406,6 +9036,46 @@
               },
               {
                 "path": "lightweight-charts",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
                 "kind": "import-statement",
                 "external": true
               },
@@ -9613,7 +10283,7 @@
                 "bytesInOutput": 9398
               },
               "src/pages/register.tsx": {
-                "bytesInOutput": 7354
+                "bytesInOutput": 7951
               },
               "src/utils/avatar.ts": {
                 "bytesInOutput": 1187
@@ -9627,11 +10297,14 @@
               "src/components/PageLoading.tsx": {
                 "bytesInOutput": 1894
               },
+              "src/services/menu.ts": {
+                "bytesInOutput": 958
+              },
               "src/layouts/MainLayout.tsx": {
-                "bytesInOutput": 11316
+                "bytesInOutput": 10503
               },
               "src/pages/dashboard.tsx": {
-                "bytesInOutput": 9055
+                "bytesInOutput": 9065
               },
               "src/services/news-filter-agent.ts": {
                 "bytesInOutput": 790
@@ -9643,7 +10316,7 @@
                 "bytesInOutput": 19226
               },
               "src/pages/signals/index.tsx": {
-                "bytesInOutput": 15355
+                "bytesInOutput": 15358
               },
               "src/pages/signals/[id].tsx": {
                 "bytesInOutput": 22364
@@ -9712,7 +10385,7 @@
                 "bytesInOutput": 770
               },
               "src/pages/trading-memory/index.tsx": {
-                "bytesInOutput": 19112
+                "bytesInOutput": 19143
               },
               "src/pages/trading-agent/index.tsx": {
                 "bytesInOutput": 17505
@@ -9757,16 +10430,28 @@
                 "bytesInOutput": 9930
               },
               "src/pages/analysis/strategies/[id].tsx": {
-                "bytesInOutput": 15754
+                "bytesInOutput": 15756
               },
               "src/pages/profile.tsx": {
                 "bytesInOutput": 12041
+              },
+              "src/services/users.ts": {
+                "bytesInOutput": 863
+              },
+              "src/services/invite-code.ts": {
+                "bytesInOutput": 758
+              },
+              "src/pages/users/index.tsx": {
+                "bytesInOutput": 12941
+              },
+              "src/pages/menu-management/index.tsx": {
+                "bytesInOutput": 11130
               },
               "src/.umi/core/EmptyRoute.tsx": {
                 "bytesInOutput": 383
               },
               "src/.umi/core/route.tsx": {
-                "bytesInOutput": 7024
+                "bytesInOutput": 7447
               },
               "src/.umi/core/polyfill.ts": {
                 "bytesInOutput": 30238
@@ -9775,7 +10460,7 @@
                 "bytesInOutput": 2095
               }
             },
-            "bytes": 645211
+            "bytes": 672267
           }
         }
       }
@@ -13507,7 +14192,7 @@
       ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\layouts\\MainLayout.tsx": [
         {
-          "end": 73,
+          "end": 84,
           "importKind": "value",
           "source": "react",
           "specifiers": [
@@ -13534,13 +14219,18 @@
               "imported": "Suspense",
               "local": "Suspense",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useEffect",
+              "local": "useEffect",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 1,
           "type": "ImportDeclaration"
         },
         {
-          "end": 117,
+          "end": 134,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -13558,13 +14248,18 @@
               "imported": "theme",
               "local": "theme",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Spin",
+              "local": "Spin",
+              "type": "ImportSpecifier"
             }
           ],
-          "start": 74,
+          "start": 85,
           "type": "ImportDeclaration"
         },
         {
-          "end": 698,
+          "end": 747,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -13712,13 +14407,37 @@
               "imported": "FilterOutlined",
               "local": "FilterOutlined",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "UserOutlined",
+              "local": "UserOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "MenuOutlined",
+              "local": "MenuOutlined",
+              "type": "ImportSpecifier"
             }
           ],
-          "start": 118,
+          "start": 135,
           "type": "ImportDeclaration"
         },
         {
-          "end": 754,
+          "end": 786,
+          "importKind": "type",
+          "source": "antd",
+          "specifiers": [
+            {
+              "imported": "MenuProps",
+              "local": "MenuProps",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 748,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 842,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -13738,11 +14457,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 699,
+          "start": 787,
           "type": "ImportDeclaration"
         },
         {
-          "end": 796,
+          "end": 884,
           "importKind": "value",
           "source": "@/components/Header",
           "specifiers": [
@@ -13751,11 +14470,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 755,
+          "start": 843,
           "type": "ImportDeclaration"
         },
         {
-          "end": 848,
+          "end": 936,
           "importKind": "value",
           "source": "@/components/PageLoading",
           "specifiers": [
@@ -13764,7 +14483,49 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 797,
+          "start": 885,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 979,
+          "importKind": "value",
+          "source": "@/services/menu",
+          "specifiers": [
+            {
+              "imported": "menuApi",
+              "local": "menuApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 937,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 1029,
+          "importKind": "type",
+          "source": "@/services/types",
+          "specifiers": [
+            {
+              "imported": "MenuItem",
+              "local": "MenuItem",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 980,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 1079,
+          "importKind": "value",
+          "source": "@/contexts/UserContext",
+          "specifiers": [
+            {
+              "imported": "useUser",
+              "local": "useUser",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1030,
           "type": "ImportDeclaration"
         }
       ],
@@ -16042,6 +16803,181 @@
           "type": "ImportDeclaration"
         }
       ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\menu-management\\index.tsx": [
+        {
+          "end": 65,
+          "importKind": "value",
+          "source": "react",
+          "specifiers": [
+            {
+              "local": "React",
+              "type": "ImportDefaultSpecifier"
+            },
+            {
+              "imported": "useState",
+              "local": "useState",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useEffect",
+              "local": "useEffect",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useCallback",
+              "local": "useCallback",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 181,
+          "importKind": "value",
+          "source": "antd",
+          "specifiers": [
+            {
+              "imported": "Table",
+              "local": "Table",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Button",
+              "local": "Button",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Modal",
+              "local": "Modal",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Form",
+              "local": "Form",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Input",
+              "local": "Input",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "InputNumber",
+              "local": "InputNumber",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Select",
+              "local": "Select",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Tag",
+              "local": "Tag",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Space",
+              "local": "Space",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "message",
+              "local": "message",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Card",
+              "local": "Card",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Checkbox",
+              "local": "Checkbox",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 66,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 261,
+          "importKind": "value",
+          "source": "@ant-design/icons",
+          "specifiers": [
+            {
+              "imported": "PlusOutlined",
+              "local": "PlusOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "EditOutlined",
+              "local": "EditOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "DeleteOutlined",
+              "local": "DeleteOutlined",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 182,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 311,
+          "importKind": "type",
+          "source": "antd/es/table",
+          "specifiers": [
+            {
+              "imported": "ColumnsType",
+              "local": "ColumnsType",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 262,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 354,
+          "importKind": "value",
+          "source": "@/services/menu",
+          "specifiers": [
+            {
+              "imported": "menuApi",
+              "local": "menuApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 312,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 442,
+          "importKind": "type",
+          "source": "@/services/types",
+          "specifiers": [
+            {
+              "imported": "MenuItem",
+              "local": "MenuItem",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "CreateMenuRequest",
+              "local": "CreateMenuRequest",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "UpdateMenuRequest",
+              "local": "UpdateMenuRequest",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 355,
+          "type": "ImportDeclaration"
+        }
+      ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\news-filter-agent\\index.tsx": [
         {
           "end": 65,
@@ -16981,7 +17917,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 201,
+          "end": 228,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -16999,13 +17935,18 @@
               "imported": "MailOutlined",
               "local": "MailOutlined",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "SafetyCertificateOutlined",
+              "local": "SafetyCertificateOutlined",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 124,
           "type": "ImportDeclaration"
         },
         {
-          "end": 242,
+          "end": 269,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -17020,11 +17961,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 202,
+          "start": 229,
           "type": "ImportDeclaration"
         },
         {
-          "end": 285,
+          "end": 312,
           "importKind": "value",
           "source": "@/services/auth",
           "specifiers": [
@@ -17034,11 +17975,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 243,
+          "start": 270,
           "type": "ImportDeclaration"
         },
         {
-          "end": 352,
+          "end": 379,
           "importKind": "value",
           "source": "@/utils/auth",
           "specifiers": [
@@ -17058,7 +17999,7 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 286,
+          "start": 313,
           "type": "ImportDeclaration"
         }
       ],
@@ -19986,6 +20927,180 @@
           "type": "ImportDeclaration"
         }
       ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\users\\index.tsx": [
+        {
+          "end": 65,
+          "importKind": "value",
+          "source": "react",
+          "specifiers": [
+            {
+              "local": "React",
+              "type": "ImportDefaultSpecifier"
+            },
+            {
+              "imported": "useState",
+              "local": "useState",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useEffect",
+              "local": "useEffect",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useCallback",
+              "local": "useCallback",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 164,
+          "importKind": "value",
+          "source": "antd",
+          "specifiers": [
+            {
+              "imported": "Table",
+              "local": "Table",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Tag",
+              "local": "Tag",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Select",
+              "local": "Select",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "message",
+              "local": "message",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Card",
+              "local": "Card",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Input",
+              "local": "Input",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Space",
+              "local": "Space",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Button",
+              "local": "Button",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Modal",
+              "local": "Modal",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Typography",
+              "local": "Typography",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 66,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 242,
+          "importKind": "value",
+          "source": "@ant-design/icons",
+          "specifiers": [
+            {
+              "imported": "PlusOutlined",
+              "local": "PlusOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "CopyOutlined",
+              "local": "CopyOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "GiftOutlined",
+              "local": "GiftOutlined",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 165,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 292,
+          "importKind": "type",
+          "source": "antd/es/table",
+          "specifiers": [
+            {
+              "imported": "ColumnsType",
+              "local": "ColumnsType",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 243,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 337,
+          "importKind": "value",
+          "source": "@/services/users",
+          "specifiers": [
+            {
+              "imported": "usersApi",
+              "local": "usersApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 293,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 393,
+          "importKind": "value",
+          "source": "@/services/invite-code",
+          "specifiers": [
+            {
+              "imported": "inviteCodeApi",
+              "local": "inviteCodeApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 338,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 459,
+          "importKind": "type",
+          "source": "@/services/types",
+          "specifiers": [
+            {
+              "imported": "UserListItem",
+              "local": "UserListItem",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "InviteCode",
+              "local": "InviteCode",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 394,
+          "type": "ImportDeclaration"
+        }
+      ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\api-key.ts": [
         {
           "end": 31,
@@ -20268,6 +21383,45 @@
           "type": "ImportDeclaration"
         }
       ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\invite-code.ts": [
+        {
+          "end": 31,
+          "importKind": "value",
+          "source": "./client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 126,
+          "importKind": "type",
+          "source": "./types",
+          "specifiers": [
+            {
+              "imported": "InviteCode",
+              "local": "InviteCode",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "InviteCodesListResponse",
+              "local": "InviteCodesListResponse",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "GenerateInviteCodeRequest",
+              "local": "GenerateInviteCodeRequest",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 32,
+          "type": "ImportDeclaration"
+        }
+      ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\klines.ts": [
         {
           "end": 31,
@@ -20295,6 +21449,45 @@
             }
           ],
           "start": 1,
+          "type": "ImportDeclaration"
+        }
+      ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\menu.ts": [
+        {
+          "end": 31,
+          "importKind": "value",
+          "source": "./client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 110,
+          "importKind": "type",
+          "source": "./types",
+          "specifiers": [
+            {
+              "imported": "MenuItem",
+              "local": "MenuItem",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "CreateMenuRequest",
+              "local": "CreateMenuRequest",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "UpdateMenuRequest",
+              "local": "UpdateMenuRequest",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 32,
           "type": "ImportDeclaration"
         }
       ],
@@ -20585,6 +21778,45 @@
             {
               "imported": "TradingMemoryStatsResponse",
               "local": "TradingMemoryStatsResponse",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 32,
+          "type": "ImportDeclaration"
+        }
+      ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\users.ts": [
+        {
+          "end": 31,
+          "importKind": "value",
+          "source": "./client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 114,
+          "importKind": "type",
+          "source": "./types",
+          "specifiers": [
+            {
+              "imported": "UsersListResponse",
+              "local": "UsersListResponse",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "UpdateRoleRequest",
+              "local": "UpdateRoleRequest",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "UserListItem",
+              "local": "UserListItem",
               "type": "ImportSpecifier"
             }
           ],

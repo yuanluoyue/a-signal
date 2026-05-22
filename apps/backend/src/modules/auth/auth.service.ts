@@ -10,6 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from '../users/users.service.js';
 import { AuditLogService } from '../audit-log/audit-log.service.js';
+import { InviteCodeService } from '../invite-code/invite-code.service.js';
 import { User } from '../../core/db/schema.js';
 
 export interface RegisterInput {
@@ -17,6 +18,7 @@ export interface RegisterInput {
   email: string;
   password: string;
   avatarSeed?: string;
+  inviteCode?: string;
 }
 
 export interface LoginInput {
@@ -52,6 +54,7 @@ export class AuthService {
     private usersService: UsersService,
     private jwtService: JwtService,
     private auditLogService: AuditLogService,
+    private inviteCodeService: InviteCodeService,
   ) {}
 
   async register(input: RegisterInput, ctx?: RequestContext): Promise<AuthResponse> {
@@ -71,6 +74,14 @@ export class AuthService {
         throw new ConflictException('Email already registered');
       }
 
+      const isSystemEmpty = await this.inviteCodeService.isSystemEmpty();
+      if (!isSystemEmpty) {
+        if (!input.inviteCode) {
+          throw new BadRequestException('邀请码不能为空');
+        }
+        await this.inviteCodeService.validate(input.inviteCode);
+      }
+
       this.logger.log('Hashing password...');
       const hashedPassword = await bcrypt.hash(input.password, 10);
 
@@ -82,6 +93,10 @@ export class AuthService {
         avatarSeed: input.avatarSeed,
       });
 
+      if (input.inviteCode && !isSystemEmpty) {
+        await this.inviteCodeService.markUsed(input.inviteCode, user.id);
+      }
+
       this.logger.log(`User created with id: ${user.id}`);
       const accessToken = this.generateToken(user);
       const { password, ...userWithoutPassword } = user;
@@ -91,7 +106,7 @@ export class AuthService {
         action: 'user.register',
         resource: 'user',
         resourceId: user.id,
-        detail: { email: input.email, nickname: input.nickname },
+        detail: { email: input.email, nickname: input.nickname, usedInviteCode: !!input.inviteCode },
         ipAddress: ctx?.ipAddress,
         userAgent: ctx?.userAgent,
         status: 'success',
@@ -102,7 +117,7 @@ export class AuthService {
         accessToken,
       };
     } catch (error) {
-      if (!(error instanceof ConflictException)) {
+      if (!(error instanceof ConflictException) && !(error instanceof BadRequestException)) {
         await this.auditLogService.log({
           action: 'user.register',
           resource: 'user',
@@ -244,6 +259,7 @@ export class AuthService {
     const payload = {
       sub: user.id,
       email: user.email,
+      role: user.role || 'normal',
     };
     return this.jwtService.sign(payload);
   }

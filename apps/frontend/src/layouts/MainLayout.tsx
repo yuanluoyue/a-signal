@@ -1,5 +1,5 @@
-import React, { useState, useMemo, useCallback, Suspense } from 'react';
-import { Layout, Menu, theme } from 'antd';
+import React, { useState, useMemo, useCallback, Suspense, useEffect } from 'react';
+import { Layout, Menu, theme, Spin } from 'antd';
 import {
   DashboardOutlined,
   StockOutlined,
@@ -30,191 +30,172 @@ import {
   FileTextOutlined,
   BulbOutlined,
   FilterOutlined,
+  UserOutlined,
+  MenuOutlined,
 } from '@ant-design/icons';
+import type { MenuProps } from 'antd';
 import { Outlet, useNavigate, useLocation } from 'umi';
 import Header from '@/components/Header';
 import PageLoading from '@/components/PageLoading';
+import { menuApi } from '@/services/menu';
+import type { MenuItem } from '@/services/types';
+import { useUser } from '@/contexts/UserContext';
 
 const { Sider, Content } = Layout;
 
-const MENU_ITEMS = [
-  {
-    key: '/dashboard',
-    icon: <DashboardOutlined />,
-    label: '仪表盘',
-  },
-  {
-    key: '/data',
-    icon: <DatabaseOutlined />,
-    label: '数据中心',
-    children: [
-      { key: '/news', icon: <ReadOutlined />, label: '新闻管理' },
-      { key: '/stocks', icon: <SearchOutlined />, label: '股票查询' },
-      { key: '/stock-trackings', icon: <EyeOutlined />, label: '股票追踪' },
-    ],
-  },
-  {
-    key: '/strategy',
-    icon: <ExperimentOutlined />,
-    label: '策略中心',
-    children: [
-      { key: '/signal-rules', icon: <SettingOutlined />, label: '信号规则' },
-      { key: '/signals', icon: <BellOutlined />, label: '信号管理' },
-      { key: '/events', icon: <ThunderboltOutlined />, label: '事件管理' },
-      { key: '/strategies', icon: <CodeOutlined />, label: '策略管理' },
-      { key: '/backtest', icon: <LineChartOutlined />, label: '回测记录' },
-    ],
-  },
-  {
-    key: '/trading',
-    icon: <WalletOutlined />,
-    label: '交易中心',
-    children: [
-      { key: '/runtime', icon: <ControlOutlined />, label: '运行管理' },
-      { key: '/simulation', icon: <DollarOutlined />, label: '账户模拟' },
-    ],
-  },
-  {
-    key: '/agent',
-    icon: <RobotOutlined />,
-    label: 'AI 智能体',
-    children: [
-      { key: '/agent-chat', icon: <MessageOutlined />, label: '研究员 Agent' },
-      { key: '/trading-agent', icon: <ThunderboltOutlined />, label: '交易 Agent' },
-      { key: '/news-filter-agent', icon: <FilterOutlined />, label: '新闻过滤 Agent' },
-      { key: '/trading-memory', icon: <BulbOutlined />, label: '交易经验' },
-      { key: '/llm-center', icon: <CloudServerOutlined />, label: 'AI 运行中心' },
-      { key: '/llm-logs', icon: <FileTextOutlined />, label: 'LLM 日志' },
-    ],
-  },
-  {
-    key: '/analysis',
-    icon: <FundOutlined />,
-    label: '分析中心',
-    children: [
-      { key: '/analysis/overview', icon: <BarChartOutlined />, label: '综合分析' },
-      { key: '/analysis/strategies', icon: <PieChartOutlined />, label: '策略总览' },
-    ],
-  },
-  {
-    key: '/settings',
-    icon: <SettingOutlined />,
-    label: '系统设置',
-    children: [
-      { key: '/settings/notifications', icon: <NotificationOutlined />, label: '通知设置' },
-      { key: '/settings/scheduler', icon: <ClockCircleOutlined />, label: '定时任务' },
-      { key: '/settings/api-keys', icon: <KeyOutlined />, label: 'API Key' },
-      { key: '/blacklist', icon: <BlockOutlined />, label: '黑名单' },
-      { key: '/audit-logs', icon: <AuditOutlined />, label: '审计日志' },
-    ],
-  },
-];
+const iconMap: Record<string, React.ReactNode> = {
+  DashboardOutlined: <DashboardOutlined />,
+  DatabaseOutlined: <DatabaseOutlined />,
+  ReadOutlined: <ReadOutlined />,
+  SearchOutlined: <SearchOutlined />,
+  EyeOutlined: <EyeOutlined />,
+  ExperimentOutlined: <ExperimentOutlined />,
+  SettingOutlined: <SettingOutlined />,
+  BellOutlined: <BellOutlined />,
+  ThunderboltOutlined: <ThunderboltOutlined />,
+  CodeOutlined: <CodeOutlined />,
+  LineChartOutlined: <LineChartOutlined />,
+  WalletOutlined: <WalletOutlined />,
+  ControlOutlined: <ControlOutlined />,
+  DollarOutlined: <DollarOutlined />,
+  RobotOutlined: <RobotOutlined />,
+  MessageOutlined: <MessageOutlined />,
+  FilterOutlined: <FilterOutlined />,
+  BulbOutlined: <BulbOutlined />,
+  CloudServerOutlined: <CloudServerOutlined />,
+  FileTextOutlined: <FileTextOutlined />,
+  FundOutlined: <FundOutlined />,
+  BarChartOutlined: <BarChartOutlined />,
+  PieChartOutlined: <PieChartOutlined />,
+  NotificationOutlined: <NotificationOutlined />,
+  ClockCircleOutlined: <ClockCircleOutlined />,
+  KeyOutlined: <KeyOutlined />,
+  BlockOutlined: <BlockOutlined />,
+  AuditOutlined: <AuditOutlined />,
+  UserOutlined: <UserOutlined />,
+  MenuOutlined: <MenuOutlined />,
+};
 
-const getSelectedKey = (pathname: string): string => {
-  const pathParts = pathname.split('/').filter(Boolean);
-  
-  if (pathParts.length === 0) {
-    return '/dashboard';
-  }
-  
-  const basePath = `/${pathParts[0]}`;
-  
-  if (pathParts.length >= 2) {
-    const secondLevelPath = `/${pathParts[0]}/${pathParts[1]}`;
-    const knownSecondLevelPaths = [
-      '/settings/notifications',
-      '/settings/scheduler',
-      '/settings/api-keys',
-      '/analysis/overview',
-      '/analysis/strategies',
-    ];
-    
-    if (knownSecondLevelPaths.includes(secondLevelPath)) {
-      return secondLevelPath;
+const buildMenuItems = (menus: MenuItem[]): MenuProps['items'] => {
+  const topMenus = menus.filter(m => !m.parentId);
+  const childMenus = menus.filter(m => m.parentId);
+
+  return topMenus
+    .sort((a, b) => a.sort - b.sort)
+    .map(menu => {
+      const children = childMenus
+        .filter(c => c.parentId === menu.id)
+        .sort((a, b) => a.sort - b.sort);
+
+      if (children.length > 0) {
+        return {
+          key: menu.path || menu.id,
+          icon: menu.icon ? iconMap[menu.icon] : undefined,
+          label: menu.name,
+          children: children.map(child => ({
+            key: child.path || child.id,
+            icon: child.icon ? iconMap[child.icon] : undefined,
+            label: child.name,
+          })),
+        };
+      }
+
+      return {
+        key: menu.path || menu.id,
+        icon: menu.icon ? iconMap[menu.icon] : undefined,
+        label: menu.name,
+      };
+    });
+};
+
+const buildPathToParentMap = (menus: MenuItem[]): Record<string, string> => {
+  const map: Record<string, string> = {};
+  const topMenus = menus.filter(m => !m.parentId);
+  const childMenus = menus.filter(m => m.parentId);
+
+  for (const parent of topMenus) {
+    const children = childMenus.filter(c => c.parentId === parent.id);
+    for (const child of children) {
+      if (child.path) {
+        map[child.path] = parent.path || parent.id;
+      }
     }
+  }
 
+  return map;
+};
+
+const getSelectedKey = (pathname: string, allPaths: string[]): string => {
+  if (allPaths.includes(pathname)) {
+    return pathname;
+  }
+
+  const pathParts = pathname.split('/').filter(Boolean);
   if (pathParts.length >= 3 && pathParts[0] === 'analysis' && pathParts[1] === 'strategies') {
     return '/analysis/strategies';
   }
-  }
-  
-  const knownFirstLevelPaths = [
-    '/dashboard',
-    '/news',
-    '/stocks',
-    '/stock-trackings',
-    '/signal-rules',
-    '/signals',
-    '/events',
-    '/strategies',
-    '/backtest',
-    '/runtime',
-    '/simulation',
-    '/agent-chat',
-    '/trading-memory',
-    '/trading-agent',
-    '/news-filter-agent',
-    '/llm-center',
-    '/llm-logs',
-    '/analysis/overview',
-    '/analysis/strategies',
-    '/blacklist',
-    '/audit-logs',
-  ];
-  
-  if (knownFirstLevelPaths.includes(basePath)) {
-    return basePath;
-  }
-  
-  return pathname;
-};
 
-const getOpenKeys = (pathname: string): string[] => {
-  const pathToParentMap: Record<string, string> = {
-    '/news': '/data',
-    '/stocks': '/data',
-    '/stock-trackings': '/data',
-    '/signal-rules': '/strategy',
-    '/signals': '/strategy',
-    '/events': '/strategy',
-    '/strategies': '/strategy',
-    '/backtest': '/strategy',
-    '/runtime': '/trading',
-    '/simulation': '/trading',
-    '/agent-chat': '/agent',
-    '/trading-memory': '/agent',
-    '/trading-agent': '/agent',
-    '/news-filter-agent': '/agent',
-    '/llm-center': '/agent',
-    '/llm-logs': '/agent',
-    '/analysis/overview': '/analysis',
-    '/analysis/strategies': '/analysis',
-    '/settings/notifications': '/settings',
-    '/settings/scheduler': '/settings',
-    '/settings/api-keys': '/settings',
-    '/blacklist': '/settings',
-    '/audit-logs': '/settings',
-  };
-  
-  const openKeys: string[] = [];
-  const selectedKey = getSelectedKey(pathname);
-  const parentKey = pathToParentMap[selectedKey];
-  if (parentKey) {
-    openKeys.push(parentKey);
+  if (pathParts.length >= 2) {
+    const parentPath = `/${pathParts[0]}/${pathParts[1]}`;
+    if (allPaths.includes(parentPath)) {
+      return parentPath;
+    }
   }
-  return openKeys;
+
+  if (pathParts.length >= 1) {
+    const basePath = `/${pathParts[0]}`;
+    if (allPaths.includes(basePath)) {
+      return basePath;
+    }
+  }
+
+  return pathname;
 };
 
 const MainLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
+  const [menuLoading, setMenuLoading] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
+  const { user } = useUser();
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  useEffect(() => {
+    const fetchMenus = async () => {
+      try {
+        setMenuLoading(true);
+        const menus = await menuApi.getMyMenus();
+        console.log('[MainLayout] Fetched menus:', menus.length, menus.map(m => m.name));
+        setMenuItems(menus);
+      } catch (error) {
+        console.error('[MainLayout] Failed to fetch menus:', error);
+      } finally {
+        setMenuLoading(false);
+      }
+    };
+
+    fetchMenus();
+  }, [user?.role]);
+
+  const antdMenuItems = useMemo(() => buildMenuItems(menuItems), [menuItems]);
+
+  const allPaths = useMemo(() => {
+    const paths: string[] = [];
+    for (const menu of menuItems) {
+      if (menu.path) paths.push(menu.path);
+    }
+    return paths;
+  }, [menuItems]);
+
+  const pathToParentMap = useMemo(() => buildPathToParentMap(menuItems), [menuItems]);
+
   const handleMenuClick = useCallback(({ key }: { key: string }) => {
-    navigate(key);
+    if (key.startsWith('/')) {
+      navigate(key);
+    }
   }, [navigate]);
 
   const handleToggle = useCallback(() => {
@@ -225,8 +206,12 @@ const MainLayout: React.FC = () => {
     navigate('/dashboard');
   }, [navigate]);
 
-  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname)], [location.pathname]);
-  const defaultOpenKeys = useMemo(() => getOpenKeys(location.pathname), [location.pathname]);
+  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname, allPaths)], [location.pathname, allPaths]);
+  const defaultOpenKeys = useMemo(() => {
+    const selectedKey = getSelectedKey(location.pathname, allPaths);
+    const parentKey = pathToParentMap[selectedKey];
+    return parentKey ? [parentKey] : [];
+  }, [location.pathname, allPaths, pathToParentMap]);
 
   const siderStyle = useMemo(() => ({
     height: '100vh',
@@ -287,15 +272,21 @@ const MainLayout: React.FC = () => {
           )}
         </div>
         <div style={menuContainerStyle} className="custom-scrollbar">
-          <Menu
-            theme="dark"
-            mode="inline"
-            selectedKeys={selectedKeys}
-            defaultOpenKeys={defaultOpenKeys}
-            items={MENU_ITEMS}
-            onClick={handleMenuClick}
-            style={{ borderRight: 0 }}
-          />
+          {menuLoading ? (
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '20px 0' }}>
+              <Spin />
+            </div>
+          ) : (
+            <Menu
+              theme="dark"
+              mode="inline"
+              selectedKeys={selectedKeys}
+              defaultOpenKeys={defaultOpenKeys}
+              items={antdMenuItems}
+              onClick={handleMenuClick}
+              style={{ borderRight: 0 }}
+            />
+          )}
         </div>
       </Sider>
       <Layout style={layoutStyle}>

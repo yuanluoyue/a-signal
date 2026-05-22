@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Request, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { ApiTags, ApiBearerAuth, ApiOperation } from '@nestjs/swagger';
 import { AuditLogService } from '../../../modules/audit-log/audit-log.service.js';
 import { QueryAuditLogDto } from './dto/index.js';
@@ -10,21 +10,13 @@ export class AuditLogController {
 
   @Get()
   @ApiBearerAuth()
-  @ApiOperation({ summary: '查询当前用户审计日志' })
-  async findAll(
-    @Request() req: { user?: { sub: string } },
-    @Query() dto: QueryAuditLogDto,
-  ) {
-    const userId = req.user?.sub;
-    if (!userId) {
-      throw new BadRequestException('无法获取用户ID');
-    }
-    const result = await this.auditLogService.findByUserId(userId, {
+  @ApiOperation({ summary: '查询审计日志' })
+  async findAll(@Query() dto: QueryAuditLogDto) {
+    return this.auditLogService.findAll({
       action: dto.action,
       resource: dto.resource,
       page: dto.page ?? 1,
       pageSize: dto.pageSize ?? 20,
     });
-    return result;
   }
 }

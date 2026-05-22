@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Input, Button, Card, Typography, message } from 'antd';
-import { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';
+import { UserOutlined, LockOutlined, MailOutlined, SafetyCertificateOutlined } from '@ant-design/icons';
 import { useNavigate, Link } from 'umi';
 import { authApi } from '@/services/auth';
 import { setToken, setUser, isAuthenticated } from '@/utils/auth';
@@ -22,6 +22,7 @@ const RegisterPage: React.FC = () => {
     email: string; 
     password: string;
     confirmPassword: string;
+    inviteCode?: string;
   }) => {
     if (values.password !== values.confirmPassword) {
       message.error('两次输入的密码不一致');
@@ -34,6 +35,7 @@ const RegisterPage: React.FC = () => {
         nickname: values.nickname,
         email: values.email,
         password: values.password,
+        inviteCode: values.inviteCode,
       });
       
       setToken(response.access_token, false);
@@ -55,7 +57,7 @@ const RegisterPage: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        background: '#fff',
         padding: '20px',
       }}
     >
@@ -129,6 +131,15 @@ const RegisterPage: React.FC = () => {
             <Input.Password
               prefix={<LockOutlined style={{ color: '#bfbfbf' }} />}
               placeholder="确认密码"
+            />
+          </Form.Item>
+
+          <Form.Item
+            name="inviteCode"
+          >
+            <Input
+              prefix={<SafetyCertificateOutlined style={{ color: '#bfbfbf' }} />}
+              placeholder="邀请码"
             />
           </Form.Item>
 

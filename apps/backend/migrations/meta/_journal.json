@@ -176,6 +176,20 @@
       "when": 1779268239551,
       "tag": "0024_typical_psylocke",
       "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1779455687114,
+      "tag": "0025_dry_screwball",
+      "breakpoints": true
+    },
+    {
+      "idx": 26,
+      "version": "7",
+      "when": 1779461967954,
+      "tag": "0026_typical_black_tom",
+      "breakpoints": true
     }
   ]
 }

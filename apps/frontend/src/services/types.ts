@@ -24,6 +24,7 @@ export interface RegisterRequest {
   nickname: string;
   email: string;
   password: string;
+  inviteCode?: string;
 }
 
 export interface LoginResponse {
@@ -46,6 +47,7 @@ export interface User {
   email: string;
   nickname: string;
   avatarSeed?: string;
+  role?: string;
   createdAt: string;
   updatedAt: string;
 }
@@ -826,4 +828,84 @@ export interface LlmProviderConfig {
   dailyBudget: number | null;
   createdAt: string;
   updatedAt: string;
+}
+
+// ==================== 菜单管理相关类型 ====================
+
+export interface MenuItem {
+  id: string;
+  parentId: string | null;
+  name: string;
+  path: string | null;
+  icon: string | null;
+  sort: number;
+  visibleRoles: string[] | null;
+  status: string | null;
+  createdAt: string;
+  updatedAt: string;
+  children?: MenuItem[];
+}
+
+export interface CreateMenuRequest {
+  parentId?: string;
+  name: string;
+  path?: string;
+  icon?: string;
+  sort?: number;
+  visibleRoles?: string[];
+}
+
+export interface UpdateMenuRequest {
+  parentId?: string;
+  name?: string;
+  path?: string;
+  icon?: string;
+  sort?: number;
+  visibleRoles?: string[];
+  status?: string;
+}
+
+// ==================== 用户管理相关类型 ====================
+
+export interface UserListItem {
+  id: string;
+  nickname: string;
+  email: string;
+  avatarSeed: string | null;
+  role: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface UsersListResponse {
+  data: UserListItem[];
+  total: number;
+}
+
+export interface UpdateRoleRequest {
+  role: 'admin' | 'normal';
+}
+
+// ==================== 邀请码相关类型 ====================
+
+export interface InviteCode {
+  id: string;
+  code: string;
+  createdById: string | null;
+  usedBy: string | null;
+  expiresAt: string;
+  usedAt: string | null;
+  status: string | null;
+  createdAt: string;
+  usedByNickname: string | null;
+  usedByEmail: string | null;
+}
+
+export interface InviteCodesListResponse {
+  data: InviteCode[];
+  total: number;
+}
+
+export interface GenerateInviteCodeRequest {
+  expiresInHours?: number;
 }
