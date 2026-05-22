@@ -176,6 +176,16 @@ export default defineConfig({
           title: '个人资料',
         },
         {
+          path: '/settings/users',
+          component: '@/pages/users/index',
+          title: '用户管理',
+        },
+        {
+          path: '/settings/menu-management',
+          component: '@/pages/menu-management/index',
+          title: '菜单管理',
+        },
+        {
           path: '/',
           redirect: '/dashboard',
         },

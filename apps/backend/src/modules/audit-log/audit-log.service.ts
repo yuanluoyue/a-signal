@@ -84,4 +84,44 @@ export class AuditLogService {
 
     return { data, total: count };
   }
+
+  async findAll(params: AuditLogQueryParams & { userId?: string }): Promise<{ data: AuditLog[]; total: number }> {
+    const conditions = [];
+
+    if (params.userId) {
+      conditions.push(eq(auditLogs.userId, params.userId));
+    }
+    if (params.action) {
+      conditions.push(like(auditLogs.action, `${params.action}%`));
+    }
+    if (params.resource) {
+      conditions.push(eq(auditLogs.resource, params.resource));
+    }
+    if (params.status) {
+      conditions.push(eq(auditLogs.status, params.status));
+    }
+    if (params.startTime) {
+      conditions.push(gte(auditLogs.createdAt, params.startTime));
+    }
+    if (params.endTime) {
+      conditions.push(lte(auditLogs.createdAt, params.endTime));
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const [{ count }] = await this.dbService.db
+      .select({ count: sql<number>`count(*)::int` })
+      .from(auditLogs)
+      .where(whereClause);
+
+    const data = await this.dbService.db
+      .select()
+      .from(auditLogs)
+      .where(whereClause)
+      .orderBy(desc(auditLogs.createdAt))
+      .limit(params.pageSize)
+      .offset((params.page - 1) * params.pageSize);
+
+    return { data, total: count };
+  }
 }

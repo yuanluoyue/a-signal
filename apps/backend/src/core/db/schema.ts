@@ -19,6 +19,7 @@ export const users = pgTable('users', {
   email: varchar('email', { length: 255 }).notNull().unique(),
   password: varchar('password', { length: 255 }).notNull(),
   avatarSeed: text('avatar_seed'),
+  role: varchar('role', { length: 20 }).default('normal'),
   createdAt: timestamp('created_at', { withTimezone: true })
     .notNull()
     .defaultNow(),
@@ -1157,3 +1158,32 @@ export const newsFilterAgentLogs = pgTable(
 
 export type NewsFilterAgentLog = typeof newsFilterAgentLogs.$inferSelect;
 export type NewNewsFilterAgentLog = typeof newsFilterAgentLogs.$inferInsert;
+
+export const menus = pgTable(
+  'menus',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    parentId: uuid('parent_id'),
+    name: varchar('name', { length: 100 }).notNull(),
+    path: varchar('path', { length: 255 }),
+    icon: varchar('icon', { length: 100 }),
+    sort: integer('sort').notNull().default(0),
+    visibleRoles: jsonb('visible_roles').$type<string[]>().default(['admin', 'normal']),
+    status: varchar('status', { length: 20 }).default('active'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    index('menus_parent_id_idx').on(table.parentId),
+    index('menus_status_idx').on(table.status),
+    index('menus_sort_idx').on(table.sort),
+  ],
+);
+
+export type Menu = typeof menus.$inferSelect;
+export type NewMenu = typeof menus.$inferInsert;

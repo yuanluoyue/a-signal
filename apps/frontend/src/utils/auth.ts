@@ -7,6 +7,7 @@ export interface User {
   email: string;
   nickname: string;
   avatarSeed?: string;
+  role?: string;
 }
 
 export const getToken = (): string | null => {

@@ -176,6 +176,13 @@
       "when": 1779268239551,
       "tag": "0024_typical_psylocke",
       "breakpoints": true
+    },
+    {
+      "idx": 25,
+      "version": "7",
+      "when": 1779455687114,
+      "tag": "0025_dry_screwball",
+      "breakpoints": true
     }
   ]
 }

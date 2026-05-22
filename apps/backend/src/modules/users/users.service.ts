@@ -1,5 +1,5 @@
-import { Injectable } from '@nestjs/common';
-import { eq } from 'drizzle-orm';
+import { Injectable, Logger } from '@nestjs/common';
+import { eq, and, desc, sql, like } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import * as schema from '../../core/db/schema.js';
 
@@ -19,8 +19,17 @@ export interface UpdatePasswordInput {
   password: string;
 }
 
+export interface UserQueryParams {
+  keyword?: string;
+  role?: string;
+  page: number;
+  pageSize: number;
+}
+
 @Injectable()
 export class UsersService {
+  private readonly logger = new Logger(UsersService.name);
+
   constructor(private dbService: DbService) {}
 
   async findById(id: string): Promise<schema.User | null> {
@@ -75,6 +84,55 @@ export class UsersService {
       .set({
         password: input.password,
       })
+      .where(eq(schema.users.id, id))
+      .returning();
+    return result[0] || null;
+  }
+
+  async findAll(params: UserQueryParams): Promise<{ data: Omit<schema.User, 'password'>[]; total: number }> {
+    const conditions = [];
+
+    if (params.keyword) {
+      conditions.push(
+        like(schema.users.nickname, `%${params.keyword}%`),
+      );
+    }
+
+    if (params.role) {
+      conditions.push(eq(schema.users.role, params.role));
+    }
+
+    const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+    const [{ count }] = await this.dbService.db
+      .select({ count: sql<number>`count(*)::int` })
+      .from(schema.users)
+      .where(whereClause);
+
+    const rows = await this.dbService.db
+      .select({
+        id: schema.users.id,
+        nickname: schema.users.nickname,
+        email: schema.users.email,
+        avatarSeed: schema.users.avatarSeed,
+        role: schema.users.role,
+        createdAt: schema.users.createdAt,
+        updatedAt: schema.users.updatedAt,
+      })
+      .from(schema.users)
+      .where(whereClause)
+      .orderBy(desc(schema.users.createdAt))
+      .limit(params.pageSize)
+      .offset((params.page - 1) * params.pageSize);
+
+    return { data: rows, total: count };
+  }
+
+  async updateRole(id: string, role: string): Promise<schema.User | null> {
+    this.logger.log(`Updating user ${id} role to ${role}`);
+    const result = await this.dbService.db
+      .update(schema.users)
+      .set({ role })
       .where(eq(schema.users.id, id))
       .returning();
     return result[0] || null;
