@@ -16,6 +16,11 @@ export class RegisterDto {
   @MinLength(6)
   password: string;
 
+  @ApiPropertyOptional({ description: '邀请码' })
+  @IsOptional()
+  @IsString()
+  inviteCode?: string;
+
   @ApiPropertyOptional({ description: '头像种子' })
   @IsOptional()
   @IsString()

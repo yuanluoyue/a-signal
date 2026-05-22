@@ -113,6 +113,12 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -136,7 +142,13 @@
             4,
             4,
             6,
-            5
+            5,
+            3,
+            5,
+            3,
+            5,
+            4,
+            4
           ]
         },
         "register": 23
@@ -160,6 +172,12 @@
             20,
             20,
             22,
+            15,
+            21,
+            18,
+            19,
+            15,
+            18,
             15
           ]
         },
@@ -181,6 +199,12 @@
             0,
             0,
             1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -210,10 +234,23 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onCheckCode": [
             1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1295,6 +1332,57 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1316,9 +1404,21 @@
             2,
             1,
             1,
-            1
+            1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            2
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1401,12 +1501,30 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addEntryImports": [
             0,
             0,
             1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1451,9 +1569,27 @@
             54,
             29,
             27,
-            31
+            31,
+            33,
+            36,
+            34,
+            28,
+            28,
+            26
           ],
           "addPolyfillImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1488,6 +1624,18 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1506,6 +1654,12 @@
         "hooks": {
           "onGenerateFiles": [
             338,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1556,7 +1710,13 @@
             0,
             0,
             0,
-            0
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            1
           ],
           "addBeforeMiddlewares": [
             0
@@ -1583,6 +1743,18 @@
             37,
             5,
             37,
+            4,
+            38,
+            4,
+            41,
+            7,
+            43,
+            7,
+            45,
+            4,
+            38,
+            4,
+            38,
             4,
             38,
             4
@@ -1644,7 +1816,13 @@
             21,
             9,
             7,
-            7
+            7,
+            15,
+            13,
+            9,
+            8,
+            10,
+            9
           ]
         },
         "register": 58
@@ -1733,6 +1911,12 @@
             2,
             1,
             2,
+            1,
+            2,
+            2,
+            1,
+            1,
+            1,
             1
           ]
         },
@@ -1906,6 +2090,57 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            6,
             0,
             0,
             0,
@@ -2312,9 +2547,27 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2326,6 +2579,12 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -2333,6 +2592,12 @@
             3,
             2,
             1,
+            1,
+            4,
+            2,
+            2,
+            4,
+            2,
             1
           ],
           "addExtraBabelPlugins": [
@@ -2359,6 +2624,12 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -2366,6 +2637,12 @@
             57,
             45,
             52,
+            53,
+            52,
+            92,
+            71,
+            55,
+            56,
             53
           ],
           "addTmpGenerateWatcherPaths": [
@@ -2395,6 +2672,18 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
@@ -2402,9 +2691,21 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
             0
           ],
           "addRuntimePluginKey": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2416,7 +2717,13 @@
             29,
             24,
             28,
-            30
+            30,
+            27,
+            34,
+            29,
+            26,
+            24,
+            25
           ],
           "addTmpGenerateWatcherPaths": [
             15
@@ -3813,7 +4120,7 @@
       "file": "@/pages/register.tsx",
       "id": "2",
       "absPath": "/register",
-      "__content": "import React, { useEffect, useState } from 'react';\nimport { Form, Input, Button, Card, Typography, message } from 'antd';\nimport { UserOutlined, LockOutlined, MailOutlined } from '@ant-design/icons';\nimport { useNavigate, Link } from 'umi';\nimport { authApi } from '@/services/auth';\nimport { setToken, setUser, isAuthenticated } from '@/utils/auth';\n\nconst { Title } = Typography;\n\nconst RegisterPage: React.FC = () => {\n  const navigate = useNavigate();\n  const [loading, setLoading] = useState(false);\n\n  useEffect(() => {\n    if (isAuthenticated()) {\n      navigate('/dashboard');\n    }\n  }, [navigate]);\n\n  const handleSubmit = async (values: { \n    nickname: string; \n    email: string; \n    password: string;\n    confirmPassword: string;\n  }) => {\n    if (values.password !== values.confirmPassword) {\n      message.error('两次输入的密码不一致');\n      return;\n    }\n\n    setLoading(true);\n    try {\n      const response = await authApi.register({\n        nickname: values.nickname,\n        email: values.email,\n        password: values.password,\n      });\n      \n      setToken(response.access_token, false);\n      setUser(response.user, false);\n      \n      message.success('注册成功');\n      navigate('/dashboard');\n    } catch (error) {\n      console.error('Register error:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  return (\n    <div\n      style={{\n        minHeight: '100vh',\n        display: 'flex',\n        alignItems: 'center',\n        justifyContent: 'center',\n        background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',\n        padding: '20px',\n      }}\n    >\n      <Card\n        style={{\n          width: '100%',\n          maxWidth: 420,\n          borderRadius: 16,\n          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',\n        }}\n      >\n        <div style={{ textAlign: 'center', marginBottom: 32 }}>\n          <Title level={2} style={{ margin: 0, color: '#1890ff' }}>\n            注册账号\n          </Title>\n          <p style={{ color: '#666', marginTop: 8 }}>创建您的 A Signal 账户</p>\n        </div>\n\n        <Form\n          name=\"register\"\n          onFinish={handleSubmit}\n          autoComplete=\"off\"\n          size=\"large\"\n        >\n          <Form.Item\n            name=\"nickname\"\n            rules={[\n              { required: true, message: '请输入昵称' },\n              { min: 2, message: '昵称至少2个字符' },\n              { max: 20, message: '昵称最多20个字符' },\n            ]}\n          >\n            <Input\n              prefix={<UserOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"昵称\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"email\"\n            rules={[\n              { required: true, message: '请输入邮箱' },\n              { type: 'email', message: '请输入有效的邮箱地址' },\n            ]}\n          >\n            <Input\n              prefix={<MailOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"邮箱\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"password\"\n            rules={[\n              { required: true, message: '请输入密码' },\n              { min: 6, message: '密码至少6位' },\n            ]}\n          >\n            <Input.Password\n              prefix={<LockOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"密码\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"confirmPassword\"\n            rules={[\n              { required: true, message: '请确认密码' },\n            ]}\n          >\n            <Input.Password\n              prefix={<LockOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"确认密码\"\n            />\n          </Form.Item>\n\n          <Form.Item>\n            <Button\n              type=\"primary\"\n              htmlType=\"submit\"\n              loading={loading}\n              block\n              size=\"large\"\n              style={{ borderRadius: 8 }}\n            >\n              注册\n            </Button>\n          </Form.Item>\n\n          <div style={{ textAlign: 'center' }}>\n            <span style={{ color: '#666' }}>已有账号？</span>\n            <Link to=\"/login\" style={{ marginLeft: 8 }}>\n              立即登录\n            </Link>\n          </div>\n        </Form>\n      </Card>\n    </div>\n  );\n};\n\nexport default RegisterPage;\n",
+      "__content": "import React, { useEffect, useState } from 'react';\nimport { Form, Input, Button, Card, Typography, message } from 'antd';\nimport { UserOutlined, LockOutlined, MailOutlined, SafetyCertificateOutlined } from '@ant-design/icons';\nimport { useNavigate, Link } from 'umi';\nimport { authApi } from '@/services/auth';\nimport { setToken, setUser, isAuthenticated } from '@/utils/auth';\n\nconst { Title } = Typography;\n\nconst RegisterPage: React.FC = () => {\n  const navigate = useNavigate();\n  const [loading, setLoading] = useState(false);\n\n  useEffect(() => {\n    if (isAuthenticated()) {\n      navigate('/dashboard');\n    }\n  }, [navigate]);\n\n  const handleSubmit = async (values: { \n    nickname: string; \n    email: string; \n    password: string;\n    confirmPassword: string;\n    inviteCode?: string;\n  }) => {\n    if (values.password !== values.confirmPassword) {\n      message.error('两次输入的密码不一致');\n      return;\n    }\n\n    setLoading(true);\n    try {\n      const response = await authApi.register({\n        nickname: values.nickname,\n        email: values.email,\n        password: values.password,\n        inviteCode: values.inviteCode,\n      });\n      \n      setToken(response.access_token, false);\n      setUser(response.user, false);\n      \n      message.success('注册成功');\n      navigate('/dashboard');\n    } catch (error) {\n      console.error('Register error:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  return (\n    <div\n      style={{\n        minHeight: '100vh',\n        display: 'flex',\n        alignItems: 'center',\n        justifyContent: 'center',\n        background: '#fff',\n        padding: '20px',\n      }}\n    >\n      <Card\n        style={{\n          width: '100%',\n          maxWidth: 420,\n          borderRadius: 16,\n          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.1)',\n        }}\n      >\n        <div style={{ textAlign: 'center', marginBottom: 32 }}>\n          <Title level={2} style={{ margin: 0, color: '#1890ff' }}>\n            注册账号\n          </Title>\n          <p style={{ color: '#666', marginTop: 8 }}>创建您的 A Signal 账户</p>\n        </div>\n\n        <Form\n          name=\"register\"\n          onFinish={handleSubmit}\n          autoComplete=\"off\"\n          size=\"large\"\n        >\n          <Form.Item\n            name=\"nickname\"\n            rules={[\n              { required: true, message: '请输入昵称' },\n              { min: 2, message: '昵称至少2个字符' },\n              { max: 20, message: '昵称最多20个字符' },\n            ]}\n          >\n            <Input\n              prefix={<UserOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"昵称\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"email\"\n            rules={[\n              { required: true, message: '请输入邮箱' },\n              { type: 'email', message: '请输入有效的邮箱地址' },\n            ]}\n          >\n            <Input\n              prefix={<MailOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"邮箱\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"password\"\n            rules={[\n              { required: true, message: '请输入密码' },\n              { min: 6, message: '密码至少6位' },\n            ]}\n          >\n            <Input.Password\n              prefix={<LockOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"密码\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"confirmPassword\"\n            rules={[\n              { required: true, message: '请确认密码' },\n            ]}\n          >\n            <Input.Password\n              prefix={<LockOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"确认密码\"\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"inviteCode\"\n          >\n            <Input\n              prefix={<SafetyCertificateOutlined style={{ color: '#bfbfbf' }} />}\n              placeholder=\"邀请码\"\n            />\n          </Form.Item>\n\n          <Form.Item>\n            <Button\n              type=\"primary\"\n              htmlType=\"submit\"\n              loading={loading}\n              block\n              size=\"large\"\n              style={{ borderRadius: 8 }}\n            >\n              注册\n            </Button>\n          </Form.Item>\n\n          <div style={{ textAlign: 'center' }}>\n            <span style={{ color: '#666' }}>已有账号？</span>\n            <Link to=\"/login\" style={{ marginLeft: 8 }}>\n              立即登录\n            </Link>\n          </div>\n        </Form>\n      </Card>\n    </div>\n  );\n};\n\nexport default RegisterPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/register.tsx"
     },
@@ -3822,7 +4129,7 @@
       "file": "@/layouts/MainLayout.tsx",
       "id": "3",
       "absPath": "/",
-      "__content": "import React, { useState, useMemo, useCallback, Suspense, useEffect } from 'react';\nimport { Layout, Menu, theme, Spin } from 'antd';\nimport {\n  DashboardOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n  KeyOutlined,\n  DatabaseOutlined,\n  FundOutlined,\n  ThunderboltOutlined,\n  AuditOutlined,\n  ExperimentOutlined,\n  CodeOutlined,\n  DollarOutlined,\n  ControlOutlined,\n  MessageOutlined,\n  BarChartOutlined,\n  PieChartOutlined,\n  CloudServerOutlined,\n  FileTextOutlined,\n  BulbOutlined,\n  FilterOutlined,\n  UserOutlined,\n  MenuOutlined,\n} from '@ant-design/icons';\nimport type { MenuProps } from 'antd';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\nimport PageLoading from '@/components/PageLoading';\nimport { menuApi } from '@/services/menu';\nimport type { MenuItem } from '@/services/types';\nimport { useUser } from '@/contexts/UserContext';\n\nconst { Sider, Content } = Layout;\n\nconst iconMap: Record<string, React.ReactNode> = {\n  DashboardOutlined: <DashboardOutlined />,\n  DatabaseOutlined: <DatabaseOutlined />,\n  ReadOutlined: <ReadOutlined />,\n  SearchOutlined: <SearchOutlined />,\n  EyeOutlined: <EyeOutlined />,\n  ExperimentOutlined: <ExperimentOutlined />,\n  SettingOutlined: <SettingOutlined />,\n  BellOutlined: <BellOutlined />,\n  ThunderboltOutlined: <ThunderboltOutlined />,\n  CodeOutlined: <CodeOutlined />,\n  LineChartOutlined: <LineChartOutlined />,\n  WalletOutlined: <WalletOutlined />,\n  ControlOutlined: <ControlOutlined />,\n  DollarOutlined: <DollarOutlined />,\n  RobotOutlined: <RobotOutlined />,\n  MessageOutlined: <MessageOutlined />,\n  FilterOutlined: <FilterOutlined />,\n  BulbOutlined: <BulbOutlined />,\n  CloudServerOutlined: <CloudServerOutlined />,\n  FileTextOutlined: <FileTextOutlined />,\n  FundOutlined: <FundOutlined />,\n  BarChartOutlined: <BarChartOutlined />,\n  PieChartOutlined: <PieChartOutlined />,\n  NotificationOutlined: <NotificationOutlined />,\n  ClockCircleOutlined: <ClockCircleOutlined />,\n  KeyOutlined: <KeyOutlined />,\n  BlockOutlined: <BlockOutlined />,\n  AuditOutlined: <AuditOutlined />,\n  UserOutlined: <UserOutlined />,\n  MenuOutlined: <MenuOutlined />,\n};\n\nconst buildMenuItems = (menus: MenuItem[]): MenuProps['items'] => {\n  const topMenus = menus.filter(m => !m.parentId);\n  const childMenus = menus.filter(m => m.parentId);\n\n  return topMenus\n    .sort((a, b) => a.sort - b.sort)\n    .map(menu => {\n      const children = childMenus\n        .filter(c => c.parentId === menu.id)\n        .sort((a, b) => a.sort - b.sort);\n\n      if (children.length > 0) {\n        return {\n          key: menu.path || menu.id,\n          icon: menu.icon ? iconMap[menu.icon] : undefined,\n          label: menu.name,\n          children: children.map(child => ({\n            key: child.path || child.id,\n            icon: child.icon ? iconMap[child.icon] : undefined,\n            label: child.name,\n          })),\n        };\n      }\n\n      return {\n        key: menu.path || menu.id,\n        icon: menu.icon ? iconMap[menu.icon] : undefined,\n        label: menu.name,\n      };\n    });\n};\n\nconst buildPathToParentMap = (menus: MenuItem[]): Record<string, string> => {\n  const map: Record<string, string> = {};\n  const topMenus = menus.filter(m => !m.parentId);\n  const childMenus = menus.filter(m => m.parentId);\n\n  for (const parent of topMenus) {\n    const children = childMenus.filter(c => c.parentId === parent.id);\n    for (const child of children) {\n      if (child.path) {\n        map[child.path] = parent.path || parent.id;\n      }\n    }\n  }\n\n  return map;\n};\n\nconst getSelectedKey = (pathname: string, allPaths: string[]): string => {\n  if (allPaths.includes(pathname)) {\n    return pathname;\n  }\n\n  const pathParts = pathname.split('/').filter(Boolean);\n  if (pathParts.length >= 3 && pathParts[0] === 'analysis' && pathParts[1] === 'strategies') {\n    return '/analysis/strategies';\n  }\n\n  if (pathParts.length >= 2) {\n    const parentPath = `/${pathParts[0]}/${pathParts[1]}`;\n    if (allPaths.includes(parentPath)) {\n      return parentPath;\n    }\n  }\n\n  if (pathParts.length >= 1) {\n    const basePath = `/${pathParts[0]}`;\n    if (allPaths.includes(basePath)) {\n      return basePath;\n    }\n  }\n\n  return pathname;\n};\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);\n  const [menuLoading, setMenuLoading] = useState(true);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const { user } = useUser();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  useEffect(() => {\n    const fetchMenus = async () => {\n      try {\n        setMenuLoading(true);\n        const menus = await menuApi.getMyMenus();\n        setMenuItems(menus);\n      } catch (error) {\n        console.error('[MainLayout] Failed to fetch menus:', error);\n      } finally {\n        setMenuLoading(false);\n      }\n    };\n\n    fetchMenus();\n  }, [user?.role]);\n\n  const antdMenuItems = useMemo(() => buildMenuItems(menuItems), [menuItems]);\n\n  const allPaths = useMemo(() => {\n    const paths: string[] = [];\n    for (const menu of menuItems) {\n      if (menu.path) paths.push(menu.path);\n    }\n    return paths;\n  }, [menuItems]);\n\n  const pathToParentMap = useMemo(() => buildPathToParentMap(menuItems), [menuItems]);\n\n  const handleMenuClick = useCallback(({ key }: { key: string }) => {\n    if (key.startsWith('/')) {\n      navigate(key);\n    }\n  }, [navigate]);\n\n  const handleToggle = useCallback(() => {\n    setCollapsed(prev => !prev);\n  }, []);\n\n  const handleLogoClick = useCallback(() => {\n    navigate('/dashboard');\n  }, [navigate]);\n\n  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname, allPaths)], [location.pathname, allPaths]);\n  const defaultOpenKeys = useMemo(() => {\n    const selectedKey = getSelectedKey(location.pathname, allPaths);\n    const parentKey = pathToParentMap[selectedKey];\n    return parentKey ? [parentKey] : [];\n  }, [location.pathname, allPaths, pathToParentMap]);\n\n  const siderStyle = useMemo(() => ({\n    height: '100vh',\n    position: 'fixed' as const,\n    left: 0,\n    top: 0,\n    bottom: 0,\n    zIndex: 100,\n  }), []);\n\n  const logoStyle = useMemo(() => ({\n    height: 64,\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: collapsed ? 'center' : 'flex-start',\n    padding: collapsed ? 0 : '0 20px',\n    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n    cursor: 'pointer',\n    gap: 10,\n    whiteSpace: 'nowrap' as const,\n  }), [collapsed]);\n\n  const menuContainerStyle = useMemo(() => ({\n    height: 'calc(100vh - 64px)',\n    overflow: 'auto' as const,\n    overflowX: 'hidden' as const,\n  }), []);\n\n  const layoutStyle = useMemo(() => ({\n    marginLeft: collapsed ? 80 : 200,\n    transition: 'margin-left 0.2s',\n  }), [collapsed]);\n\n  const contentStyle = useMemo(() => ({\n    margin: '88px 16px 24px',\n    padding: 24,\n    minHeight: 280,\n    background: colorBgContainer,\n    borderRadius: borderRadiusLG,\n    overflow: location.pathname === '/agent-chat' ? 'hidden' as const : 'auto' as const,\n  }), [colorBgContainer, borderRadiusLG, location.pathname]);\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={siderStyle}\n      >\n        <div onClick={handleLogoClick} style={logoStyle}>\n          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          {!collapsed && (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <div style={menuContainerStyle} className=\"custom-scrollbar\">\n          {menuLoading ? (\n            <div style={{ display: 'flex', justifyContent: 'center', padding: '20px 0' }}>\n              <Spin />\n            </div>\n          ) : (\n            <Menu\n              theme=\"dark\"\n              mode=\"inline\"\n              selectedKeys={selectedKeys}\n              defaultOpenKeys={defaultOpenKeys}\n              items={antdMenuItems}\n              onClick={handleMenuClick}\n              style={{ borderRight: 0 }}\n            />\n          )}\n        </div>\n      </Sider>\n      <Layout style={layoutStyle}>\n        <Header collapsed={collapsed} onToggle={handleToggle} />\n        <Content style={contentStyle}>\n          <Suspense fallback={<PageLoading />}>\n            <Outlet />\n          </Suspense>\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
+      "__content": "import React, { useState, useMemo, useCallback, Suspense, useEffect } from 'react';\nimport { Layout, Menu, theme, Spin } from 'antd';\nimport {\n  DashboardOutlined,\n  StockOutlined,\n  ReadOutlined,\n  BellOutlined,\n  LineChartOutlined,\n  SettingOutlined,\n  NotificationOutlined,\n  ClockCircleOutlined,\n  SearchOutlined,\n  WalletOutlined,\n  BlockOutlined,\n  EyeOutlined,\n  RobotOutlined,\n  KeyOutlined,\n  DatabaseOutlined,\n  FundOutlined,\n  ThunderboltOutlined,\n  AuditOutlined,\n  ExperimentOutlined,\n  CodeOutlined,\n  DollarOutlined,\n  ControlOutlined,\n  MessageOutlined,\n  BarChartOutlined,\n  PieChartOutlined,\n  CloudServerOutlined,\n  FileTextOutlined,\n  BulbOutlined,\n  FilterOutlined,\n  UserOutlined,\n  MenuOutlined,\n} from '@ant-design/icons';\nimport type { MenuProps } from 'antd';\nimport { Outlet, useNavigate, useLocation } from 'umi';\nimport Header from '@/components/Header';\nimport PageLoading from '@/components/PageLoading';\nimport { menuApi } from '@/services/menu';\nimport type { MenuItem } from '@/services/types';\nimport { useUser } from '@/contexts/UserContext';\n\nconst { Sider, Content } = Layout;\n\nconst iconMap: Record<string, React.ReactNode> = {\n  DashboardOutlined: <DashboardOutlined />,\n  DatabaseOutlined: <DatabaseOutlined />,\n  ReadOutlined: <ReadOutlined />,\n  SearchOutlined: <SearchOutlined />,\n  EyeOutlined: <EyeOutlined />,\n  ExperimentOutlined: <ExperimentOutlined />,\n  SettingOutlined: <SettingOutlined />,\n  BellOutlined: <BellOutlined />,\n  ThunderboltOutlined: <ThunderboltOutlined />,\n  CodeOutlined: <CodeOutlined />,\n  LineChartOutlined: <LineChartOutlined />,\n  WalletOutlined: <WalletOutlined />,\n  ControlOutlined: <ControlOutlined />,\n  DollarOutlined: <DollarOutlined />,\n  RobotOutlined: <RobotOutlined />,\n  MessageOutlined: <MessageOutlined />,\n  FilterOutlined: <FilterOutlined />,\n  BulbOutlined: <BulbOutlined />,\n  CloudServerOutlined: <CloudServerOutlined />,\n  FileTextOutlined: <FileTextOutlined />,\n  FundOutlined: <FundOutlined />,\n  BarChartOutlined: <BarChartOutlined />,\n  PieChartOutlined: <PieChartOutlined />,\n  NotificationOutlined: <NotificationOutlined />,\n  ClockCircleOutlined: <ClockCircleOutlined />,\n  KeyOutlined: <KeyOutlined />,\n  BlockOutlined: <BlockOutlined />,\n  AuditOutlined: <AuditOutlined />,\n  UserOutlined: <UserOutlined />,\n  MenuOutlined: <MenuOutlined />,\n};\n\nconst buildMenuItems = (menus: MenuItem[]): MenuProps['items'] => {\n  const topMenus = menus.filter(m => !m.parentId);\n  const childMenus = menus.filter(m => m.parentId);\n\n  return topMenus\n    .sort((a, b) => a.sort - b.sort)\n    .map(menu => {\n      const children = childMenus\n        .filter(c => c.parentId === menu.id)\n        .sort((a, b) => a.sort - b.sort);\n\n      if (children.length > 0) {\n        return {\n          key: menu.path || menu.id,\n          icon: menu.icon ? iconMap[menu.icon] : undefined,\n          label: menu.name,\n          children: children.map(child => ({\n            key: child.path || child.id,\n            icon: child.icon ? iconMap[child.icon] : undefined,\n            label: child.name,\n          })),\n        };\n      }\n\n      return {\n        key: menu.path || menu.id,\n        icon: menu.icon ? iconMap[menu.icon] : undefined,\n        label: menu.name,\n      };\n    });\n};\n\nconst buildPathToParentMap = (menus: MenuItem[]): Record<string, string> => {\n  const map: Record<string, string> = {};\n  const topMenus = menus.filter(m => !m.parentId);\n  const childMenus = menus.filter(m => m.parentId);\n\n  for (const parent of topMenus) {\n    const children = childMenus.filter(c => c.parentId === parent.id);\n    for (const child of children) {\n      if (child.path) {\n        map[child.path] = parent.path || parent.id;\n      }\n    }\n  }\n\n  return map;\n};\n\nconst getSelectedKey = (pathname: string, allPaths: string[]): string => {\n  if (allPaths.includes(pathname)) {\n    return pathname;\n  }\n\n  const pathParts = pathname.split('/').filter(Boolean);\n  if (pathParts.length >= 3 && pathParts[0] === 'analysis' && pathParts[1] === 'strategies') {\n    return '/analysis/strategies';\n  }\n\n  if (pathParts.length >= 2) {\n    const parentPath = `/${pathParts[0]}/${pathParts[1]}`;\n    if (allPaths.includes(parentPath)) {\n      return parentPath;\n    }\n  }\n\n  if (pathParts.length >= 1) {\n    const basePath = `/${pathParts[0]}`;\n    if (allPaths.includes(basePath)) {\n      return basePath;\n    }\n  }\n\n  return pathname;\n};\n\nconst MainLayout: React.FC = () => {\n  const [collapsed, setCollapsed] = useState(false);\n  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);\n  const [menuLoading, setMenuLoading] = useState(true);\n  const navigate = useNavigate();\n  const location = useLocation();\n  const { user } = useUser();\n  const {\n    token: { colorBgContainer, borderRadiusLG },\n  } = theme.useToken();\n\n  useEffect(() => {\n    const fetchMenus = async () => {\n      try {\n        setMenuLoading(true);\n        const menus = await menuApi.getMyMenus();\n        console.log('[MainLayout] Fetched menus:', menus.length, menus.map(m => m.name));\n        setMenuItems(menus);\n      } catch (error) {\n        console.error('[MainLayout] Failed to fetch menus:', error);\n      } finally {\n        setMenuLoading(false);\n      }\n    };\n\n    fetchMenus();\n  }, [user?.role]);\n\n  const antdMenuItems = useMemo(() => buildMenuItems(menuItems), [menuItems]);\n\n  const allPaths = useMemo(() => {\n    const paths: string[] = [];\n    for (const menu of menuItems) {\n      if (menu.path) paths.push(menu.path);\n    }\n    return paths;\n  }, [menuItems]);\n\n  const pathToParentMap = useMemo(() => buildPathToParentMap(menuItems), [menuItems]);\n\n  const handleMenuClick = useCallback(({ key }: { key: string }) => {\n    if (key.startsWith('/')) {\n      navigate(key);\n    }\n  }, [navigate]);\n\n  const handleToggle = useCallback(() => {\n    setCollapsed(prev => !prev);\n  }, []);\n\n  const handleLogoClick = useCallback(() => {\n    navigate('/dashboard');\n  }, [navigate]);\n\n  const selectedKeys = useMemo(() => [getSelectedKey(location.pathname, allPaths)], [location.pathname, allPaths]);\n  const defaultOpenKeys = useMemo(() => {\n    const selectedKey = getSelectedKey(location.pathname, allPaths);\n    const parentKey = pathToParentMap[selectedKey];\n    return parentKey ? [parentKey] : [];\n  }, [location.pathname, allPaths, pathToParentMap]);\n\n  const siderStyle = useMemo(() => ({\n    height: '100vh',\n    position: 'fixed' as const,\n    left: 0,\n    top: 0,\n    bottom: 0,\n    zIndex: 100,\n  }), []);\n\n  const logoStyle = useMemo(() => ({\n    height: 64,\n    display: 'flex',\n    alignItems: 'center',\n    justifyContent: collapsed ? 'center' : 'flex-start',\n    padding: collapsed ? 0 : '0 20px',\n    borderBottom: '1px solid rgba(255, 255, 255, 0.1)',\n    cursor: 'pointer',\n    gap: 10,\n    whiteSpace: 'nowrap' as const,\n  }), [collapsed]);\n\n  const menuContainerStyle = useMemo(() => ({\n    height: 'calc(100vh - 64px)',\n    overflow: 'auto' as const,\n    overflowX: 'hidden' as const,\n  }), []);\n\n  const layoutStyle = useMemo(() => ({\n    marginLeft: collapsed ? 80 : 200,\n    transition: 'margin-left 0.2s',\n  }), [collapsed]);\n\n  const contentStyle = useMemo(() => ({\n    margin: '88px 16px 24px',\n    padding: 24,\n    minHeight: 280,\n    background: colorBgContainer,\n    borderRadius: borderRadiusLG,\n    overflow: location.pathname === '/agent-chat' ? 'hidden' as const : 'auto' as const,\n  }), [colorBgContainer, borderRadiusLG, location.pathname]);\n\n  return (\n    <Layout style={{ minHeight: '100vh' }}>\n      <Sider\n        trigger={null}\n        collapsible\n        collapsed={collapsed}\n        theme=\"dark\"\n        style={siderStyle}\n      >\n        <div onClick={handleLogoClick} style={logoStyle}>\n          <StockOutlined style={{ fontSize: 24, color: '#1890ff' }} />\n          {!collapsed && (\n            <span style={{ color: '#fff', fontSize: 18, fontWeight: 'bold' }}>\n              A Signal\n            </span>\n          )}\n        </div>\n        <div style={menuContainerStyle} className=\"custom-scrollbar\">\n          {menuLoading ? (\n            <div style={{ display: 'flex', justifyContent: 'center', padding: '20px 0' }}>\n              <Spin />\n            </div>\n          ) : (\n            <Menu\n              theme=\"dark\"\n              mode=\"inline\"\n              selectedKeys={selectedKeys}\n              defaultOpenKeys={defaultOpenKeys}\n              items={antdMenuItems}\n              onClick={handleMenuClick}\n              style={{ borderRight: 0 }}\n            />\n          )}\n        </div>\n      </Sider>\n      <Layout style={layoutStyle}>\n        <Header collapsed={collapsed} onToggle={handleToggle} />\n        <Content style={contentStyle}>\n          <Suspense fallback={<PageLoading />}>\n            <Outlet />\n          </Suspense>\n        </Content>\n      </Layout>\n    </Layout>\n  );\n};\n\nexport default MainLayout;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/layouts/MainLayout.tsx"
     },
@@ -4174,7 +4481,7 @@
       "parentId": "3",
       "id": "35",
       "absPath": "/settings/users",
-      "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Table, Tag, Select, message, Card, Input, Space } from 'antd';\nimport type { ColumnsType } from 'antd/es/table';\nimport { usersApi } from '@/services/users';\nimport type { UserListItem } from '@/services/types';\n\nconst UsersPage: React.FC = () => {\n  const [users, setUsers] = useState<UserListItem[]>([]);\n  const [total, setTotal] = useState(0);\n  const [loading, setLoading] = useState(false);\n  const [page, setPage] = useState(1);\n  const [pageSize, setPageSize] = useState(20);\n  const [keyword, setKeyword] = useState<string>();\n  const [roleFilter, setRoleFilter] = useState<string>();\n\n  const fetchUsers = useCallback(async () => {\n    setLoading(true);\n    try {\n      const result = await usersApi.getUsers({\n        keyword,\n        role: roleFilter,\n        page,\n        pageSize,\n      });\n      setUsers(result.data);\n      setTotal(result.total);\n    } catch (error) {\n      console.error('Failed to fetch users:', error);\n      message.error('获取用户列表失败');\n    } finally {\n      setLoading(false);\n    }\n  }, [keyword, roleFilter, page, pageSize]);\n\n  useEffect(() => {\n    fetchUsers();\n  }, [fetchUsers]);\n\n  const handleRoleChange = async (userId: string, newRole: string) => {\n    try {\n      await usersApi.updateRole(userId, { role: newRole as 'admin' | 'normal' });\n      message.success('角色更新成功');\n      fetchUsers();\n    } catch (error) {\n      console.error('Failed to update role:', error);\n      message.error('角色更新失败');\n    }\n  };\n\n  const columns: ColumnsType<UserListItem> = [\n    {\n      title: '昵称',\n      dataIndex: 'nickname',\n      key: 'nickname',\n      width: 150,\n    },\n    {\n      title: '邮箱',\n      dataIndex: 'email',\n      key: 'email',\n      width: 250,\n    },\n    {\n      title: '角色',\n      dataIndex: 'role',\n      key: 'role',\n      width: 150,\n      render: (role: string | null, record: UserListItem) => {\n        const currentRole = role || 'normal';\n        return (\n          <Select\n            value={currentRole}\n            size=\"small\"\n            style={{ width: 120 }}\n            onChange={(value) => handleRoleChange(record.id, value)}\n            options={[\n              { value: 'admin', label: '管理员' },\n              { value: 'normal', label: '普通用户' },\n            ]}\n          />\n        );\n      },\n    },\n    {\n      title: '角色标签',\n      key: 'roleTag',\n      width: 120,\n      render: (_: unknown, record: UserListItem) => {\n        const role = record.role || 'normal';\n        return role === 'admin' ? (\n          <Tag color=\"red\">管理员</Tag>\n        ) : (\n          <Tag color=\"blue\">普通用户</Tag>\n        );\n      },\n    },\n    {\n      title: '注册时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 200,\n      render: (date: string) => new Date(date).toLocaleString('zh-CN'),\n    },\n  ];\n\n  return (\n    <Card title=\"用户管理\">\n      <Space style={{ marginBottom: 16 }}>\n        <Input.Search\n          placeholder=\"搜索用户昵称\"\n          allowClear\n          style={{ width: 250 }}\n          onSearch={(value) => {\n            setKeyword(value || undefined);\n            setPage(1);\n          }}\n        />\n        <Select\n          placeholder=\"角色筛选\"\n          allowClear\n          style={{ width: 150 }}\n          value={roleFilter}\n          onChange={(value) => {\n            setRoleFilter(value);\n            setPage(1);\n          }}\n          options={[\n            { value: 'admin', label: '管理员' },\n            { value: 'normal', label: '普通用户' },\n          ]}\n        />\n      </Space>\n\n      <Table<UserListItem>\n        columns={columns}\n        dataSource={users}\n        rowKey=\"id\"\n        loading={loading}\n        pagination={{\n          current: page,\n          pageSize,\n          total,\n          showSizeChanger: true,\n          showTotal: (t) => `共 ${t} 条`,\n          onChange: (p, ps) => {\n            setPage(p);\n            setPageSize(ps);\n          },\n        }}\n      />\n    </Card>\n  );\n};\n\nexport default UsersPage;\n",
+      "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Table, Tag, Select, message, Card, Input, Space, Button, Modal, Typography } from 'antd';\nimport { PlusOutlined, CopyOutlined, GiftOutlined } from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { usersApi } from '@/services/users';\nimport { inviteCodeApi } from '@/services/invite-code';\nimport type { UserListItem, InviteCode } from '@/services/types';\n\nconst { Text } = Typography;\n\nconst UsersPage: React.FC = () => {\n  const [users, setUsers] = useState<UserListItem[]>([]);\n  const [total, setTotal] = useState(0);\n  const [loading, setLoading] = useState(false);\n  const [page, setPage] = useState(1);\n  const [pageSize, setPageSize] = useState(20);\n  const [keyword, setKeyword] = useState<string>();\n  const [roleFilter, setRoleFilter] = useState<string>();\n\n  const [inviteCodes, setInviteCodes] = useState<InviteCode[]>([]);\n  const [inviteTotal, setInviteTotal] = useState(0);\n  const [inviteLoading, setInviteLoading] = useState(false);\n  const [invitePage, setInvitePage] = useState(1);\n  const [inviteModalVisible, setInviteModalVisible] = useState(false);\n  const [generatedCode, setGeneratedCode] = useState<string | null>(null);\n\n  const fetchUsers = useCallback(async () => {\n    setLoading(true);\n    try {\n      const result = await usersApi.getUsers({\n        keyword,\n        role: roleFilter,\n        page,\n        pageSize,\n      });\n      setUsers(result.data);\n      setTotal(result.total);\n    } catch (error) {\n      console.error('Failed to fetch users:', error);\n      message.error('获取用户列表失败');\n    } finally {\n      setLoading(false);\n    }\n  }, [keyword, roleFilter, page, pageSize]);\n\n  const fetchInviteCodes = useCallback(async () => {\n    setInviteLoading(true);\n    try {\n      const result = await inviteCodeApi.getList({ page: invitePage, pageSize: 20 });\n      setInviteCodes(result.data);\n      setInviteTotal(result.total);\n    } catch (error) {\n      console.error('Failed to fetch invite codes:', error);\n      message.error('获取邀请码列表失败');\n    } finally {\n      setInviteLoading(false);\n    }\n  }, [invitePage]);\n\n  useEffect(() => {\n    fetchUsers();\n  }, [fetchUsers]);\n\n  useEffect(() => {\n    if (inviteModalVisible) {\n      fetchInviteCodes();\n    }\n  }, [inviteModalVisible, fetchInviteCodes]);\n\n  const handleRoleChange = async (userId: string, newRole: string) => {\n    try {\n      await usersApi.updateRole(userId, { role: newRole as 'admin' | 'normal' });\n      message.success('角色更新成功');\n      fetchUsers();\n    } catch (error) {\n      console.error('Failed to update role:', error);\n      message.error('角色更新失败');\n    }\n  };\n\n  const handleGenerateCode = async () => {\n    try {\n      const result = await inviteCodeApi.generate({ expiresInHours: 72 });\n      setGeneratedCode(result.code);\n      fetchInviteCodes();\n      message.success('邀请码生成成功');\n    } catch (error) {\n      console.error('Failed to generate invite code:', error);\n      message.error('邀请码生成失败');\n    }\n  };\n\n  const handleCopyCode = (code: string) => {\n    navigator.clipboard.writeText(code).then(() => {\n      message.success('已复制到剪贴板');\n    }).catch(() => {\n      message.error('复制失败');\n    });\n  };\n\n  const handleOpenInviteModal = () => {\n    setGeneratedCode(null);\n    setInvitePage(1);\n    setInviteModalVisible(true);\n  };\n\n  const userColumns: ColumnsType<UserListItem> = [\n    {\n      title: '昵称',\n      dataIndex: 'nickname',\n      key: 'nickname',\n      width: 150,\n    },\n    {\n      title: '邮箱',\n      dataIndex: 'email',\n      key: 'email',\n      width: 250,\n    },\n    {\n      title: '角色',\n      dataIndex: 'role',\n      key: 'role',\n      width: 150,\n      render: (role: string | null, record: UserListItem) => {\n        const currentRole = role || 'normal';\n        return (\n          <Select\n            value={currentRole}\n            size=\"small\"\n            style={{ width: 120 }}\n            onChange={(value) => handleRoleChange(record.id, value)}\n            options={[\n              { value: 'admin', label: '管理员' },\n              { value: 'normal', label: '普通用户' },\n            ]}\n          />\n        );\n      },\n    },\n    {\n      title: '角色标签',\n      key: 'roleTag',\n      width: 120,\n      render: (_: unknown, record: UserListItem) => {\n        const role = record.role || 'normal';\n        return role === 'admin' ? (\n          <Tag color=\"red\">管理员</Tag>\n        ) : (\n          <Tag color=\"blue\">普通用户</Tag>\n        );\n      },\n    },\n    {\n      title: '注册时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 200,\n      render: (date: string) => new Date(date).toLocaleString('zh-CN'),\n    },\n  ];\n\n  const inviteColumns: ColumnsType<InviteCode> = [\n    {\n      title: '邀请码',\n      dataIndex: 'code',\n      key: 'code',\n      width: 200,\n      render: (code: string) => (\n        <Space>\n          <Text code>{code}</Text>\n          <Button\n            type=\"link\"\n            size=\"small\"\n            icon={<CopyOutlined />}\n            onClick={() => handleCopyCode(code)}\n          />\n        </Space>\n      ),\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 100,\n      render: (status: string | null) => {\n        const s = status || 'active';\n        if (s === 'active') return <Tag color=\"green\">未使用</Tag>;\n        if (s === 'used') return <Tag color=\"blue\">已使用</Tag>;\n        if (s === 'expired') return <Tag color=\"default\">已过期</Tag>;\n        return <Tag>{s}</Tag>;\n      },\n    },\n    {\n      title: '使用人',\n      key: 'usedBy',\n      width: 150,\n      render: (_: unknown, record: InviteCode) => {\n        if (!record.usedBy) return <span style={{ color: '#ccc' }}>-</span>;\n        return record.usedByNickname || record.usedByEmail || record.usedBy.slice(0, 8);\n      },\n    },\n    {\n      title: '过期时间',\n      dataIndex: 'expiresAt',\n      key: 'expiresAt',\n      width: 180,\n      render: (date: string) => new Date(date).toLocaleString('zh-CN'),\n    },\n    {\n      title: '创建时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 180,\n      render: (date: string) => new Date(date).toLocaleString('zh-CN'),\n    },\n  ];\n\n  return (\n    <Card\n      title=\"用户管理\"\n      extra={\n        <Button icon={<GiftOutlined />} onClick={handleOpenInviteModal}>\n          邀请码管理\n        </Button>\n      }\n    >\n      <Space style={{ marginBottom: 16 }}>\n        <Input.Search\n          placeholder=\"搜索用户昵称\"\n          allowClear\n          style={{ width: 250 }}\n          onSearch={(value) => {\n            setKeyword(value || undefined);\n            setPage(1);\n          }}\n        />\n        <Select\n          placeholder=\"角色筛选\"\n          allowClear\n          style={{ width: 150 }}\n          value={roleFilter}\n          onChange={(value) => {\n            setRoleFilter(value);\n            setPage(1);\n          }}\n          options={[\n            { value: 'admin', label: '管理员' },\n            { value: 'normal', label: '普通用户' },\n          ]}\n        />\n      </Space>\n\n      <Table<UserListItem>\n        columns={userColumns}\n        dataSource={users}\n        rowKey=\"id\"\n        loading={loading}\n        pagination={{\n          current: page,\n          pageSize,\n          total,\n          showSizeChanger: true,\n          showTotal: (t) => `共 ${t} 条`,\n          onChange: (p, ps) => {\n            setPage(p);\n            setPageSize(ps);\n          },\n        }}\n      />\n\n      <Modal\n        title=\"邀请码管理\"\n        open={inviteModalVisible}\n        onCancel={() => setInviteModalVisible(false)}\n        footer={null}\n        width={700}\n      >\n        <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>\n          <span style={{ color: '#666' }}>邀请码有效期 3 天，每人只能查看自己创建的邀请码</span>\n          <Button type=\"primary\" icon={<PlusOutlined />} onClick={handleGenerateCode}>\n            生成邀请码\n          </Button>\n        </div>\n\n        {generatedCode && (\n          <div style={{\n            textAlign: 'center',\n            padding: '16px',\n            marginBottom: 16,\n            background: '#f6ffed',\n            borderRadius: 8,\n            border: '1px solid #b7eb8f',\n          }}>\n            <p style={{ margin: '0 0 8px 0' }}>邀请码生成成功：</p>\n            <Text\n              code\n              style={{ fontSize: 24, padding: '8px 16px', letterSpacing: 2 }}\n            >\n              {generatedCode}\n            </Text>\n            <div style={{ marginTop: 12 }}>\n              <Button\n                type=\"primary\"\n                icon={<CopyOutlined />}\n                onClick={() => handleCopyCode(generatedCode)}\n              >\n                复制邀请码\n              </Button>\n            </div>\n          </div>\n        )}\n\n        <Table<InviteCode>\n          columns={inviteColumns}\n          dataSource={inviteCodes}\n          rowKey=\"id\"\n          loading={inviteLoading}\n          size=\"small\"\n          pagination={{\n            current: invitePage,\n            pageSize: 20,\n            total: inviteTotal,\n            showTotal: (t) => `共 ${t} 条`,\n            onChange: (p) => setInvitePage(p),\n          }}\n        />\n      </Modal>\n    </Card>\n  );\n};\n\nexport default UsersPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/users/index.tsx"
     },
@@ -5896,7 +6203,7 @@
             "format": "esm"
           },
           "src/pages/register.tsx": {
-            "bytes": 4409,
+            "bytes": 4696,
             "imports": [
               {
                 "path": "react",
@@ -7422,8 +7729,19 @@
             ],
             "format": "esm"
           },
+          "src/services/invite-code.ts": {
+            "bytes": 915,
+            "imports": [
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "./client"
+              }
+            ],
+            "format": "esm"
+          },
           "src/pages/users/index.tsx": {
-            "bytes": 4141,
+            "bytes": 9572,
             "imports": [
               {
                 "path": "react",
@@ -7436,9 +7754,19 @@
                 "external": true
               },
               {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "src/services/users.ts",
                 "kind": "import-statement",
                 "original": "@/services/users"
+              },
+              {
+                "path": "src/services/invite-code.ts",
+                "kind": "import-statement",
+                "original": "@/services/invite-code"
               },
               {
                 "path": "react/jsx-runtime",
@@ -8747,6 +9075,11 @@
                 "external": true
               },
               {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
                 "path": "react/jsx-runtime",
                 "kind": "import-statement",
                 "external": true
@@ -9950,7 +10283,7 @@
                 "bytesInOutput": 9398
               },
               "src/pages/register.tsx": {
-                "bytesInOutput": 7354
+                "bytesInOutput": 7951
               },
               "src/utils/avatar.ts": {
                 "bytesInOutput": 1187
@@ -10052,7 +10385,7 @@
                 "bytesInOutput": 770
               },
               "src/pages/trading-memory/index.tsx": {
-                "bytesInOutput": 19112
+                "bytesInOutput": 19143
               },
               "src/pages/trading-agent/index.tsx": {
                 "bytesInOutput": 17505
@@ -10105,8 +10438,11 @@
               "src/services/users.ts": {
                 "bytesInOutput": 863
               },
+              "src/services/invite-code.ts": {
+                "bytesInOutput": 758
+              },
               "src/pages/users/index.tsx": {
-                "bytesInOutput": 5266
+                "bytesInOutput": 12941
               },
               "src/pages/menu-management/index.tsx": {
                 "bytesInOutput": 11130
@@ -10124,7 +10460,7 @@
                 "bytesInOutput": 2095
               }
             },
-            "bytes": 663174
+            "bytes": 672267
           }
         }
       }
@@ -17581,7 +17917,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 201,
+          "end": 228,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -17599,13 +17935,18 @@
               "imported": "MailOutlined",
               "local": "MailOutlined",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "SafetyCertificateOutlined",
+              "local": "SafetyCertificateOutlined",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 124,
           "type": "ImportDeclaration"
         },
         {
-          "end": 242,
+          "end": 269,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -17620,11 +17961,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 202,
+          "start": 229,
           "type": "ImportDeclaration"
         },
         {
-          "end": 285,
+          "end": 312,
           "importKind": "value",
           "source": "@/services/auth",
           "specifiers": [
@@ -17634,11 +17975,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 243,
+          "start": 270,
           "type": "ImportDeclaration"
         },
         {
-          "end": 352,
+          "end": 379,
           "importKind": "value",
           "source": "@/utils/auth",
           "specifiers": [
@@ -17658,7 +17999,7 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 286,
+          "start": 313,
           "type": "ImportDeclaration"
         }
       ],
@@ -20616,7 +20957,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 137,
+          "end": 164,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -20654,13 +20995,52 @@
               "imported": "Space",
               "local": "Space",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Button",
+              "local": "Button",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Modal",
+              "local": "Modal",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Typography",
+              "local": "Typography",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 66,
           "type": "ImportDeclaration"
         },
         {
-          "end": 187,
+          "end": 242,
+          "importKind": "value",
+          "source": "@ant-design/icons",
+          "specifiers": [
+            {
+              "imported": "PlusOutlined",
+              "local": "PlusOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "CopyOutlined",
+              "local": "CopyOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "GiftOutlined",
+              "local": "GiftOutlined",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 165,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 292,
           "importKind": "type",
           "source": "antd/es/table",
           "specifiers": [
@@ -20670,11 +21050,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 138,
+          "start": 243,
           "type": "ImportDeclaration"
         },
         {
-          "end": 232,
+          "end": 337,
           "importKind": "value",
           "source": "@/services/users",
           "specifiers": [
@@ -20684,11 +21064,25 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 188,
+          "start": 293,
           "type": "ImportDeclaration"
         },
         {
-          "end": 286,
+          "end": 393,
+          "importKind": "value",
+          "source": "@/services/invite-code",
+          "specifiers": [
+            {
+              "imported": "inviteCodeApi",
+              "local": "inviteCodeApi",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 338,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 459,
           "importKind": "type",
           "source": "@/services/types",
           "specifiers": [
@@ -20696,9 +21090,14 @@
               "imported": "UserListItem",
               "local": "UserListItem",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "InviteCode",
+              "local": "InviteCode",
+              "type": "ImportSpecifier"
             }
           ],
-          "start": 233,
+          "start": 394,
           "type": "ImportDeclaration"
         }
       ],
@@ -20977,6 +21376,45 @@
             {
               "imported": "Signal",
               "local": "Signal",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 32,
+          "type": "ImportDeclaration"
+        }
+      ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\invite-code.ts": [
+        {
+          "end": 31,
+          "importKind": "value",
+          "source": "./client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 126,
+          "importKind": "type",
+          "source": "./types",
+          "specifiers": [
+            {
+              "imported": "InviteCode",
+              "local": "InviteCode",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "InviteCodesListResponse",
+              "local": "InviteCodesListResponse",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "GenerateInviteCodeRequest",
+              "local": "GenerateInviteCodeRequest",
               "type": "ImportSpecifier"
             }
           ],

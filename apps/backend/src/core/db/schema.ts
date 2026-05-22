@@ -1187,3 +1187,38 @@ export const menus = pgTable(
 
 export type Menu = typeof menus.$inferSelect;
 export type NewMenu = typeof menus.$inferInsert;
+
+export const inviteCodes = pgTable(
+  'invite_codes',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    code: varchar('code', { length: 32 }).notNull().unique(),
+    createdById: uuid('created_by_id'),
+    usedBy: uuid('used_by'),
+    expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+    usedAt: timestamp('used_at', { withTimezone: true }),
+    status: varchar('status', { length: 20 }).default('active'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.createdById],
+      foreignColumns: [users.id],
+      name: 'invite_codes_created_by_id_fk',
+    }),
+    foreignKey({
+      columns: [table.usedBy],
+      foreignColumns: [users.id],
+      name: 'invite_codes_used_by_fk',
+    }),
+    index('invite_codes_code_idx').on(table.code),
+    index('invite_codes_status_idx').on(table.status),
+    index('invite_codes_created_by_id_idx').on(table.createdById),
+    index('invite_codes_expires_at_idx').on(table.expiresAt),
+  ],
+);
+
+export type InviteCode = typeof inviteCodes.$inferSelect;
+export type NewInviteCode = typeof inviteCodes.$inferInsert;

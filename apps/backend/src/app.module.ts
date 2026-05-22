@@ -32,6 +32,7 @@ import { TradingMemoryModule } from './modules/trading-memory/trading-memory.mod
 import { LlmModule } from './modules/llm/llm.module.js';
 import { NewsFilterAgentModule } from './modules/news-filter-agent/news-filter-agent.module.js';
 import { MenuModule } from './modules/menu/menu.module.js';
+import { InviteCodeModule } from './modules/invite-code/invite-code.module.js';
 import { AuthController } from './interfaces/admin/auth/auth.controller.js';
 import { AuditLogController } from './interfaces/admin/audit-log/audit-log.controller.js';
 import { TradingMemoryController } from './interfaces/admin/trading-memory/trading-memory.controller.js';
@@ -59,6 +60,7 @@ import { McpController } from './interfaces/mcp/mcp.controller.js';
 import { HealthController } from './interfaces/admin/health/health.controller.js';
 import { UsersController } from './interfaces/admin/users/users.controller.js';
 import { MenuController } from './interfaces/admin/menu/menu.controller.js';
+import { InviteCodeController } from './interfaces/admin/invite-code/invite-code.controller.js';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard.js';
 import { SchedulerTasksService } from './jobs/scheduler-tasks.service.js';
 import { NewsCrawlConsumer } from './jobs/news-crawl.consumer.js';
@@ -109,6 +111,7 @@ const jwtAuthGuardProvider: Provider = {
     LlmModule,
     NewsFilterAgentModule,
     MenuModule,
+    InviteCodeModule,
   ],
   controllers: [
     AuthController,
@@ -138,6 +141,7 @@ const jwtAuthGuardProvider: Provider = {
     NewsFilterAgentController,
     UsersController,
     MenuController,
+    InviteCodeController,
   ],
   providers: [
     jwtAuthGuardProvider,

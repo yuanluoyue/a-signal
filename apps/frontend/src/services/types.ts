@@ -24,6 +24,7 @@ export interface RegisterRequest {
   nickname: string;
   email: string;
   password: string;
+  inviteCode?: string;
 }
 
 export interface LoginResponse {
@@ -883,4 +884,28 @@ export interface UsersListResponse {
 
 export interface UpdateRoleRequest {
   role: 'admin' | 'normal';
+}
+
+// ==================== 邀请码相关类型 ====================
+
+export interface InviteCode {
+  id: string;
+  code: string;
+  createdById: string | null;
+  usedBy: string | null;
+  expiresAt: string;
+  usedAt: string | null;
+  status: string | null;
+  createdAt: string;
+  usedByNickname: string | null;
+  usedByEmail: string | null;
+}
+
+export interface InviteCodesListResponse {
+  data: InviteCode[];
+  total: number;
+}
+
+export interface GenerateInviteCodeRequest {
+  expiresInHours?: number;
 }
