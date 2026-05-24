@@ -929,6 +929,36 @@ export const tradingMemories = pgTable(
 export type TradingMemory = typeof tradingMemories.$inferSelect;
 export type NewTradingMemory = typeof tradingMemories.$inferInsert;
 
+export const tradingMemoryLogs = pgTable(
+  'trading_memory_logs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    memoryId: uuid('memory_id'),
+    action: varchar('action', { length: 50 }),
+    oldValue: jsonb('old_value').$type<Record<string, unknown>>(),
+    newValue: jsonb('new_value').$type<Record<string, unknown>>(),
+    operator: varchar('operator', { length: 50 }),
+    operatorId: uuid('operator_id'),
+    detail: text('detail'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.memoryId],
+      foreignColumns: [tradingMemories.id],
+      name: 'trading_memory_logs_memory_id_fk',
+    }),
+    index('trading_memory_logs_memory_id_idx').on(table.memoryId),
+    index('trading_memory_logs_action_idx').on(table.action),
+    index('trading_memory_logs_created_at_idx').on(table.createdAt),
+  ],
+);
+
+export type TradingMemoryLog = typeof tradingMemoryLogs.$inferSelect;
+export type NewTradingMemoryLog = typeof tradingMemoryLogs.$inferInsert;
+
 export const tradingAgentDecisions = pgTable(
   'trading_agent_decisions',
   {

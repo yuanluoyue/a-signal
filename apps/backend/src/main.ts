@@ -1,11 +1,13 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { Request, Response, NextFunction } from 'express';
 import { AppModule } from './app.module';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { ResponseInterceptor } from './common/interceptors/response.interceptor';
 import { createWinstonLogger } from './core/logger/winston.logger';
 import { TraceIdMiddleware } from './common/middleware/trace-id.middleware';
+import { QueueService } from './core/queue/queue.service';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -19,7 +21,23 @@ async function bootstrap() {
   });
 
   app.setGlobalPrefix('api/v1', {
-    exclude: ['health', 'mcp/v1/(.*)'],
+    exclude: ['health', 'mcp/v1/(.*)', 'admin/queues/(.*)'],
+  });
+
+  let boardRouter: ((req: Request, res: Response, next: NextFunction) => void) | null = null;
+  app.use('/admin/queues', (req: Request, res: Response, next: NextFunction) => {
+    if (!boardRouter) {
+      const queueService = app.get(QueueService);
+      const boardAdapter = queueService.getBoardAdapter();
+      if (boardAdapter) {
+        boardRouter = boardAdapter.getRouter();
+      }
+    }
+    if (boardRouter) {
+      boardRouter(req, res, next);
+    } else {
+      next();
+    }
   });
 
   app.use(new TraceIdMiddleware().use.bind(new TraceIdMiddleware()));
@@ -52,6 +70,6 @@ async function bootstrap() {
   await app.listen(port);
   console.log(`Application is running on: http://localhost:${port}`);
   console.log(`Swagger UI: http://localhost:${port}/api`);
+  console.log(`Bull Board: http://localhost:${port}/admin/queues`);
 }
-
 bootstrap();

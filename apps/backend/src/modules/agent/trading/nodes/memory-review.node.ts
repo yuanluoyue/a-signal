@@ -1,7 +1,9 @@
 import { Logger } from '@nestjs/common';
+import { desc } from 'drizzle-orm';
 import { TradingAgentState } from '../types/trading-agent-state.js';
 import { LlmService } from '../../../llm/gateway/llm.service.js';
 import { TradingMemoryService } from '../../../trading-memory/trading-memory.service.js';
+import { TradingMemoryLogService } from '../../../trading-memory/trading-memory-log.service.js';
 import { DbService } from '../../../../core/db/db.service.js';
 import { tradingMemories } from '../../../../core/db/schema.js';
 
@@ -45,6 +47,7 @@ export async function memoryReviewNode(
   state: TradingAgentState,
   llmService: LlmService,
   tradingMemoryService: TradingMemoryService,
+  memoryLogService: TradingMemoryLogService,
   dbService: DbService,
 ): Promise<Partial<TradingAgentState>> {
   logger.log(`[memoryReviewNode] Reviewing memory for signal: ${state.signalId}`);
@@ -105,30 +108,90 @@ export async function memoryReviewNode(
 
     if (!parsed.shouldCreate) {
       logger.log('[memoryReviewNode] No memory needs to be created');
-      return { memoryCreated: false };
+    } else {
+      const newMemoryData = {
+        type: parsed.type || 'signal_pattern',
+        title: parsed.title || `交易经验: ${signalInfo.stockCode}`,
+        summary: parsed.summary || '',
+        confidence: String(parsed.confidence || 0.5),
+        status: 'testing',
+        pattern: {
+          signalDirection: (state.positionAction?.action === 'buy' ? 'long' : state.positionAction?.action === 'sell' ? 'short' : undefined) as 'long' | 'short' | undefined,
+          scoreRange: signalInfo.score ? [Math.floor(signalInfo.score * 10) / 10, Math.ceil(signalInfo.score * 10) / 10] as [number, number] : undefined,
+        },
+        firstObservedAt: new Date(),
+        lastValidatedAt: new Date(),
+      };
+
+      await dbService.db.insert(tradingMemories).values({
+        type: newMemoryData.type,
+        title: newMemoryData.title,
+        summary: newMemoryData.summary,
+        confidence: newMemoryData.confidence,
+        status: newMemoryData.status,
+        pattern: newMemoryData.pattern,
+        firstObservedAt: newMemoryData.firstObservedAt,
+        lastValidatedAt: newMemoryData.lastValidatedAt,
+      });
+
+      logger.log(`[memoryReviewNode] Created trading memory: ${newMemoryData.title}`);
+
+      try {
+        const [createdMemory] = await dbService.db
+          .select({ id: tradingMemories.id })
+          .from(tradingMemories)
+          .orderBy(desc(tradingMemories.createdAt))
+          .limit(1);
+
+        if (createdMemory) {
+          await memoryLogService.createLog({
+            memoryId: createdMemory.id,
+            action: 'create',
+            newValue: {
+              type: newMemoryData.type,
+              title: newMemoryData.title,
+              confidence: newMemoryData.confidence,
+              status: newMemoryData.status,
+            },
+            operator: 'system',
+            detail: `Agent自动创建交易经验: ${newMemoryData.title}, 股票=${signalInfo.stockCode}`,
+          });
+        }
+      } catch (logError) {
+        logger.error(`[memoryReviewNode] Failed to log memory creation: ${logError instanceof Error ? logError.message : String(logError)}`);
+      }
     }
 
-    const newMemoryData = {
-      type: parsed.type || 'signal_pattern',
-      title: parsed.title || `交易经验: ${signalInfo.stockCode}`,
-      summary: parsed.summary || '',
-      confidence: String(parsed.confidence || 0.5),
-      status: 'testing',
-    };
-
-    await dbService.db.insert(tradingMemories).values({
-      type: newMemoryData.type,
-      title: newMemoryData.title,
-      summary: newMemoryData.summary,
-      confidence: newMemoryData.confidence,
-      status: newMemoryData.status,
-    });
-
-    logger.log(`[memoryReviewNode] Created trading memory: ${newMemoryData.title}`);
+    try {
+      logger.log('[memoryReviewNode] Calibrating relevant memories after trade completion');
+      const calibrationResults = await tradingMemoryService.calibrateRelevantMemories({
+        stockCode: signalInfo.stockCode,
+        type: parsed.shouldCreate ? parsed.type : undefined,
+        signalDirection: state.positionAction?.action === 'buy' ? 'long' : state.positionAction?.action === 'sell' ? 'short' : undefined,
+      });
+      if (calibrationResults.length > 0) {
+        logger.log(`[memoryReviewNode] Calibrated ${calibrationResults.length} memories`);
+        for (const result of calibrationResults) {
+          if (result.oldStatus !== result.newStatus) {
+            logger.log(`[memoryReviewNode] Memory "${result.title}" status changed: ${result.oldStatus} → ${result.newStatus}`);
+          }
+          if (Math.abs(result.oldConfidence - result.newConfidence) > 0.001) {
+            logger.log(`[memoryReviewNode] Memory "${result.title}" confidence adjusted: ${result.oldConfidence} → ${result.newConfidence}`);
+          }
+        }
+      }
+    } catch (calibrationError) {
+      logger.error(`[memoryReviewNode] Calibration failed (non-blocking): ${calibrationError instanceof Error ? calibrationError.message : String(calibrationError)}`);
+    }
 
     return {
-      memoryCreated: true,
-      newMemoryData,
+      memoryCreated: parsed.shouldCreate || false,
+      newMemoryData: parsed.shouldCreate ? {
+        type: parsed.type || 'signal_pattern',
+        title: parsed.title || `交易经验: ${signalInfo.stockCode}`,
+        summary: parsed.summary || '',
+        confidence: parsed.confidence || 0.5,
+      } : undefined,
     };
   } catch (error) {
     logger.error(`[memoryReviewNode] Error: ${error instanceof Error ? error.message : String(error)}`);

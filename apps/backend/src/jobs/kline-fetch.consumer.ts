@@ -1,8 +1,8 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { QueueConsumer } from '../core/queue/queue.consumer.js';
 import { QueueMessage } from '../core/queue/queue.types.js';
 import { QUEUE_NAMES } from '../core/queue/queue.constants.js';
+import { RedisService } from '../core/redis/redis.service.js';
 import { KlinesService, KlineFetchMessage } from '../modules/klines/klines.service.js';
 
 @Injectable()
@@ -10,13 +10,14 @@ export class KlineFetchConsumer extends QueueConsumer {
   protected readonly logger = new Logger(KlineFetchConsumer.name);
 
   constructor(
-    protected readonly configService: ConfigService,
+    protected readonly redisService: RedisService,
     private readonly klinesService: KlinesService,
   ) {
-    super(configService, {
+    super(redisService, {
       queueName: QUEUE_NAMES.KLINE_FETCH,
-      prefetch: 1,
-      autoAck: false,
+      concurrency: 1,
+      maxRetries: 3,
+      backoff: { type: 'exponential', delay: 1000 },
     });
   }
 

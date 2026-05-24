@@ -1,106 +1,80 @@
-import { Injectable, Logger, OnModuleInit, OnModuleDestroy } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import * as amqp from 'amqplib';
-import { randomUUID } from 'crypto';
+import { Injectable, Logger, OnModuleDestroy } from '@nestjs/common';
+import { Queue, QueueEvents } from 'bullmq';
+import { createBullBoard } from '@bull-board/api';
+import { BullMQAdapter } from '@bull-board/api/bullMQAdapter';
+import { ExpressAdapter } from '@bull-board/express';
+import { RedisService } from '../redis/redis.service.js';
 import { QueueMessage, SendMessageOptions, QueueName } from './queue.types.js';
-import { QUEUE_NAMES, QUEUE_DELAYS, DLQ_SUFFIX, DELAY_QUEUE_SUFFIX } from './queue.constants.js';
+import { QUEUE_NAMES, QUEUE_DELAYS } from './queue.constants.js';
 
 @Injectable()
-export class QueueService implements OnModuleInit, OnModuleDestroy {
+export class QueueService implements OnModuleDestroy {
   private readonly logger = new Logger(QueueService.name);
-  private connection: amqp.ChannelModel | null = null;
-  private channel: amqp.Channel | null = null;
+  private readonly queues = new Map<string, Queue>();
+  private readonly queueEvents = new Map<string, QueueEvents>();
+  private boardAdapter: ExpressAdapter | null = null;
 
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly redisService: RedisService) {}
 
   async onModuleInit(): Promise<void> {
-    await this.connect();
-    await this.setupQueues();
+    const connection = this.redisService.getClient();
+
+    for (const queueName of Object.values(QUEUE_NAMES)) {
+      const queue = new Queue(queueName, { connection });
+      this.queues.set(queueName, queue);
+
+      const queueEvents = new QueueEvents(queueName, { connection });
+      this.queueEvents.set(queueName, queueEvents);
+
+      queueEvents.on('failed', ({ jobId, failedReason }) => {
+        this.logger.warn(`Job ${jobId} in queue ${queueName} failed: ${failedReason}`);
+      });
+
+      this.logger.log(`Setup queue: ${queueName}`);
+    }
+
+    this.setupBullBoard();
+
+    this.logger.log('All queues initialized');
+  }
+
+  private setupBullBoard(): void {
+    const adapters = Array.from(this.queues.values()).map(
+      (queue) => new BullMQAdapter(queue),
+    );
+
+    this.boardAdapter = new ExpressAdapter();
+    this.boardAdapter.setBasePath('/admin/queues');
+
+    createBullBoard({
+      queues: adapters,
+      serverAdapter: this.boardAdapter,
+    });
+
+    this.logger.log('Bull Board initialized at /admin/queues');
   }
 
   async onModuleDestroy(): Promise<void> {
-    await this.disconnect();
-  }
-
-  private async connect(): Promise<void> {
-    try {
-      const host = this.configService.get<string>('RABBITMQ_HOST', 'localhost');
-      const port = this.configService.get<number>('RABBITMQ_PORT', 5672);
-      const username = this.configService.get<string>('RABBITMQ_USER', 'admin');
-      const password = this.configService.get<string>('RABBITMQ_PASS', 'admin');
-
-      const url = `amqp://${username}:${password}@${host}:${port}`;
-
-      this.connection = await amqp.connect(url);
-      this.channel = await this.connection.createChannel();
-
-      this.connection.on('error', (err: Error) => {
-        this.logger.error('RabbitMQ connection error:', err);
-      });
-
-      this.connection.on('close', () => {
-        this.logger.warn('RabbitMQ connection closed');
-      });
-
-      this.logger.log('Successfully connected to RabbitMQ');
-    } catch (error) {
-      this.logger.error('Failed to connect to RabbitMQ:', error);
-      throw error;
-    }
-  }
-
-  private async disconnect(): Promise<void> {
-    try {
-      if (this.channel) {
-        await this.channel.close();
-        this.channel = null;
+    for (const [name, queue] of this.queues) {
+      try {
+        await queue.close();
+        this.logger.log(`Closed queue: ${name}`);
+      } catch (error) {
+        this.logger.error(`Error closing queue ${name}:`, error);
       }
-      if (this.connection) {
-        await this.connection.close();
-        this.connection = null;
+    }
+
+    for (const [name, events] of this.queueEvents) {
+      try {
+        await events.close();
+        this.logger.log(`Closed queue events: ${name}`);
+      } catch (error) {
+        this.logger.error(`Error closing queue events ${name}:`, error);
       }
-      this.logger.log('Disconnected from RabbitMQ');
-    } catch (error) {
-      this.logger.error('Error disconnecting from RabbitMQ:', error);
-    }
-  }
-
-  private async setupQueues(): Promise<void> {
-    if (!this.channel) {
-      throw new Error('Channel not initialized');
     }
 
-    for (const queueName of Object.values(QUEUE_NAMES)) {
-      const mainQueue = queueName;
-      const dlqName = `${queueName}${DLQ_SUFFIX}`;
-      const delayQueue = `${queueName}${DELAY_QUEUE_SUFFIX}`;
-
-      await this.channel.assertQueue(mainQueue, {
-        durable: true,
-        arguments: {
-          'x-dead-letter-exchange': '',
-          'x-dead-letter-routing-key': dlqName,
-        },
-      });
-
-      await this.channel.assertQueue(dlqName, {
-        durable: true,
-      });
-
-      const defaultDelay = QUEUE_DELAYS[queueName] || 0;
-      if (defaultDelay > 0) {
-        await this.channel.assertQueue(delayQueue, {
-          durable: true,
-          arguments: {
-            'x-message-ttl': defaultDelay,
-            'x-dead-letter-exchange': '',
-            'x-dead-letter-routing-key': mainQueue,
-          },
-        });
-      }
-
-      this.logger.log(`Setup queue: ${mainQueue} with DLQ: ${dlqName}`);
-    }
+    this.queues.clear();
+    this.queueEvents.clear();
   }
 
   async sendMessage<T>(
@@ -108,12 +82,13 @@ export class QueueService implements OnModuleInit, OnModuleDestroy {
     data: T,
     options: SendMessageOptions = {},
   ): Promise<void> {
-    if (!this.channel) {
-      throw new Error('Channel not initialized');
+    const queue = this.queues.get(queueName);
+    if (!queue) {
+      throw new Error(`Queue not initialized: ${queueName}`);
     }
 
     const message: QueueMessage<T> = {
-      id: randomUUID(),
+      id: crypto.randomUUID(),
       data,
       timestamp: Date.now(),
       retryCount: 0,
@@ -122,28 +97,15 @@ export class QueueService implements OnModuleInit, OnModuleDestroy {
     const defaultDelay = QUEUE_DELAYS[queueName] || 0;
     const delay = options.delay ?? defaultDelay;
 
-    const buffer = Buffer.from(JSON.stringify(message));
-
-    const publishOptions: Record<string, unknown> = {
-      persistent: options.persistent ?? true,
+    await queue.add(queueName, message, {
+      delay: delay > 0 ? delay : undefined,
       priority: options.priority,
-    };
-
-    if (delay > 0) {
-      const delayQueue = `${queueName}${DELAY_QUEUE_SUFFIX}`;
-      const success = this.channel.sendToQueue(delayQueue, buffer, {
-        ...publishOptions,
-        expiration: delay.toString(),
-      });
-      if (!success) {
-        throw new Error(`Failed to send message to delay queue: ${delayQueue}`);
-      }
-    } else {
-      const success = this.channel.sendToQueue(queueName, buffer, publishOptions);
-      if (!success) {
-        throw new Error(`Failed to send message to queue: ${queueName}`);
-      }
-    }
+      attempts: 3,
+      backoff: {
+        type: 'exponential',
+        delay: 1000,
+      },
+    });
 
     this.logger.log(`[QueueService] Message sent to ${queueName} (delay: ${delay}ms), messageId: ${message.id}`);
   }
@@ -160,14 +122,11 @@ export class QueueService implements OnModuleInit, OnModuleDestroy {
     await this.sendMessage(QUEUE_NAMES.KLINE_FETCH, data, { delay });
   }
 
-  getChannel(): amqp.Channel {
-    if (!this.channel) {
-      throw new Error('Channel not initialized');
-    }
-    return this.channel;
+  getQueue(queueName: string): Queue | undefined {
+    return this.queues.get(queueName);
   }
 
-  isConnected(): boolean {
-    return this.connection !== null && this.channel !== null;
+  getBoardAdapter(): ExpressAdapter | null {
+    return this.boardAdapter;
   }
 }

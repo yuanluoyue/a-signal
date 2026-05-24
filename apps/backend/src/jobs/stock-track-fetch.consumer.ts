@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { z } from 'zod';
 import { QueueConsumer } from '../core/queue/queue.consumer.js';
 import { QueueMessage } from '../core/queue/queue.types.js';
 import { QUEUE_NAMES } from '../core/queue/queue.constants.js';
+import { RedisService } from '../core/redis/redis.service.js';
 import { StockTrackingService } from '../modules/stock-tracking/stock-tracking.service.js';
 import { NewsService } from '../modules/news/news.service.js';
+import { ConfigService } from '@nestjs/config';
 
 const VOLCENGINE_API_URL = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions';
 const MODEL_NAME = 'doubao-seed-2-0-lite-260215';
@@ -32,15 +33,16 @@ export interface StockTrackFetchTask {
 @Injectable()
 export class StockTrackFetchConsumer extends QueueConsumer {
   constructor(
-    protected readonly configService: ConfigService,
+    protected readonly redisService: RedisService,
     private readonly stockTrackingService: StockTrackingService,
     private readonly newsService: NewsService,
+    private readonly configService: ConfigService,
   ) {
-    super(configService, {
+    super(redisService, {
       queueName: QUEUE_NAMES.STOCK_TRACK_FETCH,
-      prefetch: 1,
-      autoAck: false,
+      concurrency: 1,
       maxRetries: 3,
+      backoff: { type: 'exponential', delay: 1000 },
     });
   }
 

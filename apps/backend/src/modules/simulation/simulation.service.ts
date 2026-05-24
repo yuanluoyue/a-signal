@@ -3,6 +3,7 @@ import { eq, and, desc } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { KlinesService } from '../../modules/klines/klines.service.js';
 import { CacheService } from '../../core/cache/cache.service.js';
+import { TradingMemoryService } from '../trading-memory/trading-memory.service.js';
 import {
   users,
   klines,
@@ -63,6 +64,7 @@ export class SimulationService {
     private readonly dbService: DbService,
     private readonly klinesService: KlinesService,
     private readonly cacheService: CacheService,
+    private readonly tradingMemoryService: TradingMemoryService,
   ) {}
 
   async createAccount(dto: CreateAccountDto): Promise<SimulationAccount> {
@@ -456,6 +458,23 @@ export class SimulationService {
       .where(eq(simulationAccounts.id, accountId));
 
     this.logger.log(`Auto closed position for ${position.stockCode}, reason: ${closeReason}, profit: ${profit}`);
+
+    try {
+      this.logger.log(`[autoClosePosition] Triggering memory calibration after ${closeReason} for ${position.stockCode}`);
+      const calibrationResults = await this.tradingMemoryService.calibrateRelevantMemories({
+        stockCode: position.stockCode,
+      });
+      if (calibrationResults.length > 0) {
+        this.logger.log(`[autoClosePosition] Calibrated ${calibrationResults.length} memories after ${closeReason}`);
+        for (const result of calibrationResults) {
+          if (result.oldStatus !== result.newStatus) {
+            this.logger.log(`[autoClosePosition] Memory "${result.title}" status: ${result.oldStatus} → ${result.newStatus}`);
+          }
+        }
+      }
+    } catch (calibrationError) {
+      this.logger.error(`[autoClosePosition] Memory calibration failed (non-blocking): ${calibrationError instanceof Error ? calibrationError.message : String(calibrationError)}`);
+    }
   }
 
   async executeTrade(dto: TradeDto): Promise<SimulationTrade> {
