@@ -163,8 +163,12 @@ export async function memoryReviewNode(
     }
 
     try {
-      logger.log('[memoryReviewNode] Calibrating existing memories after trade completion');
-      const calibrationResults = await tradingMemoryService.calibrateAllMemories();
+      logger.log('[memoryReviewNode] Calibrating relevant memories after trade completion');
+      const calibrationResults = await tradingMemoryService.calibrateRelevantMemories({
+        stockCode: signalInfo.stockCode,
+        type: parsed.shouldCreate ? parsed.type : undefined,
+        signalDirection: state.positionAction?.action === 'buy' ? 'long' : state.positionAction?.action === 'sell' ? 'short' : undefined,
+      });
       if (calibrationResults.length > 0) {
         logger.log(`[memoryReviewNode] Calibrated ${calibrationResults.length} memories`);
         for (const result of calibrationResults) {

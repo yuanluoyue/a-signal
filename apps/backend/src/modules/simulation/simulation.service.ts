@@ -461,7 +461,9 @@ export class SimulationService {
 
     try {
       this.logger.log(`[autoClosePosition] Triggering memory calibration after ${closeReason} for ${position.stockCode}`);
-      const calibrationResults = await this.tradingMemoryService.calibrateAllMemories();
+      const calibrationResults = await this.tradingMemoryService.calibrateRelevantMemories({
+        stockCode: position.stockCode,
+      });
       if (calibrationResults.length > 0) {
         this.logger.log(`[autoClosePosition] Calibrated ${calibrationResults.length} memories after ${closeReason}`);
         for (const result of calibrationResults) {

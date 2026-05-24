@@ -326,6 +326,64 @@ export class TradingMemoryService {
     return results;
   }
 
+  async calibrateRelevantMemories(context: {
+    stockCode?: string;
+    type?: string;
+    signalDirection?: string;
+  }): Promise<CalibrationResult[]> {
+    this.logger.log(`[calibrateRelevantMemories] Starting with context: ${JSON.stringify(context)}`);
+
+    const conditions = [sql`${tradingMemories.status} != 'invalidated'`];
+
+    if (context.type) {
+      conditions.push(eq(tradingMemories.type, context.type));
+    }
+
+    if (context.signalDirection) {
+      conditions.push(
+        sql`${tradingMemories.pattern}->>'signalDirection' = ${context.signalDirection}`,
+      );
+    }
+
+    if (context.stockCode) {
+      conditions.push(
+        sql`${tradingMemories.title} ILIKE ${'%' + context.stockCode + '%'}`,
+      );
+    }
+
+    const memories = await this.dbService.db
+      .select({ id: tradingMemories.id })
+      .from(tradingMemories)
+      .where(and(...conditions))
+      .limit(20);
+
+    if (memories.length === 0) {
+      this.logger.log(`[calibrateRelevantMemories] No relevant memories found, falling back to all non-invalidated`);
+      const allMemories = await this.dbService.db
+        .select({ id: tradingMemories.id })
+        .from(tradingMemories)
+        .where(sql`${tradingMemories.status} != 'invalidated'`)
+        .limit(20);
+
+      const results: CalibrationResult[] = [];
+      for (const memory of allMemories) {
+        const result = await this.calibrateConfidence(memory.id);
+        if (result) results.push(result);
+      }
+      return results;
+    }
+
+    this.logger.log(`[calibrateRelevantMemories] Found ${memories.length} relevant memories`);
+
+    const results: CalibrationResult[] = [];
+    for (const memory of memories) {
+      const result = await this.calibrateConfidence(memory.id);
+      if (result) results.push(result);
+    }
+
+    return results;
+  }
+
   private async getRelatedDecisions(memory: TradingMemory): Promise<Array<{ id: string; accountId: string; signalId: string; decision: string; positionAction: unknown; createdAt: Date }>> {
     const memoryType = memory.type;
 
