@@ -18,6 +18,8 @@ import {
   Row,
   Col,
   Select,
+  Form,
+  Radio,
 } from 'antd';
 import {
   ArrowLeftOutlined,
@@ -129,6 +131,19 @@ interface KlineData {
   volume: number;
 }
 
+interface Strategy {
+  id: string;
+  name: string;
+  description: string | null;
+  enabled: boolean;
+  directionMode: string;
+  holdPeriod: number;
+  minScore: string;
+  maxScore: string | null;
+  stopLossPct: string | null;
+  takeProfitPct: string | null;
+}
+
 const StockTrackingDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -146,7 +161,6 @@ const StockTrackingDetailPage: React.FC = () => {
     total: 0,
   });
   const [report, setReport] = useState<string>('');
-  const [backtestLoading, setBacktestLoading] = useState(false);
   const [backtestRecords, setBacktestRecords] = useState<BacktestRecord[]>([]);
   const [backtestModalVisible, setBacktestModalVisible] = useState(false);
   const [selectedBacktest, setSelectedBacktest] = useState<BacktestRecord | null>(null);
@@ -154,9 +168,15 @@ const StockTrackingDetailPage: React.FC = () => {
   const [backtestTradesLoading, setBacktestTradesLoading] = useState(false);
   const [signals, setSignals] = useState<Signal[]>([]);
   const [klines, setKlines] = useState<KlineData[]>([]);
-  const [period, setPeriod] = useState<'1d' | '4h'>('1d');
+  const [period, setPeriod] = useState<'1d' | '4h'>('4h');
   const [chartReady, setChartReady] = useState(false);
   const [syncingKlines, setSyncingKlines] = useState(false);
+
+  const [backtestFormVisible, setBacktestFormVisible] = useState(false);
+  const [strategies, setStrategies] = useState<Strategy[]>([]);
+  const [strategiesLoading, setStrategiesLoading] = useState(false);
+  const [backtestSubmitting, setBacktestSubmitting] = useState(false);
+  const [backtestForm] = Form.useForm();
 
   const fetchTrackingDetail = async () => {
     if (!id) return;
@@ -224,6 +244,20 @@ const StockTrackingDetailPage: React.FC = () => {
     }
   };
 
+  const fetchStrategies = async () => {
+    setStrategiesLoading(true);
+    try {
+      const response = await client.get('/strategies');
+      const data = response.data || [];
+      setStrategies(data.filter((s: Strategy) => s.enabled));
+    } catch (error) {
+      console.error('Fetch strategies error:', error);
+      message.error('获取策略列表失败');
+    } finally {
+      setStrategiesLoading(false);
+    }
+  };
+
   const checkAndUpdateKlines = async (p: '1d' | '4h' = period): Promise<boolean> => {
     if (!tracking?.stockCode) return false;
     try {
@@ -282,7 +316,6 @@ const StockTrackingDetailPage: React.FC = () => {
     }
   }, [tracking?.stockCode]);
 
-  // 初始化图表
   useEffect(() => {
     if (!chartContainerRef.current || !tracking) return;
 
@@ -333,7 +366,6 @@ const StockTrackingDetailPage: React.FC = () => {
     };
   }, [tracking]);
 
-  // 更新图表数据和信号标记
   useEffect(() => {
     if (!chartReady || !candlestickSeriesRef.current || klines.length === 0) return;
 
@@ -377,7 +409,7 @@ const StockTrackingDetailPage: React.FC = () => {
     if (!id) return;
     try {
       await client.post(`/stock-trackings/${id}/fetch-news`);
-      message.success('历史新闻获取任务已启动');
+      message.success('历史新闻获取任务已启动，新闻获取后将自动分析生成信号');
       setTimeout(() => {
         fetchTrackingDetail();
         fetchNews(1, 10);
@@ -393,15 +425,47 @@ const StockTrackingDetailPage: React.FC = () => {
     try {
       const response = await client.post(`/stock-trackings/${id}/generate-signals`);
       message.success(response.data?.message || '信号生成任务已启动');
+      setTimeout(() => {
+        fetchSignals();
+        fetchTrackingDetail();
+      }, 5000);
     } catch (error) {
       message.error('生成信号失败');
       console.error('Generate signals error:', error);
     }
   };
 
-  const handleBacktest = () => {
-    message.info("请在回测管理页面选择策略进行回测");
-    navigate("/backtest");
+  const handleOpenBacktestForm = () => {
+    setBacktestFormVisible(true);
+    fetchStrategies();
+    backtestForm.resetFields();
+  };
+
+  const handleSubmitBacktest = async () => {
+    try {
+      const values = await backtestForm.validateFields();
+      if (!id || !tracking) return;
+
+      setBacktestSubmitting(true);
+      await client.post(`/stock-trackings/${id}/backtest`, {
+        strategyId: values.strategyId,
+        period: values.period || '4h',
+      });
+
+      message.success('回测任务已启动');
+      setBacktestFormVisible(false);
+      backtestForm.resetFields();
+
+      setTimeout(() => {
+        fetchBacktestRecords();
+      }, 3000);
+    } catch (error: any) {
+      if (error?.errorFields) return;
+      message.error('执行回测失败');
+      console.error('Backtest error:', error);
+    } finally {
+      setBacktestSubmitting(false);
+    }
   };
 
   const handleViewBacktestDetail = async (record: BacktestRecord) => {
@@ -476,7 +540,8 @@ const StockTrackingDetailPage: React.FC = () => {
     return date.toLocaleString('zh-CN');
   };
 
-  const formatPercent = (value: string | number) => {
+  const formatPercent = (value: string | number | null) => {
+    if (value === null || value === undefined) return '-';
     const num = typeof value === 'string' ? parseFloat(value) : value;
     return `${(num * 100).toFixed(2)}%`;
   };
@@ -708,7 +773,6 @@ const StockTrackingDetailPage: React.FC = () => {
       <Spin spinning={loading}>
         {tracking ? (
           <>
-            {/* 基本信息 */}
             <Card style={{ marginBottom: 24 }}>
               <Title level={3}>{tracking.stockName} ({tracking.stockCode})</Title>
               <Space size="large">
@@ -718,17 +782,15 @@ const StockTrackingDetailPage: React.FC = () => {
               </Space>
             </Card>
 
-            {/* 操作按钮 */}
             <Card style={{ marginBottom: 24 }}>
               <Space wrap>
                 <Button type="primary" icon={<PlayCircleOutlined />} onClick={handleFetchNews}>获取历史新闻</Button>
                 <Button icon={<LineChartOutlined />} onClick={handleGenerateSignals}>生成历史信号</Button>
-                <Button icon={<HistoryOutlined />} onClick={handleBacktest} loading={backtestLoading}>执行回测</Button>
+                <Button icon={<HistoryOutlined />} onClick={handleOpenBacktestForm}>执行回测</Button>
                 <Button icon={<FileTextOutlined />} onClick={handleGenerateReport}>生成研投报告</Button>
               </Space>
             </Card>
 
-            {/* 回测记录 - 最上 */}
             <Card title="回测记录" style={{ marginBottom: 24 }}>
               {backtestRecords.length === 0 ? (
                 <Empty description="暂无回测记录，请点击「执行回测」按钮" />
@@ -737,7 +799,6 @@ const StockTrackingDetailPage: React.FC = () => {
               )}
             </Card>
 
-            {/* 研投报告 - 第二 */}
             <Card title="研投报告" style={{ marginBottom: 24 }}>
               {report ? (
                 <div style={{ padding: 16, background: '#f5f5f5', borderRadius: 8 }}>
@@ -748,14 +809,13 @@ const StockTrackingDetailPage: React.FC = () => {
               )}
             </Card>
 
-            {/* K线 + 信号列表 - 左右分栏 */}
             <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>
               <Col xs={24} lg={16}>
                 <Card
                   title={<Space><BarChartOutlined />K线图</Space>}
                   extra={
                     <Space>
-                      <Select value={period} onChange={setPeriod} style={{ width: 100 }}>
+                      <Select value={period} onChange={(v) => { setPeriod(v); }} style={{ width: 100 }}>
                         <Option value="1d">日线</Option>
                         <Option value="4h">4小时</Option>
                       </Select>
@@ -789,7 +849,6 @@ const StockTrackingDetailPage: React.FC = () => {
               </Col>
             </Row>
 
-            {/* 历史新闻 - 最下 */}
             <Card title="历史新闻">
               {news.length === 0 ? (
                 <Empty description="暂无新闻数据，请点击「获取历史新闻」按钮" />
@@ -805,8 +864,8 @@ const StockTrackingDetailPage: React.FC = () => {
                             <Space split={<Divider type="vertical" />}>
                               <Text type="secondary">{item.source}</Text>
                               <Text type="secondary">{formatDate(item.publishTime)}</Text>
-                              <Tag color={item.analyzeStatus === 'analyzed' ? 'success' : 'default'}>
-                                {item.analyzeStatus === 'analyzed' ? '已分析' : '待分析'}
+                              <Tag color={item.analyzeStatus === 'analyzed' ? 'success' : item.analyzeStatus === 'filtered' ? 'warning' : 'default'}>
+                                {item.analyzeStatus === 'analyzed' ? '已分析' : item.analyzeStatus === 'filtered' ? '已过滤' : item.analyzeStatus === 'failed' ? '分析失败' : '待分析'}
                               </Tag>
                             </Space>
                           }
@@ -834,7 +893,51 @@ const StockTrackingDetailPage: React.FC = () => {
         )}
       </Spin>
 
-      {/* 回测详情弹窗 */}
+      <Modal
+        title="执行回测"
+        open={backtestFormVisible}
+        onOk={handleSubmitBacktest}
+        onCancel={() => setBacktestFormVisible(false)}
+        confirmLoading={backtestSubmitting}
+        okText="开始回测"
+        cancelText="取消"
+        width={500}
+      >
+        <Form form={backtestForm} layout="vertical" initialValues={{ period: '4h' }}>
+          <Form.Item
+            name="strategyId"
+            label="选择策略"
+            rules={[{ required: true, message: '请选择策略' }]}
+          >
+            <Select
+              placeholder="请选择策略"
+              loading={strategiesLoading}
+              showSearch
+              optionFilterProp="children"
+            >
+              {strategies.map((s) => (
+                <Option key={s.id} value={s.id}>
+                  {s.name} ({s.directionMode === 'long_only' ? '仅做多' : s.directionMode === 'short_only' ? '仅做空' : '多空都做'})
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+          <Form.Item name="period" label="K线周期">
+            <Radio.Group>
+              <Radio value="4h">4小时线</Radio>
+              <Radio value="1d">日线</Radio>
+            </Radio.Group>
+          </Form.Item>
+          {tracking && (
+            <div style={{ padding: 12, background: '#f5f5f5', borderRadius: 8, marginTop: 8 }}>
+              <Text type="secondary">
+                回测将自动使用该股票关联新闻的时间范围，并限定股票代码为 {tracking.stockCode}
+              </Text>
+            </div>
+          )}
+        </Form>
+      </Modal>
+
       <Modal
         title="回测详情"
         open={backtestModalVisible}

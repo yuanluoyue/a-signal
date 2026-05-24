@@ -1,5 +1,5 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { eq, desc, and, gte, lte, inArray, sql } from 'drizzle-orm';
+import { eq, desc, and, gte, sql } from 'drizzle-orm';
 import { ConfigService } from '@nestjs/config';
 import { DbService } from '../../core/db/db.service.js';
 import {
@@ -14,6 +14,8 @@ import {
 import { QueueService } from '../../core/queue/queue.service.js';
 import { QUEUE_NAMES } from '../../core/queue/queue.constants.js';
 import { StockService } from '../stock/stock.service.js';
+import { BacktestService } from '../backtest/backtest.service.js';
+import * as crypto from 'crypto';
 
 export interface CreateTrackingDto {
   stockCode: string;
@@ -30,6 +32,11 @@ export interface FetchNewsResult {
   total: number;
 }
 
+export interface RunBacktestDto {
+  strategyId: string;
+  period?: '1d' | '4h';
+}
+
 @Injectable()
 export class StockTrackingService {
   private readonly logger = new Logger(StockTrackingService.name);
@@ -39,6 +46,7 @@ export class StockTrackingService {
     private readonly queueService: QueueService,
     private readonly configService: ConfigService,
     private readonly stockService: StockService,
+    private readonly backtestService: BacktestService,
   ) {}
 
   async findAll(userId: string): Promise<StockTracking[]> {
@@ -165,10 +173,12 @@ export class StockTrackingService {
 
     for (const item of newsItems) {
       try {
+        const uniqueKey = `${stockCode}_${crypto.createHash('md5').update(`${item.title}_${item.publishTime}`).digest('hex').substring(0, 12)}`;
+
         const [existing] = await this.dbService.db
           .select({ id: news.id })
           .from(news)
-          .where(eq(news.title, item.title))
+          .where(eq(news.uniqueKey, uniqueKey))
           .limit(1);
 
         if (existing) {
@@ -180,8 +190,8 @@ export class StockTrackingService {
           title: item.title,
           content: item.content,
           source: item.source,
-          originalUrl: '',
-          uniqueKey: `${stockCode}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          originalUrl: `tracking_${trackingId}_${crypto.randomUUID()}`,
+          uniqueKey,
           publishTime: new Date(item.publishTime),
           analyzeStatus: 'pending',
           vectorizeStatus: 'pending',
@@ -234,21 +244,62 @@ export class StockTrackingService {
       )
       .orderBy(news.publishTime);
 
-    this.logger.log(`Found ${pendingNews.length} pending news for stock ${stockCode} in tracking ${trackingId}`);
+    this.logger.log(`[StockTrackingService] Found ${pendingNews.length} pending news for stock ${stockCode} in tracking ${trackingId}`);
 
     for (const newsItem of pendingNews) {
       try {
         await this.queueService.sendMessage(QUEUE_NAMES.EVENT_ANALYZE, {
           newsId: newsItem.id,
           stockCode,
-          skipWebhook: true,
         });
       } catch (error) {
-        this.logger.error(`Failed to queue news ${newsItem.id} for analysis`, error);
+        this.logger.error(`[StockTrackingService] Failed to queue news ${newsItem.id} for analysis`, error);
       }
     }
 
     return pendingNews.length;
+  }
+
+  async runBacktest(trackingId: string, stockCode: string, dto: RunBacktestDto, userId: string) {
+    const newsTimeRange = await this.getNewsTimeRange(stockCode);
+
+    const startTime = newsTimeRange?.earliest
+      ? new Date(newsTimeRange.earliest)
+      : new Date(Date.now() - 365 * 24 * 60 * 60 * 1000);
+    const endTime = newsTimeRange?.latest
+      ? new Date(newsTimeRange.latest)
+      : new Date();
+
+    return this.backtestService.createBacktest(
+      {
+        strategyId: dto.strategyId,
+        startTime,
+        endTime,
+        period: dto.period || '4h',
+        name: `${stockCode} 追踪回测`,
+        stockCode,
+      },
+      userId,
+    );
+  }
+
+  private async getNewsTimeRange(stockCode: string): Promise<{ earliest: Date; latest: Date } | null> {
+    const result = await this.dbService.db
+      .select({
+        earliest: sql<Date>`MIN(${news.publishTime})`,
+        latest: sql<Date>`MAX(${news.publishTime})`,
+      })
+      .from(news)
+      .where(sql`${news.uniqueKey} LIKE ${stockCode + '_%'}`);
+
+    if (result.length === 0 || !result[0].earliest) {
+      return null;
+    }
+
+    return {
+      earliest: result[0].earliest,
+      latest: result[0].latest,
+    };
   }
 
   async generateResearchReport(
@@ -263,7 +314,7 @@ export class StockTrackingService {
 
     const signalsList = await this.getTrackingSignals(stockCode);
 
-    const backtestResult = await this.getLatestBacktestResult();
+    const backtestResult = await this.getLatestBacktestResult(stockCode);
 
     const report = await this.callAIForReport(
       stockCode,
@@ -302,31 +353,29 @@ export class StockTrackingService {
     const signalsList = await this.dbService.db
       .select({
         id: signals.id,
-        direction: signals.direction,
-        confidence: signals.confidence,
-        sentiment: signals.sentiment,
-        reasoning: signals.reasoning,
-        signalTime: signals.signalTime,
+        action: signals.action,
+        score: signals.score,
+        reason: signals.reason,
+        generatedAt: signals.generatedAt,
       })
       .from(signals)
       .where(
         and(
-          eq(signals.stockCode, stockCode),
-          gte(signals.signalTime, oneYearAgo),
+          eq(signals.symbol, stockCode),
+          gte(signals.generatedAt, oneYearAgo),
         ),
       )
-      .orderBy(desc(signals.signalTime))
+      .orderBy(desc(signals.generatedAt))
       .limit(20);
 
     return signalsList.map(s => ({
-      direction: s.direction ?? '',
-      confidence: s.confidence ?? 0,
-      sentiment: s.sentiment ?? '',
-      reasoning: s.reasoning ?? '',
+      action: s.action ?? '',
+      score: s.score ?? '0',
+      reason: s.reason ?? '',
     }));
   }
 
-  private async getLatestBacktestResult() {
+  private async getLatestBacktestResult(stockCode: string) {
     const [record] = await this.dbService.db
       .select({
         totalTrades: backtestRecords.totalTrades,
@@ -338,6 +387,7 @@ export class StockTrackingService {
         avgReturnPct: backtestRecords.avgReturnPct,
       })
       .from(backtestRecords)
+      .where(eq(backtestRecords.stockCode, stockCode))
       .orderBy(desc(backtestRecords.createdAt))
       .limit(1);
 
@@ -348,7 +398,7 @@ export class StockTrackingService {
     stockCode: string,
     stockName: string,
     newsList: Array<{ title: string; content: string; source: string; publishTime: Date }>,
-    signalsList: Array<{ direction: string; confidence: number; sentiment: string; reasoning: string }>,
+    signalsList: Array<{ action: string; score: string; reason: string }>,
     backtestResult: {
       totalTrades: number;
       winningTrades: number;
@@ -368,11 +418,12 @@ export class StockTrackingService {
       `${i + 1}. ${n.title} (${n.source})`
     ).join('\n');
 
-    const bullishCount = signalsList.filter(s => s.direction === 'bullish' || s.direction === 'buy').length;
-    const bearishCount = signalsList.filter(s => s.direction === 'bearish' || s.direction === 'sell').length;
-    const avgConfidence = signalsList.length > 0
-      ? (signalsList.reduce((sum, s) => sum + s.confidence, 0) / signalsList.length).toFixed(1)
-      : 0;
+    const longCount = signalsList.filter(s => s.action === 'long').length;
+    const shortCount = signalsList.filter(s => s.action === 'short').length;
+    const holdCount = signalsList.filter(s => s.action === 'hold').length;
+    const avgScore = signalsList.length > 0
+      ? (signalsList.reduce((sum, s) => sum + Math.abs(parseFloat(s.score)), 0) / signalsList.length).toFixed(2)
+      : '0';
 
     const backtestSummary = backtestResult
       ? `回测结果：总交易 ${backtestResult.totalTrades} 笔，胜率 ${backtestResult.winRate ? (parseFloat(backtestResult.winRate) * 100).toFixed(1) : 'N/A'}%，总收益率 ${backtestResult.totalReturnPct ? (parseFloat(backtestResult.totalReturnPct) * 100).toFixed(1) : 'N/A'}%，最大回撤 ${backtestResult.maxDrawdownPct ? (parseFloat(backtestResult.maxDrawdownPct) * 100).toFixed(1) : 'N/A'}%`
@@ -382,7 +433,7 @@ export class StockTrackingService {
 
 要求：
 1. 报告长度控制在 200 字左右
-2. 包含：市场 sentiment、关键新闻影响、信号分析、投资建议
+2. 包含：市场情绪、关键新闻影响、信号分析、投资建议
 3. 语言专业、简洁、有洞察力
 4. 投资建议要明确（买入/卖出/观望）
 
@@ -394,9 +445,10 @@ export class StockTrackingService {
 ${newsSummary || '暂无新闻数据'}
 
 【信号统计】
-- 看涨信号：${bullishCount} 个
-- 看跌信号：${bearishCount} 个
-- 平均置信度：${avgConfidence}%
+- 做多信号：${longCount} 个
+- 做空信号：${shortCount} 个
+- 观望信号：${holdCount} 个
+- 平均信号分数：${avgScore}
 
 【回测数据】
 ${backtestSummary}
@@ -437,7 +489,7 @@ ${backtestSummary}
       return content.trim();
     } catch (error) {
       this.logger.error(`Failed to generate report: ${error instanceof Error ? error.message : String(error)}`);
-      return `基于对 ${stockName}(${stockCode}) 的分析，近期共有 ${signalsList.length} 个交易信号，其中看涨 ${bullishCount} 个，看跌 ${bearishCount} 个。${backtestSummary}。建议关注该股票的后续走势，结合自身风险承受能力做出投资决策。`;
+      return `基于对 ${stockName}(${stockCode}) 的分析，近期共有 ${signalsList.length} 个交易信号，其中做多 ${longCount} 个，做空 ${shortCount} 个。${backtestSummary}。建议关注该股票的后续走势，结合自身风险承受能力做出投资决策。`;
     }
   }
 }

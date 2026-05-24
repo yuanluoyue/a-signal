@@ -10,7 +10,7 @@ import {
   Request,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiParam, ApiBearerAuth } from '@nestjs/swagger';
-import { StockTrackingService } from '../../../modules/stock-tracking/stock-tracking.service.js';
+import { StockTrackingService, RunBacktestDto } from '../../../modules/stock-tracking/stock-tracking.service.js';
 import { CreateTrackingDto } from './dto/index.js';
 import { QueueService } from '../../../core/queue/queue.service.js';
 import { QUEUE_NAMES } from '../../../core/queue/queue.constants.js';
@@ -148,6 +148,34 @@ export class StockTrackingController {
       message: `信号生成任务已启动，${newsCount} 条新闻待分析`,
       trackingId: id,
       newsCount,
+    };
+  }
+
+  @Post(':id/backtest')
+  @ApiOperation({ summary: '执行回测' })
+  @ApiParam({ name: 'id', description: '追踪 ID' })
+  @ApiResponse({ status: 200, description: '回测任务已启动' })
+  async runBacktest(
+    @Param('id') id: string,
+    @Body() dto: RunBacktestDto,
+    @Request() req: { user?: { userId: string; sub?: string } },
+  ) {
+    const userId = this.extractUserId(req);
+    const tracking = await this.stockTrackingService.findById(id, userId);
+    if (!tracking) {
+      throw new NotFoundException('追踪记录不存在');
+    }
+
+    const record = await this.stockTrackingService.runBacktest(
+      id,
+      tracking.stockCode,
+      dto,
+      userId,
+    );
+
+    return {
+      data: record,
+      message: '回测任务已启动',
     };
   }
 
