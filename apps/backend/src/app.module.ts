@@ -62,6 +62,7 @@ import { HealthController } from './interfaces/admin/health/health.controller.js
 import { UsersController } from './interfaces/admin/users/users.controller.js';
 import { MenuController } from './interfaces/admin/menu/menu.controller.js';
 import { InviteCodeController } from './interfaces/admin/invite-code/invite-code.controller.js';
+import { TradingMemoryLogController } from './interfaces/admin/trading-memory/trading-memory-log.controller.js';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard.js';
 import { SchedulerTasksService } from './jobs/scheduler-tasks.service.js';
 import { NewsCrawlConsumer } from './jobs/news-crawl.consumer.js';
@@ -144,6 +145,7 @@ const jwtAuthGuardProvider: Provider = {
     UsersController,
     MenuController,
     InviteCodeController,
+    TradingMemoryLogController,
   ],
   providers: [
     jwtAuthGuardProvider,

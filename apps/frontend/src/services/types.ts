@@ -909,3 +909,22 @@ export interface InviteCodesListResponse {
 export interface GenerateInviteCodeRequest {
   expiresInHours?: number;
 }
+
+// ==================== 交易经验日志相关类型 ====================
+
+export interface TradingMemoryLog {
+  id: string;
+  memoryId: string;
+  action: string;
+  oldValue: Record<string, unknown> | null;
+  newValue: Record<string, unknown> | null;
+  operator: string | null;
+  operatorId: string | null;
+  detail: string | null;
+  createdAt: string;
+}
+
+export interface TradingMemoryLogsResponse {
+  data: TradingMemoryLog[];
+  total: number;
+}

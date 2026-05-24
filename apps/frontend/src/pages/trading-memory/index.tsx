@@ -25,14 +25,17 @@ import {
   EyeOutlined,
   SearchOutlined,
   StopOutlined,
+  HistoryOutlined,
 } from '@ant-design/icons';
 import type { ColumnsType } from 'antd/es/table';
 import { tradingMemoryApi } from '@/services/trading-memory';
+import { tradingMemoryLogApi } from '@/services/trading-memory-log';
 import type {
   TradingMemory,
   TradingMemoryType,
   TradingMemoryStatus,
   TradingMemoryStatsResponse,
+  TradingMemoryLog,
 } from '@/services/types';
 import styles from './index.module.scss';
 
@@ -84,6 +87,12 @@ const TradingMemoryPage: React.FC = () => {
   const [detailVisible, setDetailVisible] = useState(false);
   const [detailLoading, setDetailLoading] = useState(false);
   const [detailData, setDetailData] = useState<TradingMemory | null>(null);
+
+  const [logVisible, setLogVisible] = useState(false);
+  const [logData, setLogData] = useState<TradingMemoryLog[]>([]);
+  const [logTotal, setLogTotal] = useState(0);
+  const [logLoading, setLogLoading] = useState(false);
+  const [logPage, setLogPage] = useState(1);
 
   const fetchStats = useCallback(async () => {
     try {
@@ -160,6 +169,25 @@ const TradingMemoryPage: React.FC = () => {
         }
       },
     });
+  };
+
+  const fetchLogs = useCallback(async (page = 1) => {
+    setLogLoading(true);
+    try {
+      const res = await tradingMemoryLogApi.getAll({ page, pageSize: 20 });
+      setLogData(res.data);
+      setLogTotal(res.total);
+      setLogPage(page);
+    } catch {
+      message.error('获取日志失败');
+    } finally {
+      setLogLoading(false);
+    }
+  }, []);
+
+  const handleViewLog = () => {
+    setLogVisible(true);
+    fetchLogs(1);
   };
 
   const columns: ColumnsType<TradingMemory> = [
@@ -344,6 +372,9 @@ const TradingMemoryPage: React.FC = () => {
             onSearch={handleSearch}
             enterButton={<SearchOutlined />}
           />
+          <Button icon={<HistoryOutlined />} onClick={handleViewLog}>
+            修改日志
+          </Button>
         </Space>
       </Card>
 
@@ -461,6 +492,106 @@ const TradingMemoryPage: React.FC = () => {
             </Descriptions>
           </div>
         )}
+      </Modal>
+
+      <Modal
+        title="修改日志"
+        open={logVisible}
+        onCancel={() => {
+          setLogVisible(false);
+          setLogData([]);
+        }}
+        footer={null}
+        width={1000}
+      >
+        <Table
+          dataSource={logData}
+          rowKey="id"
+          loading={logLoading}
+          size="small"
+          pagination={{
+            current: logPage,
+            pageSize: 20,
+            total: logTotal,
+            showTotal: (t) => `共 ${t} 条`,
+            onChange: (p) => fetchLogs(p),
+          }}
+          columns={[
+            {
+              title: '操作',
+              dataIndex: 'action',
+              key: 'action',
+              width: 140,
+              render: (action: string) => {
+                if (action === 'create') return <Tag color="blue">创建</Tag>;
+                if (action === 'invalidate') return <Tag color="red">手动失效</Tag>;
+                if (action.startsWith('status_change:')) {
+                  const parts = action.split(':');
+                  const from = parts[1] || '';
+                  const to = parts[2] || '';
+                  const statusMap: Record<string, string> = { testing: '测试中', active: '活跃', dormant: '休眠', invalidated: '已失效' };
+                  return <Tag color="orange">状态变更: {statusMap[from] || from} → {statusMap[to] || to}</Tag>;
+                }
+                if (action === 'confidence_calibrate') return <Tag color="green">置信度校准</Tag>;
+                return <Tag>{action}</Tag>;
+              },
+            },
+            {
+              title: '操作者',
+              dataIndex: 'operator',
+              key: 'operator',
+              width: 80,
+              render: (op: string | null) => op === 'system' ? '系统' : op === 'user' ? '用户' : op || '-',
+            },
+            {
+              title: '变更详情',
+              dataIndex: 'detail',
+              key: 'detail',
+              width: 250,
+              ellipsis: true,
+              render: (detail: string | null) => detail || '-',
+            },
+            {
+              title: '旧值',
+              dataIndex: 'oldValue',
+              key: 'oldValue',
+              width: 150,
+              render: (val: Record<string, unknown> | null) => {
+                if (!val) return '-';
+                return (
+                  <div style={{ fontSize: 12 }}>
+                    {Object.entries(val).map(([k, v]) => (
+                      <div key={k}>{k}: {String(v)}</div>
+                    ))}
+                  </div>
+                );
+              },
+            },
+            {
+              title: '新值',
+              dataIndex: 'newValue',
+              key: 'newValue',
+              width: 150,
+              render: (val: Record<string, unknown> | null) => {
+                if (!val) return '-';
+                return (
+                  <div style={{ fontSize: 12 }}>
+                    {Object.entries(val).map(([k, v]) => (
+                      <div key={k}>{k}: {String(v)}</div>
+                    ))}
+                  </div>
+                );
+              },
+            },
+            {
+              title: '时间',
+              dataIndex: 'createdAt',
+              key: 'createdAt',
+              width: 160,
+              render: (val: string) => formatDate(val),
+            },
+          ]}
+        />
       </Modal>
     </div>
   );
