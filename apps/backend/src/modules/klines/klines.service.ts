@@ -33,7 +33,7 @@ export class KlinesService {
     private readonly cacheService: CacheService,
   ) {}
 
-  private formatStockCode(code: string): string {
+  static formatStockCode(code: string): string {
     const cleanCode = code.trim().toLowerCase();
 
     if (cleanCode.startsWith('sh') || cleanCode.startsWith('sz')) {
@@ -53,8 +53,12 @@ export class KlinesService {
       return `hk${cleanCode}`;
     }
 
-    this.logger.warn(`Unknown stock code format: ${code}, using as-is`);
+    console.warn(`Unknown stock code format: ${code}, using as-is`);
     return cleanCode;
+  }
+
+  static normalizeStockCode(code: string): string {
+    return code.trim().toLowerCase().replace(/^(sz|sh)/, '');
   }
 
   private getScale(period: KlinePeriod): number {
@@ -70,7 +74,7 @@ export class KlinesService {
     period: KlinePeriod,
     dataLen = 500,
   ): Promise<SinaKlineData[]> {
-    const symbol = this.formatStockCode(stockCode);
+    const symbol = KlinesService.formatStockCode(stockCode);
     const scale = this.getScale(period);
     const url = `${this.sinaApiUrl}?symbol=${symbol}&scale=${scale}&ma=no&datalen=${dataLen}`;
 
@@ -130,7 +134,7 @@ export class KlinesService {
       return 0;
     }
 
-    const cleanCode = stockCode.trim().toLowerCase();
+    const cleanCode = KlinesService.normalizeStockCode(stockCode);
     let savedCount = 0;
 
     for (const item of klineData) {
@@ -196,7 +200,7 @@ export class KlinesService {
     startTime?: Date,
     endTime?: Date,
   ): Promise<Kline[]> {
-    const cleanCode = stockCode.trim().toLowerCase();
+    const cleanCode = KlinesService.normalizeStockCode(stockCode);
 
     let query = this.dbService.db
       .select()
@@ -260,7 +264,7 @@ export class KlinesService {
   }
 
   async getLatestKlineTime(stockCode: string, period: KlinePeriod): Promise<Date | null> {
-    const cleanCode = stockCode.trim().toLowerCase();
+    const cleanCode = KlinesService.normalizeStockCode(stockCode);
 
     const result = await this.dbService.db
       .select({ maxTimestamp: sql<Date>`MAX(${klines.timestamp})` })
@@ -271,7 +275,7 @@ export class KlinesService {
   }
 
   async deleteKlines(stockCode: string, period?: KlinePeriod): Promise<number> {
-    const cleanCode = stockCode.trim().toLowerCase();
+    const cleanCode = KlinesService.normalizeStockCode(stockCode);
 
     let query;
     if (period) {
@@ -287,7 +291,7 @@ export class KlinesService {
   }
 
   async checkAndUpdateKlines(stockCode: string, period: KlinePeriod): Promise<{ updated: boolean; latestTime: Date | null; message: string }> {
-    const cleanCode = stockCode.trim().toLowerCase();
+    const cleanCode = KlinesService.normalizeStockCode(stockCode);
     const cacheKey = `kline:check:${cleanCode}:${period}`;
     
     const cached = await this.cacheService.get<{ updated: boolean; latestTime: Date | null; message: string }>(cacheKey);
@@ -369,7 +373,7 @@ export class KlinesService {
     let updated = 0;
     let failed = 0;
     
-    const uniqueCodes = [...new Set(stockCodes.map(code => code.trim().toLowerCase()))];
+    const uniqueCodes = [...new Set(stockCodes.map(code => KlinesService.normalizeStockCode(code)))];
     
     for (const code of uniqueCodes) {
       for (const period of periods) {

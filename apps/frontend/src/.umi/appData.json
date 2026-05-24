@@ -123,6 +123,12 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -156,6 +162,12 @@
             3,
             3,
             5,
+            3,
+            3,
+            4,
+            4,
+            2,
+            3,
             3,
             3
           ]
@@ -191,7 +203,13 @@
             16,
             19,
             16,
-            19
+            19,
+            15,
+            19,
+            18,
+            20,
+            16,
+            17
           ]
         },
         "register": 30
@@ -208,6 +226,12 @@
       "time": {
         "hooks": {
           "addEntryCode": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -245,6 +269,12 @@
             1
           ],
           "onPrepareBuildSuccess": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -304,6 +334,12 @@
             1,
             0,
             1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1373,6 +1409,34 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1404,6 +1468,12 @@
             1,
             1,
             2,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
             1
           ],
           "addRuntimePlugin": [
@@ -1414,6 +1484,12 @@
             0,
             0,
             1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1509,9 +1585,27 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addEntryImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1588,7 +1682,13 @@
             30,
             27,
             27,
-            27
+            27,
+            30,
+            34,
+            30,
+            27,
+            26,
+            26
           ],
           "addPolyfillImports": [
             0,
@@ -1613,6 +1713,18 @@
             0,
             0,
             1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1665,6 +1777,18 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ]
         },
@@ -1683,6 +1807,12 @@
         "hooks": {
           "onGenerateFiles": [
             189,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1753,6 +1883,12 @@
             1,
             0,
             1,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
             0
           ],
           "addBeforeMiddlewares": [
@@ -1802,6 +1938,18 @@
             35,
             4,
             37,
+            6,
+            38,
+            4,
+            40,
+            6,
+            45,
+            5,
+            42,
+            11,
+            42,
+            4,
+            36,
             6
           ]
         },
@@ -1871,7 +2019,13 @@
             7,
             8,
             8,
-            12
+            12,
+            8,
+            8,
+            13,
+            7,
+            7,
+            8
           ]
         },
         "register": 6
@@ -1968,6 +2122,12 @@
             1,
             1,
             2,
+            1,
+            1,
+            1,
+            2,
+            2,
+            1,
             1,
             1,
             1
@@ -2103,6 +2263,34 @@
       "time": {
         "hooks": {
           "addHTMLHeadScripts": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2529,9 +2717,27 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2563,6 +2769,12 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -2577,6 +2789,12 @@
             1,
             2,
             1,
+            1,
+            2,
+            2,
+            1,
+            1,
+            2,
             1,
             2,
             2,
@@ -2616,6 +2834,12 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -2633,6 +2857,12 @@
             63,
             61,
             57,
+            57,
+            58,
+            58,
+            62,
+            77,
+            56,
             57
           ],
           "addTmpGenerateWatcherPaths": [
@@ -2682,9 +2912,27 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2716,6 +2964,12 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0
           ],
           "onGenerateFiles": [
@@ -2733,7 +2987,13 @@
             28,
             23,
             28,
-            30
+            30,
+            25,
+            25,
+            27,
+            31,
+            25,
+            25
           ],
           "addTmpGenerateWatcherPaths": [
             31
@@ -4313,7 +4573,7 @@
       "parentId": "3",
       "id": "17",
       "absPath": "/stock-trackings/:id",
-      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  message,\n  Spin,\n  Empty,\n  List,\n  Divider,\n  Modal,\n  Table,\n  Descriptions,\n  Pagination,\n  Popconfirm,\n  Row,\n  Col,\n  Select,\n} from 'antd';\nimport {\n  ArrowLeftOutlined,\n  ReloadOutlined,\n  PlayCircleOutlined,\n  LineChartOutlined,\n  FileTextOutlined,\n  EyeOutlined,\n  HistoryOutlined,\n  DeleteOutlined,\n  BarChartOutlined,\n  SyncOutlined,\n} from '@ant-design/icons';\nimport { useParams, useNavigate, Link } from 'umi';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { CandlestickData, Time, IChartApi, ISeriesApi, SeriesMarker } from 'lightweight-charts';\nimport client from '@/services/client';\nimport { klinesApi } from '@/services/klines';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface StockTracking {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  status: 'pending' | 'processing' | 'completed' | 'failed';\n  totalNews: number;\n  createdAt: string;\n}\n\ninterface NewsItem {\n  id: string;\n  title: string;\n  content: string;\n  publishTime: string;\n  source: string;\n  analyzeStatus: string;\n}\n\ninterface BacktestRecord {\n  id: string;\n  name: string | null;\n  strategyId: string | null;\n  strategySnapshot: {\n    id: string;\n    name: string;\n    minScore: string;\n    maxScore: string | null;\n    directionMode: string;\n    holdPeriod: number;\n    stopLossPct: string | null;\n    takeProfitPct: string | null;\n  } | null;\n  startTime: string;\n  endTime: string;\n  period: string;\n  totalSignals: number | null;\n  filteredSignals: number | null;\n  totalTrades: number;\n  winningTrades: number;\n  losingTrades: number;\n  winRate: string | null;\n  totalReturnPct: string | null;\n  avgReturnPct: string | null;\n  maxDrawdownPct: string | null;\n  sharpeRatio: string | null;\n  profitFactor: string | null;\n  status: string;\n  createdAt: string;\n}\n\ninterface BacktestTrade {\n  id: string;\n  signalId: string | null;\n  symbol: string;\n  stockName: string | null;\n  direction: string;\n  entryTime: string;\n  entryPrice: string;\n  exitTime: string | null;\n  exitPrice: string | null;\n  pnlPct: string | null;\n  exitReason: string | null;\n}\n\ninterface Signal {\n  id: string;\n  symbol: string | null;\n  stockCode: string | null;\n  stockName: string | null;\n  action: string;\n  score: string | null;\n  generatedAt: string | null;\n  createdAt: string | null;\n  reason: string | null;\n  reasoning: string | null;\n  ruleId: string | null;\n  eventId: string | null;\n  eventOccurredAt?: string | null;\n}\n\ninterface KlineData {\n  timestamp: string;\n  open: number;\n  high: number;\n  low: number;\n  close: number;\n  volume: number;\n}\n\nconst StockTrackingDetailPage: React.FC = () => {\n  const { id } = useParams<{ id: string }>();\n  const navigate = useNavigate();\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n  const candlestickSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null);\n  const markersRef = useRef<any>(null);\n\n  const [loading, setLoading] = useState(true);\n  const [tracking, setTracking] = useState<StockTracking | null>(null);\n  const [news, setNews] = useState<NewsItem[]>([]);\n  const [newsPagination, setNewsPagination] = useState({\n    current: 1,\n    pageSize: 10,\n    total: 0,\n  });\n  const [report, setReport] = useState<string>('');\n  const [backtestLoading, setBacktestLoading] = useState(false);\n  const [backtestRecords, setBacktestRecords] = useState<BacktestRecord[]>([]);\n  const [backtestModalVisible, setBacktestModalVisible] = useState(false);\n  const [selectedBacktest, setSelectedBacktest] = useState<BacktestRecord | null>(null);\n  const [backtestTrades, setBacktestTrades] = useState<BacktestTrade[]>([]);\n  const [backtestTradesLoading, setBacktestTradesLoading] = useState(false);\n  const [signals, setSignals] = useState<Signal[]>([]);\n  const [klines, setKlines] = useState<KlineData[]>([]);\n  const [period, setPeriod] = useState<'1d' | '4h'>('1d');\n  const [chartReady, setChartReady] = useState(false);\n  const [syncingKlines, setSyncingKlines] = useState(false);\n\n  const fetchTrackingDetail = async () => {\n    if (!id) return;\n    setLoading(true);\n    try {\n      const response = await client.get(`/stock-trackings/${id}`);\n      setTracking(response.data);\n    } catch (error) {\n      message.error('获取追踪详情失败');\n      console.error('Fetch tracking detail error:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const fetchReport = async () => {\n    if (!id) return;\n    try {\n      const response = await client.get(`/stock-trackings/${id}/report`);\n      const reportData = response.data?.report;\n      if (reportData) {\n        setReport(reportData);\n      }\n    } catch (error) {\n      console.error('Fetch report error:', error);\n    }\n  };\n\n  const fetchNews = async (page = 1, pageSize = 10) => {\n    if (!id) return;\n    try {\n      const response = await client.get(`/stock-trackings/${id}/news`);\n      const newsList = response.data || [];\n      setNews(newsList);\n      setNewsPagination({\n        current: page,\n        pageSize,\n        total: newsList.length,\n      });\n    } catch (error) {\n      console.error('Fetch news error:', error);\n    }\n  };\n\n  const fetchBacktestRecords = async () => {\n    if (!tracking?.stockCode) return;\n    try {\n      const response = await client.get(`/backtest/records?stockCode=${tracking.stockCode}`);\n      const records = response.data || [];\n      setBacktestRecords(records);\n    } catch (error) {\n      console.error('Fetch backtest records error:', error);\n    }\n  };\n\n  const fetchSignals = async () => {\n    if (!tracking?.stockCode) return;\n    try {\n      const response = await client.get(`/signals`, {\n        params: { symbol: tracking.stockCode, pageSize: 100 },\n      });\n      setSignals(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch signals error:\", error);\n    }\n  };\n\n  const checkAndUpdateKlines = async (p: '1d' | '4h' = period): Promise<boolean> => {\n    if (!tracking?.stockCode) return false;\n    try {\n      setSyncingKlines(true);\n      const result = await klinesApi.checkAndUpdate(tracking.stockCode, p);\n      if ('updated' in result) {\n        if (result.updated) {\n          message.success(`K线数据已更新: ${result.message}`);\n          return true;\n        }\n      } else if (result[p]?.updated) {\n        message.success(`K线数据已更新: ${result[p].message}`);\n        return true;\n      }\n      return false;\n    } catch (error) {\n      console.error('Check and update klines error:', error);\n      return false;\n    } finally {\n      setSyncingKlines(false);\n    }\n  };\n\n  const fetchKlines = async (autoUpdate: boolean = true) => {\n    if (!tracking?.stockCode) return;\n    try {\n      if (autoUpdate) {\n        await checkAndUpdateKlines(period);\n      }\n      const response = await client.get(`/klines/${tracking.stockCode}`, {\n        params: { period },\n      });\n      setKlines(response.data || []);\n    } catch (error) {\n      console.error('Fetch klines error:', error);\n    }\n  };\n\n  useEffect(() => {\n    fetchTrackingDetail();\n    fetchNews(1, 10);\n    fetchReport();\n  }, [id]);\n\n  useEffect(() => {\n    if (tracking?.stockCode) {\n      fetchBacktestRecords();\n      fetchSignals();\n      fetchKlines();\n\n      const interval = setInterval(() => {\n        fetchBacktestRecords();\n      }, 5000);\n\n      return () => clearInterval(interval);\n    }\n  }, [tracking?.stockCode]);\n\n  // 初始化图表\n  useEffect(() => {\n    if (!chartContainerRef.current || !tracking) return;\n\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: { mode: 1 },\n      rightPriceScale: { borderColor: '#d9d9d9' },\n      timeScale: { borderColor: '#d9d9d9', timeVisible: true },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    const candlestickSeries = chart.addSeries(LightweightCharts.CandlestickSeries, {\n      upColor: '#52c41a',\n      downColor: '#f5222d',\n      borderVisible: false,\n      wickUpColor: '#52c41a',\n      wickDownColor: '#f5222d',\n    });\n\n    candlestickSeriesRef.current = candlestickSeries;\n\n    const markers = LightweightCharts.createSeriesMarkers(candlestickSeries);\n    markersRef.current = markers;\n\n    setChartReady(true);\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({ width: chartContainerRef.current.clientWidth });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n    };\n  }, [tracking]);\n\n  // 更新图表数据和信号标记\n  useEffect(() => {\n    if (!chartReady || !candlestickSeriesRef.current || klines.length === 0) return;\n\n    const chartData: CandlestickData<Time>[] = klines.map((k) => ({\n      time: Math.floor(new Date(k.timestamp).getTime() / 1000) as Time,\n      open: Number(k.open),\n      high: Number(k.high),\n      low: Number(k.low),\n      close: Number(k.close),\n    }));\n\n    candlestickSeriesRef.current.setData(chartData);\n\n    if (signals.length > 0 && markersRef.current) {\n      const markers: SeriesMarker<Time>[] = signals.map((signal) => {\n        const signalTime = Math.floor(new Date(signal.eventOccurredAt || signal.generatedAt || signal.createdAt || \"\").getTime() / 1000) as Time;\n        const closestData = chartData.reduce((closest, current) => {\n          const currentDiff = Math.abs(Number(current.time) - Number(signalTime));\n          const closestDiff = Math.abs(Number(closest.time) - Number(signalTime));\n          return currentDiff < closestDiff ? current : closest;\n        }, chartData[0]);\n\n        const isLong = signal.action === \"long\";\n        return {\n          time: closestData?.time || signalTime,\n          position: isLong ? \"belowBar\" : \"aboveBar\",\n          shape: isLong ? \"arrowUp\" : \"arrowDown\",\n          color: isLong ? \"#52c41a\" : \"#f5222d\",\n          size: 2,\n          text: `${isLong ? \"做多\" : \"做空\"} ${signal.score ? parseFloat(signal.score).toFixed(2) : \"-\"}`,\n        };\n      });\n\n      markersRef.current.setMarkers(markers);\n    }\n\n    chartRef.current?.timeScale().fitContent();\n  }, [klines, signals, chartReady]);\n\n  const handleFetchNews = async () => {\n    if (!id) return;\n    try {\n      await client.post(`/stock-trackings/${id}/fetch-news`);\n      message.success('历史新闻获取任务已启动');\n      setTimeout(() => {\n        fetchTrackingDetail();\n        fetchNews(1, 10);\n      }, 5000);\n    } catch (error) {\n      message.error('获取历史新闻失败');\n      console.error('Fetch news error:', error);\n    }\n  };\n\n  const handleGenerateSignals = async () => {\n    if (!id) return;\n    try {\n      const response = await client.post(`/stock-trackings/${id}/generate-signals`);\n      message.success(response.data?.message || '信号生成任务已启动');\n    } catch (error) {\n      message.error('生成信号失败');\n      console.error('Generate signals error:', error);\n    }\n  };\n\n  const handleBacktest = () => {\n    message.info(\"请在回测管理页面选择策略进行回测\");\n    navigate(\"/backtest\");\n  };\n\n  const handleViewBacktestDetail = async (record: BacktestRecord) => {\n    setSelectedBacktest(record);\n    setBacktestModalVisible(true);\n    setBacktestTradesLoading(true);\n    try {\n      const response = await client.get(`/backtest/records/${record.id}/trades`);\n      setBacktestTrades(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch backtest trades error:\", error);\n      message.error(\"获取交易明细失败\");\n    } finally {\n      setBacktestTradesLoading(false);\n    }\n  };\n\n  const handleDeleteBacktest = async (backtestId: string) => {\n    try {\n      await client.delete(`/backtest/records/${backtestId}`);\n      message.success('删除成功');\n      fetchBacktestRecords();\n    } catch (error) {\n      message.error('删除失败');\n      console.error('Delete backtest record error:', error);\n    }\n  };\n\n  const handleGenerateReport = async () => {\n    if (!id) return;\n    try {\n      const response = await client.post(`/stock-trackings/${id}/generate-report`);\n      setReport(response.data?.report || '');\n      message.success('研投报告生成成功');\n    } catch (error) {\n      message.error('生成研投报告失败');\n      console.error('Generate report error:', error);\n    }\n  };\n\n  const handleNewsPageChange = (page: number, pageSize?: number) => {\n    setNewsPagination(prev => ({\n      ...prev,\n      current: page,\n      pageSize: pageSize || prev.pageSize,\n    }));\n  };\n\n  const getStatusColor = (status: string) => {\n    const colorMap: Record<string, string> = {\n      pending: 'default',\n      processing: 'processing',\n      completed: 'success',\n      failed: 'error',\n    };\n    return colorMap[status] || 'default';\n  };\n\n  const getStatusText = (status: string) => {\n    const textMap: Record<string, string> = {\n      pending: '待处理',\n      processing: '处理中',\n      completed: '已完成',\n      failed: '失败',\n    };\n    return textMap[status] || status;\n  };\n\n  const formatDate = (dateString: string) => {\n    if (!dateString) return '-';\n    const date = new Date(dateString);\n    return date.toLocaleString('zh-CN');\n  };\n\n  const formatPercent = (value: string | number) => {\n    const num = typeof value === 'string' ? parseFloat(value) : value;\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const getCurrentPageNews = () => {\n    const { current, pageSize } = newsPagination;\n    const start = (current - 1) * pageSize;\n    const end = start + pageSize;\n    return news.slice(start, end);\n  };\n\n  const backtestColumns = [\n    {\n      title: \"名称\",\n      dataIndex: \"name\",\n      key: \"name\",\n      render: (name: string | null) => name || \"-\",\n    },\n    {\n      title: \"策略\",\n      key: \"strategy\",\n      render: (_: unknown, record: BacktestRecord) =>\n        record.strategySnapshot?.name || \"-\",\n    },\n    {\n      title: \"回测时间\",\n      dataIndex: \"createdAt\",\n      key: \"createdAt\",\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"交易次数\",\n      dataIndex: \"totalTrades\",\n      key: \"totalTrades\",\n      render: (count: number) => <Tag color=\"blue\">{count} 笔</Tag>,\n    },\n    {\n      title: \"胜率\",\n      dataIndex: \"winRate\",\n      key: \"winRate\",\n      render: (rate: string | null) => {\n        if (!rate) return \"-\";\n        const num = parseFloat(rate);\n        const color = num >= 0.5 ? \"success\" : num >= 0.3 ? \"warning\" : \"error\";\n        return <Tag color={color}>{formatPercent(rate)}</Tag>;\n      },\n    },\n    {\n      title: \"总收益率\",\n      dataIndex: \"totalReturnPct\",\n      key: \"totalReturnPct\",\n      render: (ret: string | null) => {\n        if (!ret) return \"-\";\n        const num = parseFloat(ret);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        return <Tag color={color}>{formatPercent(ret)}</Tag>;\n      },\n    },\n    {\n      title: \"最大回撤\",\n      dataIndex: \"maxDrawdownPct\",\n      key: \"maxDrawdownPct\",\n      render: (dd: string | null) =>\n        dd ? <Text type=\"danger\">{formatPercent(dd)}</Text> : \"-\",\n    },\n    {\n      title: \"状态\",\n      dataIndex: \"status\",\n      key: \"status\",\n      render: (status: string) => {\n        const colorMap: Record<string, string> = {\n          completed: \"green\",\n          failed: \"red\",\n          running: \"blue\",\n        };\n        const labelMap: Record<string, string> = {\n          completed: \"完成\",\n          failed: \"失败\",\n          running: \"运行中\",\n        };\n        return (\n          <Tag color={colorMap[status] || \"default\"}>\n            {labelMap[status] || status}\n          </Tag>\n        );\n      },\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space size=\"small\">\n          <Button\n            type=\"primary\"\n            icon={<EyeOutlined />}\n            size=\"small\"\n            onClick={() => handleViewBacktestDetail(record)}\n          >\n            查看详情\n          </Button>\n          <Popconfirm\n            title=\"确认删除\"\n            description=\"确定要删除这条回测记录吗？\"\n            onConfirm={() => handleDeleteBacktest(record.id)}\n            okText=\"确认\"\n            cancelText=\"取消\"\n          >\n            <Button danger icon={<DeleteOutlined />} size=\"small\">\n              删除\n            </Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  const signalColumns = [\n    {\n      title: \"时间\",\n      dataIndex: \"generatedAt\",\n      key: \"generatedAt\",\n      render: (time: string | null) => formatDate(time || \"\"),\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"action\",\n      key: \"action\",\n      render: (action: string) => {\n        const color = action === \"long\" ? \"red\" : action === \"short\" ? \"green\" : \"default\";\n        const text = action === \"long\" ? \"做多\" : action === \"short\" ? \"做空\" : \"观望\";\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"分数\",\n      dataIndex: \"score\",\n      key: \"score\",\n      render: (score: string | null) =>\n        score ? parseFloat(score).toFixed(4) : \"-\",\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      render: (_: unknown, record: Signal) => (\n        <Button type=\"link\" onClick={() => navigate(`/signals/${record.id}`)}>\n          查看\n        </Button>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: \"标的\",\n      dataIndex: \"symbol\",\n      key: \"symbol\",\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"direction\",\n      key: \"direction\",\n      render: (direction: string) => {\n        const isLong = direction === \"long\";\n        return (\n          <Tag color={isLong ? \"red\" : \"green\"}>{isLong ? \"做多\" : \"做空\"}</Tag>\n        );\n      },\n    },\n    {\n      title: \"入场时间\",\n      dataIndex: \"entryTime\",\n      key: \"entryTime\",\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"入场价\",\n      dataIndex: \"entryPrice\",\n      key: \"entryPrice\",\n      render: (price: string) => parseFloat(price).toFixed(2),\n    },\n    {\n      title: \"出场时间\",\n      dataIndex: \"exitTime\",\n      key: \"exitTime\",\n      render: (time: string | null) => (time ? formatDate(time) : \"-\"),\n    },\n    {\n      title: \"出场价\",\n      dataIndex: \"exitPrice\",\n      key: \"exitPrice\",\n      render: (price: string | null) =>\n        price ? parseFloat(price).toFixed(2) : \"-\",\n    },\n    {\n      title: \"收益率\",\n      dataIndex: \"pnlPct\",\n      key: \"pnlPct\",\n      render: (pct: string | null) => {\n        if (!pct) return \"-\";\n        const num = parseFloat(pct);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        const text =\n          num > 0 ? `+${(num * 100).toFixed(2)}%` : `${(num * 100).toFixed(2)}%`;\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"出场原因\",\n      dataIndex: \"exitReason\",\n      key: \"exitReason\",\n      render: (reason: string | null) => {\n        const reasonMap: Record<string, string> = {\n          hold_period: \"持仓到期\",\n          stop_loss: \"止损\",\n          take_profit: \"止盈\",\n        };\n        return reason ? reasonMap[reason] || reason : \"-\";\n      },\n    },\n  ];\n\n  return (\n    <div>\n      <Space style={{ marginBottom: 16 }}>\n        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/stock-trackings')}>返回</Button>\n        <Button icon={<ReloadOutlined />} onClick={fetchTrackingDetail}>刷新</Button>\n      </Space>\n\n      <Spin spinning={loading}>\n        {tracking ? (\n          <>\n            {/* 基本信息 */}\n            <Card style={{ marginBottom: 24 }}>\n              <Title level={3}>{tracking.stockName} ({tracking.stockCode})</Title>\n              <Space size=\"large\">\n                <Text>状态: <Tag color={getStatusColor(tracking.status)}>{getStatusText(tracking.status)}</Tag></Text>\n                <Text>新闻数量: <Tag color=\"blue\">{tracking.totalNews} 条</Tag></Text>\n                <Text>创建时间: {formatDate(tracking.createdAt)}</Text>\n              </Space>\n            </Card>\n\n            {/* 操作按钮 */}\n            <Card style={{ marginBottom: 24 }}>\n              <Space wrap>\n                <Button type=\"primary\" icon={<PlayCircleOutlined />} onClick={handleFetchNews}>获取历史新闻</Button>\n                <Button icon={<LineChartOutlined />} onClick={handleGenerateSignals}>生成历史信号</Button>\n                <Button icon={<HistoryOutlined />} onClick={handleBacktest} loading={backtestLoading}>执行回测</Button>\n                <Button icon={<FileTextOutlined />} onClick={handleGenerateReport}>生成研投报告</Button>\n              </Space>\n            </Card>\n\n            {/* 回测记录 - 最上 */}\n            <Card title=\"回测记录\" style={{ marginBottom: 24 }}>\n              {backtestRecords.length === 0 ? (\n                <Empty description=\"暂无回测记录，请点击「执行回测」按钮\" />\n              ) : (\n                <Table dataSource={backtestRecords} columns={backtestColumns} rowKey=\"id\" pagination={{ pageSize: 5 }} size=\"small\" />\n              )}\n            </Card>\n\n            {/* 研投报告 - 第二 */}\n            <Card title=\"研投报告\" style={{ marginBottom: 24 }}>\n              {report ? (\n                <div style={{ padding: 16, background: '#f5f5f5', borderRadius: 8 }}>\n                  <Text style={{ whiteSpace: 'pre-wrap' }}>{report}</Text>\n                </div>\n              ) : (\n                <Empty description=\"暂无研投报告，请点击「生成研投报告」按钮\" />\n              )}\n            </Card>\n\n            {/* K线 + 信号列表 - 左右分栏 */}\n            <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n              <Col xs={24} lg={16}>\n                <Card\n                  title={<Space><BarChartOutlined />K线图</Space>}\n                  extra={\n                    <Space>\n                      <Select value={period} onChange={setPeriod} style={{ width: 100 }}>\n                        <Option value=\"1d\">日线</Option>\n                        <Option value=\"4h\">4小时</Option>\n                      </Select>\n                      <Button\n                        icon={<SyncOutlined spin={syncingKlines} />}\n                        loading={syncingKlines}\n                        onClick={() => checkAndUpdateKlines(period)}\n                      >\n                        同步K线\n                      </Button>\n                      <Button\n                        icon={<ReloadOutlined />}\n                        onClick={() => fetchKlines(false)}\n                      >\n                        刷新\n                      </Button>\n                    </Space>\n                  }\n                >\n                  <div ref={chartContainerRef} style={{ width: '100%', height: 400 }} />\n                </Card>\n              </Col>\n              <Col xs={24} lg={8}>\n                <Card title=\"信号列表\">\n                  {signals.length === 0 ? (\n                    <Empty description=\"暂无信号\" />\n                  ) : (\n                    <Table dataSource={signals} columns={signalColumns} rowKey=\"id\" pagination={{ pageSize: 5 }} size=\"small\" scroll={{ y: 340 }} />\n                  )}\n                </Card>\n              </Col>\n            </Row>\n\n            {/* 历史新闻 - 最下 */}\n            <Card title=\"历史新闻\">\n              {news.length === 0 ? (\n                <Empty description=\"暂无新闻数据，请点击「获取历史新闻」按钮\" />\n              ) : (\n                <>\n                  <List\n                    dataSource={getCurrentPageNews()}\n                    renderItem={(item) => (\n                      <List.Item>\n                        <List.Item.Meta\n                          title={<Link to={`/news/${item.id}`} style={{ color: '#1890ff' }}>{item.title}</Link>}\n                          description={\n                            <Space split={<Divider type=\"vertical\" />}>\n                              <Text type=\"secondary\">{item.source}</Text>\n                              <Text type=\"secondary\">{formatDate(item.publishTime)}</Text>\n                              <Tag color={item.analyzeStatus === 'analyzed' ? 'success' : 'default'}>\n                                {item.analyzeStatus === 'analyzed' ? '已分析' : '待分析'}\n                              </Tag>\n                            </Space>\n                          }\n                        />\n                      </List.Item>\n                    )}\n                  />\n                  <div style={{ marginTop: 16, textAlign: 'right' }}>\n                    <Pagination\n                      current={newsPagination.current}\n                      pageSize={newsPagination.pageSize}\n                      total={newsPagination.total}\n                      onChange={handleNewsPageChange}\n                      showSizeChanger\n                      showQuickJumper\n                      showTotal={(total) => `共 ${total} 条`}\n                    />\n                  </div>\n                </>\n              )}\n            </Card>\n          </>\n        ) : (\n          <Empty description=\"追踪记录不存在\" />\n        )}\n      </Spin>\n\n      {/* 回测详情弹窗 */}\n      <Modal\n        title=\"回测详情\"\n        open={backtestModalVisible}\n        onCancel={() => setBacktestModalVisible(false)}\n        width={1400}\n        footer={[\n          <Button key=\"close\" onClick={() => setBacktestModalVisible(false)}>\n            关闭\n          </Button>,\n        ]}\n      >\n        {selectedBacktest ? (\n          <>\n            <Descriptions bordered column={3} style={{ marginBottom: 24 }}>\n              <Descriptions.Item label=\"策略名称\">\n                {selectedBacktest.strategySnapshot?.name || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"回测区间\">\n                {formatDate(selectedBacktest.startTime)} ~{\" \"}\n                {formatDate(selectedBacktest.endTime)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"K线周期\">\n                {selectedBacktest.period === '4h' ? '4小时线' : selectedBacktest.period === '1d' ? '日线' : selectedBacktest.period}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"信号总数/过滤后\">\n                {selectedBacktest.totalSignals ?? \"-\"} /{\" \"}\n                {selectedBacktest.filteredSignals ?? \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"总交易次数\">\n                {selectedBacktest.totalTrades} 笔\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈利/亏损\">\n                <Text style={{ color: \"#52c41a\" }}>\n                  {selectedBacktest.winningTrades}\n                </Text>{\" \"}\n                /{\" \"}\n                <Text style={{ color: \"#ff4d4f\" }}>\n                  {selectedBacktest.losingTrades}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"胜率\">\n                {formatPercent(selectedBacktest.winRate)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"总收益率\">\n                <Tag\n                  color={\n                    selectedBacktest.totalReturnPct &&\n                    parseFloat(selectedBacktest.totalReturnPct) > 0\n                      ? \"red\"\n                      : \"green\"\n                  }\n                >\n                  {formatPercent(selectedBacktest.totalReturnPct)}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"平均收益率\">\n                {formatPercent(selectedBacktest.avgReturnPct)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"最大回撤\">\n                <Text type=\"danger\">\n                  {formatPercent(selectedBacktest.maxDrawdownPct)}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"夏普比率\">\n                {selectedBacktest.sharpeRatio\n                  ? parseFloat(selectedBacktest.sharpeRatio).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈亏比\">\n                {selectedBacktest.profitFactor\n                  ? parseFloat(selectedBacktest.profitFactor).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n            </Descriptions>\n            <Title level={5}>交易明细</Title>\n            <Spin spinning={backtestTradesLoading}>\n              <Table\n                dataSource={backtestTrades}\n                columns={tradeColumns}\n                rowKey=\"id\"\n                pagination={{ pageSize: 10 }}\n                size=\"small\"\n                scroll={{ x: 1200 }}\n              />\n            </Spin>\n          </>\n        ) : (\n          <Empty description=\"暂无数据\" />\n        )}\n      </Modal>\n    </div>\n  );\n};\n\nexport default StockTrackingDetailPage;\n",
+      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  message,\n  Spin,\n  Empty,\n  List,\n  Divider,\n  Modal,\n  Table,\n  Descriptions,\n  Pagination,\n  Popconfirm,\n  Row,\n  Col,\n  Select,\n  Form,\n  Radio,\n} from 'antd';\nimport {\n  ArrowLeftOutlined,\n  ReloadOutlined,\n  PlayCircleOutlined,\n  LineChartOutlined,\n  FileTextOutlined,\n  EyeOutlined,\n  HistoryOutlined,\n  DeleteOutlined,\n  BarChartOutlined,\n  SyncOutlined,\n} from '@ant-design/icons';\nimport { useParams, useNavigate, Link } from 'umi';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { CandlestickData, Time, IChartApi, ISeriesApi, SeriesMarker } from 'lightweight-charts';\nimport client from '@/services/client';\nimport { klinesApi } from '@/services/klines';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface StockTracking {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  status: 'pending' | 'processing' | 'completed' | 'failed';\n  totalNews: number;\n  createdAt: string;\n}\n\ninterface NewsItem {\n  id: string;\n  title: string;\n  content: string;\n  publishTime: string;\n  source: string;\n  analyzeStatus: string;\n}\n\ninterface BacktestRecord {\n  id: string;\n  name: string | null;\n  strategyId: string | null;\n  strategySnapshot: {\n    id: string;\n    name: string;\n    minScore: string;\n    maxScore: string | null;\n    directionMode: string;\n    holdPeriod: number;\n    stopLossPct: string | null;\n    takeProfitPct: string | null;\n  } | null;\n  startTime: string;\n  endTime: string;\n  period: string;\n  totalSignals: number | null;\n  filteredSignals: number | null;\n  totalTrades: number;\n  winningTrades: number;\n  losingTrades: number;\n  winRate: string | null;\n  totalReturnPct: string | null;\n  avgReturnPct: string | null;\n  maxDrawdownPct: string | null;\n  sharpeRatio: string | null;\n  profitFactor: string | null;\n  status: string;\n  createdAt: string;\n}\n\ninterface BacktestTrade {\n  id: string;\n  signalId: string | null;\n  symbol: string;\n  stockName: string | null;\n  direction: string;\n  entryTime: string;\n  entryPrice: string;\n  exitTime: string | null;\n  exitPrice: string | null;\n  pnlPct: string | null;\n  exitReason: string | null;\n}\n\ninterface Signal {\n  id: string;\n  symbol: string | null;\n  stockCode: string | null;\n  stockName: string | null;\n  action: string;\n  score: string | null;\n  generatedAt: string | null;\n  createdAt: string | null;\n  reason: string | null;\n  reasoning: string | null;\n  ruleId: string | null;\n  eventId: string | null;\n  eventOccurredAt?: string | null;\n}\n\ninterface KlineData {\n  timestamp: string;\n  open: number;\n  high: number;\n  low: number;\n  close: number;\n  volume: number;\n}\n\ninterface Strategy {\n  id: string;\n  name: string;\n  description: string | null;\n  enabled: boolean;\n  directionMode: string;\n  holdPeriod: number;\n  minScore: string;\n  maxScore: string | null;\n  stopLossPct: string | null;\n  takeProfitPct: string | null;\n}\n\nconst StockTrackingDetailPage: React.FC = () => {\n  const { id } = useParams<{ id: string }>();\n  const navigate = useNavigate();\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n  const candlestickSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null);\n  const markersRef = useRef<any>(null);\n\n  const [loading, setLoading] = useState(true);\n  const [tracking, setTracking] = useState<StockTracking | null>(null);\n  const [news, setNews] = useState<NewsItem[]>([]);\n  const [newsPagination, setNewsPagination] = useState({\n    current: 1,\n    pageSize: 10,\n    total: 0,\n  });\n  const [report, setReport] = useState<string>('');\n  const [backtestRecords, setBacktestRecords] = useState<BacktestRecord[]>([]);\n  const [backtestModalVisible, setBacktestModalVisible] = useState(false);\n  const [selectedBacktest, setSelectedBacktest] = useState<BacktestRecord | null>(null);\n  const [backtestTrades, setBacktestTrades] = useState<BacktestTrade[]>([]);\n  const [backtestTradesLoading, setBacktestTradesLoading] = useState(false);\n  const [signals, setSignals] = useState<Signal[]>([]);\n  const [klines, setKlines] = useState<KlineData[]>([]);\n  const [period, setPeriod] = useState<'1d' | '4h'>('1d');\n  const [chartReady, setChartReady] = useState(false);\n  const [syncingKlines, setSyncingKlines] = useState(false);\n\n  const [backtestFormVisible, setBacktestFormVisible] = useState(false);\n  const [strategies, setStrategies] = useState<Strategy[]>([]);\n  const [strategiesLoading, setStrategiesLoading] = useState(false);\n  const [backtestSubmitting, setBacktestSubmitting] = useState(false);\n  const [backtestForm] = Form.useForm();\n\n  const fetchTrackingDetail = async () => {\n    if (!id) return;\n    setLoading(true);\n    try {\n      const response = await client.get(`/stock-trackings/${id}`);\n      setTracking(response.data);\n    } catch (error) {\n      message.error('获取追踪详情失败');\n      console.error('Fetch tracking detail error:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const fetchReport = async () => {\n    if (!id) return;\n    try {\n      const response = await client.get(`/stock-trackings/${id}/report`);\n      const reportData = response.data?.report;\n      if (reportData) {\n        setReport(reportData);\n      }\n    } catch (error) {\n      console.error('Fetch report error:', error);\n    }\n  };\n\n  const fetchNews = async (page = 1, pageSize = 10) => {\n    if (!id) return;\n    try {\n      const response = await client.get(`/stock-trackings/${id}/news`);\n      const newsList = response.data || [];\n      setNews(newsList);\n      setNewsPagination({\n        current: page,\n        pageSize,\n        total: newsList.length,\n      });\n    } catch (error) {\n      console.error('Fetch news error:', error);\n    }\n  };\n\n  const fetchBacktestRecords = async () => {\n    if (!tracking?.stockCode) return;\n    try {\n      const response = await client.get(`/backtest/records?stockCode=${tracking.stockCode}`);\n      const records = response.data || [];\n      setBacktestRecords(records);\n    } catch (error) {\n      console.error('Fetch backtest records error:', error);\n    }\n  };\n\n  const fetchSignals = async () => {\n    if (!tracking?.stockCode) return;\n    try {\n      const response = await client.get(`/signals`, {\n        params: { symbol: tracking.stockCode, pageSize: 100 },\n      });\n      setSignals(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch signals error:\", error);\n    }\n  };\n\n  const fetchStrategies = async () => {\n    setStrategiesLoading(true);\n    try {\n      const response = await client.get('/strategies');\n      const data = response.data || [];\n      setStrategies(data.filter((s: Strategy) => s.enabled));\n    } catch (error) {\n      console.error('Fetch strategies error:', error);\n      message.error('获取策略列表失败');\n    } finally {\n      setStrategiesLoading(false);\n    }\n  };\n\n  const checkAndUpdateKlines = async (p: '1d' | '4h' = period): Promise<boolean> => {\n    if (!tracking?.stockCode) return false;\n    try {\n      setSyncingKlines(true);\n      const result = await klinesApi.checkAndUpdate(tracking.stockCode, p);\n      if ('updated' in result) {\n        if (result.updated) {\n          message.success(`K线数据已更新: ${result.message}`);\n          return true;\n        }\n      } else if (result[p]?.updated) {\n        message.success(`K线数据已更新: ${result[p].message}`);\n        return true;\n      }\n      return false;\n    } catch (error) {\n      console.error('Check and update klines error:', error);\n      return false;\n    } finally {\n      setSyncingKlines(false);\n    }\n  };\n\n  const fetchKlines = async (autoUpdate: boolean = true) => {\n    if (!tracking?.stockCode) return;\n    try {\n      if (autoUpdate) {\n        await checkAndUpdateKlines(period);\n      }\n      const response = await client.get(`/klines/${tracking.stockCode}`, {\n        params: { period },\n      });\n      setKlines(response.data || []);\n    } catch (error) {\n      console.error('Fetch klines error:', error);\n    }\n  };\n\n  useEffect(() => {\n    fetchTrackingDetail();\n    fetchNews(1, 10);\n    fetchReport();\n  }, [id]);\n\n  useEffect(() => {\n    if (tracking?.stockCode) {\n      fetchBacktestRecords();\n      fetchSignals();\n      fetchKlines();\n\n      const interval = setInterval(() => {\n        fetchBacktestRecords();\n      }, 5000);\n\n      return () => clearInterval(interval);\n    }\n  }, [tracking?.stockCode]);\n\n  useEffect(() => {\n    if (!chartContainerRef.current || !tracking) return;\n\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: { mode: 1 },\n      rightPriceScale: { borderColor: '#d9d9d9' },\n      timeScale: { borderColor: '#d9d9d9', timeVisible: true },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    const candlestickSeries = chart.addSeries(LightweightCharts.CandlestickSeries, {\n      upColor: '#52c41a',\n      downColor: '#f5222d',\n      borderVisible: false,\n      wickUpColor: '#52c41a',\n      wickDownColor: '#f5222d',\n    });\n\n    candlestickSeriesRef.current = candlestickSeries;\n\n    const markers = LightweightCharts.createSeriesMarkers(candlestickSeries);\n    markersRef.current = markers;\n\n    setChartReady(true);\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({ width: chartContainerRef.current.clientWidth });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n    };\n  }, [tracking]);\n\n  useEffect(() => {\n    if (!chartReady || !candlestickSeriesRef.current || klines.length === 0) return;\n\n    const chartData: CandlestickData<Time>[] = klines.map((k) => ({\n      time: Math.floor(new Date(k.timestamp).getTime() / 1000) as Time,\n      open: Number(k.open),\n      high: Number(k.high),\n      low: Number(k.low),\n      close: Number(k.close),\n    }));\n\n    candlestickSeriesRef.current.setData(chartData);\n\n    if (signals.length > 0 && markersRef.current) {\n      const markers: SeriesMarker<Time>[] = signals.map((signal) => {\n        const signalTime = Math.floor(new Date(signal.eventOccurredAt || signal.generatedAt || signal.createdAt || \"\").getTime() / 1000) as Time;\n        const closestData = chartData.reduce((closest, current) => {\n          const currentDiff = Math.abs(Number(current.time) - Number(signalTime));\n          const closestDiff = Math.abs(Number(closest.time) - Number(signalTime));\n          return currentDiff < closestDiff ? current : closest;\n        }, chartData[0]);\n\n        const isLong = signal.action === \"long\";\n        return {\n          time: closestData?.time || signalTime,\n          position: isLong ? \"belowBar\" : \"aboveBar\",\n          shape: isLong ? \"arrowUp\" : \"arrowDown\",\n          color: isLong ? \"#52c41a\" : \"#f5222d\",\n          size: 2,\n          text: `${isLong ? \"做多\" : \"做空\"} ${signal.score ? parseFloat(signal.score).toFixed(2) : \"-\"}`,\n        };\n      });\n\n      markersRef.current.setMarkers(markers);\n    }\n\n    chartRef.current?.timeScale().fitContent();\n  }, [klines, signals, chartReady]);\n\n  const handleFetchNews = async () => {\n    if (!id) return;\n    try {\n      await client.post(`/stock-trackings/${id}/fetch-news`);\n      message.success('历史新闻获取任务已启动，新闻获取后将自动分析生成信号');\n      setTimeout(() => {\n        fetchTrackingDetail();\n        fetchNews(1, 10);\n      }, 5000);\n    } catch (error) {\n      message.error('获取历史新闻失败');\n      console.error('Fetch news error:', error);\n    }\n  };\n\n  const handleGenerateSignals = async () => {\n    if (!id) return;\n    try {\n      const response = await client.post(`/stock-trackings/${id}/generate-signals`);\n      message.success(response.data?.message || '信号生成任务已启动');\n      setTimeout(() => {\n        fetchSignals();\n        fetchTrackingDetail();\n      }, 5000);\n    } catch (error) {\n      message.error('生成信号失败');\n      console.error('Generate signals error:', error);\n    }\n  };\n\n  const handleOpenBacktestForm = () => {\n    setBacktestFormVisible(true);\n    fetchStrategies();\n    backtestForm.resetFields();\n  };\n\n  const handleSubmitBacktest = async () => {\n    try {\n      const values = await backtestForm.validateFields();\n      if (!id || !tracking) return;\n\n      setBacktestSubmitting(true);\n      await client.post(`/stock-trackings/${id}/backtest`, {\n        strategyId: values.strategyId,\n        period: values.period || '4h',\n      });\n\n      message.success('回测任务已启动');\n      setBacktestFormVisible(false);\n      backtestForm.resetFields();\n\n      setTimeout(() => {\n        fetchBacktestRecords();\n      }, 3000);\n    } catch (error: any) {\n      if (error?.errorFields) return;\n      message.error('执行回测失败');\n      console.error('Backtest error:', error);\n    } finally {\n      setBacktestSubmitting(false);\n    }\n  };\n\n  const handleViewBacktestDetail = async (record: BacktestRecord) => {\n    setSelectedBacktest(record);\n    setBacktestModalVisible(true);\n    setBacktestTradesLoading(true);\n    try {\n      const response = await client.get(`/backtest/records/${record.id}/trades`);\n      setBacktestTrades(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch backtest trades error:\", error);\n      message.error(\"获取交易明细失败\");\n    } finally {\n      setBacktestTradesLoading(false);\n    }\n  };\n\n  const handleDeleteBacktest = async (backtestId: string) => {\n    try {\n      await client.delete(`/backtest/records/${backtestId}`);\n      message.success('删除成功');\n      fetchBacktestRecords();\n    } catch (error) {\n      message.error('删除失败');\n      console.error('Delete backtest record error:', error);\n    }\n  };\n\n  const handleGenerateReport = async () => {\n    if (!id) return;\n    try {\n      const response = await client.post(`/stock-trackings/${id}/generate-report`);\n      setReport(response.data?.report || '');\n      message.success('研投报告生成成功');\n    } catch (error) {\n      message.error('生成研投报告失败');\n      console.error('Generate report error:', error);\n    }\n  };\n\n  const handleNewsPageChange = (page: number, pageSize?: number) => {\n    setNewsPagination(prev => ({\n      ...prev,\n      current: page,\n      pageSize: pageSize || prev.pageSize,\n    }));\n  };\n\n  const getStatusColor = (status: string) => {\n    const colorMap: Record<string, string> = {\n      pending: 'default',\n      processing: 'processing',\n      completed: 'success',\n      failed: 'error',\n    };\n    return colorMap[status] || 'default';\n  };\n\n  const getStatusText = (status: string) => {\n    const textMap: Record<string, string> = {\n      pending: '待处理',\n      processing: '处理中',\n      completed: '已完成',\n      failed: '失败',\n    };\n    return textMap[status] || status;\n  };\n\n  const formatDate = (dateString: string) => {\n    if (!dateString) return '-';\n    const date = new Date(dateString);\n    return date.toLocaleString('zh-CN');\n  };\n\n  const formatPercent = (value: string | number | null) => {\n    if (value === null || value === undefined) return '-';\n    const num = typeof value === 'string' ? parseFloat(value) : value;\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const getCurrentPageNews = () => {\n    const { current, pageSize } = newsPagination;\n    const start = (current - 1) * pageSize;\n    const end = start + pageSize;\n    return news.slice(start, end);\n  };\n\n  const backtestColumns = [\n    {\n      title: \"名称\",\n      dataIndex: \"name\",\n      key: \"name\",\n      render: (name: string | null) => name || \"-\",\n    },\n    {\n      title: \"策略\",\n      key: \"strategy\",\n      render: (_: unknown, record: BacktestRecord) =>\n        record.strategySnapshot?.name || \"-\",\n    },\n    {\n      title: \"回测时间\",\n      dataIndex: \"createdAt\",\n      key: \"createdAt\",\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"交易次数\",\n      dataIndex: \"totalTrades\",\n      key: \"totalTrades\",\n      render: (count: number) => <Tag color=\"blue\">{count} 笔</Tag>,\n    },\n    {\n      title: \"胜率\",\n      dataIndex: \"winRate\",\n      key: \"winRate\",\n      render: (rate: string | null) => {\n        if (!rate) return \"-\";\n        const num = parseFloat(rate);\n        const color = num >= 0.5 ? \"success\" : num >= 0.3 ? \"warning\" : \"error\";\n        return <Tag color={color}>{formatPercent(rate)}</Tag>;\n      },\n    },\n    {\n      title: \"总收益率\",\n      dataIndex: \"totalReturnPct\",\n      key: \"totalReturnPct\",\n      render: (ret: string | null) => {\n        if (!ret) return \"-\";\n        const num = parseFloat(ret);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        return <Tag color={color}>{formatPercent(ret)}</Tag>;\n      },\n    },\n    {\n      title: \"最大回撤\",\n      dataIndex: \"maxDrawdownPct\",\n      key: \"maxDrawdownPct\",\n      render: (dd: string | null) =>\n        dd ? <Text type=\"danger\">{formatPercent(dd)}</Text> : \"-\",\n    },\n    {\n      title: \"状态\",\n      dataIndex: \"status\",\n      key: \"status\",\n      render: (status: string) => {\n        const colorMap: Record<string, string> = {\n          completed: \"green\",\n          failed: \"red\",\n          running: \"blue\",\n        };\n        const labelMap: Record<string, string> = {\n          completed: \"完成\",\n          failed: \"失败\",\n          running: \"运行中\",\n        };\n        return (\n          <Tag color={colorMap[status] || \"default\"}>\n            {labelMap[status] || status}\n          </Tag>\n        );\n      },\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space size=\"small\">\n          <Button\n            type=\"primary\"\n            icon={<EyeOutlined />}\n            size=\"small\"\n            onClick={() => handleViewBacktestDetail(record)}\n          >\n            查看详情\n          </Button>\n          <Popconfirm\n            title=\"确认删除\"\n            description=\"确定要删除这条回测记录吗？\"\n            onConfirm={() => handleDeleteBacktest(record.id)}\n            okText=\"确认\"\n            cancelText=\"取消\"\n          >\n            <Button danger icon={<DeleteOutlined />} size=\"small\">\n              删除\n            </Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  const signalColumns = [\n    {\n      title: \"时间\",\n      dataIndex: \"generatedAt\",\n      key: \"generatedAt\",\n      render: (time: string | null) => formatDate(time || \"\"),\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"action\",\n      key: \"action\",\n      render: (action: string) => {\n        const color = action === \"long\" ? \"red\" : action === \"short\" ? \"green\" : \"default\";\n        const text = action === \"long\" ? \"做多\" : action === \"short\" ? \"做空\" : \"观望\";\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"分数\",\n      dataIndex: \"score\",\n      key: \"score\",\n      render: (score: string | null) =>\n        score ? parseFloat(score).toFixed(4) : \"-\",\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      render: (_: unknown, record: Signal) => (\n        <Button type=\"link\" onClick={() => navigate(`/signals/${record.id}`)}>\n          查看\n        </Button>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: \"标的\",\n      dataIndex: \"symbol\",\n      key: \"symbol\",\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"direction\",\n      key: \"direction\",\n      render: (direction: string) => {\n        const isLong = direction === \"long\";\n        return (\n          <Tag color={isLong ? \"red\" : \"green\"}>{isLong ? \"做多\" : \"做空\"}</Tag>\n        );\n      },\n    },\n    {\n      title: \"入场时间\",\n      dataIndex: \"entryTime\",\n      key: \"entryTime\",\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"入场价\",\n      dataIndex: \"entryPrice\",\n      key: \"entryPrice\",\n      render: (price: string) => parseFloat(price).toFixed(2),\n    },\n    {\n      title: \"出场时间\",\n      dataIndex: \"exitTime\",\n      key: \"exitTime\",\n      render: (time: string | null) => (time ? formatDate(time) : \"-\"),\n    },\n    {\n      title: \"出场价\",\n      dataIndex: \"exitPrice\",\n      key: \"exitPrice\",\n      render: (price: string | null) =>\n        price ? parseFloat(price).toFixed(2) : \"-\",\n    },\n    {\n      title: \"收益率\",\n      dataIndex: \"pnlPct\",\n      key: \"pnlPct\",\n      render: (pct: string | null) => {\n        if (!pct) return \"-\";\n        const num = parseFloat(pct);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        const text =\n          num > 0 ? `+${(num * 100).toFixed(2)}%` : `${(num * 100).toFixed(2)}%`;\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"出场原因\",\n      dataIndex: \"exitReason\",\n      key: \"exitReason\",\n      render: (reason: string | null) => {\n        const reasonMap: Record<string, string> = {\n          hold_period: \"持仓到期\",\n          stop_loss: \"止损\",\n          take_profit: \"止盈\",\n        };\n        return reason ? reasonMap[reason] || reason : \"-\";\n      },\n    },\n  ];\n\n  return (\n    <div>\n      <Space style={{ marginBottom: 16 }}>\n        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/stock-trackings')}>返回</Button>\n        <Button icon={<ReloadOutlined />} onClick={fetchTrackingDetail}>刷新</Button>\n      </Space>\n\n      <Spin spinning={loading}>\n        {tracking ? (\n          <>\n            <Card style={{ marginBottom: 24 }}>\n              <Title level={3}>{tracking.stockName} ({tracking.stockCode})</Title>\n              <Space size=\"large\">\n                <Text>状态: <Tag color={getStatusColor(tracking.status)}>{getStatusText(tracking.status)}</Tag></Text>\n                <Text>新闻数量: <Tag color=\"blue\">{tracking.totalNews} 条</Tag></Text>\n                <Text>创建时间: {formatDate(tracking.createdAt)}</Text>\n              </Space>\n            </Card>\n\n            <Card style={{ marginBottom: 24 }}>\n              <Space wrap>\n                <Button type=\"primary\" icon={<PlayCircleOutlined />} onClick={handleFetchNews}>获取历史新闻</Button>\n                <Button icon={<LineChartOutlined />} onClick={handleGenerateSignals}>生成历史信号</Button>\n                <Button icon={<HistoryOutlined />} onClick={handleOpenBacktestForm}>执行回测</Button>\n                <Button icon={<FileTextOutlined />} onClick={handleGenerateReport}>生成研投报告</Button>\n              </Space>\n            </Card>\n\n            <Card title=\"回测记录\" style={{ marginBottom: 24 }}>\n              {backtestRecords.length === 0 ? (\n                <Empty description=\"暂无回测记录，请点击「执行回测」按钮\" />\n              ) : (\n                <Table dataSource={backtestRecords} columns={backtestColumns} rowKey=\"id\" pagination={{ pageSize: 5 }} size=\"small\" />\n              )}\n            </Card>\n\n            <Card title=\"研投报告\" style={{ marginBottom: 24 }}>\n              {report ? (\n                <div style={{ padding: 16, background: '#f5f5f5', borderRadius: 8 }}>\n                  <Text style={{ whiteSpace: 'pre-wrap' }}>{report}</Text>\n                </div>\n              ) : (\n                <Empty description=\"暂无研投报告，请点击「生成研投报告」按钮\" />\n              )}\n            </Card>\n\n            <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n              <Col xs={24} lg={16}>\n                <Card\n                  title={<Space><BarChartOutlined />K线图</Space>}\n                  extra={\n                    <Space>\n                      <Select value={period} onChange={(v) => { setPeriod(v); }} style={{ width: 100 }}>\n                        <Option value=\"1d\">日线</Option>\n                        <Option value=\"4h\">4小时</Option>\n                      </Select>\n                      <Button\n                        icon={<SyncOutlined spin={syncingKlines} />}\n                        loading={syncingKlines}\n                        onClick={() => checkAndUpdateKlines(period)}\n                      >\n                        同步K线\n                      </Button>\n                      <Button\n                        icon={<ReloadOutlined />}\n                        onClick={() => fetchKlines(false)}\n                      >\n                        刷新\n                      </Button>\n                    </Space>\n                  }\n                >\n                  <div ref={chartContainerRef} style={{ width: '100%', height: 400 }} />\n                </Card>\n              </Col>\n              <Col xs={24} lg={8}>\n                <Card title=\"信号列表\">\n                  {signals.length === 0 ? (\n                    <Empty description=\"暂无信号\" />\n                  ) : (\n                    <Table dataSource={signals} columns={signalColumns} rowKey=\"id\" pagination={{ pageSize: 5 }} size=\"small\" scroll={{ y: 340 }} />\n                  )}\n                </Card>\n              </Col>\n            </Row>\n\n            <Card title=\"历史新闻\">\n              {news.length === 0 ? (\n                <Empty description=\"暂无新闻数据，请点击「获取历史新闻」按钮\" />\n              ) : (\n                <>\n                  <List\n                    dataSource={getCurrentPageNews()}\n                    renderItem={(item) => (\n                      <List.Item>\n                        <List.Item.Meta\n                          title={<Link to={`/news/${item.id}`} style={{ color: '#1890ff' }}>{item.title}</Link>}\n                          description={\n                            <Space split={<Divider type=\"vertical\" />}>\n                              <Text type=\"secondary\">{item.source}</Text>\n                              <Text type=\"secondary\">{formatDate(item.publishTime)}</Text>\n                              <Tag color={item.analyzeStatus === 'analyzed' ? 'success' : item.analyzeStatus === 'filtered' ? 'warning' : 'default'}>\n                                {item.analyzeStatus === 'analyzed' ? '已分析' : item.analyzeStatus === 'filtered' ? '已过滤' : item.analyzeStatus === 'failed' ? '分析失败' : '待分析'}\n                              </Tag>\n                            </Space>\n                          }\n                        />\n                      </List.Item>\n                    )}\n                  />\n                  <div style={{ marginTop: 16, textAlign: 'right' }}>\n                    <Pagination\n                      current={newsPagination.current}\n                      pageSize={newsPagination.pageSize}\n                      total={newsPagination.total}\n                      onChange={handleNewsPageChange}\n                      showSizeChanger\n                      showQuickJumper\n                      showTotal={(total) => `共 ${total} 条`}\n                    />\n                  </div>\n                </>\n              )}\n            </Card>\n          </>\n        ) : (\n          <Empty description=\"追踪记录不存在\" />\n        )}\n      </Spin>\n\n      <Modal\n        title=\"执行回测\"\n        open={backtestFormVisible}\n        onOk={handleSubmitBacktest}\n        onCancel={() => setBacktestFormVisible(false)}\n        confirmLoading={backtestSubmitting}\n        okText=\"开始回测\"\n        cancelText=\"取消\"\n        width={500}\n      >\n        <Form form={backtestForm} layout=\"vertical\" initialValues={{ period: '4h' }}>\n          <Form.Item\n            name=\"strategyId\"\n            label=\"选择策略\"\n            rules={[{ required: true, message: '请选择策略' }]}\n          >\n            <Select\n              placeholder=\"请选择策略\"\n              loading={strategiesLoading}\n              showSearch\n              optionFilterProp=\"children\"\n            >\n              {strategies.map((s) => (\n                <Option key={s.id} value={s.id}>\n                  {s.name} ({s.directionMode === 'long_only' ? '仅做多' : s.directionMode === 'short_only' ? '仅做空' : '多空都做'})\n                </Option>\n              ))}\n            </Select>\n          </Form.Item>\n          <Form.Item name=\"period\" label=\"K线周期\">\n            <Radio.Group>\n              <Radio value=\"4h\">4小时线</Radio>\n              <Radio value=\"1d\">日线</Radio>\n            </Radio.Group>\n          </Form.Item>\n          {tracking && (\n            <div style={{ padding: 12, background: '#f5f5f5', borderRadius: 8, marginTop: 8 }}>\n              <Text type=\"secondary\">\n                回测将自动使用该股票关联新闻的时间范围，并限定股票代码为 {tracking.stockCode}\n              </Text>\n            </div>\n          )}\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"回测详情\"\n        open={backtestModalVisible}\n        onCancel={() => setBacktestModalVisible(false)}\n        width={1400}\n        footer={[\n          <Button key=\"close\" onClick={() => setBacktestModalVisible(false)}>\n            关闭\n          </Button>,\n        ]}\n      >\n        {selectedBacktest ? (\n          <>\n            <Descriptions bordered column={3} style={{ marginBottom: 24 }}>\n              <Descriptions.Item label=\"策略名称\">\n                {selectedBacktest.strategySnapshot?.name || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"回测区间\">\n                {formatDate(selectedBacktest.startTime)} ~{\" \"}\n                {formatDate(selectedBacktest.endTime)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"K线周期\">\n                {selectedBacktest.period === '4h' ? '4小时线' : selectedBacktest.period === '1d' ? '日线' : selectedBacktest.period}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"信号总数/过滤后\">\n                {selectedBacktest.totalSignals ?? \"-\"} /{\" \"}\n                {selectedBacktest.filteredSignals ?? \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"总交易次数\">\n                {selectedBacktest.totalTrades} 笔\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈利/亏损\">\n                <Text style={{ color: \"#52c41a\" }}>\n                  {selectedBacktest.winningTrades}\n                </Text>{\" \"}\n                /{\" \"}\n                <Text style={{ color: \"#ff4d4f\" }}>\n                  {selectedBacktest.losingTrades}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"胜率\">\n                {formatPercent(selectedBacktest.winRate)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"总收益率\">\n                <Tag\n                  color={\n                    selectedBacktest.totalReturnPct &&\n                    parseFloat(selectedBacktest.totalReturnPct) > 0\n                      ? \"red\"\n                      : \"green\"\n                  }\n                >\n                  {formatPercent(selectedBacktest.totalReturnPct)}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"平均收益率\">\n                {formatPercent(selectedBacktest.avgReturnPct)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"最大回撤\">\n                <Text type=\"danger\">\n                  {formatPercent(selectedBacktest.maxDrawdownPct)}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"夏普比率\">\n                {selectedBacktest.sharpeRatio\n                  ? parseFloat(selectedBacktest.sharpeRatio).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈亏比\">\n                {selectedBacktest.profitFactor\n                  ? parseFloat(selectedBacktest.profitFactor).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n            </Descriptions>\n            <Title level={5}>交易明细</Title>\n            <Spin spinning={backtestTradesLoading}>\n              <Table\n                dataSource={backtestTrades}\n                columns={tradeColumns}\n                rowKey=\"id\"\n                pagination={{ pageSize: 10 }}\n                size=\"small\"\n                scroll={{ x: 1200 }}\n              />\n            </Spin>\n          </>\n        ) : (\n          <Empty description=\"暂无数据\" />\n        )}\n      </Modal>\n    </div>\n  );\n};\n\nexport default StockTrackingDetailPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/stock-trackings/[id].tsx"
     },
@@ -4368,7 +4628,7 @@
       "parentId": "3",
       "id": "22",
       "absPath": "/trading-memory",
-      "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport {\n  Card,\n  Table,\n  Tag,\n  Badge,\n  Progress,\n  Statistic,\n  Row,\n  Col,\n  Select,\n  Input,\n  Button,\n  Modal,\n  Descriptions,\n  Space,\n  Typography,\n  message,\n} from 'antd';\nimport {\n  FileSearchOutlined,\n  SafetyCertificateOutlined,\n  CheckCircleOutlined,\n  CloseCircleOutlined,\n  EyeOutlined,\n  SearchOutlined,\n  StopOutlined,\n  HistoryOutlined,\n} from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { tradingMemoryApi } from '@/services/trading-memory';\nimport { tradingMemoryLogApi } from '@/services/trading-memory-log';\nimport type {\n  TradingMemory,\n  TradingMemoryType,\n  TradingMemoryStatus,\n  TradingMemoryStatsResponse,\n  TradingMemoryLog,\n} from '@/services/types';\nimport styles from './index.module.scss';\n\nconst { Title } = Typography;\n\nconst TYPE_OPTIONS: { value: TradingMemoryType; label: string; color: string }[] = [\n  { value: 'event_pattern', label: '事件模式', color: 'blue' },\n  { value: 'signal_pattern', label: '信号模式', color: 'green' },\n  { value: 'strategy_pattern', label: '策略模式', color: 'purple' },\n  { value: 'market_regime_pattern', label: '市场环境模式', color: 'orange' },\n  { value: 'risk_pattern', label: '风险模式', color: 'red' },\n];\n\nconst STATUS_OPTIONS: { value: TradingMemoryStatus; label: string; color: string }[] = [\n  { value: 'testing', label: '测试中', color: 'processing' },\n  { value: 'active', label: '活跃', color: 'success' },\n  { value: 'dormant', label: '休眠', color: 'warning' },\n  { value: 'invalidated', label: '已失效', color: 'error' },\n];\n\nconst getTypeLabel = (type: TradingMemoryType) =>\n  TYPE_OPTIONS.find((o) => o.value === type) || { label: type, color: 'default' };\n\nconst getStatusOption = (status: TradingMemoryStatus) =>\n  STATUS_OPTIONS.find((o) => o.value === status) || { label: status, color: 'default' };\n\nconst formatPercent = (val: number | undefined | null) => {\n  if (val == null) return '-';\n  return `${(val * 100).toFixed(2)}%`;\n};\n\nconst formatDate = (dateStr: string | null | undefined) => {\n  if (!dateStr) return '-';\n  return new Date(dateStr).toLocaleString('zh-CN');\n};\n\nconst TradingMemoryPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<TradingMemory[]>([]);\n  const [total, setTotal] = useState(0);\n  const [current, setCurrent] = useState(1);\n  const [pageSize, setPageSize] = useState(20);\n  const [stats, setStats] = useState<TradingMemoryStatsResponse | null>(null);\n\n  const [filterType, setFilterType] = useState<TradingMemoryType | undefined>();\n  const [filterStatus, setFilterStatus] = useState<TradingMemoryStatus | undefined>();\n  const [keyword, setKeyword] = useState('');\n\n  const [detailVisible, setDetailVisible] = useState(false);\n  const [detailLoading, setDetailLoading] = useState(false);\n  const [detailData, setDetailData] = useState<TradingMemory | null>(null);\n\n  const [logVisible, setLogVisible] = useState(false);\n  const [logData, setLogData] = useState<TradingMemoryLog[]>([]);\n  const [logTotal, setLogTotal] = useState(0);\n  const [logLoading, setLogLoading] = useState(false);\n  const [logPage, setLogPage] = useState(1);\n\n  const fetchStats = useCallback(async () => {\n    try {\n      const res = await tradingMemoryApi.getStats();\n      setStats(res);\n    } catch {\n      message.error('获取统计数据失败');\n    }\n  }, []);\n\n  const fetchData = useCallback(\n    async (page = current, size = pageSize) => {\n      setLoading(true);\n      try {\n        const res = await tradingMemoryApi.getList({\n          page,\n          pageSize: size,\n          type: filterType,\n          status: filterStatus,\n          keyword: keyword || undefined,\n        });\n        setData(res.data);\n        setTotal(res.total);\n        setCurrent(page);\n        setPageSize(size);\n      } catch {\n        message.error('获取经验列表失败');\n      } finally {\n        setLoading(false);\n      }\n    },\n    [current, pageSize, filterType, filterStatus, keyword],\n  );\n\n  useEffect(() => {\n    fetchStats();\n  }, [fetchStats]);\n\n  useEffect(() => {\n    fetchData(1);\n  }, [filterType, filterStatus]);\n\n  const handleSearch = () => {\n    fetchData(1);\n  };\n\n  const handleViewDetail = async (record: TradingMemory) => {\n    setDetailVisible(true);\n    setDetailLoading(true);\n    try {\n      const detail = await tradingMemoryApi.getById(record.id);\n      setDetailData(detail);\n    } catch {\n      message.error('获取经验详情失败');\n    } finally {\n      setDetailLoading(false);\n    }\n  };\n\n  const handleInvalidate = (record: TradingMemory) => {\n    Modal.confirm({\n      title: '确认操作',\n      content: '确定要将此经验设为失效吗？',\n      okText: '确定',\n      cancelText: '取消',\n      onOk: async () => {\n        try {\n          await tradingMemoryApi.invalidate(record.id);\n          message.success('已设为失效');\n          fetchData();\n          fetchStats();\n        } catch {\n          message.error('操作失败');\n        }\n      },\n    });\n  };\n\n  const fetchLogs = useCallback(async (page = 1) => {\n    setLogLoading(true);\n    try {\n      const res = await tradingMemoryLogApi.getAll({ page, pageSize: 20 });\n      setLogData(res.data);\n      setLogTotal(res.total);\n      setLogPage(page);\n    } catch {\n      message.error('获取日志失败');\n    } finally {\n      setLogLoading(false);\n    }\n  }, []);\n\n  const handleViewLog = () => {\n    setLogVisible(true);\n    fetchLogs(1);\n  };\n\n  const columns: ColumnsType<TradingMemory> = [\n    {\n      title: '标题',\n      dataIndex: 'title',\n      key: 'title',\n      width: 240,\n      ellipsis: true,\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      width: 120,\n      render: (type: TradingMemoryType) => {\n        const opt = getTypeLabel(type);\n        return <Tag color={opt.color}>{opt.label}</Tag>;\n      },\n    },\n    {\n      title: '置信度',\n      dataIndex: 'confidence',\n      key: 'confidence',\n      width: 120,\n      render: (val: string) => {\n        const num = parseFloat(val);\n        const percent = Math.round(num * 100);\n        const color = num >= 0.8 ? '#52c41a' : num >= 0.5 ? '#faad14' : '#ff4d4f';\n        return <Progress percent={percent} size=\"small\" strokeColor={color} />;\n      },\n    },\n    {\n      title: '胜率',\n      key: 'winRate',\n      width: 90,\n      render: (_: unknown, record: TradingMemory) => formatPercent(record.stats?.winRate),\n    },\n    {\n      title: '平均收益',\n      key: 'avgReturn',\n      width: 100,\n      render: (_: unknown, record: TradingMemory) => {\n        const val = record.stats?.avgReturn;\n        if (val == null) return '-';\n        const num = val * 100;\n        return (\n          <span style={{ color: num >= 0 ? '#52c41a' : '#ff4d4f' }}>\n            {num >= 0 ? '+' : ''}{num.toFixed(2)}%\n          </span>\n        );\n      },\n    },\n    {\n      title: '样本量',\n      key: 'sampleSize',\n      width: 80,\n      render: (_: unknown, record: TradingMemory) => record.stats?.sampleSize ?? '-',\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 90,\n      render: (status: TradingMemoryStatus) => {\n        const opt = getStatusOption(status);\n        return <Badge status={opt.color as 'success'} text={opt.label} />;\n      },\n    },\n    {\n      title: '最近验证',\n      dataIndex: 'lastValidatedAt',\n      key: 'lastValidatedAt',\n      width: 160,\n      render: (val: string | null) => formatDate(val),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 150,\n      fixed: 'right',\n      render: (_: unknown, record: TradingMemory) => (\n        <Space>\n          <Button type=\"link\" icon={<EyeOutlined />} onClick={() => handleViewDetail(record)}>\n            详情\n          </Button>\n          {record.status !== 'invalidated' && (\n            <Button\n              type=\"link\"\n              danger\n              icon={<StopOutlined />}\n              onClick={() => handleInvalidate(record)}\n            >\n              设为失效\n            </Button>\n          )}\n        </Space>\n      ),\n    },\n  ];\n\n  return (\n    <div className={styles.container}>\n      <Title level={2}>交易经验</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"总经验数\"\n              value={stats?.total ?? 0}\n              valueStyle={{ color: '#1890ff' }}\n              prefix={<FileSearchOutlined />}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"高置信经验\"\n              value={stats?.highConfidence ?? 0}\n              valueStyle={{ color: '#52c41a' }}\n              prefix={<SafetyCertificateOutlined />}\n            />\n            <Typography.Text type=\"secondary\" style={{ fontSize: 12 }}>\n              置信度 ≥ 0.8\n            </Typography.Text>\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"有用经验\"\n              value={stats?.active ?? 0}\n              valueStyle={{ color: '#722ed1' }}\n              prefix={<CheckCircleOutlined />}\n            />\n            <Typography.Text type=\"secondary\" style={{ fontSize: 12 }}>\n              状态为活跃\n            </Typography.Text>\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"已失效经验\"\n              value={stats?.invalidated ?? 0}\n              valueStyle={{ color: '#ff4d4f' }}\n              prefix={<CloseCircleOutlined />}\n            />\n            <Typography.Text type=\"secondary\" style={{ fontSize: 12 }}>\n              状态为已失效\n            </Typography.Text>\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 16 }}>\n        <Space wrap>\n          <Select\n            placeholder=\"经验类型\"\n            allowClear\n            style={{ width: 150 }}\n            value={filterType}\n            onChange={(val) => setFilterType(val)}\n            options={TYPE_OPTIONS.map((o) => ({ value: o.value, label: o.label }))}\n          />\n          <Select\n            placeholder=\"状态\"\n            allowClear\n            style={{ width: 120 }}\n            value={filterStatus}\n            onChange={(val) => setFilterStatus(val)}\n            options={STATUS_OPTIONS.map((o) => ({ value: o.value, label: o.label }))}\n          />\n          <Input.Search\n            placeholder=\"搜索标题或摘要\"\n            allowClear\n            style={{ width: 250 }}\n            value={keyword}\n            onChange={(e) => setKeyword(e.target.value)}\n            onSearch={handleSearch}\n            enterButton={<SearchOutlined />}\n          />\n          <Button icon={<HistoryOutlined />} onClick={handleViewLog}>\n            修改日志\n          </Button>\n        </Space>\n      </Card>\n\n      <Card>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          scroll={{ x: 1100 }}\n          pagination={{\n            current,\n            pageSize,\n            total,\n            showSizeChanger: true,\n            showTotal: (t) => `共 ${t} 条`,\n          }}\n          onChange={(pagination) => {\n            fetchData(pagination.current || 1, pagination.pageSize || 20);\n          }}\n        />\n      </Card>\n\n      <Modal\n        title={detailData?.title || '经验详情'}\n        open={detailVisible}\n        onCancel={() => {\n          setDetailVisible(false);\n          setDetailData(null);\n        }}\n        footer={null}\n        width={720}\n        loading={detailLoading}\n      >\n        {detailData && (\n          <div className={styles.detailContent}>\n            <Descriptions title=\"基本信息\" bordered size=\"small\" column={2}>\n              <Descriptions.Item label=\"类型\">\n                <Tag color={getTypeLabel(detailData.type).color}>\n                  {getTypeLabel(detailData.type).label}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"状态\">\n                <Badge\n                  status={getStatusOption(detailData.status).color as 'success'}\n                  text={getStatusOption(detailData.status).label}\n                />\n              </Descriptions.Item>\n              <Descriptions.Item label=\"置信度\">\n                <Progress\n                  percent={Math.round(parseFloat(detailData.confidence) * 100)}\n                  size=\"small\"\n                  style={{ width: 120 }}\n                />\n              </Descriptions.Item>\n              <Descriptions.Item label=\"标签\">\n                <Space wrap>\n                  {detailData.tags?.map((tag) => (\n                    <Tag key={tag}>{tag}</Tag>\n                  ))}\n                </Space>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"摘要\" span={2}>\n                {detailData.summary}\n              </Descriptions.Item>\n              {detailData.rationale && (\n                <Descriptions.Item label=\"依据说明\" span={2}>\n                  {detailData.rationale}\n                </Descriptions.Item>\n              )}\n            </Descriptions>\n\n            <Descriptions title=\"模式匹配\" bordered size=\"small\" column={2} style={{ marginTop: 16 }}>\n              {detailData.pattern?.eventType && (\n                <Descriptions.Item label=\"事件类型\">{detailData.pattern.eventType}</Descriptions.Item>\n              )}\n              {detailData.pattern?.eventSubcategory && (\n                <Descriptions.Item label=\"事件子类\">{detailData.pattern.eventSubcategory}</Descriptions.Item>\n              )}\n              {detailData.pattern?.marketRegime && (\n                <Descriptions.Item label=\"市场环境\">{detailData.pattern.marketRegime}</Descriptions.Item>\n              )}\n              {detailData.pattern?.strategyId && (\n                <Descriptions.Item label=\"策略ID\">{detailData.pattern.strategyId}</Descriptions.Item>\n              )}\n              {detailData.pattern?.signalDirection && (\n                <Descriptions.Item label=\"信号方向\">\n                  {detailData.pattern.signalDirection === 'long' ? '做多' : '做空'}\n                </Descriptions.Item>\n              )}\n              {detailData.pattern?.scoreRange && (\n                <Descriptions.Item label=\"分数范围\">\n                  [{detailData.pattern.scoreRange[0]}, {detailData.pattern.scoreRange[1]}]\n                </Descriptions.Item>\n              )}\n            </Descriptions>\n\n            <Descriptions title=\"统计数据\" bordered size=\"small\" column={2} style={{ marginTop: 16 }}>\n              <Descriptions.Item label=\"样本量\">{detailData.stats?.sampleSize ?? '-'}</Descriptions.Item>\n              <Descriptions.Item label=\"平均收益\">{formatPercent(detailData.stats?.avgReturn)}</Descriptions.Item>\n              <Descriptions.Item label=\"期望值\">{formatPercent(detailData.stats?.expectancy)}</Descriptions.Item>\n              <Descriptions.Item label=\"胜率\">{formatPercent(detailData.stats?.winRate)}</Descriptions.Item>\n              <Descriptions.Item label=\"夏普比率\">{detailData.stats?.sharpeRatio?.toFixed(2) ?? '-'}</Descriptions.Item>\n              <Descriptions.Item label=\"最大回撤\">{formatPercent(detailData.stats?.maxDrawdown)}</Descriptions.Item>\n              <Descriptions.Item label=\"平均持有天数\">{detailData.stats?.avgHoldDays ?? '-'}</Descriptions.Item>\n              <Descriptions.Item label=\"盈亏因子\">{detailData.stats?.profitFactor?.toFixed(2) ?? '-'}</Descriptions.Item>\n              <Descriptions.Item label=\"PnL标准差\">{detailData.stats?.pnlStdDev?.toFixed(4) ?? '-'}</Descriptions.Item>\n            </Descriptions>\n\n            <Descriptions title=\"时间信息\" bordered size=\"small\" column={2} style={{ marginTop: 16 }}>\n              <Descriptions.Item label=\"首次观察\">{formatDate(detailData.firstObservedAt)}</Descriptions.Item>\n              <Descriptions.Item label=\"最近验证\">{formatDate(detailData.lastValidatedAt)}</Descriptions.Item>\n              <Descriptions.Item label=\"失效时间\">{formatDate(detailData.invalidatedAt)}</Descriptions.Item>\n              <Descriptions.Item label=\"最近计算\">{formatDate(detailData.lastComputedAt)}</Descriptions.Item>\n            </Descriptions>\n          </div>\n        )}\n      </Modal>\n\n      <Modal\n        title=\"修改日志\"\n        open={logVisible}\n        onCancel={() => {\n          setLogVisible(false);\n          setLogData([]);\n        }}\n        footer={null}\n        width={1000}\n      >\n        <Table\n          dataSource={logData}\n          rowKey=\"id\"\n          loading={logLoading}\n          size=\"small\"\n          pagination={{\n            current: logPage,\n            pageSize: 20,\n            total: logTotal,\n            showTotal: (t) => `共 ${t} 条`,\n            onChange: (p) => fetchLogs(p),\n          }}\n          columns={[\n            {\n              title: '操作',\n              dataIndex: 'action',\n              key: 'action',\n              width: 140,\n              render: (action: string) => {\n                if (action === 'create') return <Tag color=\"blue\">创建</Tag>;\n                if (action === 'invalidate') return <Tag color=\"red\">手动失效</Tag>;\n                if (action.startsWith('status_change:')) {\n                  const parts = action.split(':');\n                  const from = parts[1] || '';\n                  const to = parts[2] || '';\n                  const statusMap: Record<string, string> = { testing: '测试中', active: '活跃', dormant: '休眠', invalidated: '已失效' };\n                  return <Tag color=\"orange\">状态变更: {statusMap[from] || from} → {statusMap[to] || to}</Tag>;\n                }\n                if (action === 'confidence_calibrate') return <Tag color=\"green\">置信度校准</Tag>;\n                return <Tag>{action}</Tag>;\n              },\n            },\n            {\n              title: '操作者',\n              dataIndex: 'operator',\n              key: 'operator',\n              width: 80,\n              render: (op: string | null) => op === 'system' ? '系统' : op === 'user' ? '用户' : op || '-',\n            },\n            {\n              title: '变更详情',\n              dataIndex: 'detail',\n              key: 'detail',\n              ellipsis: true,\n              render: (detail: string | null) => detail || '-',\n            },\n            {\n              title: '旧值',\n              dataIndex: 'oldValue',\n              key: 'oldValue',\n              width: 150,\n              render: (val: Record<string, unknown> | null) => {\n                if (!val) return '-';\n                return (\n                  <div style={{ fontSize: 12 }}>\n                    {Object.entries(val).map(([k, v]) => (\n                      <div key={k}>{k}: {String(v)}</div>\n                    ))}\n                  </div>\n                );\n              },\n            },\n            {\n              title: '新值',\n              dataIndex: 'newValue',\n              key: 'newValue',\n              width: 150,\n              render: (val: Record<string, unknown> | null) => {\n                if (!val) return '-';\n                return (\n                  <div style={{ fontSize: 12 }}>\n                    {Object.entries(val).map(([k, v]) => (\n                      <div key={k}>{k}: {String(v)}</div>\n                    ))}\n                  </div>\n                );\n              },\n            },\n            {\n              title: '时间',\n              dataIndex: 'createdAt',\n              key: 'createdAt',\n              width: 160,\n              render: (val: string) => formatDate(val),\n            },\n          ]}\n        />\n      </Modal>\n    </div>\n  );\n};\n\nexport default TradingMemoryPage;\n",
+      "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport {\n  Card,\n  Table,\n  Tag,\n  Badge,\n  Progress,\n  Statistic,\n  Row,\n  Col,\n  Select,\n  Input,\n  Button,\n  Modal,\n  Descriptions,\n  Space,\n  Typography,\n  message,\n} from 'antd';\nimport {\n  FileSearchOutlined,\n  SafetyCertificateOutlined,\n  CheckCircleOutlined,\n  CloseCircleOutlined,\n  EyeOutlined,\n  SearchOutlined,\n  StopOutlined,\n  HistoryOutlined,\n} from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { tradingMemoryApi } from '@/services/trading-memory';\nimport { tradingMemoryLogApi } from '@/services/trading-memory-log';\nimport type {\n  TradingMemory,\n  TradingMemoryType,\n  TradingMemoryStatus,\n  TradingMemoryStatsResponse,\n  TradingMemoryLog,\n} from '@/services/types';\nimport styles from './index.module.scss';\n\nconst { Title } = Typography;\n\nconst TYPE_OPTIONS: { value: TradingMemoryType; label: string; color: string }[] = [\n  { value: 'event_pattern', label: '事件模式', color: 'blue' },\n  { value: 'signal_pattern', label: '信号模式', color: 'green' },\n  { value: 'strategy_pattern', label: '策略模式', color: 'purple' },\n  { value: 'market_regime_pattern', label: '市场环境模式', color: 'orange' },\n  { value: 'risk_pattern', label: '风险模式', color: 'red' },\n];\n\nconst STATUS_OPTIONS: { value: TradingMemoryStatus; label: string; color: string }[] = [\n  { value: 'testing', label: '测试中', color: 'processing' },\n  { value: 'active', label: '活跃', color: 'success' },\n  { value: 'dormant', label: '休眠', color: 'warning' },\n  { value: 'invalidated', label: '已失效', color: 'error' },\n];\n\nconst getTypeLabel = (type: TradingMemoryType) =>\n  TYPE_OPTIONS.find((o) => o.value === type) || { label: type, color: 'default' };\n\nconst getStatusOption = (status: TradingMemoryStatus) =>\n  STATUS_OPTIONS.find((o) => o.value === status) || { label: status, color: 'default' };\n\nconst formatPercent = (val: number | undefined | null) => {\n  if (val == null) return '-';\n  return `${(val * 100).toFixed(2)}%`;\n};\n\nconst formatDate = (dateStr: string | null | undefined) => {\n  if (!dateStr) return '-';\n  return new Date(dateStr).toLocaleString('zh-CN');\n};\n\nconst TradingMemoryPage: React.FC = () => {\n  const [loading, setLoading] = useState(false);\n  const [data, setData] = useState<TradingMemory[]>([]);\n  const [total, setTotal] = useState(0);\n  const [current, setCurrent] = useState(1);\n  const [pageSize, setPageSize] = useState(20);\n  const [stats, setStats] = useState<TradingMemoryStatsResponse | null>(null);\n\n  const [filterType, setFilterType] = useState<TradingMemoryType | undefined>();\n  const [filterStatus, setFilterStatus] = useState<TradingMemoryStatus | undefined>();\n  const [keyword, setKeyword] = useState('');\n\n  const [detailVisible, setDetailVisible] = useState(false);\n  const [detailLoading, setDetailLoading] = useState(false);\n  const [detailData, setDetailData] = useState<TradingMemory | null>(null);\n\n  const [logVisible, setLogVisible] = useState(false);\n  const [logData, setLogData] = useState<TradingMemoryLog[]>([]);\n  const [logTotal, setLogTotal] = useState(0);\n  const [logLoading, setLogLoading] = useState(false);\n  const [logPage, setLogPage] = useState(1);\n\n  const fetchStats = useCallback(async () => {\n    try {\n      const res = await tradingMemoryApi.getStats();\n      setStats(res);\n    } catch {\n      message.error('获取统计数据失败');\n    }\n  }, []);\n\n  const fetchData = useCallback(\n    async (page = current, size = pageSize) => {\n      setLoading(true);\n      try {\n        const res = await tradingMemoryApi.getList({\n          page,\n          pageSize: size,\n          type: filterType,\n          status: filterStatus,\n          keyword: keyword || undefined,\n        });\n        setData(res.data);\n        setTotal(res.total);\n        setCurrent(page);\n        setPageSize(size);\n      } catch {\n        message.error('获取经验列表失败');\n      } finally {\n        setLoading(false);\n      }\n    },\n    [current, pageSize, filterType, filterStatus, keyword],\n  );\n\n  useEffect(() => {\n    fetchStats();\n  }, [fetchStats]);\n\n  useEffect(() => {\n    fetchData(1);\n  }, [filterType, filterStatus]);\n\n  const handleSearch = () => {\n    fetchData(1);\n  };\n\n  const handleViewDetail = async (record: TradingMemory) => {\n    setDetailVisible(true);\n    setDetailLoading(true);\n    try {\n      const detail = await tradingMemoryApi.getById(record.id);\n      setDetailData(detail);\n    } catch {\n      message.error('获取经验详情失败');\n    } finally {\n      setDetailLoading(false);\n    }\n  };\n\n  const handleInvalidate = (record: TradingMemory) => {\n    Modal.confirm({\n      title: '确认操作',\n      content: '确定要将此经验设为失效吗？',\n      okText: '确定',\n      cancelText: '取消',\n      onOk: async () => {\n        try {\n          await tradingMemoryApi.invalidate(record.id);\n          message.success('已设为失效');\n          fetchData();\n          fetchStats();\n        } catch {\n          message.error('操作失败');\n        }\n      },\n    });\n  };\n\n  const fetchLogs = useCallback(async (page = 1) => {\n    setLogLoading(true);\n    try {\n      const res = await tradingMemoryLogApi.getAll({ page, pageSize: 20 });\n      setLogData(res.data);\n      setLogTotal(res.total);\n      setLogPage(page);\n    } catch {\n      message.error('获取日志失败');\n    } finally {\n      setLogLoading(false);\n    }\n  }, []);\n\n  const handleViewLog = () => {\n    setLogVisible(true);\n    fetchLogs(1);\n  };\n\n  const columns: ColumnsType<TradingMemory> = [\n    {\n      title: '标题',\n      dataIndex: 'title',\n      key: 'title',\n      width: 240,\n      ellipsis: true,\n    },\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      width: 120,\n      render: (type: TradingMemoryType) => {\n        const opt = getTypeLabel(type);\n        return <Tag color={opt.color}>{opt.label}</Tag>;\n      },\n    },\n    {\n      title: '置信度',\n      dataIndex: 'confidence',\n      key: 'confidence',\n      width: 120,\n      render: (val: string) => {\n        const num = parseFloat(val);\n        const percent = Math.round(num * 100);\n        const color = num >= 0.8 ? '#52c41a' : num >= 0.5 ? '#faad14' : '#ff4d4f';\n        return <Progress percent={percent} size=\"small\" strokeColor={color} />;\n      },\n    },\n    {\n      title: '胜率',\n      key: 'winRate',\n      width: 90,\n      render: (_: unknown, record: TradingMemory) => formatPercent(record.stats?.winRate),\n    },\n    {\n      title: '平均收益',\n      key: 'avgReturn',\n      width: 100,\n      render: (_: unknown, record: TradingMemory) => {\n        const val = record.stats?.avgReturn;\n        if (val == null) return '-';\n        const num = val * 100;\n        return (\n          <span style={{ color: num >= 0 ? '#52c41a' : '#ff4d4f' }}>\n            {num >= 0 ? '+' : ''}{num.toFixed(2)}%\n          </span>\n        );\n      },\n    },\n    {\n      title: '样本量',\n      key: 'sampleSize',\n      width: 80,\n      render: (_: unknown, record: TradingMemory) => record.stats?.sampleSize ?? '-',\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 90,\n      render: (status: TradingMemoryStatus) => {\n        const opt = getStatusOption(status);\n        return <Badge status={opt.color as 'success'} text={opt.label} />;\n      },\n    },\n    {\n      title: '最近验证',\n      dataIndex: 'lastValidatedAt',\n      key: 'lastValidatedAt',\n      width: 160,\n      render: (val: string | null) => formatDate(val),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 150,\n      fixed: 'right',\n      render: (_: unknown, record: TradingMemory) => (\n        <Space>\n          <Button type=\"link\" icon={<EyeOutlined />} onClick={() => handleViewDetail(record)}>\n            详情\n          </Button>\n          {record.status !== 'invalidated' && (\n            <Button\n              type=\"link\"\n              danger\n              icon={<StopOutlined />}\n              onClick={() => handleInvalidate(record)}\n            >\n              设为失效\n            </Button>\n          )}\n        </Space>\n      ),\n    },\n  ];\n\n  return (\n    <div className={styles.container}>\n      <Title level={2}>交易经验</Title>\n\n      <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"总经验数\"\n              value={stats?.total ?? 0}\n              valueStyle={{ color: '#1890ff' }}\n              prefix={<FileSearchOutlined />}\n            />\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"高置信经验\"\n              value={stats?.highConfidence ?? 0}\n              valueStyle={{ color: '#52c41a' }}\n              prefix={<SafetyCertificateOutlined />}\n            />\n            <Typography.Text type=\"secondary\" style={{ fontSize: 12 }}>\n              置信度 ≥ 0.8\n            </Typography.Text>\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"有用经验\"\n              value={stats?.active ?? 0}\n              valueStyle={{ color: '#722ed1' }}\n              prefix={<CheckCircleOutlined />}\n            />\n            <Typography.Text type=\"secondary\" style={{ fontSize: 12 }}>\n              状态为活跃\n            </Typography.Text>\n          </Card>\n        </Col>\n        <Col xs={24} sm={12} lg={6}>\n          <Card>\n            <Statistic\n              title=\"已失效经验\"\n              value={stats?.invalidated ?? 0}\n              valueStyle={{ color: '#ff4d4f' }}\n              prefix={<CloseCircleOutlined />}\n            />\n            <Typography.Text type=\"secondary\" style={{ fontSize: 12 }}>\n              状态为已失效\n            </Typography.Text>\n          </Card>\n        </Col>\n      </Row>\n\n      <Card style={{ marginBottom: 16 }}>\n        <Space wrap>\n          <Select\n            placeholder=\"经验类型\"\n            allowClear\n            style={{ width: 150 }}\n            value={filterType}\n            onChange={(val) => setFilterType(val)}\n            options={TYPE_OPTIONS.map((o) => ({ value: o.value, label: o.label }))}\n          />\n          <Select\n            placeholder=\"状态\"\n            allowClear\n            style={{ width: 120 }}\n            value={filterStatus}\n            onChange={(val) => setFilterStatus(val)}\n            options={STATUS_OPTIONS.map((o) => ({ value: o.value, label: o.label }))}\n          />\n          <Input.Search\n            placeholder=\"搜索标题或摘要\"\n            allowClear\n            style={{ width: 250 }}\n            value={keyword}\n            onChange={(e) => setKeyword(e.target.value)}\n            onSearch={handleSearch}\n            enterButton={<SearchOutlined />}\n          />\n          <Button icon={<HistoryOutlined />} onClick={handleViewLog}>\n            修改日志\n          </Button>\n        </Space>\n      </Card>\n\n      <Card>\n        <Table\n          columns={columns}\n          dataSource={data}\n          rowKey=\"id\"\n          loading={loading}\n          scroll={{ x: 1100 }}\n          pagination={{\n            current,\n            pageSize,\n            total,\n            showSizeChanger: true,\n            showTotal: (t) => `共 ${t} 条`,\n          }}\n          onChange={(pagination) => {\n            fetchData(pagination.current || 1, pagination.pageSize || 20);\n          }}\n        />\n      </Card>\n\n      <Modal\n        title={detailData?.title || '经验详情'}\n        open={detailVisible}\n        onCancel={() => {\n          setDetailVisible(false);\n          setDetailData(null);\n        }}\n        footer={null}\n        width={720}\n        loading={detailLoading}\n      >\n        {detailData && (\n          <div className={styles.detailContent}>\n            <Descriptions title=\"基本信息\" bordered size=\"small\" column={2}>\n              <Descriptions.Item label=\"类型\">\n                <Tag color={getTypeLabel(detailData.type).color}>\n                  {getTypeLabel(detailData.type).label}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"状态\">\n                <Badge\n                  status={getStatusOption(detailData.status).color as 'success'}\n                  text={getStatusOption(detailData.status).label}\n                />\n              </Descriptions.Item>\n              <Descriptions.Item label=\"置信度\">\n                <Progress\n                  percent={Math.round(parseFloat(detailData.confidence) * 100)}\n                  size=\"small\"\n                  style={{ width: 120 }}\n                />\n              </Descriptions.Item>\n              <Descriptions.Item label=\"标签\">\n                <Space wrap>\n                  {detailData.tags?.map((tag) => (\n                    <Tag key={tag}>{tag}</Tag>\n                  ))}\n                </Space>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"摘要\" span={2}>\n                {detailData.summary}\n              </Descriptions.Item>\n              {detailData.rationale && (\n                <Descriptions.Item label=\"依据说明\" span={2}>\n                  {detailData.rationale}\n                </Descriptions.Item>\n              )}\n            </Descriptions>\n\n            <Descriptions title=\"模式匹配\" bordered size=\"small\" column={2} style={{ marginTop: 16 }}>\n              {detailData.pattern?.eventType && (\n                <Descriptions.Item label=\"事件类型\">{detailData.pattern.eventType}</Descriptions.Item>\n              )}\n              {detailData.pattern?.eventSubcategory && (\n                <Descriptions.Item label=\"事件子类\">{detailData.pattern.eventSubcategory}</Descriptions.Item>\n              )}\n              {detailData.pattern?.marketRegime && (\n                <Descriptions.Item label=\"市场环境\">{detailData.pattern.marketRegime}</Descriptions.Item>\n              )}\n              {detailData.pattern?.strategyId && (\n                <Descriptions.Item label=\"策略ID\">{detailData.pattern.strategyId}</Descriptions.Item>\n              )}\n              {detailData.pattern?.signalDirection && (\n                <Descriptions.Item label=\"信号方向\">\n                  {detailData.pattern.signalDirection === 'long' ? '做多' : '做空'}\n                </Descriptions.Item>\n              )}\n              {detailData.pattern?.scoreRange && (\n                <Descriptions.Item label=\"分数范围\">\n                  [{detailData.pattern.scoreRange[0]}, {detailData.pattern.scoreRange[1]}]\n                </Descriptions.Item>\n              )}\n            </Descriptions>\n\n            <Descriptions title=\"统计数据\" bordered size=\"small\" column={2} style={{ marginTop: 16 }}>\n              <Descriptions.Item label=\"样本量\">{detailData.stats?.sampleSize ?? '-'}</Descriptions.Item>\n              <Descriptions.Item label=\"平均收益\">{formatPercent(detailData.stats?.avgReturn)}</Descriptions.Item>\n              <Descriptions.Item label=\"期望值\">{formatPercent(detailData.stats?.expectancy)}</Descriptions.Item>\n              <Descriptions.Item label=\"胜率\">{formatPercent(detailData.stats?.winRate)}</Descriptions.Item>\n              <Descriptions.Item label=\"夏普比率\">{detailData.stats?.sharpeRatio?.toFixed(2) ?? '-'}</Descriptions.Item>\n              <Descriptions.Item label=\"最大回撤\">{formatPercent(detailData.stats?.maxDrawdown)}</Descriptions.Item>\n              <Descriptions.Item label=\"平均持有天数\">{detailData.stats?.avgHoldDays ?? '-'}</Descriptions.Item>\n              <Descriptions.Item label=\"盈亏因子\">{detailData.stats?.profitFactor?.toFixed(2) ?? '-'}</Descriptions.Item>\n              <Descriptions.Item label=\"PnL标准差\">{detailData.stats?.pnlStdDev?.toFixed(4) ?? '-'}</Descriptions.Item>\n            </Descriptions>\n\n            <Descriptions title=\"时间信息\" bordered size=\"small\" column={2} style={{ marginTop: 16 }}>\n              <Descriptions.Item label=\"首次观察\">{formatDate(detailData.firstObservedAt)}</Descriptions.Item>\n              <Descriptions.Item label=\"最近验证\">{formatDate(detailData.lastValidatedAt)}</Descriptions.Item>\n              <Descriptions.Item label=\"失效时间\">{formatDate(detailData.invalidatedAt)}</Descriptions.Item>\n              <Descriptions.Item label=\"最近计算\">{formatDate(detailData.lastComputedAt)}</Descriptions.Item>\n            </Descriptions>\n          </div>\n        )}\n      </Modal>\n\n      <Modal\n        title=\"修改日志\"\n        open={logVisible}\n        onCancel={() => {\n          setLogVisible(false);\n          setLogData([]);\n        }}\n        footer={null}\n        width={1000}\n      >\n        <Table\n          dataSource={logData}\n          rowKey=\"id\"\n          loading={logLoading}\n          size=\"small\"\n          pagination={{\n            current: logPage,\n            pageSize: 20,\n            total: logTotal,\n            showTotal: (t) => `共 ${t} 条`,\n            onChange: (p) => fetchLogs(p),\n          }}\n          columns={[\n            {\n              title: '操作',\n              dataIndex: 'action',\n              key: 'action',\n              width: 140,\n              render: (action: string) => {\n                if (action === 'create') return <Tag color=\"blue\">创建</Tag>;\n                if (action === 'invalidate') return <Tag color=\"red\">手动失效</Tag>;\n                if (action.startsWith('status_change:')) {\n                  const parts = action.split(':');\n                  const from = parts[1] || '';\n                  const to = parts[2] || '';\n                  const statusMap: Record<string, string> = { testing: '测试中', active: '活跃', dormant: '休眠', invalidated: '已失效' };\n                  return <Tag color=\"orange\">状态变更: {statusMap[from] || from} → {statusMap[to] || to}</Tag>;\n                }\n                if (action === 'confidence_calibrate') return <Tag color=\"green\">置信度校准</Tag>;\n                return <Tag>{action}</Tag>;\n              },\n            },\n            {\n              title: '操作者',\n              dataIndex: 'operator',\n              key: 'operator',\n              width: 80,\n              render: (op: string | null) => op === 'system' ? '系统' : op === 'user' ? '用户' : op || '-',\n            },\n            {\n              title: '变更详情',\n              dataIndex: 'detail',\n              key: 'detail',\n              width: 250,\n              ellipsis: true,\n              render: (detail: string | null) => detail || '-',\n            },\n            {\n              title: '旧值',\n              dataIndex: 'oldValue',\n              key: 'oldValue',\n              width: 150,\n              render: (val: Record<string, unknown> | null) => {\n                if (!val) return '-';\n                return (\n                  <div style={{ fontSize: 12 }}>\n                    {Object.entries(val).map(([k, v]) => (\n                      <div key={k}>{k}: {String(v)}</div>\n                    ))}\n                  </div>\n                );\n              },\n            },\n            {\n              title: '新值',\n              dataIndex: 'newValue',\n              key: 'newValue',\n              width: 150,\n              render: (val: Record<string, unknown> | null) => {\n                if (!val) return '-';\n                return (\n                  <div style={{ fontSize: 12 }}>\n                    {Object.entries(val).map(([k, v]) => (\n                      <div key={k}>{k}: {String(v)}</div>\n                    ))}\n                  </div>\n                );\n              },\n            },\n            {\n              title: '时间',\n              dataIndex: 'createdAt',\n              key: 'createdAt',\n              width: 160,\n              render: (val: string) => formatDate(val),\n            },\n          ]}\n        />\n      </Modal>\n    </div>\n  );\n};\n\nexport default TradingMemoryPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/trading-memory/index.tsx"
     },
@@ -7004,7 +7264,7 @@
             "format": "esm"
           },
           "src/pages/stock-trackings/[id].tsx": {
-            "bytes": 29599,
+            "bytes": 32971,
             "imports": [
               {
                 "path": "react",
@@ -10407,7 +10667,7 @@
                 "bytesInOutput": 11461
               },
               "src/pages/stock-trackings/[id].tsx": {
-                "bytesInOutput": 32795
+                "bytesInOutput": 37348
               },
               "src/pages/simulation/index.tsx": {
                 "bytesInOutput": 46738
@@ -10446,13 +10706,13 @@
                 "bytesInOutput": 1699
               },
               "src/pages/llm-center/index.tsx": {
-                "bytesInOutput": 16395
+                "bytesInOutput": 16411
               },
               "src/pages/llm-logs/index.tsx": {
                 "bytesInOutput": 13502
               },
               "src/pages/settings/notifications.tsx": {
-                "bytesInOutput": 20220
+                "bytesInOutput": 20232
               },
               "src/pages/settings/scheduler.tsx": {
                 "bytesInOutput": 11772
@@ -10509,7 +10769,7 @@
                 "bytesInOutput": 2095
               }
             },
-            "bytes": 679004
+            "bytes": 683585
           }
         }
       }
@@ -19612,7 +19872,7 @@
           "type": "ImportDeclaration"
         },
         {
-          "end": 265,
+          "end": 282,
           "importKind": "value",
           "source": "antd",
           "specifiers": [
@@ -19705,13 +19965,23 @@
               "imported": "Select",
               "local": "Select",
               "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Form",
+              "local": "Form",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Radio",
+              "local": "Radio",
+              "type": "ImportSpecifier"
             }
           ],
           "start": 61,
           "type": "ImportDeclaration"
         },
         {
-          "end": 492,
+          "end": 509,
           "importKind": "value",
           "source": "@ant-design/icons",
           "specifiers": [
@@ -19766,11 +20036,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 266,
+          "start": 283,
           "type": "ImportDeclaration"
         },
         {
-          "end": 544,
+          "end": 561,
           "importKind": "value",
           "source": "umi",
           "specifiers": [
@@ -19790,11 +20060,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 493,
+          "start": 510,
           "type": "ImportDeclaration"
         },
         {
-          "end": 601,
+          "end": 618,
           "importKind": "value",
           "source": "lightweight-charts",
           "specifiers": [
@@ -19803,11 +20073,11 @@
               "type": "ImportNamespaceSpecifier"
             }
           ],
-          "start": 545,
+          "start": 562,
           "type": "ImportDeclaration"
         },
         {
-          "end": 703,
+          "end": 720,
           "importKind": "type",
           "source": "lightweight-charts",
           "specifiers": [
@@ -19837,11 +20107,11 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 602,
+          "start": 619,
           "type": "ImportDeclaration"
         },
         {
-          "end": 743,
+          "end": 760,
           "importKind": "value",
           "source": "@/services/client",
           "specifiers": [
@@ -19850,11 +20120,11 @@
               "type": "ImportDefaultSpecifier"
             }
           ],
-          "start": 704,
+          "start": 721,
           "type": "ImportDeclaration"
         },
         {
-          "end": 790,
+          "end": 807,
           "importKind": "value",
           "source": "@/services/klines",
           "specifiers": [
@@ -19864,7 +20134,7 @@
               "type": "ImportSpecifier"
             }
           ],
-          "start": 744,
+          "start": 761,
           "type": "ImportDeclaration"
         }
       ],

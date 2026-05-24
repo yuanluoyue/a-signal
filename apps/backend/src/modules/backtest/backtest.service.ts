@@ -1,5 +1,5 @@
 import { Injectable, Logger, NotFoundException } from '@nestjs/common';
-import { and, gte, lte, inArray, desc, eq, sql } from 'drizzle-orm';
+import { and, gte, lte, inArray, desc, eq, sql, or } from 'drizzle-orm';
 import { DbService } from '../../core/db/db.service.js';
 import { KlinesService, KlinePeriod } from '../klines/klines.service.js';
 import { StrategyService } from '../strategy/strategy.service.js';
@@ -201,19 +201,29 @@ export class BacktestService {
 
   private async queryAllSignals(dto: StrategyBacktestRequestDto): Promise<Signal[]> {
     const conditions = [
-      gte(signals.generatedAt, dto.startTime),
-      lte(signals.generatedAt, dto.endTime),
+      or(
+        and(gte(signals.validFrom, dto.startTime), lte(signals.validFrom, dto.endTime)),
+        and(gte(signals.generatedAt, dto.startTime), lte(signals.generatedAt, dto.endTime)),
+      )!,
     ];
 
     if (dto.stockCode) {
-      conditions.push(eq(signals.symbol, dto.stockCode));
+      const normalizedCode = KlinesService.normalizeStockCode(dto.stockCode);
+      conditions.push(
+        or(
+          eq(signals.symbol, normalizedCode),
+          eq(signals.stockCode, normalizedCode),
+        )!,
+      );
     }
 
     const results = await this.dbService.db
       .select()
       .from(signals)
       .where(and(...conditions))
-      .orderBy(signals.generatedAt);
+      .orderBy(signals.validFrom);
+
+    this.logger.log(`[BacktestService] queryAllSignals: stockCode=${dto.stockCode}, startTime=${dto.startTime.toISOString()}, endTime=${dto.endTime.toISOString()}, found=${results.length}`);
 
     return results;
   }
@@ -254,10 +264,11 @@ export class BacktestService {
     dto: StrategyBacktestRequestDto,
     period: KlinePeriod,
   ): Promise<BacktestTradeResult | null> {
-    const signalTime = new Date(signal.generatedAt ?? new Date());
+    const signalTime = new Date(signal.validFrom ?? signal.generatedAt ?? new Date());
 
+    const symbol = signal.symbol || signal.stockCode || '';
     const klineData = await this.klinesService.getKlines(
-      signal.symbol ?? '',
+      symbol,
       period,
       signalTime,
       dto.endTime,

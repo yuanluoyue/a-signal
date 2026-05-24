@@ -6,7 +6,9 @@ import { QUEUE_NAMES } from '../core/queue/queue.constants.js';
 import { RedisService } from '../core/redis/redis.service.js';
 import { StockTrackingService } from '../modules/stock-tracking/stock-tracking.service.js';
 import { NewsService } from '../modules/news/news.service.js';
+import { QueueService } from '../core/queue/queue.service.js';
 import { ConfigService } from '@nestjs/config';
+import * as crypto from 'crypto';
 
 const VOLCENGINE_API_URL = 'https://ark.cn-beijing.volces.com/api/v3/chat/completions';
 const MODEL_NAME = 'doubao-seed-2-0-lite-260215';
@@ -36,6 +38,7 @@ export class StockTrackFetchConsumer extends QueueConsumer {
     protected readonly redisService: RedisService,
     private readonly stockTrackingService: StockTrackingService,
     private readonly newsService: NewsService,
+    private readonly queueService: QueueService,
     private readonly configService: ConfigService,
   ) {
     super(redisService, {
@@ -63,24 +66,38 @@ export class StockTrackFetchConsumer extends QueueConsumer {
       const newsList = await this.fetchHistoricalNews(stockCode, stockName);
 
       let savedCount = 0;
-      for (const news of newsList.news) {
+      const savedNewsIds: string[] = [];
+      for (const newsItem of newsList.news) {
         try {
+          const uniqueKey = `${stockCode}_${crypto.createHash('md5').update(`${newsItem.title}_${newsItem.publishDate}`).digest('hex').substring(0, 12)}`;
+
+          const isDuplicate = await this.newsService.isNewsExists(uniqueKey);
+          if (isDuplicate) {
+            this.logger.debug(`[StockTrackFetchConsumer] 新闻已存在，跳过: ${newsItem.title}`);
+            continue;
+          }
+
           await this.newsService.saveNews({
-            title: news.title,
-            content: news.summary,
-            originalUrl: `tracking_${task.trackingId}_${Date.now()}_${Math.random().toString(36).substring(7)}`,
-            publishTime: new Date(news.publishDate),
-            uniqueKey: `${stockCode}_${news.title}_${news.publishDate}`,
+            title: newsItem.title,
+            content: newsItem.summary,
+            originalUrl: `tracking_${task.trackingId}_${crypto.randomUUID()}`,
+            publishTime: new Date(newsItem.publishDate),
+            uniqueKey,
           });
+
           savedCount++;
+          this.logger.debug(`[StockTrackFetchConsumer] 保存新闻成功: ${newsItem.title}`);
         } catch (error) {
-          this.logger.error(`[StockTrackFetchConsumer] 保存新闻失败: ${news.title}`, error);
+          this.logger.error(`[StockTrackFetchConsumer] 保存新闻失败: ${newsItem.title}`, error);
         }
       }
 
       await this.stockTrackingService.updateStatus(task.trackingId, task.userId, 'completed', savedCount);
 
-      this.logger.log(`[StockTrackFetchConsumer] 成功保存 ${savedCount} 条新闻，股票: ${stockName}`);
+      this.logger.log(`[StockTrackFetchConsumer] 成功保存 ${savedCount} 条新闻，股票: ${stockName}，开始自动入队分析`);
+
+      const queuedCount = await this.stockTrackingService.queueNewsForAnalysis(task.trackingId, stockCode);
+      this.logger.log(`[StockTrackFetchConsumer] 已将 ${queuedCount} 条新闻入队分析，股票: ${stockName}`);
     } catch (error) {
       this.logger.error(
         `[StockTrackFetchConsumer] 处理任务失败: ${error instanceof Error ? error.message : String(error)}`,
@@ -220,11 +237,11 @@ ${formatInstructions}
 
       const validatedResult = NewsListSchema.parse(parsedData);
 
-      const today = new Date().toISOString().split('T')[0];
-      const yesterday = new Date(Date.now() - 86400000).toISOString().split('T')[0];
+      const todayCheck = new Date().toISOString().split('T')[0];
+      const yesterdayCheck = new Date(Date.now() - 86400000).toISOString().split('T')[0];
 
       validatedResult.news.forEach((news, index) => {
-        if (news.publishDate === today || news.publishDate === yesterday) {
+        if (news.publishDate === todayCheck || news.publishDate === yesterdayCheck) {
           this.logger.warn(`[StockTrackFetchConsumer] 新闻 ${index + 1} 的日期可能是当前日期: ${news.publishDate}`);
         }
       });
