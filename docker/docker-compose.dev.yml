@@ -22,21 +22,18 @@ services:
     networks:
       - a-signal-network
 
-  rabbitmq:
-    image: rabbitmq:4.2.5-management
+  redis:
+    image: redis:8.6.3-alpine
     pull_policy: if_not_present
-    container_name: a-signal-rabbitmq
+    container_name: a-signal-redis
     restart: unless-stopped
     ports:
-      - "${RABBITMQ_PORT:-5672}:5672"
-      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
-    environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-admin}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS:-password}
+      - "${REDIS_PORT:-6379}:6379"
+    command: redis-server --appendonly yes
     volumes:
-      - ../data/rabbitmq:/var/lib/rabbitmq
+      - ../data/redis:/data
     healthcheck:
-      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5

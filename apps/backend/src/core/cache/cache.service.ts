@@ -1,31 +1,33 @@
 import { Injectable, Logger } from '@nestjs/common';
-
-interface CacheEntry<T> {
-  value: T;
-  expiresAt: number;
-}
+import { RedisService } from '../redis/redis.service.js';
 
 @Injectable()
 export class CacheService {
   private readonly logger = new Logger(CacheService.name);
-  private store = new Map<string, CacheEntry<unknown>>();
   private pendingRequests = new Map<string, Promise<unknown>>();
+  private readonly redis;
+
+  constructor(private readonly redisService: RedisService) {
+    this.redis = this.redisService.getClient();
+  }
 
   async get<T>(key: string): Promise<T | undefined> {
-    const entry = this.store.get(key);
-    if (!entry) return undefined;
-    if (Date.now() > entry.expiresAt) {
-      this.store.delete(key);
+    try {
+      const value = await this.redis.get(key);
+      if (value === null) return undefined;
+      return JSON.parse(value) as T;
+    } catch (error) {
+      this.logger.error(`CacheService.get: error reading key ${key}:`, error);
       return undefined;
     }
-    return entry.value as T;
   }
 
   async set<T>(key: string, value: T, ttlMs: number): Promise<void> {
-    this.store.set(key, {
-      value,
-      expiresAt: Date.now() + ttlMs,
-    });
+    try {
+      await this.redis.set(key, JSON.stringify(value), 'PX', ttlMs);
+    } catch (error) {
+      this.logger.error(`CacheService.set: error writing key ${key}:`, error);
+    }
   }
 
   async getOrSet<T>(key: string, factory: () => Promise<T>, ttlMs: number): Promise<T> {
@@ -56,12 +58,26 @@ export class CacheService {
   }
 
   async delete(key: string): Promise<void> {
-    this.store.delete(key);
-    this.pendingRequests.delete(key);
+    try {
+      await this.redis.del(key);
+      this.pendingRequests.delete(key);
+    } catch (error) {
+      this.logger.error(`CacheService.delete: error deleting key ${key}:`, error);
+    }
   }
 
   async clear(): Promise<void> {
-    this.store.clear();
-    this.pendingRequests.clear();
+    try {
+      const patterns = ['llm:cache:*', 'kline:check:*', 'price:*'];
+      for (const pattern of patterns) {
+        const keys = await this.redis.keys(pattern);
+        if (keys.length > 0) {
+          await this.redis.del(...keys);
+        }
+      }
+      this.pendingRequests.clear();
+    } catch (error) {
+      this.logger.error('CacheService.clear: error clearing cache:', error);
+    }
   }
 }

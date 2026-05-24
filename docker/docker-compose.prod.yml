@@ -18,21 +18,19 @@ services:
     networks:
       - a-signal-network
 
-  rabbitmq:
-    image: rabbitmq:4.2.5-management
-    container_name: a-signal-rabbitmq
+  redis:
+    image: redis:8.6.3-alpine
+    container_name: a-signal-redis
     restart: unless-stopped
-    environment:
-      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-admin}
-      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS:-password}
+    command: redis-server --appendonly yes
     volumes:
-      - ../data/rabbitmq:/var/lib/rabbitmq
+      - ../data/redis:/data
     healthcheck:
-      test: ["CMD", "rabbitmq-diagnostics", "ping"]
+      test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 30s
+      start_period: 10s
     networks:
       - a-signal-network
 
@@ -65,10 +63,8 @@ services:
       DB_USER: ${DB_USER:-admin}
       DB_PASSWORD: ${DB_PASSWORD:-password}
       DB_NAME: ${DB_NAME:-a_signal}
-      RABBITMQ_HOST: rabbitmq
-      RABBITMQ_PORT: 5672
-      RABBITMQ_USER: ${RABBITMQ_USER:-admin}
-      RABBITMQ_PASS: ${RABBITMQ_PASS:-password}
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
       CHROMA_HOST: chromadb
       CHROMA_PORT: 8000
       JWT_SECRET: ${JWT_SECRET:-your-super-secret-jwt-key}
@@ -80,7 +76,7 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
-      rabbitmq:
+      redis:
         condition: service_healthy
       chromadb:
         condition: service_started

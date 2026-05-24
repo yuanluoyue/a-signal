@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { NewsService } from '../modules/news/news.service.js';
 import { VectorService } from '../core/vector/vector.service.js';
 import { QueueConsumer } from '../core/queue/queue.consumer.js';
 import { QueueMessage } from '../core/queue/queue.types.js';
 import { QUEUE_NAMES } from '../core/queue/queue.constants.js';
+import { RedisService } from '../core/redis/redis.service.js';
 
 export interface NewsVectorizeTask {
   newsId: string;
@@ -15,15 +15,15 @@ const EMBEDDING_MODEL = 'Xenova/paraphrase-multilingual-MiniLM-L12-v2';
 @Injectable()
 export class NewsVectorizeConsumer extends QueueConsumer {
   constructor(
-    protected readonly configService: ConfigService,
+    protected readonly redisService: RedisService,
     private readonly newsService: NewsService,
     private readonly vectorService: VectorService,
   ) {
-    super(configService, {
+    super(redisService, {
       queueName: QUEUE_NAMES.NEWS_VECTORIZE,
-      prefetch: 1,
-      autoAck: false,
+      concurrency: 1,
       maxRetries: 3,
+      backoff: { type: 'exponential', delay: 1000 },
     });
   }
 

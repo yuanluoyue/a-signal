@@ -1,9 +1,9 @@
 import { Injectable, Logger } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
 import { eq } from 'drizzle-orm';
 import { QueueConsumer } from '../core/queue/queue.consumer.js';
 import { QueueMessage } from '../core/queue/queue.types.js';
 import { QUEUE_NAMES } from '../core/queue/queue.constants.js';
+import { RedisService } from '../core/redis/redis.service.js';
 import { LlmService } from '../modules/llm/gateway/llm.service.js';
 import { EventOutput, EventOutputSchema, NewsEventAnalysisSchema, NewsAnalysisInput } from '../core/volcengine/volcengine.service.js';
 import { DbService } from '../core/db/db.service.js';
@@ -24,17 +24,18 @@ export class EventAnalyzeConsumer extends QueueConsumer {
   protected readonly logger = new Logger(EventAnalyzeConsumer.name);
 
   constructor(
-    protected readonly configService: ConfigService,
+    protected readonly redisService: RedisService,
     private readonly llmService: LlmService,
     private readonly dbService: DbService,
     private readonly eventService: EventService,
     private readonly signalGeneratorService: SignalGeneratorService,
     private readonly newsFilterAgentService: NewsFilterAgentService,
   ) {
-    super(configService, {
+    super(redisService, {
       queueName: QUEUE_NAMES.EVENT_ANALYZE,
-      prefetch: 1,
-      autoAck: false,
+      concurrency: 1,
+      maxRetries: 3,
+      backoff: { type: 'exponential', delay: 1000 },
     });
   }
 
