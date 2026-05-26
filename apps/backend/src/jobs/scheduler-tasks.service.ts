@@ -4,6 +4,7 @@ import { and, eq, gte, lte } from 'drizzle-orm';
 import { SchedulerService } from '../modules/scheduler/scheduler.service.js';
 import { NewsService } from '../modules/news/news.service.js';
 import { KlinesService } from '../modules/klines/klines.service.js';
+import { SimulationService } from '../modules/simulation/simulation.service.js';
 import { QueueService } from '../core/queue/queue.service.js';
 import { DbService } from '../core/db/db.service.js';
 import { news } from '../core/db/schema.js';
@@ -16,6 +17,7 @@ export class SchedulerTasksService {
     private readonly schedulerService: SchedulerService,
     private readonly newsService: NewsService,
     private readonly klinesService: KlinesService,
+    private readonly simulationService: SimulationService,
     private readonly queueService: QueueService,
     private readonly dbService: DbService,
   ) {}
@@ -143,6 +145,33 @@ export class SchedulerTasksService {
     }
   }
 
+  @Cron('0 0 */4 * * *', {
+    name: 'simulation-refresh',
+    timeZone: 'Asia/Shanghai',
+  })
+  async handleSimulationRefresh(): Promise<void> {
+    const taskName = 'simulation-refresh';
+    this.logger.log(`[${taskName}] Scheduled task triggered`);
+
+    try {
+      const enabled = await this.schedulerService.isTaskEnabled(taskName);
+      if (!enabled) {
+        this.logger.warn(`[${taskName}] Task is disabled, skipping execution`);
+        return;
+      }
+
+      await this.executeSimulationRefresh();
+      await this.schedulerService.updateLastExecutedAt(taskName);
+
+      this.logger.log(`[${taskName}] Task completed successfully`);
+    } catch (error) {
+      this.logger.error(
+        `[${taskName}] Task failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
   async manualNewsCrawl(): Promise<void> {
     const taskName = 'news-crawl';
     this.logger.log(`[${taskName}] Manual execution triggered`);
@@ -218,6 +247,53 @@ export class SchedulerTasksService {
       );
       throw error;
     }
+  }
+
+  async manualSimulationRefresh(): Promise<void> {
+    const taskName = 'simulation-refresh';
+    this.logger.log(`[${taskName}] Manual execution triggered`);
+
+    try {
+      await this.executeSimulationRefresh();
+      await this.schedulerService.updateLastExecutedAt(taskName);
+      this.logger.log(`[${taskName}] Manual execution completed`);
+    } catch (error) {
+      this.logger.error(
+        `[${taskName}] Manual execution failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
+  private async executeSimulationRefresh(): Promise<void> {
+    const accounts = await this.simulationService.getAllAccounts();
+
+    if (accounts.length === 0) {
+      this.logger.log('[simulation-refresh] No simulation accounts found, skipping');
+      return;
+    }
+
+    this.logger.log(`[simulation-refresh] Refreshing ${accounts.length} accounts`);
+
+    let successCount = 0;
+    let failCount = 0;
+
+    for (const account of accounts) {
+      try {
+        await this.simulationService.refreshPositionPrices(account.id);
+        await this.simulationService.checkTakeProfitStopLoss(account.id);
+        successCount++;
+      } catch (error) {
+        failCount++;
+        this.logger.error(
+          `[simulation-refresh] Failed to refresh account ${account.id}: ${error instanceof Error ? error.message : String(error)}`,
+        );
+      }
+    }
+
+    this.logger.log(
+      `[simulation-refresh] Refresh completed: ${successCount} succeeded, ${failCount} failed`,
+    );
   }
 
   private async fetchPendingNewsFromLastTwoDays(): Promise<{ id: string }[]> {
