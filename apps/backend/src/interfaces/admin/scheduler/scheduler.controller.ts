@@ -78,6 +78,10 @@ export class SchedulerController {
           this.logger.log('[triggerTask] Executing kline-update task...');
           await this.schedulerTasksService.manualKlineUpdate();
           break;
+        case 'simulation-refresh':
+          this.logger.log('[triggerTask] Executing simulation-refresh task...');
+          await this.schedulerTasksService.manualSimulationRefresh();
+          break;
         default:
           this.logger.warn(`[triggerTask] Unknown task name: ${task.name}`);
           throw new NotFoundException(`未知的任务类型: ${task.name}`);

@@ -4,6 +4,7 @@ import { DbModule } from '../../core/db/db.module.js';
 import { NewsModule } from '../news/news.module.js';
 import { SignalsModule } from '../signals/signals.module.js';
 import { KlinesModule } from '../klines/klines.module.js';
+import { SimulationModule } from '../simulation/simulation.module.js';
 import { QueueModule } from '../../core/queue/queue.module.js';
 import { AuditLogModule } from '../audit-log/audit-log.module.js';
 import { SchedulerService } from './scheduler.service.js';
@@ -15,6 +16,7 @@ import { SchedulerService } from './scheduler.service.js';
     NewsModule,
     SignalsModule,
     KlinesModule,
+    SimulationModule,
     QueueModule,
     AuditLogModule,
   ],

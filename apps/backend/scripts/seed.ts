@@ -169,6 +169,12 @@ async function seed() {
         description: '每天早上8点更新K线数据',
         enabled: true,
       },
+      {
+        name: 'simulation-refresh',
+        cronExpression: '0 0 */4 * * *',
+        description: '每4小时刷新模拟交易持仓价格和止盈止损',
+        enabled: true,
+      },
     ];
 
     for (const task of schedulerTasksData) {

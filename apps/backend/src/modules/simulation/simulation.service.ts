@@ -156,6 +156,13 @@ export class SimulationService {
       .orderBy(simulationAccounts.createdAt);
   }
 
+  async getAllAccounts(): Promise<SimulationAccount[]> {
+    return this.dbService.db
+      .select()
+      .from(simulationAccounts)
+      .orderBy(simulationAccounts.createdAt);
+  }
+
   async getAccountById(id: string): Promise<SimulationAccount | null> {
     const [account] = await this.dbService.db
       .select()

@@ -54,7 +54,7 @@ A Signal 是一个基于 AI 的智能股票分析平台，通过新闻事件提�
 |------|------|
 | 新闻管理 | 新闻列表、详情、AI 分析状态 |
 | 股票查询 | 股票搜索、详情、K 线数据 |
-| 股票追踪 | 追踪关注股票，关联新闻和事件 |
+| 股票追踪 | 追踪关注股票，关联新闻和事件，支持获取历史新闻、批量信号生成、单新闻回测、研投报告 |
 
 ### 系统设置
 
@@ -100,17 +100,19 @@ A Signal 是一个基于 AI 的智能股票分析平台，通过新闻事件提�
 │  │MCP       │       │          │                                       │
 │  └──────────┘       └──────────┘                                       │
 │                                                                          │
-│  队列消费者                                                               │
+│  队列消费者 (BullMQ)                                                      │
 │  ┌─────────┬──────────────┬──────────────┬──────────────┬────────────┐  │
 │  │NewsCrawl│EventAnalyze  │NewsVectorize │KlineFetch    │StockTrack  │  │
 │  └─────────┴──────────────┴──────────────┴──────────────┴────────────┘  │
+│                                                                          │
+│  Bull Board (/admin/queues)                                              │
 └──────────────────────────────────────────────────────────────────────────┘
                                    │
            ┌───────────────────────┼───────────────────────┐
            ▼                       ▼                       ▼
    ┌───────────────┐       ┌───────────────┐       ┌───────────────┐
-   │  PostgreSQL   │       │   RabbitMQ    │       │   ChromaDB    │
-   │  (主数据库)    │       │  (消息队列)    │       │ (向量数据库)   │
+   │  PostgreSQL   │       │    Redis      │       │   ChromaDB    │
+   │  (主数据库)    │       │ (缓存+队列)   │       │ (向量数据库)   │
    └───────────────┘       └───────────────┘       └───────────────┘
 ```
 
@@ -152,9 +154,10 @@ DB_USER=admin
 DB_PASSWORD=your-secure-password
 DB_NAME=a_signal
 
-# RabbitMQ
-RABBITMQ_USER=admin
-RABBITMQ_PASS=your-secure-password
+# Redis
+REDIS_HOST=localhost
+REDIS_PORT=6379
+REDIS_PASSWORD=your-secure-password
 
 # JWT
 JWT_SECRET=your-super-secret-jwt-key
@@ -175,7 +178,7 @@ pnpm run dev:docker
 
 这将启动：
 - PostgreSQL 15 (端口 5432)
-- RabbitMQ 4.2 (端口 5672, 管理界面 15672)
+- Redis 7 (端口 6379，AOF 持久化)
 - ChromaDB (端口 8000)
 
 ### 5. 数据库迁移与种子数据
@@ -204,7 +207,7 @@ pnpm run dev:frontend
 - 前端: http://localhost:8001
 - 后端 API: http://localhost:3001
 - Swagger 文档: http://localhost:3001/api
-- RabbitMQ 管理界面: http://localhost:15672
+- Bull Board (队列监控): http://localhost:3001/admin/queues
 
 ## 项目结构
 
@@ -259,10 +262,11 @@ src/
 │
 ├── core/                         # 核心基础设施
 │   ├── auth/                     # JWT/API Key 认证策略
-│   ├── cache/                    # 缓存服务
+│   ├── cache/                    # Redis 缓存服务
 │   ├── db/                       # 数据库（Drizzle ORM + Schema）
 │   ├── logger/                   # Winston 日志
-│   ├── queue/                    # RabbitMQ 消息队列
+│   ├── queue/                    # BullMQ 消息队列 + Bull Board
+│   ├── redis/                    # Redis 连接服务
 │   ├── vector/                   # ChromaDB 向量数据库
 │   └── volcengine/               # 火山引擎 AI 服务
 │
@@ -420,6 +424,25 @@ pnpm run build
 - 事件类别：macro / policy / company / market / sentiment
 - 规则 ID：限定信号来源规则
 
+### 股票追踪
+
+追踪关注股票的完整工作流：
+
+```
+用户添加追踪 → 获取历史新闻 → 自动入队分析
+                                    ↓
+                              事件提取 + 信号生成
+                                    ↓
+                              用户选择策略 → 执行回测
+                                    ↓
+                              生成研投报告
+```
+
+- **获取历史新闻**：调用 AI 获取指定股票的历史新闻，自动去重保存
+- **批量信号生成**：新闻保存后自动入队 `EVENT_ANALYZE`，逐条分析生成信号
+- **单新闻回测**：选择策略和 K 线周期，基于新闻时间范围自动执行回测
+- **研投报告**：基于关联新闻、信号、回测记录，AI 生成研投分析报告
+
 ### Agent 模块
 
 采用多 Agent 架构，投研助手和交易 Agent 统一管理：
@@ -498,13 +521,15 @@ pnpm run build
 
 ### 队列消费者
 
-| 消费者 | 职责 |
-|--------|------|
-| `NewsCrawlConsumer` | 爬取财经新闻 |
-| `EventAnalyzeConsumer` | AI 事件提取和信号生成 |
-| `NewsVectorizeConsumer` | 新闻向量化存储 |
-| `KlineFetchConsumer` | 获取 K 线数据 |
-| `StockTrackFetchConsumer` | 股票追踪数据获取 |
+| 消费者 | 队列名 | 职责 |
+|--------|--------|------|
+| `NewsCrawlConsumer` | `news-crawl` | 爬取财经新闻 |
+| `EventAnalyzeConsumer` | `event-analyze` | AI 事件提取和信号生成 |
+| `NewsVectorizeConsumer` | `news-vectorize` | 新闻向量化存储 |
+| `KlineFetchConsumer` | `kline-fetch` | 获取 K 线数据 |
+| `StockTrackFetchConsumer` | `stock-track-fetch` | 股票追踪数据获取 |
+
+队列监控：访问 http://localhost:3001/admin/queues 查看所有队列状态、Job 详情、重试失败任务。
 
 ## 数据库模型
 
@@ -542,13 +567,14 @@ pnpm run build
 - **框架**: NestJS 11.x
 - **语言**: TypeScript 5.x
 - **数据库**: PostgreSQL 15 + Drizzle ORM
-- **消息队列**: RabbitMQ (amqplib)
+- **消息队列**: BullMQ (基于 Redis)
+- **缓存**: Redis (ioredis)
 - **向量数据库**: ChromaDB
 - **AI/ML**: LangChain + LangGraph + 火山引擎
 - **认证**: JWT + Passport
-- **缓存**: 内存缓存
 - **日志**: Winston
 - **文档**: Swagger/OpenAPI
+- **队列监控**: Bull Board
 
 ### 前端
 - **框架**: Umi 4.x + React 18
@@ -568,3 +594,4 @@ pnpm run build
 - [AGENTS.md](./AGENTS.md) - 开发指南和项目规范
 - [Swagger API](http://localhost:3001/api) - API 文档
 - [MCP Tools](http://localhost:3001/mcp/tools) - MCP Tools 文档
+- [Bull Board](http://localhost:3001/admin/queues) - 队列监控面板
