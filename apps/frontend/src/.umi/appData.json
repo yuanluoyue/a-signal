@@ -48,7 +48,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 14
       },
       "enableBy": "register"
     },
@@ -61,7 +61,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 31
+        "register": 84
       },
       "enableBy": "register"
     },
@@ -75,10 +75,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            1
+            0
           ]
         },
-        "register": 6
+        "register": 61
       },
       "enableBy": "register"
     },
@@ -92,10 +92,10 @@
       "time": {
         "hooks": {
           "onStart": [
-            4
+            3
           ]
         },
-        "register": 4
+        "register": 78
       },
       "enableBy": "register"
     },
@@ -118,6 +118,7 @@
             0,
             0,
             0,
+            1,
             0,
             0,
             0,
@@ -132,7 +133,7 @@
             0
           ]
         },
-        "register": 0
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -146,33 +147,36 @@
       "time": {
         "hooks": {
           "onDevCompileDone": [
-            53,
+            97,
+            16,
+            13,
             3,
+            5,
+            2,
+            3,
+            7,
+            6,
+            4,
+            8,
+            2,
+            4,
             4,
             5,
             3,
-            4,
-            4,
-            4,
-            3,
-            5,
             3,
             3,
-            4,
             3,
-            3,
-            5,
-            3,
-            3,
-            4,
+            2,
             4,
             2,
             3,
             3,
+            5,
+            3,
             3
           ]
         },
-        "register": 2
+        "register": 23
       },
       "enableBy": "register"
     },
@@ -186,33 +190,34 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            51
+            78
           ],
           "onGenerateFiles": [
-            7,
+            6,
+            28,
             17,
-            19,
-            14,
-            21,
-            18,
-            18,
-            18,
-            17,
-            21,
-            18,
-            16,
-            19,
-            16,
-            19,
-            15,
-            19,
             18,
             20,
             16,
-            17
+            15,
+            21,
+            16,
+            16,
+            20,
+            17,
+            19,
+            19,
+            15,
+            15,
+            17,
+            16,
+            16,
+            16,
+            17,
+            15
           ]
         },
-        "register": 30
+        "register": 220
       },
       "enableBy": "register"
     },
@@ -246,10 +251,11 @@
             0,
             0,
             0,
+            0,
             0
           ]
         },
-        "register": 0
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -263,7 +269,8 @@
       "time": {
         "hooks": {
           "onCheckConfig": [
-            1
+            0,
+            0
           ],
           "onCheck": [
             1
@@ -291,69 +298,14 @@
             0,
             0,
             0,
+            0,
+            0,
+            0,
             0
           ],
           "onCheckCode": [
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -403,7 +355,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 19
       },
       "enableBy": "register"
     },
@@ -420,7 +372,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 20
       },
       "enableBy": "register"
     },
@@ -433,7 +385,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 18
       },
       "enableBy": "config"
     },
@@ -447,10 +399,11 @@
       "time": {
         "hooks": {
           "modifyConfig": [
+            0,
             0
           ]
         },
-        "register": 15
+        "register": 214
       },
       "enableBy": "register"
     },
@@ -1302,7 +1255,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 16
       },
       "enableBy": "config"
     },
@@ -1319,7 +1272,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 19
       },
       "enableBy": "register"
     },
@@ -1333,10 +1286,10 @@
       "time": {
         "hooks": {
           "addBeforeMiddlewares": [
-            52
+            58
           ]
         },
-        "register": 1
+        "register": 19
       },
       "enableBy": "register"
     },
@@ -1349,7 +1302,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 96
+        "register": 388
       },
       "enableBy": "register"
     },
@@ -1362,7 +1315,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 63
+        "register": 1112
       },
       "enableBy": "config"
     },
@@ -1375,7 +1328,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 26
+        "register": 259
       },
       "enableBy": "config"
     },
@@ -1395,27 +1348,6 @@
             0
           ],
           "modifyHTMLFavicon": [
-            1,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
@@ -1440,7 +1372,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 15
       },
       "enableBy": "register"
     },
@@ -1454,24 +1386,25 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            3,
+            13,
             1,
             1,
             1,
-            1,
-            1,
-            1,
-            1,
+            2,
             2,
             1,
             1,
             1,
             1,
-            2,
             1,
             1,
             1,
-            2,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
             1,
             1,
             1
@@ -1483,7 +1416,8 @@
             0,
             0,
             0,
-            1,
+            0,
+            0,
             0,
             0,
             0,
@@ -1500,7 +1434,7 @@
             0
           ]
         },
-        "register": 2
+        "register": 15
       },
       "enableBy": "register"
     },
@@ -1513,7 +1447,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 22
       },
       "enableBy": "config"
     },
@@ -1527,13 +1461,13 @@
       "time": {
         "hooks": {
           "onStart": [
-            2
+            1
           ],
           "addBeforeMiddlewares": [
             1
           ]
         },
-        "register": 37
+        "register": 229
       }
     },
     "@umijs/preset-umi/dist/features/mpa/mpa": {
@@ -1545,7 +1479,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 22
       },
       "enableBy": "config"
     },
@@ -1558,7 +1492,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 15
       }
     },
     "@umijs/preset-umi/dist/features/overrides/overrides": {
@@ -1571,6 +1505,7 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
+            1,
             0,
             0,
             0,
@@ -1585,7 +1520,7 @@
             0,
             0,
             0,
-            0,
+            1,
             0,
             0,
             0,
@@ -1620,6 +1555,8 @@
             0,
             0,
             0,
+            3,
+            0,
             0,
             0,
             0,
@@ -1651,7 +1588,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 19
       },
       "enableBy": "config"
     },
@@ -1665,32 +1602,46 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            2
+            9,
+            0
           ],
           "onGenerateFiles": [
-            173,
-            34,
+            181,
+            37,
+            28,
             43,
-            25,
+            47,
             27,
+            33,
+            31,
+            27,
+            29,
             26,
-            26,
-            26,
+            31,
             25,
+            35,
+            27,
+            29,
             27,
             28,
-            30,
-            27,
-            27,
             27,
             30,
-            34,
-            30,
-            27,
-            26,
-            26
+            31,
+            30
           ],
           "addPolyfillImports": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -1722,20 +1673,10 @@
             0,
             0,
             0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
             0
           ]
         },
-        "register": 4
+        "register": 34
       }
     },
     "@umijs/preset-umi/dist/features/polyfill/publicPathPolyfill": {
@@ -1789,10 +1730,12 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ]
         },
-        "register": 1
+        "register": 14
       },
       "enableBy": "register"
     },
@@ -1806,7 +1749,8 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            189,
+            318,
+            0,
             0,
             0,
             0,
@@ -1829,7 +1773,7 @@
             0
           ]
         },
-        "register": 3
+        "register": 28
       },
       "enableBy": "register"
     },
@@ -1842,7 +1786,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 14
       },
       "enableBy": "config"
     },
@@ -1855,7 +1799,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 15
       },
       "enableBy": "config"
     },
@@ -1872,6 +1816,15 @@
             1,
             0,
             1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
             1,
             0,
             0,
@@ -1879,23 +1832,15 @@
             0,
             0,
             1,
-            1,
-            1,
             0,
             1,
-            0,
-            0,
-            0,
-            0,
-            1,
-            0,
             0
           ],
           "addBeforeMiddlewares": [
             0
           ]
         },
-        "register": 1
+        "register": 17
       },
       "enableBy": "register"
     },
@@ -1909,51 +1854,53 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
+            79,
+            51,
+            105,
             40,
-            19,
-            108,
-            45,
+            39,
+            6,
+            49,
+            6,
+            62,
+            5,
+            39,
+            5,
+            44,
+            5,
+            37,
+            5,
+            39,
+            6,
+            41,
+            4,
+            41,
+            4,
             46,
-            7,
-            36,
-            6,
-            44,
-            5,
-            42,
-            7,
-            40,
-            4,
-            39,
-            4,
-            39,
-            4,
-            37,
-            4,
-            38,
-            6,
-            44,
-            4,
-            35,
-            3,
-            35,
-            4,
-            37,
             6,
             38,
             4,
-            40,
-            6,
-            45,
+            50,
             5,
-            42,
-            11,
-            42,
+            38,
             4,
-            36,
-            6
+            38,
+            4,
+            43,
+            4,
+            42,
+            5,
+            37,
+            8,
+            39,
+            4,
+            40,
+            5,
+            39,
+            4
           ]
         },
-        "register": 9
+        "register": 83
       },
       "enableBy": "register"
     },
@@ -1966,7 +1913,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 32
       },
       "enableBy": "config"
     },
@@ -1979,7 +1926,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 14
       }
     },
     "@umijs/preset-umi/dist/features/ssr/ssr": {
@@ -1991,7 +1938,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 7
+        "register": 43
       },
       "enableBy": "config"
     },
@@ -2005,30 +1952,31 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            550,
-            26,
+            964,
             11,
             8,
-            8,
-            12,
-            7,
-            7,
-            7,
-            7,
-            7,
-            7,
+            9,
+            15,
+            9,
             8,
             8,
-            12,
             8,
             8,
-            13,
+            8,
+            9,
+            7,
+            8,
+            11,
+            8,
             7,
             7,
+            8,
+            7,
+            8,
             8
           ]
         },
-        "register": 6
+        "register": 69
       },
       "enableBy": "register"
     },
@@ -2045,7 +1993,7 @@
             0
           ]
         },
-        "register": 6
+        "register": 52
       },
       "enableBy": "register"
     },
@@ -2058,7 +2006,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 51
       },
       "enableBy": "config"
     },
@@ -2071,7 +2019,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 14
       },
       "enableBy": "config"
     },
@@ -2084,7 +2032,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 13
+        "register": 121
       }
     },
     "@umijs/preset-umi/dist/features/monorepo/redirect": {
@@ -2096,7 +2044,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 26
+        "register": 365
       },
       "enableBy": "config"
     },
@@ -2110,30 +2058,31 @@
       "time": {
         "hooks": {
           "onGenerateFiles": [
-            12,
+            21,
             17,
-            2,
-            2,
-            1,
-            2,
             1,
             1,
-            2,
             1,
             1,
             2,
             1,
             1,
             1,
+            1,
+            1,
             2,
-            2,
+            1,
+            1,
+            1,
+            1,
+            1,
             1,
             1,
             1,
             1
           ]
         },
-        "register": 3
+        "register": 18
       }
     },
     "@umijs/preset-umi/dist/features/clickToComponent/clickToComponent": {
@@ -2145,7 +2094,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 17
       },
       "enableBy": "config"
     },
@@ -2158,7 +2107,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 20
       },
       "enableBy": "config"
     },
@@ -2171,7 +2120,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 14
       },
       "enableBy": "config"
     },
@@ -2184,7 +2133,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 31
       }
     },
     "@umijs/preset-umi/dist/features/swc/swc": {
@@ -2200,7 +2149,7 @@
             0
           ]
         },
-        "register": 1
+        "register": 13
       },
       "enableBy": "register"
     },
@@ -2213,7 +2162,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 58
       }
     },
     "@umijs/preset-umi/dist/features/mako/mako": {
@@ -2225,7 +2174,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 18
       },
       "enableBy": "config"
     },
@@ -2238,7 +2187,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 19
       }
     },
     "@umijs/preset-umi/dist/features/hmrGuardian/hmrGuardian": {
@@ -2250,7 +2199,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 34
       }
     },
     "@umijs/preset-umi/dist/features/routePreloadOnLoad/routePreloadOnLoad": {
@@ -2263,28 +2212,7 @@
       "time": {
         "hooks": {
           "addHTMLHeadScripts": [
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
+            8,
             0,
             0,
             0,
@@ -2308,7 +2236,7 @@
             0
           ]
         },
-        "register": 36
+        "register": 169
       }
     },
     "@umijs/preset-umi/dist/features/forget/forget": {
@@ -2320,7 +2248,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 3
+        "register": 26
       },
       "enableBy": "config"
     },
@@ -2334,10 +2262,10 @@
       "time": {
         "hooks": {
           "modifyUniBundler": [
-            7098
+            6841
           ]
         },
-        "register": 4
+        "register": 28
       },
       "enableBy": "register"
     },
@@ -2350,7 +2278,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 7
+        "register": 85
       },
       "enableBy": "register"
     },
@@ -2363,7 +2291,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 48
+        "register": 260
       },
       "enableBy": "register"
     },
@@ -2377,10 +2305,10 @@
       "time": {
         "hooks": {
           "modifyAppData": [
-            22
+            18
           ]
         },
-        "register": 66
+        "register": 988
       }
     },
     "@umijs/preset-umi/dist/commands/help": {
@@ -2392,7 +2320,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 17
       },
       "enableBy": "register"
     },
@@ -2405,7 +2333,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 15
       },
       "enableBy": "register"
     },
@@ -2418,7 +2346,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 14
       },
       "enableBy": "register"
     },
@@ -2431,7 +2359,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 5
+        "register": 21
       },
       "enableBy": "register"
     },
@@ -2444,7 +2372,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 13
       },
       "enableBy": "register"
     },
@@ -2457,7 +2385,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 4
+        "register": 44
       },
       "enableBy": "register"
     },
@@ -2470,7 +2398,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 15
       },
       "enableBy": "register"
     },
@@ -2483,7 +2411,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 16
       },
       "enableBy": "register"
     },
@@ -2496,7 +2424,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 20
       },
       "enableBy": "register"
     },
@@ -2509,7 +2437,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 16
       },
       "enableBy": "register"
     },
@@ -2522,7 +2450,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -2535,7 +2463,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 21
       },
       "enableBy": "register"
     },
@@ -2548,7 +2476,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -2561,7 +2489,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 19
       },
       "enableBy": "register"
     },
@@ -2574,7 +2502,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -2587,7 +2515,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 17
       },
       "enableBy": "register"
     },
@@ -2600,7 +2528,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 0
+        "register": 16
       },
       "enableBy": "register"
     },
@@ -2613,7 +2541,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 28
       },
       "enableBy": "register"
     },
@@ -2626,7 +2554,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 26
+        "register": 121
       },
       "enableBy": "register"
     },
@@ -2639,7 +2567,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 2
+        "register": 19
       },
       "enableBy": "register"
     },
@@ -2652,7 +2580,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 6
+        "register": 49
       },
       "enableBy": "register"
     },
@@ -2665,7 +2593,7 @@
       "config": {},
       "time": {
         "hooks": {},
-        "register": 1
+        "register": 18
       },
       "enableBy": "register"
     },
@@ -2679,7 +2607,8 @@
       "time": {
         "hooks": {
           "modifyConfig": [
-            2
+            22,
+            0
           ],
           "modifyAppData": [
             0
@@ -2729,9 +2658,12 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
             0,
             0,
             0,
@@ -2762,7 +2694,8 @@
             0,
             0,
             0,
-            2,
+            0,
+            0,
             0,
             0,
             0,
@@ -2778,26 +2711,27 @@
             0
           ],
           "onGenerateFiles": [
-            6,
             22,
-            1,
-            1,
-            1,
-            1,
+            21,
             2,
-            2,
-            1,
-            2,
-            1,
-            1,
-            2,
+            3,
             2,
             1,
             1,
             2,
             1,
+            1,
+            1,
+            2,
+            1,
+            2,
+            1,
+            1,
             2,
             2,
+            1,
+            1,
+            1,
             1
           ],
           "addExtraBabelPlugins": [
@@ -2807,7 +2741,7 @@
             0
           ]
         },
-        "register": 10
+        "register": 102
       }
     },
     "./node_modules/@umijs/plugins/dist/model": {
@@ -2821,16 +2755,17 @@
         "hooks": {
           "addRuntimePlugin": [
             0,
-            1,
-            0,
-            0,
-            0,
-            0,
             0,
             0,
             0,
             1,
-            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
             0,
             0,
             0,
@@ -2843,33 +2778,34 @@
             0
           ],
           "onGenerateFiles": [
-            99,
-            65,
-            63,
-            59,
-            62,
-            55,
-            54,
-            54,
-            54,
-            54,
-            62,
-            63,
             61,
+            60,
+            49,
+            60,
+            64,
+            53,
+            49,
             57,
+            63,
+            53,
+            53,
+            72,
+            59,
+            69,
             57,
             58,
-            58,
-            62,
-            77,
             56,
-            57
+            59,
+            60,
+            57,
+            61,
+            60
           ],
           "addTmpGenerateWatcherPaths": [
             0
           ]
         },
-        "register": 10
+        "register": 61
       },
       "enableBy": "config"
     },
@@ -2924,9 +2860,12 @@
             0,
             0,
             0,
+            0,
+            0,
             0
           ],
           "addRuntimePlugin": [
+            0,
             0,
             0,
             0,
@@ -2970,36 +2909,38 @@
             0,
             0,
             0,
+            0,
             0
           ],
           "onGenerateFiles": [
-            51,
-            81,
-            26,
-            24,
-            24,
-            47,
-            28,
-            24,
-            23,
-            26,
-            25,
-            28,
-            23,
-            28,
+            109,
+            74,
+            22,
+            27,
             30,
+            26,
+            23,
+            26,
+            35,
+            25,
+            27,
+            29,
+            25,
+            38,
             25,
             25,
             27,
-            31,
+            30,
+            33,
+            28,
             25,
-            25
+            31
           ],
           "addTmpGenerateWatcherPaths": [
-            31
+            17
           ]
         },
-        "register": 4
+        "register": 51
       },
       "enableBy": "config"
     }
@@ -4573,7 +4514,7 @@
       "parentId": "3",
       "id": "17",
       "absPath": "/stock-trackings/:id",
-      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  message,\n  Spin,\n  Empty,\n  List,\n  Divider,\n  Modal,\n  Table,\n  Descriptions,\n  Pagination,\n  Popconfirm,\n  Row,\n  Col,\n  Select,\n  Form,\n  Radio,\n} from 'antd';\nimport {\n  ArrowLeftOutlined,\n  ReloadOutlined,\n  PlayCircleOutlined,\n  LineChartOutlined,\n  FileTextOutlined,\n  EyeOutlined,\n  HistoryOutlined,\n  DeleteOutlined,\n  BarChartOutlined,\n  SyncOutlined,\n} from '@ant-design/icons';\nimport { useParams, useNavigate, Link } from 'umi';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { CandlestickData, Time, IChartApi, ISeriesApi, SeriesMarker } from 'lightweight-charts';\nimport client from '@/services/client';\nimport { klinesApi } from '@/services/klines';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface StockTracking {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  status: 'pending' | 'processing' | 'completed' | 'failed';\n  totalNews: number;\n  createdAt: string;\n}\n\ninterface NewsItem {\n  id: string;\n  title: string;\n  content: string;\n  publishTime: string;\n  source: string;\n  analyzeStatus: string;\n}\n\ninterface BacktestRecord {\n  id: string;\n  name: string | null;\n  strategyId: string | null;\n  strategySnapshot: {\n    id: string;\n    name: string;\n    minScore: string;\n    maxScore: string | null;\n    directionMode: string;\n    holdPeriod: number;\n    stopLossPct: string | null;\n    takeProfitPct: string | null;\n  } | null;\n  startTime: string;\n  endTime: string;\n  period: string;\n  totalSignals: number | null;\n  filteredSignals: number | null;\n  totalTrades: number;\n  winningTrades: number;\n  losingTrades: number;\n  winRate: string | null;\n  totalReturnPct: string | null;\n  avgReturnPct: string | null;\n  maxDrawdownPct: string | null;\n  sharpeRatio: string | null;\n  profitFactor: string | null;\n  status: string;\n  createdAt: string;\n}\n\ninterface BacktestTrade {\n  id: string;\n  signalId: string | null;\n  symbol: string;\n  stockName: string | null;\n  direction: string;\n  entryTime: string;\n  entryPrice: string;\n  exitTime: string | null;\n  exitPrice: string | null;\n  pnlPct: string | null;\n  exitReason: string | null;\n}\n\ninterface Signal {\n  id: string;\n  symbol: string | null;\n  stockCode: string | null;\n  stockName: string | null;\n  action: string;\n  score: string | null;\n  generatedAt: string | null;\n  createdAt: string | null;\n  reason: string | null;\n  reasoning: string | null;\n  ruleId: string | null;\n  eventId: string | null;\n  eventOccurredAt?: string | null;\n}\n\ninterface KlineData {\n  timestamp: string;\n  open: number;\n  high: number;\n  low: number;\n  close: number;\n  volume: number;\n}\n\ninterface Strategy {\n  id: string;\n  name: string;\n  description: string | null;\n  enabled: boolean;\n  directionMode: string;\n  holdPeriod: number;\n  minScore: string;\n  maxScore: string | null;\n  stopLossPct: string | null;\n  takeProfitPct: string | null;\n}\n\nconst StockTrackingDetailPage: React.FC = () => {\n  const { id } = useParams<{ id: string }>();\n  const navigate = useNavigate();\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n  const candlestickSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null);\n  const markersRef = useRef<any>(null);\n\n  const [loading, setLoading] = useState(true);\n  const [tracking, setTracking] = useState<StockTracking | null>(null);\n  const [news, setNews] = useState<NewsItem[]>([]);\n  const [newsPagination, setNewsPagination] = useState({\n    current: 1,\n    pageSize: 10,\n    total: 0,\n  });\n  const [report, setReport] = useState<string>('');\n  const [backtestRecords, setBacktestRecords] = useState<BacktestRecord[]>([]);\n  const [backtestModalVisible, setBacktestModalVisible] = useState(false);\n  const [selectedBacktest, setSelectedBacktest] = useState<BacktestRecord | null>(null);\n  const [backtestTrades, setBacktestTrades] = useState<BacktestTrade[]>([]);\n  const [backtestTradesLoading, setBacktestTradesLoading] = useState(false);\n  const [signals, setSignals] = useState<Signal[]>([]);\n  const [klines, setKlines] = useState<KlineData[]>([]);\n  const [period, setPeriod] = useState<'1d' | '4h'>('1d');\n  const [chartReady, setChartReady] = useState(false);\n  const [syncingKlines, setSyncingKlines] = useState(false);\n\n  const [backtestFormVisible, setBacktestFormVisible] = useState(false);\n  const [strategies, setStrategies] = useState<Strategy[]>([]);\n  const [strategiesLoading, setStrategiesLoading] = useState(false);\n  const [backtestSubmitting, setBacktestSubmitting] = useState(false);\n  const [backtestForm] = Form.useForm();\n\n  const fetchTrackingDetail = async () => {\n    if (!id) return;\n    setLoading(true);\n    try {\n      const response = await client.get(`/stock-trackings/${id}`);\n      setTracking(response.data);\n    } catch (error) {\n      message.error('获取追踪详情失败');\n      console.error('Fetch tracking detail error:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const fetchReport = async () => {\n    if (!id) return;\n    try {\n      const response = await client.get(`/stock-trackings/${id}/report`);\n      const reportData = response.data?.report;\n      if (reportData) {\n        setReport(reportData);\n      }\n    } catch (error) {\n      console.error('Fetch report error:', error);\n    }\n  };\n\n  const fetchNews = async (page = 1, pageSize = 10) => {\n    if (!id) return;\n    try {\n      const response = await client.get(`/stock-trackings/${id}/news`);\n      const newsList = response.data || [];\n      setNews(newsList);\n      setNewsPagination({\n        current: page,\n        pageSize,\n        total: newsList.length,\n      });\n    } catch (error) {\n      console.error('Fetch news error:', error);\n    }\n  };\n\n  const fetchBacktestRecords = async () => {\n    if (!tracking?.stockCode) return;\n    try {\n      const response = await client.get(`/backtest/records?stockCode=${tracking.stockCode}`);\n      const records = response.data || [];\n      setBacktestRecords(records);\n    } catch (error) {\n      console.error('Fetch backtest records error:', error);\n    }\n  };\n\n  const fetchSignals = async () => {\n    if (!tracking?.stockCode) return;\n    try {\n      const response = await client.get(`/signals`, {\n        params: { symbol: tracking.stockCode, pageSize: 100 },\n      });\n      setSignals(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch signals error:\", error);\n    }\n  };\n\n  const fetchStrategies = async () => {\n    setStrategiesLoading(true);\n    try {\n      const response = await client.get('/strategies');\n      const data = response.data || [];\n      setStrategies(data.filter((s: Strategy) => s.enabled));\n    } catch (error) {\n      console.error('Fetch strategies error:', error);\n      message.error('获取策略列表失败');\n    } finally {\n      setStrategiesLoading(false);\n    }\n  };\n\n  const checkAndUpdateKlines = async (p: '1d' | '4h' = period): Promise<boolean> => {\n    if (!tracking?.stockCode) return false;\n    try {\n      setSyncingKlines(true);\n      const result = await klinesApi.checkAndUpdate(tracking.stockCode, p);\n      if ('updated' in result) {\n        if (result.updated) {\n          message.success(`K线数据已更新: ${result.message}`);\n          return true;\n        }\n      } else if (result[p]?.updated) {\n        message.success(`K线数据已更新: ${result[p].message}`);\n        return true;\n      }\n      return false;\n    } catch (error) {\n      console.error('Check and update klines error:', error);\n      return false;\n    } finally {\n      setSyncingKlines(false);\n    }\n  };\n\n  const fetchKlines = async (autoUpdate: boolean = true) => {\n    if (!tracking?.stockCode) return;\n    try {\n      if (autoUpdate) {\n        await checkAndUpdateKlines(period);\n      }\n      const response = await client.get(`/klines/${tracking.stockCode}`, {\n        params: { period },\n      });\n      setKlines(response.data || []);\n    } catch (error) {\n      console.error('Fetch klines error:', error);\n    }\n  };\n\n  useEffect(() => {\n    fetchTrackingDetail();\n    fetchNews(1, 10);\n    fetchReport();\n  }, [id]);\n\n  useEffect(() => {\n    if (tracking?.stockCode) {\n      fetchBacktestRecords();\n      fetchSignals();\n      fetchKlines();\n\n      const interval = setInterval(() => {\n        fetchBacktestRecords();\n      }, 5000);\n\n      return () => clearInterval(interval);\n    }\n  }, [tracking?.stockCode]);\n\n  useEffect(() => {\n    if (!chartContainerRef.current || !tracking) return;\n\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: { mode: 1 },\n      rightPriceScale: { borderColor: '#d9d9d9' },\n      timeScale: { borderColor: '#d9d9d9', timeVisible: true },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    const candlestickSeries = chart.addSeries(LightweightCharts.CandlestickSeries, {\n      upColor: '#52c41a',\n      downColor: '#f5222d',\n      borderVisible: false,\n      wickUpColor: '#52c41a',\n      wickDownColor: '#f5222d',\n    });\n\n    candlestickSeriesRef.current = candlestickSeries;\n\n    const markers = LightweightCharts.createSeriesMarkers(candlestickSeries);\n    markersRef.current = markers;\n\n    setChartReady(true);\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({ width: chartContainerRef.current.clientWidth });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n    };\n  }, [tracking]);\n\n  useEffect(() => {\n    if (!chartReady || !candlestickSeriesRef.current || klines.length === 0) return;\n\n    const chartData: CandlestickData<Time>[] = klines.map((k) => ({\n      time: Math.floor(new Date(k.timestamp).getTime() / 1000) as Time,\n      open: Number(k.open),\n      high: Number(k.high),\n      low: Number(k.low),\n      close: Number(k.close),\n    }));\n\n    candlestickSeriesRef.current.setData(chartData);\n\n    if (signals.length > 0 && markersRef.current) {\n      const markers: SeriesMarker<Time>[] = signals.map((signal) => {\n        const signalTime = Math.floor(new Date(signal.eventOccurredAt || signal.generatedAt || signal.createdAt || \"\").getTime() / 1000) as Time;\n        const closestData = chartData.reduce((closest, current) => {\n          const currentDiff = Math.abs(Number(current.time) - Number(signalTime));\n          const closestDiff = Math.abs(Number(closest.time) - Number(signalTime));\n          return currentDiff < closestDiff ? current : closest;\n        }, chartData[0]);\n\n        const isLong = signal.action === \"long\";\n        return {\n          time: closestData?.time || signalTime,\n          position: isLong ? \"belowBar\" : \"aboveBar\",\n          shape: isLong ? \"arrowUp\" : \"arrowDown\",\n          color: isLong ? \"#52c41a\" : \"#f5222d\",\n          size: 2,\n          text: `${isLong ? \"做多\" : \"做空\"} ${signal.score ? parseFloat(signal.score).toFixed(2) : \"-\"}`,\n        };\n      });\n\n      markersRef.current.setMarkers(markers);\n    }\n\n    chartRef.current?.timeScale().fitContent();\n  }, [klines, signals, chartReady]);\n\n  const handleFetchNews = async () => {\n    if (!id) return;\n    try {\n      await client.post(`/stock-trackings/${id}/fetch-news`);\n      message.success('历史新闻获取任务已启动，新闻获取后将自动分析生成信号');\n      setTimeout(() => {\n        fetchTrackingDetail();\n        fetchNews(1, 10);\n      }, 5000);\n    } catch (error) {\n      message.error('获取历史新闻失败');\n      console.error('Fetch news error:', error);\n    }\n  };\n\n  const handleGenerateSignals = async () => {\n    if (!id) return;\n    try {\n      const response = await client.post(`/stock-trackings/${id}/generate-signals`);\n      message.success(response.data?.message || '信号生成任务已启动');\n      setTimeout(() => {\n        fetchSignals();\n        fetchTrackingDetail();\n      }, 5000);\n    } catch (error) {\n      message.error('生成信号失败');\n      console.error('Generate signals error:', error);\n    }\n  };\n\n  const handleOpenBacktestForm = () => {\n    setBacktestFormVisible(true);\n    fetchStrategies();\n    backtestForm.resetFields();\n  };\n\n  const handleSubmitBacktest = async () => {\n    try {\n      const values = await backtestForm.validateFields();\n      if (!id || !tracking) return;\n\n      setBacktestSubmitting(true);\n      await client.post(`/stock-trackings/${id}/backtest`, {\n        strategyId: values.strategyId,\n        period: values.period || '4h',\n      });\n\n      message.success('回测任务已启动');\n      setBacktestFormVisible(false);\n      backtestForm.resetFields();\n\n      setTimeout(() => {\n        fetchBacktestRecords();\n      }, 3000);\n    } catch (error: any) {\n      if (error?.errorFields) return;\n      message.error('执行回测失败');\n      console.error('Backtest error:', error);\n    } finally {\n      setBacktestSubmitting(false);\n    }\n  };\n\n  const handleViewBacktestDetail = async (record: BacktestRecord) => {\n    setSelectedBacktest(record);\n    setBacktestModalVisible(true);\n    setBacktestTradesLoading(true);\n    try {\n      const response = await client.get(`/backtest/records/${record.id}/trades`);\n      setBacktestTrades(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch backtest trades error:\", error);\n      message.error(\"获取交易明细失败\");\n    } finally {\n      setBacktestTradesLoading(false);\n    }\n  };\n\n  const handleDeleteBacktest = async (backtestId: string) => {\n    try {\n      await client.delete(`/backtest/records/${backtestId}`);\n      message.success('删除成功');\n      fetchBacktestRecords();\n    } catch (error) {\n      message.error('删除失败');\n      console.error('Delete backtest record error:', error);\n    }\n  };\n\n  const handleGenerateReport = async () => {\n    if (!id) return;\n    try {\n      const response = await client.post(`/stock-trackings/${id}/generate-report`);\n      setReport(response.data?.report || '');\n      message.success('研投报告生成成功');\n    } catch (error) {\n      message.error('生成研投报告失败');\n      console.error('Generate report error:', error);\n    }\n  };\n\n  const handleNewsPageChange = (page: number, pageSize?: number) => {\n    setNewsPagination(prev => ({\n      ...prev,\n      current: page,\n      pageSize: pageSize || prev.pageSize,\n    }));\n  };\n\n  const getStatusColor = (status: string) => {\n    const colorMap: Record<string, string> = {\n      pending: 'default',\n      processing: 'processing',\n      completed: 'success',\n      failed: 'error',\n    };\n    return colorMap[status] || 'default';\n  };\n\n  const getStatusText = (status: string) => {\n    const textMap: Record<string, string> = {\n      pending: '待处理',\n      processing: '处理中',\n      completed: '已完成',\n      failed: '失败',\n    };\n    return textMap[status] || status;\n  };\n\n  const formatDate = (dateString: string) => {\n    if (!dateString) return '-';\n    const date = new Date(dateString);\n    return date.toLocaleString('zh-CN');\n  };\n\n  const formatPercent = (value: string | number | null) => {\n    if (value === null || value === undefined) return '-';\n    const num = typeof value === 'string' ? parseFloat(value) : value;\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const getCurrentPageNews = () => {\n    const { current, pageSize } = newsPagination;\n    const start = (current - 1) * pageSize;\n    const end = start + pageSize;\n    return news.slice(start, end);\n  };\n\n  const backtestColumns = [\n    {\n      title: \"名称\",\n      dataIndex: \"name\",\n      key: \"name\",\n      render: (name: string | null) => name || \"-\",\n    },\n    {\n      title: \"策略\",\n      key: \"strategy\",\n      render: (_: unknown, record: BacktestRecord) =>\n        record.strategySnapshot?.name || \"-\",\n    },\n    {\n      title: \"回测时间\",\n      dataIndex: \"createdAt\",\n      key: \"createdAt\",\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"交易次数\",\n      dataIndex: \"totalTrades\",\n      key: \"totalTrades\",\n      render: (count: number) => <Tag color=\"blue\">{count} 笔</Tag>,\n    },\n    {\n      title: \"胜率\",\n      dataIndex: \"winRate\",\n      key: \"winRate\",\n      render: (rate: string | null) => {\n        if (!rate) return \"-\";\n        const num = parseFloat(rate);\n        const color = num >= 0.5 ? \"success\" : num >= 0.3 ? \"warning\" : \"error\";\n        return <Tag color={color}>{formatPercent(rate)}</Tag>;\n      },\n    },\n    {\n      title: \"总收益率\",\n      dataIndex: \"totalReturnPct\",\n      key: \"totalReturnPct\",\n      render: (ret: string | null) => {\n        if (!ret) return \"-\";\n        const num = parseFloat(ret);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        return <Tag color={color}>{formatPercent(ret)}</Tag>;\n      },\n    },\n    {\n      title: \"最大回撤\",\n      dataIndex: \"maxDrawdownPct\",\n      key: \"maxDrawdownPct\",\n      render: (dd: string | null) =>\n        dd ? <Text type=\"danger\">{formatPercent(dd)}</Text> : \"-\",\n    },\n    {\n      title: \"状态\",\n      dataIndex: \"status\",\n      key: \"status\",\n      render: (status: string) => {\n        const colorMap: Record<string, string> = {\n          completed: \"green\",\n          failed: \"red\",\n          running: \"blue\",\n        };\n        const labelMap: Record<string, string> = {\n          completed: \"完成\",\n          failed: \"失败\",\n          running: \"运行中\",\n        };\n        return (\n          <Tag color={colorMap[status] || \"default\"}>\n            {labelMap[status] || status}\n          </Tag>\n        );\n      },\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space size=\"small\">\n          <Button\n            type=\"primary\"\n            icon={<EyeOutlined />}\n            size=\"small\"\n            onClick={() => handleViewBacktestDetail(record)}\n          >\n            查看详情\n          </Button>\n          <Popconfirm\n            title=\"确认删除\"\n            description=\"确定要删除这条回测记录吗？\"\n            onConfirm={() => handleDeleteBacktest(record.id)}\n            okText=\"确认\"\n            cancelText=\"取消\"\n          >\n            <Button danger icon={<DeleteOutlined />} size=\"small\">\n              删除\n            </Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  const signalColumns = [\n    {\n      title: \"时间\",\n      dataIndex: \"generatedAt\",\n      key: \"generatedAt\",\n      render: (time: string | null) => formatDate(time || \"\"),\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"action\",\n      key: \"action\",\n      render: (action: string) => {\n        const color = action === \"long\" ? \"red\" : action === \"short\" ? \"green\" : \"default\";\n        const text = action === \"long\" ? \"做多\" : action === \"short\" ? \"做空\" : \"观望\";\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"分数\",\n      dataIndex: \"score\",\n      key: \"score\",\n      render: (score: string | null) =>\n        score ? parseFloat(score).toFixed(4) : \"-\",\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      render: (_: unknown, record: Signal) => (\n        <Button type=\"link\" onClick={() => navigate(`/signals/${record.id}`)}>\n          查看\n        </Button>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: \"标的\",\n      dataIndex: \"symbol\",\n      key: \"symbol\",\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"direction\",\n      key: \"direction\",\n      render: (direction: string) => {\n        const isLong = direction === \"long\";\n        return (\n          <Tag color={isLong ? \"red\" : \"green\"}>{isLong ? \"做多\" : \"做空\"}</Tag>\n        );\n      },\n    },\n    {\n      title: \"入场时间\",\n      dataIndex: \"entryTime\",\n      key: \"entryTime\",\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"入场价\",\n      dataIndex: \"entryPrice\",\n      key: \"entryPrice\",\n      render: (price: string) => parseFloat(price).toFixed(2),\n    },\n    {\n      title: \"出场时间\",\n      dataIndex: \"exitTime\",\n      key: \"exitTime\",\n      render: (time: string | null) => (time ? formatDate(time) : \"-\"),\n    },\n    {\n      title: \"出场价\",\n      dataIndex: \"exitPrice\",\n      key: \"exitPrice\",\n      render: (price: string | null) =>\n        price ? parseFloat(price).toFixed(2) : \"-\",\n    },\n    {\n      title: \"收益率\",\n      dataIndex: \"pnlPct\",\n      key: \"pnlPct\",\n      render: (pct: string | null) => {\n        if (!pct) return \"-\";\n        const num = parseFloat(pct);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        const text =\n          num > 0 ? `+${(num * 100).toFixed(2)}%` : `${(num * 100).toFixed(2)}%`;\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"出场原因\",\n      dataIndex: \"exitReason\",\n      key: \"exitReason\",\n      render: (reason: string | null) => {\n        const reasonMap: Record<string, string> = {\n          hold_period: \"持仓到期\",\n          stop_loss: \"止损\",\n          take_profit: \"止盈\",\n        };\n        return reason ? reasonMap[reason] || reason : \"-\";\n      },\n    },\n  ];\n\n  return (\n    <div>\n      <Space style={{ marginBottom: 16 }}>\n        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/stock-trackings')}>返回</Button>\n        <Button icon={<ReloadOutlined />} onClick={fetchTrackingDetail}>刷新</Button>\n      </Space>\n\n      <Spin spinning={loading}>\n        {tracking ? (\n          <>\n            <Card style={{ marginBottom: 24 }}>\n              <Title level={3}>{tracking.stockName} ({tracking.stockCode})</Title>\n              <Space size=\"large\">\n                <Text>状态: <Tag color={getStatusColor(tracking.status)}>{getStatusText(tracking.status)}</Tag></Text>\n                <Text>新闻数量: <Tag color=\"blue\">{tracking.totalNews} 条</Tag></Text>\n                <Text>创建时间: {formatDate(tracking.createdAt)}</Text>\n              </Space>\n            </Card>\n\n            <Card style={{ marginBottom: 24 }}>\n              <Space wrap>\n                <Button type=\"primary\" icon={<PlayCircleOutlined />} onClick={handleFetchNews}>获取历史新闻</Button>\n                <Button icon={<LineChartOutlined />} onClick={handleGenerateSignals}>生成历史信号</Button>\n                <Button icon={<HistoryOutlined />} onClick={handleOpenBacktestForm}>执行回测</Button>\n                <Button icon={<FileTextOutlined />} onClick={handleGenerateReport}>生成研投报告</Button>\n              </Space>\n            </Card>\n\n            <Card title=\"回测记录\" style={{ marginBottom: 24 }}>\n              {backtestRecords.length === 0 ? (\n                <Empty description=\"暂无回测记录，请点击「执行回测」按钮\" />\n              ) : (\n                <Table dataSource={backtestRecords} columns={backtestColumns} rowKey=\"id\" pagination={{ pageSize: 5 }} size=\"small\" />\n              )}\n            </Card>\n\n            <Card title=\"研投报告\" style={{ marginBottom: 24 }}>\n              {report ? (\n                <div style={{ padding: 16, background: '#f5f5f5', borderRadius: 8 }}>\n                  <Text style={{ whiteSpace: 'pre-wrap' }}>{report}</Text>\n                </div>\n              ) : (\n                <Empty description=\"暂无研投报告，请点击「生成研投报告」按钮\" />\n              )}\n            </Card>\n\n            <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n              <Col xs={24} lg={16}>\n                <Card\n                  title={<Space><BarChartOutlined />K线图</Space>}\n                  extra={\n                    <Space>\n                      <Select value={period} onChange={(v) => { setPeriod(v); }} style={{ width: 100 }}>\n                        <Option value=\"1d\">日线</Option>\n                        <Option value=\"4h\">4小时</Option>\n                      </Select>\n                      <Button\n                        icon={<SyncOutlined spin={syncingKlines} />}\n                        loading={syncingKlines}\n                        onClick={() => checkAndUpdateKlines(period)}\n                      >\n                        同步K线\n                      </Button>\n                      <Button\n                        icon={<ReloadOutlined />}\n                        onClick={() => fetchKlines(false)}\n                      >\n                        刷新\n                      </Button>\n                    </Space>\n                  }\n                >\n                  <div ref={chartContainerRef} style={{ width: '100%', height: 400 }} />\n                </Card>\n              </Col>\n              <Col xs={24} lg={8}>\n                <Card title=\"信号列表\">\n                  {signals.length === 0 ? (\n                    <Empty description=\"暂无信号\" />\n                  ) : (\n                    <Table dataSource={signals} columns={signalColumns} rowKey=\"id\" pagination={{ pageSize: 5 }} size=\"small\" scroll={{ y: 340 }} />\n                  )}\n                </Card>\n              </Col>\n            </Row>\n\n            <Card title=\"历史新闻\">\n              {news.length === 0 ? (\n                <Empty description=\"暂无新闻数据，请点击「获取历史新闻」按钮\" />\n              ) : (\n                <>\n                  <List\n                    dataSource={getCurrentPageNews()}\n                    renderItem={(item) => (\n                      <List.Item>\n                        <List.Item.Meta\n                          title={<Link to={`/news/${item.id}`} style={{ color: '#1890ff' }}>{item.title}</Link>}\n                          description={\n                            <Space split={<Divider type=\"vertical\" />}>\n                              <Text type=\"secondary\">{item.source}</Text>\n                              <Text type=\"secondary\">{formatDate(item.publishTime)}</Text>\n                              <Tag color={item.analyzeStatus === 'analyzed' ? 'success' : item.analyzeStatus === 'filtered' ? 'warning' : 'default'}>\n                                {item.analyzeStatus === 'analyzed' ? '已分析' : item.analyzeStatus === 'filtered' ? '已过滤' : item.analyzeStatus === 'failed' ? '分析失败' : '待分析'}\n                              </Tag>\n                            </Space>\n                          }\n                        />\n                      </List.Item>\n                    )}\n                  />\n                  <div style={{ marginTop: 16, textAlign: 'right' }}>\n                    <Pagination\n                      current={newsPagination.current}\n                      pageSize={newsPagination.pageSize}\n                      total={newsPagination.total}\n                      onChange={handleNewsPageChange}\n                      showSizeChanger\n                      showQuickJumper\n                      showTotal={(total) => `共 ${total} 条`}\n                    />\n                  </div>\n                </>\n              )}\n            </Card>\n          </>\n        ) : (\n          <Empty description=\"追踪记录不存在\" />\n        )}\n      </Spin>\n\n      <Modal\n        title=\"执行回测\"\n        open={backtestFormVisible}\n        onOk={handleSubmitBacktest}\n        onCancel={() => setBacktestFormVisible(false)}\n        confirmLoading={backtestSubmitting}\n        okText=\"开始回测\"\n        cancelText=\"取消\"\n        width={500}\n      >\n        <Form form={backtestForm} layout=\"vertical\" initialValues={{ period: '4h' }}>\n          <Form.Item\n            name=\"strategyId\"\n            label=\"选择策略\"\n            rules={[{ required: true, message: '请选择策略' }]}\n          >\n            <Select\n              placeholder=\"请选择策略\"\n              loading={strategiesLoading}\n              showSearch\n              optionFilterProp=\"children\"\n            >\n              {strategies.map((s) => (\n                <Option key={s.id} value={s.id}>\n                  {s.name} ({s.directionMode === 'long_only' ? '仅做多' : s.directionMode === 'short_only' ? '仅做空' : '多空都做'})\n                </Option>\n              ))}\n            </Select>\n          </Form.Item>\n          <Form.Item name=\"period\" label=\"K线周期\">\n            <Radio.Group>\n              <Radio value=\"4h\">4小时线</Radio>\n              <Radio value=\"1d\">日线</Radio>\n            </Radio.Group>\n          </Form.Item>\n          {tracking && (\n            <div style={{ padding: 12, background: '#f5f5f5', borderRadius: 8, marginTop: 8 }}>\n              <Text type=\"secondary\">\n                回测将自动使用该股票关联新闻的时间范围，并限定股票代码为 {tracking.stockCode}\n              </Text>\n            </div>\n          )}\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"回测详情\"\n        open={backtestModalVisible}\n        onCancel={() => setBacktestModalVisible(false)}\n        width={1400}\n        footer={[\n          <Button key=\"close\" onClick={() => setBacktestModalVisible(false)}>\n            关闭\n          </Button>,\n        ]}\n      >\n        {selectedBacktest ? (\n          <>\n            <Descriptions bordered column={3} style={{ marginBottom: 24 }}>\n              <Descriptions.Item label=\"策略名称\">\n                {selectedBacktest.strategySnapshot?.name || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"回测区间\">\n                {formatDate(selectedBacktest.startTime)} ~{\" \"}\n                {formatDate(selectedBacktest.endTime)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"K线周期\">\n                {selectedBacktest.period === '4h' ? '4小时线' : selectedBacktest.period === '1d' ? '日线' : selectedBacktest.period}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"信号总数/过滤后\">\n                {selectedBacktest.totalSignals ?? \"-\"} /{\" \"}\n                {selectedBacktest.filteredSignals ?? \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"总交易次数\">\n                {selectedBacktest.totalTrades} 笔\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈利/亏损\">\n                <Text style={{ color: \"#52c41a\" }}>\n                  {selectedBacktest.winningTrades}\n                </Text>{\" \"}\n                /{\" \"}\n                <Text style={{ color: \"#ff4d4f\" }}>\n                  {selectedBacktest.losingTrades}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"胜率\">\n                {formatPercent(selectedBacktest.winRate)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"总收益率\">\n                <Tag\n                  color={\n                    selectedBacktest.totalReturnPct &&\n                    parseFloat(selectedBacktest.totalReturnPct) > 0\n                      ? \"red\"\n                      : \"green\"\n                  }\n                >\n                  {formatPercent(selectedBacktest.totalReturnPct)}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"平均收益率\">\n                {formatPercent(selectedBacktest.avgReturnPct)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"最大回撤\">\n                <Text type=\"danger\">\n                  {formatPercent(selectedBacktest.maxDrawdownPct)}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"夏普比率\">\n                {selectedBacktest.sharpeRatio\n                  ? parseFloat(selectedBacktest.sharpeRatio).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈亏比\">\n                {selectedBacktest.profitFactor\n                  ? parseFloat(selectedBacktest.profitFactor).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n            </Descriptions>\n            <Title level={5}>交易明细</Title>\n            <Spin spinning={backtestTradesLoading}>\n              <Table\n                dataSource={backtestTrades}\n                columns={tradeColumns}\n                rowKey=\"id\"\n                pagination={{ pageSize: 10 }}\n                size=\"small\"\n                scroll={{ x: 1200 }}\n              />\n            </Spin>\n          </>\n        ) : (\n          <Empty description=\"暂无数据\" />\n        )}\n      </Modal>\n    </div>\n  );\n};\n\nexport default StockTrackingDetailPage;\n",
+      "__content": "import React, { useState, useEffect, useRef } from 'react';\nimport {\n  Card,\n  Button,\n  Tag,\n  Typography,\n  Space,\n  message,\n  Spin,\n  Empty,\n  List,\n  Divider,\n  Modal,\n  Table,\n  Descriptions,\n  Pagination,\n  Popconfirm,\n  Row,\n  Col,\n  Select,\n  Form,\n  Radio,\n} from 'antd';\nimport {\n  ArrowLeftOutlined,\n  ReloadOutlined,\n  PlayCircleOutlined,\n  LineChartOutlined,\n  FileTextOutlined,\n  EyeOutlined,\n  HistoryOutlined,\n  DeleteOutlined,\n  BarChartOutlined,\n  SyncOutlined,\n} from '@ant-design/icons';\nimport { useParams, useNavigate, Link } from 'umi';\nimport * as LightweightCharts from 'lightweight-charts';\nimport type { CandlestickData, Time, IChartApi, ISeriesApi, SeriesMarker } from 'lightweight-charts';\nimport client from '@/services/client';\nimport { klinesApi } from '@/services/klines';\n\nconst { Title, Text } = Typography;\nconst { Option } = Select;\n\ninterface StockTracking {\n  id: string;\n  stockCode: string;\n  stockName: string;\n  status: 'pending' | 'processing' | 'completed' | 'failed';\n  totalNews: number;\n  createdAt: string;\n}\n\ninterface NewsItem {\n  id: string;\n  title: string;\n  content: string;\n  publishTime: string;\n  source: string;\n  analyzeStatus: string;\n}\n\ninterface BacktestRecord {\n  id: string;\n  name: string | null;\n  strategyId: string | null;\n  strategySnapshot: {\n    id: string;\n    name: string;\n    minScore: string;\n    maxScore: string | null;\n    directionMode: string;\n    holdPeriod: number;\n    stopLossPct: string | null;\n    takeProfitPct: string | null;\n  } | null;\n  startTime: string;\n  endTime: string;\n  period: string;\n  totalSignals: number | null;\n  filteredSignals: number | null;\n  totalTrades: number;\n  winningTrades: number;\n  losingTrades: number;\n  winRate: string | null;\n  totalReturnPct: string | null;\n  avgReturnPct: string | null;\n  maxDrawdownPct: string | null;\n  sharpeRatio: string | null;\n  profitFactor: string | null;\n  status: string;\n  createdAt: string;\n}\n\ninterface BacktestTrade {\n  id: string;\n  signalId: string | null;\n  symbol: string;\n  stockName: string | null;\n  direction: string;\n  entryTime: string;\n  entryPrice: string;\n  exitTime: string | null;\n  exitPrice: string | null;\n  pnlPct: string | null;\n  exitReason: string | null;\n}\n\ninterface Signal {\n  id: string;\n  symbol: string | null;\n  stockCode: string | null;\n  stockName: string | null;\n  action: string;\n  score: string | null;\n  generatedAt: string | null;\n  createdAt: string | null;\n  reason: string | null;\n  reasoning: string | null;\n  ruleId: string | null;\n  eventId: string | null;\n  eventOccurredAt?: string | null;\n}\n\ninterface KlineData {\n  timestamp: string;\n  open: number;\n  high: number;\n  low: number;\n  close: number;\n  volume: number;\n}\n\ninterface Strategy {\n  id: string;\n  name: string;\n  description: string | null;\n  enabled: boolean;\n  directionMode: string;\n  holdPeriod: number;\n  minScore: string;\n  maxScore: string | null;\n  stopLossPct: string | null;\n  takeProfitPct: string | null;\n}\n\nconst StockTrackingDetailPage: React.FC = () => {\n  const { id } = useParams<{ id: string }>();\n  const navigate = useNavigate();\n  const chartContainerRef = useRef<HTMLDivElement>(null);\n  const chartRef = useRef<IChartApi | null>(null);\n  const candlestickSeriesRef = useRef<ISeriesApi<'Candlestick'> | null>(null);\n  const markersRef = useRef<any>(null);\n\n  const [loading, setLoading] = useState(true);\n  const [tracking, setTracking] = useState<StockTracking | null>(null);\n  const [news, setNews] = useState<NewsItem[]>([]);\n  const [newsPagination, setNewsPagination] = useState({\n    current: 1,\n    pageSize: 10,\n    total: 0,\n  });\n  const [report, setReport] = useState<string>('');\n  const [backtestRecords, setBacktestRecords] = useState<BacktestRecord[]>([]);\n  const [backtestModalVisible, setBacktestModalVisible] = useState(false);\n  const [selectedBacktest, setSelectedBacktest] = useState<BacktestRecord | null>(null);\n  const [backtestTrades, setBacktestTrades] = useState<BacktestTrade[]>([]);\n  const [backtestTradesLoading, setBacktestTradesLoading] = useState(false);\n  const [signals, setSignals] = useState<Signal[]>([]);\n  const [klines, setKlines] = useState<KlineData[]>([]);\n  const [period, setPeriod] = useState<'1d' | '4h'>('4h');\n  const [chartReady, setChartReady] = useState(false);\n  const [syncingKlines, setSyncingKlines] = useState(false);\n\n  const [backtestFormVisible, setBacktestFormVisible] = useState(false);\n  const [strategies, setStrategies] = useState<Strategy[]>([]);\n  const [strategiesLoading, setStrategiesLoading] = useState(false);\n  const [backtestSubmitting, setBacktestSubmitting] = useState(false);\n  const [backtestForm] = Form.useForm();\n\n  const fetchTrackingDetail = async () => {\n    if (!id) return;\n    setLoading(true);\n    try {\n      const response = await client.get(`/stock-trackings/${id}`);\n      setTracking(response.data);\n    } catch (error) {\n      message.error('获取追踪详情失败');\n      console.error('Fetch tracking detail error:', error);\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const fetchReport = async () => {\n    if (!id) return;\n    try {\n      const response = await client.get(`/stock-trackings/${id}/report`);\n      const reportData = response.data?.report;\n      if (reportData) {\n        setReport(reportData);\n      }\n    } catch (error) {\n      console.error('Fetch report error:', error);\n    }\n  };\n\n  const fetchNews = async (page = 1, pageSize = 10) => {\n    if (!id) return;\n    try {\n      const response = await client.get(`/stock-trackings/${id}/news`);\n      const newsList = response.data || [];\n      setNews(newsList);\n      setNewsPagination({\n        current: page,\n        pageSize,\n        total: newsList.length,\n      });\n    } catch (error) {\n      console.error('Fetch news error:', error);\n    }\n  };\n\n  const fetchBacktestRecords = async () => {\n    if (!tracking?.stockCode) return;\n    try {\n      const response = await client.get(`/backtest/records?stockCode=${tracking.stockCode}`);\n      const records = response.data || [];\n      setBacktestRecords(records);\n    } catch (error) {\n      console.error('Fetch backtest records error:', error);\n    }\n  };\n\n  const fetchSignals = async () => {\n    if (!tracking?.stockCode) return;\n    try {\n      const response = await client.get(`/signals`, {\n        params: { symbol: tracking.stockCode, pageSize: 100 },\n      });\n      setSignals(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch signals error:\", error);\n    }\n  };\n\n  const fetchStrategies = async () => {\n    setStrategiesLoading(true);\n    try {\n      const response = await client.get('/strategies');\n      const data = response.data || [];\n      setStrategies(data.filter((s: Strategy) => s.enabled));\n    } catch (error) {\n      console.error('Fetch strategies error:', error);\n      message.error('获取策略列表失败');\n    } finally {\n      setStrategiesLoading(false);\n    }\n  };\n\n  const checkAndUpdateKlines = async (p: '1d' | '4h' = period): Promise<boolean> => {\n    if (!tracking?.stockCode) return false;\n    try {\n      setSyncingKlines(true);\n      const result = await klinesApi.checkAndUpdate(tracking.stockCode, p);\n      if ('updated' in result) {\n        if (result.updated) {\n          message.success(`K线数据已更新: ${result.message}`);\n          return true;\n        }\n      } else if (result[p]?.updated) {\n        message.success(`K线数据已更新: ${result[p].message}`);\n        return true;\n      }\n      return false;\n    } catch (error) {\n      console.error('Check and update klines error:', error);\n      return false;\n    } finally {\n      setSyncingKlines(false);\n    }\n  };\n\n  const fetchKlines = async (autoUpdate: boolean = true) => {\n    if (!tracking?.stockCode) return;\n    try {\n      if (autoUpdate) {\n        await checkAndUpdateKlines(period);\n      }\n      const response = await client.get(`/klines/${tracking.stockCode}`, {\n        params: { period },\n      });\n      setKlines(response.data || []);\n    } catch (error) {\n      console.error('Fetch klines error:', error);\n    }\n  };\n\n  useEffect(() => {\n    fetchTrackingDetail();\n    fetchNews(1, 10);\n    fetchReport();\n  }, [id]);\n\n  useEffect(() => {\n    if (tracking?.stockCode) {\n      fetchBacktestRecords();\n      fetchSignals();\n      fetchKlines();\n\n      const interval = setInterval(() => {\n        fetchBacktestRecords();\n      }, 5000);\n\n      return () => clearInterval(interval);\n    }\n  }, [tracking?.stockCode]);\n\n  useEffect(() => {\n    if (!chartContainerRef.current || !tracking) return;\n\n    const chart = LightweightCharts.createChart(chartContainerRef.current, {\n      layout: {\n        background: { color: '#ffffff' },\n        textColor: '#333',\n      },\n      grid: {\n        vertLines: { color: '#f0f0f0' },\n        horzLines: { color: '#f0f0f0' },\n      },\n      crosshair: { mode: 1 },\n      rightPriceScale: { borderColor: '#d9d9d9' },\n      timeScale: { borderColor: '#d9d9d9', timeVisible: true },\n      width: chartContainerRef.current.clientWidth,\n      height: 400,\n    });\n\n    chartRef.current = chart;\n\n    const candlestickSeries = chart.addSeries(LightweightCharts.CandlestickSeries, {\n      upColor: '#52c41a',\n      downColor: '#f5222d',\n      borderVisible: false,\n      wickUpColor: '#52c41a',\n      wickDownColor: '#f5222d',\n    });\n\n    candlestickSeriesRef.current = candlestickSeries;\n\n    const markers = LightweightCharts.createSeriesMarkers(candlestickSeries);\n    markersRef.current = markers;\n\n    setChartReady(true);\n\n    const handleResize = () => {\n      if (chartContainerRef.current && chartRef.current) {\n        chartRef.current.applyOptions({ width: chartContainerRef.current.clientWidth });\n      }\n    };\n\n    window.addEventListener('resize', handleResize);\n\n    return () => {\n      window.removeEventListener('resize', handleResize);\n      chart.remove();\n    };\n  }, [tracking]);\n\n  useEffect(() => {\n    if (!chartReady || !candlestickSeriesRef.current || klines.length === 0) return;\n\n    const chartData: CandlestickData<Time>[] = klines.map((k) => ({\n      time: Math.floor(new Date(k.timestamp).getTime() / 1000) as Time,\n      open: Number(k.open),\n      high: Number(k.high),\n      low: Number(k.low),\n      close: Number(k.close),\n    }));\n\n    candlestickSeriesRef.current.setData(chartData);\n\n    if (signals.length > 0 && markersRef.current) {\n      const markers: SeriesMarker<Time>[] = signals.map((signal) => {\n        const signalTime = Math.floor(new Date(signal.eventOccurredAt || signal.generatedAt || signal.createdAt || \"\").getTime() / 1000) as Time;\n        const closestData = chartData.reduce((closest, current) => {\n          const currentDiff = Math.abs(Number(current.time) - Number(signalTime));\n          const closestDiff = Math.abs(Number(closest.time) - Number(signalTime));\n          return currentDiff < closestDiff ? current : closest;\n        }, chartData[0]);\n\n        const isLong = signal.action === \"long\";\n        return {\n          time: closestData?.time || signalTime,\n          position: isLong ? \"belowBar\" : \"aboveBar\",\n          shape: isLong ? \"arrowUp\" : \"arrowDown\",\n          color: isLong ? \"#52c41a\" : \"#f5222d\",\n          size: 2,\n          text: `${isLong ? \"做多\" : \"做空\"} ${signal.score ? parseFloat(signal.score).toFixed(2) : \"-\"}`,\n        };\n      });\n\n      markersRef.current.setMarkers(markers);\n    }\n\n    chartRef.current?.timeScale().fitContent();\n  }, [klines, signals, chartReady]);\n\n  const handleFetchNews = async () => {\n    if (!id) return;\n    try {\n      await client.post(`/stock-trackings/${id}/fetch-news`);\n      message.success('历史新闻获取任务已启动，新闻获取后将自动分析生成信号');\n      setTimeout(() => {\n        fetchTrackingDetail();\n        fetchNews(1, 10);\n      }, 5000);\n    } catch (error) {\n      message.error('获取历史新闻失败');\n      console.error('Fetch news error:', error);\n    }\n  };\n\n  const handleGenerateSignals = async () => {\n    if (!id) return;\n    try {\n      const response = await client.post(`/stock-trackings/${id}/generate-signals`);\n      message.success(response.data?.message || '信号生成任务已启动');\n      setTimeout(() => {\n        fetchSignals();\n        fetchTrackingDetail();\n      }, 5000);\n    } catch (error) {\n      message.error('生成信号失败');\n      console.error('Generate signals error:', error);\n    }\n  };\n\n  const handleOpenBacktestForm = () => {\n    setBacktestFormVisible(true);\n    fetchStrategies();\n    backtestForm.resetFields();\n  };\n\n  const handleSubmitBacktest = async () => {\n    try {\n      const values = await backtestForm.validateFields();\n      if (!id || !tracking) return;\n\n      setBacktestSubmitting(true);\n      await client.post(`/stock-trackings/${id}/backtest`, {\n        strategyId: values.strategyId,\n        period: values.period || '4h',\n      });\n\n      message.success('回测任务已启动');\n      setBacktestFormVisible(false);\n      backtestForm.resetFields();\n\n      setTimeout(() => {\n        fetchBacktestRecords();\n      }, 3000);\n    } catch (error: any) {\n      if (error?.errorFields) return;\n      message.error('执行回测失败');\n      console.error('Backtest error:', error);\n    } finally {\n      setBacktestSubmitting(false);\n    }\n  };\n\n  const handleViewBacktestDetail = async (record: BacktestRecord) => {\n    setSelectedBacktest(record);\n    setBacktestModalVisible(true);\n    setBacktestTradesLoading(true);\n    try {\n      const response = await client.get(`/backtest/records/${record.id}/trades`);\n      setBacktestTrades(response.data || []);\n    } catch (error) {\n      console.error(\"Fetch backtest trades error:\", error);\n      message.error(\"获取交易明细失败\");\n    } finally {\n      setBacktestTradesLoading(false);\n    }\n  };\n\n  const handleDeleteBacktest = async (backtestId: string) => {\n    try {\n      await client.delete(`/backtest/records/${backtestId}`);\n      message.success('删除成功');\n      fetchBacktestRecords();\n    } catch (error) {\n      message.error('删除失败');\n      console.error('Delete backtest record error:', error);\n    }\n  };\n\n  const handleGenerateReport = async () => {\n    if (!id) return;\n    try {\n      const response = await client.post(`/stock-trackings/${id}/generate-report`);\n      setReport(response.data?.report || '');\n      message.success('研投报告生成成功');\n    } catch (error) {\n      message.error('生成研投报告失败');\n      console.error('Generate report error:', error);\n    }\n  };\n\n  const handleNewsPageChange = (page: number, pageSize?: number) => {\n    setNewsPagination(prev => ({\n      ...prev,\n      current: page,\n      pageSize: pageSize || prev.pageSize,\n    }));\n  };\n\n  const getStatusColor = (status: string) => {\n    const colorMap: Record<string, string> = {\n      pending: 'default',\n      processing: 'processing',\n      completed: 'success',\n      failed: 'error',\n    };\n    return colorMap[status] || 'default';\n  };\n\n  const getStatusText = (status: string) => {\n    const textMap: Record<string, string> = {\n      pending: '待处理',\n      processing: '处理中',\n      completed: '已完成',\n      failed: '失败',\n    };\n    return textMap[status] || status;\n  };\n\n  const formatDate = (dateString: string) => {\n    if (!dateString) return '-';\n    const date = new Date(dateString);\n    return date.toLocaleString('zh-CN');\n  };\n\n  const formatPercent = (value: string | number | null) => {\n    if (value === null || value === undefined) return '-';\n    const num = typeof value === 'string' ? parseFloat(value) : value;\n    return `${(num * 100).toFixed(2)}%`;\n  };\n\n  const getCurrentPageNews = () => {\n    const { current, pageSize } = newsPagination;\n    const start = (current - 1) * pageSize;\n    const end = start + pageSize;\n    return news.slice(start, end);\n  };\n\n  const backtestColumns = [\n    {\n      title: \"名称\",\n      dataIndex: \"name\",\n      key: \"name\",\n      render: (name: string | null) => name || \"-\",\n    },\n    {\n      title: \"策略\",\n      key: \"strategy\",\n      render: (_: unknown, record: BacktestRecord) =>\n        record.strategySnapshot?.name || \"-\",\n    },\n    {\n      title: \"回测时间\",\n      dataIndex: \"createdAt\",\n      key: \"createdAt\",\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"交易次数\",\n      dataIndex: \"totalTrades\",\n      key: \"totalTrades\",\n      render: (count: number) => <Tag color=\"blue\">{count} 笔</Tag>,\n    },\n    {\n      title: \"胜率\",\n      dataIndex: \"winRate\",\n      key: \"winRate\",\n      render: (rate: string | null) => {\n        if (!rate) return \"-\";\n        const num = parseFloat(rate);\n        const color = num >= 0.5 ? \"success\" : num >= 0.3 ? \"warning\" : \"error\";\n        return <Tag color={color}>{formatPercent(rate)}</Tag>;\n      },\n    },\n    {\n      title: \"总收益率\",\n      dataIndex: \"totalReturnPct\",\n      key: \"totalReturnPct\",\n      render: (ret: string | null) => {\n        if (!ret) return \"-\";\n        const num = parseFloat(ret);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        return <Tag color={color}>{formatPercent(ret)}</Tag>;\n      },\n    },\n    {\n      title: \"最大回撤\",\n      dataIndex: \"maxDrawdownPct\",\n      key: \"maxDrawdownPct\",\n      render: (dd: string | null) =>\n        dd ? <Text type=\"danger\">{formatPercent(dd)}</Text> : \"-\",\n    },\n    {\n      title: \"状态\",\n      dataIndex: \"status\",\n      key: \"status\",\n      render: (status: string) => {\n        const colorMap: Record<string, string> = {\n          completed: \"green\",\n          failed: \"red\",\n          running: \"blue\",\n        };\n        const labelMap: Record<string, string> = {\n          completed: \"完成\",\n          failed: \"失败\",\n          running: \"运行中\",\n        };\n        return (\n          <Tag color={colorMap[status] || \"default\"}>\n            {labelMap[status] || status}\n          </Tag>\n        );\n      },\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      render: (_: unknown, record: BacktestRecord) => (\n        <Space size=\"small\">\n          <Button\n            type=\"primary\"\n            icon={<EyeOutlined />}\n            size=\"small\"\n            onClick={() => handleViewBacktestDetail(record)}\n          >\n            查看详情\n          </Button>\n          <Popconfirm\n            title=\"确认删除\"\n            description=\"确定要删除这条回测记录吗？\"\n            onConfirm={() => handleDeleteBacktest(record.id)}\n            okText=\"确认\"\n            cancelText=\"取消\"\n          >\n            <Button danger icon={<DeleteOutlined />} size=\"small\">\n              删除\n            </Button>\n          </Popconfirm>\n        </Space>\n      ),\n    },\n  ];\n\n  const signalColumns = [\n    {\n      title: \"时间\",\n      dataIndex: \"generatedAt\",\n      key: \"generatedAt\",\n      render: (time: string | null) => formatDate(time || \"\"),\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"action\",\n      key: \"action\",\n      render: (action: string) => {\n        const color = action === \"long\" ? \"red\" : action === \"short\" ? \"green\" : \"default\";\n        const text = action === \"long\" ? \"做多\" : action === \"short\" ? \"做空\" : \"观望\";\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"分数\",\n      dataIndex: \"score\",\n      key: \"score\",\n      render: (score: string | null) =>\n        score ? parseFloat(score).toFixed(4) : \"-\",\n    },\n    {\n      title: \"操作\",\n      key: \"action\",\n      render: (_: unknown, record: Signal) => (\n        <Button type=\"link\" onClick={() => navigate(`/signals/${record.id}`)}>\n          查看\n        </Button>\n      ),\n    },\n  ];\n\n  const tradeColumns = [\n    {\n      title: \"标的\",\n      dataIndex: \"symbol\",\n      key: \"symbol\",\n    },\n    {\n      title: \"方向\",\n      dataIndex: \"direction\",\n      key: \"direction\",\n      render: (direction: string) => {\n        const isLong = direction === \"long\";\n        return (\n          <Tag color={isLong ? \"red\" : \"green\"}>{isLong ? \"做多\" : \"做空\"}</Tag>\n        );\n      },\n    },\n    {\n      title: \"入场时间\",\n      dataIndex: \"entryTime\",\n      key: \"entryTime\",\n      render: (time: string) => formatDate(time),\n    },\n    {\n      title: \"入场价\",\n      dataIndex: \"entryPrice\",\n      key: \"entryPrice\",\n      render: (price: string) => parseFloat(price).toFixed(2),\n    },\n    {\n      title: \"出场时间\",\n      dataIndex: \"exitTime\",\n      key: \"exitTime\",\n      render: (time: string | null) => (time ? formatDate(time) : \"-\"),\n    },\n    {\n      title: \"出场价\",\n      dataIndex: \"exitPrice\",\n      key: \"exitPrice\",\n      render: (price: string | null) =>\n        price ? parseFloat(price).toFixed(2) : \"-\",\n    },\n    {\n      title: \"收益率\",\n      dataIndex: \"pnlPct\",\n      key: \"pnlPct\",\n      render: (pct: string | null) => {\n        if (!pct) return \"-\";\n        const num = parseFloat(pct);\n        const color = num > 0 ? \"red\" : num < 0 ? \"green\" : \"default\";\n        const text =\n          num > 0 ? `+${(num * 100).toFixed(2)}%` : `${(num * 100).toFixed(2)}%`;\n        return <Tag color={color}>{text}</Tag>;\n      },\n    },\n    {\n      title: \"出场原因\",\n      dataIndex: \"exitReason\",\n      key: \"exitReason\",\n      render: (reason: string | null) => {\n        const reasonMap: Record<string, string> = {\n          hold_period: \"持仓到期\",\n          stop_loss: \"止损\",\n          take_profit: \"止盈\",\n        };\n        return reason ? reasonMap[reason] || reason : \"-\";\n      },\n    },\n  ];\n\n  return (\n    <div>\n      <Space style={{ marginBottom: 16 }}>\n        <Button icon={<ArrowLeftOutlined />} onClick={() => navigate('/stock-trackings')}>返回</Button>\n        <Button icon={<ReloadOutlined />} onClick={fetchTrackingDetail}>刷新</Button>\n      </Space>\n\n      <Spin spinning={loading}>\n        {tracking ? (\n          <>\n            <Card style={{ marginBottom: 24 }}>\n              <Title level={3}>{tracking.stockName} ({tracking.stockCode})</Title>\n              <Space size=\"large\">\n                <Text>状态: <Tag color={getStatusColor(tracking.status)}>{getStatusText(tracking.status)}</Tag></Text>\n                <Text>新闻数量: <Tag color=\"blue\">{tracking.totalNews} 条</Tag></Text>\n                <Text>创建时间: {formatDate(tracking.createdAt)}</Text>\n              </Space>\n            </Card>\n\n            <Card style={{ marginBottom: 24 }}>\n              <Space wrap>\n                <Button type=\"primary\" icon={<PlayCircleOutlined />} onClick={handleFetchNews}>获取历史新闻</Button>\n                <Button icon={<LineChartOutlined />} onClick={handleGenerateSignals}>生成历史信号</Button>\n                <Button icon={<HistoryOutlined />} onClick={handleOpenBacktestForm}>执行回测</Button>\n                <Button icon={<FileTextOutlined />} onClick={handleGenerateReport}>生成研投报告</Button>\n              </Space>\n            </Card>\n\n            <Card title=\"回测记录\" style={{ marginBottom: 24 }}>\n              {backtestRecords.length === 0 ? (\n                <Empty description=\"暂无回测记录，请点击「执行回测」按钮\" />\n              ) : (\n                <Table dataSource={backtestRecords} columns={backtestColumns} rowKey=\"id\" pagination={{ pageSize: 5 }} size=\"small\" />\n              )}\n            </Card>\n\n            <Card title=\"研投报告\" style={{ marginBottom: 24 }}>\n              {report ? (\n                <div style={{ padding: 16, background: '#f5f5f5', borderRadius: 8 }}>\n                  <Text style={{ whiteSpace: 'pre-wrap' }}>{report}</Text>\n                </div>\n              ) : (\n                <Empty description=\"暂无研投报告，请点击「生成研投报告」按钮\" />\n              )}\n            </Card>\n\n            <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n              <Col xs={24} lg={16}>\n                <Card\n                  title={<Space><BarChartOutlined />K线图</Space>}\n                  extra={\n                    <Space>\n                      <Select value={period} onChange={(v) => { setPeriod(v); }} style={{ width: 100 }}>\n                        <Option value=\"1d\">日线</Option>\n                        <Option value=\"4h\">4小时</Option>\n                      </Select>\n                      <Button\n                        icon={<SyncOutlined spin={syncingKlines} />}\n                        loading={syncingKlines}\n                        onClick={() => checkAndUpdateKlines(period)}\n                      >\n                        同步K线\n                      </Button>\n                      <Button\n                        icon={<ReloadOutlined />}\n                        onClick={() => fetchKlines(false)}\n                      >\n                        刷新\n                      </Button>\n                    </Space>\n                  }\n                >\n                  <div ref={chartContainerRef} style={{ width: '100%', height: 400 }} />\n                </Card>\n              </Col>\n              <Col xs={24} lg={8}>\n                <Card title=\"信号列表\">\n                  {signals.length === 0 ? (\n                    <Empty description=\"暂无信号\" />\n                  ) : (\n                    <Table dataSource={signals} columns={signalColumns} rowKey=\"id\" pagination={{ pageSize: 5 }} size=\"small\" scroll={{ y: 340 }} />\n                  )}\n                </Card>\n              </Col>\n            </Row>\n\n            <Card title=\"历史新闻\">\n              {news.length === 0 ? (\n                <Empty description=\"暂无新闻数据，请点击「获取历史新闻」按钮\" />\n              ) : (\n                <>\n                  <List\n                    dataSource={getCurrentPageNews()}\n                    renderItem={(item) => (\n                      <List.Item>\n                        <List.Item.Meta\n                          title={<Link to={`/news/${item.id}`} style={{ color: '#1890ff' }}>{item.title}</Link>}\n                          description={\n                            <Space split={<Divider type=\"vertical\" />}>\n                              <Text type=\"secondary\">{item.source}</Text>\n                              <Text type=\"secondary\">{formatDate(item.publishTime)}</Text>\n                              <Tag color={item.analyzeStatus === 'analyzed' ? 'success' : item.analyzeStatus === 'filtered' ? 'warning' : 'default'}>\n                                {item.analyzeStatus === 'analyzed' ? '已分析' : item.analyzeStatus === 'filtered' ? '已过滤' : item.analyzeStatus === 'failed' ? '分析失败' : '待分析'}\n                              </Tag>\n                            </Space>\n                          }\n                        />\n                      </List.Item>\n                    )}\n                  />\n                  <div style={{ marginTop: 16, textAlign: 'right' }}>\n                    <Pagination\n                      current={newsPagination.current}\n                      pageSize={newsPagination.pageSize}\n                      total={newsPagination.total}\n                      onChange={handleNewsPageChange}\n                      showSizeChanger\n                      showQuickJumper\n                      showTotal={(total) => `共 ${total} 条`}\n                    />\n                  </div>\n                </>\n              )}\n            </Card>\n          </>\n        ) : (\n          <Empty description=\"追踪记录不存在\" />\n        )}\n      </Spin>\n\n      <Modal\n        title=\"执行回测\"\n        open={backtestFormVisible}\n        onOk={handleSubmitBacktest}\n        onCancel={() => setBacktestFormVisible(false)}\n        confirmLoading={backtestSubmitting}\n        okText=\"开始回测\"\n        cancelText=\"取消\"\n        width={500}\n      >\n        <Form form={backtestForm} layout=\"vertical\" initialValues={{ period: '4h' }}>\n          <Form.Item\n            name=\"strategyId\"\n            label=\"选择策略\"\n            rules={[{ required: true, message: '请选择策略' }]}\n          >\n            <Select\n              placeholder=\"请选择策略\"\n              loading={strategiesLoading}\n              showSearch\n              optionFilterProp=\"children\"\n            >\n              {strategies.map((s) => (\n                <Option key={s.id} value={s.id}>\n                  {s.name} ({s.directionMode === 'long_only' ? '仅做多' : s.directionMode === 'short_only' ? '仅做空' : '多空都做'})\n                </Option>\n              ))}\n            </Select>\n          </Form.Item>\n          <Form.Item name=\"period\" label=\"K线周期\">\n            <Radio.Group>\n              <Radio value=\"4h\">4小时线</Radio>\n              <Radio value=\"1d\">日线</Radio>\n            </Radio.Group>\n          </Form.Item>\n          {tracking && (\n            <div style={{ padding: 12, background: '#f5f5f5', borderRadius: 8, marginTop: 8 }}>\n              <Text type=\"secondary\">\n                回测将自动使用该股票关联新闻的时间范围，并限定股票代码为 {tracking.stockCode}\n              </Text>\n            </div>\n          )}\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"回测详情\"\n        open={backtestModalVisible}\n        onCancel={() => setBacktestModalVisible(false)}\n        width={1400}\n        footer={[\n          <Button key=\"close\" onClick={() => setBacktestModalVisible(false)}>\n            关闭\n          </Button>,\n        ]}\n      >\n        {selectedBacktest ? (\n          <>\n            <Descriptions bordered column={3} style={{ marginBottom: 24 }}>\n              <Descriptions.Item label=\"策略名称\">\n                {selectedBacktest.strategySnapshot?.name || \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"回测区间\">\n                {formatDate(selectedBacktest.startTime)} ~{\" \"}\n                {formatDate(selectedBacktest.endTime)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"K线周期\">\n                {selectedBacktest.period === '4h' ? '4小时线' : selectedBacktest.period === '1d' ? '日线' : selectedBacktest.period}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"信号总数/过滤后\">\n                {selectedBacktest.totalSignals ?? \"-\"} /{\" \"}\n                {selectedBacktest.filteredSignals ?? \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"总交易次数\">\n                {selectedBacktest.totalTrades} 笔\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈利/亏损\">\n                <Text style={{ color: \"#52c41a\" }}>\n                  {selectedBacktest.winningTrades}\n                </Text>{\" \"}\n                /{\" \"}\n                <Text style={{ color: \"#ff4d4f\" }}>\n                  {selectedBacktest.losingTrades}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"胜率\">\n                {formatPercent(selectedBacktest.winRate)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"总收益率\">\n                <Tag\n                  color={\n                    selectedBacktest.totalReturnPct &&\n                    parseFloat(selectedBacktest.totalReturnPct) > 0\n                      ? \"red\"\n                      : \"green\"\n                  }\n                >\n                  {formatPercent(selectedBacktest.totalReturnPct)}\n                </Tag>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"平均收益率\">\n                {formatPercent(selectedBacktest.avgReturnPct)}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"最大回撤\">\n                <Text type=\"danger\">\n                  {formatPercent(selectedBacktest.maxDrawdownPct)}\n                </Text>\n              </Descriptions.Item>\n              <Descriptions.Item label=\"夏普比率\">\n                {selectedBacktest.sharpeRatio\n                  ? parseFloat(selectedBacktest.sharpeRatio).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n              <Descriptions.Item label=\"盈亏比\">\n                {selectedBacktest.profitFactor\n                  ? parseFloat(selectedBacktest.profitFactor).toFixed(2)\n                  : \"-\"}\n              </Descriptions.Item>\n            </Descriptions>\n            <Title level={5}>交易明细</Title>\n            <Spin spinning={backtestTradesLoading}>\n              <Table\n                dataSource={backtestTrades}\n                columns={tradeColumns}\n                rowKey=\"id\"\n                pagination={{ pageSize: 10 }}\n                size=\"small\"\n                scroll={{ x: 1200 }}\n              />\n            </Spin>\n          </>\n        ) : (\n          <Empty description=\"暂无数据\" />\n        )}\n      </Modal>\n    </div>\n  );\n};\n\nexport default StockTrackingDetailPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/stock-trackings/[id].tsx"
     },
@@ -4661,7 +4602,7 @@
       "parentId": "3",
       "id": "25",
       "absPath": "/llm-center",
-      "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Card, Row, Col, Statistic, Table, Switch, Button, Modal, Form, InputNumber, Input, message, Tag, Spin, Typography } from 'antd';\nimport { NumberOutlined, ApiOutlined, WarningOutlined, DollarOutlined, ThunderboltOutlined, ReloadOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { llmApi } from '@/services/llm';\nimport type { LlmTodayStats, LlmModuleUsage, LlmProviderUsage, LlmLatencyStats, LlmProviderConfig } from '@/services/types';\nimport styles from './index.module.scss';\n\nconst { Title } = Typography;\n\nconst formatCost = (val: number) => `¥${val.toFixed(4)}`;\n\nconst formatPercent = (val: number) => `${(val * 100).toFixed(2)}%`;\n\nconst LlmCenterPage: React.FC = () => {\n  const [todayStats, setTodayStats] = useState<LlmTodayStats | null>(null);\n  const [moduleUsage, setModuleUsage] = useState<LlmModuleUsage[]>([]);\n  const [providerUsage, setProviderUsage] = useState<LlmProviderUsage[]>([]);\n  const [latencyStats, setLatencyStats] = useState<LlmLatencyStats | null>(null);\n  const [providerConfigs, setProviderConfigs] = useState<LlmProviderConfig[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [editModalVisible, setEditModalVisible] = useState(false);\n  const [editingConfig, setEditingConfig] = useState<LlmProviderConfig | null>(null);\n  const [editLoading, setEditLoading] = useState(false);\n  const [createModalVisible, setCreateModalVisible] = useState(false);\n  const [createLoading, setCreateLoading] = useState(false);\n  const [createForm] = Form.useForm();\n  const [form] = Form.useForm();\n\n  const fetchAllData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const [stats, modules, providers, latency, configs] = await Promise.all([\n        llmApi.getTodayStats(),\n        llmApi.getModuleUsage(),\n        llmApi.getProviderUsage(),\n        llmApi.getLatencyStats(),\n        llmApi.getProviderConfigs(),\n      ]);\n      setTodayStats(stats as unknown as LlmTodayStats);\n      setModuleUsage((modules as unknown as LlmModuleUsage[]) || []);\n      setProviderUsage((providers as unknown as LlmProviderUsage[]) || []);\n      setLatencyStats(latency as unknown as LlmLatencyStats);\n      setProviderConfigs((configs as unknown as LlmProviderConfig[]) || []);\n    } catch {\n      message.error('获取数据失败');\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  useEffect(() => {\n    fetchAllData();\n  }, [fetchAllData]);\n\n  const handleToggleEnabled = useCallback(async (record: LlmProviderConfig, checked: boolean) => {\n    try {\n      await llmApi.updateProviderConfig(record.provider, { enabled: checked });\n      setProviderConfigs(prev =>\n        prev.map(c => (c.provider === record.provider ? { ...c, enabled: checked } : c)),\n      );\n      message.success('状态更新成功');\n    } catch {\n      message.error('状态更新失败');\n    }\n  }, []);\n\n  const handleEdit = useCallback((record: LlmProviderConfig) => {\n    setEditingConfig(record);\n    form.setFieldsValue({\n      enabled: record.enabled,\n      defaultModel: record.defaultModel,\n      rpmLimit: record.rpmLimit,\n      dailyBudget: record.dailyBudget,\n    });\n    setEditModalVisible(true);\n  }, [form]);\n\n  const handleSave = useCallback(async () => {\n    if (!editingConfig) return;\n    try {\n      const values = await form.validateFields();\n      setEditLoading(true);\n      await llmApi.updateProviderConfig(editingConfig.provider, values);\n      setProviderConfigs(prev =>\n        prev.map(c => (c.provider === editingConfig.provider ? { ...c, ...values } : c)),\n      );\n      message.success('配置更新成功');\n      setEditModalVisible(false);\n      setEditingConfig(null);\n    } catch {\n      message.error('配置更新失败');\n    } finally {\n      setEditLoading(false);\n    }\n  }, [editingConfig, form]);\n\n  const handleCreate = useCallback(async () => {\n    try {\n      const values = await createForm.validateFields();\n      setCreateLoading(true);\n      await llmApi.createProviderConfig(values);\n      message.success('配置创建成功');\n      setCreateModalVisible(false);\n      createForm.resetFields();\n      fetchAllData();\n    } catch {\n      message.error('配置创建失败');\n    } finally {\n      setCreateLoading(false);\n    }\n  }, [createForm, fetchAllData]);\n\n  const moduleColumns: ColumnsType<LlmModuleUsage> = [\n    { title: '模块', dataIndex: 'module', key: 'module' },\n    { title: 'Token 消耗', dataIndex: 'totalTokens', key: 'totalTokens', render: (v: number) => v?.toLocaleString() },\n    { title: '请求数', dataIndex: 'totalRequests', key: 'totalRequests', render: (v: number) => v?.toLocaleString() },\n    { title: '花费', dataIndex: 'totalCost', key: 'totalCost', render: (v: number) => formatCost(v) },\n  ];\n\n  const providerUsageColumns: ColumnsType<LlmProviderUsage> = [\n    { title: 'Provider', dataIndex: 'provider', key: 'provider' },\n    { title: '模型', dataIndex: 'model', key: 'model', render: (v: string) => <Tag>{v}</Tag> },\n    { title: 'Token 消耗', dataIndex: 'totalTokens', key: 'totalTokens', render: (v: number) => v?.toLocaleString() },\n    { title: '请求数', dataIndex: 'totalRequests', key: 'totalRequests', render: (v: number) => v?.toLocaleString() },\n    { title: '花费', dataIndex: 'totalCost', key: 'totalCost', render: (v: number) => formatCost(v) },\n  ];\n\n  const configColumns: ColumnsType<LlmProviderConfig> = [\n    { title: 'Provider', dataIndex: 'provider', key: 'provider' },\n    {\n      title: '启用状态',\n      dataIndex: 'enabled',\n      key: 'enabled',\n      render: (v: boolean, record: LlmProviderConfig) => (\n        <Switch checked={v} onChange={(checked) => handleToggleEnabled(record, checked)} />\n      ),\n    },\n    { title: '默认模型', dataIndex: 'defaultModel', key: 'defaultModel', render: (v: string | null) => v || '-' },\n    { title: 'RPM 限制', dataIndex: 'rpmLimit', key: 'rpmLimit', render: (v: number | null) => v?.toLocaleString() || '-' },\n    { title: '每日 Token 预算', dataIndex: 'dailyBudget', key: 'dailyBudget', render: (v: number | null) => v?.toLocaleString() || '-' },\n    {\n      title: '操作',\n      key: 'action',\n      width: 80,\n      render: (_: unknown, record: LlmProviderConfig) => (\n        <Button type=\"link\" icon={<EditOutlined />} onClick={() => handleEdit(record)}>\n          编辑\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div className={styles.container}>\n      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>\n        <Title level={2} style={{ margin: 0 }}>AI 运行中心</Title>\n        <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n          刷新\n        </Button>\n      </div>\n\n      <Spin spinning={loading}>\n        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日 Token 消耗\"\n                value={todayStats?.totalTokens ?? 0}\n                valueStyle={{ color: '#1890ff' }}\n                prefix={<NumberOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日请求数\"\n                value={todayStats?.totalRequests ?? 0}\n                valueStyle={{ color: '#52c41a' }}\n                prefix={<ApiOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日错误数\"\n                value={todayStats?.totalErrors ?? 0}\n                valueStyle={{ color: '#ff4d4f' }}\n                prefix={<WarningOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日花费\"\n                value={todayStats?.totalCost ?? 0}\n                precision={6}\n                prefix={<DollarOutlined />}\n                suffix=\"CNY\"\n                valueStyle={{ color: '#722ed1' }}\n              />\n            </Card>\n          </Col>\n        </Row>\n\n        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n          <Col span={12}>\n            <Card title=\"模块使用统计\">\n              <Table\n                columns={moduleColumns}\n                dataSource={moduleUsage}\n                rowKey=\"module\"\n                pagination={false}\n                size=\"small\"\n              />\n            </Card>\n          </Col>\n          <Col span={12}>\n            <Card title=\"Provider 使用统计\">\n              <Table\n                columns={providerUsageColumns}\n                dataSource={providerUsage}\n                rowKey={(r) => `${r.provider}-${r.model}`}\n                pagination={false}\n                size=\"small\"\n              />\n            </Card>\n          </Col>\n        </Row>\n\n        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n          <Col span={8}>\n            <Card>\n              <Statistic\n                title=\"平均响应时间\"\n                value={latencyStats?.avgLatencyMs ?? 0}\n                suffix=\"ms\"\n                valueStyle={{ color: '#1890ff' }}\n                prefix={<ThunderboltOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={8}>\n            <Card>\n              <Statistic\n                title=\"重试率\"\n                value={latencyStats ? formatPercent(latencyStats.retryRate) : '0.00%'}\n                valueStyle={{ color: '#faad14' }}\n              />\n            </Card>\n          </Col>\n          <Col span={8}>\n            <Card>\n              <Statistic\n                title=\"超时率\"\n                value={latencyStats ? formatPercent(latencyStats.timeoutRate) : '0.00%'}\n                valueStyle={{ color: '#ff4d4f' }}\n              />\n            </Card>\n          </Col>\n        </Row>\n\n        <Card title=\"Provider 预算配置\" extra={<Button type=\"primary\" icon={<PlusOutlined />} onClick={() => setCreateModalVisible(true)}>新增配置</Button>}>\n          <Table\n            columns={configColumns}\n            dataSource={providerConfigs}\n            rowKey=\"id\"\n            pagination={false}\n            size=\"small\"\n          />\n        </Card>\n      </Spin>\n\n      <Modal\n        title=\"编辑 Provider 配置\"\n        open={editModalVisible}\n        onOk={handleSave}\n        onCancel={() => {\n          setEditModalVisible(false);\n          setEditingConfig(null);\n        }}\n        confirmLoading={editLoading}\n        destroyOnClose\n      >\n        <Form form={form} layout=\"vertical\">\n          <Form.Item name=\"enabled\" label=\"启用状态\" valuePropName=\"checked\">\n            <Switch />\n          </Form.Item>\n          <Form.Item name=\"defaultModel\" label=\"默认模型\">\n            <Input placeholder=\"请输入默认模型\" />\n          </Form.Item>\n          <Form.Item name=\"rpmLimit\" label=\"RPM 限制\">\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"请输入 RPM 限制\" />\n          </Form.Item>\n          <Form.Item name=\"dailyBudget\" label=\"每日 Token 预算\">\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"请输入每日 Token 预算\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"新增 Provider 配置\"\n        open={createModalVisible}\n        onOk={handleCreate}\n        onCancel={() => {\n          setCreateModalVisible(false);\n          createForm.resetFields();\n        }}\n        confirmLoading={createLoading}\n        destroyOnClose\n      >\n        <Form form={createForm} layout=\"vertical\">\n          <Form.Item name=\"provider\" label=\"Provider 名称\" rules={[{ required: true, message: '请输入 Provider 名称' }]}>\n            <Input placeholder=\"如：volcengine、deepseek、openrouter、ollama\" />\n          </Form.Item>\n          <Form.Item name=\"enabled\" label=\"启用状态\" valuePropName=\"checked\" initialValue={true}>\n            <Switch />\n          </Form.Item>\n          <Form.Item name=\"apiKey\" label=\"API Key\">\n            <Input.Password placeholder=\"请输入 API Key\" />\n          </Form.Item>\n          <Form.Item name=\"baseUrl\" label=\"API 基础 URL\" rules={[{ required: true, message: '请输入 API 基础 URL' }]}>\n            <Input placeholder=\"如：https://api.deepseek.com/v1\" />\n          </Form.Item>\n          <Form.Item name=\"defaultModel\" label=\"默认模型\" rules={[{ required: true, message: '请输入默认模型' }]}>\n            <Input placeholder=\"如：deepseek-chat\" />\n          </Form.Item>\n          <Form.Item name=\"rpmLimit\" label=\"RPM 限制\" initialValue={60}>\n            <InputNumber min={1} style={{ width: '100%' }} placeholder=\"请输入 RPM 限制\" />\n          </Form.Item>\n          <Form.Item name=\"dailyBudget\" label=\"每日 Token 预算\" initialValue={1000000}>\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"请输入每日 Token 预算\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default LlmCenterPage;\n",
+      "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Card, Row, Col, Statistic, Table, Switch, Button, Modal, Form, InputNumber, Input, message, Tag, Spin, Typography } from 'antd';\nimport { NumberOutlined, ApiOutlined, WarningOutlined, DollarOutlined, ThunderboltOutlined, ReloadOutlined, EditOutlined, PlusOutlined } from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { llmApi } from '@/services/llm';\nimport type { LlmTodayStats, LlmModuleUsage, LlmProviderUsage, LlmLatencyStats, LlmProviderConfig } from '@/services/types';\nimport styles from './index.module.scss';\n\nconst { Title } = Typography;\n\nconst formatCost = (val: number) => `¥${val.toFixed(4)}`;\n\nconst formatPercent = (val: number) => `${(val * 100).toFixed(2)}%`;\n\nconst LlmCenterPage: React.FC = () => {\n  const [todayStats, setTodayStats] = useState<LlmTodayStats | null>(null);\n  const [moduleUsage, setModuleUsage] = useState<LlmModuleUsage[]>([]);\n  const [providerUsage, setProviderUsage] = useState<LlmProviderUsage[]>([]);\n  const [latencyStats, setLatencyStats] = useState<LlmLatencyStats | null>(null);\n  const [providerConfigs, setProviderConfigs] = useState<LlmProviderConfig[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [editModalVisible, setEditModalVisible] = useState(false);\n  const [editingConfig, setEditingConfig] = useState<LlmProviderConfig | null>(null);\n  const [editLoading, setEditLoading] = useState(false);\n  const [createModalVisible, setCreateModalVisible] = useState(false);\n  const [createLoading, setCreateLoading] = useState(false);\n  const [createForm] = Form.useForm();\n  const [form] = Form.useForm();\n\n  const fetchAllData = useCallback(async () => {\n    setLoading(true);\n    try {\n      const [stats, modules, providers, latency, configs] = await Promise.all([\n        llmApi.getTodayStats(),\n        llmApi.getModuleUsage(),\n        llmApi.getProviderUsage(),\n        llmApi.getLatencyStats(),\n        llmApi.getProviderConfigs(),\n      ]);\n      setTodayStats(stats as unknown as LlmTodayStats);\n      setModuleUsage((modules as unknown as LlmModuleUsage[]) || []);\n      setProviderUsage((providers as unknown as LlmProviderUsage[]) || []);\n      setLatencyStats(latency as unknown as LlmLatencyStats);\n      setProviderConfigs((configs as unknown as LlmProviderConfig[]) || []);\n    } catch {\n      message.error('获取数据失败');\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  useEffect(() => {\n    fetchAllData();\n  }, [fetchAllData]);\n\n  const handleToggleEnabled = useCallback(async (record: LlmProviderConfig, checked: boolean) => {\n    try {\n      await llmApi.updateProviderConfig(record.provider, { enabled: checked });\n      setProviderConfigs(prev =>\n        prev.map(c => (c.provider === record.provider ? { ...c, enabled: checked } : c)),\n      );\n      message.success('状态更新成功');\n    } catch {\n      message.error('状态更新失败');\n    }\n  }, []);\n\n  const handleEdit = useCallback((record: LlmProviderConfig) => {\n    setEditingConfig(record);\n    form.setFieldsValue({\n      enabled: record.enabled,\n      defaultModel: record.defaultModel,\n      rpmLimit: record.rpmLimit,\n      dailyBudget: record.dailyBudget,\n    });\n    setEditModalVisible(true);\n  }, [form]);\n\n  const handleSave = useCallback(async () => {\n    if (!editingConfig) return;\n    try {\n      const values = await form.validateFields();\n      setEditLoading(true);\n      await llmApi.updateProviderConfig(editingConfig.provider, values);\n      setProviderConfigs(prev =>\n        prev.map(c => (c.provider === editingConfig.provider ? { ...c, ...values } : c)),\n      );\n      message.success('配置更新成功');\n      setEditModalVisible(false);\n      setEditingConfig(null);\n    } catch {\n      message.error('配置更新失败');\n    } finally {\n      setEditLoading(false);\n    }\n  }, [editingConfig, form]);\n\n  const handleCreate = useCallback(async () => {\n    try {\n      const values = await createForm.validateFields();\n      setCreateLoading(true);\n      await llmApi.createProviderConfig(values);\n      message.success('配置创建成功');\n      setCreateModalVisible(false);\n      createForm.resetFields();\n      fetchAllData();\n    } catch {\n      message.error('配置创建失败');\n    } finally {\n      setCreateLoading(false);\n    }\n  }, [createForm, fetchAllData]);\n\n  const moduleColumns: ColumnsType<LlmModuleUsage> = [\n    { title: '模块', dataIndex: 'module', key: 'module' },\n    { title: 'Token 消耗', dataIndex: 'totalTokens', key: 'totalTokens', render: (v: number) => v?.toLocaleString() },\n    { title: '请求数', dataIndex: 'totalRequests', key: 'totalRequests', render: (v: number) => v?.toLocaleString() },\n    { title: '花费', dataIndex: 'totalCost', key: 'totalCost', render: (v: number) => formatCost(v) },\n  ];\n\n  const providerUsageColumns: ColumnsType<LlmProviderUsage> = [\n    { title: 'Provider', dataIndex: 'provider', key: 'provider' },\n    { title: '模型', dataIndex: 'model', key: 'model', render: (v: string) => <Tag>{v}</Tag> },\n    { title: 'Token 消耗', dataIndex: 'totalTokens', key: 'totalTokens', render: (v: number) => v?.toLocaleString() },\n    { title: '请求数', dataIndex: 'totalRequests', key: 'totalRequests', render: (v: number) => v?.toLocaleString() },\n    { title: '花费', dataIndex: 'totalCost', key: 'totalCost', render: (v: number) => formatCost(v) },\n  ];\n\n  const configColumns: ColumnsType<LlmProviderConfig> = [\n    { title: 'Provider', dataIndex: 'provider', key: 'provider' },\n    {\n      title: '启用状态',\n      dataIndex: 'enabled',\n      key: 'enabled',\n      render: (v: boolean, record: LlmProviderConfig) => (\n        <Switch checked={v} onChange={(checked) => handleToggleEnabled(record, checked)} />\n      ),\n    },\n    { title: '默认模型', dataIndex: 'defaultModel', key: 'defaultModel', render: (v: string | null) => v || '-' },\n    { title: 'RPM 限制', dataIndex: 'rpmLimit', key: 'rpmLimit', render: (v: number | null) => v?.toLocaleString() || '-' },\n    { title: '每日 Token 预算', dataIndex: 'dailyBudget', key: 'dailyBudget', render: (v: number | null) => v?.toLocaleString() || '-' },\n    {\n      title: '操作',\n      key: 'action',\n      width: 80,\n      render: (_: unknown, record: LlmProviderConfig) => (\n        <Button type=\"link\" icon={<EditOutlined />} onClick={() => handleEdit(record)}>\n          编辑\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div className={styles.container}>\n      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 24 }}>\n        <Title level={2} style={{ margin: 0 }}>AI 运行中心</Title>\n        <Button icon={<ReloadOutlined />} onClick={fetchAllData} loading={loading}>\n          刷新\n        </Button>\n      </div>\n\n      <Spin spinning={loading}>\n        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日 Token 消耗\"\n                value={todayStats?.totalTokens ?? 0}\n                valueStyle={{ color: '#1890ff' }}\n                prefix={<NumberOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日请求数\"\n                value={todayStats?.totalRequests ?? 0}\n                valueStyle={{ color: '#52c41a' }}\n                prefix={<ApiOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日错误数\"\n                value={todayStats?.totalErrors ?? 0}\n                valueStyle={{ color: '#ff4d4f' }}\n                prefix={<WarningOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={6}>\n            <Card>\n              <Statistic\n                title=\"今日花费\"\n                value={todayStats?.totalCost ?? 0}\n                precision={6}\n                prefix={<DollarOutlined />}\n                suffix=\"CNY\"\n                valueStyle={{ color: '#722ed1' }}\n              />\n            </Card>\n          </Col>\n        </Row>\n\n        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n          <Col span={12}>\n            <Card title=\"模块使用统计\">\n              <Table\n                columns={moduleColumns}\n                dataSource={moduleUsage}\n                rowKey=\"module\"\n                pagination={false}\n                size=\"small\"\n              />\n            </Card>\n          </Col>\n          <Col span={12}>\n            <Card title=\"Provider 使用统计\">\n              <Table\n                columns={providerUsageColumns}\n                dataSource={providerUsage}\n                rowKey={(r) => `${r.provider}-${r.model}`}\n                pagination={false}\n                size=\"small\"\n              />\n            </Card>\n          </Col>\n        </Row>\n\n        <Row gutter={[16, 16]} style={{ marginBottom: 24 }}>\n          <Col span={8}>\n            <Card>\n              <Statistic\n                title=\"平均响应时间\"\n                value={latencyStats?.avgLatencyMs ?? 0}\n                suffix=\"ms\"\n                valueStyle={{ color: '#1890ff' }}\n                prefix={<ThunderboltOutlined />}\n              />\n            </Card>\n          </Col>\n          <Col span={8}>\n            <Card>\n              <Statistic\n                title=\"重试率\"\n                value={latencyStats ? formatPercent(latencyStats.retryRate) : '0.00%'}\n                valueStyle={{ color: '#faad14' }}\n              />\n            </Card>\n          </Col>\n          <Col span={8}>\n            <Card>\n              <Statistic\n                title=\"超时率\"\n                value={latencyStats ? formatPercent(latencyStats.timeoutRate) : '0.00%'}\n                valueStyle={{ color: '#ff4d4f' }}\n              />\n            </Card>\n          </Col>\n        </Row>\n\n        <Card title=\"Provider 预算配置\" extra={<Button type=\"primary\" icon={<PlusOutlined />} onClick={() => setCreateModalVisible(true)}>新增配置</Button>}>\n          <Table\n            columns={configColumns}\n            dataSource={providerConfigs}\n            rowKey=\"id\"\n            pagination={false}\n            size=\"small\"\n          />\n        </Card>\n      </Spin>\n\n      <Modal\n        title=\"编辑 Provider 配置\"\n        open={editModalVisible}\n        onOk={handleSave}\n        onCancel={() => {\n          setEditModalVisible(false);\n          setEditingConfig(null);\n        }}\n        confirmLoading={editLoading}\n        destroyOnHidden\n      >\n        <Form form={form} layout=\"vertical\">\n          <Form.Item name=\"enabled\" label=\"启用状态\" valuePropName=\"checked\">\n            <Switch />\n          </Form.Item>\n          <Form.Item name=\"defaultModel\" label=\"默认模型\">\n            <Input placeholder=\"请输入默认模型\" />\n          </Form.Item>\n          <Form.Item name=\"rpmLimit\" label=\"RPM 限制\">\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"请输入 RPM 限制\" />\n          </Form.Item>\n          <Form.Item name=\"dailyBudget\" label=\"每日 Token 预算\">\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"请输入每日 Token 预算\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n\n      <Modal\n        title=\"新增 Provider 配置\"\n        open={createModalVisible}\n        onOk={handleCreate}\n        onCancel={() => {\n          setCreateModalVisible(false);\n          createForm.resetFields();\n        }}\n        confirmLoading={createLoading}\n        destroyOnHidden\n      >\n        <Form form={createForm} layout=\"vertical\">\n          <Form.Item name=\"provider\" label=\"Provider 名称\" rules={[{ required: true, message: '请输入 Provider 名称' }]}>\n            <Input placeholder=\"如：volcengine、deepseek、openrouter、ollama\" />\n          </Form.Item>\n          <Form.Item name=\"enabled\" label=\"启用状态\" valuePropName=\"checked\" initialValue={true}>\n            <Switch />\n          </Form.Item>\n          <Form.Item name=\"apiKey\" label=\"API Key\">\n            <Input.Password placeholder=\"请输入 API Key\" />\n          </Form.Item>\n          <Form.Item name=\"baseUrl\" label=\"API 基础 URL\" rules={[{ required: true, message: '请输入 API 基础 URL' }]}>\n            <Input placeholder=\"如：https://api.deepseek.com/v1\" />\n          </Form.Item>\n          <Form.Item name=\"defaultModel\" label=\"默认模型\" rules={[{ required: true, message: '请输入默认模型' }]}>\n            <Input placeholder=\"如：deepseek-chat\" />\n          </Form.Item>\n          <Form.Item name=\"rpmLimit\" label=\"RPM 限制\" initialValue={60}>\n            <InputNumber min={1} style={{ width: '100%' }} placeholder=\"请输入 RPM 限制\" />\n          </Form.Item>\n          <Form.Item name=\"dailyBudget\" label=\"每日 Token 预算\" initialValue={1000000}>\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"请输入每日 Token 预算\" />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </div>\n  );\n};\n\nexport default LlmCenterPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/llm-center/index.tsx"
     },
@@ -4754,43 +4695,54 @@
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/analysis/strategies/[id].tsx"
     },
     "34": {
+      "path": "/periodic-reports",
+      "title": "定期报告",
+      "file": "@/pages/periodic-reports/index.tsx",
+      "parentId": "3",
+      "id": "34",
+      "absPath": "/periodic-reports",
+      "__content": "import { useEffect, useState } from 'react';\nimport {\n  Card,\n  Table,\n  Button,\n  Space,\n  Tag,\n  Typography,\n  message,\n  Select,\n  DatePicker,\n  Modal,\n  Descriptions,\n  Statistic,\n  Row,\n  Col,\n  Divider,\n  Checkbox,\n} from 'antd';\nimport {\n  FileTextOutlined,\n  PlusOutlined,\n  ReloadOutlined,\n  RiseOutlined,\n  FallOutlined,\n  RobotOutlined,\n  SignalFilled,\n  SendOutlined,\n} from '@ant-design/icons';\nimport { periodicReportApi, type PeriodicReport, type PeriodicReportContent } from '@/services/periodic-report';\nimport client from '@/services/client';\nimport dayjs from 'dayjs';\n\nconst { Title, Text } = Typography;\nconst { RangePicker } = DatePicker;\n\ninterface WebhookOption {\n  id: string;\n  name: string;\n  url: string;\n  enabled: boolean;\n}\n\nconst PeriodicReportsPage: React.FC = () => {\n  const [reports, setReports] = useState<PeriodicReport[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [total, setTotal] = useState(0);\n  const [page, setPage] = useState(1);\n  const [pageSize, setPageSize] = useState(20);\n  const [typeFilter, setTypeFilter] = useState<'daily' | 'weekly' | undefined>(undefined);\n  const [dateRange, setDateRange] = useState<[dayjs.Dayjs | null, dayjs.Dayjs | null] | null>(null);\n  const [detailModalVisible, setDetailModalVisible] = useState(false);\n  const [selectedReport, setSelectedReport] = useState<PeriodicReport | null>(null);\n  const [generating, setGenerating] = useState(false);\n\n  const [generateModalVisible, setGenerateModalVisible] = useState(false);\n  const [generateType, setGenerateType] = useState<'daily' | 'weekly'>('daily');\n  const [webhookOptions, setWebhookOptions] = useState<WebhookOption[]>([]);\n  const [selectedWebhookIds, setSelectedWebhookIds] = useState<string[]>([]);\n  const [loadingWebhooks, setLoadingWebhooks] = useState(false);\n\n  const fetchReports = async () => {\n    setLoading(true);\n    try {\n      const params: Parameters<typeof periodicReportApi.getReports>[0] = {\n        page,\n        pageSize,\n      };\n      if (typeFilter) params.type = typeFilter;\n      if (dateRange && dateRange[0] && dateRange[1]) {\n        params.startDate = dateRange[0].startOf('day').toISOString();\n        params.endDate = dateRange[1].endOf('day').toISOString();\n      }\n      const result = await periodicReportApi.getReports(params);\n      setReports(result.data || []);\n      setTotal(result.total);\n    } catch (error) {\n      console.error('获取报告列表失败:', error);\n      message.error('获取报告列表失败');\n    } finally {\n      setLoading(false);\n    }\n  };\n\n  const fetchWebhooks = async () => {\n    setLoadingWebhooks(true);\n    try {\n      const response = await client.get<{ data: WebhookOption[] }>('/webhooks');\n      const data = response.data?.data || response.data || [];\n      setWebhookOptions(Array.isArray(data) ? data.filter((w: WebhookOption) => w.enabled) : []);\n    } catch (error) {\n      console.error('获取 Webhook 列表失败:', error);\n      message.error('获取 Webhook 列表失败');\n    } finally {\n      setLoadingWebhooks(false);\n    }\n  };\n\n  useEffect(() => {\n    fetchReports();\n  }, [page, pageSize, typeFilter]);\n\n  const openGenerateModal = (type: 'daily' | 'weekly') => {\n    setGenerateType(type);\n    setSelectedWebhookIds([]);\n    setGenerateModalVisible(true);\n    fetchWebhooks();\n  };\n\n  const handleGenerate = async () => {\n    setGenerating(true);\n    try {\n      if (generateType === 'daily') {\n        await periodicReportApi.generateDailyReport(\n          selectedWebhookIds.length > 0 ? selectedWebhookIds : undefined,\n        );\n        message.success('日报生成成功');\n      } else {\n        await periodicReportApi.generateWeeklyReport(\n          selectedWebhookIds.length > 0 ? selectedWebhookIds : undefined,\n        );\n        message.success('周报生成成功');\n      }\n      setGenerateModalVisible(false);\n      fetchReports();\n    } catch (error) {\n      console.error(`生成${generateType === 'daily' ? '日报' : '周报'}失败:`, error);\n      message.error(`生成${generateType === 'daily' ? '日报' : '周报'}失败`);\n    } finally {\n      setGenerating(false);\n    }\n  };\n\n  const handleViewDetail = (record: PeriodicReport) => {\n    setSelectedReport(record);\n    setDetailModalVisible(true);\n  };\n\n  const renderContentSummary = (content: PeriodicReportContent) => {\n    const profitColor = content.overall.totalProfit >= 0 ? '#cf1322' : '#3f8600';\n\n    return (\n      <Space size=\"large\">\n        <Text>\n          策略: <Text strong>{content.strategies.length}</Text> 个\n        </Text>\n        <Text>\n          交易: <Text strong>{content.overall.totalTrades}</Text> 笔\n        </Text>\n        <Text>\n          胜率: <Text strong>{(content.overall.totalWinRate * 100).toFixed(1)}%</Text>\n        </Text>\n        <Text>\n          盈利: <Text strong style={{ color: profitColor }}>{content.overall.totalProfit >= 0 ? '+' : ''}{content.overall.totalProfit.toFixed(2)}</Text>\n        </Text>\n        <Text>\n          信号: <Text strong>{content.signals.totalCount}</Text>\n        </Text>\n      </Space>\n    );\n  };\n\n  const renderDetailContent = (report: PeriodicReport) => {\n    const content = report.content;\n    const profitColor = content.overall.totalProfit >= 0 ? '#cf1322' : '#3f8600';\n    const agentProfitColor = content.tradingAgent.totalProfit >= 0 ? '#cf1322' : '#3f8600';\n\n    return (\n      <div>\n        <Descriptions bordered size=\"small\" column={2} style={{ marginBottom: 16 }}>\n          <Descriptions.Item label=\"报告类型\">\n            <Tag color={report.type === 'daily' ? 'blue' : 'purple'}>\n              {report.type === 'daily' ? '日报' : '周报'}\n            </Tag>\n          </Descriptions.Item>\n          <Descriptions.Item label=\"状态\">\n            <Tag color={report.status === 'completed' ? 'green' : 'red'}>\n              {report.status === 'completed' ? '已完成' : '失败'}\n            </Tag>\n          </Descriptions.Item>\n          <Descriptions.Item label=\"周期开始\">\n            {new Date(content.period.start).toLocaleString('zh-CN')}\n          </Descriptions.Item>\n          <Descriptions.Item label=\"周期结束\">\n            {new Date(content.period.end).toLocaleString('zh-CN')}\n          </Descriptions.Item>\n        </Descriptions>\n\n        <Card title=\"📈 策略表现\" size=\"small\" style={{ marginBottom: 16 }}>\n          <Row gutter={16}>\n            <Col span={6}>\n              <Statistic title=\"活跃策略\" value={content.strategies.length} suffix=\"个\" />\n            </Col>\n            <Col span={6}>\n              <Statistic title=\"总交易\" value={content.overall.totalTrades} suffix=\"笔\" />\n            </Col>\n            <Col span={6}>\n              <Statistic title=\"综合胜率\" value={(content.overall.totalWinRate * 100).toFixed(1)} suffix=\"%\" />\n            </Col>\n            <Col span={6}>\n              <Statistic\n                title=\"总盈利\"\n                value={content.overall.totalProfit}\n                precision={2}\n                prefix={content.overall.totalProfit >= 0 ? <RiseOutlined /> : <FallOutlined />}\n                suffix=\"元\"\n                valueStyle={{ color: profitColor }}\n              />\n            </Col>\n          </Row>\n          {content.strategies.length > 0 && (\n            <>\n              <Divider orientation=\"left\" style={{ fontSize: 12 }}>策略明细</Divider>\n              <Table\n                size=\"small\"\n                pagination={false}\n                dataSource={content.strategies}\n                rowKey=\"id\"\n                columns={[\n                  { title: '策略名称', dataIndex: 'name', key: 'name' },\n                  { title: '交易笔数', dataIndex: 'tradeCount', key: 'tradeCount', align: 'right' },\n                  {\n                    title: '胜率',\n                    dataIndex: 'winRate',\n                    key: 'winRate',\n                    align: 'right',\n                    render: (v: number) => `${(v * 100).toFixed(1)}%`,\n                  },\n                  {\n                    title: '盈利',\n                    dataIndex: 'totalProfit',\n                    key: 'totalProfit',\n                    align: 'right',\n                    render: (v: number) => (\n                      <Text style={{ color: v >= 0 ? '#cf1322' : '#3f8600' }}>\n                        {v >= 0 ? '+' : ''}{v.toFixed(2)}\n                      </Text>\n                    ),\n                  },\n                  {\n                    title: '收益率',\n                    dataIndex: 'totalReturn',\n                    key: 'totalReturn',\n                    align: 'right',\n                    render: (v: number) => `${(v * 100).toFixed(2)}%`,\n                  },\n                ]}\n              />\n            </>\n          )}\n        </Card>\n\n        <Card title={<><RobotOutlined /> 交易 Agent</>} size=\"small\" style={{ marginBottom: 16 }}>\n          <Row gutter={16}>\n            <Col span={6}>\n              <Statistic title=\"总决策\" value={content.tradingAgent.decisionCount} suffix=\"次\" />\n            </Col>\n            <Col span={6}>\n              <Statistic title=\"批准\" value={content.tradingAgent.approvedCount} suffix=\"次\" />\n            </Col>\n            <Col span={6}>\n              <Statistic title=\"胜率\" value={(content.tradingAgent.winRate * 100).toFixed(1)} suffix=\"%\" />\n            </Col>\n            <Col span={6}>\n              <Statistic\n                title=\"盈利\"\n                value={content.tradingAgent.totalProfit}\n                precision={2}\n                prefix={content.tradingAgent.totalProfit >= 0 ? <RiseOutlined /> : <FallOutlined />}\n                suffix=\"元\"\n                valueStyle={{ color: agentProfitColor }}\n              />\n            </Col>\n          </Row>\n        </Card>\n\n        <Card title={<><SignalFilled /> 信号统计</>} size=\"small\">\n          <Row gutter={16}>\n            <Col span={6}>\n              <Statistic title=\"总信号\" value={content.signals.totalCount} />\n            </Col>\n            <Col span={6}>\n              <Statistic title=\"做多\" value={content.signals.longCount} valueStyle={{ color: '#cf1322' }} />\n            </Col>\n            <Col span={6}>\n              <Statistic title=\"做空\" value={content.signals.shortCount} valueStyle={{ color: '#3f8600' }} />\n            </Col>\n            <Col span={6}>\n              <Statistic title=\"观望\" value={content.signals.holdCount} />\n            </Col>\n          </Row>\n        </Card>\n      </div>\n    );\n  };\n\n  const columns = [\n    {\n      title: '类型',\n      dataIndex: 'type',\n      key: 'type',\n      width: 80,\n      render: (type: string) => (\n        <Tag color={type === 'daily' ? 'blue' : 'purple'}>\n          {type === 'daily' ? '日报' : '周报'}\n        </Tag>\n      ),\n    },\n    {\n      title: '周期',\n      key: 'period',\n      width: 200,\n      render: (_: unknown, record: PeriodicReport) => (\n        <Text>\n          {new Date(record.periodStart).toLocaleDateString('zh-CN')} ~ {new Date(record.periodEnd).toLocaleDateString('zh-CN')}\n        </Text>\n      ),\n    },\n    {\n      title: '摘要',\n      key: 'summary',\n      render: (_: unknown, record: PeriodicReport) => {\n        if (record.status !== 'completed') {\n          return <Tag color=\"red\">生成失败</Tag>;\n        }\n        return renderContentSummary(record.content);\n      },\n    },\n    {\n      title: '推送 Webhook',\n      key: 'webhooks',\n      width: 150,\n      render: (_: unknown, record: PeriodicReport) => {\n        if (!record.webhookIds || record.webhookIds.length === 0) {\n          return <Text type=\"secondary\">未推送</Text>;\n        }\n        return <Tag color=\"blue\">{record.webhookIds.length} 个</Tag>;\n      },\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 80,\n      render: (status: string) => (\n        <Tag color={status === 'completed' ? 'green' : 'red'}>\n          {status === 'completed' ? '完成' : '失败'}\n        </Tag>\n      ),\n    },\n    {\n      title: '生成时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 180,\n      render: (time: string) => new Date(time).toLocaleString('zh-CN'),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 100,\n      align: 'center' as const,\n      render: (_: unknown, record: PeriodicReport) => (\n        <Button type=\"link\" size=\"small\" onClick={() => handleViewDetail(record)}>\n          查看详情\n        </Button>\n      ),\n    },\n  ];\n\n  return (\n    <div>\n      <Title level={2}>\n        <FileTextOutlined style={{ marginRight: 8 }} />\n        定期报告\n      </Title>\n\n      <Card>\n        <Space style={{ marginBottom: 16 }} wrap>\n          <Select\n            placeholder=\"报告类型\"\n            allowClear\n            style={{ width: 120 }}\n            value={typeFilter}\n            onChange={(value) => {\n              setTypeFilter(value);\n              setPage(1);\n            }}\n          >\n            <Select.Option value=\"daily\">日报</Select.Option>\n            <Select.Option value=\"weekly\">周报</Select.Option>\n          </Select>\n          <RangePicker\n            value={dateRange}\n            onChange={(dates) => {\n              setDateRange(dates as [dayjs.Dayjs | null, dayjs.Dayjs | null] | null);\n            }}\n            placeholder={['开始日期', '结束日期']}\n          />\n          <Button icon={<ReloadOutlined />} onClick={fetchReports}>\n            刷新\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={() => openGenerateModal('daily')}\n          >\n            生成日报\n          </Button>\n          <Button\n            type=\"primary\"\n            icon={<PlusOutlined />}\n            onClick={() => openGenerateModal('weekly')}\n            style={{ background: '#722ed1', borderColor: '#722ed1' }}\n          >\n            生成周报\n          </Button>\n        </Space>\n\n        <Table\n          columns={columns}\n          dataSource={reports}\n          rowKey=\"id\"\n          loading={loading}\n          pagination={{\n            current: page,\n            pageSize,\n            total,\n            showSizeChanger: true,\n            showTotal: (t) => `共 ${t} 条`,\n            onChange: (p, ps) => {\n              setPage(p);\n              setPageSize(ps);\n            },\n          }}\n          scroll={{ x: 1000 }}\n        />\n      </Card>\n\n      <Modal\n        title={`生成${generateType === 'daily' ? '日报' : '周报'}`}\n        open={generateModalVisible}\n        onCancel={() => setGenerateModalVisible(false)}\n        onOk={handleGenerate}\n        okText=\"生成并推送\"\n        cancelText=\"取消\"\n        confirmLoading={generating}\n        width={500}\n        destroyOnHidden\n      >\n        <div style={{ marginBottom: 16 }}>\n          <Text type=\"secondary\">\n            选择要推送此报告的 Webhook，不选则仅生成不推送。\n          </Text>\n        </div>\n\n        {loadingWebhooks ? (\n          <Text>加载 Webhook 列表中...</Text>\n        ) : webhookOptions.length === 0 ? (\n          <Text type=\"secondary\">暂无已启用的 Webhook，请先在通知设置中创建。</Text>\n        ) : (\n          <Checkbox.Group\n            value={selectedWebhookIds}\n            onChange={(values) => setSelectedWebhookIds(values as string[])}\n            style={{ width: '100%' }}\n          >\n            <Space direction=\"vertical\" style={{ width: '100%' }}>\n              {webhookOptions.map((webhook) => (\n                <Checkbox key={webhook.id} value={webhook.id}>\n                  <Space>\n                    <SendOutlined />\n                    <Text strong>{webhook.name}</Text>\n                    <Text type=\"secondary\" style={{ fontSize: 12 }}>\n                      {webhook.url.length > 50 ? `${webhook.url.substring(0, 50)}...` : webhook.url}\n                    </Text>\n                  </Space>\n                </Checkbox>\n              ))}\n            </Space>\n          </Checkbox.Group>\n        )}\n      </Modal>\n\n      <Modal\n        title={selectedReport ? `${selectedReport.type === 'daily' ? '日报' : '周报'}详情` : '报告详情'}\n        open={detailModalVisible}\n        onCancel={() => setDetailModalVisible(false)}\n        footer={null}\n        width={900}\n        destroyOnHidden\n      >\n        {selectedReport && renderDetailContent(selectedReport)}\n      </Modal>\n    </div>\n  );\n};\n\nexport default PeriodicReportsPage;\n",
+      "__isJSFile": true,
+      "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/periodic-reports/index.tsx"
+    },
+    "35": {
       "path": "/profile",
       "title": "个人资料",
       "file": "@/pages/profile.tsx",
       "parentId": "3",
-      "id": "34",
+      "id": "35",
       "absPath": "/profile",
       "__content": "import React, { useEffect, useState } from 'react';\nimport { \n  Card, \n  Form, \n  Input, \n  Button, \n  Avatar, \n  Row, \n  Col, \n  Divider, \n  Typography, \n  message,\n  Space,\n  Tooltip,\n  Popover\n} from 'antd';\nimport { \n  UserOutlined, \n  MailOutlined, \n  LockOutlined,\n  SyncOutlined,\n  SaveOutlined,\n  KeyOutlined,\n  EditOutlined,\n  CopyOutlined,\n  CheckOutlined\n} from '@ant-design/icons';\nimport { useUser } from '@/contexts/UserContext';\nimport { authApi } from '@/services/auth';\nimport { generateAvatarDataUrl, generateRandomSeed } from '@/utils/avatar';\n\nconst { Title, Text } = Typography;\n\nconst ProfilePage: React.FC = () => {\n  const { user, setUser, refreshUser } = useUser();\n  const [profileForm] = Form.useForm();\n  const [passwordForm] = Form.useForm();\n  const [profileLoading, setProfileLoading] = useState(false);\n  const [passwordLoading, setPasswordLoading] = useState(false);\n  const [avatarSeed, setAvatarSeed] = useState<string>('');\n\n  useEffect(() => {\n    if (user) {\n      profileForm.setFieldsValue({\n        nickname: user.nickname,\n        email: user.email,\n      });\n      // 使用用户的 avatarSeed，如果没有则使用昵称作为种子（保持一致性）\n      const seed = user.avatarSeed || user.nickname || 'default';\n      setAvatarSeed(seed);\n    }\n  }, [user, profileForm]);\n\n  const handleUpdateProfile = async (values: { nickname: string }) => {\n    setProfileLoading(true);\n    try {\n      const updatedUser = await authApi.updateProfile({\n        nickname: values.nickname,\n        avatarSeed,\n      });\n      setUser(updatedUser);\n      message.success('个人资料更新成功');\n    } catch (error) {\n      console.error('Update profile error:', error);\n    } finally {\n      setProfileLoading(false);\n    }\n  };\n\n  const handleChangePassword = async (values: { \n    currentPassword: string; \n    newPassword: string;\n    confirmPassword: string;\n  }) => {\n    if (values.newPassword !== values.confirmPassword) {\n      message.error('两次输入的新密码不一致');\n      return;\n    }\n\n    setPasswordLoading(true);\n    try {\n      await authApi.changePassword({\n        currentPassword: values.currentPassword,\n        newPassword: values.newPassword,\n      });\n      message.success('密码修改成功');\n      passwordForm.resetFields();\n    } catch (error) {\n      console.error('Change password error:', error);\n    } finally {\n      setPasswordLoading(false);\n    }\n  };\n\n  const handleRegenerateAvatar = () => {\n    const newSeed = generateRandomSeed();\n    setAvatarSeed(newSeed);\n  };\n\n  const handleCopySeed = () => {\n    navigator.clipboard.writeText(avatarSeed);\n    message.success('头像种子已复制到剪贴板');\n  };\n\n  const avatarSrc = generateAvatarDataUrl(avatarSeed);\n\n  return (\n    <div>\n      <Title level={2}>个人资料</Title>\n      <Text type=\"secondary\">管理您的账户信息和安全设置</Text>\n\n      <Row gutter={[24, 24]} style={{ marginTop: 24 }}>\n        <Col xs={24} md={8}>\n          <Card>\n            <div style={{ textAlign: 'center' }}>\n              <Avatar \n                src={avatarSrc} \n                size={120}\n                icon={<UserOutlined />}\n                style={{ marginBottom: 16 }}\n              />\n              <Title level={4} style={{ margin: 0 }}>\n                {user?.nickname || '用户'}\n              </Title>\n              <Text type=\"secondary\">{user?.email}</Text>\n            </div>\n            <Divider />\n            <div style={{ textAlign: 'center' }}>\n              <Text type=\"secondary\" style={{ display: 'block', marginBottom: 8 }}>\n                头像预览\n              </Text>\n              <Text type=\"secondary\" style={{ fontSize: 12 }}>\n                在右侧表单中修改种子\n              </Text>\n            </div>\n          </Card>\n        </Col>\n\n        <Col xs={24} md={16}>\n          <Card title=\"基本信息\">\n            <Form\n              form={profileForm}\n              layout=\"vertical\"\n              onFinish={handleUpdateProfile}\n            >\n              <Form.Item\n                name=\"nickname\"\n                label=\"昵称\"\n                rules={[\n                  { required: true, message: '请输入昵称' },\n                  { min: 2, message: '昵称至少2个字符' },\n                  { max: 20, message: '昵称最多20个字符' },\n                ]}\n              >\n                <Input \n                  prefix={<UserOutlined />} \n                  placeholder=\"请输入昵称\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"email\"\n                label=\"邮箱\"\n              >\n                <Input \n                  prefix={<MailOutlined />} \n                  disabled \n                />\n              </Form.Item>\n\n              <Form.Item\n                label=\"头像种子\"\n                extra=\"修改种子可以生成不同的头像，或使用随机生成\"\n              >\n                <Space.Compact style={{ width: '100%' }}>\n                  <Input\n                    value={avatarSeed}\n                    onChange={(e) => setAvatarSeed(e.target.value)}\n                    placeholder=\"输入头像种子\"\n                    prefix={<EditOutlined />}\n                  />\n                  <Tooltip title=\"复制种子\">\n                    <Button \n                      icon={<CopyOutlined />} \n                      onClick={handleCopySeed}\n                    />\n                  </Tooltip>\n                  <Tooltip title=\"随机生成\">\n                    <Button \n                      icon={<SyncOutlined />} \n                      onClick={handleRegenerateAvatar}\n                    />\n                  </Tooltip>\n                </Space.Compact>\n              </Form.Item>\n\n              <Form.Item>\n                <Button \n                  type=\"primary\" \n                  htmlType=\"submit\" \n                  loading={profileLoading}\n                  icon={<SaveOutlined />}\n                >\n                  保存修改\n                </Button>\n              </Form.Item>\n            </Form>\n          </Card>\n\n          <Card title=\"修改密码\" style={{ marginTop: 24 }}>\n            <Form\n              form={passwordForm}\n              layout=\"vertical\"\n              onFinish={handleChangePassword}\n            >\n              <Form.Item\n                name=\"currentPassword\"\n                label=\"当前密码\"\n                rules={[\n                  { required: true, message: '请输入当前密码' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<LockOutlined />} \n                  placeholder=\"请输入当前密码\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"newPassword\"\n                label=\"新密码\"\n                rules={[\n                  { required: true, message: '请输入新密码' },\n                  { min: 6, message: '密码至少6位' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<KeyOutlined />} \n                  placeholder=\"请输入新密码\" \n                />\n              </Form.Item>\n\n              <Form.Item\n                name=\"confirmPassword\"\n                label=\"确认新密码\"\n                rules={[\n                  { required: true, message: '请确认新密码' },\n                ]}\n              >\n                <Input.Password \n                  prefix={<KeyOutlined />} \n                  placeholder=\"请再次输入新密码\" \n                />\n              </Form.Item>\n\n              <Form.Item>\n                <Button \n                  type=\"primary\" \n                  htmlType=\"submit\" \n                  loading={passwordLoading}\n                  icon={<SaveOutlined />}\n                >\n                  修改密码\n                </Button>\n              </Form.Item>\n            </Form>\n          </Card>\n        </Col>\n      </Row>\n    </div>\n  );\n};\n\nexport default ProfilePage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/profile.tsx"
     },
-    "35": {
+    "36": {
       "path": "/settings/users",
       "title": "用户管理",
       "file": "@/pages/users/index.tsx",
       "parentId": "3",
-      "id": "35",
+      "id": "36",
       "absPath": "/settings/users",
       "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Table, Tag, Select, message, Card, Input, Space, Button, Modal, Typography } from 'antd';\nimport { PlusOutlined, CopyOutlined, GiftOutlined } from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { usersApi } from '@/services/users';\nimport { inviteCodeApi } from '@/services/invite-code';\nimport type { UserListItem, InviteCode } from '@/services/types';\n\nconst { Text } = Typography;\n\nconst UsersPage: React.FC = () => {\n  const [users, setUsers] = useState<UserListItem[]>([]);\n  const [total, setTotal] = useState(0);\n  const [loading, setLoading] = useState(false);\n  const [page, setPage] = useState(1);\n  const [pageSize, setPageSize] = useState(20);\n  const [keyword, setKeyword] = useState<string>();\n  const [roleFilter, setRoleFilter] = useState<string>();\n\n  const [inviteCodes, setInviteCodes] = useState<InviteCode[]>([]);\n  const [inviteTotal, setInviteTotal] = useState(0);\n  const [inviteLoading, setInviteLoading] = useState(false);\n  const [invitePage, setInvitePage] = useState(1);\n  const [inviteModalVisible, setInviteModalVisible] = useState(false);\n  const [generatedCode, setGeneratedCode] = useState<string | null>(null);\n\n  const fetchUsers = useCallback(async () => {\n    setLoading(true);\n    try {\n      const result = await usersApi.getUsers({\n        keyword,\n        role: roleFilter,\n        page,\n        pageSize,\n      });\n      setUsers(result.data);\n      setTotal(result.total);\n    } catch (error) {\n      console.error('Failed to fetch users:', error);\n      message.error('获取用户列表失败');\n    } finally {\n      setLoading(false);\n    }\n  }, [keyword, roleFilter, page, pageSize]);\n\n  const fetchInviteCodes = useCallback(async () => {\n    setInviteLoading(true);\n    try {\n      const result = await inviteCodeApi.getList({ page: invitePage, pageSize: 20 });\n      setInviteCodes(result.data);\n      setInviteTotal(result.total);\n    } catch (error) {\n      console.error('Failed to fetch invite codes:', error);\n      message.error('获取邀请码列表失败');\n    } finally {\n      setInviteLoading(false);\n    }\n  }, [invitePage]);\n\n  useEffect(() => {\n    fetchUsers();\n  }, [fetchUsers]);\n\n  useEffect(() => {\n    if (inviteModalVisible) {\n      fetchInviteCodes();\n    }\n  }, [inviteModalVisible, fetchInviteCodes]);\n\n  const handleRoleChange = async (userId: string, newRole: string) => {\n    try {\n      await usersApi.updateRole(userId, { role: newRole as 'admin' | 'normal' });\n      message.success('角色更新成功');\n      fetchUsers();\n    } catch (error) {\n      console.error('Failed to update role:', error);\n      message.error('角色更新失败');\n    }\n  };\n\n  const handleGenerateCode = async () => {\n    try {\n      const result = await inviteCodeApi.generate({ expiresInHours: 72 });\n      setGeneratedCode(result.code);\n      fetchInviteCodes();\n      message.success('邀请码生成成功');\n    } catch (error) {\n      console.error('Failed to generate invite code:', error);\n      message.error('邀请码生成失败');\n    }\n  };\n\n  const handleCopyCode = (code: string) => {\n    navigator.clipboard.writeText(code).then(() => {\n      message.success('已复制到剪贴板');\n    }).catch(() => {\n      message.error('复制失败');\n    });\n  };\n\n  const handleOpenInviteModal = () => {\n    setGeneratedCode(null);\n    setInvitePage(1);\n    setInviteModalVisible(true);\n  };\n\n  const userColumns: ColumnsType<UserListItem> = [\n    {\n      title: '昵称',\n      dataIndex: 'nickname',\n      key: 'nickname',\n      width: 150,\n    },\n    {\n      title: '邮箱',\n      dataIndex: 'email',\n      key: 'email',\n      width: 250,\n    },\n    {\n      title: '角色',\n      dataIndex: 'role',\n      key: 'role',\n      width: 150,\n      render: (role: string | null, record: UserListItem) => {\n        const currentRole = role || 'normal';\n        return (\n          <Select\n            value={currentRole}\n            size=\"small\"\n            style={{ width: 120 }}\n            onChange={(value) => handleRoleChange(record.id, value)}\n            options={[\n              { value: 'admin', label: '管理员' },\n              { value: 'normal', label: '普通用户' },\n            ]}\n          />\n        );\n      },\n    },\n    {\n      title: '角色标签',\n      key: 'roleTag',\n      width: 120,\n      render: (_: unknown, record: UserListItem) => {\n        const role = record.role || 'normal';\n        return role === 'admin' ? (\n          <Tag color=\"red\">管理员</Tag>\n        ) : (\n          <Tag color=\"blue\">普通用户</Tag>\n        );\n      },\n    },\n    {\n      title: '注册时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 200,\n      render: (date: string) => new Date(date).toLocaleString('zh-CN'),\n    },\n  ];\n\n  const inviteColumns: ColumnsType<InviteCode> = [\n    {\n      title: '邀请码',\n      dataIndex: 'code',\n      key: 'code',\n      width: 200,\n      render: (code: string) => (\n        <Space>\n          <Text code>{code}</Text>\n          <Button\n            type=\"link\"\n            size=\"small\"\n            icon={<CopyOutlined />}\n            onClick={() => handleCopyCode(code)}\n          />\n        </Space>\n      ),\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 100,\n      render: (status: string | null) => {\n        const s = status || 'active';\n        if (s === 'active') return <Tag color=\"green\">未使用</Tag>;\n        if (s === 'used') return <Tag color=\"blue\">已使用</Tag>;\n        if (s === 'expired') return <Tag color=\"default\">已过期</Tag>;\n        return <Tag>{s}</Tag>;\n      },\n    },\n    {\n      title: '使用人',\n      key: 'usedBy',\n      width: 150,\n      render: (_: unknown, record: InviteCode) => {\n        if (!record.usedBy) return <span style={{ color: '#ccc' }}>-</span>;\n        return record.usedByNickname || record.usedByEmail || record.usedBy.slice(0, 8);\n      },\n    },\n    {\n      title: '过期时间',\n      dataIndex: 'expiresAt',\n      key: 'expiresAt',\n      width: 180,\n      render: (date: string) => new Date(date).toLocaleString('zh-CN'),\n    },\n    {\n      title: '创建时间',\n      dataIndex: 'createdAt',\n      key: 'createdAt',\n      width: 180,\n      render: (date: string) => new Date(date).toLocaleString('zh-CN'),\n    },\n  ];\n\n  return (\n    <Card\n      title=\"用户管理\"\n      extra={\n        <Button icon={<GiftOutlined />} onClick={handleOpenInviteModal}>\n          邀请码管理\n        </Button>\n      }\n    >\n      <Space style={{ marginBottom: 16 }}>\n        <Input.Search\n          placeholder=\"搜索用户昵称\"\n          allowClear\n          style={{ width: 250 }}\n          onSearch={(value) => {\n            setKeyword(value || undefined);\n            setPage(1);\n          }}\n        />\n        <Select\n          placeholder=\"角色筛选\"\n          allowClear\n          style={{ width: 150 }}\n          value={roleFilter}\n          onChange={(value) => {\n            setRoleFilter(value);\n            setPage(1);\n          }}\n          options={[\n            { value: 'admin', label: '管理员' },\n            { value: 'normal', label: '普通用户' },\n          ]}\n        />\n      </Space>\n\n      <Table<UserListItem>\n        columns={userColumns}\n        dataSource={users}\n        rowKey=\"id\"\n        loading={loading}\n        pagination={{\n          current: page,\n          pageSize,\n          total,\n          showSizeChanger: true,\n          showTotal: (t) => `共 ${t} 条`,\n          onChange: (p, ps) => {\n            setPage(p);\n            setPageSize(ps);\n          },\n        }}\n      />\n\n      <Modal\n        title=\"邀请码管理\"\n        open={inviteModalVisible}\n        onCancel={() => setInviteModalVisible(false)}\n        footer={null}\n        width={900}\n      >\n        <div style={{ marginBottom: 16, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>\n          <span style={{ color: '#666' }}>邀请码有效期 3 天，每人只能查看自己创建的邀请码</span>\n          <Button type=\"primary\" icon={<PlusOutlined />} onClick={handleGenerateCode}>\n            生成邀请码\n          </Button>\n        </div>\n\n        {generatedCode && (\n          <div style={{\n            textAlign: 'center',\n            padding: '16px',\n            marginBottom: 16,\n            background: '#f6ffed',\n            borderRadius: 8,\n            border: '1px solid #b7eb8f',\n          }}>\n            <p style={{ margin: '0 0 8px 0' }}>邀请码生成成功：</p>\n            <Text\n              code\n              style={{ fontSize: 24, padding: '8px 16px', letterSpacing: 2 }}\n            >\n              {generatedCode}\n            </Text>\n            <div style={{ marginTop: 12 }}>\n              <Button\n                type=\"primary\"\n                icon={<CopyOutlined />}\n                onClick={() => handleCopyCode(generatedCode)}\n              >\n                复制邀请码\n              </Button>\n            </div>\n          </div>\n        )}\n\n        <Table<InviteCode>\n          columns={inviteColumns}\n          dataSource={inviteCodes}\n          rowKey=\"id\"\n          loading={inviteLoading}\n          size=\"small\"\n          pagination={{\n            current: invitePage,\n            pageSize: 20,\n            total: inviteTotal,\n            showTotal: (t) => `共 ${t} 条`,\n            onChange: (p) => setInvitePage(p),\n          }}\n        />\n      </Modal>\n    </Card>\n  );\n};\n\nexport default UsersPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/users/index.tsx"
     },
-    "36": {
+    "37": {
       "path": "/settings/menu-management",
       "title": "菜单管理",
       "file": "@/pages/menu-management/index.tsx",
       "parentId": "3",
-      "id": "36",
+      "id": "37",
       "absPath": "/settings/menu-management",
       "__content": "import React, { useState, useEffect, useCallback } from 'react';\nimport { Table, Button, Modal, Form, Input, InputNumber, Select, Tag, Space, message, Card, Checkbox } from 'antd';\nimport { PlusOutlined, EditOutlined, DeleteOutlined } from '@ant-design/icons';\nimport type { ColumnsType } from 'antd/es/table';\nimport { menuApi } from '@/services/menu';\nimport type { MenuItem, CreateMenuRequest, UpdateMenuRequest } from '@/services/types';\n\nconst ICON_OPTIONS = [\n  'DashboardOutlined', 'DatabaseOutlined', 'ReadOutlined', 'SearchOutlined',\n  'EyeOutlined', 'ExperimentOutlined', 'SettingOutlined', 'BellOutlined',\n  'ThunderboltOutlined', 'CodeOutlined', 'LineChartOutlined', 'WalletOutlined',\n  'ControlOutlined', 'DollarOutlined', 'RobotOutlined', 'MessageOutlined',\n  'FilterOutlined', 'BulbOutlined', 'CloudServerOutlined', 'FileTextOutlined',\n  'FundOutlined', 'BarChartOutlined', 'PieChartOutlined', 'NotificationOutlined',\n  'ClockCircleOutlined', 'KeyOutlined', 'BlockOutlined', 'AuditOutlined',\n  'UserOutlined', 'MenuOutlined',\n];\n\nconst MenuManagementPage: React.FC = () => {\n  const [menus, setMenus] = useState<MenuItem[]>([]);\n  const [loading, setLoading] = useState(false);\n  const [modalVisible, setModalVisible] = useState(false);\n  const [editingMenu, setEditingMenu] = useState<MenuItem | null>(null);\n  const [form] = Form.useForm();\n\n  const fetchMenus = useCallback(async () => {\n    setLoading(true);\n    try {\n      const data = await menuApi.getAllMenus();\n      setMenus(data);\n    } catch (error) {\n      console.error('Failed to fetch menus:', error);\n      message.error('获取菜单列表失败');\n    } finally {\n      setLoading(false);\n    }\n  }, []);\n\n  useEffect(() => {\n    fetchMenus();\n  }, [fetchMenus]);\n\n  const buildTreeData = (menus: MenuItem[]): MenuItem[] => {\n    const topMenus = menus.filter(m => !m.parentId);\n    const childMenus = menus.filter(m => m.parentId);\n\n    return topMenus\n      .sort((a, b) => a.sort - b.sort)\n      .map(menu => {\n        const children = childMenus\n          .filter(c => c.parentId === menu.id)\n          .sort((a, b) => a.sort - b.sort);\n        return { ...menu, children };\n      });\n  };\n\n  const handleCreate = () => {\n    setEditingMenu(null);\n    form.resetFields();\n    form.setFieldsValue({\n      sort: 0,\n      visibleRoles: ['admin', 'normal'],\n    });\n    setModalVisible(true);\n  };\n\n  const handleEdit = (record: MenuItem) => {\n    setEditingMenu(record);\n    form.setFieldsValue({\n      parentId: record.parentId || undefined,\n      name: record.name,\n      path: record.path || undefined,\n      icon: record.icon || undefined,\n      sort: record.sort,\n      visibleRoles: record.visibleRoles || ['admin', 'normal'],\n    });\n    setModalVisible(true);\n  };\n\n  const handleDelete = async (record: MenuItem) => {\n    Modal.confirm({\n      title: '确认删除',\n      content: `确定要删除菜单「${record.name}」吗？`,\n      okText: '确定',\n      cancelText: '取消',\n      onOk: async () => {\n        try {\n          await menuApi.delete(record.id);\n          message.success('删除成功');\n          fetchMenus();\n        } catch (error) {\n          console.error('Failed to delete menu:', error);\n          message.error('删除失败');\n        }\n      },\n    });\n  };\n\n  const handleSubmit = async () => {\n    try {\n      const values = await form.validateFields();\n\n      if (editingMenu) {\n        const updateData: UpdateMenuRequest = {\n          name: values.name,\n          path: values.path || null,\n          icon: values.icon || null,\n          sort: values.sort,\n          visibleRoles: values.visibleRoles,\n        };\n        await menuApi.update(editingMenu.id, updateData);\n        message.success('更新成功');\n      } else {\n        const createData: CreateMenuRequest = {\n          parentId: values.parentId || undefined,\n          name: values.name,\n          path: values.path || undefined,\n          icon: values.icon || undefined,\n          sort: values.sort,\n          visibleRoles: values.visibleRoles,\n        };\n        await menuApi.create(createData);\n        message.success('创建成功');\n      }\n\n      setModalVisible(false);\n      fetchMenus();\n    } catch (error) {\n      console.error('Failed to save menu:', error);\n      message.error('保存失败');\n    }\n  };\n\n  const topMenus = menus.filter(m => !m.parentId);\n\n  const columns: ColumnsType<MenuItem> = [\n    {\n      title: '菜单名称',\n      dataIndex: 'name',\n      key: 'name',\n      width: 200,\n    },\n    {\n      title: '路由路径',\n      dataIndex: 'path',\n      key: 'path',\n      width: 200,\n      render: (path: string | null) => path || <Tag>分组</Tag>,\n    },\n    {\n      title: '图标',\n      dataIndex: 'icon',\n      key: 'icon',\n      width: 180,\n      render: (icon: string | null) => icon || '-',\n    },\n    {\n      title: '排序',\n      dataIndex: 'sort',\n      key: 'sort',\n      width: 80,\n    },\n    {\n      title: '可见角色',\n      dataIndex: 'visibleRoles',\n      key: 'visibleRoles',\n      width: 200,\n      render: (roles: string[] | null) => {\n        const currentRoles = roles || ['admin', 'normal'];\n        return (\n          <Space>\n            {currentRoles.map(role => (\n              <Tag key={role} color={role === 'admin' ? 'red' : 'blue'}>\n                {role === 'admin' ? '管理员' : '普通用户'}\n              </Tag>\n            ))}\n          </Space>\n        );\n      },\n    },\n    {\n      title: '状态',\n      dataIndex: 'status',\n      key: 'status',\n      width: 100,\n      render: (status: string | null) => (\n        <Tag color={status === 'active' ? 'green' : 'default'}>\n          {status === 'active' ? '启用' : '禁用'}\n        </Tag>\n      ),\n    },\n    {\n      title: '操作',\n      key: 'action',\n      width: 150,\n      render: (_: unknown, record: MenuItem) => (\n        <Space>\n          <Button\n            type=\"link\"\n            size=\"small\"\n            icon={<EditOutlined />}\n            onClick={() => handleEdit(record)}\n          />\n          <Button\n            type=\"link\"\n            size=\"small\"\n            danger\n            icon={<DeleteOutlined />}\n            onClick={() => handleDelete(record)}\n          />\n        </Space>\n      ),\n    },\n  ];\n\n  return (\n    <Card title=\"菜单管理\">\n      <Space style={{ marginBottom: 16 }}>\n        <Button type=\"primary\" icon={<PlusOutlined />} onClick={handleCreate}>\n          新增菜单\n        </Button>\n      </Space>\n\n      <Table<MenuItem>\n        columns={columns}\n        dataSource={buildTreeData(menus)}\n        rowKey=\"id\"\n        loading={loading}\n        pagination={false}\n        expandable={{\n          defaultExpandAllRows: true,\n        }}\n      />\n\n      <Modal\n        title={editingMenu ? '编辑菜单' : '新增菜单'}\n        open={modalVisible}\n        onOk={handleSubmit}\n        onCancel={() => setModalVisible(false)}\n        okText=\"保存\"\n        cancelText=\"取消\"\n        width={600}\n      >\n        <Form form={form} layout=\"vertical\">\n          <Form.Item name=\"parentId\" label=\"父菜单\">\n            <Select\n              placeholder=\"无（顶级菜单）\"\n              allowClear\n              options={topMenus.map(m => ({\n                value: m.id,\n                label: m.name,\n              }))}\n            />\n          </Form.Item>\n\n          <Form.Item\n            name=\"name\"\n            label=\"菜单名称\"\n            rules={[{ required: true, message: '请输入菜单名称' }]}\n          >\n            <Input placeholder=\"请输入菜单名称\" />\n          </Form.Item>\n\n          <Form.Item name=\"path\" label=\"路由路径\">\n            <Input placeholder=\"如 /dashboard，分组菜单留空\" />\n          </Form.Item>\n\n          <Form.Item name=\"icon\" label=\"图标\">\n            <Select\n              placeholder=\"选择图标\"\n              allowClear\n              showSearch\n              options={ICON_OPTIONS.map(icon => ({\n                value: icon,\n                label: icon,\n              }))}\n            />\n          </Form.Item>\n\n          <Form.Item name=\"sort\" label=\"排序权重\">\n            <InputNumber min={0} style={{ width: '100%' }} placeholder=\"越小越靠前\" />\n          </Form.Item>\n\n          <Form.Item name=\"visibleRoles\" label=\"可见角色\">\n            <Checkbox.Group\n              options={[\n                { label: '管理员', value: 'admin' },\n                { label: '普通用户', value: 'normal' },\n              ]}\n            />\n          </Form.Item>\n        </Form>\n      </Modal>\n    </Card>\n  );\n};\n\nexport default MenuManagementPage;\n",
       "__isJSFile": true,
       "__absFile": "C:/Users/yeung/Desktop/Project/a-signal/apps/frontend/src/pages/menu-management/index.tsx"
     },
-    "37": {
+    "38": {
       "path": "/",
       "redirect": "/dashboard",
       "parentId": "3",
-      "id": "37",
+      "id": "38",
       "absPath": "/"
     }
   },
@@ -7657,7 +7609,7 @@
             "format": "esm"
           },
           "src/pages/llm-center/index.tsx": {
-            "bytes": 13224,
+            "bytes": 13226,
             "imports": [
               {
                 "path": "react",
@@ -7983,6 +7935,58 @@
             ],
             "format": "esm"
           },
+          "src/services/periodic-report.ts": {
+            "bytes": 3269,
+            "imports": [
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "./client"
+              }
+            ],
+            "format": "esm"
+          },
+          "src/pages/periodic-reports/index.tsx": {
+            "bytes": 15383,
+            "imports": [
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "src/services/periodic-report.ts",
+                "kind": "import-statement",
+                "original": "@/services/periodic-report"
+              },
+              {
+                "path": "src/services/client.ts",
+                "kind": "import-statement",
+                "original": "@/services/client"
+              },
+              {
+                "path": "dayjs",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              }
+            ],
+            "format": "esm"
+          },
           "src/pages/profile.tsx": {
             "bytes": 8060,
             "imports": [
@@ -8135,7 +8139,7 @@
             "format": "esm"
           },
           "src/.umi/core/route.tsx": {
-            "bytes": 6929,
+            "bytes": 7133,
             "imports": [
               {
                 "path": "react",
@@ -8306,6 +8310,11 @@
                 "path": "src/pages/analysis/strategies/[id].tsx",
                 "kind": "dynamic-import",
                 "original": "@/pages/analysis/strategies/[id].tsx"
+              },
+              {
+                "path": "src/pages/periodic-reports/index.tsx",
+                "kind": "dynamic-import",
+                "original": "@/pages/periodic-reports/index.tsx"
               },
               {
                 "path": "src/pages/profile.tsx",
@@ -9342,6 +9351,26 @@
               },
               {
                 "path": "lightweight-charts",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react/jsx-runtime",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "react",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "antd",
+                "kind": "import-statement",
+                "external": true
+              },
+              {
+                "path": "@ant-design/icons",
                 "kind": "import-statement",
                 "external": true
               },
@@ -10706,7 +10735,7 @@
                 "bytesInOutput": 1699
               },
               "src/pages/llm-center/index.tsx": {
-                "bytesInOutput": 16411
+                "bytesInOutput": 16413
               },
               "src/pages/llm-logs/index.tsx": {
                 "bytesInOutput": 13502
@@ -10741,6 +10770,12 @@
               "src/pages/analysis/strategies/[id].tsx": {
                 "bytesInOutput": 15756
               },
+              "src/services/periodic-report.ts": {
+                "bytesInOutput": 1750
+              },
+              "src/pages/periodic-reports/index.tsx": {
+                "bytesInOutput": 22192
+              },
               "src/pages/profile.tsx": {
                 "bytesInOutput": 12041
               },
@@ -10760,7 +10795,7 @@
                 "bytesInOutput": 383
               },
               "src/.umi/core/route.tsx": {
-                "bytesInOutput": 7447
+                "bytesInOutput": 7667
               },
               "src/.umi/core/polyfill.ts": {
                 "bytesInOutput": 30238
@@ -10769,7 +10804,7 @@
                 "bytesInOutput": 2095
               }
             },
-            "bytes": 683585
+            "bytes": 707826
           }
         }
       }
@@ -17962,6 +17997,215 @@
           "type": "ImportDeclaration"
         }
       ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\periodic-reports\\index.tsx": [
+        {
+          "end": 45,
+          "importKind": "value",
+          "source": "react",
+          "specifiers": [
+            {
+              "imported": "useEffect",
+              "local": "useEffect",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "useState",
+              "local": "useState",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 224,
+          "importKind": "value",
+          "source": "antd",
+          "specifiers": [
+            {
+              "imported": "Card",
+              "local": "Card",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Table",
+              "local": "Table",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Button",
+              "local": "Button",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Space",
+              "local": "Space",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Tag",
+              "local": "Tag",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Typography",
+              "local": "Typography",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "message",
+              "local": "message",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Select",
+              "local": "Select",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "DatePicker",
+              "local": "DatePicker",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Modal",
+              "local": "Modal",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Descriptions",
+              "local": "Descriptions",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Statistic",
+              "local": "Statistic",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Row",
+              "local": "Row",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Col",
+              "local": "Col",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "Divider",
+              "local": "Divider",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 46,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 412,
+          "importKind": "value",
+          "source": "@ant-design/icons",
+          "specifiers": [
+            {
+              "imported": "FileTextOutlined",
+              "local": "FileTextOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "PlusOutlined",
+              "local": "PlusOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "ReloadOutlined",
+              "local": "ReloadOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "RiseOutlined",
+              "local": "RiseOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "FallOutlined",
+              "local": "FallOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "RobotOutlined",
+              "local": "RobotOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "SignalFilled",
+              "local": "SignalFilled",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "SendOutlined",
+              "local": "SendOutlined",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "SaveOutlined",
+              "local": "SaveOutlined",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 225,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 525,
+          "importKind": "value",
+          "source": "@/services/periodic-report",
+          "specifiers": [
+            {
+              "imported": "periodicReportApi",
+              "local": "periodicReportApi",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "PeriodicReport",
+              "local": "PeriodicReport",
+              "type": "ImportSpecifier"
+            },
+            {
+              "imported": "PeriodicReportContent",
+              "local": "PeriodicReportContent",
+              "type": "ImportSpecifier"
+            }
+          ],
+          "start": 413,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 565,
+          "importKind": "value",
+          "source": "@/services/client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 526,
+          "type": "ImportDeclaration"
+        },
+        {
+          "end": 592,
+          "importKind": "value",
+          "source": "dayjs",
+          "specifiers": [
+            {
+              "local": "dayjs",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 566,
+          "type": "ImportDeclaration"
+        }
+      ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\pages\\profile.tsx": [
         {
           "end": 52,
@@ -21835,6 +22079,21 @@
         }
       ],
       "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\news-filter-agent.ts": [
+        {
+          "end": 31,
+          "importKind": "value",
+          "source": "./client",
+          "specifiers": [
+            {
+              "local": "client",
+              "type": "ImportDefaultSpecifier"
+            }
+          ],
+          "start": 1,
+          "type": "ImportDeclaration"
+        }
+      ],
+      "C:\\Users\\yeung\\Desktop\\Project\\a-signal\\apps\\frontend\\src\\services\\periodic-report.ts": [
         {
           "end": 31,
           "importKind": "value",

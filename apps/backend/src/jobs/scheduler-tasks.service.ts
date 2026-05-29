@@ -5,6 +5,7 @@ import { SchedulerService } from '../modules/scheduler/scheduler.service.js';
 import { NewsService } from '../modules/news/news.service.js';
 import { KlinesService } from '../modules/klines/klines.service.js';
 import { SimulationService } from '../modules/simulation/simulation.service.js';
+import { PeriodicReportService } from '../modules/periodic-report/periodic-report.service.js';
 import { QueueService } from '../core/queue/queue.service.js';
 import { DbService } from '../core/db/db.service.js';
 import { news } from '../core/db/schema.js';
@@ -18,6 +19,7 @@ export class SchedulerTasksService {
     private readonly newsService: NewsService,
     private readonly klinesService: KlinesService,
     private readonly simulationService: SimulationService,
+    private readonly periodicReportService: PeriodicReportService,
     private readonly queueService: QueueService,
     private readonly dbService: DbService,
   ) {}
@@ -172,6 +174,60 @@ export class SchedulerTasksService {
     }
   }
 
+  @Cron('0 0 18 * * *', {
+    name: 'daily-report',
+    timeZone: 'Asia/Shanghai',
+  })
+  async handleDailyReport(): Promise<void> {
+    const taskName = 'daily-report';
+    this.logger.log(`[${taskName}] Scheduled task triggered`);
+
+    try {
+      const enabled = await this.schedulerService.isTaskEnabled(taskName);
+      if (!enabled) {
+        this.logger.warn(`[${taskName}] Task is disabled, skipping execution`);
+        return;
+      }
+
+      await this.periodicReportService.generateDailyReport();
+      await this.schedulerService.updateLastExecutedAt(taskName);
+
+      this.logger.log(`[${taskName}] Task completed successfully`);
+    } catch (error) {
+      this.logger.error(
+        `[${taskName}] Task failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
+  @Cron('0 0 10 * * 6', {
+    name: 'weekly-report',
+    timeZone: 'Asia/Shanghai',
+  })
+  async handleWeeklyReport(): Promise<void> {
+    const taskName = 'weekly-report';
+    this.logger.log(`[${taskName}] Scheduled task triggered`);
+
+    try {
+      const enabled = await this.schedulerService.isTaskEnabled(taskName);
+      if (!enabled) {
+        this.logger.warn(`[${taskName}] Task is disabled, skipping execution`);
+        return;
+      }
+
+      await this.periodicReportService.generateWeeklyReport();
+      await this.schedulerService.updateLastExecutedAt(taskName);
+
+      this.logger.log(`[${taskName}] Task completed successfully`);
+    } catch (error) {
+      this.logger.error(
+        `[${taskName}] Task failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
   async manualNewsCrawl(): Promise<void> {
     const taskName = 'news-crawl';
     this.logger.log(`[${taskName}] Manual execution triggered`);
@@ -255,6 +311,38 @@ export class SchedulerTasksService {
 
     try {
       await this.executeSimulationRefresh();
+      await this.schedulerService.updateLastExecutedAt(taskName);
+      this.logger.log(`[${taskName}] Manual execution completed`);
+    } catch (error) {
+      this.logger.error(
+        `[${taskName}] Manual execution failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
+  async manualDailyReport(): Promise<void> {
+    const taskName = 'daily-report';
+    this.logger.log(`[${taskName}] Manual execution triggered`);
+
+    try {
+      await this.periodicReportService.generateDailyReport();
+      await this.schedulerService.updateLastExecutedAt(taskName);
+      this.logger.log(`[${taskName}] Manual execution completed`);
+    } catch (error) {
+      this.logger.error(
+        `[${taskName}] Manual execution failed: ${error instanceof Error ? error.message : String(error)}`,
+      );
+      throw error;
+    }
+  }
+
+  async manualWeeklyReport(): Promise<void> {
+    const taskName = 'weekly-report';
+    this.logger.log(`[${taskName}] Manual execution triggered`);
+
+    try {
+      await this.periodicReportService.generateWeeklyReport();
       await this.schedulerService.updateLastExecutedAt(taskName);
       this.logger.log(`[${taskName}] Manual execution completed`);
     } catch (error) {

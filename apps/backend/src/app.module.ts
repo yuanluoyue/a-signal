@@ -34,6 +34,7 @@ import { LlmModule } from './modules/llm/llm.module.js';
 import { NewsFilterAgentModule } from './modules/news-filter-agent/news-filter-agent.module.js';
 import { MenuModule } from './modules/menu/menu.module.js';
 import { InviteCodeModule } from './modules/invite-code/invite-code.module.js';
+import { PeriodicReportModule } from './modules/periodic-report/periodic-report.module.js';
 import { AuthController } from './interfaces/admin/auth/auth.controller.js';
 import { AuditLogController } from './interfaces/admin/audit-log/audit-log.controller.js';
 import { TradingMemoryController } from './interfaces/admin/trading-memory/trading-memory.controller.js';
@@ -63,6 +64,7 @@ import { UsersController } from './interfaces/admin/users/users.controller.js';
 import { MenuController } from './interfaces/admin/menu/menu.controller.js';
 import { InviteCodeController } from './interfaces/admin/invite-code/invite-code.controller.js';
 import { TradingMemoryLogController } from './interfaces/admin/trading-memory/trading-memory-log.controller.js';
+import { PeriodicReportController } from './interfaces/admin/periodic-report/periodic-report.controller.js';
 import { JwtAuthGuard } from './common/guards/jwt-auth.guard.js';
 import { SchedulerTasksService } from './jobs/scheduler-tasks.service.js';
 import { NewsCrawlConsumer } from './jobs/news-crawl.consumer.js';
@@ -115,6 +117,7 @@ const jwtAuthGuardProvider: Provider = {
     NewsFilterAgentModule,
     MenuModule,
     InviteCodeModule,
+    PeriodicReportModule,
   ],
   controllers: [
     AuthController,
@@ -146,6 +149,7 @@ const jwtAuthGuardProvider: Provider = {
     MenuController,
     InviteCodeController,
     TradingMemoryLogController,
+    PeriodicReportController,
   ],
   providers: [
     jwtAuthGuardProvider,

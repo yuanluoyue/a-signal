@@ -282,6 +282,7 @@ export const webhooks = pgTable(
     minScore: decimal('min_score', { precision: 4, scale: 3 }),
     maxScore: decimal('max_score', { precision: 4, scale: 3 }),
     enabled: boolean('enabled').notNull().default(true),
+    events: jsonb('events').$type<string[]>().default(['signal']),
     createdAt: timestamp('created_at', { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -304,6 +305,81 @@ export const webhooks = pgTable(
 
 export type Webhook = typeof webhooks.$inferSelect;
 export type NewWebhook = typeof webhooks.$inferInsert;
+
+export interface PeriodicReportContent {
+  period: { start: string; end: string; type: 'daily' | 'weekly' };
+  strategies: {
+    id: string;
+    name: string;
+    tradeCount: number;
+    winRate: number;
+    totalProfit: number;
+    totalReturn: number;
+  }[];
+  tradingAgent: {
+    decisionCount: number;
+    approvedCount: number;
+    rejectedCount: number;
+    winRate: number;
+    totalProfit: number;
+  };
+  signals: {
+    totalCount: number;
+    longCount: number;
+    shortCount: number;
+    holdCount: number;
+  };
+  overall: {
+    totalTrades: number;
+    totalProfit: number;
+    totalWinRate: number;
+  };
+}
+
+export const periodicReports = pgTable(
+  'periodic_reports',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    type: varchar('type', { length: 20 }).notNull(),
+    periodStart: timestamp('period_start', { withTimezone: true }).notNull(),
+    periodEnd: timestamp('period_end', { withTimezone: true }).notNull(),
+    content: jsonb('content').$type<PeriodicReportContent>().notNull(),
+    summary: text('summary'),
+    webhookIds: jsonb('webhook_ids').$type<string[]>(),
+    status: varchar('status', { length: 20 }).notNull().default('completed'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp('updated_at', { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    index('periodic_reports_type_idx').on(table.type),
+    index('periodic_reports_period_start_idx').on(table.periodStart),
+    index('periodic_reports_status_idx').on(table.status),
+  ],
+);
+
+export type PeriodicReport = typeof periodicReports.$inferSelect;
+export type NewPeriodicReport = typeof periodicReports.$inferInsert;
+
+export const periodicReportConfig = pgTable('periodic_report_config', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  dailyWebhookIds: jsonb('daily_webhook_ids').$type<string[]>().default([]),
+  weeklyWebhookIds: jsonb('weekly_webhook_ids').$type<string[]>().default([]),
+  createdAt: timestamp('created_at', { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+  updatedAt: timestamp('updated_at', { withTimezone: true })
+    .notNull()
+    .defaultNow()
+    .$onUpdate(() => new Date()),
+});
+
+export type PeriodicReportConfig = typeof periodicReportConfig.$inferSelect;
+export type NewPeriodicReportConfig = typeof periodicReportConfig.$inferInsert;
 
 export const schedulerTasks = pgTable(
   'scheduler_tasks',

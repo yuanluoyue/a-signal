@@ -82,6 +82,14 @@ export class SchedulerController {
           this.logger.log('[triggerTask] Executing simulation-refresh task...');
           await this.schedulerTasksService.manualSimulationRefresh();
           break;
+        case 'daily-report':
+          this.logger.log('[triggerTask] Executing daily-report task...');
+          await this.schedulerTasksService.manualDailyReport();
+          break;
+        case 'weekly-report':
+          this.logger.log('[triggerTask] Executing weekly-report task...');
+          await this.schedulerTasksService.manualWeeklyReport();
+          break;
         default:
           this.logger.warn(`[triggerTask] Unknown task name: ${task.name}`);
           throw new NotFoundException(`未知的任务类型: ${task.name}`);
