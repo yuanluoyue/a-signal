@@ -175,6 +175,18 @@ async function seed() {
         description: '每4小时刷新模拟交易持仓价格和止盈止损',
         enabled: true,
       },
+      {
+        name: 'daily-report',
+        cronExpression: '0 0 18 * * *',
+        description: '每天晚上6点生成日报',
+        enabled: true,
+      },
+      {
+        name: 'weekly-report',
+        cronExpression: '0 0 10 * * 6',
+        description: '每周六上午10点生成周报',
+        enabled: true,
+      },
     ];
 
     for (const task of schedulerTasksData) {
@@ -597,103 +609,93 @@ async function seed() {
     console.log('Seeding menus...');
 
     const existingMenus = await db.select().from(schema.menus);
-    if (existingMenus.length === 0) {
-      const allRoles = ['admin', 'normal'];
-      const adminOnly = ['admin'];
+    const allRoles = ['admin', 'normal'];
+    const adminOnly = ['admin'];
 
-      const menuData = [
-        { name: '仪表盘', path: '/dashboard', icon: 'DashboardOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
-        { name: '数据中心', path: null, icon: 'DatabaseOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
-        { name: '新闻管理', path: '/news', icon: 'ReadOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
-        { name: '股票查询', path: '/stocks', icon: 'SearchOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
-        { name: '股票追踪', path: '/stock-trackings', icon: 'EyeOutlined', sort: 2, visibleRoles: allRoles, parentId: null },
-        { name: '策略中心', path: null, icon: 'ExperimentOutlined', sort: 2, visibleRoles: allRoles, parentId: null },
-        { name: '信号规则', path: '/signal-rules', icon: 'SettingOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
-        { name: '信号管理', path: '/signals', icon: 'BellOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
-        { name: '事件管理', path: '/events', icon: 'ThunderboltOutlined', sort: 2, visibleRoles: allRoles, parentId: null },
-        { name: '策略管理', path: '/strategies', icon: 'CodeOutlined', sort: 3, visibleRoles: allRoles, parentId: null },
-        { name: '回测记录', path: '/backtest', icon: 'LineChartOutlined', sort: 4, visibleRoles: allRoles, parentId: null },
-        { name: '交易中心', path: null, icon: 'WalletOutlined', sort: 3, visibleRoles: allRoles, parentId: null },
-        { name: '运行管理', path: '/runtime', icon: 'ControlOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
-        { name: '账户模拟', path: '/simulation', icon: 'DollarOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
-        { name: 'AI 智能体', path: null, icon: 'RobotOutlined', sort: 4, visibleRoles: allRoles, parentId: null },
-        { name: '研究员 Agent', path: '/agent-chat', icon: 'MessageOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
-        { name: '交易 Agent', path: '/trading-agent', icon: 'ThunderboltOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
-        { name: '新闻过滤 Agent', path: '/news-filter-agent', icon: 'FilterOutlined', sort: 2, visibleRoles: allRoles, parentId: null },
-        { name: '交易经验', path: '/trading-memory', icon: 'BulbOutlined', sort: 3, visibleRoles: allRoles, parentId: null },
-        { name: 'AI 运行中心', path: '/llm-center', icon: 'CloudServerOutlined', sort: 4, visibleRoles: allRoles, parentId: null },
-        { name: 'LLM 日志', path: '/llm-logs', icon: 'FileTextOutlined', sort: 5, visibleRoles: allRoles, parentId: null },
-        { name: '分析中心', path: null, icon: 'FundOutlined', sort: 5, visibleRoles: allRoles, parentId: null },
-        { name: '综合分析', path: '/analysis/overview', icon: 'BarChartOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
-        { name: '策略总览', path: '/analysis/strategies', icon: 'PieChartOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
-        { name: '系统设置', path: null, icon: 'SettingOutlined', sort: 6, visibleRoles: adminOnly, parentId: null },
-        { name: '通知设置', path: '/settings/notifications', icon: 'NotificationOutlined', sort: 0, visibleRoles: adminOnly, parentId: null },
-        { name: '定时任务', path: '/settings/scheduler', icon: 'ClockCircleOutlined', sort: 1, visibleRoles: adminOnly, parentId: null },
-        { name: 'API Key', path: '/settings/api-keys', icon: 'KeyOutlined', sort: 2, visibleRoles: adminOnly, parentId: null },
-        { name: '黑名单', path: '/blacklist', icon: 'BlockOutlined', sort: 3, visibleRoles: adminOnly, parentId: null },
-        { name: '审计日志', path: '/audit-logs', icon: 'AuditOutlined', sort: 4, visibleRoles: adminOnly, parentId: null },
-        { name: '用户管理', path: '/settings/users', icon: 'UserOutlined', sort: 5, visibleRoles: adminOnly, parentId: null },
-        { name: '菜单管理', path: '/settings/menu-management', icon: 'MenuOutlined', sort: 6, visibleRoles: adminOnly, parentId: null },
-      ];
+    const menuData = [
+      { name: '仪表盘', path: '/dashboard', icon: 'DashboardOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
+      { name: '数据中心', path: null, icon: 'DatabaseOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
+      { name: '新闻管理', path: '/news', icon: 'ReadOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
+      { name: '股票查询', path: '/stocks', icon: 'SearchOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
+      { name: '股票追踪', path: '/stock-trackings', icon: 'EyeOutlined', sort: 2, visibleRoles: allRoles, parentId: null },
+      { name: '策略中心', path: null, icon: 'ExperimentOutlined', sort: 2, visibleRoles: allRoles, parentId: null },
+      { name: '信号规则', path: '/signal-rules', icon: 'SettingOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
+      { name: '信号管理', path: '/signals', icon: 'BellOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
+      { name: '事件管理', path: '/events', icon: 'ThunderboltOutlined', sort: 2, visibleRoles: allRoles, parentId: null },
+      { name: '策略管理', path: '/strategies', icon: 'CodeOutlined', sort: 3, visibleRoles: allRoles, parentId: null },
+      { name: '回测记录', path: '/backtest', icon: 'LineChartOutlined', sort: 4, visibleRoles: allRoles, parentId: null },
+      { name: '交易中心', path: null, icon: 'WalletOutlined', sort: 3, visibleRoles: allRoles, parentId: null },
+      { name: '运行管理', path: '/runtime', icon: 'ControlOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
+      { name: '账户模拟', path: '/simulation', icon: 'DollarOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
+      { name: 'AI 智能体', path: null, icon: 'RobotOutlined', sort: 4, visibleRoles: allRoles, parentId: null },
+      { name: '研究员 Agent', path: '/agent-chat', icon: 'MessageOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
+      { name: '交易 Agent', path: '/trading-agent', icon: 'ThunderboltOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
+      { name: '新闻过滤 Agent', path: '/news-filter-agent', icon: 'FilterOutlined', sort: 2, visibleRoles: allRoles, parentId: null },
+      { name: '交易经验', path: '/trading-memory', icon: 'BulbOutlined', sort: 3, visibleRoles: allRoles, parentId: null },
+      { name: 'AI 运行中心', path: '/llm-center', icon: 'CloudServerOutlined', sort: 4, visibleRoles: allRoles, parentId: null },
+      { name: 'LLM 日志', path: '/llm-logs', icon: 'FileTextOutlined', sort: 5, visibleRoles: allRoles, parentId: null },
+      { name: '分析中心', path: null, icon: 'FundOutlined', sort: 5, visibleRoles: allRoles, parentId: null },
+      { name: '综合分析', path: '/analysis/overview', icon: 'BarChartOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
+      { name: '策略总览', path: '/analysis/strategies', icon: 'PieChartOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
+      { name: '定期报告', path: '/periodic-reports', icon: 'FileTextOutlined', sort: 2, visibleRoles: allRoles, parentId: null },
+      { name: '系统设置', path: null, icon: 'SettingOutlined', sort: 6, visibleRoles: adminOnly, parentId: null },
+      { name: '通知设置', path: '/settings/notifications', icon: 'NotificationOutlined', sort: 0, visibleRoles: adminOnly, parentId: null },
+      { name: '定时任务', path: '/settings/scheduler', icon: 'ClockCircleOutlined', sort: 1, visibleRoles: adminOnly, parentId: null },
+      { name: 'API Key', path: '/settings/api-keys', icon: 'KeyOutlined', sort: 2, visibleRoles: adminOnly, parentId: null },
+      { name: '黑名单', path: '/blacklist', icon: 'BlockOutlined', sort: 3, visibleRoles: adminOnly, parentId: null },
+      { name: '审计日志', path: '/audit-logs', icon: 'AuditOutlined', sort: 4, visibleRoles: adminOnly, parentId: null },
+      { name: '用户管理', path: '/settings/users', icon: 'UserOutlined', sort: 5, visibleRoles: adminOnly, parentId: null },
+      { name: '菜单管理', path: '/settings/menu-management', icon: 'MenuOutlined', sort: 6, visibleRoles: adminOnly, parentId: null },
+    ];
 
+    const existingNames = new Set(existingMenus.map(m => m.name));
+    const existingPaths = new Set(existingMenus.map(m => m.path).filter((p): p is string => !!p));
+    const menusToInsert = menuData.filter(m => !existingNames.has(m.name) && (m.path === null || !existingPaths.has(m.path)));
+
+    let allMenus = [...existingMenus];
+
+    if (menusToInsert.length > 0) {
+      const insertedMenus = await db.insert(schema.menus).values(menusToInsert).returning();
+      allMenus = [...allMenus, ...insertedMenus];
+      console.log(`Created ${insertedMenus.length} new menus: ${insertedMenus.map(m => m.name).join(', ')}`);
+    } else if (existingMenus.length === 0) {
       const insertedMenus = await db.insert(schema.menus).values(menuData).returning();
-
-      const dataCenter = insertedMenus.find(m => m.name === '数据中心');
-      const strategyCenter = insertedMenus.find(m => m.name === '策略中心');
-      const tradingCenter = insertedMenus.find(m => m.name === '交易中心');
-      const aiCenter = insertedMenus.find(m => m.name === 'AI 智能体');
-      const analysisCenter = insertedMenus.find(m => m.name === '分析中心');
-      const systemSettings = insertedMenus.find(m => m.name === '系统设置');
-
-      const childUpdates: { menuId: string; parentId: string }[] = [];
-
-      if (dataCenter) {
-        ['新闻管理', '股票查询', '股票追踪'].forEach(name => {
-          const menu = insertedMenus.find(m => m.name === name);
-          if (menu) childUpdates.push({ menuId: menu.id, parentId: dataCenter.id });
-        });
-      }
-      if (strategyCenter) {
-        ['信号规则', '信号管理', '事件管理', '策略管理', '回测记录'].forEach(name => {
-          const menu = insertedMenus.find(m => m.name === name);
-          if (menu) childUpdates.push({ menuId: menu.id, parentId: strategyCenter.id });
-        });
-      }
-      if (tradingCenter) {
-        ['运行管理', '账户模拟'].forEach(name => {
-          const menu = insertedMenus.find(m => m.name === name);
-          if (menu) childUpdates.push({ menuId: menu.id, parentId: tradingCenter.id });
-        });
-      }
-      if (aiCenter) {
-        ['研究员 Agent', '交易 Agent', '新闻过滤 Agent', '交易经验', 'AI 运行中心', 'LLM 日志'].forEach(name => {
-          const menu = insertedMenus.find(m => m.name === name);
-          if (menu) childUpdates.push({ menuId: menu.id, parentId: aiCenter.id });
-        });
-      }
-      if (analysisCenter) {
-        ['综合分析', '策略总览'].forEach(name => {
-          const menu = insertedMenus.find(m => m.name === name);
-          if (menu) childUpdates.push({ menuId: menu.id, parentId: analysisCenter.id });
-        });
-      }
-      if (systemSettings) {
-        ['通知设置', '定时任务', 'API Key', '黑名单', '审计日志', '用户管理', '菜单管理'].forEach(name => {
-          const menu = insertedMenus.find(m => m.name === name);
-          if (menu) childUpdates.push({ menuId: menu.id, parentId: systemSettings.id });
-        });
-      }
-
-      for (const update of childUpdates) {
-        await db
-          .update(schema.menus)
-          .set({ parentId: update.parentId })
-          .where(eq(schema.menus.id, update.menuId));
-      }
-
-      console.log(`Created ${insertedMenus.length} menus with parent-child relationships`);
+      allMenus = insertedMenus;
+      console.log(`Created ${insertedMenus.length} menus`);
     } else {
-      console.log('Menus already exist, skipping menu creation');
+      console.log('All menus already exist, no new menus to create');
+    }
+
+    const parentChildMap: Record<string, string[]> = {
+      '数据中心': ['新闻管理', '股票查询', '股票追踪'],
+      '策略中心': ['信号规则', '信号管理', '事件管理', '策略管理', '回测记录'],
+      '交易中心': ['运行管理', '账户模拟'],
+      'AI 智能体': ['研究员 Agent', '交易 Agent', '新闻过滤 Agent', '交易经验', 'AI 运行中心', 'LLM 日志'],
+      '分析中心': ['综合分析', '策略总览', '定期报告'],
+      '系统设置': ['通知设置', '定时任务', 'API Key', '黑名单', '审计日志', '用户管理', '菜单管理'],
+    };
+
+    const childUpdates: { menuId: string; parentId: string }[] = [];
+    for (const [parentName, childNames] of Object.entries(parentChildMap)) {
+      const parent = allMenus.find(m => m.name === parentName);
+      if (!parent) continue;
+      for (const childName of childNames) {
+        const child = allMenus.find(m => m.name === childName);
+        if (child && child.parentId !== parent.id) {
+          childUpdates.push({ menuId: child.id, parentId: parent.id });
+        }
+      }
+    }
+
+    for (const update of childUpdates) {
+      await db
+        .update(schema.menus)
+        .set({ parentId: update.parentId })
+        .where(eq(schema.menus.id, update.menuId));
+    }
+
+    if (childUpdates.length > 0) {
+      console.log(`Updated ${childUpdates.length} menu parent-child relationships`);
     }
 
   } catch (error) {

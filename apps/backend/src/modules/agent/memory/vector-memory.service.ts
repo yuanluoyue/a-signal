@@ -30,9 +30,11 @@ export class VectorMemoryService {
     private readonly vectorService: VectorService,
   ) {
     const host = this.configService.get<string>('CHROMA_HOST') || 'localhost';
-    const port = this.configService.get<string>('CHROMA_PORT') || '8000';
+    const port = parseInt(this.configService.get<string>('CHROMA_PORT') || '8000', 10);
     this.client = new ChromaClient({
-      path: `http://${host}:${port}`,
+      host,
+      port,
+      ssl: false,
     });
   }
 

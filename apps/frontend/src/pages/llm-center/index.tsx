@@ -283,7 +283,7 @@ const LlmCenterPage: React.FC = () => {
           setEditingConfig(null);
         }}
         confirmLoading={editLoading}
-        destroyOnClose
+        destroyOnHidden
       >
         <Form form={form} layout="vertical">
           <Form.Item name="enabled" label="启用状态" valuePropName="checked">
@@ -310,7 +310,7 @@ const LlmCenterPage: React.FC = () => {
           createForm.resetFields();
         }}
         confirmLoading={createLoading}
-        destroyOnClose
+        destroyOnHidden
       >
         <Form form={createForm} layout="vertical">
           <Form.Item name="provider" label="Provider 名称" rules={[{ required: true, message: '请输入 Provider 名称' }]}>

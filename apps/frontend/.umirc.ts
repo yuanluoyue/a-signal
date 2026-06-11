@@ -171,6 +171,11 @@ export default defineConfig({
           title: '策略详情',
         },
         {
+          path: '/periodic-reports',
+          component: '@/pages/periodic-reports/index',
+          title: '定期报告',
+        },
+        {
           path: '/profile',
           component: '@/pages/profile',
           title: '个人资料',

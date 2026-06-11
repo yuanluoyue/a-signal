@@ -1,0 +1,1 @@
+ALTER TABLE "periodic_reports" ADD COLUMN "webhook_ids" jsonb;
