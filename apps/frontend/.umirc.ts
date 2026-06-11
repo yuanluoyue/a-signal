@@ -176,6 +176,11 @@ export default defineConfig({
           title: '定期报告',
         },
         {
+          path: '/notification-logs',
+          component: '@/pages/notification-logs/index',
+          title: '通知记录',
+        },
+        {
           path: '/profile',
           component: '@/pages/profile',
           title: '个人资料',

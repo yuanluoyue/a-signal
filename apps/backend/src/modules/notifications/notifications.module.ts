@@ -3,6 +3,7 @@ import { HttpModule } from '@nestjs/axios';
 import { DbModule } from '../../core/db/db.module.js';
 import { NotificationsService } from './notifications.service.js';
 import { WebhooksService } from './webhooks.service.js';
+import { NotificationLogService } from './notification-log.service.js';
 import { BlacklistModule } from '../blacklist/blacklist.module.js';
 import { StockModule } from '../stock/stock.module.js';
 import { StrategyModule } from '../strategy/strategy.module.js';
@@ -13,7 +14,7 @@ import { AgentModule } from '../agent/agent.module.js';
 
 @Module({
   imports: [HttpModule, DbModule, BlacklistModule, StockModule, StrategyModule, SimulationModule, KlinesModule, AuditLogModule, forwardRef(() => AgentModule)],
-  providers: [NotificationsService, WebhooksService],
-  exports: [NotificationsService, WebhooksService],
+  providers: [NotificationsService, WebhooksService, NotificationLogService],
+  exports: [NotificationsService, WebhooksService, NotificationLogService],
 })
 export class NotificationsModule {}

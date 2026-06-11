@@ -2,6 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import { firstValueFrom } from 'rxjs';
 import { WebhooksService, Webhook } from './webhooks.service.js';
+import { NotificationLogService } from './notification-log.service.js';
 import { Signal, Strategy } from '../../core/db/schema.js';
 import { BlacklistService } from '../blacklist/blacklist.service.js';
 import { StrategyService } from '../strategy/strategy.service.js';
@@ -31,6 +32,7 @@ export class NotificationsService {
   constructor(
     private readonly httpService: HttpService,
     private readonly webhooksService: WebhooksService,
+    private readonly notificationLogService: NotificationLogService,
     private readonly blacklistService: BlacklistService,
     private readonly strategyService: StrategyService,
     private readonly simulationService: SimulationService,
@@ -44,7 +46,22 @@ export class NotificationsService {
     stockName: string,
     stockCode: string,
     strategy: Strategy,
+    webhookId?: string,
+    webhookName?: string,
   ): Promise<boolean> {
+    const dir = (signal.action || signal.direction || '').toLowerCase();
+    const isLong = dir === 'long' || dir === 'bullish' || dir === 'buy';
+    const logEntry = await this.notificationLogService.createLog({
+      webhookId,
+      webhookName,
+      webhookUrl,
+      type: 'signal',
+      title: `${isLong ? '📈' : '📉'} ${stockName} ${isLong ? '看多' : '看空'}信号`,
+      status: 'sending',
+      signalId: signal.id,
+      strategyId: strategy.id,
+    });
+
     try {
       const entryPrice = await this.getLatestPrice(stockCode);
       const takeProfitPct = strategy.takeProfitPct ? parseFloat(strategy.takeProfitPct) : null;
@@ -72,15 +89,18 @@ export class NotificationsService {
       );
 
       if (response.data?.errcode === 0) {
+        await this.notificationLogService.updateLogStatus(logEntry.id, 'success', JSON.stringify(response.data));
         this.logger.log(`Wechat notification sent successfully to ${webhookUrl}`);
         return true;
       } else {
+        await this.notificationLogService.updateLogStatus(logEntry.id, 'failed', JSON.stringify(response.data));
         this.logger.warn(
           `Wechat notification failed: ${response.data?.errmsg || 'Unknown error'}`,
         );
         return false;
       }
     } catch (error) {
+      await this.notificationLogService.updateLogStatus(logEntry.id, 'error', error instanceof Error ? error.message : String(error));
       this.logger.error(
         `Failed to send wechat notification to ${webhookUrl}: ${error.message}`,
         error.stack,
@@ -221,6 +241,8 @@ export class NotificationsService {
                 context.stockName,
                 context.stockCode,
                 strategy,
+                strategy.webhook.id,
+                strategy.webhook.name,
               );
               break;
             default:
@@ -328,6 +350,16 @@ export class NotificationsService {
         return false;
       }
 
+      const logEntry = await this.notificationLogService.createLog({
+        webhookId: webhook.id,
+        webhookName: webhook.name,
+        webhookUrl: webhook.url,
+        type: 'test',
+        title: '🧪 测试通知',
+        content: '这是一条测试消息，用于验证 Webhook 配置是否正确。',
+        status: 'sending',
+      });
+
       const testMessage: WechatMessage = {
         msgtype: 'markdown',
         markdown: {
@@ -346,9 +378,11 @@ export class NotificationsService {
       );
 
       if (response.data?.errcode === 0) {
+        await this.notificationLogService.updateLogStatus(logEntry.id, 'success', JSON.stringify(response.data));
         this.logger.log(`Test notification sent successfully to ${webhook.name}`);
         return true;
       } else {
+        await this.notificationLogService.updateLogStatus(logEntry.id, 'failed', JSON.stringify(response.data));
         this.logger.warn(
           `Test notification failed: ${response.data?.errmsg || 'Unknown error'}`,
         );
@@ -367,12 +401,22 @@ export class NotificationsService {
     webhook: Webhook,
     payload: { type: string; title: string; content: string; timestamp: string },
   ): Promise<boolean> {
-    try {
-      if (!webhook.enabled) {
-        this.logger.warn(`Webhook ${webhook.name} is disabled`);
-        return false;
-      }
+    if (!webhook.enabled) {
+      this.logger.warn(`Webhook ${webhook.name} is disabled`);
+      return false;
+    }
 
+    const logEntry = await this.notificationLogService.createLog({
+      webhookId: webhook.id,
+      webhookName: webhook.name,
+      webhookUrl: webhook.url,
+      type: payload.type,
+      title: payload.title,
+      content: payload.content,
+      status: 'sending',
+    });
+
+    try {
       const message: WechatMessage = {
         msgtype: 'markdown',
         markdown: {
@@ -390,15 +434,18 @@ export class NotificationsService {
       );
 
       if (response.data?.errcode === 0) {
+        await this.notificationLogService.updateLogStatus(logEntry.id, 'success', JSON.stringify(response.data));
         this.logger.log(`Notification sent successfully to ${webhook.name}`);
         return true;
       } else {
+        await this.notificationLogService.updateLogStatus(logEntry.id, 'failed', JSON.stringify(response.data));
         this.logger.warn(
           `Notification failed: ${response.data?.errmsg || 'Unknown error'}`,
         );
         return false;
       }
     } catch (error) {
+      await this.notificationLogService.updateLogStatus(logEntry.id, 'error', error instanceof Error ? error.message : String(error));
       this.logger.error(
         `Failed to send notification to ${webhook.name}: ${error.message}`,
         error.stack,

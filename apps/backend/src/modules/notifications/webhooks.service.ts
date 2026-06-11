@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs';
 import { DbService } from '../../core/db/db.service.js';
 import { StockService } from '../stock/stock.service.js';
 import { AuditLogService } from '../audit-log/audit-log.service.js';
+import { NotificationLogService } from './notification-log.service.js';
 import * as schema from '../../core/db/schema.js';
 
 export type Webhook = schema.Webhook;
@@ -46,6 +47,7 @@ export class WebhooksService {
     private readonly httpService: HttpService,
     private readonly stockService: StockService,
     private readonly auditLogService: AuditLogService,
+    private readonly notificationLogService: NotificationLogService,
   ) {}
 
   async findAll(userId: string): Promise<Webhook[]> {
@@ -251,7 +253,7 @@ export class WebhooksService {
 
     const stockCode = signal.stockCode || signal.symbol || '';
     let stockName = signal.stockName || stockCode;
-    
+
     if (stockCode && !signal.stockName) {
       const stockNamesMap = await this.stockService.findByCodes([stockCode]);
       stockName = stockNamesMap.get(stockCode)?.name || stockCode;
@@ -269,9 +271,25 @@ export class WebhooksService {
       signalTime: signal.generatedAt || signal.signalTime || signal.createdAt || new Date(),
     };
 
-    const message = this.buildWechatMessage(notification);
-    await this.sendToWebhook(webhook, message);
-    this.logger.log(`Sent test notification to webhook: ${webhook.name} for signal: ${signalId}`);
+    const logEntry = await this.notificationLogService.createLog({
+      webhookId: webhook.id,
+      webhookName: webhook.name,
+      webhookUrl: webhook.url,
+      type: 'signal_test',
+      title: `🧪 测试信号 - ${stockName}`,
+      status: 'sending',
+      signalId: signal.id,
+    });
+
+    try {
+      const message = this.buildWechatMessage(notification);
+      await this.sendToWebhook(webhook, message);
+      await this.notificationLogService.updateLogStatus(logEntry.id, 'success');
+      this.logger.log(`Sent test notification to webhook: ${webhook.name} for signal: ${signalId}`);
+    } catch (error) {
+      await this.notificationLogService.updateLogStatus(logEntry.id, 'error', error instanceof Error ? error.message : String(error));
+      throw error;
+    }
   }
 
   private async sendToWebhook(webhook: schema.Webhook, message: object): Promise<void> {

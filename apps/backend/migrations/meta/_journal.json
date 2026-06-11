@@ -218,6 +218,13 @@
       "when": 1780073361752,
       "tag": "0030_lucky_nekra",
       "breakpoints": true
+    },
+    {
+      "idx": 31,
+      "version": "7",
+      "when": 1781194597883,
+      "tag": "0031_open_senator_kelly",
+      "breakpoints": true
     }
   ]
 }
