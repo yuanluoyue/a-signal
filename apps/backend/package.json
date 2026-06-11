@@ -62,6 +62,8 @@
     "@nestjs/cli": "^11.0.0",
     "@nestjs/schematics": "^11.0.0",
     "@nestjs/testing": "^11.1.17",
+    "@swc/cli": "^0.8.1",
+    "@swc/core": "^1.15.41",
     "@types/bcrypt": "^5.0.2",
     "@types/cheerio": "^1.0.0",
     "@types/express": "^5.0.0",
