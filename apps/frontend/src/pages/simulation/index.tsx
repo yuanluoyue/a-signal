@@ -254,6 +254,13 @@ const SimulationPage: React.FC = () => {
     Promise.all([fetchAccount(), fetchPositions(), fetchTrades()]).finally(() => {
       setLoading(false);
     });
+
+    // 自动刷新行情，每60秒刷新一次
+    const timer = setInterval(() => {
+      refreshPositions();
+    }, 60 * 1000);
+
+    return () => clearInterval(timer);
   }, [selectedAccountId]);
 
   useEffect(() => {
@@ -440,11 +447,17 @@ const SimulationPage: React.FC = () => {
 
   const handleUpdateBalance = async (values: { currentCapital: number; availableCash: number }) => {
     try {
-      await client.put('/simulation/account', values);
+      await client.put('/simulation/account', values, {
+        params: { accountId: selectedAccountId },
+      });
       message.success('余额更新成功');
       setIsBalanceModalVisible(false);
       balanceForm.resetFields();
+      fetchAccounts();
       fetchAccount();
+      if (activeTab === 'equity-curve') {
+        fetchEquityCurve();
+      }
     } catch (error) {
       message.error('余额更新失败');
       console.error('Update balance error:', error);

@@ -39,8 +39,8 @@ export class SchedulerService implements OnModuleInit {
       },
       {
         name: 'simulation-refresh',
-        cronExpression: '0 0 */4 * * *',
-        description: '每4小时刷新模拟交易持仓价格和止盈止损',
+        cronExpression: '0 */30 * * * *',
+        description: '每30分钟刷新模拟交易持仓价格和止盈止损',
         enabled: true,
       },
     ];
