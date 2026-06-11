@@ -306,6 +306,40 @@ export const webhooks = pgTable(
 export type Webhook = typeof webhooks.$inferSelect;
 export type NewWebhook = typeof webhooks.$inferInsert;
 
+export const notificationLogs = pgTable(
+  'notification_logs',
+  {
+    id: uuid('id').primaryKey().defaultRandom(),
+    webhookId: uuid('webhook_id'),
+    webhookName: varchar('webhook_name', { length: 100 }),
+    webhookUrl: text('webhook_url'),
+    type: varchar('type', { length: 50 }).notNull(),
+    title: varchar('title', { length: 500 }),
+    content: text('content'),
+    status: varchar('status', { length: 20 }).notNull().default('pending'),
+    response: text('response'),
+    signalId: uuid('signal_id'),
+    strategyId: uuid('strategy_id'),
+    createdAt: timestamp('created_at', { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [
+    foreignKey({
+      columns: [table.webhookId],
+      foreignColumns: [webhooks.id],
+      name: 'notification_logs_webhook_id_fk',
+    }),
+    index('notification_logs_webhook_id_idx').on(table.webhookId),
+    index('notification_logs_type_idx').on(table.type),
+    index('notification_logs_status_idx').on(table.status),
+    index('notification_logs_created_at_idx').on(table.createdAt),
+  ],
+);
+
+export type NotificationLog = typeof notificationLogs.$inferSelect;
+export type NewNotificationLog = typeof notificationLogs.$inferInsert;
+
 export interface PeriodicReportContent {
   period: { start: string; end: string; type: 'daily' | 'weekly' };
   strategies: {

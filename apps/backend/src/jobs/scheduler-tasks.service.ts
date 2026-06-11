@@ -147,7 +147,7 @@ export class SchedulerTasksService {
     }
   }
 
-  @Cron('0 0 */4 * * *', {
+  @Cron('0 */30 * * * *', {
     name: 'simulation-refresh',
     timeZone: 'Asia/Shanghai',
   })

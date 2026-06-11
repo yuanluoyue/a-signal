@@ -179,16 +179,32 @@ export class SimulationService {
       throw new NotFoundException('Account not found');
     }
 
-    const [updated] = await this.dbService.db
-      .update(simulationAccounts)
-      .set({
-        currentCapital: dto.currentCapital?.toString(),
-        availableCash: dto.availableCash?.toString(),
-      })
-      .where(eq(simulationAccounts.id, id))
-      .returning();
+    this.logger.log(`[updateAccount] Updating account id=${id}, dto=${JSON.stringify(dto)}, before: currentCapital=${account.currentCapital}, availableCash=${account.availableCash}`);
 
-    return updated;
+    const updateData: Record<string, string> = {};
+
+    if (dto.availableCash !== undefined) {
+      updateData.availableCash = dto.availableCash.toString();
+    }
+
+    if (dto.currentCapital !== undefined) {
+      updateData.currentCapital = dto.currentCapital.toString();
+    }
+
+    await this.dbService.db
+      .update(simulationAccounts)
+      .set(updateData)
+      .where(eq(simulationAccounts.id, id));
+
+    // 重新计算 currentCapital、totalProfit、totalReturn
+    await this.refreshAccountEquity(id);
+    // 记录资金曲线（强制插入新记录，确保余额变更在曲线上可见）
+    await this.recordEquityCurve(id, true);
+
+    const updated = await this.getAccountById(id);
+    this.logger.log(`[updateAccount] Updated account id=${id}, after: currentCapital=${updated!.currentCapital}, availableCash=${updated!.availableCash}`);
+
+    return updated!;
   }
 
   async getPositions(accountId: string): Promise<SimulationPosition[]> {
@@ -327,7 +343,7 @@ export class SimulationService {
       .where(eq(simulationAccounts.id, accountId));
   }
 
-  async recordEquityCurve(accountId: string): Promise<void> {
+  async recordEquityCurve(accountId: string, forceNew = false): Promise<void> {
     const account = await this.getAccountById(accountId);
     if (!account) {
       throw new NotFoundException('Account not found');
@@ -345,39 +361,43 @@ export class SimulationService {
     const totalProfit = totalEquity - initialCapital;
     const totalReturn = totalProfit / initialCapital;
 
-    const recentRecords = await this.dbService.db
-      .select()
-      .from(simulationEquityCurve)
-      .where(eq(simulationEquityCurve.accountId, accountId))
-      .orderBy(desc(simulationEquityCurve.recordedAt))
-      .limit(1);
-
     const now = new Date();
-    const oneMinuteAgo = new Date(now.getTime() - 60 * 1000);
 
-    if (recentRecords.length > 0 && new Date(recentRecords[0].recordedAt) >= oneMinuteAgo) {
-      await this.dbService.db
-        .update(simulationEquityCurve)
-        .set({
-          totalEquity: totalEquity.toString(),
-          availableCash: availableCash.toString(),
-          positionValue: positionValue.toString(),
-          totalProfit: totalProfit.toString(),
-          totalReturn: totalReturn.toString(),
-          recordedAt: now,
-        })
-        .where(eq(simulationEquityCurve.id, recentRecords[0].id));
-    } else {
-      await this.dbService.db.insert(simulationEquityCurve).values({
-        accountId,
-        totalEquity: totalEquity.toString(),
-        availableCash: availableCash.toString(),
-        positionValue: positionValue.toString(),
-        totalProfit: totalProfit.toString(),
-        totalReturn: totalReturn.toString(),
-        recordedAt: now,
-      });
+    if (!forceNew) {
+      const recentRecords = await this.dbService.db
+        .select()
+        .from(simulationEquityCurve)
+        .where(eq(simulationEquityCurve.accountId, accountId))
+        .orderBy(desc(simulationEquityCurve.recordedAt))
+        .limit(1);
+
+      const oneMinuteAgo = new Date(now.getTime() - 60 * 1000);
+
+      if (recentRecords.length > 0 && new Date(recentRecords[0].recordedAt) >= oneMinuteAgo) {
+        await this.dbService.db
+          .update(simulationEquityCurve)
+          .set({
+            totalEquity: totalEquity.toString(),
+            availableCash: availableCash.toString(),
+            positionValue: positionValue.toString(),
+            totalProfit: totalProfit.toString(),
+            totalReturn: totalReturn.toString(),
+            recordedAt: now,
+          })
+          .where(eq(simulationEquityCurve.id, recentRecords[0].id));
+        return;
+      }
     }
+
+    await this.dbService.db.insert(simulationEquityCurve).values({
+      accountId,
+      totalEquity: totalEquity.toString(),
+      availableCash: availableCash.toString(),
+      positionValue: positionValue.toString(),
+      totalProfit: totalProfit.toString(),
+      totalReturn: totalReturn.toString(),
+      recordedAt: now,
+    });
   }
 
   async getEquityCurve(accountId: string): Promise<SimulationEquityCurve[]> {

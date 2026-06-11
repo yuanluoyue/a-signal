@@ -638,6 +638,7 @@ async function seed() {
       { name: '综合分析', path: '/analysis/overview', icon: 'BarChartOutlined', sort: 0, visibleRoles: allRoles, parentId: null },
       { name: '策略总览', path: '/analysis/strategies', icon: 'PieChartOutlined', sort: 1, visibleRoles: allRoles, parentId: null },
       { name: '定期报告', path: '/periodic-reports', icon: 'FileTextOutlined', sort: 2, visibleRoles: allRoles, parentId: null },
+      { name: '通知记录', path: '/notification-logs', icon: 'NotificationOutlined', sort: 3, visibleRoles: allRoles, parentId: null },
       { name: '系统设置', path: null, icon: 'SettingOutlined', sort: 6, visibleRoles: adminOnly, parentId: null },
       { name: '通知设置', path: '/settings/notifications', icon: 'NotificationOutlined', sort: 0, visibleRoles: adminOnly, parentId: null },
       { name: '定时任务', path: '/settings/scheduler', icon: 'ClockCircleOutlined', sort: 1, visibleRoles: adminOnly, parentId: null },
@@ -671,7 +672,7 @@ async function seed() {
       '策略中心': ['信号规则', '信号管理', '事件管理', '策略管理', '回测记录'],
       '交易中心': ['运行管理', '账户模拟'],
       'AI 智能体': ['研究员 Agent', '交易 Agent', '新闻过滤 Agent', '交易经验', 'AI 运行中心', 'LLM 日志'],
-      '分析中心': ['综合分析', '策略总览', '定期报告'],
+      '分析中心': ['综合分析', '策略总览', '定期报告', '通知记录'],
       '系统设置': ['通知设置', '定时任务', 'API Key', '黑名单', '审计日志', '用户管理', '菜单管理'],
     };
 
